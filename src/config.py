@@ -38,6 +38,9 @@ class TranscriptConfig:
 @dataclass
 class ProcessingConfig:
     filler_words: List[str] = field(default_factory=list)
+    # Number of chapters to generate in parallel (tune to your API tier's rate limits)
+    # Free tier: keep at 3-4. Paid tier: can go up to 10.
+    parallel_chapters: int = 5
 
 
 @dataclass
@@ -50,7 +53,7 @@ class OutputConfig:
 @dataclass
 class VerificationConfig:
     enabled: bool = False
-    provider: str = "grok"
+    provider: str = "gemini"
 
 
 @dataclass
@@ -58,7 +61,6 @@ class Config:
     """Top-level application configuration."""
 
     primary_provider: str = "gemini"
-    secondary_provider: str = "groq"
     llm_configs: Dict[str, LLMModelConfig] = field(default_factory=dict)
     chunking: ChunkingConfig = field(default_factory=ChunkingConfig)
     transcript: TranscriptConfig = field(default_factory=TranscriptConfig)
@@ -68,7 +70,6 @@ class Config:
 
     # API keys (loaded from env)
     gemini_api_key: str = ""
-    groq_api_key: str = ""
 
     @classmethod
     def load(cls, config_path: str = "config/default.yaml") -> "Config":
@@ -83,10 +84,10 @@ class Config:
 
         llm_section = raw.get("llm", {})
         llm_configs: Dict[str, LLMModelConfig] = {}
-        for provider_name in ("gemini", "groq", "ollama"):
-            provider_raw = llm_section.get(provider_name, {})
-            if provider_raw:
-                llm_configs[provider_name] = LLMModelConfig(**provider_raw)
+        provider_name = "gemini"
+        provider_raw = llm_section.get(provider_name, {})
+        if provider_raw:
+            llm_configs[provider_name] = LLMModelConfig(**provider_raw)
 
         chunking_raw = raw.get("chunking", {})
         transcript_raw = raw.get("transcript", {})
@@ -96,7 +97,6 @@ class Config:
 
         return cls(
             primary_provider=llm_section.get("primary_provider", "gemini"),
-            secondary_provider=llm_section.get("secondary_provider", "groq"),
             llm_configs=llm_configs,
             chunking=ChunkingConfig(**chunking_raw) if chunking_raw else ChunkingConfig(),
             transcript=TranscriptConfig(**transcript_raw) if transcript_raw else TranscriptConfig(),
@@ -104,5 +104,4 @@ class Config:
             output=OutputConfig(**output_raw) if output_raw else OutputConfig(),
             verification=VerificationConfig(**verification_raw) if verification_raw else VerificationConfig(),
             gemini_api_key=os.getenv("GEMINI_API_KEY", ""),
-            groq_api_key=os.getenv("GROQ_API_KEY", ""),
         )

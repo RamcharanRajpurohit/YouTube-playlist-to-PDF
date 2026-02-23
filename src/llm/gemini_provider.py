@@ -39,7 +39,7 @@ class GeminiProvider(LLMProvider):
         return self._max_context
 
     def count_tokens(self, text: str) -> int:
-        return len(self._encoder.encode(text))
+        return len(self._encoder.encode(text, disallowed_special=()))
 
     def _call(self, prompt: str, system_prompt: str = "") -> str:
         config = types.GenerateContentConfig(

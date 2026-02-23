@@ -74,8 +74,7 @@ class PlaylistExtractor:
         """Check if URL contains a playlist parameter."""
         return "list=" in url
 
-    @staticmethod
-    def _fetch_chapters(video_id: str) -> list:
+    def _fetch_chapters(self, video_id: str) -> list:
         """Fetch YouTube chapter markers for a video via yt-dlp.
 
         Returns a list of VideoChapter objects, or an empty list if the
@@ -155,11 +154,11 @@ class PlaylistExtractor:
                     chapters=chapters,
                 )
             )
-            logger.debug(
-                "Video %d '%s': %d chapter(s) found.",
-                idx,
+            logger.info(
+                "  [%d/%d] %s",
+                idx + 1,
+                len(entries),
                 entry.get("title", ""),
-                len(chapters),
             )
 
         logger.info("Extracted %d videos from playlist.", len(videos))

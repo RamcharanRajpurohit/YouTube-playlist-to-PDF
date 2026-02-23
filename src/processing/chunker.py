@@ -38,7 +38,7 @@ class TextChunker:
 
     def count_tokens(self, text: str) -> int:
         """Return the token count for *text*."""
-        return len(self._encoder.encode(text))
+        return len(self._encoder.encode(text, disallowed_special=()))
 
     def chunk(self, text: str) -> List[TextChunk]:
         """Split *text* into token-bounded chunks on sentence boundaries."""

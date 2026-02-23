@@ -40,13 +40,18 @@ class LLMProvider(ABC):
         prompt: str,
         system_prompt: str = "",
         max_retries: int = _MAX_RETRIES,
-    ) -> str:
-        """Call the LLM with exponential-backoff retry on transient errors."""
+    ) -> tuple[str, int, int]:
+        """Call the LLM with exponential-backoff retry on transient errors.
+        Returns: (result_text, input_tokens, output_tokens)
+        """
+        input_tokens = self.count_tokens(prompt + (system_prompt or ""))
         last_exc: Optional[Exception] = None
         for attempt in range(1, max_retries + 1):
             try:
                 result = self._call(prompt, system_prompt)
-                return result
+                output_tokens = self.count_tokens(result)
+                logger.debug("[%s] Input tokens: %d, Output tokens: %d", self.name, input_tokens, output_tokens)
+                return result, input_tokens, output_tokens
             except Exception as exc:
                 last_exc = exc
                 logger.warning(

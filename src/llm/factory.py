@@ -5,8 +5,6 @@ from __future__ import annotations
 from src.config import Config
 from src.llm.base import LLMProvider
 from src.llm.gemini_provider import GeminiProvider
-from src.llm.groq_provider import GroqProvider
-from src.llm.ollama_provider import OllamaProvider
 
 
 class LLMFactory:
@@ -14,7 +12,7 @@ class LLMFactory:
 
     @staticmethod
     def create(provider_name: str, config: Config) -> LLMProvider:
-        """Return an LLMProvider for *provider_name* ('gemini', 'groq', or 'ollama')."""
+        """Return an LLMProvider for *provider_name*."""
         provider_name = provider_name.lower()
 
         if provider_name == "gemini":
@@ -25,20 +23,5 @@ class LLMFactory:
                 api_key=config.gemini_api_key,
                 model_config=model_config,
             )
-
-        if provider_name == "groq":
-            model_config = config.llm_configs.get("groq")
-            if model_config is None:
-                raise ValueError("No Groq model config found in config.")
-            return GroqProvider(
-                api_key=config.groq_api_key,
-                model_config=model_config,
-            )
-
-        if provider_name == "ollama":
-            model_config = config.llm_configs.get("ollama")
-            if model_config is None:
-                raise ValueError("No Ollama model config found in config.")
-            return OllamaProvider(model_config=model_config)
 
         raise ValueError(f"Unknown LLM provider: {provider_name!r}")

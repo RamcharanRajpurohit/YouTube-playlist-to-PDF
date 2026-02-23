@@ -96,21 +96,6 @@ _CHAPTER_USER = (
     "{continuation_note}"
 )
 
-_MERGE_SYSTEM = (
-    "You are a professional book editor merging already-written parts into a "
-    "single, cohesive markdown chapter.\n\n"
-    "RULES:\n"
-    "- Do NOT alter the technical content. Keep ALL information.\n"
-    "- Ensure transitions between parts are seamless.\n"
-    "- Remove duplicate overlaps at boundaries if any exist.\n"
-    "- The chapter should start with a single # heading for the chapter title.\n"
-    "- Provide ONLY the final, merged markdown chapter. No trailing tags."
-)
-
-_MERGE_USER = (
-    "## Chapter {chapter_number}: {chapter_title}\n\n"
-    "Below are {num_parts} parts that must be merged into one cohesive chapter.\n\n{parts}"
-)
 
 
 # ── BookStructurer ───────────────────────────────────────────────────
@@ -120,7 +105,7 @@ class BookStructurer:
 
     Phase 1: Generate Table of Contents from video metadata.
     Phase 2: Write chunks, chaining summaries forward for logical continuity.
-    Phase 3: Merge chunks seamlessly into one chapter (no separate refine pass).
+    Phase 3: Concatenate chunk outputs directly (no LLM merge pass needed).
     """
 
     def __init__(
@@ -173,7 +158,8 @@ class BookStructurer:
             book_title=book_title,
         )
 
-        raw = self._llm.generate(prompt, system_prompt=_TOC_SYSTEM)
+        raw, toc_in_tokens, toc_out_tokens = self._llm.generate(prompt, system_prompt=_TOC_SYSTEM)
+        logger.info("[TOC Generation] Input tokens: %d, Output tokens: %d", toc_in_tokens, toc_out_tokens)
         return self._parse_toc(raw)
 
     def _parse_toc(self, raw: str) -> List[ChapterOutline]:
@@ -244,19 +230,30 @@ class BookStructurer:
         chunks = self._chunker.chunk(combined_text)
 
         if len(chunks) == 1:
-            part_content, _ = self._write_single_chunk(outline, chunks[0], 1, 1, "")
+            part_content, _, in_tok, out_tok = self._write_single_chunk(outline, chunks[0], 1, 1, "")
             chapter_content = part_content
+            total_in_tokens = in_tok
+            total_out_tokens = out_tok
         else:
             parts = []
             rolling_summary = ""
+            total_in_tokens = 0
+            total_out_tokens = 0
             for i, chunk in enumerate(chunks):
-                part_content, rolling_summary = self._write_single_chunk(
+                part_content, rolling_summary, in_tok, out_tok = self._write_single_chunk(
                     outline, chunk, i + 1, len(chunks), rolling_summary
                 )
                 parts.append(part_content)
-            
-            # Fast merge without expensive re-writing
-            chapter_content = self._merge_parts(outline, parts)
+                total_in_tokens += in_tok
+                total_out_tokens += out_tok
+
+            # Direct concatenation — rolling summaries already ensure continuity
+            chapter_content = "\n\n".join(parts)
+
+        logger.info(
+            "Chapter %d token usage - Input: %d, Output: %d",
+            outline.number, total_in_tokens, total_out_tokens
+        )
 
         chapter = Chapter(
             number=outline.number,
@@ -288,7 +285,7 @@ class BookStructurer:
         chunk_index: int,
         total_chunks: int,
         previous_summary: str,
-    ) -> tuple[str, str]:
+    ) -> tuple[str, str, int, int]:
         continuation = ""
         if chunk_index > 1:
             continuation = (
@@ -307,7 +304,7 @@ class BookStructurer:
             continuation_note=continuation,
         )
 
-        raw_output = self._llm.generate(prompt, system_prompt=_CHAPTER_SYSTEM)
+        raw_output, in_tokens, out_tokens = self._llm.generate(prompt, system_prompt=_CHAPTER_SYSTEM)
         
         # Extract <summary> tags
         new_summary = ""
@@ -319,22 +316,7 @@ class BookStructurer:
         else:
             chapter_prose = raw_output.strip()
             
-        return chapter_prose, new_summary
-
-    def _merge_parts(self, outline: ChapterOutline, parts: List[str]) -> str:
-        """Merge multiple chunk outputs into one coherent chapter."""
-        parts_text = ""
-        for i, part in enumerate(parts, 1):
-            parts_text += f"\n### Part {i}\n{part}\n"
-
-        prompt = _MERGE_USER.format(
-            chapter_number=outline.number,
-            chapter_title=outline.title,
-            num_parts=len(parts),
-            parts=parts_text,
-        )
-
-        return self._llm.generate(prompt, system_prompt=_MERGE_SYSTEM)
+        return chapter_prose, new_summary, in_tokens, out_tokens
 
     # ── Chapter caching ──────────────────────────────────────────
 

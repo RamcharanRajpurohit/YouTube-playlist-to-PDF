@@ -5,11 +5,10 @@ Convert any YouTube playlist (or single video) into a professionally formatted t
 ## Features
 
 - **End-to-end pipeline**: playlist URL → transcripts → chapters → polished PDF
-- **Works out of the box**: uses Ollama (local, free) by default — no API keys needed
-- **Multi-LLM support**: Ollama (local), Gemini, Groq — easily swappable
+- **Works out of the box**: uses Gemini by default
 - **Large content handling**: automatic transcript chunking with token-aware splitting
 - **Caching & resumability**: transcripts and chapters are cached; a failed run can resume
-- **Optional verification**: cross-check chapters against source transcripts using a second LLM
+- **Optional verification**: cross-check chapters against source transcripts using the Gemini LLM
 - **Book-quality output**: professional PDF with proper typography, code highlighting, and page layout
 
 ## Quick Start (One Command)
@@ -22,8 +21,6 @@ chmod +x setup.sh && ./setup.sh
 This automatically:
 - Creates a Python virtual environment
 - Installs all dependencies
-- Installs Ollama (if not present)
-- Pulls the Mistral model
 - Creates `.env` from template
 
 Then run:
@@ -39,8 +36,6 @@ python main.py --url "https://youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSg
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-# Install Ollama: https://ollama.com/download
-ollama pull mistral
 ```
 
 ## Usage
@@ -72,18 +67,16 @@ python main.py --url "<url>" --title "My Custom Book"
 
 | Provider | Model | API Key? | Speed |
 |---|---|---|---|
-| `ollama` (default) | `mistral` | **None** | Slower (local CPU) |
-| `gemini` | `gemini-2.5-flash` | `GEMINI_API_KEY` | Fast |
-| `groq` | `llama-3.3-70b-versatile` | `GROQ_API_KEY` | Fast |
+| `gemini` (default) | `gemini-2.0-flash` | `GEMINI_API_KEY` | Fast |
 
-To switch providers, edit `config/default.yaml`:
+To switch providers (if you extend the code), edit `config/default.yaml`:
 
 ```yaml
 llm:
-  primary_provider: gemini   # or groq, ollama
+  primary_provider: gemini
 ```
 
-For cloud providers, add API keys to `.env`.
+Add your API keys to `.env`.
 
 ## Configuration
 
@@ -91,8 +84,7 @@ All settings in `config/default.yaml`:
 
 | Setting | Description |
 |---|---|
-| `llm.primary_provider` | LLM for chapter writing (`ollama`, `gemini`, `groq`) |
-| `llm.secondary_provider` | LLM for verification |
+| `llm.primary_provider` | LLM for chapter writing (`gemini`) |
 | `chunking.target_chunk_tokens` | Max tokens per chunk sent to LLM |
 | `processing.filler_words` | Filler words/phrases to remove |
 | `verification.enabled` | Enable verification pass |
@@ -115,8 +107,6 @@ playlist_to_book/
 │   ├── llm/
 │   │   ├── base.py                # Abstract LLM provider
 │   │   ├── gemini_provider.py     # Google Gemini (cloud)
-│   │   ├── groq_provider.py       # Groq (cloud)
-│   │   ├── ollama_provider.py     # Ollama (local, free)
 │   │   └── factory.py             # Provider factory
 │   ├── verification/
 │   │   └── verifier.py            # Cross-LLM content verification
@@ -145,8 +135,7 @@ playlist_to_book/
 ## Requirements
 
 - Python 3.10+
-- For local mode: Ollama (auto-installed by `setup.sh`)
-- For cloud mode: API keys for Gemini and/or Groq
+- API keys for Gemini
 
 ## License
 

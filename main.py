@@ -13,6 +13,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import asyncio
 import logging
 import sys
 import time
@@ -55,8 +56,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--url",
-        required=True,
-        help="YouTube playlist or video URL.",
+        default="",
+        help="YouTube playlist or video URL (prompted if not provided).",
     )
     parser.add_argument(
         "--config",
@@ -90,19 +91,14 @@ def parse_args() -> argparse.Namespace:
 
 _PROVIDERS = {
     "1": "gemini",
-    "2": "groq",
-    "3": "ollama",
 }
 
 _PROVIDER_LABELS = {
     "gemini": "Gemini (Google AI)",
-    "groq":   "Grok / Groq (fast cloud inference)",
-    "ollama": "Local model (Ollama, no API key needed)",
 }
 
 _KEY_ENV_VARS = {
     "gemini": "GEMINI_API_KEY",
-    "groq":   "GROQ_API_KEY",
 }
 
 
@@ -127,21 +123,7 @@ def prompt_provider_setup(config: "Config") -> None:
     collect any missing credentials. Updates *config* in-place."""
     import os
 
-    print("\n" + "═" * 50)
-    print("  🤖  Choose your LLM provider")
-    print("═" * 50)
-    for num, name in _PROVIDERS.items():
-        print(f"  [{num}] {_PROVIDER_LABELS[name]}")
-    print()
-
-    while True:
-        choice = input("Enter choice [1/2/3]: ").strip()
-        if choice in _PROVIDERS:
-            break
-        print("  ⚠  Please enter 1, 2, or 3.")
-
-    provider = _PROVIDERS[choice]
-    print(f"\n  ✔  Selected: {_PROVIDER_LABELS[provider]}")
+    provider = "gemini"
 
     # For API-key providers, check and prompt if missing
     env_var = _KEY_ENV_VARS.get(provider)
@@ -152,8 +134,6 @@ def prompt_provider_setup(config: "Config") -> None:
             # Ensure config carries the key
             if provider == "gemini":
                 config.gemini_api_key = existing_key
-            elif provider == "groq":
-                config.groq_api_key = existing_key
         else:
             print(f"\n  {env_var} not found.")
             key = input(f"  Enter your {_PROVIDER_LABELS[provider]} API key: ").strip()
@@ -161,17 +141,15 @@ def prompt_provider_setup(config: "Config") -> None:
                 key = input("  API key cannot be empty. Try again: ").strip()
 
             # Save to .env for future runs
-            _save_to_dotenv(env_var, key)
             os.environ[env_var] = key
-            print(f"  ✔  Saved to .env for future runs.\n")
+            try:
+                _save_to_dotenv(env_var, key)
+                print(f"  ✔  Saved to .env for future runs.\n")
+            except PermissionError:
+                print(f"  ✔  Key set for this session (no write access to .env).\n")
 
             if provider == "gemini":
                 config.gemini_api_key = key
-            elif provider == "groq":
-                config.groq_api_key = key
-    else:
-        # Ollama — no key needed
-        print("  ℹ  No API key required. Ollama will start automatically if needed.\n")
 
     config.primary_provider = provider
     print("═" * 50 + "\n")
@@ -204,32 +182,31 @@ def step_write_chapters_lazy(
     cleaner: TranscriptCleaner,
     config: Config,
 ) -> List[Chapter]:
-    """Step 3: Lazily fetch, clean, and write one chapter at a time.
+    """Step 3: Lazily fetch, clean, and write chapters in parallel batches.
 
-    Transcripts are fetched only for the videos belonging to the current
-    chapter, immediately before writing it. This spaces out YouTube API
-    calls and avoids rate limits.
+    Transcripts are fetched only for the current batch of chapters.
+    Multiple chapters are written in parallel using asyncio.gather(),
+    respecting the configured batch_size to stay within API rate limits.
     """
-    logger.info("━━━ Step 3/5: Writing chapters (lazy fetch) ━━━")
-    llm = LLMFactory.create(config.primary_provider, config)
-    chunker = TextChunker(config)
-    structurer = BookStructurer(llm, chunker, config)
-    chapters: List[Chapter] = []
-
-    for outline in tqdm(outlines, desc="Chapters"):
-        logger.info(
-            "━━━ Chapter %d/%d: '%s' ━━━",
-            outline.number, len(outlines), outline.title,
-        )
-
-        # Fetch only the transcripts this chapter needs
+    logger.info("━━━ Step 3/5: Writing chapters (parallel lazy fetch) ━━━")
+    
+    batch_size = getattr(config.processing, "parallel_chapters", 5)
+    logger.info("  Batch size: %d chapters at a time", batch_size)
+    
+    async def _write_one(
+        outline: ChapterOutline,
+        structurer: BookStructurer,
+        loop: asyncio.AbstractEventLoop,
+    ) -> Chapter | None:
+        """Fetch transcripts and write a single chapter (runs in thread pool)."""
         videos_needed = [video_map[i] for i in outline.video_indices if i in video_map]
         if not videos_needed:
             logger.warning("No videos found for chapter %d, skipping.", outline.number)
-            continue
+            return None
 
         logger.info(
-            "  Fetching %d transcript(s): %s",
+            "  [Ch %d] Fetching %d transcript(s): %s",
+            outline.number,
             len(videos_needed),
             [v.title for v in videos_needed],
         )
@@ -238,24 +215,58 @@ def step_write_chapters_lazy(
             try:
                 transcripts.append(fetcher.fetch(v))
                 if getattr(config.transcript, "delay_seconds", 0) > 0:
-                    time.sleep(config.transcript.delay_seconds)
+                    await asyncio.sleep(config.transcript.delay_seconds)
             except Exception as exc:
-                logger.error("  Could not fetch transcript for '%s': %s", v.title, exc)
+                logger.error("  [Ch %d] Could not fetch transcript for '%s': %s", outline.number, v.title, exc)
 
         if not transcripts:
             logger.warning("No transcripts fetched for chapter %d, skipping.", outline.number)
-            continue
+            return None
 
-        # Clean the fetched transcripts
         cleaned: dict = {t.video.index: cleaner.clean(t.full_text) for t in transcripts}
+        logger.info(
+            "  [Ch %d] -> Passing %d cleaned segments to the LLM...",
+            outline.number, len(cleaned),
+        )
 
-        # Write the chapter
-        logger.info("  -> Passing %d cleaned segments to the LLM (generation may take a moment)...", len(cleaned))
-        chapter = structurer.write_single_chapter(outline, transcripts, cleaned)
-        if chapter is not None:
-            chapters.append(chapter)
+        # LLM call is blocking — run in a thread so other coroutines can proceed
+        chapter = await loop.run_in_executor(
+            None,
+            lambda: structurer.write_single_chapter(outline, transcripts, cleaned),
+        )
+        if chapter:
+            logger.info("  [Ch %d] ✓ Done: %s", outline.number, outline.title)
+        return chapter
 
-    return chapters
+    async def _run_all() -> List[Chapter]:
+        llm = LLMFactory.create(config.primary_provider, config)
+        chunker = TextChunker(config)
+        structurer = BookStructurer(llm, chunker, config)
+        loop = asyncio.get_event_loop()
+
+        all_chapters: List[Chapter] = []
+        batches = [outlines[i:i + batch_size] for i in range(0, len(outlines), batch_size)]
+
+        for batch_idx, batch in enumerate(batches, 1):
+            logger.info(
+                "━━━ Batch %d/%d: Chapters %s ━━━",
+                batch_idx, len(batches),
+                [o.number for o in batch],
+            )
+            tasks = [_write_one(o, structurer, loop) for o in batch]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+
+            for outline, result in zip(batch, results):
+                if isinstance(result, Exception):
+                    logger.error("  [Ch %d] Failed: %s", outline.number, result)
+                elif result is not None:
+                    all_chapters.append(result)
+
+        # Return chapters sorted in correct order
+        all_chapters.sort(key=lambda c: c.number)
+        return all_chapters
+
+    return asyncio.run(_run_all())
 
 def save_playlist_metadata(
     videos: List[VideoInfo],
@@ -334,6 +345,24 @@ def main() -> None:
 
     config = Config.load(args.config)
 
+    # Interactive prompts for missing arguments
+    _DEFAULT_URL = "https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu"
+    if not args.url:
+        print("══════════════════════════════════════════════════")
+        print("  Enter the YouTube playlist or video URL")
+        print("══════════════════════════════════════════════════")
+        print(f"  Default: {_DEFAULT_URL}")
+        args.url = input("  URL (press Enter for default): ").strip()
+        if not args.url:
+            args.url = _DEFAULT_URL
+            print(f"  ✔  Using default playlist.")
+        print()
+
+        custom_title = input("  Book title (press Enter for auto): ").strip()
+        if custom_title:
+            args.title = custom_title
+        print()
+
     # Interactive provider selection (before any pipeline work)
     prompt_provider_setup(config)
 
@@ -346,9 +375,9 @@ def main() -> None:
     extractor = PlaylistExtractor(config)
     videos = extractor.extract(args.url)
     logger.info("Found %d videos.", len(videos))
-    for v in videos:
-        logger.info("  [%d] %s (%.0f min, %d chapters)",
-                    v.index, v.title, v.duration / 60, len(v.chapters))
+    # for v in videos:
+    #     logger.info("  [%d] %s (%.0f min, %d chapters)",
+    #                 v.index, v.title, v.duration / 60, len(v.chapters))
 
     if not videos:
         logger.error("No videos found. Exiting.")

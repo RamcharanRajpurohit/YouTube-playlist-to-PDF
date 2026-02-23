@@ -1,30 +1,13 @@
 # ── LLM Provider Settings ────────────────────────────────────────────
 llm:
-  # Primary provider used for chapter writing (ollama = local, no API key needed)
-  primary_provider: ollama
-  # Secondary provider used for verification / cross-checking
-  secondary_provider: groq
+  # Primary provider used for chapter writing
+  primary_provider: gemini
 
   gemini:
     model: gemini-2.0-flash
     max_output_tokens: 16384
     temperature: 0.3
     max_context_tokens: 1000000
-
-  groq:
-    model: llama-3.3-70b-versatile
-    max_output_tokens: 16384
-    temperature: 0.3
-    max_context_tokens: 131072
-
-  # Local provider — no API key needed, runs on CPU via Ollama
-  # Install: https://ollama.com/download
-  # Pull model: ollama pull mistral
-  ollama:
-    model: mistral
-    max_output_tokens: 4096
-    temperature: 0.3
-    max_context_tokens: 32768
 
 # ── Chunking ─────────────────────────────────────────────────────────
 chunking:
@@ -47,19 +30,16 @@ transcript:
 
 # ── Processing ───────────────────────────────────────────────────────
 processing:
+  # Number of chapters to write in parallel per batch.
+  # Free tier:  keep at 3-4  (RPM limited)
+  # Paid tier:  can go up to 10
+  parallel_chapters: 5
   filler_words:
     - "um"
     - "uh"
     - "you know"
     - "i mean"
-    - "like"
-    - "basically"
-    - "actually"
-    - "right"
-    - "okay"
     - "so yeah"
-    - "kind of"
-    - "sort of"
 
 # ── Book Output ──────────────────────────────────────────────────────
 output:
@@ -70,5 +50,4 @@ output:
 # ── Verification ─────────────────────────────────────────────────────
 verification:
   enabled: false
-  # Use the secondary provider for verification by default
-  provider: groq
+  provider: gemini

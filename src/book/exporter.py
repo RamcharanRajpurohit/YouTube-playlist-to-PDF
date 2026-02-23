@@ -103,7 +103,8 @@ pre {
     border-radius: 4px;
     padding: 12px 16px;
     margin: 0.5cm 0;
-    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     page-break-inside: avoid;
 }
 
