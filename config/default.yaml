@@ -1,0 +1,74 @@
+# ── LLM Provider Settings ────────────────────────────────────────────
+llm:
+  # Primary provider used for chapter writing (ollama = local, no API key needed)
+  primary_provider: ollama
+  # Secondary provider used for verification / cross-checking
+  secondary_provider: groq
+
+  gemini:
+    model: gemini-2.0-flash
+    max_output_tokens: 16384
+    temperature: 0.3
+    max_context_tokens: 1000000
+
+  groq:
+    model: llama-3.3-70b-versatile
+    max_output_tokens: 16384
+    temperature: 0.3
+    max_context_tokens: 131072
+
+  # Local provider — no API key needed, runs on CPU via Ollama
+  # Install: https://ollama.com/download
+  # Pull model: ollama pull mistral
+  ollama:
+    model: mistral
+    max_output_tokens: 4096
+    temperature: 0.3
+    max_context_tokens: 32768
+
+# ── Chunking ─────────────────────────────────────────────────────────
+chunking:
+  # Target chunk size in tokens (well under model limits to leave room for prompt + output)
+  target_chunk_tokens: 12000
+  # Number of overlap sentences between consecutive chunks
+  overlap_sentences: 3
+
+# ── Transcript ───────────────────────────────────────────────────────
+transcript:
+  # Preferred languages for transcript (in order of priority)
+  languages:
+    - en
+  # Directory to cache raw transcripts
+  cache_dir: output/transcripts
+  # Use an exported browser cookies.txt to avoid YouTube IP bans (optional, leave empty)
+  cookies_file: ""
+  # Number of seconds to delay between transcript API fetch calls
+  delay_seconds: 2.0
+
+# ── Processing ───────────────────────────────────────────────────────
+processing:
+  filler_words:
+    - "um"
+    - "uh"
+    - "you know"
+    - "i mean"
+    - "like"
+    - "basically"
+    - "actually"
+    - "right"
+    - "okay"
+    - "so yeah"
+    - "kind of"
+    - "sort of"
+
+# ── Book Output ──────────────────────────────────────────────────────
+output:
+  manuscript_md: output/manuscript.md
+  manuscript_pdf: output/manuscript.pdf
+  chapters_dir: output/chapters
+
+# ── Verification ─────────────────────────────────────────────────────
+verification:
+  enabled: false
+  # Use the secondary provider for verification by default
+  provider: groq
