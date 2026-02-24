@@ -13,7 +13,6 @@ YouTube Transcripts → Clean & Chunk → LLM Writes Chapters → Markdown + PDF
 - **Token-aware chunking** — automatically splits large transcripts while preserving sentence boundaries
 - **Caching & resumability** — chapters are cached to disk; interrupted runs pick up where they left off
 - **Parallel processing** — writes multiple chapters concurrently (configurable batch size)
-- **Content verification** — optional LLM-based cross-check against source transcripts
 - **Book-quality PDF** — professional typography, code highlighting, title page, and table of contents
 
 ## Quick Start
@@ -70,7 +69,6 @@ python main.py [OPTIONS]
 | Flag | Description |
 |---|---|
 | `--dry-run` | Load data and generate TOC only (skip chapter writing) |
-| `--verify` | Enable content verification against source transcripts |
 | `--config PATH` | Use a custom YAML config file |
 | `-v`, `--verbose` | Enable debug logging |
 
@@ -93,7 +91,6 @@ All settings live in `config/default.yaml`:
 | `chunking.overlap_sentences` | `3` | Sentence overlap between consecutive chunks |
 | `processing.parallel_chapters` | `5` | Chapters to write concurrently per batch |
 | `processing.filler_words` | `[um, uh, ...]` | Filler words removed during cleaning |
-| `verification.enabled` | `false` | Enable post-write content verification |
 
 ## Output
 
@@ -126,11 +123,9 @@ All settings live in `config/default.yaml`:
 │   │   ├── base.py                # Abstract LLM provider with retry logic
 │   │   ├── gemini_provider.py     # Google Gemini integration
 │   │   └── factory.py             # Provider factory
-│   ├── book/
-│   │   ├── structurer.py          # TOC generation & chapter writing
-│   │   └── exporter.py            # Markdown & PDF export (WeasyPrint)
-│   └── verification/
-│       └── verifier.py            # LLM-based content verification
+│   └── book/
+│       ├── structurer.py          # TOC generation & chapter writing
+│       └── exporter.py            # Markdown & PDF export (WeasyPrint)
 ├── tests/
 │   ├── test_cleaner.py
 │   └── test_chunker.py

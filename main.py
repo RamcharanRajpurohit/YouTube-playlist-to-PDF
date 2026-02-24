@@ -8,7 +8,7 @@ professionally formatted book manuscript (Markdown + PDF).
 Transcript data and playlist metadata are read from the ``data/`` directory.
 
 Usage:
-    python main.py [--config config/default.yaml] [--verify] [--dry-run]
+    python main.py [--config config/default.yaml] [--dry-run]
 """
 
 from __future__ import annotations
@@ -64,11 +64,6 @@ def parse_args() -> argparse.Namespace:
         "--config",
         default="config/default.yaml",
         help="Path to YAML config file (default: config/default.yaml).",
-    )
-    parser.add_argument(
-        "--verify",
-        action="store_true",
-        help="Enable content verification using a secondary LLM.",
     )
     parser.add_argument(
         "--dry-run",
@@ -284,10 +279,6 @@ def main() -> None:
 
     # Interactive provider selection (before any pipeline work)
     prompt_provider_setup(config)
-
-    # Override verification setting from CLI
-    if args.verify:
-        config.verification.enabled = True
 
     # Step 1: Load video metadata from data/
     logger.info("━━━ Step 1/4: Loading playlist metadata ━━━")

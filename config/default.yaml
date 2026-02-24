@@ -34,8 +34,3 @@ output:
   manuscript_md: output/manuscript.md
   manuscript_pdf: output/manuscript.pdf
   chapters_dir: output/chapters
-
-# ── Verification ─────────────────────────────────────────────────────
-verification:
-  enabled: false
-  provider: gemini

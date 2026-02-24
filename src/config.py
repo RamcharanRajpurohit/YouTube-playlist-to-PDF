@@ -43,12 +43,6 @@ class OutputConfig:
 
 
 @dataclass
-class VerificationConfig:
-    enabled: bool = False
-    provider: str = "gemini"
-
-
-@dataclass
 class Config:
     """Top-level application configuration."""
 
@@ -57,7 +51,6 @@ class Config:
     chunking: ChunkingConfig = field(default_factory=ChunkingConfig)
     processing: ProcessingConfig = field(default_factory=ProcessingConfig)
     output: OutputConfig = field(default_factory=OutputConfig)
-    verification: VerificationConfig = field(default_factory=VerificationConfig)
 
     # API keys (loaded from env)
     gemini_api_key: str = ""
@@ -83,7 +76,6 @@ class Config:
         chunking_raw = raw.get("chunking", {})
         processing_raw = raw.get("processing", {})
         output_raw = raw.get("output", {})
-        verification_raw = raw.get("verification", {})
 
         return cls(
             primary_provider=llm_section.get("primary_provider", "gemini"),
@@ -91,6 +83,5 @@ class Config:
             chunking=ChunkingConfig(**chunking_raw) if chunking_raw else ChunkingConfig(),
             processing=ProcessingConfig(**processing_raw) if processing_raw else ProcessingConfig(),
             output=OutputConfig(**output_raw) if output_raw else OutputConfig(),
-            verification=VerificationConfig(**verification_raw) if verification_raw else VerificationConfig(),
             gemini_api_key=os.getenv("GEMINI_API_KEY", ""),
         )
