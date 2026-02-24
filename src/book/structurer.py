@@ -364,7 +364,7 @@ class BookStructurer:
         )
 
         raw_output, in_tokens, out_tokens = self._llm.generate(prompt, system_prompt=_CHAPTER_SYSTEM)
-        
+
         # Extract <summary> tags
         new_summary = ""
         summary_match = re.search(r"<summary>(.*?)</summary>", raw_output, re.DOTALL | re.IGNORECASE)
@@ -374,8 +374,40 @@ class BookStructurer:
             chapter_prose = re.sub(r"<summary>.*?</summary>", "", raw_output, flags=re.DOTALL | re.IGNORECASE).strip()
         else:
             chapter_prose = raw_output.strip()
-            
+
+        chapter_prose = self._truncate_repetition(chapter_prose)
+
         return chapter_prose, new_summary, in_tokens, out_tokens
+
+    @staticmethod
+    def _truncate_repetition(text: str, window: int = 60, threshold: int = 4) -> str:
+        """Detect and truncate degenerate repetition loops in LLM output.
+
+        Scans for any sequence of `window` characters that repeats `threshold`
+        or more times consecutively, and truncates at the first repetition.
+        """
+        if len(text) < window * threshold:
+            return text
+
+        # Check for repeated phrases by looking at sliding windows
+        for w in (window, 30, 15):
+            i = 0
+            while i < len(text) - w * threshold:
+                pattern = text[i:i + w]
+                # Count consecutive repetitions of this pattern
+                count = 1
+                pos = i + w
+                while pos + w <= len(text) and text[pos:pos + w] == pattern:
+                    count += 1
+                    pos += w
+                if count >= threshold:
+                    logger.warning(
+                        "Detected degenerate repetition (%d repeats of %d-char pattern) — truncating",
+                        count, w,
+                    )
+                    return text[:i].rstrip()
+                i += 1
+        return text
 
     # ── Chapter caching ──────────────────────────────────────────
 
