@@ -14,7 +14,7 @@ from tqdm import tqdm
 from src.config import Config
 from src.llm.base import LLMProvider
 from src.processing.chunker import TextChunk, TextChunker
-from src.transcript.fetcher import VideoInfo, VideoTranscript
+from src.transcript.fetcher import TranscriptSegment, VideoChapter, VideoInfo, VideoTranscript
 
 logger = logging.getLogger(__name__)
 
@@ -221,9 +221,16 @@ class BookStructurer:
             book_title=book_title,
         )
 
-        raw, toc_in_tokens, toc_out_tokens = self._llm.generate(prompt, system_prompt=_TOC_SYSTEM)
-        logger.info("[TOC Generation] Input tokens: %d, Output tokens: %d", toc_in_tokens, toc_out_tokens)
-        return self._parse_toc(raw)
+        try:
+            raw, toc_in_tokens, toc_out_tokens = self._llm.generate(prompt, system_prompt=_TOC_SYSTEM)
+            logger.info("[TOC Generation] Input tokens: %d, Output tokens: %d", toc_in_tokens, toc_out_tokens)
+            return self._parse_toc(raw)
+        except Exception as exc:
+            logger.error(
+                "TOC generation failed: %s. Falling back to video-per-chapter TOC.",
+                exc,
+            )
+            return self._generate_fallback_toc(videos)
 
     def _parse_toc(self, raw: str) -> List[ChapterOutline]:
         """Parse JSON TOC from LLM response."""
@@ -245,6 +252,30 @@ class BookStructurer:
                     title=item["title"],
                     video_indices=item.get("video_indices", []),
                     description=item.get("description", ""),
+                )
+            )
+        return outlines
+
+    def _generate_fallback_toc(
+        self, videos: List[VideoInfo]
+    ) -> List[ChapterOutline]:
+        """Fallback TOC: each video becomes its own chapter using video titles."""
+        logger.warning(
+            "Using fallback TOC: each video becomes its own chapter (%d chapters).",
+            len(videos),
+        )
+        outlines: List[ChapterOutline] = []
+        for v in videos:
+            if v.chapters:
+                description = "Sections: " + ", ".join(ch.title for ch in v.chapters)
+            else:
+                description = ""
+            outlines.append(
+                ChapterOutline(
+                    number=v.index + 1,
+                    title=v.title,
+                    video_indices=[v.index],
+                    description=description,
                 )
             )
         return outlines
@@ -290,42 +321,124 @@ class BookStructurer:
             logger.warning("No transcript text for chapter %d, skipping.", outline.number)
             return None
 
-        chunks = self._chunker.chunk(combined_text)
+        try:
+            chunks = self._chunker.chunk(combined_text)
 
-        if len(chunks) == 1:
-            part_content, _, in_tok, out_tok = self._write_single_chunk(outline, chunks[0], 1, 1, "")
-            chapter_content = part_content
-            total_in_tokens = in_tok
-            total_out_tokens = out_tok
-        else:
-            parts = []
-            rolling_summary = ""
-            total_in_tokens = 0
-            total_out_tokens = 0
-            for i, chunk in enumerate(chunks):
-                part_content, rolling_summary, in_tok, out_tok = self._write_single_chunk(
-                    outline, chunk, i + 1, len(chunks), rolling_summary
-                )
-                parts.append(part_content)
-                total_in_tokens += in_tok
-                total_out_tokens += out_tok
+            if len(chunks) == 1:
+                part_content, _, in_tok, out_tok = self._write_single_chunk(outline, chunks[0], 1, 1, "")
+                chapter_content = part_content
+                total_in_tokens = in_tok
+                total_out_tokens = out_tok
+            else:
+                parts = []
+                rolling_summary = ""
+                total_in_tokens = 0
+                total_out_tokens = 0
+                for i, chunk in enumerate(chunks):
+                    part_content, rolling_summary, in_tok, out_tok = self._write_single_chunk(
+                        outline, chunk, i + 1, len(chunks), rolling_summary
+                    )
+                    parts.append(part_content)
+                    total_in_tokens += in_tok
+                    total_out_tokens += out_tok
 
-            # Direct concatenation — rolling summaries already ensure continuity
-            chapter_content = "\n\n".join(parts)
+                # Direct concatenation — rolling summaries already ensure continuity
+                chapter_content = "\n\n".join(parts)
 
-        logger.info(
-            "Chapter %d token usage - Input: %d, Output: %d",
-            outline.number, total_in_tokens, total_out_tokens
+            logger.info(
+                "Chapter %d token usage - Input: %d, Output: %d",
+                outline.number, total_in_tokens, total_out_tokens
+            )
+
+            chapter = Chapter(
+                number=outline.number,
+                title=outline.title,
+                content=chapter_content,
+                source_video_indices=outline.video_indices,
+            )
+            self._cache_chapter(chapter)
+            return chapter
+
+        except Exception as exc:
+            logger.error(
+                "LLM chapter writing failed for chapter %d (%s): %s. "
+                "Falling back to raw transcript with keyframes.",
+                outline.number, outline.title, exc,
+            )
+            return self._generate_fallback_chapter(outline, transcripts, cleaned_texts)
+
+    def _generate_fallback_chapter(
+        self,
+        outline: ChapterOutline,
+        transcripts: List[VideoTranscript],
+        cleaned_texts: Dict[int, str],
+    ) -> Optional[Chapter]:
+        """Fallback chapter from raw transcript text organised by keyframe markers."""
+        logger.warning(
+            "Generating fallback chapter %d: %s (raw transcript + keyframes)",
+            outline.number, outline.title,
         )
+
+        parts: List[str] = []
+        multi_video = len(outline.video_indices) > 1
+
+        for transcript in transcripts:
+            video = transcript.video
+            if video.index not in cleaned_texts:
+                continue
+            cleaned = cleaned_texts[video.index]
+            if not cleaned.strip():
+                continue
+
+            if multi_video:
+                parts.append(f"\n## {video.title}\n")
+
+            if video.chapters:
+                sections = self._split_by_keyframes(transcript.segments, video.chapters)
+                for section_title, section_text in sections:
+                    heading = "##" if not multi_video else "###"
+                    parts.append(f"\n{heading} {section_title}\n")
+                    parts.append(section_text.strip() + "\n")
+            else:
+                parts.append(cleaned.strip() + "\n")
+
+        content = "\n".join(parts)
+        if not content.strip():
+            return None
 
         chapter = Chapter(
             number=outline.number,
             title=outline.title,
-            content=chapter_content,
+            content=content,
             source_video_indices=outline.video_indices,
         )
         self._cache_chapter(chapter)
         return chapter
+
+    @staticmethod
+    def _split_by_keyframes(
+        segments: List[TranscriptSegment],
+        chapters: List[VideoChapter],
+    ) -> List[tuple]:
+        """Split transcript segments into sections based on keyframe timestamps.
+
+        Returns list of (section_title, section_text) tuples.
+        """
+        if not chapters or not segments:
+            return [("Content", " ".join(s.text for s in segments))]
+
+        sorted_chapters = sorted(chapters, key=lambda c: c.start_time)
+        result: List[tuple] = []
+
+        for i, ch in enumerate(sorted_chapters):
+            start = ch.start_time
+            end = sorted_chapters[i + 1].start_time if i + 1 < len(sorted_chapters) else float("inf")
+            seg_texts = [s.text for s in segments if start <= s.start < end]
+            joined = " ".join(seg_texts).strip()
+            if joined:
+                result.append((ch.title, joined))
+
+        return result if result else [("Content", " ".join(s.text for s in segments))]
 
     def write_chapters(
         self,
