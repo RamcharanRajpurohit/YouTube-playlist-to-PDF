@@ -63,6 +63,7 @@ _TOC_SYSTEM = (
     "Output ONLY valid JSON — an array of objects with keys: number, title, video_indices "
     "(0-based list), description."
     "keep it between 1/3 to 1/2 the total number of videos (e.g., for 20 videos, aim for 6-10 chapters)."
+    "never combine more than 3 videos into a single chapter"
 )
 
 _TOC_USER = (
@@ -121,6 +122,9 @@ _CHAPTER_SYSTEM = (
     "- Use proper Markdown headings where appropriate.\n"
     "- Use proper paragraphs with logical flow.\n"
     "- Use code blocks with correct formatting if present.\n"
+    "- For lists, ALWAYS place each item on its own line using `- ` (dash-space) "
+    "syntax. NEVER put multiple list items on a single line separated by `*`. "
+    "Always leave a blank line before the first list item.\n"
     "- Ensure smooth, continuous textbook-style flow.\n\n"
 
     "STRICT BOOK-STYLE RULE:\n"
