@@ -125,7 +125,10 @@ _CHAPTER_SYSTEM = (
 
     "STRICT BOOK-STYLE RULE:\n"
     "- The output must read like a textbook chapter, NOT like a lecture transcript.\n"
-    "- It must NOT sound like someone speaking. It must sound like formal written knowledge.\n\n"
+    "- It must NOT sound like someone speaking. It must sound like formal written knowledge.\n"
+    "- Write ONLY in English. Do NOT include any non-English text, foreign scripts, "
+    "or transliterations. If the transcript contains non-English words, translate them "
+    "to English or omit them.\n\n"
 
     "SUMMARY REQUIREMENT:\n"
     "At the VERY END, include a concise factual summary wrapped in <summary> tags.\n"

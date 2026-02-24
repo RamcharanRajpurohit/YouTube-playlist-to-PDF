@@ -17,15 +17,13 @@ logger = logging.getLogger(__name__)
 # ── Professional CSS for the PDF ─────────────────────────────────────
 
 _BOOK_CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
-
 @page {
     size: A4;
     margin: 2.5cm 2cm 2.5cm 2cm;
 
     @bottom-center {
         content: counter(page);
-        font-family: 'Merriweather', Georgia, serif;
+        font-family: 'Noto Serif', 'DejaVu Serif', Georgia, serif;
         font-size: 10pt;
         color: #666;
     }
@@ -36,7 +34,7 @@ _BOOK_CSS = """
 }
 
 body {
-    font-family: 'Merriweather', Georgia, serif;
+    font-family: 'Noto Serif', 'DejaVu Serif', Georgia, serif;
     font-size: 11pt;
     line-height: 1.7;
     color: #1a1a1a;
@@ -89,7 +87,7 @@ p {
 }
 
 code {
-    font-family: 'Source Code Pro', 'Courier New', monospace;
+    font-family: 'DejaVu Sans Mono', 'Courier New', monospace;
     font-size: 9.5pt;
     background-color: #f5f5f5;
     padding: 1px 4px;
@@ -250,6 +248,7 @@ class PDFExporter:
         book_title: str = "Building LLMs from Scratch",
     ) -> None:
         """Render Markdown → HTML → PDF with professional styling."""
+        logger.info("Converting Markdown to HTML...")
         # Convert Markdown to HTML
         extensions = [
             "extra",
@@ -277,5 +276,6 @@ class PDFExporter:
 </html>"""
 
         # Generate PDF
+        logger.info("Rendering PDF with WeasyPrint (this may take a few minutes for large books)...")
         HTML(string=html_doc).write_pdf(str(self._output_path))
         logger.info("PDF manuscript written to %s", self._output_path)
