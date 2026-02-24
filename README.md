@@ -1,139 +1,148 @@
 # Playlist → Book Pipeline
 
-Convert pre-fetched YouTube playlist transcripts into a professionally formatted technical book manuscript, fully automated.
+Convert YouTube playlist transcripts into a professionally formatted technical book — fully automated with Google Gemini.
+
+```
+YouTube Transcripts → Clean & Chunk → LLM Writes Chapters → Markdown + PDF Book
+```
 
 ## Features
 
-- **End-to-end pipeline**: pre-fetched transcripts → chapters → polished PDF
-- **Works out of the box**: uses Gemini by default
-- **Large content handling**: automatic transcript chunking with token-aware splitting
-- **Caching & resumability**: chapters are cached; a failed run can resume
-- **Optional verification**: cross-check chapters against source transcripts using the Gemini LLM
-- **Book-quality output**: professional PDF with proper typography, code highlighting, and page layout
+- **End-to-end pipeline** — pre-fetched transcripts → structured chapters → polished PDF
+- **Gemini-powered** — uses `gemini-2.5-flash` for fast, high-quality generation
+- **Token-aware chunking** — automatically splits large transcripts while preserving sentence boundaries
+- **Caching & resumability** — chapters are cached to disk; interrupted runs pick up where they left off
+- **Parallel processing** — writes multiple chapters concurrently (configurable batch size)
+- **Content verification** — optional LLM-based cross-check against source transcripts
+- **Book-quality PDF** — professional typography, code highlighting, title page, and table of contents
 
-## Quick Start (One Command)
+## Quick Start
+
+### Prerequisites
+
+- Python 3.10+
+- A [Gemini Paid API key](https://aistudio.google.com/apikey)
+
+### Setup
 
 ```bash
-git clone <repo-url> && cd playlist_to_book
+git clone <repo-url> && cd YouTube-playlist-to-PDF
 chmod +x setup.sh && ./setup.sh
 ```
 
-This automatically:
-- Creates a Python virtual environment
-- Installs all dependencies
-- Creates `.env` from template
+This creates a virtual environment, installs dependencies, and generates a `.env` file. Add your API key:
 
-Then run:
+```bash
+# Edit .env and set your key
+GEMINI_API_KEY=your_key_here
+```
+
+### Run
 
 ```bash
 source .venv/bin/activate
+
+# Preview the generated table of contents (no LLM chapter writing)
 python main.py --dry-run
+
+# Full run — generates Markdown + PDF
+python main.py
 ```
 
-## Manual Setup (Alternative)
+### Docker
+
+No local Python setup needed — just Docker:
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
+chmod +x run.sh
+./run.sh              # Full pipeline
+./run.sh --dry-run    # Preview TOC only
 ```
+
+The script builds the image, mounts `output/` for results, and reads your `.env` for API keys.
 
 ## Usage
 
 ```bash
-# Dry run (preview TOC only, no chapter writing)
-python main.py --dry-run
-
-# Full run (generates Markdown + PDF)
-python main.py
-
-# With content verification
-python main.py --verify
+python main.py [OPTIONS]
 ```
 
-## Output
-
-| File | Description |
+| Flag | Description |
 |---|---|
-| `output/manuscript.md` | Full book in Markdown |
-| `output/manuscript.pdf` | Formatted PDF |
-| `output/chapters/` | Individual chapter files |
-| `data/transcripts/` | Pre-fetched transcript data |
-| `data/playlist_metadata/` | Playlist metadata & TOC |
+| `--dry-run` | Load data and generate TOC only (skip chapter writing) |
+| `--verify` | Enable content verification against source transcripts |
+| `--config PATH` | Use a custom YAML config file |
+| `-v`, `--verbose` | Enable debug logging |
 
-## LLM Providers
+## How It Works
 
-| Provider | Model | API Key? | Speed |
-|---|---|---|---|
-| `gemini` (default) | `gemini-2.0-flash` | `GEMINI_API_KEY` | Fast |
-
-To switch providers (if you extend the code), edit `config/default.yaml`:
-
-```yaml
-llm:
-  primary_provider: gemini
-```
-
-Add your API keys to `.env`.
+1. **Load metadata** — reads video titles, durations, and chapter markers from `data/playlist_metadata/`
+2. **Generate TOC** — Gemini proposes a book structure by grouping related videos into chapters
+3. **Write chapters** — for each chapter, loads transcripts from `data/transcripts/`, cleans filler words, splits into token-aware chunks, and sends each chunk to Gemini with rolling context for narrative continuity
+4. **Export** — assembles all chapters into a Markdown manuscript and renders a styled PDF via WeasyPrint
 
 ## Configuration
 
-All settings in `config/default.yaml`:
+All settings live in `config/default.yaml`:
 
-| Setting | Description |
+| Setting | Default | Description |
+|---|---|---|
+| `llm.gemini.model` | `gemini-2.5-flash` | Gemini model to use |
+| `llm.gemini.temperature` | `0.3` | Generation temperature (lower = more consistent) |
+| `chunking.target_chunk_tokens` | `12000` | Max tokens per chunk sent to the LLM |
+| `chunking.overlap_sentences` | `3` | Sentence overlap between consecutive chunks |
+| `processing.parallel_chapters` | `5` | Chapters to write concurrently per batch |
+| `processing.filler_words` | `[um, uh, ...]` | Filler words removed during cleaning |
+| `verification.enabled` | `false` | Enable post-write content verification |
+
+## Output
+
+| Path | Description |
 |---|---|
-| `llm.primary_provider` | LLM for chapter writing (`gemini`) |
-| `chunking.target_chunk_tokens` | Max tokens per chunk sent to LLM |
-| `processing.filler_words` | Filler words/phrases to remove |
-| `verification.enabled` | Enable verification pass |
+| `output/manuscript.md` | Complete book in Markdown |
+| `output/manuscript.pdf` | Formatted PDF with title page and TOC |
+| `output/chapters/` | Individual cached chapter files |
 
 ## Project Structure
 
 ```
-playlist_to_book/
-├── setup.sh                       # One-command setup (installs everything)
 ├── main.py                        # CLI entry point & pipeline orchestrator
+├── setup.sh                       # One-command setup script
+├── run.sh                         # Docker runner
+├── Dockerfile
 ├── config/
-│   └── default.yaml               # All pipeline settings
-├── data/                          # Permanent playlist data (committed)
+│   └── default.yaml               # Pipeline settings
+├── data/
 │   ├── transcripts/               # Pre-fetched transcript JSON files
-│   └── playlist_metadata/         # Video metadata & TOC
+│   └── playlist_metadata/         # Video metadata (titles, chapters, durations)
 ├── src/
-│   ├── config.py                  # Configuration loader
+│   ├── config.py                  # YAML config loader with dataclasses
 │   ├── transcript/
-│   │   └── fetcher.py             # Data loader (reads from data/)
+│   │   └── fetcher.py             # Loads transcripts & metadata from data/
 │   ├── processing/
-│   │   ├── cleaner.py             # Filler removal, normalization
-│   │   └── chunker.py             # Token-aware text splitting
+│   │   ├── cleaner.py             # Filler removal, whitespace normalization
+│   │   └── chunker.py             # Token-aware text splitting (tiktoken)
 │   ├── llm/
-│   │   ├── base.py                # Abstract LLM provider
-│   │   ├── gemini_provider.py     # Google Gemini (cloud)
+│   │   ├── base.py                # Abstract LLM provider with retry logic
+│   │   ├── gemini_provider.py     # Google Gemini integration
 │   │   └── factory.py             # Provider factory
-│   ├── verification/
-│   │   └── verifier.py            # Cross-LLM content verification
-│   └── book/
-│       ├── structurer.py          # TOC generation, chapter writing, refinement
-│       └── exporter.py            # Markdown & PDF export
+│   ├── book/
+│   │   ├── structurer.py          # TOC generation & chapter writing
+│   │   └── exporter.py            # Markdown & PDF export (WeasyPrint)
+│   └── verification/
+│       └── verifier.py            # LLM-based content verification
 ├── tests/
 │   ├── test_cleaner.py
 │   └── test_chunker.py
-├── output/                        # Generated files (gitignored)
 ├── requirements.txt
-├── .env.example
-└── README.md
+└── .env.example
 ```
 
-## Pipeline Steps
+## Testing
 
-1. **Load metadata** — read video metadata from `data/playlist_metadata/`
-2. **Generate TOC** — LLM proposes chapter structure from video titles & summaries
-3. **Write chapters** — load transcripts from `data/transcripts/`, clean, chunk, LLM → coherent chapters
-4. **Export** — assemble Markdown manuscript and render PDF via WeasyPrint
-
-## Requirements
-
-- Python 3.10+
-- API keys for Gemini
+```bash
+pytest tests/
+```
 
 ## License
 
