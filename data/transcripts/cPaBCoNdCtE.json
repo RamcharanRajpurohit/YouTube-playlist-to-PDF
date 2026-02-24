@@ -1,0 +1,4186 @@
+{
+  "video": {
+    "video_id": "cPaBCoNdCtE",
+    "title": "Lecture 17: Multi Head Attention Part 1 - Basics and Python code",
+    "duration": 1939.0,
+    "index": 16
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.08
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.16,
+      "duration": 5.479
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 8.08,
+      "duration": 4.639
+    },
+    {
+      "text": "scratch",
+      "start": 10.639,
+      "duration": 4.801
+    },
+    {
+      "text": "series up till now in the attention",
+      "start": 12.719,
+      "duration": 4.64
+    },
+    {
+      "text": "mechanism part we have covered the",
+      "start": 15.44,
+      "duration": 4.839
+    },
+    {
+      "text": "following lectures first we covered the",
+      "start": 17.359,
+      "duration": 4.961
+    },
+    {
+      "text": "simplified self attention",
+      "start": 20.279,
+      "duration": 4.561
+    },
+    {
+      "text": "mechanism that was the first lecture in",
+      "start": 22.32,
+      "duration": 5.48
+    },
+    {
+      "text": "this series on attention mechanisms then",
+      "start": 24.84,
+      "duration": 4.759
+    },
+    {
+      "text": "we looked at self attention with",
+      "start": 27.8,
+      "duration": 4.16
+    },
+    {
+      "text": "training enable weights and in the last",
+      "start": 29.599,
+      "duration": 5.001
+    },
+    {
+      "text": "lecture we looked at causal attention",
+      "start": 31.96,
+      "duration": 5.279
+    },
+    {
+      "text": "now we have enough ammunition and and",
+      "start": 34.6,
+      "duration": 5.0
+    },
+    {
+      "text": "enough training to finally start",
+      "start": 37.239,
+      "duration": 3.761
+    },
+    {
+      "text": "understanding about the multi-head",
+      "start": 39.6,
+      "duration": 2.68
+    },
+    {
+      "text": "attention",
+      "start": 41.0,
+      "duration": 3.68
+    },
+    {
+      "text": "mechanism as I've mentioned",
+      "start": 42.28,
+      "duration": 4.959
+    },
+    {
+      "text": "previously if you directly start",
+      "start": 44.68,
+      "duration": 4.0
+    },
+    {
+      "text": "understanding the multi-head attention",
+      "start": 47.239,
+      "duration": 3.361
+    },
+    {
+      "text": "it will be very difficult to understand",
+      "start": 48.68,
+      "duration": 4.6
+    },
+    {
+      "text": "because it is fairly detailed",
+      "start": 50.6,
+      "duration": 5.4
+    },
+    {
+      "text": "mathematically as well as coding wise",
+      "start": 53.28,
+      "duration": 4.759
+    },
+    {
+      "text": "but now I believe that we have developed",
+      "start": 56.0,
+      "duration": 4.48
+    },
+    {
+      "text": "a strong Foundation if you watched the",
+      "start": 58.039,
+      "duration": 5.561
+    },
+    {
+      "text": "previous lectures I believe that with",
+      "start": 60.48,
+      "duration": 5.24
+    },
+    {
+      "text": "the understanding of simplified self",
+      "start": 63.6,
+      "duration": 3.8
+    },
+    {
+      "text": "attention self attention and causal",
+      "start": 65.72,
+      "duration": 3.92
+    },
+    {
+      "text": "attention we can use these as building",
+      "start": 67.4,
+      "duration": 5.44
+    },
+    {
+      "text": "blocks to truly understand multi-head",
+      "start": 69.64,
+      "duration": 5.479
+    },
+    {
+      "text": "attention in this series we are going to",
+      "start": 72.84,
+      "duration": 4.56
+    },
+    {
+      "text": "study two types of multi-head attention",
+      "start": 75.119,
+      "duration": 5.801
+    },
+    {
+      "text": "mechanisms the first type is basically",
+      "start": 77.4,
+      "duration": 4.88
+    },
+    {
+      "text": "by just",
+      "start": 80.92,
+      "duration": 3.879
+    },
+    {
+      "text": "concatenating the context Vector",
+      "start": 82.28,
+      "duration": 4.479
+    },
+    {
+      "text": "matrices which is obtained from",
+      "start": 84.799,
+      "duration": 5.28
+    },
+    {
+      "text": "different query key and value matrices",
+      "start": 86.759,
+      "duration": 5.04
+    },
+    {
+      "text": "and the second approach is a more",
+      "start": 90.079,
+      "duration": 3.761
+    },
+    {
+      "text": "unified approach which is more commonly",
+      "start": 91.799,
+      "duration": 4.841
+    },
+    {
+      "text": "implemented in modern llms and modern",
+      "start": 93.84,
+      "duration": 6.0
+    },
+    {
+      "text": "code bases so I'll be dividing this",
+      "start": 96.64,
+      "duration": 5.56
+    },
+    {
+      "text": "lecture into two parts in the first part",
+      "start": 99.84,
+      "duration": 4.04
+    },
+    {
+      "text": "we'll be looking at the first type of",
+      "start": 102.2,
+      "duration": 4.599
+    },
+    {
+      "text": "multi-head attention mechanism so let's",
+      "start": 103.88,
+      "duration": 4.72
+    },
+    {
+      "text": "get started before diving into",
+      "start": 106.799,
+      "duration": 3.721
+    },
+    {
+      "text": "multi-head attention I just want to",
+      "start": 108.6,
+      "duration": 5.0
+    },
+    {
+      "text": "briefly cover um what all we looked at",
+      "start": 110.52,
+      "duration": 5.44
+    },
+    {
+      "text": "in the causal attention mechanism if you",
+      "start": 113.6,
+      "duration": 4.36
+    },
+    {
+      "text": "have not seen the causal attention",
+      "start": 115.96,
+      "duration": 4.32
+    },
+    {
+      "text": "mechanism video I highly encourage you",
+      "start": 117.96,
+      "duration": 4.4
+    },
+    {
+      "text": "to go through that because multi-head",
+      "start": 120.28,
+      "duration": 4.24
+    },
+    {
+      "text": "attention is just an extension of the",
+      "start": 122.36,
+      "duration": 3.88
+    },
+    {
+      "text": "causal attention",
+      "start": 124.52,
+      "duration": 4.519
+    },
+    {
+      "text": "mechanism awesome so the way causal",
+      "start": 126.24,
+      "duration": 5.48
+    },
+    {
+      "text": "attention works is as follows we have",
+      "start": 129.039,
+      "duration": 5.321
+    },
+    {
+      "text": "inputs which basically are input",
+      "start": 131.72,
+      "duration": 4.879
+    },
+    {
+      "text": "embedding vectors corresponding to every",
+      "start": 134.36,
+      "duration": 4.44
+    },
+    {
+      "text": "single token which we have so if the",
+      "start": 136.599,
+      "duration": 4.521
+    },
+    {
+      "text": "tokens are your journey starts with one",
+      "start": 138.8,
+      "duration": 4.6
+    },
+    {
+      "text": "step we have threedimensional Vector",
+      "start": 141.12,
+      "duration": 4.6
+    },
+    {
+      "text": "embeddings for each of these tokens",
+      "start": 143.4,
+      "duration": 3.8
+    },
+    {
+      "text": "these Vector embeddings can be",
+      "start": 145.72,
+      "duration": 3.32
+    },
+    {
+      "text": "represented in a three-dimensional",
+      "start": 147.2,
+      "duration": 4.64
+    },
+    {
+      "text": "Vector space as can be shown here the",
+      "start": 149.04,
+      "duration": 4.8
+    },
+    {
+      "text": "goal of causal attention multi-head",
+      "start": 151.84,
+      "duration": 3.679
+    },
+    {
+      "text": "attention and any type of attention",
+      "start": 153.84,
+      "duration": 4.08
+    },
+    {
+      "text": "mechanism is to start with these input",
+      "start": 155.519,
+      "duration": 4.521
+    },
+    {
+      "text": "embedding vectors and convert them into",
+      "start": 157.92,
+      "duration": 3.16
+    },
+    {
+      "text": "context",
+      "start": 160.04,
+      "duration": 3.479
+    },
+    {
+      "text": "vectors context vectors are a more",
+      "start": 161.08,
+      "duration": 5.239
+    },
+    {
+      "text": "enriched form of input embedding vectors",
+      "start": 163.519,
+      "duration": 4.72
+    },
+    {
+      "text": "the input embedding vectors contain",
+      "start": 166.319,
+      "duration": 4.361
+    },
+    {
+      "text": "semantic meaning of the particular word",
+      "start": 168.239,
+      "duration": 4.64
+    },
+    {
+      "text": "but do not carry any information about",
+      "start": 170.68,
+      "duration": 4.559
+    },
+    {
+      "text": "how that word is related to the other",
+      "start": 172.879,
+      "duration": 5.0
+    },
+    {
+      "text": "words in the sequence so for example if",
+      "start": 175.239,
+      "duration": 4.121
+    },
+    {
+      "text": "you look at the input embedding for",
+      "start": 177.879,
+      "duration": 3.961
+    },
+    {
+      "text": "journey it does capture some semantic",
+      "start": 179.36,
+      "duration": 4.48
+    },
+    {
+      "text": "meaning of Journey but it does not",
+      "start": 181.84,
+      "duration": 4.679
+    },
+    {
+      "text": "really encode any information about when",
+      "start": 183.84,
+      "duration": 4.72
+    },
+    {
+      "text": "you look at Journey how much attention",
+      "start": 186.519,
+      "duration": 3.681
+    },
+    {
+      "text": "should be paid to the other words such",
+      "start": 188.56,
+      "duration": 6.399
+    },
+    {
+      "text": "as step such as your um such as with and",
+      "start": 190.2,
+      "duration": 7.92
+    },
+    {
+      "text": "such as one the context Vector encodes",
+      "start": 194.959,
+      "duration": 5.84
+    },
+    {
+      "text": "this information also and that's why",
+      "start": 198.12,
+      "duration": 5.679
+    },
+    {
+      "text": "it's an enriched representation as",
+      "start": 200.799,
+      "duration": 5.44
+    },
+    {
+      "text": "compared to the input embedding",
+      "start": 203.799,
+      "duration": 5.16
+    },
+    {
+      "text": "Vector okay so the first step is to",
+      "start": 206.239,
+      "duration": 4.801
+    },
+    {
+      "text": "basically take the inputs and multiply",
+      "start": 208.959,
+      "duration": 4.601
+    },
+    {
+      "text": "them with trainable weight matrices we",
+      "start": 211.04,
+      "duration": 4.52
+    },
+    {
+      "text": "have three trainable weight matrices one",
+      "start": 213.56,
+      "duration": 5.239
+    },
+    {
+      "text": "for the queries one for the",
+      "start": 215.56,
+      "duration": 6.039
+    },
+    {
+      "text": "key and one for the",
+      "start": 218.799,
+      "duration": 5.601
+    },
+    {
+      "text": "values so the if you look at the input",
+      "start": 221.599,
+      "duration": 4.801
+    },
+    {
+      "text": "Matrix and its Dimensions we have six",
+      "start": 224.4,
+      "duration": 3.8
+    },
+    {
+      "text": "tokens here and then the vector",
+      "start": 226.4,
+      "duration": 3.119
+    },
+    {
+      "text": "embedding size so",
+      "start": 228.2,
+      "duration": 4.44
+    },
+    {
+      "text": "6x3 the trainable weight matrices have",
+      "start": 229.519,
+      "duration": 4.961
+    },
+    {
+      "text": "the First Dimension is fixed the First",
+      "start": 232.64,
+      "duration": 3.599
+    },
+    {
+      "text": "Dimension has to be equal to the vector",
+      "start": 234.48,
+      "duration": 3.599
+    },
+    {
+      "text": "embedding size but their second",
+      "start": 236.239,
+      "duration": 3.681
+    },
+    {
+      "text": "dimension is what will refer to in",
+      "start": 238.079,
+      "duration": 4.321
+    },
+    {
+      "text": "today's lecture also as the output",
+      "start": 239.92,
+      "duration": 4.8
+    },
+    {
+      "text": "Dimension and then when you multiply the",
+      "start": 242.4,
+      "duration": 4.039
+    },
+    {
+      "text": "inputs with these three trainable weight",
+      "start": 244.72,
+      "duration": 4.64
+    },
+    {
+      "text": "matrices for query key and value you get",
+      "start": 246.439,
+      "duration": 6.08
+    },
+    {
+      "text": "the queries the keys and the values",
+      "start": 249.36,
+      "duration": 5.84
+    },
+    {
+      "text": "Matrix so the dimensions of the queries",
+      "start": 252.519,
+      "duration": 4.321
+    },
+    {
+      "text": "key and the value Matrix will be the",
+      "start": 255.2,
+      "duration": 3.92
+    },
+    {
+      "text": "number of tokens multiplied by the",
+      "start": 256.84,
+      "duration": 4.6
+    },
+    {
+      "text": "output Dimension and the output",
+      "start": 259.12,
+      "duration": 3.72
+    },
+    {
+      "text": "Dimension is determined by this",
+      "start": 261.44,
+      "duration": 4.56
+    },
+    {
+      "text": "trainable weight matrices now note that",
+      "start": 262.84,
+      "duration": 4.76
+    },
+    {
+      "text": "when you initialize these trainable",
+      "start": 266.0,
+      "duration": 3.479
+    },
+    {
+      "text": "weight matrices their parameters are",
+      "start": 267.6,
+      "duration": 4.52
+    },
+    {
+      "text": "Rand om uh we will train these",
+      "start": 269.479,
+      "duration": 4.481
+    },
+    {
+      "text": "parameters and optimize them through",
+      "start": 272.12,
+      "duration": 4.4
+    },
+    {
+      "text": "back propagation in these attention",
+      "start": 273.96,
+      "duration": 4.16
+    },
+    {
+      "text": "series these four to five lectures we",
+      "start": 276.52,
+      "duration": 3.44
+    },
+    {
+      "text": "are not looking at back propagation",
+      "start": 278.12,
+      "duration": 4.079
+    },
+    {
+      "text": "we'll cover that later right now the",
+      "start": 279.96,
+      "duration": 4.48
+    },
+    {
+      "text": "whole goal is to understand different",
+      "start": 282.199,
+      "duration": 3.801
+    },
+    {
+      "text": "attention mechanisms like causal",
+      "start": 284.44,
+      "duration": 3.44
+    },
+    {
+      "text": "attention multi-head attention",
+      "start": 286.0,
+      "duration": 4.12
+    },
+    {
+      "text": "Etc the next step in the causal",
+      "start": 287.88,
+      "duration": 3.92
+    },
+    {
+      "text": "attention mechanism after getting the",
+      "start": 290.12,
+      "duration": 3.76
+    },
+    {
+      "text": "queries keys and values is to",
+      "start": 291.8,
+      "duration": 4.52
+    },
+    {
+      "text": "essentially compute the attention scores",
+      "start": 293.88,
+      "duration": 4.8
+    },
+    {
+      "text": "so the attention scores are computed by",
+      "start": 296.32,
+      "duration": 4.52
+    },
+    {
+      "text": "the multiplication of queries multiplied",
+      "start": 298.68,
+      "duration": 3.56
+    },
+    {
+      "text": "by the keys",
+      "start": 300.84,
+      "duration": 5.56
+    },
+    {
+      "text": "transpose so uh the way to interpret the",
+      "start": 302.24,
+      "duration": 6.08
+    },
+    {
+      "text": "attention score Matrix is you look at",
+      "start": 306.4,
+      "duration": 4.44
+    },
+    {
+      "text": "each individual row so you'll see that",
+      "start": 308.32,
+      "duration": 4.96
+    },
+    {
+      "text": "there are six rows and six columns right",
+      "start": 310.84,
+      "duration": 4.6
+    },
+    {
+      "text": "so if you look at the second row the",
+      "start": 313.28,
+      "duration": 3.8
+    },
+    {
+      "text": "second row corresponds to the second",
+      "start": 315.44,
+      "duration": 4.28
+    },
+    {
+      "text": "token which is Journey so your your",
+      "start": 317.08,
+      "duration": 4.8
+    },
+    {
+      "text": "journey begins with one step so the",
+      "start": 319.72,
+      "duration": 5.0
+    },
+    {
+      "text": "second row corresponds to journey and",
+      "start": 321.88,
+      "duration": 5.8
+    },
+    {
+      "text": "each element in the second row basically",
+      "start": 324.72,
+      "duration": 5.56
+    },
+    {
+      "text": "encodes information about how much that",
+      "start": 327.68,
+      "duration": 5.56
+    },
+    {
+      "text": "particular token relates to Journey or",
+      "start": 330.28,
+      "duration": 5.359
+    },
+    {
+      "text": "how much importance should we pay to",
+      "start": 333.24,
+      "duration": 4.799
+    },
+    {
+      "text": "that particular token or input embedding",
+      "start": 335.639,
+      "duration": 4.68
+    },
+    {
+      "text": "when we are looking at Journey so for",
+      "start": 338.039,
+      "duration": 4.201
+    },
+    {
+      "text": "example this third token this third",
+      "start": 340.319,
+      "duration": 4.521
+    },
+    {
+      "text": "value encodes the attention between",
+      "start": 342.24,
+      "duration": 5.0
+    },
+    {
+      "text": "journey and the third third token which",
+      "start": 344.84,
+      "duration": 4.52
+    },
+    {
+      "text": "is your Journey Begins so this is begins",
+      "start": 347.24,
+      "duration": 5.32
+    },
+    {
+      "text": "and journey this is Journey and with",
+      "start": 349.36,
+      "duration": 5.48
+    },
+    {
+      "text": "this is Journey and one and this is",
+      "start": 352.56,
+      "duration": 3.759
+    },
+    {
+      "text": "Journey and",
+      "start": 354.84,
+      "duration": 5.12
+    },
+    {
+      "text": "step so basically uh here you can see",
+      "start": 356.319,
+      "duration": 7.0
+    },
+    {
+      "text": "that uh the attention scores are",
+      "start": 359.96,
+      "duration": 7.239
+    },
+    {
+      "text": "essentially uh there for every query and",
+      "start": 363.319,
+      "duration": 5.761
+    },
+    {
+      "text": "then you multiply queries with the keys",
+      "start": 367.199,
+      "duration": 4.921
+    },
+    {
+      "text": "transpose and this value encodes",
+      "start": 369.08,
+      "duration": 5.76
+    },
+    {
+      "text": "information about when you're looking at",
+      "start": 372.12,
+      "duration": 4.799
+    },
+    {
+      "text": "a query how much information should be",
+      "start": 374.84,
+      "duration": 5.359
+    },
+    {
+      "text": "paid to a particular key right this is",
+      "start": 376.919,
+      "duration": 5.4
+    },
+    {
+      "text": "the meaning of the attention scores in",
+      "start": 380.199,
+      "duration": 4.44
+    },
+    {
+      "text": "the causal attention mechanism we do",
+      "start": 382.319,
+      "duration": 4.0
+    },
+    {
+      "text": "what we do is that we take these",
+      "start": 384.639,
+      "duration": 6.12
+    },
+    {
+      "text": "attention scores and we look at all the",
+      "start": 386.319,
+      "duration": 6.44
+    },
+    {
+      "text": "attention scores above the diagonal and",
+      "start": 390.759,
+      "duration": 4.481
+    },
+    {
+      "text": "we make these attention scores above the",
+      "start": 392.759,
+      "duration": 4.641
+    },
+    {
+      "text": "diagonal to be equal to zero so let me",
+      "start": 395.24,
+      "duration": 4.6
+    },
+    {
+      "text": "just show you how that looks",
+      "start": 397.4,
+      "duration": 5.76
+    },
+    {
+      "text": "like so let's say uh we have got the",
+      "start": 399.84,
+      "duration": 5.799
+    },
+    {
+      "text": "attention scores and let me show it here",
+      "start": 403.16,
+      "duration": 3.92
+    },
+    {
+      "text": "so let's say we have got the attention",
+      "start": 405.639,
+      "duration": 3.161
+    },
+    {
+      "text": "scores and they look something like",
+      "start": 407.08,
+      "duration": 5.559
+    },
+    {
+      "text": "something like this um actually let me",
+      "start": 408.8,
+      "duration": 5.519
+    },
+    {
+      "text": "show it here",
+      "start": 412.639,
+      "duration": 4.041
+    },
+    {
+      "text": "itself the attention scores which we",
+      "start": 414.319,
+      "duration": 4.28
+    },
+    {
+      "text": "have obtained looks something like this",
+      "start": 416.68,
+      "duration": 5.16
+    },
+    {
+      "text": "right but you can see that if you look",
+      "start": 418.599,
+      "duration": 5.521
+    },
+    {
+      "text": "at the second uh if you look at the",
+      "start": 421.84,
+      "duration": 4.039
+    },
+    {
+      "text": "second row which is the second row for",
+      "start": 424.12,
+      "duration": 5.28
+    },
+    {
+      "text": "Journey you will see that Journey has an",
+      "start": 425.879,
+      "duration": 6.0
+    },
+    {
+      "text": "attention score with all the other words",
+      "start": 429.4,
+      "duration": 4.32
+    },
+    {
+      "text": "now in causal attention what we say is",
+      "start": 431.879,
+      "duration": 3.481
+    },
+    {
+      "text": "that we should only look at Words which",
+      "start": 433.72,
+      "duration": 4.199
+    },
+    {
+      "text": "come before Journey so finally when we",
+      "start": 435.36,
+      "duration": 5.0
+    },
+    {
+      "text": "compute the attention weights when we",
+      "start": 437.919,
+      "duration": 4.481
+    },
+    {
+      "text": "compute the attention",
+      "start": 440.36,
+      "duration": 4.959
+    },
+    {
+      "text": "weights uh all the elements above the",
+      "start": 442.4,
+      "duration": 5.199
+    },
+    {
+      "text": "diagonal should be equal to zero let me",
+      "start": 445.319,
+      "duration": 4.6
+    },
+    {
+      "text": "show you what that means so so here is",
+      "start": 447.599,
+      "duration": 3.921
+    },
+    {
+      "text": "how the attention weights for a causal",
+      "start": 449.919,
+      "duration": 3.84
+    },
+    {
+      "text": "attention mechanism actually look like",
+      "start": 451.52,
+      "duration": 3.48
+    },
+    {
+      "text": "yeah like",
+      "start": 453.759,
+      "duration": 4.681
+    },
+    {
+      "text": "these and uh if you if you don't",
+      "start": 455.0,
+      "duration": 5.36
+    },
+    {
+      "text": "implement the causal attention mechanism",
+      "start": 458.44,
+      "duration": 3.52
+    },
+    {
+      "text": "then the attention scores look like",
+      "start": 460.36,
+      "duration": 3.6
+    },
+    {
+      "text": "something on the left attention weights",
+      "start": 461.96,
+      "duration": 3.32
+    },
+    {
+      "text": "look like something on the left which",
+      "start": 463.96,
+      "duration": 3.32
+    },
+    {
+      "text": "I'm showing here but when you implement",
+      "start": 465.28,
+      "duration": 3.8
+    },
+    {
+      "text": "the causal attention mechanism all the",
+      "start": 467.28,
+      "duration": 3.44
+    },
+    {
+      "text": "attention weights Above This diagonal",
+      "start": 469.08,
+      "duration": 4.399
+    },
+    {
+      "text": "will be essentially Switched Off why",
+      "start": 470.72,
+      "duration": 4.439
+    },
+    {
+      "text": "because if you're looking at Journey you",
+      "start": 473.479,
+      "duration": 3.4
+    },
+    {
+      "text": "should only pay attention to what comes",
+      "start": 475.159,
+      "duration": 3.801
+    },
+    {
+      "text": "before Journey your and journey if you",
+      "start": 476.879,
+      "duration": 3.72
+    },
+    {
+      "text": "look at starts you should pay attention",
+      "start": 478.96,
+      "duration": 4.84
+    },
+    {
+      "text": "to your journey and starts remember",
+      "start": 480.599,
+      "duration": 5.201
+    },
+    {
+      "text": "since we are predicting the next word",
+      "start": 483.8,
+      "duration": 3.839
+    },
+    {
+      "text": "Only The Words which come before a",
+      "start": 485.8,
+      "duration": 3.679
+    },
+    {
+      "text": "particular would really matter and",
+      "start": 487.639,
+      "duration": 3.4
+    },
+    {
+      "text": "that's what's implemented in the causal",
+      "start": 489.479,
+      "duration": 2.641
+    },
+    {
+      "text": "attention",
+      "start": 491.039,
+      "duration": 3.361
+    },
+    {
+      "text": "mechanism so we implement this and we",
+      "start": 492.12,
+      "duration": 4.039
+    },
+    {
+      "text": "get the attention weights like what I",
+      "start": 494.4,
+      "duration": 3.519
+    },
+    {
+      "text": "showed you below which are zeroed out",
+      "start": 496.159,
+      "duration": 4.201
+    },
+    {
+      "text": "above the diagonal and then we multiply",
+      "start": 497.919,
+      "duration": 4.84
+    },
+    {
+      "text": "the attention weights with the",
+      "start": 500.36,
+      "duration": 4.959
+    },
+    {
+      "text": "values uh when we multiply the attention",
+      "start": 502.759,
+      "duration": 3.961
+    },
+    {
+      "text": "weights with the values we get the",
+      "start": 505.319,
+      "duration": 2.961
+    },
+    {
+      "text": "context Vector Matrix which looks",
+      "start": 506.72,
+      "duration": 4.28
+    },
+    {
+      "text": "something like this so now this context",
+      "start": 508.28,
+      "duration": 4.759
+    },
+    {
+      "text": "Vector Matrix has six rows because one",
+      "start": 511.0,
+      "duration": 4.12
+    },
+    {
+      "text": "for every token and it has two columns",
+      "start": 513.039,
+      "duration": 3.56
+    },
+    {
+      "text": "which are dictated by the output",
+      "start": 515.12,
+      "duration": 3.88
+    },
+    {
+      "text": "Dimension which we have two in this",
+      "start": 516.599,
+      "duration": 6.44
+    },
+    {
+      "text": "case so the input embedding Vector for",
+      "start": 519.0,
+      "duration": 7.04
+    },
+    {
+      "text": "every token here which was mentioned",
+      "start": 523.039,
+      "duration": 6.081
+    },
+    {
+      "text": "over here is ultimately converted into a",
+      "start": 526.04,
+      "duration": 5.32
+    },
+    {
+      "text": "context Vector Matrix which looks like",
+      "start": 529.12,
+      "duration": 5.92
+    },
+    {
+      "text": "this that's the whole idea behind causal",
+      "start": 531.36,
+      "duration": 5.52
+    },
+    {
+      "text": "attention so the only difference between",
+      "start": 535.04,
+      "duration": 3.359
+    },
+    {
+      "text": "causal attention and normal self",
+      "start": 536.88,
+      "duration": 3.639
+    },
+    {
+      "text": "attention is that in causal attention",
+      "start": 538.399,
+      "duration": 3.961
+    },
+    {
+      "text": "these attention weights right all the",
+      "start": 540.519,
+      "duration": 3.521
+    },
+    {
+      "text": "elements above the diagonal of these",
+      "start": 542.36,
+      "duration": 3.96
+    },
+    {
+      "text": "attention weights will be set to zero",
+      "start": 544.04,
+      "duration": 3.799
+    },
+    {
+      "text": "and the rows of the attention weight",
+      "start": 546.32,
+      "duration": 3.44
+    },
+    {
+      "text": "Matrix will anyway sum up to one we will",
+      "start": 547.839,
+      "duration": 4.521
+    },
+    {
+      "text": "ensure that and these attention weights",
+      "start": 549.76,
+      "duration": 4.28
+    },
+    {
+      "text": "will then be multiplied with the values",
+      "start": 552.36,
+      "duration": 4.28
+    },
+    {
+      "text": "Matrix to get the context Vector Matrix",
+      "start": 554.04,
+      "duration": 4.4
+    },
+    {
+      "text": "that's essentially what is happening in",
+      "start": 556.64,
+      "duration": 3.199
+    },
+    {
+      "text": "the causal",
+      "start": 558.44,
+      "duration": 3.76
+    },
+    {
+      "text": "attention now there is a provision in",
+      "start": 559.839,
+      "duration": 4.081
+    },
+    {
+      "text": "the causal attention mechanism where we",
+      "start": 562.2,
+      "duration": 3.44
+    },
+    {
+      "text": "can do batch where we can process",
+      "start": 563.92,
+      "duration": 4.8
+    },
+    {
+      "text": "batches so when we input the first batch",
+      "start": 565.64,
+      "duration": 4.8
+    },
+    {
+      "text": "the first batch has six words your",
+      "start": 568.72,
+      "duration": 3.48
+    },
+    {
+      "text": "journey starts with one step right this",
+      "start": 570.44,
+      "duration": 4.399
+    },
+    {
+      "text": "is the inputs but the causal attention",
+      "start": 572.2,
+      "duration": 4.28
+    },
+    {
+      "text": "class which we developed in the previous",
+      "start": 574.839,
+      "duration": 4.481
+    },
+    {
+      "text": "lecture also can handle the second batch",
+      "start": 576.48,
+      "duration": 5.24
+    },
+    {
+      "text": "which also let's say has six tokens so",
+      "start": 579.32,
+      "duration": 4.199
+    },
+    {
+      "text": "for the first batch the output is the",
+      "start": 581.72,
+      "duration": 4.08
+    },
+    {
+      "text": "context Vector Matrix which is a 6 by2",
+      "start": 583.519,
+      "duration": 5.201
+    },
+    {
+      "text": "Matrix as you can see here and for the",
+      "start": 585.8,
+      "duration": 4.76
+    },
+    {
+      "text": "second batch there is another context",
+      "start": 588.72,
+      "duration": 4.679
+    },
+    {
+      "text": "Vector Matrix which is",
+      "start": 590.56,
+      "duration": 6.959
+    },
+    {
+      "text": "6x2 let me show you the the the causal",
+      "start": 593.399,
+      "duration": 5.601
+    },
+    {
+      "text": "attention class which we developed in",
+      "start": 597.519,
+      "duration": 3.361
+    },
+    {
+      "text": "the prev previous lecture so this was",
+      "start": 599.0,
+      "duration": 4.079
+    },
+    {
+      "text": "the causal attention class which we have",
+      "start": 600.88,
+      "duration": 4.639
+    },
+    {
+      "text": "let me quickly revise it right now the",
+      "start": 603.079,
+      "duration": 5.481
+    },
+    {
+      "text": "input X which is the input to the causal",
+      "start": 605.519,
+      "duration": 5.841
+    },
+    {
+      "text": "attention class has the shape of batch",
+      "start": 608.56,
+      "duration": 4.92
+    },
+    {
+      "text": "size comma number of tokens comma the",
+      "start": 611.36,
+      "duration": 4.64
+    },
+    {
+      "text": "input Dimensions so batch size because",
+      "start": 613.48,
+      "duration": 5.32
+    },
+    {
+      "text": "we can have two batches so if you look",
+      "start": 616.0,
+      "duration": 4.68
+    },
+    {
+      "text": "at these two batches which I have shown",
+      "start": 618.8,
+      "duration": 4.92
+    },
+    {
+      "text": "here right now",
+      "start": 620.68,
+      "duration": 5.76
+    },
+    {
+      "text": "um yeah so I've shown batch one and",
+      "start": 623.72,
+      "duration": 5.16
+    },
+    {
+      "text": "batch two over here and now let's look",
+      "start": 626.44,
+      "duration": 4.88
+    },
+    {
+      "text": "at the input if you look at the input",
+      "start": 628.88,
+      "duration": 5.04
+    },
+    {
+      "text": "for the first batch it's 6x2 right it's",
+      "start": 631.32,
+      "duration": 5.199
+    },
+    {
+      "text": "6x3 whereas if you look at the input for",
+      "start": 633.92,
+      "duration": 5.56
+    },
+    {
+      "text": "the second batch that is also 6x3 so",
+      "start": 636.519,
+      "duration": 4.641
+    },
+    {
+      "text": "when you aggregate these batches",
+      "start": 639.48,
+      "duration": 5.28
+    },
+    {
+      "text": "together the input Dimensions will be",
+      "start": 641.16,
+      "duration": 6.799
+    },
+    {
+      "text": "um the input Dimensions will actually be",
+      "start": 644.76,
+      "duration": 7.36
+    },
+    {
+      "text": "2 2 multiplied",
+      "start": 647.959,
+      "duration": 4.161
+    },
+    {
+      "text": "by 2 * by 6",
+      "start": 652.44,
+      "duration": 7.839
+    },
+    {
+      "text": "* 3",
+      "start": 657.36,
+      "duration": 6.56
+    },
+    {
+      "text": "2 * 6 * 3 that is actually the input",
+      "start": 660.279,
+      "duration": 6.201
+    },
+    {
+      "text": "Dimension which is also being mentioned",
+      "start": 663.92,
+      "duration": 4.52
+    },
+    {
+      "text": "over here so the input. shape is the",
+      "start": 666.48,
+      "duration": 4.28
+    },
+    {
+      "text": "number of batches which is if it's two",
+      "start": 668.44,
+      "duration": 4.199
+    },
+    {
+      "text": "number of tokens which is six and the",
+      "start": 670.76,
+      "duration": 4.519
+    },
+    {
+      "text": "input Dimension which is three then what",
+      "start": 672.639,
+      "duration": 5.0
+    },
+    {
+      "text": "we do is we multiply the input with the",
+      "start": 675.279,
+      "duration": 5.041
+    },
+    {
+      "text": "trainable key query and value Matrix and",
+      "start": 677.639,
+      "duration": 4.921
+    },
+    {
+      "text": "finally we get the keys queries and",
+      "start": 680.32,
+      "duration": 5.48
+    },
+    {
+      "text": "values so remember W key W query and W",
+      "start": 682.56,
+      "duration": 5.079
+    },
+    {
+      "text": "value are the weight matrices for the",
+      "start": 685.8,
+      "duration": 3.8
+    },
+    {
+      "text": "key query and value which we have to",
+      "start": 687.639,
+      "duration": 4.32
+    },
+    {
+      "text": "optimize and then after multiplication",
+      "start": 689.6,
+      "duration": 4.2
+    },
+    {
+      "text": "of the inputs with these weight matrices",
+      "start": 691.959,
+      "duration": 4.641
+    },
+    {
+      "text": "we get the keys queries and the value",
+      "start": 693.8,
+      "duration": 4.8
+    },
+    {
+      "text": "what we do then later is we get the",
+      "start": 696.6,
+      "duration": 3.76
+    },
+    {
+      "text": "attention scores by multiplying the",
+      "start": 698.6,
+      "duration": 4.52
+    },
+    {
+      "text": "queries with the keys transposed then we",
+      "start": 700.36,
+      "duration": 6.0
+    },
+    {
+      "text": "apply a mask so that we implement the",
+      "start": 703.12,
+      "duration": 5.08
+    },
+    {
+      "text": "causal attention remember we need to",
+      "start": 706.36,
+      "duration": 3.479
+    },
+    {
+      "text": "make sure that when we get the attention",
+      "start": 708.2,
+      "duration": 3.96
+    },
+    {
+      "text": "WS all the elements above the diagonal",
+      "start": 709.839,
+      "duration": 4.721
+    },
+    {
+      "text": "are zero I explained all of this in the",
+      "start": 712.16,
+      "duration": 3.919
+    },
+    {
+      "text": "previous lecture so I'm not going",
+      "start": 714.56,
+      "duration": 3.68
+    },
+    {
+      "text": "through the details right now and then",
+      "start": 716.079,
+      "duration": 3.921
+    },
+    {
+      "text": "finally we apply soft Max to the",
+      "start": 718.24,
+      "duration": 3.56
+    },
+    {
+      "text": "attention scores and get the attention",
+      "start": 720.0,
+      "duration": 4.16
+    },
+    {
+      "text": "weights we can also add another layer",
+      "start": 721.8,
+      "duration": 3.92
+    },
+    {
+      "text": "which is the Dropout layer towards the",
+      "start": 724.16,
+      "duration": 4.08
+    },
+    {
+      "text": "end but that's not strictly necessary",
+      "start": 725.72,
+      "duration": 4.4
+    },
+    {
+      "text": "and the last step is then multiplying",
+      "start": 728.24,
+      "duration": 3.52
+    },
+    {
+      "text": "the attention weights with the values to",
+      "start": 730.12,
+      "duration": 5.32
+    },
+    {
+      "text": "get the context Vector now uh remember",
+      "start": 731.76,
+      "duration": 5.879
+    },
+    {
+      "text": "the we had two batches right and the",
+      "start": 735.44,
+      "duration": 6.24
+    },
+    {
+      "text": "input size was 2A 6A 3 and ultimately",
+      "start": 737.639,
+      "duration": 5.841
+    },
+    {
+      "text": "when you let's say Implement when you",
+      "start": 741.68,
+      "duration": 3.399
+    },
+    {
+      "text": "create an instance of this class let's",
+      "start": 743.48,
+      "duration": 3.12
+    },
+    {
+      "text": "say I'm creating an instance of this",
+      "start": 745.079,
+      "duration": 5.681
+    },
+    {
+      "text": "class and storing it in C A so I have to",
+      "start": 746.6,
+      "duration": 6.4
+    },
+    {
+      "text": "specify D in which is three D out which",
+      "start": 750.76,
+      "duration": 5.0
+    },
+    {
+      "text": "is two the context length which is my",
+      "start": 753.0,
+      "duration": 5.04
+    },
+    {
+      "text": "number of tokens in this case that's six",
+      "start": 755.76,
+      "duration": 5.4
+    },
+    {
+      "text": "and the dropout rate that's zero and",
+      "start": 758.04,
+      "duration": 5.2
+    },
+    {
+      "text": "then we can get the context vectors",
+      "start": 761.16,
+      "duration": 3.72
+    },
+    {
+      "text": "remember we have two batches so we have",
+      "start": 763.24,
+      "duration": 3.959
+    },
+    {
+      "text": "two sets of context vectors the first",
+      "start": 764.88,
+      "duration": 5.399
+    },
+    {
+      "text": "set will be a tensor which is 6x2 why",
+      "start": 767.199,
+      "duration": 5.241
+    },
+    {
+      "text": "will it be 6x2 because that's exactly",
+      "start": 770.279,
+      "duration": 3.881
+    },
+    {
+      "text": "what we had seen on this white board",
+      "start": 772.44,
+      "duration": 4.16
+    },
+    {
+      "text": "also um you can take a look at this",
+      "start": 774.16,
+      "duration": 4.2
+    },
+    {
+      "text": "context Vector which we had obtained",
+      "start": 776.6,
+      "duration": 3.039
+    },
+    {
+      "text": "ultimately yeah",
+      "start": 778.36,
+      "duration": 2.839
+    },
+    {
+      "text": "the final context Vector which we",
+      "start": 779.639,
+      "duration": 3.521
+    },
+    {
+      "text": "obtained is 6x2 and there are two such",
+      "start": 781.199,
+      "duration": 4.681
+    },
+    {
+      "text": "context vectors right so ultimately the",
+      "start": 783.16,
+      "duration": 4.56
+    },
+    {
+      "text": "context Vector shape which we get out is",
+      "start": 785.88,
+      "duration": 4.44
+    },
+    {
+      "text": "2 comma 6 comma 2 so that makes sense",
+      "start": 787.72,
+      "duration": 4.76
+    },
+    {
+      "text": "with what we had seen on the white board",
+      "start": 790.32,
+      "duration": 3.879
+    },
+    {
+      "text": "this is the causal attention class which",
+      "start": 792.48,
+      "duration": 3.44
+    },
+    {
+      "text": "we had implemented in the last lecture",
+      "start": 794.199,
+      "duration": 3.921
+    },
+    {
+      "text": "and a quick summary of how it",
+      "start": 795.92,
+      "duration": 4.56
+    },
+    {
+      "text": "works now what we are going to do is we",
+      "start": 798.12,
+      "duration": 3.8
+    },
+    {
+      "text": "are going to extend this causal",
+      "start": 800.48,
+      "duration": 3.56
+    },
+    {
+      "text": "attention class a bit into something",
+      "start": 801.92,
+      "duration": 3.4
+    },
+    {
+      "text": "which is called as the multi-head",
+      "start": 804.04,
+      "duration": 2.479
+    },
+    {
+      "text": "attention",
+      "start": 805.32,
+      "duration": 3.92
+    },
+    {
+      "text": "mechanism so the term multi-head",
+      "start": 806.519,
+      "duration": 4.801
+    },
+    {
+      "text": "essentially refers to dividing the",
+      "start": 809.24,
+      "duration": 5.44
+    },
+    {
+      "text": "attention mechanism itself into multiple",
+      "start": 811.32,
+      "duration": 6.84
+    },
+    {
+      "text": "heads um and each head will be operating",
+      "start": 814.68,
+      "duration": 6.44
+    },
+    {
+      "text": "independently to give you a",
+      "start": 818.16,
+      "duration": 4.919
+    },
+    {
+      "text": "understanding related to code when we",
+      "start": 821.12,
+      "duration": 5.0
+    },
+    {
+      "text": "get the attention scores here right now",
+      "start": 823.079,
+      "duration": 5.801
+    },
+    {
+      "text": "or the attention weights from one set of",
+      "start": 826.12,
+      "duration": 5.279
+    },
+    {
+      "text": "query key and value we say that this is",
+      "start": 828.88,
+      "duration": 4.6
+    },
+    {
+      "text": "one head this is one attention head",
+      "start": 831.399,
+      "duration": 4.761
+    },
+    {
+      "text": "right we are not decomposing into",
+      "start": 833.48,
+      "duration": 4.719
+    },
+    {
+      "text": "multiple query keys and values there is",
+      "start": 836.16,
+      "duration": 5.28
+    },
+    {
+      "text": "only one query Matrix one there is only",
+      "start": 838.199,
+      "duration": 5.241
+    },
+    {
+      "text": "one Keys Matrix one queries Matrix and",
+      "start": 841.44,
+      "duration": 3.6
+    },
+    {
+      "text": "one values Matrix so we have one",
+      "start": 843.44,
+      "duration": 2.72
+    },
+    {
+      "text": "attention",
+      "start": 845.04,
+      "duration": 3.68
+    },
+    {
+      "text": "head what multiple what multi-head",
+      "start": 846.16,
+      "duration": 5.119
+    },
+    {
+      "text": "attention does is that it extends the",
+      "start": 848.72,
+      "duration": 4.72
+    },
+    {
+      "text": "causal attention mechanism so that we",
+      "start": 851.279,
+      "duration": 4.521
+    },
+    {
+      "text": "have multiple heads and each of these",
+      "start": 853.44,
+      "duration": 4.759
+    },
+    {
+      "text": "heads will be operating",
+      "start": 855.8,
+      "duration": 5.68
+    },
+    {
+      "text": "independently um and then what we do in",
+      "start": 858.199,
+      "duration": 5.161
+    },
+    {
+      "text": "multi-head attention is we basically",
+      "start": 861.48,
+      "duration": 4.08
+    },
+    {
+      "text": "stack multiple single attention head",
+      "start": 863.36,
+      "duration": 3.599
+    },
+    {
+      "text": "layers",
+      "start": 865.56,
+      "duration": 4.44
+    },
+    {
+      "text": "together so what we'll simply do is that",
+      "start": 866.959,
+      "duration": 5.161
+    },
+    {
+      "text": "we will create multiple instances of the",
+      "start": 870.0,
+      "duration": 4.48
+    },
+    {
+      "text": "causal self attention mechanism each",
+      "start": 872.12,
+      "duration": 4.279
+    },
+    {
+      "text": "with its own weights and then combine",
+      "start": 874.48,
+      "duration": 5.2
+    },
+    {
+      "text": "their outputs it's actually very simple",
+      "start": 876.399,
+      "duration": 4.841
+    },
+    {
+      "text": "what the output which we had obtained",
+      "start": 879.68,
+      "duration": 3.8
+    },
+    {
+      "text": "before for one attention head we'll just",
+      "start": 881.24,
+      "duration": 4.48
+    },
+    {
+      "text": "combine them together and I'll show you",
+      "start": 883.48,
+      "duration": 4.719
+    },
+    {
+      "text": "how it can be done so as you might have",
+      "start": 885.72,
+      "duration": 3.919
+    },
+    {
+      "text": "expected this can be a bit",
+      "start": 888.199,
+      "duration": 3.56
+    },
+    {
+      "text": "computationally intensive but it makes",
+      "start": 889.639,
+      "duration": 4.601
+    },
+    {
+      "text": "llms powerful at complex pattern",
+      "start": 891.759,
+      "duration": 5.281
+    },
+    {
+      "text": "recognition tasks so researchers have",
+      "start": 894.24,
+      "duration": 5.719
+    },
+    {
+      "text": "found out that although when you stack",
+      "start": 897.04,
+      "duration": 4.96
+    },
+    {
+      "text": "multiple heads the computations which",
+      "start": 899.959,
+      "duration": 5.041
+    },
+    {
+      "text": "need to be made increase it really helps",
+      "start": 902.0,
+      "duration": 5.44
+    },
+    {
+      "text": "llm perform much better and when you",
+      "start": 905.0,
+      "duration": 4.6
+    },
+    {
+      "text": "look at Chad GPT right now it does have",
+      "start": 907.44,
+      "duration": 4.959
+    },
+    {
+      "text": "multiple attention heads it none of the",
+      "start": 909.6,
+      "duration": 4.88
+    },
+    {
+      "text": "modern llms work with a single attention",
+      "start": 912.399,
+      "duration": 4.641
+    },
+    {
+      "text": "head so let me show you what it means by",
+      "start": 914.48,
+      "duration": 4.24
+    },
+    {
+      "text": "stacking multiple attention heads",
+      "start": 917.04,
+      "duration": 3.039
+    },
+    {
+      "text": "together this diagram actually",
+      "start": 918.72,
+      "duration": 4.76
+    },
+    {
+      "text": "encapsulates it all earlier when the",
+      "start": 920.079,
+      "duration": 4.961
+    },
+    {
+      "text": "when I showed you the flowchart we just",
+      "start": 923.48,
+      "duration": 4.4
+    },
+    {
+      "text": "had one trainable Matrix for the query",
+      "start": 925.04,
+      "duration": 4.96
+    },
+    {
+      "text": "one trainable Matrix for the keys and",
+      "start": 927.88,
+      "duration": 3.959
+    },
+    {
+      "text": "one trainable Matrix for the values",
+      "start": 930.0,
+      "duration": 5.6
+    },
+    {
+      "text": "right so that was one attention head now",
+      "start": 931.839,
+      "duration": 5.721
+    },
+    {
+      "text": "when we look at multi-ad attention in",
+      "start": 935.6,
+      "duration": 3.919
+    },
+    {
+      "text": "this figure we have shown an example of",
+      "start": 937.56,
+      "duration": 4.8
+    },
+    {
+      "text": "having two attention heads so what we do",
+      "start": 939.519,
+      "duration": 4.721
+    },
+    {
+      "text": "here is that instead of one trainable",
+      "start": 942.36,
+      "duration": 3.68
+    },
+    {
+      "text": "weight Matrix for the query key and",
+      "start": 944.24,
+      "duration": 4.24
+    },
+    {
+      "text": "value we have two so here you see we",
+      "start": 946.04,
+      "duration": 4.359
+    },
+    {
+      "text": "have two trainable weight matrices for",
+      "start": 948.48,
+      "duration": 4.159
+    },
+    {
+      "text": "the query we have two trainable weight",
+      "start": 950.399,
+      "duration": 4.24
+    },
+    {
+      "text": "matrixes for the key and we have two",
+      "start": 952.639,
+      "duration": 4.76
+    },
+    {
+      "text": "trainable weight matrices for the values",
+      "start": 954.639,
+      "duration": 4.68
+    },
+    {
+      "text": "these will be multiplied by the input",
+      "start": 957.399,
+      "duration": 4.92
+    },
+    {
+      "text": "Vector input X and then we'll get two",
+      "start": 959.319,
+      "duration": 5.721
+    },
+    {
+      "text": "queries Matrix we'll get two keys Matrix",
+      "start": 962.319,
+      "duration": 5.2
+    },
+    {
+      "text": "and we'll get two values Matrix",
+      "start": 965.04,
+      "duration": 4.719
+    },
+    {
+      "text": "previously we just had one query key and",
+      "start": 967.519,
+      "duration": 5.32
+    },
+    {
+      "text": "value Matrix right then what we'll do is",
+      "start": 969.759,
+      "duration": 4.721
+    },
+    {
+      "text": "that we'll multiply the queries with the",
+      "start": 972.839,
+      "duration": 5.24
+    },
+    {
+      "text": "keys transpose and get the attention",
+      "start": 974.48,
+      "duration": 5.12
+    },
+    {
+      "text": "weights then we'll get the attention",
+      "start": 978.079,
+      "duration": 3.521
+    },
+    {
+      "text": "scores we'll multiply with the value",
+      "start": 979.6,
+      "duration": 4.159
+    },
+    {
+      "text": "Matrix and we'll get two sets of context",
+      "start": 981.6,
+      "duration": 4.159
+    },
+    {
+      "text": "vectors so this is the first set of",
+      "start": 983.759,
+      "duration": 3.681
+    },
+    {
+      "text": "context vector and this is the second",
+      "start": 985.759,
+      "duration": 3.721
+    },
+    {
+      "text": "set of context vector",
+      "start": 987.44,
+      "duration": 4.079
+    },
+    {
+      "text": "earlier we just had one context Vector",
+      "start": 989.48,
+      "duration": 5.52
+    },
+    {
+      "text": "right we had one context Vector Matrix",
+      "start": 991.519,
+      "duration": 6.201
+    },
+    {
+      "text": "now we get two context Vector matrices",
+      "start": 995.0,
+      "duration": 4.68
+    },
+    {
+      "text": "so if you look at this input here which",
+      "start": 997.72,
+      "duration": 2.799
+    },
+    {
+      "text": "has been",
+      "start": 999.68,
+      "duration": 2.639
+    },
+    {
+      "text": "highlighted this",
+      "start": 1000.519,
+      "duration": 5.56
+    },
+    {
+      "text": "input 7.2 and 1 let me highlight it once",
+      "start": 1002.319,
+      "duration": 6.801
+    },
+    {
+      "text": "more yeah this input 7.2 and one earlier",
+      "start": 1006.079,
+      "duration": 4.88
+    },
+    {
+      "text": "we converted every threedimensional",
+      "start": 1009.12,
+      "duration": 4.12
+    },
+    {
+      "text": "input input into a two dimensional",
+      "start": 1010.959,
+      "duration": 5.041
+    },
+    {
+      "text": "context Vector right but now this 300",
+      "start": 1013.24,
+      "duration": 4.839
+    },
+    {
+      "text": "threedimensional input will be converted",
+      "start": 1016.0,
+      "duration": 4.36
+    },
+    {
+      "text": "into two context vectors each of the",
+      "start": 1018.079,
+      "duration": 4.2
+    },
+    {
+      "text": "output dimmension which in this case is",
+      "start": 1020.36,
+      "duration": 4.24
+    },
+    {
+      "text": "two so then what we will do is that",
+      "start": 1022.279,
+      "duration": 4.121
+    },
+    {
+      "text": "we'll get these two context vectors and",
+      "start": 1024.6,
+      "duration": 4.12
+    },
+    {
+      "text": "we'll concatenate them together to give",
+      "start": 1026.4,
+      "duration": 4.88
+    },
+    {
+      "text": "the ultimate context Vector",
+      "start": 1028.72,
+      "duration": 5.4
+    },
+    {
+      "text": "Matrix so earlier if you see the context",
+      "start": 1031.28,
+      "duration": 6.48
+    },
+    {
+      "text": "Vector Matrix was 6x2 so in this case",
+      "start": 1034.12,
+      "duration": 6.04
+    },
+    {
+      "text": "the 6x2 and 6x2 will be aggregated",
+      "start": 1037.76,
+      "duration": 5.36
+    },
+    {
+      "text": "together and the final context Vector",
+      "start": 1040.16,
+      "duration": 6.279
+    },
+    {
+      "text": "Matrix size will actually be",
+      "start": 1043.12,
+      "duration": 7.72
+    },
+    {
+      "text": "6x4 it will be 6x4",
+      "start": 1046.439,
+      "duration": 4.401
+    },
+    {
+      "text": "okay so it actually looks something like",
+      "start": 1052.08,
+      "duration": 5.04
+    },
+    {
+      "text": "this earlier when we applied the single",
+      "start": 1053.88,
+      "duration": 5.039
+    },
+    {
+      "text": "head attention we just got one context",
+      "start": 1057.12,
+      "duration": 3.96
+    },
+    {
+      "text": "Vector Matrix right but now since we",
+      "start": 1058.919,
+      "duration": 3.801
+    },
+    {
+      "text": "have two attention heads we have two",
+      "start": 1061.08,
+      "duration": 4.36
+    },
+    {
+      "text": "context Vector matrices and each context",
+      "start": 1062.72,
+      "duration": 5.88
+    },
+    {
+      "text": "Vector Matrix has a dimension of",
+      "start": 1065.44,
+      "duration": 6.2
+    },
+    {
+      "text": "6x2 so when you stack these two and you",
+      "start": 1068.6,
+      "duration": 5.199
+    },
+    {
+      "text": "stack them along their last Dimension",
+      "start": 1071.64,
+      "duration": 4.919
+    },
+    {
+      "text": "which is two so the number of rows",
+      "start": 1073.799,
+      "duration": 4.641
+    },
+    {
+      "text": "actually remain the same but the number",
+      "start": 1076.559,
+      "duration": 4.24
+    },
+    {
+      "text": "of column colums increase so when you",
+      "start": 1078.44,
+      "duration": 4.64
+    },
+    {
+      "text": "stack these two along the column the",
+      "start": 1080.799,
+      "duration": 4.801
+    },
+    {
+      "text": "final con concatenated context weight",
+      "start": 1083.08,
+      "duration": 4.479
+    },
+    {
+      "text": "Vector weight context Vector Matrix will",
+      "start": 1085.6,
+      "duration": 3.559
+    },
+    {
+      "text": "be",
+      "start": 1087.559,
+      "duration": 3.961
+    },
+    {
+      "text": "6x4 that's all which is actually",
+      "start": 1089.159,
+      "duration": 4.321
+    },
+    {
+      "text": "happening in multihead attention so",
+      "start": 1091.52,
+      "duration": 4.72
+    },
+    {
+      "text": "let's go to our flowchart and see really",
+      "start": 1093.48,
+      "duration": 4.36
+    },
+    {
+      "text": "what is going",
+      "start": 1096.24,
+      "duration": 6.76
+    },
+    {
+      "text": "on okay so as we saw earlier we had this",
+      "start": 1097.84,
+      "duration": 8.44
+    },
+    {
+      "text": "trainable query key and value matrices",
+      "start": 1103.0,
+      "duration": 6.08
+    },
+    {
+      "text": "right now in multi-ad attention we have",
+      "start": 1106.28,
+      "duration": 5.399
+    },
+    {
+      "text": "multiple of these matrices if we have",
+      "start": 1109.08,
+      "duration": 4.28
+    },
+    {
+      "text": "five attention heads we have five",
+      "start": 1111.679,
+      "duration": 3.88
+    },
+    {
+      "text": "trainable query matrices five trainable",
+      "start": 1113.36,
+      "duration": 4.52
+    },
+    {
+      "text": "key matrices and five trainable value",
+      "start": 1115.559,
+      "duration": 5.921
+    },
+    {
+      "text": "matri even here we had one one queries",
+      "start": 1117.88,
+      "duration": 6.039
+    },
+    {
+      "text": "Matrix one Keys Matrix and one values",
+      "start": 1121.48,
+      "duration": 4.64
+    },
+    {
+      "text": "Matrix right in multi-ad attention we",
+      "start": 1123.919,
+      "duration": 5.161
+    },
+    {
+      "text": "have multiple of these similarly we have",
+      "start": 1126.12,
+      "duration": 4.84
+    },
+    {
+      "text": "multiple sets of attention scores we",
+      "start": 1129.08,
+      "duration": 4.56
+    },
+    {
+      "text": "have multiple sets of attention weights",
+      "start": 1130.96,
+      "duration": 5.0
+    },
+    {
+      "text": "and ultimately when we multiply these",
+      "start": 1133.64,
+      "duration": 5.48
+    },
+    {
+      "text": "with the values uh we have two set of",
+      "start": 1135.96,
+      "duration": 5.36
+    },
+    {
+      "text": "context Vector matrices so if we have",
+      "start": 1139.12,
+      "duration": 4.039
+    },
+    {
+      "text": "two attention heads if you look at the",
+      "start": 1141.32,
+      "duration": 4.239
+    },
+    {
+      "text": "first context Vector Matrix this is from",
+      "start": 1143.159,
+      "duration": 4.681
+    },
+    {
+      "text": "attention head number one which",
+      "start": 1145.559,
+      "duration": 4.081
+    },
+    {
+      "text": "basically means it's from the first set",
+      "start": 1147.84,
+      "duration": 4.199
+    },
+    {
+      "text": "of queries keys and values if you look",
+      "start": 1149.64,
+      "duration": 3.6
+    },
+    {
+      "text": "at the",
+      "start": 1152.039,
+      "duration": 4.841
+    },
+    {
+      "text": "second uh context Vector Matrix you'll",
+      "start": 1153.24,
+      "duration": 6.2
+    },
+    {
+      "text": "see that this is from attention head two",
+      "start": 1156.88,
+      "duration": 5.6
+    },
+    {
+      "text": "so the dimensions of the first context",
+      "start": 1159.44,
+      "duration": 5.479
+    },
+    {
+      "text": "Vector Matrix is 6x2 and the dimensions",
+      "start": 1162.48,
+      "duration": 4.6
+    },
+    {
+      "text": "of the second context Vector Matrix is",
+      "start": 1164.919,
+      "duration": 5.201
+    },
+    {
+      "text": "6x2 now these are concatenated along the",
+      "start": 1167.08,
+      "duration": 5.68
+    },
+    {
+      "text": "columns and so we get a final context",
+      "start": 1170.12,
+      "duration": 4.36
+    },
+    {
+      "text": "Vector Matrix which has the dimensions",
+      "start": 1172.76,
+      "duration": 2.52
+    },
+    {
+      "text": "of",
+      "start": 1174.48,
+      "duration": 3.0
+    },
+    {
+      "text": "6x4 that is all what is being",
+      "start": 1175.28,
+      "duration": 4.279
+    },
+    {
+      "text": "implemented in the multi-head attention",
+      "start": 1177.48,
+      "duration": 3.36
+    },
+    {
+      "text": "that's why it's called multi- head",
+      "start": 1179.559,
+      "duration": 3.48
+    },
+    {
+      "text": "because we are aggregating the output of",
+      "start": 1180.84,
+      "duration": 4.04
+    },
+    {
+      "text": "multiple attention",
+      "start": 1183.039,
+      "duration": 4.801
+    },
+    {
+      "text": "heads so if you find yourself getting",
+      "start": 1184.88,
+      "duration": 5.64
+    },
+    {
+      "text": "confused just remember the main idea",
+      "start": 1187.84,
+      "duration": 4.12
+    },
+    {
+      "text": "what we are doing is that we are just",
+      "start": 1190.52,
+      "duration": 3.36
+    },
+    {
+      "text": "running the attention mechanism multiple",
+      "start": 1191.96,
+      "duration": 4.64
+    },
+    {
+      "text": "times that's it that's the only thing to",
+      "start": 1193.88,
+      "duration": 4.48
+    },
+    {
+      "text": "remember and this one figure which I've",
+      "start": 1196.6,
+      "duration": 4.16
+    },
+    {
+      "text": "shown over here really summarizes it all",
+      "start": 1198.36,
+      "duration": 4.72
+    },
+    {
+      "text": "we have multiple copies of the trainable",
+      "start": 1200.76,
+      "duration": 6.039
+    },
+    {
+      "text": "query key and the value Matrix yeah here",
+      "start": 1203.08,
+      "duration": 5.56
+    },
+    {
+      "text": "we have multiple copies of the trainable",
+      "start": 1206.799,
+      "duration": 3.681
+    },
+    {
+      "text": "query key and value Matrix we have",
+      "start": 1208.64,
+      "duration": 4.519
+    },
+    {
+      "text": "multiple copies of the queries keys and",
+      "start": 1210.48,
+      "duration": 4.52
+    },
+    {
+      "text": "the value Matrix and we have multiple",
+      "start": 1213.159,
+      "duration": 3.601
+    },
+    {
+      "text": "context Vector matrices which are",
+      "start": 1215.0,
+      "duration": 2.919
+    },
+    {
+      "text": "stacked",
+      "start": 1216.76,
+      "duration": 3.68
+    },
+    {
+      "text": "together now let us Implement multi-head",
+      "start": 1217.919,
+      "duration": 5.24
+    },
+    {
+      "text": "attention in code for that you need to",
+      "start": 1220.44,
+      "duration": 3.96
+    },
+    {
+      "text": "remember that we have already",
+      "start": 1223.159,
+      "duration": 4.121
+    },
+    {
+      "text": "implemented the causal attention class",
+      "start": 1224.4,
+      "duration": 4.8
+    },
+    {
+      "text": "and uh the output of this class is that",
+      "start": 1227.28,
+      "duration": 4.08
+    },
+    {
+      "text": "it returns a context Vector correct so",
+      "start": 1229.2,
+      "duration": 3.839
+    },
+    {
+      "text": "just remember this and let's move",
+      "start": 1231.36,
+      "duration": 4.52
+    },
+    {
+      "text": "forward to Extended s extending single",
+      "start": 1233.039,
+      "duration": 5.52
+    },
+    {
+      "text": "head attention to multihead attention so",
+      "start": 1235.88,
+      "duration": 4.44
+    },
+    {
+      "text": "in Practical terms implementing",
+      "start": 1238.559,
+      "duration": 3.761
+    },
+    {
+      "text": "multi-head attention involves creating",
+      "start": 1240.32,
+      "duration": 4.08
+    },
+    {
+      "text": "multiple instances of the self attention",
+      "start": 1242.32,
+      "duration": 4.68
+    },
+    {
+      "text": "mechanism each with its own weights and",
+      "start": 1244.4,
+      "duration": 4.88
+    },
+    {
+      "text": "then combining their outputs so if you",
+      "start": 1247.0,
+      "duration": 4.799
+    },
+    {
+      "text": "create one instance of the causal",
+      "start": 1249.28,
+      "duration": 5.24
+    },
+    {
+      "text": "attention you get one context Vector so",
+      "start": 1251.799,
+      "duration": 4.201
+    },
+    {
+      "text": "then you'll create another instance of",
+      "start": 1254.52,
+      "duration": 3.279
+    },
+    {
+      "text": "the causal attention you'll get another",
+      "start": 1256.0,
+      "duration": 4.039
+    },
+    {
+      "text": "context vector and you will merge them",
+      "start": 1257.799,
+      "duration": 4.641
+    },
+    {
+      "text": "to that's exactly what we are going to",
+      "start": 1260.039,
+      "duration": 5.161
+    },
+    {
+      "text": "implement in the code so to do that we",
+      "start": 1262.44,
+      "duration": 4.56
+    },
+    {
+      "text": "we will actually Implement a multi-head",
+      "start": 1265.2,
+      "duration": 4.12
+    },
+    {
+      "text": "attention rapper class that Stacks",
+      "start": 1267.0,
+      "duration": 5.48
+    },
+    {
+      "text": "multiple instances of our previously uh",
+      "start": 1269.32,
+      "duration": 5.839
+    },
+    {
+      "text": "implemented causal attention module so",
+      "start": 1272.48,
+      "duration": 4.64
+    },
+    {
+      "text": "here's the multi-head attention rapper",
+      "start": 1275.159,
+      "duration": 4.041
+    },
+    {
+      "text": "class now what is happening in this",
+      "start": 1277.12,
+      "duration": 3.76
+    },
+    {
+      "text": "multi-ad attention rapper is actually",
+      "start": 1279.2,
+      "duration": 4.76
+    },
+    {
+      "text": "pretty simple okay so we get the output",
+      "start": 1280.88,
+      "duration": 5.32
+    },
+    {
+      "text": "from the causal attention mechanism",
+      "start": 1283.96,
+      "duration": 4.92
+    },
+    {
+      "text": "which is written over here and we first",
+      "start": 1286.2,
+      "duration": 5.28
+    },
+    {
+      "text": "Define number of attention heads so if",
+      "start": 1288.88,
+      "duration": 4.88
+    },
+    {
+      "text": "the number of attention heads is",
+      "start": 1291.48,
+      "duration": 4.76
+    },
+    {
+      "text": "five uh what we'll do is that we'll get",
+      "start": 1293.76,
+      "duration": 5.84
+    },
+    {
+      "text": "outputs from uh we'll get five outputs",
+      "start": 1296.24,
+      "duration": 5.72
+    },
+    {
+      "text": "and then we'll concatenate them together",
+      "start": 1299.6,
+      "duration": 4.16
+    },
+    {
+      "text": "so first let's look at the forward",
+      "start": 1301.96,
+      "duration": 4.8
+    },
+    {
+      "text": "method it's torch do cat which is which",
+      "start": 1303.76,
+      "duration": 5.039
+    },
+    {
+      "text": "is concatenation and dimension equal to",
+      "start": 1306.76,
+      "duration": 4.159
+    },
+    {
+      "text": "minus one why minus one because we are",
+      "start": 1308.799,
+      "duration": 4.041
+    },
+    {
+      "text": "concatenating along the columns as we",
+      "start": 1310.919,
+      "duration": 4.281
+    },
+    {
+      "text": "saw before and then here you can see we",
+      "start": 1312.84,
+      "duration": 4.36
+    },
+    {
+      "text": "are looping over all the attention head",
+      "start": 1315.2,
+      "duration": 5.24
+    },
+    {
+      "text": "in self. heads and what is self. heads",
+      "start": 1317.2,
+      "duration": 5.68
+    },
+    {
+      "text": "so self. heads is essentially it will",
+      "start": 1320.44,
+      "duration": 3.96
+    },
+    {
+      "text": "create an instance of the causal",
+      "start": 1322.88,
+      "duration": 3.399
+    },
+    {
+      "text": "attention class for how many number of",
+      "start": 1324.4,
+      "duration": 4.72
+    },
+    {
+      "text": "heads so here if you see we are looping",
+      "start": 1326.279,
+      "duration": 4.441
+    },
+    {
+      "text": "over the number of heads so if we",
+      "start": 1329.12,
+      "duration": 3.96
+    },
+    {
+      "text": "specify the number of heads equal to two",
+      "start": 1330.72,
+      "duration": 4.079
+    },
+    {
+      "text": "we will create two instances of the",
+      "start": 1333.08,
+      "duration": 3.719
+    },
+    {
+      "text": "causal attention class and then the",
+      "start": 1334.799,
+      "duration": 4.641
+    },
+    {
+      "text": "results of the two instances will be",
+      "start": 1336.799,
+      "duration": 5.841
+    },
+    {
+      "text": "essentially uh stored in this function",
+      "start": 1339.44,
+      "duration": 4.8
+    },
+    {
+      "text": "head of",
+      "start": 1342.64,
+      "duration": 4.919
+    },
+    {
+      "text": "X okay and head is essentially in self.",
+      "start": 1344.24,
+      "duration": 5.16
+    },
+    {
+      "text": "heads so what will will be doing is that",
+      "start": 1347.559,
+      "duration": 4.161
+    },
+    {
+      "text": "if number of heads is five we'll create",
+      "start": 1349.4,
+      "duration": 4.159
+    },
+    {
+      "text": "five instances of the causal attention",
+      "start": 1351.72,
+      "duration": 4.439
+    },
+    {
+      "text": "class and the outputs what we get the",
+      "start": 1353.559,
+      "duration": 4.641
+    },
+    {
+      "text": "outputs we'll just concatenate them",
+      "start": 1356.159,
+      "duration": 4.481
+    },
+    {
+      "text": "together along the columns that's it",
+      "start": 1358.2,
+      "duration": 4.8
+    },
+    {
+      "text": "it's as simple as that that's why we",
+      "start": 1360.64,
+      "duration": 3.88
+    },
+    {
+      "text": "learned about the causal attention",
+      "start": 1363.0,
+      "duration": 3.4
+    },
+    {
+      "text": "mechanism earlier because if you",
+      "start": 1364.52,
+      "duration": 3.68
+    },
+    {
+      "text": "directly come to multi head attention",
+      "start": 1366.4,
+      "duration": 3.48
+    },
+    {
+      "text": "you'll find it difficult to understand",
+      "start": 1368.2,
+      "duration": 5.28
+    },
+    {
+      "text": "all of these so remember D in is the",
+      "start": 1369.88,
+      "duration": 6.2
+    },
+    {
+      "text": "vector dimension of our tokens the input",
+      "start": 1373.48,
+      "duration": 5.079
+    },
+    {
+      "text": "embedding Vector Dimension D out is the",
+      "start": 1376.08,
+      "duration": 4.719
+    },
+    {
+      "text": "output Dimension which we want context",
+      "start": 1378.559,
+      "duration": 4.321
+    },
+    {
+      "text": "length is in this case the number of",
+      "start": 1380.799,
+      "duration": 3.76
+    },
+    {
+      "text": "tokens but it can be anything what you",
+      "start": 1382.88,
+      "duration": 3.96
+    },
+    {
+      "text": "said Dropout is the dropout",
+      "start": 1384.559,
+      "duration": 6.041
+    },
+    {
+      "text": "rate okay so for example if we use this",
+      "start": 1386.84,
+      "duration": 5.6
+    },
+    {
+      "text": "multi-head attention rapper class with",
+      "start": 1390.6,
+      "duration": 4.28
+    },
+    {
+      "text": "two attention heads and causal attention",
+      "start": 1392.44,
+      "duration": 4.44
+    },
+    {
+      "text": "output Dimension equal to two this",
+      "start": 1394.88,
+      "duration": 3.919
+    },
+    {
+      "text": "results in a four dimensional context",
+      "start": 1396.88,
+      "duration": 3.84
+    },
+    {
+      "text": "vectors because D out into number of",
+      "start": 1398.799,
+      "duration": 4.401
+    },
+    {
+      "text": "heads is equal to four so remember what",
+      "start": 1400.72,
+      "duration": 4.28
+    },
+    {
+      "text": "is happening here and that is",
+      "start": 1403.2,
+      "duration": 6.16
+    },
+    {
+      "text": "Illustrated in this diagram below",
+      "start": 1405.0,
+      "duration": 7.799
+    },
+    {
+      "text": "uh take a look at this diagram",
+      "start": 1409.36,
+      "duration": 6.96
+    },
+    {
+      "text": "yeah yeah take a look at this diagram D",
+      "start": 1412.799,
+      "duration": 6.88
+    },
+    {
+      "text": "out is specified earlier so if D out is",
+      "start": 1416.32,
+      "duration": 5.239
+    },
+    {
+      "text": "equal to two and we have two attention",
+      "start": 1419.679,
+      "duration": 4.48
+    },
+    {
+      "text": "heads then the final output will be 2",
+      "start": 1421.559,
+      "duration": 5.081
+    },
+    {
+      "text": "into 2 which is equal to 4 if D out",
+      "start": 1424.159,
+      "duration": 4.281
+    },
+    {
+      "text": "equal to two and we have three attention",
+      "start": 1426.64,
+      "duration": 3.32
+    },
+    {
+      "text": "heads we'll get three context Vector",
+      "start": 1428.44,
+      "duration": 3.08
+    },
+    {
+      "text": "matrices right so then there will be one",
+      "start": 1429.96,
+      "duration": 3.839
+    },
+    {
+      "text": "more which is added here so then the",
+      "start": 1431.52,
+      "duration": 4.56
+    },
+    {
+      "text": "output of the final concatenated context",
+      "start": 1433.799,
+      "duration": 4.921
+    },
+    {
+      "text": "Vector Matrix will be uh basically Bally",
+      "start": 1436.08,
+      "duration": 5.36
+    },
+    {
+      "text": "six rows into this will be six columns",
+      "start": 1438.72,
+      "duration": 4.839
+    },
+    {
+      "text": "so D out will be six in this",
+      "start": 1441.44,
+      "duration": 4.96
+    },
+    {
+      "text": "case that's just what is written here so",
+      "start": 1443.559,
+      "duration": 4.761
+    },
+    {
+      "text": "the final Dimension the column dimension",
+      "start": 1446.4,
+      "duration": 4.2
+    },
+    {
+      "text": "of the context Vector is D out into the",
+      "start": 1448.32,
+      "duration": 4.92
+    },
+    {
+      "text": "number of heads now let us actually",
+      "start": 1450.6,
+      "duration": 4.88
+    },
+    {
+      "text": "create an instance of this uh multi-head",
+      "start": 1453.24,
+      "duration": 3.919
+    },
+    {
+      "text": "attention wrapper and see how it's",
+      "start": 1455.48,
+      "duration": 4.84
+    },
+    {
+      "text": "working so uh first we have to specify",
+      "start": 1457.159,
+      "duration": 5.561
+    },
+    {
+      "text": "the batch okay and I think we have",
+      "start": 1460.32,
+      "duration": 4.599
+    },
+    {
+      "text": "defined the batch earlier so let me",
+      "start": 1462.72,
+      "duration": 4.92
+    },
+    {
+      "text": "actually copy paste that uh let's see",
+      "start": 1464.919,
+      "duration": 5.88
+    },
+    {
+      "text": "where the batch has been",
+      "start": 1467.64,
+      "duration": 3.159
+    },
+    {
+      "text": "defined I remember we had defined the",
+      "start": 1474.399,
+      "duration": 4.481
+    },
+    {
+      "text": "batch somewhere earlier and that's why I",
+      "start": 1476.88,
+      "duration": 4.799
+    },
+    {
+      "text": "am implementing it below yeah here so",
+      "start": 1478.88,
+      "duration": 5.0
+    },
+    {
+      "text": "this is where we have defined the batch",
+      "start": 1481.679,
+      "duration": 4.641
+    },
+    {
+      "text": "and the inputs so let me actually bring",
+      "start": 1483.88,
+      "duration": 4.32
+    },
+    {
+      "text": "the inputs here itself so that you have",
+      "start": 1486.32,
+      "duration": 5.16
+    },
+    {
+      "text": "an understanding of uh what the inputs",
+      "start": 1488.2,
+      "duration": 5.88
+    },
+    {
+      "text": "were so the inputs were six tokens your",
+      "start": 1491.48,
+      "duration": 4.48
+    },
+    {
+      "text": "journey begins with one step yeah these",
+      "start": 1494.08,
+      "duration": 5.4
+    },
+    {
+      "text": "are the inputs and uh this was the batch",
+      "start": 1495.96,
+      "duration": 6.0
+    },
+    {
+      "text": "which we had so let me put all of this",
+      "start": 1499.48,
+      "duration": 5.72
+    },
+    {
+      "text": "together and bring all of this to our",
+      "start": 1501.96,
+      "duration": 7.52
+    },
+    {
+      "text": "current code right so before this part",
+      "start": 1505.2,
+      "duration": 6.88
+    },
+    {
+      "text": "let me just type in the inputs and the",
+      "start": 1509.48,
+      "duration": 5.28
+    },
+    {
+      "text": "batch right so these are my inputs my",
+      "start": 1512.08,
+      "duration": 4.36
+    },
+    {
+      "text": "inputs are six",
+      "start": 1514.76,
+      "duration": 5.56
+    },
+    {
+      "text": "tokens okay and uh with three",
+      "start": 1516.44,
+      "duration": 5.92
+    },
+    {
+      "text": "dimensional Vector embedding for each",
+      "start": 1520.32,
+      "duration": 4.44
+    },
+    {
+      "text": "now I'm going to create a batch so which",
+      "start": 1522.36,
+      "duration": 4.439
+    },
+    {
+      "text": "has two inputs which are stacked on top",
+      "start": 1524.76,
+      "duration": 4.88
+    },
+    {
+      "text": "of each other so this is the inputs and",
+      "start": 1526.799,
+      "duration": 4.76
+    },
+    {
+      "text": "I have a batch of two inputs so let me",
+      "start": 1529.64,
+      "duration": 3.96
+    },
+    {
+      "text": "print this so you'll see the batch has a",
+      "start": 1531.559,
+      "duration": 6.161
+    },
+    {
+      "text": "shape of 2A 6 comma 3 correct so now my",
+      "start": 1533.6,
+      "duration": 6.12
+    },
+    {
+      "text": "context length is going to be badge do",
+      "start": 1537.72,
+      "duration": 4.4
+    },
+    {
+      "text": "shape of one because here I'm assuming",
+      "start": 1539.72,
+      "duration": 4.04
+    },
+    {
+      "text": "that the number of tokens is equal to",
+      "start": 1542.12,
+      "duration": 3.36
+    },
+    {
+      "text": "the context length which is equal to six",
+      "start": 1543.76,
+      "duration": 3.44
+    },
+    {
+      "text": "so this is the number of tokens which is",
+      "start": 1545.48,
+      "duration": 4.96
+    },
+    {
+      "text": "equal to six in this case D in which is",
+      "start": 1547.2,
+      "duration": 5.479
+    },
+    {
+      "text": "the vector embedding Dimension is 3 in",
+      "start": 1550.44,
+      "duration": 4.119
+    },
+    {
+      "text": "my case and I'm going to use a d out",
+      "start": 1552.679,
+      "duration": 2.841
+    },
+    {
+      "text": "equal to",
+      "start": 1554.559,
+      "duration": 4.12
+    },
+    {
+      "text": "2 that's all we need to create an of the",
+      "start": 1555.52,
+      "duration": 4.92
+    },
+    {
+      "text": "multi-ad attention wrapper we need to",
+      "start": 1558.679,
+      "duration": 4.521
+    },
+    {
+      "text": "specify D in which is three D out which",
+      "start": 1560.44,
+      "duration": 5.04
+    },
+    {
+      "text": "is equal to 2 context length which is",
+      "start": 1563.2,
+      "duration": 4.16
+    },
+    {
+      "text": "equal to 6 Dropout will will choose to",
+      "start": 1565.48,
+      "duration": 4.76
+    },
+    {
+      "text": "be number of equal to zero and number of",
+      "start": 1567.36,
+      "duration": 5.16
+    },
+    {
+      "text": "heads we are going to choose right now",
+      "start": 1570.24,
+      "duration": 4.039
+    },
+    {
+      "text": "to be equal to two I think yeah number",
+      "start": 1572.52,
+      "duration": 4.72
+    },
+    {
+      "text": "of heads equal to two and this bias term",
+      "start": 1574.279,
+      "duration": 5.201
+    },
+    {
+      "text": "is just false this is for initialization",
+      "start": 1577.24,
+      "duration": 4.559
+    },
+    {
+      "text": "in the trainable weight trainable weight",
+      "start": 1579.48,
+      "duration": 5.24
+    },
+    {
+      "text": "metries for queries the keys and the",
+      "start": 1581.799,
+      "duration": 5.48
+    },
+    {
+      "text": "values awesome so let me create an",
+      "start": 1584.72,
+      "duration": 4.12
+    },
+    {
+      "text": "instance of this multi head attention",
+      "start": 1587.279,
+      "duration": 4.441
+    },
+    {
+      "text": "wrapper and then it's it's defined in",
+      "start": 1588.84,
+      "duration": 5.839
+    },
+    {
+      "text": "mha multi-head attention and then after",
+      "start": 1591.72,
+      "duration": 4.72
+    },
+    {
+      "text": "I create an instance I'll pass in the",
+      "start": 1594.679,
+      "duration": 4.641
+    },
+    {
+      "text": "batch which has been defined earlier and",
+      "start": 1596.44,
+      "duration": 4.599
+    },
+    {
+      "text": "then the result will be the context",
+      "start": 1599.32,
+      "duration": 3.52
+    },
+    {
+      "text": "vector and let's print out the context",
+      "start": 1601.039,
+      "duration": 3.921
+    },
+    {
+      "text": "Vector shape so if you print out the",
+      "start": 1602.84,
+      "duration": 4.36
+    },
+    {
+      "text": "context Vector shape you'll get it as 2",
+      "start": 1604.96,
+      "duration": 5.52
+    },
+    {
+      "text": "comma 6A 4 can you try to think why",
+      "start": 1607.2,
+      "duration": 6.76
+    },
+    {
+      "text": "there is why the shape is 2A 6A 4 so",
+      "start": 1610.48,
+      "duration": 4.799
+    },
+    {
+      "text": "let's look at each Dimension",
+      "start": 1613.96,
+      "duration": 3.64
+    },
+    {
+      "text": "individually the First Dimension is two",
+      "start": 1615.279,
+      "duration": 3.841
+    },
+    {
+      "text": "because we have two two batches so this",
+      "start": 1617.6,
+      "duration": 3.24
+    },
+    {
+      "text": "is the output for the first batch this",
+      "start": 1619.12,
+      "duration": 3.84
+    },
+    {
+      "text": "is the output for the second batch now",
+      "start": 1620.84,
+      "duration": 4.68
+    },
+    {
+      "text": "let's look at each output so the second",
+      "start": 1622.96,
+      "duration": 4.68
+    },
+    {
+      "text": "dimension is six so there are six rows",
+      "start": 1625.52,
+      "duration": 3.6
+    },
+    {
+      "text": "why are there six rows because there are",
+      "start": 1627.64,
+      "duration": 3.56
+    },
+    {
+      "text": "six tokens and we have a context Vector",
+      "start": 1629.12,
+      "duration": 3.919
+    },
+    {
+      "text": "for each token that's why there are six",
+      "start": 1631.2,
+      "duration": 4.199
+    },
+    {
+      "text": "rows but if you look at the columns for",
+      "start": 1633.039,
+      "duration": 4.52
+    },
+    {
+      "text": "each there are four columns so you might",
+      "start": 1635.399,
+      "duration": 4.681
+    },
+    {
+      "text": "be thinking but D out is equal to two so",
+      "start": 1637.559,
+      "duration": 4.12
+    },
+    {
+      "text": "there should have only been two columns",
+      "start": 1640.08,
+      "duration": 3.76
+    },
+    {
+      "text": "right so the thing is that there were",
+      "start": 1641.679,
+      "duration": 4.521
+    },
+    {
+      "text": "only two columns for one attention head",
+      "start": 1643.84,
+      "duration": 4.92
+    },
+    {
+      "text": "but now we have two attention heads so",
+      "start": 1646.2,
+      "duration": 4.359
+    },
+    {
+      "text": "the two columns and two columns will be",
+      "start": 1648.76,
+      "duration": 3.6
+    },
+    {
+      "text": "aggregated together and that's why we",
+      "start": 1650.559,
+      "duration": 4.12
+    },
+    {
+      "text": "have four columns in the final context",
+      "start": 1652.36,
+      "duration": 3.36
+    },
+    {
+      "text": "Vector",
+      "start": 1654.679,
+      "duration": 3.201
+    },
+    {
+      "text": "Matrix so this is the result of the",
+      "start": 1655.72,
+      "duration": 3.88
+    },
+    {
+      "text": "multi-head attention wrapper these are",
+      "start": 1657.88,
+      "duration": 3.6
+    },
+    {
+      "text": "the this is the final context Vector",
+      "start": 1659.6,
+      "duration": 4.36
+    },
+    {
+      "text": "Matrix which we have after we implement",
+      "start": 1661.48,
+      "duration": 4.559
+    },
+    {
+      "text": "the multihead attention and this is that",
+      "start": 1663.96,
+      "duration": 3.719
+    },
+    {
+      "text": "Matrix which is further passed to the",
+      "start": 1666.039,
+      "duration": 3.321
+    },
+    {
+      "text": "large language model for the training",
+      "start": 1667.679,
+      "duration": 4.081
+    },
+    {
+      "text": "procedure all of these lectures which we",
+      "start": 1669.36,
+      "duration": 5.76
+    },
+    {
+      "text": "had ultimately resulted into this this",
+      "start": 1671.76,
+      "duration": 4.88
+    },
+    {
+      "text": "context Vector Matrix which we are",
+      "start": 1675.12,
+      "duration": 3.679
+    },
+    {
+      "text": "seeing right now to get to this Matrix",
+      "start": 1676.64,
+      "duration": 4.72
+    },
+    {
+      "text": "we have to first learn about U we have",
+      "start": 1678.799,
+      "duration": 4.561
+    },
+    {
+      "text": "to learn about causal attention before",
+      "start": 1681.36,
+      "duration": 3.72
+    },
+    {
+      "text": "that we have to learn about query key",
+      "start": 1683.36,
+      "duration": 4.199
+    },
+    {
+      "text": "and values right to learn about causal",
+      "start": 1685.08,
+      "duration": 4.0
+    },
+    {
+      "text": "attention we had to learn about query",
+      "start": 1687.559,
+      "duration": 3.281
+    },
+    {
+      "text": "key and values attention scores",
+      "start": 1689.08,
+      "duration": 3.76
+    },
+    {
+      "text": "attention weights Etc then context",
+      "start": 1690.84,
+      "duration": 4.88
+    },
+    {
+      "text": "Vector after learning all this right now",
+      "start": 1692.84,
+      "duration": 5.079
+    },
+    {
+      "text": "we have seen that we can concatenate",
+      "start": 1695.72,
+      "duration": 4.28
+    },
+    {
+      "text": "different attention heads together to",
+      "start": 1697.919,
+      "duration": 5.64
+    },
+    {
+      "text": "get the final context Vector Matrix and",
+      "start": 1700.0,
+      "duration": 5.24
+    },
+    {
+      "text": "the values which you see here are not",
+      "start": 1703.559,
+      "duration": 4.161
+    },
+    {
+      "text": "trained so these are random values right",
+      "start": 1705.24,
+      "duration": 4.279
+    },
+    {
+      "text": "now but later you'll see that when the",
+      "start": 1707.72,
+      "duration": 3.64
+    },
+    {
+      "text": "large language model is trained these",
+      "start": 1709.519,
+      "duration": 4.201
+    },
+    {
+      "text": "values itself get updated and they get",
+      "start": 1711.36,
+      "duration": 4.0
+    },
+    {
+      "text": "better and better and better and they",
+      "start": 1713.72,
+      "duration": 4.079
+    },
+    {
+      "text": "encode information about how every word",
+      "start": 1715.36,
+      "duration": 4.72
+    },
+    {
+      "text": "relates to other words attends to other",
+      "start": 1717.799,
+      "duration": 4.321
+    },
+    {
+      "text": "words in a",
+      "start": 1720.08,
+      "duration": 4.4
+    },
+    {
+      "text": "sequence so the first dimension of the",
+      "start": 1722.12,
+      "duration": 4.96
+    },
+    {
+      "text": "resulting context vectors is two since",
+      "start": 1724.48,
+      "duration": 4.199
+    },
+    {
+      "text": "we have two input text as I already",
+      "start": 1727.08,
+      "duration": 3.599
+    },
+    {
+      "text": "mentioned the second dimension refers to",
+      "start": 1728.679,
+      "duration": 4.641
+    },
+    {
+      "text": "six tokens in each input six and the",
+      "start": 1730.679,
+      "duration": 4.441
+    },
+    {
+      "text": "third dimension refers to the four",
+      "start": 1733.32,
+      "duration": 3.64
+    },
+    {
+      "text": "dimensional embedding of each token why",
+      "start": 1735.12,
+      "duration": 3.6
+    },
+    {
+      "text": "four dimensional because two dimensions",
+      "start": 1736.96,
+      "duration": 4.12
+    },
+    {
+      "text": "for D output multiplied by the number of",
+      "start": 1738.72,
+      "duration": 4.64
+    },
+    {
+      "text": "heads which is equal to 2 so 2 into 2",
+      "start": 1741.08,
+      "duration": 4.0
+    },
+    {
+      "text": "equal to",
+      "start": 1743.36,
+      "duration": 4.919
+    },
+    {
+      "text": "4 okay so in this section we basically",
+      "start": 1745.08,
+      "duration": 5.52
+    },
+    {
+      "text": "implemented a multi-ad attention wrapper",
+      "start": 1748.279,
+      "duration": 4.64
+    },
+    {
+      "text": "that combines multiple single attention",
+      "start": 1750.6,
+      "duration": 4.48
+    },
+    {
+      "text": "head modules right it's actually pretty",
+      "start": 1752.919,
+      "duration": 3.521
+    },
+    {
+      "text": "simple if you understand causal",
+      "start": 1755.08,
+      "duration": 2.68
+    },
+    {
+      "text": "attention we are just stacking the",
+      "start": 1756.44,
+      "duration": 3.4
+    },
+    {
+      "text": "outputs of the causal attention along",
+      "start": 1757.76,
+      "duration": 2.96
+    },
+    {
+      "text": "the",
+      "start": 1759.84,
+      "duration": 3.6
+    },
+    {
+      "text": "columns note that these are processed",
+      "start": 1760.72,
+      "duration": 5.72
+    },
+    {
+      "text": "sequentially why the head X for each",
+      "start": 1763.44,
+      "duration": 5.2
+    },
+    {
+      "text": "head right so each output is processed",
+      "start": 1766.44,
+      "duration": 4.28
+    },
+    {
+      "text": "sequentially we first find the output",
+      "start": 1768.64,
+      "duration": 3.879
+    },
+    {
+      "text": "for the first attention head then we",
+      "start": 1770.72,
+      "duration": 3.559
+    },
+    {
+      "text": "find the output for the second attention",
+      "start": 1772.519,
+      "duration": 3.561
+    },
+    {
+      "text": "head Etc the output is the context",
+      "start": 1774.279,
+      "duration": 4.361
+    },
+    {
+      "text": "vector and then we stack them together",
+      "start": 1776.08,
+      "duration": 4.04
+    },
+    {
+      "text": "that actually leads to a lot of",
+      "start": 1778.64,
+      "duration": 4.2
+    },
+    {
+      "text": "inefficiencies this sequential Computing",
+      "start": 1780.12,
+      "duration": 4.6
+    },
+    {
+      "text": "we can improve this implementation by",
+      "start": 1782.84,
+      "duration": 3.559
+    },
+    {
+      "text": "processing the different attention heads",
+      "start": 1784.72,
+      "duration": 3.52
+    },
+    {
+      "text": "in",
+      "start": 1786.399,
+      "duration": 4.4
+    },
+    {
+      "text": "parallel uh one way to achieve this is",
+      "start": 1788.24,
+      "duration": 4.36
+    },
+    {
+      "text": "by Computing the outputs for all",
+      "start": 1790.799,
+      "duration": 3.921
+    },
+    {
+      "text": "attention heads simultaneously via",
+      "start": 1792.6,
+      "duration": 4.439
+    },
+    {
+      "text": "matrix multiplication currently what we",
+      "start": 1794.72,
+      "duration": 4.28
+    },
+    {
+      "text": "are doing is that we are we are looking",
+      "start": 1797.039,
+      "duration": 3.76
+    },
+    {
+      "text": "at one attention head finding finding",
+      "start": 1799.0,
+      "duration": 3.159
+    },
+    {
+      "text": "the output we are looking at second",
+      "start": 1800.799,
+      "duration": 3.0
+    },
+    {
+      "text": "attention head finding the output that's",
+      "start": 1802.159,
+      "duration": 4.161
+    },
+    {
+      "text": "extremely inefficient why don't we",
+      "start": 1803.799,
+      "duration": 4.48
+    },
+    {
+      "text": "essentially combine the output for all",
+      "start": 1806.32,
+      "duration": 4.0
+    },
+    {
+      "text": "the attention heads simultaneously and",
+      "start": 1808.279,
+      "duration": 4.361
+    },
+    {
+      "text": "how can we do that let's explore in the",
+      "start": 1810.32,
+      "duration": 4.04
+    },
+    {
+      "text": "next section so this will be the next",
+      "start": 1812.64,
+      "duration": 3.44
+    },
+    {
+      "text": "video where we'll be looking at",
+      "start": 1814.36,
+      "duration": 3.36
+    },
+    {
+      "text": "implementing multi-head attention with",
+      "start": 1816.08,
+      "duration": 4.839
+    },
+    {
+      "text": "weight splits now this is the actual",
+      "start": 1817.72,
+      "duration": 5.76
+    },
+    {
+      "text": "multi-head attention mechanism which is",
+      "start": 1820.919,
+      "duration": 4.64
+    },
+    {
+      "text": "implemented in",
+      "start": 1823.48,
+      "duration": 4.559
+    },
+    {
+      "text": "GPT uh the multier attenion with weight",
+      "start": 1825.559,
+      "duration": 4.761
+    },
+    {
+      "text": "splits because it's much more efficient",
+      "start": 1828.039,
+      "duration": 4.321
+    },
+    {
+      "text": "so the next lecture is going to be",
+      "start": 1830.32,
+      "duration": 4.28
+    },
+    {
+      "text": "awesome let me see if there is something",
+      "start": 1832.36,
+      "duration": 4.08
+    },
+    {
+      "text": "else to be covered in the current",
+      "start": 1834.6,
+      "duration": 4.559
+    },
+    {
+      "text": "lecture so we looked at this figure yeah",
+      "start": 1836.44,
+      "duration": 4.079
+    },
+    {
+      "text": "I think we have covered everything for",
+      "start": 1839.159,
+      "duration": 3.601
+    },
+    {
+      "text": "today's lecture one last thing which I",
+      "start": 1840.519,
+      "duration": 4.28
+    },
+    {
+      "text": "want to see is that I want to ask chat",
+      "start": 1842.76,
+      "duration": 5.12
+    },
+    {
+      "text": "GPT itself how",
+      "start": 1844.799,
+      "duration": 6.321
+    },
+    {
+      "text": "many how many attention",
+      "start": 1847.88,
+      "duration": 5.919
+    },
+    {
+      "text": "heads were present for",
+      "start": 1851.12,
+      "duration": 4.279
+    },
+    {
+      "text": "training",
+      "start": 1853.799,
+      "duration": 4.72
+    },
+    {
+      "text": "GPT 3",
+      "start": 1855.399,
+      "duration": 6.201
+    },
+    {
+      "text": "and GPT 4 let's",
+      "start": 1858.519,
+      "duration": 6.681
+    },
+    {
+      "text": "see so here you can see that uh gpt3",
+      "start": 1861.6,
+      "duration": 6.64
+    },
+    {
+      "text": "there were 96 attention heads uh in the",
+      "start": 1865.2,
+      "duration": 6.0
+    },
+    {
+      "text": "largest version but for GPT 4 the exact",
+      "start": 1868.24,
+      "duration": 5.279
+    },
+    {
+      "text": "number of attention heads have not been",
+      "start": 1871.2,
+      "duration": 5.16
+    },
+    {
+      "text": "publicly disclosed by open AI but I",
+      "start": 1873.519,
+      "duration": 4.481
+    },
+    {
+      "text": "assume that it would be much higher than",
+      "start": 1876.36,
+      "duration": 5.799
+    },
+    {
+      "text": "96 presuma presumably more than 150 even",
+      "start": 1878.0,
+      "duration": 5.919
+    },
+    {
+      "text": "but these are the number of attention",
+      "start": 1882.159,
+      "duration": 3.441
+    },
+    {
+      "text": "heads which need to be concatenated",
+      "start": 1883.919,
+      "duration": 3.801
+    },
+    {
+      "text": "together right now in the demonstration",
+      "start": 1885.6,
+      "duration": 4.52
+    },
+    {
+      "text": "which just saw two attention heads but",
+      "start": 1887.72,
+      "duration": 4.24
+    },
+    {
+      "text": "think about the amount of computations",
+      "start": 1890.12,
+      "duration": 3.96
+    },
+    {
+      "text": "if you need to accumulate the results",
+      "start": 1891.96,
+      "duration": 4.76
+    },
+    {
+      "text": "from 96 attention heads together that's",
+      "start": 1894.08,
+      "duration": 4.24
+    },
+    {
+      "text": "why training a large language model",
+      "start": 1896.72,
+      "duration": 4.679
+    },
+    {
+      "text": "requires huge amount of computational",
+      "start": 1898.32,
+      "duration": 5.599
+    },
+    {
+      "text": "resources okay I hope all of you have",
+      "start": 1901.399,
+      "duration": 5.601
+    },
+    {
+      "text": "understood multi-ad attention this is",
+      "start": 1903.919,
+      "duration": 4.76
+    },
+    {
+      "text": "the culmination of all the previous",
+      "start": 1907.0,
+      "duration": 4.279
+    },
+    {
+      "text": "lectures which you which you diligently",
+      "start": 1908.679,
+      "duration": 5.761
+    },
+    {
+      "text": "I hope have gone through and uh in the",
+      "start": 1911.279,
+      "duration": 4.88
+    },
+    {
+      "text": "next lecture I'll teach you about",
+      "start": 1914.44,
+      "duration": 3.479
+    },
+    {
+      "text": "multiple multi-head attention with",
+      "start": 1916.159,
+      "duration": 3.88
+    },
+    {
+      "text": "weight splits this is a very interesting",
+      "start": 1917.919,
+      "duration": 3.921
+    },
+    {
+      "text": "lecture which we have planned because I",
+      "start": 1920.039,
+      "duration": 5.12
+    },
+    {
+      "text": "I take a Hands-On example um with actual",
+      "start": 1921.84,
+      "duration": 5.839
+    },
+    {
+      "text": "values in matrices and I show you how to",
+      "start": 1925.159,
+      "duration": 4.921
+    },
+    {
+      "text": "actually compute exactly the multi-ad",
+      "start": 1927.679,
+      "duration": 4.921
+    },
+    {
+      "text": "attention from start to finish thank you",
+      "start": 1930.08,
+      "duration": 4.24
+    },
+    {
+      "text": "so much everyone I hope you enjoying",
+      "start": 1932.6,
+      "duration": 3.439
+    },
+    {
+      "text": "these lectures I look forward to seeing",
+      "start": 1934.32,
+      "duration": 5.44
+    },
+    {
+      "text": "you in the next lecture",
+      "start": 1936.039,
+      "duration": 3.721
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch series up till now in the attention mechanism part we have covered the following lectures first we covered the simplified self attention mechanism that was the first lecture in this series on attention mechanisms then we looked at self attention with training enable weights and in the last lecture we looked at causal attention now we have enough ammunition and and enough training to finally start understanding about the multi-head attention mechanism as I've mentioned previously if you directly start understanding the multi-head attention it will be very difficult to understand because it is fairly detailed mathematically as well as coding wise but now I believe that we have developed a strong Foundation if you watched the previous lectures I believe that with the understanding of simplified self attention self attention and causal attention we can use these as building blocks to truly understand multi-head attention in this series we are going to study two types of multi-head attention mechanisms the first type is basically by just concatenating the context Vector matrices which is obtained from different query key and value matrices and the second approach is a more unified approach which is more commonly implemented in modern llms and modern code bases so I'll be dividing this lecture into two parts in the first part we'll be looking at the first type of multi-head attention mechanism so let's get started before diving into multi-head attention I just want to briefly cover um what all we looked at in the causal attention mechanism if you have not seen the causal attention mechanism video I highly encourage you to go through that because multi-head attention is just an extension of the causal attention mechanism awesome so the way causal attention works is as follows we have inputs which basically are input embedding vectors corresponding to every single token which we have so if the tokens are your journey starts with one step we have threedimensional Vector embeddings for each of these tokens these Vector embeddings can be represented in a three-dimensional Vector space as can be shown here the goal of causal attention multi-head attention and any type of attention mechanism is to start with these input embedding vectors and convert them into context vectors context vectors are a more enriched form of input embedding vectors the input embedding vectors contain semantic meaning of the particular word but do not carry any information about how that word is related to the other words in the sequence so for example if you look at the input embedding for journey it does capture some semantic meaning of Journey but it does not really encode any information about when you look at Journey how much attention should be paid to the other words such as step such as your um such as with and such as one the context Vector encodes this information also and that's why it's an enriched representation as compared to the input embedding Vector okay so the first step is to basically take the inputs and multiply them with trainable weight matrices we have three trainable weight matrices one for the queries one for the key and one for the values so the if you look at the input Matrix and its Dimensions we have six tokens here and then the vector embedding size so 6x3 the trainable weight matrices have the First Dimension is fixed the First Dimension has to be equal to the vector embedding size but their second dimension is what will refer to in today's lecture also as the output Dimension and then when you multiply the inputs with these three trainable weight matrices for query key and value you get the queries the keys and the values Matrix so the dimensions of the queries key and the value Matrix will be the number of tokens multiplied by the output Dimension and the output Dimension is determined by this trainable weight matrices now note that when you initialize these trainable weight matrices their parameters are Rand om uh we will train these parameters and optimize them through back propagation in these attention series these four to five lectures we are not looking at back propagation we'll cover that later right now the whole goal is to understand different attention mechanisms like causal attention multi-head attention Etc the next step in the causal attention mechanism after getting the queries keys and values is to essentially compute the attention scores so the attention scores are computed by the multiplication of queries multiplied by the keys transpose so uh the way to interpret the attention score Matrix is you look at each individual row so you'll see that there are six rows and six columns right so if you look at the second row the second row corresponds to the second token which is Journey so your your journey begins with one step so the second row corresponds to journey and each element in the second row basically encodes information about how much that particular token relates to Journey or how much importance should we pay to that particular token or input embedding when we are looking at Journey so for example this third token this third value encodes the attention between journey and the third third token which is your Journey Begins so this is begins and journey this is Journey and with this is Journey and one and this is Journey and step so basically uh here you can see that uh the attention scores are essentially uh there for every query and then you multiply queries with the keys transpose and this value encodes information about when you're looking at a query how much information should be paid to a particular key right this is the meaning of the attention scores in the causal attention mechanism we do what we do is that we take these attention scores and we look at all the attention scores above the diagonal and we make these attention scores above the diagonal to be equal to zero so let me just show you how that looks like so let's say uh we have got the attention scores and let me show it here so let's say we have got the attention scores and they look something like something like this um actually let me show it here itself the attention scores which we have obtained looks something like this right but you can see that if you look at the second uh if you look at the second row which is the second row for Journey you will see that Journey has an attention score with all the other words now in causal attention what we say is that we should only look at Words which come before Journey so finally when we compute the attention weights when we compute the attention weights uh all the elements above the diagonal should be equal to zero let me show you what that means so so here is how the attention weights for a causal attention mechanism actually look like yeah like these and uh if you if you don't implement the causal attention mechanism then the attention scores look like something on the left attention weights look like something on the left which I'm showing here but when you implement the causal attention mechanism all the attention weights Above This diagonal will be essentially Switched Off why because if you're looking at Journey you should only pay attention to what comes before Journey your and journey if you look at starts you should pay attention to your journey and starts remember since we are predicting the next word Only The Words which come before a particular would really matter and that's what's implemented in the causal attention mechanism so we implement this and we get the attention weights like what I showed you below which are zeroed out above the diagonal and then we multiply the attention weights with the values uh when we multiply the attention weights with the values we get the context Vector Matrix which looks something like this so now this context Vector Matrix has six rows because one for every token and it has two columns which are dictated by the output Dimension which we have two in this case so the input embedding Vector for every token here which was mentioned over here is ultimately converted into a context Vector Matrix which looks like this that's the whole idea behind causal attention so the only difference between causal attention and normal self attention is that in causal attention these attention weights right all the elements above the diagonal of these attention weights will be set to zero and the rows of the attention weight Matrix will anyway sum up to one we will ensure that and these attention weights will then be multiplied with the values Matrix to get the context Vector Matrix that's essentially what is happening in the causal attention now there is a provision in the causal attention mechanism where we can do batch where we can process batches so when we input the first batch the first batch has six words your journey starts with one step right this is the inputs but the causal attention class which we developed in the previous lecture also can handle the second batch which also let's say has six tokens so for the first batch the output is the context Vector Matrix which is a 6 by2 Matrix as you can see here and for the second batch there is another context Vector Matrix which is 6x2 let me show you the the the causal attention class which we developed in the prev previous lecture so this was the causal attention class which we have let me quickly revise it right now the input X which is the input to the causal attention class has the shape of batch size comma number of tokens comma the input Dimensions so batch size because we can have two batches so if you look at these two batches which I have shown here right now um yeah so I've shown batch one and batch two over here and now let's look at the input if you look at the input for the first batch it's 6x2 right it's 6x3 whereas if you look at the input for the second batch that is also 6x3 so when you aggregate these batches together the input Dimensions will be um the input Dimensions will actually be 2 2 multiplied by 2 * by 6 * 3 2 * 6 * 3 that is actually the input Dimension which is also being mentioned over here so the input. shape is the number of batches which is if it's two number of tokens which is six and the input Dimension which is three then what we do is we multiply the input with the trainable key query and value Matrix and finally we get the keys queries and values so remember W key W query and W value are the weight matrices for the key query and value which we have to optimize and then after multiplication of the inputs with these weight matrices we get the keys queries and the value what we do then later is we get the attention scores by multiplying the queries with the keys transposed then we apply a mask so that we implement the causal attention remember we need to make sure that when we get the attention WS all the elements above the diagonal are zero I explained all of this in the previous lecture so I'm not going through the details right now and then finally we apply soft Max to the attention scores and get the attention weights we can also add another layer which is the Dropout layer towards the end but that's not strictly necessary and the last step is then multiplying the attention weights with the values to get the context Vector now uh remember the we had two batches right and the input size was 2A 6A 3 and ultimately when you let's say Implement when you create an instance of this class let's say I'm creating an instance of this class and storing it in C A so I have to specify D in which is three D out which is two the context length which is my number of tokens in this case that's six and the dropout rate that's zero and then we can get the context vectors remember we have two batches so we have two sets of context vectors the first set will be a tensor which is 6x2 why will it be 6x2 because that's exactly what we had seen on this white board also um you can take a look at this context Vector which we had obtained ultimately yeah the final context Vector which we obtained is 6x2 and there are two such context vectors right so ultimately the context Vector shape which we get out is 2 comma 6 comma 2 so that makes sense with what we had seen on the white board this is the causal attention class which we had implemented in the last lecture and a quick summary of how it works now what we are going to do is we are going to extend this causal attention class a bit into something which is called as the multi-head attention mechanism so the term multi-head essentially refers to dividing the attention mechanism itself into multiple heads um and each head will be operating independently to give you a understanding related to code when we get the attention scores here right now or the attention weights from one set of query key and value we say that this is one head this is one attention head right we are not decomposing into multiple query keys and values there is only one query Matrix one there is only one Keys Matrix one queries Matrix and one values Matrix so we have one attention head what multiple what multi-head attention does is that it extends the causal attention mechanism so that we have multiple heads and each of these heads will be operating independently um and then what we do in multi-head attention is we basically stack multiple single attention head layers together so what we'll simply do is that we will create multiple instances of the causal self attention mechanism each with its own weights and then combine their outputs it's actually very simple what the output which we had obtained before for one attention head we'll just combine them together and I'll show you how it can be done so as you might have expected this can be a bit computationally intensive but it makes llms powerful at complex pattern recognition tasks so researchers have found out that although when you stack multiple heads the computations which need to be made increase it really helps llm perform much better and when you look at Chad GPT right now it does have multiple attention heads it none of the modern llms work with a single attention head so let me show you what it means by stacking multiple attention heads together this diagram actually encapsulates it all earlier when the when I showed you the flowchart we just had one trainable Matrix for the query one trainable Matrix for the keys and one trainable Matrix for the values right so that was one attention head now when we look at multi-ad attention in this figure we have shown an example of having two attention heads so what we do here is that instead of one trainable weight Matrix for the query key and value we have two so here you see we have two trainable weight matrices for the query we have two trainable weight matrixes for the key and we have two trainable weight matrices for the values these will be multiplied by the input Vector input X and then we'll get two queries Matrix we'll get two keys Matrix and we'll get two values Matrix previously we just had one query key and value Matrix right then what we'll do is that we'll multiply the queries with the keys transpose and get the attention weights then we'll get the attention scores we'll multiply with the value Matrix and we'll get two sets of context vectors so this is the first set of context vector and this is the second set of context vector earlier we just had one context Vector right we had one context Vector Matrix now we get two context Vector matrices so if you look at this input here which has been highlighted this input 7.2 and 1 let me highlight it once more yeah this input 7.2 and one earlier we converted every threedimensional input input into a two dimensional context Vector right but now this 300 threedimensional input will be converted into two context vectors each of the output dimmension which in this case is two so then what we will do is that we'll get these two context vectors and we'll concatenate them together to give the ultimate context Vector Matrix so earlier if you see the context Vector Matrix was 6x2 so in this case the 6x2 and 6x2 will be aggregated together and the final context Vector Matrix size will actually be 6x4 it will be 6x4 okay so it actually looks something like this earlier when we applied the single head attention we just got one context Vector Matrix right but now since we have two attention heads we have two context Vector matrices and each context Vector Matrix has a dimension of 6x2 so when you stack these two and you stack them along their last Dimension which is two so the number of rows actually remain the same but the number of column colums increase so when you stack these two along the column the final con concatenated context weight Vector weight context Vector Matrix will be 6x4 that's all which is actually happening in multihead attention so let's go to our flowchart and see really what is going on okay so as we saw earlier we had this trainable query key and value matrices right now in multi-ad attention we have multiple of these matrices if we have five attention heads we have five trainable query matrices five trainable key matrices and five trainable value matri even here we had one one queries Matrix one Keys Matrix and one values Matrix right in multi-ad attention we have multiple of these similarly we have multiple sets of attention scores we have multiple sets of attention weights and ultimately when we multiply these with the values uh we have two set of context Vector matrices so if we have two attention heads if you look at the first context Vector Matrix this is from attention head number one which basically means it's from the first set of queries keys and values if you look at the second uh context Vector Matrix you'll see that this is from attention head two so the dimensions of the first context Vector Matrix is 6x2 and the dimensions of the second context Vector Matrix is 6x2 now these are concatenated along the columns and so we get a final context Vector Matrix which has the dimensions of 6x4 that is all what is being implemented in the multi-head attention that's why it's called multi- head because we are aggregating the output of multiple attention heads so if you find yourself getting confused just remember the main idea what we are doing is that we are just running the attention mechanism multiple times that's it that's the only thing to remember and this one figure which I've shown over here really summarizes it all we have multiple copies of the trainable query key and the value Matrix yeah here we have multiple copies of the trainable query key and value Matrix we have multiple copies of the queries keys and the value Matrix and we have multiple context Vector matrices which are stacked together now let us Implement multi-head attention in code for that you need to remember that we have already implemented the causal attention class and uh the output of this class is that it returns a context Vector correct so just remember this and let's move forward to Extended s extending single head attention to multihead attention so in Practical terms implementing multi-head attention involves creating multiple instances of the self attention mechanism each with its own weights and then combining their outputs so if you create one instance of the causal attention you get one context Vector so then you'll create another instance of the causal attention you'll get another context vector and you will merge them to that's exactly what we are going to implement in the code so to do that we we will actually Implement a multi-head attention rapper class that Stacks multiple instances of our previously uh implemented causal attention module so here's the multi-head attention rapper class now what is happening in this multi-ad attention rapper is actually pretty simple okay so we get the output from the causal attention mechanism which is written over here and we first Define number of attention heads so if the number of attention heads is five uh what we'll do is that we'll get outputs from uh we'll get five outputs and then we'll concatenate them together so first let's look at the forward method it's torch do cat which is which is concatenation and dimension equal to minus one why minus one because we are concatenating along the columns as we saw before and then here you can see we are looping over all the attention head in self. heads and what is self. heads so self. heads is essentially it will create an instance of the causal attention class for how many number of heads so here if you see we are looping over the number of heads so if we specify the number of heads equal to two we will create two instances of the causal attention class and then the results of the two instances will be essentially uh stored in this function head of X okay and head is essentially in self. heads so what will will be doing is that if number of heads is five we'll create five instances of the causal attention class and the outputs what we get the outputs we'll just concatenate them together along the columns that's it it's as simple as that that's why we learned about the causal attention mechanism earlier because if you directly come to multi head attention you'll find it difficult to understand all of these so remember D in is the vector dimension of our tokens the input embedding Vector Dimension D out is the output Dimension which we want context length is in this case the number of tokens but it can be anything what you said Dropout is the dropout rate okay so for example if we use this multi-head attention rapper class with two attention heads and causal attention output Dimension equal to two this results in a four dimensional context vectors because D out into number of heads is equal to four so remember what is happening here and that is Illustrated in this diagram below uh take a look at this diagram yeah yeah take a look at this diagram D out is specified earlier so if D out is equal to two and we have two attention heads then the final output will be 2 into 2 which is equal to 4 if D out equal to two and we have three attention heads we'll get three context Vector matrices right so then there will be one more which is added here so then the output of the final concatenated context Vector Matrix will be uh basically Bally six rows into this will be six columns so D out will be six in this case that's just what is written here so the final Dimension the column dimension of the context Vector is D out into the number of heads now let us actually create an instance of this uh multi-head attention wrapper and see how it's working so uh first we have to specify the batch okay and I think we have defined the batch earlier so let me actually copy paste that uh let's see where the batch has been defined I remember we had defined the batch somewhere earlier and that's why I am implementing it below yeah here so this is where we have defined the batch and the inputs so let me actually bring the inputs here itself so that you have an understanding of uh what the inputs were so the inputs were six tokens your journey begins with one step yeah these are the inputs and uh this was the batch which we had so let me put all of this together and bring all of this to our current code right so before this part let me just type in the inputs and the batch right so these are my inputs my inputs are six tokens okay and uh with three dimensional Vector embedding for each now I'm going to create a batch so which has two inputs which are stacked on top of each other so this is the inputs and I have a batch of two inputs so let me print this so you'll see the batch has a shape of 2A 6 comma 3 correct so now my context length is going to be badge do shape of one because here I'm assuming that the number of tokens is equal to the context length which is equal to six so this is the number of tokens which is equal to six in this case D in which is the vector embedding Dimension is 3 in my case and I'm going to use a d out equal to 2 that's all we need to create an of the multi-ad attention wrapper we need to specify D in which is three D out which is equal to 2 context length which is equal to 6 Dropout will will choose to be number of equal to zero and number of heads we are going to choose right now to be equal to two I think yeah number of heads equal to two and this bias term is just false this is for initialization in the trainable weight trainable weight metries for queries the keys and the values awesome so let me create an instance of this multi head attention wrapper and then it's it's defined in mha multi-head attention and then after I create an instance I'll pass in the batch which has been defined earlier and then the result will be the context vector and let's print out the context Vector shape so if you print out the context Vector shape you'll get it as 2 comma 6A 4 can you try to think why there is why the shape is 2A 6A 4 so let's look at each Dimension individually the First Dimension is two because we have two two batches so this is the output for the first batch this is the output for the second batch now let's look at each output so the second dimension is six so there are six rows why are there six rows because there are six tokens and we have a context Vector for each token that's why there are six rows but if you look at the columns for each there are four columns so you might be thinking but D out is equal to two so there should have only been two columns right so the thing is that there were only two columns for one attention head but now we have two attention heads so the two columns and two columns will be aggregated together and that's why we have four columns in the final context Vector Matrix so this is the result of the multi-head attention wrapper these are the this is the final context Vector Matrix which we have after we implement the multihead attention and this is that Matrix which is further passed to the large language model for the training procedure all of these lectures which we had ultimately resulted into this this context Vector Matrix which we are seeing right now to get to this Matrix we have to first learn about U we have to learn about causal attention before that we have to learn about query key and values right to learn about causal attention we had to learn about query key and values attention scores attention weights Etc then context Vector after learning all this right now we have seen that we can concatenate different attention heads together to get the final context Vector Matrix and the values which you see here are not trained so these are random values right now but later you'll see that when the large language model is trained these values itself get updated and they get better and better and better and they encode information about how every word relates to other words attends to other words in a sequence so the first dimension of the resulting context vectors is two since we have two input text as I already mentioned the second dimension refers to six tokens in each input six and the third dimension refers to the four dimensional embedding of each token why four dimensional because two dimensions for D output multiplied by the number of heads which is equal to 2 so 2 into 2 equal to 4 okay so in this section we basically implemented a multi-ad attention wrapper that combines multiple single attention head modules right it's actually pretty simple if you understand causal attention we are just stacking the outputs of the causal attention along the columns note that these are processed sequentially why the head X for each head right so each output is processed sequentially we first find the output for the first attention head then we find the output for the second attention head Etc the output is the context vector and then we stack them together that actually leads to a lot of inefficiencies this sequential Computing we can improve this implementation by processing the different attention heads in parallel uh one way to achieve this is by Computing the outputs for all attention heads simultaneously via matrix multiplication currently what we are doing is that we are we are looking at one attention head finding finding the output we are looking at second attention head finding the output that's extremely inefficient why don't we essentially combine the output for all the attention heads simultaneously and how can we do that let's explore in the next section so this will be the next video where we'll be looking at implementing multi-head attention with weight splits now this is the actual multi-head attention mechanism which is implemented in GPT uh the multier attenion with weight splits because it's much more efficient so the next lecture is going to be awesome let me see if there is something else to be covered in the current lecture so we looked at this figure yeah I think we have covered everything for today's lecture one last thing which I want to see is that I want to ask chat GPT itself how many how many attention heads were present for training GPT 3 and GPT 4 let's see so here you can see that uh gpt3 there were 96 attention heads uh in the largest version but for GPT 4 the exact number of attention heads have not been publicly disclosed by open AI but I assume that it would be much higher than 96 presuma presumably more than 150 even but these are the number of attention heads which need to be concatenated together right now in the demonstration which just saw two attention heads but think about the amount of computations if you need to accumulate the results from 96 attention heads together that's why training a large language model requires huge amount of computational resources okay I hope all of you have understood multi-ad attention this is the culmination of all the previous lectures which you which you diligently I hope have gone through and uh in the next lecture I'll teach you about multiple multi-head attention with weight splits this is a very interesting lecture which we have planned because I I take a Hands-On example um with actual values in matrices and I show you how to actually compute exactly the multi-ad attention from start to finish thank you so much everyone I hope you enjoying these lectures I look forward to seeing you in the next lecture"
+}

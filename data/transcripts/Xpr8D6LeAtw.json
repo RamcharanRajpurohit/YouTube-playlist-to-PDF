@@ -1,0 +1,1926 @@
+{
+  "video": {
+    "video_id": "Xpr8D6LeAtw",
+    "title": "Lecture 1: Building LLMs from scratch: Series introduction",
+    "duration": 968.0,
+    "index": 0
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.839
+    },
+    {
+      "text": "hello everyone welcome to the",
+      "start": 5.359,
+      "duration": 4.921
+    },
+    {
+      "text": "introductory lecture in this series",
+      "start": 7.839,
+      "duration": 4.8
+    },
+    {
+      "text": "which is titled build a large language",
+      "start": 10.28,
+      "duration": 5.88
+    },
+    {
+      "text": "model from scratch my name is Dr Raj",
+      "start": 12.639,
+      "duration": 6.961
+    },
+    {
+      "text": "dander I graduated from IIT Madras with",
+      "start": 16.16,
+      "duration": 6.439
+    },
+    {
+      "text": "a bch in mechanical engineering in",
+      "start": 19.6,
+      "duration": 7.36
+    },
+    {
+      "text": "2017 after that I did my PhD from the",
+      "start": 22.599,
+      "duration": 6.641
+    },
+    {
+      "text": "Massachusetts Institute of Technology",
+      "start": 26.96,
+      "duration": 6.08
+    },
+    {
+      "text": "MIT I graduated from MIT with a PhD in",
+      "start": 29.24,
+      "duration": 5.8
+    },
+    {
+      "text": "machine learning in",
+      "start": 33.04,
+      "duration": 5.6
+    },
+    {
+      "text": "2022 since then I've come back to India",
+      "start": 35.04,
+      "duration": 6.999
+    },
+    {
+      "text": "and we are all on a mission to basically",
+      "start": 38.64,
+      "duration": 7.84
+    },
+    {
+      "text": "make AI accessible to everyone U at viua",
+      "start": 42.039,
+      "duration": 6.2
+    },
+    {
+      "text": "which is our YouTube channel we have",
+      "start": 46.48,
+      "duration": 4.64
+    },
+    {
+      "text": "made several playlists now on machine",
+      "start": 48.239,
+      "duration": 6.12
+    },
+    {
+      "text": "learning on deep learning and uh the",
+      "start": 51.12,
+      "duration": 6.04
+    },
+    {
+      "text": "main approach or the philosophy which we",
+      "start": 54.359,
+      "duration": 5.0
+    },
+    {
+      "text": "really follow when we teach is to teach",
+      "start": 57.16,
+      "duration": 4.6
+    },
+    {
+      "text": "everything from from the basics not to",
+      "start": 59.359,
+      "duration": 4.721
+    },
+    {
+      "text": "assume anything teach you the nuts and",
+      "start": 61.76,
+      "duration": 6.52
+    },
+    {
+      "text": "bolts of every single",
+      "start": 64.08,
+      "duration": 7.12
+    },
+    {
+      "text": "concept the real reason behind this",
+      "start": 68.28,
+      "duration": 5.32
+    },
+    {
+      "text": "series is that as we all know large",
+      "start": 71.2,
+      "duration": 5.16
+    },
+    {
+      "text": "language models and generative AI are",
+      "start": 73.6,
+      "duration": 5.64
+    },
+    {
+      "text": "transforming everything around us",
+      "start": 76.36,
+      "duration": 5.119
+    },
+    {
+      "text": "startups are forming in this space",
+      "start": 79.24,
+      "duration": 3.76
+    },
+    {
+      "text": "companies are switching to large",
+      "start": 81.479,
+      "duration": 4.121
+    },
+    {
+      "text": "language models for various tasks the",
+      "start": 83.0,
+      "duration": 5.32
+    },
+    {
+      "text": "jobs in this field are rising a lot but",
+      "start": 85.6,
+      "duration": 4.28
+    },
+    {
+      "text": "many people when they are learning",
+      "start": 88.32,
+      "duration": 3.52
+    },
+    {
+      "text": "learning about this field are making one",
+      "start": 89.88,
+      "duration": 4.64
+    },
+    {
+      "text": "common mistake they directly switch to",
+      "start": 91.84,
+      "duration": 4.919
+    },
+    {
+      "text": "the applications they directly run some",
+      "start": 94.52,
+      "duration": 4.48
+    },
+    {
+      "text": "Google collab notebook they follow some",
+      "start": 96.759,
+      "duration": 4.601
+    },
+    {
+      "text": "YouTube video and directly run a",
+      "start": 99.0,
+      "duration": 6.399
+    },
+    {
+      "text": "code uh but very few people really",
+      "start": 101.36,
+      "duration": 6.759
+    },
+    {
+      "text": "understand how large language models",
+      "start": 105.399,
+      "duration": 4.04
+    },
+    {
+      "text": "actually",
+      "start": 108.119,
+      "duration": 4.36
+    },
+    {
+      "text": "work very few people actually know the",
+      "start": 109.439,
+      "duration": 6.28
+    },
+    {
+      "text": "nuts and the bolds which make large",
+      "start": 112.479,
+      "duration": 6.521
+    },
+    {
+      "text": "language models really so powerful",
+      "start": 115.719,
+      "duration": 6.641
+    },
+    {
+      "text": "wouldn't be it amazing if you can build",
+      "start": 119.0,
+      "duration": 8.8
+    },
+    {
+      "text": "a large language model completely from",
+      "start": 122.36,
+      "duration": 8.039
+    },
+    {
+      "text": "scratch wouldn't that make you feel very",
+      "start": 127.8,
+      "duration": 5.6
+    },
+    {
+      "text": "confident about this subject very few",
+      "start": 130.399,
+      "duration": 5.361
+    },
+    {
+      "text": "people have this knowledge right now and",
+      "start": 133.4,
+      "duration": 4.4
+    },
+    {
+      "text": "I'm making this YouTube playlist which",
+      "start": 135.76,
+      "duration": 4.04
+    },
+    {
+      "text": "will be a very comprehensive playlist",
+      "start": 137.8,
+      "duration": 4.64
+    },
+    {
+      "text": "showing you everything about building an",
+      "start": 139.8,
+      "duration": 4.24
+    },
+    {
+      "text": "llm from",
+      "start": 142.44,
+      "duration": 4.28
+    },
+    {
+      "text": "scratch the way I'm making this playlist",
+      "start": 144.04,
+      "duration": 4.76
+    },
+    {
+      "text": "or the way I will make videos in this",
+      "start": 146.72,
+      "duration": 4.0
+    },
+    {
+      "text": "playlist is to teach te you everything",
+      "start": 148.8,
+      "duration": 4.32
+    },
+    {
+      "text": "from the basics as a beginner without",
+      "start": 150.72,
+      "duration": 4.72
+    },
+    {
+      "text": "assuming anything and at the end of this",
+      "start": 153.12,
+      "duration": 4.839
+    },
+    {
+      "text": "playlist you will have built an llm from",
+      "start": 155.44,
+      "duration": 5.76
+    },
+    {
+      "text": "scratch successfully all by yourself",
+      "start": 157.959,
+      "duration": 5.081
+    },
+    {
+      "text": "you'll see that after this point",
+      "start": 161.2,
+      "duration": 3.52
+    },
+    {
+      "text": "everything which comes later all the",
+      "start": 163.04,
+      "duration": 3.68
+    },
+    {
+      "text": "application Parts everything will just",
+      "start": 164.72,
+      "duration": 4.76
+    },
+    {
+      "text": "start seeming extremely easy to",
+      "start": 166.72,
+      "duration": 5.799
+    },
+    {
+      "text": "you so that's the whole philosophy",
+      "start": 169.48,
+      "duration": 5.88
+    },
+    {
+      "text": "behind making this lecture series it",
+      "start": 172.519,
+      "duration": 4.961
+    },
+    {
+      "text": "takes a huge amount of effort on our",
+      "start": 175.36,
+      "duration": 4.48
+    },
+    {
+      "text": "part to make this series because as you",
+      "start": 177.48,
+      "duration": 4.36
+    },
+    {
+      "text": "you will see and I'll show you in some",
+      "start": 179.84,
+      "duration": 4.039
+    },
+    {
+      "text": "time to make every lecture we are going",
+      "start": 181.84,
+      "duration": 4.319
+    },
+    {
+      "text": "to make detailed lecture notes I'll",
+      "start": 183.879,
+      "duration": 4.481
+    },
+    {
+      "text": "share those lecture notes with you and",
+      "start": 186.159,
+      "duration": 3.881
+    },
+    {
+      "text": "all the videos in this series will be",
+      "start": 188.36,
+      "duration": 4.28
+    },
+    {
+      "text": "available completely for",
+      "start": 190.04,
+      "duration": 6.0
+    },
+    {
+      "text": "free okay so now I'm going to tell you a",
+      "start": 192.64,
+      "duration": 7.0
+    },
+    {
+      "text": "bit about my story of learning llms then",
+      "start": 196.04,
+      "duration": 5.44
+    },
+    {
+      "text": "I'm going to tell you a bit about what",
+      "start": 199.64,
+      "duration": 4.0
+    },
+    {
+      "text": "exists right now the material which is",
+      "start": 201.48,
+      "duration": 4.759
+    },
+    {
+      "text": "already available on the internet for",
+      "start": 203.64,
+      "duration": 5.599
+    },
+    {
+      "text": "learning llms why it is so inadequate",
+      "start": 206.239,
+      "duration": 5.481
+    },
+    {
+      "text": "why it is so insufficient and what we",
+      "start": 209.239,
+      "duration": 5.121
+    },
+    {
+      "text": "are trying to do new with this playlist",
+      "start": 211.72,
+      "duration": 5.0
+    },
+    {
+      "text": "so let's get into the video so let me",
+      "start": 214.36,
+      "duration": 5.599
+    },
+    {
+      "text": "take you back in time a bit to show you",
+      "start": 216.72,
+      "duration": 6.36
+    },
+    {
+      "text": "how large language models looked like in",
+      "start": 219.959,
+      "duration": 4.521
+    },
+    {
+      "text": "maybe",
+      "start": 223.08,
+      "duration": 4.2
+    },
+    {
+      "text": "1960s uh or where the field of natural",
+      "start": 224.48,
+      "duration": 5.72
+    },
+    {
+      "text": "language processing was really about 50",
+      "start": 227.28,
+      "duration": 5.44
+    },
+    {
+      "text": "to 60 years back so this is one of the",
+      "start": 230.2,
+      "duration": 5.2
+    },
+    {
+      "text": "first chat Bots which humans developed",
+      "start": 232.72,
+      "duration": 5.04
+    },
+    {
+      "text": "it's called as Elisa it was supposed to",
+      "start": 235.4,
+      "duration": 5.039
+    },
+    {
+      "text": "be a therapist and let's see how it",
+      "start": 237.76,
+      "duration": 5.479
+    },
+    {
+      "text": "works so first this interface asks me to",
+      "start": 240.439,
+      "duration": 4.601
+    },
+    {
+      "text": "choose my language so I'm choosing",
+      "start": 243.239,
+      "duration": 5.121
+    },
+    {
+      "text": "English let's",
+      "start": 245.04,
+      "duration": 3.32
+    },
+    {
+      "text": "go so then Elisa tells me how do you do",
+      "start": 249.079,
+      "duration": 5.88
+    },
+    {
+      "text": "please tell me your problem so then let",
+      "start": 252.36,
+      "duration": 8.719
+    },
+    {
+      "text": "me type I am trying to learn about large",
+      "start": 254.959,
+      "duration": 8.281
+    },
+    {
+      "text": "language",
+      "start": 261.079,
+      "duration": 7.4
+    },
+    {
+      "text": "models but I am finding it",
+      "start": 263.24,
+      "duration": 7.48
+    },
+    {
+      "text": "difficult could you",
+      "start": 268.479,
+      "duration": 5.241
+    },
+    {
+      "text": "provide some",
+      "start": 270.72,
+      "duration": 7.36
+    },
+    {
+      "text": "resources for me to start",
+      "start": 273.72,
+      "duration": 4.36
+    },
+    {
+      "text": "with then Elisa asks is it because",
+      "start": 282.36,
+      "duration": 4.88
+    },
+    {
+      "text": "you're trying to learn about large",
+      "start": 285.4,
+      "duration": 4.2
+    },
+    {
+      "text": "language models that you came to me then",
+      "start": 287.24,
+      "duration": 4.239
+    },
+    {
+      "text": "I say",
+      "start": 289.6,
+      "duration": 5.24
+    },
+    {
+      "text": "yes and then Alisa says You seem to be",
+      "start": 291.479,
+      "duration": 6.961
+    },
+    {
+      "text": "quite positive and then and then Elisa",
+      "start": 294.84,
+      "duration": 5.799
+    },
+    {
+      "text": "says you are sure you see this",
+      "start": 298.44,
+      "duration": 4.759
+    },
+    {
+      "text": "conversation is proceeding nowhere this",
+      "start": 300.639,
+      "duration": 4.481
+    },
+    {
+      "text": "was the state of large language models",
+      "start": 303.199,
+      "duration": 5.801
+    },
+    {
+      "text": "50 to 60 years 50 to 60 years back it's",
+      "start": 305.12,
+      "duration": 6.44
+    },
+    {
+      "text": "not very good right fast forward to chat",
+      "start": 309.0,
+      "duration": 5.24
+    },
+    {
+      "text": "GPT and you",
+      "start": 311.56,
+      "duration": 5.8
+    },
+    {
+      "text": "ask what are large language",
+      "start": 314.24,
+      "duration": 5.6
+    },
+    {
+      "text": "models or let me ask the same thing",
+      "start": 317.36,
+      "duration": 4.2
+    },
+    {
+      "text": "which I asked over",
+      "start": 319.84,
+      "duration": 7.04
+    },
+    {
+      "text": "here I am trying to learn about large",
+      "start": 321.56,
+      "duration": 6.72
+    },
+    {
+      "text": "language",
+      "start": 326.88,
+      "duration": 5.08
+    },
+    {
+      "text": "models tell me me some",
+      "start": 328.28,
+      "duration": 5.88
+    },
+    {
+      "text": "resources and then you'll see the",
+      "start": 331.96,
+      "duration": 4.92
+    },
+    {
+      "text": "response by chat GPT it's extremely",
+      "start": 334.16,
+      "duration": 6.68
+    },
+    {
+      "text": "useful it's to the point and uh it gives",
+      "start": 336.88,
+      "duration": 7.08
+    },
+    {
+      "text": "me books it gives me online courses it",
+      "start": 340.84,
+      "duration": 5.28
+    },
+    {
+      "text": "gives me research papers this is exactly",
+      "start": 343.96,
+      "duration": 5.16
+    },
+    {
+      "text": "what I need so you see this simple",
+      "start": 346.12,
+      "duration": 5.48
+    },
+    {
+      "text": "illustration shows that we are living in",
+      "start": 349.12,
+      "duration": 5.72
+    },
+    {
+      "text": "an age where we should be very lucky",
+      "start": 351.6,
+      "duration": 5.039
+    },
+    {
+      "text": "that the research on natural language",
+      "start": 354.84,
+      "duration": 4.32
+    },
+    {
+      "text": "processing and large language models is",
+      "start": 356.639,
+      "duration": 4.321
+    },
+    {
+      "text": "at such a",
+      "start": 359.16,
+      "duration": 4.24
+    },
+    {
+      "text": "stage",
+      "start": 360.96,
+      "duration": 6.72
+    },
+    {
+      "text": "where llm such as GPT are very powerful",
+      "start": 363.4,
+      "duration": 6.639
+    },
+    {
+      "text": "they are very",
+      "start": 367.68,
+      "duration": 4.4
+    },
+    {
+      "text": "sophisticated if you're not familiar",
+      "start": 370.039,
+      "duration": 3.921
+    },
+    {
+      "text": "with chat GPT that's fine we are going",
+      "start": 372.08,
+      "duration": 4.88
+    },
+    {
+      "text": "to be building our own GPD in this",
+      "start": 373.96,
+      "duration": 5.84
+    },
+    {
+      "text": "playlist so you'll learn about it along",
+      "start": 376.96,
+      "duration": 5.239
+    },
+    {
+      "text": "the way but I showed you this",
+      "start": 379.8,
+      "duration": 4.6
+    },
+    {
+      "text": "demonstration for you to appreciate the",
+      "start": 382.199,
+      "duration": 4.921
+    },
+    {
+      "text": "times we are living in right now llms",
+      "start": 384.4,
+      "duration": 5.639
+    },
+    {
+      "text": "have become really powerful and uh",
+      "start": 387.12,
+      "duration": 4.639
+    },
+    {
+      "text": "that's the first motivation to really",
+      "start": 390.039,
+      "duration": 4.521
+    },
+    {
+      "text": "learn about them there are several more",
+      "start": 391.759,
+      "duration": 4.56
+    },
+    {
+      "text": "things which are happening as I'm making",
+      "start": 394.56,
+      "duration": 5.479
+    },
+    {
+      "text": "this video Facebook released their Lama",
+      "start": 396.319,
+      "duration": 6.361
+    },
+    {
+      "text": "3.1 which is one of their most capable",
+      "start": 400.039,
+      "duration": 5.521
+    },
+    {
+      "text": "large language models up till date and",
+      "start": 402.68,
+      "duration": 5.079
+    },
+    {
+      "text": "this is an open-source model which means",
+      "start": 405.56,
+      "duration": 3.759
+    },
+    {
+      "text": "that the entire architecture of the",
+      "start": 407.759,
+      "duration": 4.961
+    },
+    {
+      "text": "model is available for free uh or rather",
+      "start": 409.319,
+      "duration": 5.481
+    },
+    {
+      "text": "it's available to the public anyone can",
+      "start": 412.72,
+      "duration": 4.52
+    },
+    {
+      "text": "see the architecture the models released",
+      "start": 414.8,
+      "duration": 5.72
+    },
+    {
+      "text": "by open AI are usually closed source",
+      "start": 417.24,
+      "duration": 4.88
+    },
+    {
+      "text": "which means they don't release the",
+      "start": 420.52,
+      "duration": 4.84
+    },
+    {
+      "text": "weights uh the architecture not too many",
+      "start": 422.12,
+      "duration": 5.96
+    },
+    {
+      "text": "things are known about the model itself",
+      "start": 425.36,
+      "duration": 4.679
+    },
+    {
+      "text": "so here is a graph which shows closed",
+      "start": 428.08,
+      "duration": 5.72
+    },
+    {
+      "text": "Source versus open source models in 2022",
+      "start": 430.039,
+      "duration": 5.56
+    },
+    {
+      "text": "when the field of large language models",
+      "start": 433.8,
+      "duration": 3.72
+    },
+    {
+      "text": "was booming most of the things were",
+      "start": 435.599,
+      "duration": 4.201
+    },
+    {
+      "text": "pretty closed Source when gp4 was",
+      "start": 437.52,
+      "duration": 6.2
+    },
+    {
+      "text": "released in 2023 it blew the world uh",
+      "start": 439.8,
+      "duration": 6.72
+    },
+    {
+      "text": "away everyone was surprised everyone was",
+      "start": 443.72,
+      "duration": 4.96
+    },
+    {
+      "text": "happy to see the functionality but still",
+      "start": 446.52,
+      "duration": 5.399
+    },
+    {
+      "text": "it was a closed Source model now in",
+      "start": 448.68,
+      "duration": 5.72
+    },
+    {
+      "text": "2024 can you see the gap between the",
+      "start": 451.919,
+      "duration": 4.4
+    },
+    {
+      "text": "open source and closed Source model is",
+      "start": 454.4,
+      "duration": 5.239
+    },
+    {
+      "text": "slowly decreasing and when Lama 3.1 is",
+      "start": 456.319,
+      "duration": 5.641
+    },
+    {
+      "text": "released you can see that it performs at",
+      "start": 459.639,
+      "duration": 5.601
+    },
+    {
+      "text": "the same level as gp4 which is closed",
+      "start": 461.96,
+      "duration": 5.72
+    },
+    {
+      "text": "Source this is to say that all the",
+      "start": 465.24,
+      "duration": 4.679
+    },
+    {
+      "text": "information which you need is available",
+      "start": 467.68,
+      "duration": 4.519
+    },
+    {
+      "text": "right now as open source models you",
+      "start": 469.919,
+      "duration": 4.68
+    },
+    {
+      "text": "should just be willing to learn if you",
+      "start": 472.199,
+      "duration": 4.481
+    },
+    {
+      "text": "are not sure what's open source close",
+      "start": 474.599,
+      "duration": 6.28
+    },
+    {
+      "text": "Source models what's this Lama 340 5B",
+      "start": 476.68,
+      "duration": 6.28
+    },
+    {
+      "text": "I'll explain to you about all of these",
+      "start": 480.879,
+      "duration": 5.641
+    },
+    {
+      "text": "things as we proceed with the",
+      "start": 482.96,
+      "duration": 6.56
+    },
+    {
+      "text": "lectures Now text is one thing right",
+      "start": 486.52,
+      "duration": 4.28
+    },
+    {
+      "text": "there are many other things which",
+      "start": 489.52,
+      "duration": 4.0
+    },
+    {
+      "text": "generative AI as a field is capable of",
+      "start": 490.8,
+      "duration": 4.44
+    },
+    {
+      "text": "there is also a lot of confusion with",
+      "start": 493.52,
+      "duration": 3.799
+    },
+    {
+      "text": "many people regarding what is generative",
+      "start": 495.24,
+      "duration": 5.079
+    },
+    {
+      "text": "AI what are llms really but generative",
+      "start": 497.319,
+      "duration": 6.16
+    },
+    {
+      "text": "AI is a broader subset and it includes",
+      "start": 500.319,
+      "duration": 6.521
+    },
+    {
+      "text": "language it includes video audio 3D",
+      "start": 503.479,
+      "duration": 6.081
+    },
+    {
+      "text": "models all the things so have a look at",
+      "start": 506.84,
+      "duration": 5.079
+    },
+    {
+      "text": "some of these",
+      "start": 509.56,
+      "duration": 4.479
+    },
+    {
+      "text": "videos don't these videos look",
+      "start": 511.919,
+      "duration": 4.8
+    },
+    {
+      "text": "incredibly realistic this video then",
+      "start": 514.039,
+      "duration": 5.92
+    },
+    {
+      "text": "this video The Waves video this",
+      "start": 516.719,
+      "duration": 5.8
+    },
+    {
+      "text": "particular video you'll be surprised to",
+      "start": 519.959,
+      "duration": 4.481
+    },
+    {
+      "text": "know that all of these videos are made",
+      "start": 522.519,
+      "duration": 5.121
+    },
+    {
+      "text": "by artificial intelligence these videos",
+      "start": 524.44,
+      "duration": 6.399
+    },
+    {
+      "text": "are not shot on camera they are made by",
+      "start": 527.64,
+      "duration": 6.759
+    },
+    {
+      "text": "AI this is the power of generative AI",
+      "start": 530.839,
+      "duration": 6.641
+    },
+    {
+      "text": "currently finally uh when we work with",
+      "start": 534.399,
+      "duration": 5.281
+    },
+    {
+      "text": "schools we have developed our own a",
+      "start": 537.48,
+      "duration": 4.72
+    },
+    {
+      "text": "application so this is viu's AI",
+      "start": 539.68,
+      "duration": 6.839
+    },
+    {
+      "text": "application uh or application on llms",
+      "start": 542.2,
+      "duration": 5.92
+    },
+    {
+      "text": "here you can see that there are a huge",
+      "start": 546.519,
+      "duration": 3.401
+    },
+    {
+      "text": "number of functionalities for example",
+      "start": 548.12,
+      "duration": 4.68
+    },
+    {
+      "text": "you can click on McQ generator and you",
+      "start": 549.92,
+      "duration": 5.84
+    },
+    {
+      "text": "can just type in the topic let's say",
+      "start": 552.8,
+      "duration": 5.92
+    },
+    {
+      "text": "gravity and you can click on generate",
+      "start": 555.76,
+      "duration": 4.759
+    },
+    {
+      "text": "now you'll see that within a matter of",
+      "start": 558.72,
+      "duration": 3.96
+    },
+    {
+      "text": "seconds the large language model which",
+      "start": 560.519,
+      "duration": 4.161
+    },
+    {
+      "text": "is powering this application will",
+      "start": 562.68,
+      "duration": 3.64
+    },
+    {
+      "text": "generate a set of multiple choice",
+      "start": 564.68,
+      "duration": 4.159
+    },
+    {
+      "text": "questions see right here we are",
+      "start": 566.32,
+      "duration": 4.72
+    },
+    {
+      "text": "providing this application to teachers",
+      "start": 568.839,
+      "duration": 4.44
+    },
+    {
+      "text": "all of this was impossible to even",
+      "start": 571.04,
+      "duration": 5.68
+    },
+    {
+      "text": "imagine uh just four to 5 years back but",
+      "start": 573.279,
+      "duration": 5.521
+    },
+    {
+      "text": "now large language models and generative",
+      "start": 576.72,
+      "duration": 4.04
+    },
+    {
+      "text": "AI are changing every single thing",
+      "start": 578.8,
+      "duration": 5.12
+    },
+    {
+      "text": "around us in fact what is probably more",
+      "start": 580.76,
+      "duration": 4.84
+    },
+    {
+      "text": "relevant to all of you watching this",
+      "start": 583.92,
+      "duration": 3.96
+    },
+    {
+      "text": "video is the global generative AI job",
+      "start": 585.6,
+      "duration": 5.32
+    },
+    {
+      "text": "market and just look at this growth it's",
+      "start": 587.88,
+      "duration": 6.04
+    },
+    {
+      "text": "incredible uh and this is the pro",
+      "start": 590.92,
+      "duration": 4.919
+    },
+    {
+      "text": "projected job market it's expected to",
+      "start": 593.92,
+      "duration": 3.88
+    },
+    {
+      "text": "grow about five to six times in the next",
+      "start": 595.839,
+      "duration": 4.721
+    },
+    {
+      "text": "5 years generate and large language",
+      "start": 597.8,
+      "duration": 6.0
+    },
+    {
+      "text": "models is an extremely useful skill and",
+      "start": 600.56,
+      "duration": 6.279
+    },
+    {
+      "text": "the need for this skill is only going to",
+      "start": 603.8,
+      "duration": 5.56
+    },
+    {
+      "text": "increase in the future so this again",
+      "start": 606.839,
+      "duration": 4.44
+    },
+    {
+      "text": "brings me to the question that if",
+      "start": 609.36,
+      "duration": 3.599
+    },
+    {
+      "text": "someone wants to learn about large",
+      "start": 611.279,
+      "duration": 4.24
+    },
+    {
+      "text": "language models how do they go about",
+      "start": 612.959,
+      "duration": 5.481
+    },
+    {
+      "text": "doing this so let's say you go to Google",
+      "start": 615.519,
+      "duration": 5.241
+    },
+    {
+      "text": "and you search build llms learn which",
+      "start": 618.44,
+      "duration": 3.839
+    },
+    {
+      "text": "say which means you want to learn about",
+      "start": 620.76,
+      "duration": 3.639
+    },
+    {
+      "text": "large language models there are a number",
+      "start": 622.279,
+      "duration": 4.081
+    },
+    {
+      "text": "of courses which show up really over",
+      "start": 624.399,
+      "duration": 4.0
+    },
+    {
+      "text": "here now if you go to many of these",
+      "start": 626.36,
+      "duration": 3.4
+    },
+    {
+      "text": "courses you will see let let say build",
+      "start": 628.399,
+      "duration": 3.641
+    },
+    {
+      "text": "llm apps it's about app development it",
+      "start": 629.76,
+      "duration": 4.0
+    },
+    {
+      "text": "does not teach you how to build a large",
+      "start": 632.04,
+      "duration": 3.4
+    },
+    {
+      "text": "language model from",
+      "start": 633.76,
+      "duration": 4.519
+    },
+    {
+      "text": "scratch here is another course Master SL",
+      "start": 635.44,
+      "duration": 5.399
+    },
+    {
+      "text": "Master large language model Concepts if",
+      "start": 638.279,
+      "duration": 4.201
+    },
+    {
+      "text": "you look at this course description",
+      "start": 640.839,
+      "duration": 3.401
+    },
+    {
+      "text": "right they don't teach you how to build",
+      "start": 642.48,
+      "duration": 3.599
+    },
+    {
+      "text": "an llm from scratch at all they don't",
+      "start": 644.24,
+      "duration": 3.399
+    },
+    {
+      "text": "teach you the nuts and bolts it's a",
+      "start": 646.079,
+      "duration": 4.2
+    },
+    {
+      "text": "pretty quick course this is also not",
+      "start": 647.639,
+      "duration": 4.561
+    },
+    {
+      "text": "what I'm looking for what I'm looking",
+      "start": 650.279,
+      "duration": 4.041
+    },
+    {
+      "text": "for is one course which teaches me the",
+      "start": 652.2,
+      "duration": 4.319
+    },
+    {
+      "text": "foundations in a lot of detail and in a",
+      "start": 654.32,
+      "duration": 5.0
+    },
+    {
+      "text": "lot of depth I want to know about the",
+      "start": 656.519,
+      "duration": 4.361
+    },
+    {
+      "text": "foundations because I want to build an",
+      "start": 659.32,
+      "duration": 5.56
+    },
+    {
+      "text": "llm from scratch so that uh my skill set",
+      "start": 660.88,
+      "duration": 7.04
+    },
+    {
+      "text": "is improved and so that I feel confident",
+      "start": 664.88,
+      "duration": 5.32
+    },
+    {
+      "text": "about giving generative Ai and even llm",
+      "start": 667.92,
+      "duration": 4.28
+    },
+    {
+      "text": "job interviews this is what I'm looking",
+      "start": 670.2,
+      "duration": 4.16
+    },
+    {
+      "text": "for really I don't want a quick crash",
+      "start": 672.2,
+      "duration": 4.199
+    },
+    {
+      "text": "course I want something in",
+      "start": 674.36,
+      "duration": 4.56
+    },
+    {
+      "text": "depth then I go to YouTube and search",
+      "start": 676.399,
+      "duration": 5.0
+    },
+    {
+      "text": "about llm from scratch this is the first",
+      "start": 678.92,
+      "duration": 4.56
+    },
+    {
+      "text": "video which shows up or rather it's a",
+      "start": 681.399,
+      "duration": 4.081
+    },
+    {
+      "text": "first playlist you'll see that there are",
+      "start": 683.48,
+      "duration": 4.52
+    },
+    {
+      "text": "18 chapters in this playlist but each of",
+      "start": 685.48,
+      "duration": 4.4
+    },
+    {
+      "text": "these chapters is again only 10 15",
+      "start": 688.0,
+      "duration": 4.72
+    },
+    {
+      "text": "minutes and again I'm a bit demotivated",
+      "start": 689.88,
+      "duration": 4.56
+    },
+    {
+      "text": "seeing this because I'm not looking for",
+      "start": 692.72,
+      "duration": 4.359
+    },
+    {
+      "text": "this either I'm looking for a massive",
+      "start": 694.44,
+      "duration": 4.72
+    },
+    {
+      "text": "deep technical course which teaches me",
+      "start": 697.079,
+      "duration": 4.56
+    },
+    {
+      "text": "how to build an llm right from the very",
+      "start": 699.16,
+      "duration": 5.119
+    },
+    {
+      "text": "Basics there is Andre karpat is building",
+      "start": 701.639,
+      "duration": 4.561
+    },
+    {
+      "text": "a GPT course but if you look at this",
+      "start": 704.279,
+      "duration": 4.081
+    },
+    {
+      "text": "course it's actually quite complex it's",
+      "start": 706.2,
+      "duration": 4.56
+    },
+    {
+      "text": "not an easy course at all he starts",
+      "start": 708.36,
+      "duration": 6.159
+    },
+    {
+      "text": "right in the middle of uh a concept and",
+      "start": 710.76,
+      "duration": 5.639
+    },
+    {
+      "text": "it's not meant for beginners and it's",
+      "start": 714.519,
+      "duration": 3.801
+    },
+    {
+      "text": "just 90 minutes again this is not what",
+      "start": 716.399,
+      "duration": 4.201
+    },
+    {
+      "text": "I'm looking for here is another create a",
+      "start": 718.32,
+      "duration": 4.079
+    },
+    {
+      "text": "large language model from scratch but",
+      "start": 720.6,
+      "duration": 3.919
+    },
+    {
+      "text": "you see the red bar here I tried taking",
+      "start": 722.399,
+      "duration": 3.68
+    },
+    {
+      "text": "this course and I finished three hours",
+      "start": 724.519,
+      "duration": 4.401
+    },
+    {
+      "text": "of this but again this is not explained",
+      "start": 726.079,
+      "duration": 5.481
+    },
+    {
+      "text": "well it's not explained from scratch I",
+      "start": 728.92,
+      "duration": 4.96
+    },
+    {
+      "text": "want to make a course which people",
+      "start": 731.56,
+      "duration": 3.92
+    },
+    {
+      "text": "understand right from the very Basics",
+      "start": 733.88,
+      "duration": 4.68
+    },
+    {
+      "text": "and none of the courses on YouTube on",
+      "start": 735.48,
+      "duration": 5.96
+    },
+    {
+      "text": "Google are satisfying that need luckily",
+      "start": 738.56,
+      "duration": 5.12
+    },
+    {
+      "text": "very luckily I came across this book by",
+      "start": 741.44,
+      "duration": 4.8
+    },
+    {
+      "text": "an author called Sebastian rashka I",
+      "start": 743.68,
+      "duration": 4.08
+    },
+    {
+      "text": "think it's one of the best books on",
+      "start": 746.24,
+      "duration": 4.0
+    },
+    {
+      "text": "large language models I purchased this",
+      "start": 747.76,
+      "duration": 5.0
+    },
+    {
+      "text": "book and this is going to serve as the",
+      "start": 750.24,
+      "duration": 5.159
+    },
+    {
+      "text": "reference material for our course what",
+      "start": 752.76,
+      "duration": 5.0
+    },
+    {
+      "text": "I'm going to do is that this is a 48",
+      "start": 755.399,
+      "duration": 4.521
+    },
+    {
+      "text": "page book I'm going to convert every",
+      "start": 757.76,
+      "duration": 4.8
+    },
+    {
+      "text": "single aspect of this book into a set of",
+      "start": 759.92,
+      "duration": 5.719
+    },
+    {
+      "text": "videos I'll probably have 35 40 or maybe",
+      "start": 762.56,
+      "duration": 6.16
+    },
+    {
+      "text": "50 videos in this playlist similar to my",
+      "start": 765.639,
+      "duration": 4.841
+    },
+    {
+      "text": "playlist for machine learning and deep",
+      "start": 768.72,
+      "duration": 4.359
+    },
+    {
+      "text": "learning and uh whatever is given here",
+      "start": 770.48,
+      "duration": 5.64
+    },
+    {
+      "text": "right I'll convert it into",
+      "start": 773.079,
+      "duration": 6.681
+    },
+    {
+      "text": "uh I'll convert it into video format",
+      "start": 776.12,
+      "duration": 5.64
+    },
+    {
+      "text": "so for example here are some of the",
+      "start": 779.76,
+      "duration": 3.92
+    },
+    {
+      "text": "notes which I've already started to make",
+      "start": 781.76,
+      "duration": 3.639
+    },
+    {
+      "text": "we'll we'll start covering this when we",
+      "start": 783.68,
+      "duration": 4.88
+    },
+    {
+      "text": "move to uh the next lecture look at",
+      "start": 785.399,
+      "duration": 4.961
+    },
+    {
+      "text": "these notes what I've done over here is",
+      "start": 788.56,
+      "duration": 4.399
+    },
+    {
+      "text": "that I have built my understanding from",
+      "start": 790.36,
+      "duration": 6.0
+    },
+    {
+      "text": "this book over here and to to transfer",
+      "start": 792.959,
+      "duration": 5.12
+    },
+    {
+      "text": "my understanding to all of you I have",
+      "start": 796.36,
+      "duration": 3.599
+    },
+    {
+      "text": "started writing on a white board every",
+      "start": 798.079,
+      "duration": 4.521
+    },
+    {
+      "text": "single thing in detail look at this and",
+      "start": 799.959,
+      "duration": 4.641
+    },
+    {
+      "text": "I'm trying to make it as interesting as",
+      "start": 802.6,
+      "duration": 4.239
+    },
+    {
+      "text": "possible and as fundamental as possible",
+      "start": 804.6,
+      "duration": 4.919
+    },
+    {
+      "text": "so this is going to be the next lecture",
+      "start": 806.839,
+      "duration": 5.161
+    },
+    {
+      "text": "uh intro to llms so I finished making",
+      "start": 809.519,
+      "duration": 4.281
+    },
+    {
+      "text": "the notes for this and I finished making",
+      "start": 812.0,
+      "duration": 4.12
+    },
+    {
+      "text": "the notes for the lecture after that as",
+      "start": 813.8,
+      "duration": 5.039
+    },
+    {
+      "text": "well stages of building and llm so",
+      "start": 816.12,
+      "duration": 4.68
+    },
+    {
+      "text": "basically I'm making I'm in the process",
+      "start": 818.839,
+      "duration": 4.24
+    },
+    {
+      "text": "of making all these notes but I'm making",
+      "start": 820.8,
+      "duration": 4.719
+    },
+    {
+      "text": "the videos simultaneously so that I am",
+      "start": 823.079,
+      "duration": 4.841
+    },
+    {
+      "text": "also motivated and I am also on track",
+      "start": 825.519,
+      "duration": 3.841
+    },
+    {
+      "text": "eventually this will be a massive",
+      "start": 827.92,
+      "duration": 5.0
+    },
+    {
+      "text": "lecture notes of maybe 200 to 300 pages",
+      "start": 829.36,
+      "duration": 6.919
+    },
+    {
+      "text": "and uh there will be 50 to 60 videos",
+      "start": 832.92,
+      "duration": 5.32
+    },
+    {
+      "text": "based on this you'll learn everything",
+      "start": 836.279,
+      "duration": 3.68
+    },
+    {
+      "text": "right from the very Basics nothing will",
+      "start": 838.24,
+      "duration": 3.76
+    },
+    {
+      "text": "be assumed everything will be spelled",
+      "start": 839.959,
+      "duration": 4.521
+    },
+    {
+      "text": "out and these set of videos will be",
+      "start": 842.0,
+      "duration": 4.519
+    },
+    {
+      "text": "perfect for serious people who want to",
+      "start": 844.48,
+      "duration": 3.84
+    },
+    {
+      "text": "transition to large language models",
+      "start": 846.519,
+      "duration": 4.281
+    },
+    {
+      "text": "really and we want to understand llms",
+      "start": 848.32,
+      "duration": 4.6
+    },
+    {
+      "text": "the right",
+      "start": 850.8,
+      "duration": 5.56
+    },
+    {
+      "text": "way uh okay so this is the main idea for",
+      "start": 852.92,
+      "duration": 5.64
+    },
+    {
+      "text": "the course another thing which I want to",
+      "start": 856.36,
+      "duration": 3.719
+    },
+    {
+      "text": "say is that you might have heard of",
+      "start": 858.56,
+      "duration": 4.399
+    },
+    {
+      "text": "applications like Lang chain this is a",
+      "start": 860.079,
+      "duration": 5.481
+    },
+    {
+      "text": "tool which helps you build llm apps but",
+      "start": 862.959,
+      "duration": 4.361
+    },
+    {
+      "text": "again it's not useful if you don't know",
+      "start": 865.56,
+      "duration": 3.959
+    },
+    {
+      "text": "how to build an llm yourself many",
+      "start": 867.32,
+      "duration": 4.28
+    },
+    {
+      "text": "students directly start deploying apps",
+      "start": 869.519,
+      "duration": 4.32
+    },
+    {
+      "text": "as I mentioned before but I personally",
+      "start": 871.6,
+      "duration": 3.64
+    },
+    {
+      "text": "don't think that's the right way to",
+      "start": 873.839,
+      "duration": 3.44
+    },
+    {
+      "text": "learn about llms you need to know how to",
+      "start": 875.24,
+      "duration": 4.36
+    },
+    {
+      "text": "build a entire large language model from",
+      "start": 877.279,
+      "duration": 5.521
+    },
+    {
+      "text": "scratch and we'll teach you that in this",
+      "start": 879.6,
+      "duration": 5.76
+    },
+    {
+      "text": "playlist finally the goal is to equip",
+      "start": 882.8,
+      "duration": 4.68
+    },
+    {
+      "text": "all of you so that you feel confident in",
+      "start": 885.36,
+      "duration": 4.24
+    },
+    {
+      "text": "front of an interviewer right if you",
+      "start": 887.48,
+      "duration": 3.719
+    },
+    {
+      "text": "have just deployed applications by",
+      "start": 889.6,
+      "duration": 4.08
+    },
+    {
+      "text": "cloning some GitHub repository then if",
+      "start": 891.199,
+      "duration": 4.161
+    },
+    {
+      "text": "someone asks you a detailed question",
+      "start": 893.68,
+      "duration": 3.88
+    },
+    {
+      "text": "about key query and values let's say or",
+      "start": 895.36,
+      "duration": 3.96
+    },
+    {
+      "text": "positional embedding or positional",
+      "start": 897.56,
+      "duration": 4.04
+    },
+    {
+      "text": "positional encoding you need to be in a",
+      "start": 899.32,
+      "duration": 4.12
+    },
+    {
+      "text": "position to say that I have built this",
+      "start": 901.6,
+      "duration": 3.799
+    },
+    {
+      "text": "from scratch so I know the details",
+      "start": 903.44,
+      "duration": 3.399
+    },
+    {
+      "text": "better than anyone",
+      "start": 905.399,
+      "duration": 4.601
+    },
+    {
+      "text": "else that's really going to position you",
+      "start": 906.839,
+      "duration": 6.0
+    },
+    {
+      "text": "in a different boot than all the other",
+      "start": 910.0,
+      "duration": 5.48
+    },
+    {
+      "text": "people so this is the main objective of",
+      "start": 912.839,
+      "duration": 4.12
+    },
+    {
+      "text": "this course this is going to be the",
+      "start": 915.48,
+      "duration": 3.2
+    },
+    {
+      "text": "outline of this course we are going to",
+      "start": 916.959,
+      "duration": 5.44
+    },
+    {
+      "text": "follow uh all the top table of contents",
+      "start": 918.68,
+      "duration": 5.56
+    },
+    {
+      "text": "which have been mentioned over here and",
+      "start": 922.399,
+      "duration": 3.601
+    },
+    {
+      "text": "I'm going to convert those into video",
+      "start": 924.24,
+      "duration": 4.0
+    },
+    {
+      "text": "lecture formats and it's going to be an",
+      "start": 926.0,
+      "duration": 3.639
+    },
+    {
+      "text": "awesome series it's going to be a",
+      "start": 928.24,
+      "duration": 4.24
+    },
+    {
+      "text": "detailed Series so if this seems of",
+      "start": 929.639,
+      "duration": 5.961
+    },
+    {
+      "text": "interest to you please uh mention in the",
+      "start": 932.48,
+      "duration": 4.88
+    },
+    {
+      "text": "comments so that I also feel motivated",
+      "start": 935.6,
+      "duration": 4.2
+    },
+    {
+      "text": "to build subsequent videos and as I",
+      "start": 937.36,
+      "duration": 3.919
+    },
+    {
+      "text": "mentioned the plan is to release",
+      "start": 939.8,
+      "duration": 3.279
+    },
+    {
+      "text": "everything all of this content",
+      "start": 941.279,
+      "duration": 4.0
+    },
+    {
+      "text": "completely for free so that you all can",
+      "start": 943.079,
+      "duration": 4.0
+    },
+    {
+      "text": "benefit from",
+      "start": 945.279,
+      "duration": 4.961
+    },
+    {
+      "text": "it okay thank you so much everyone uh",
+      "start": 947.079,
+      "duration": 4.841
+    },
+    {
+      "text": "and I look forward to seeing you in the",
+      "start": 950.24,
+      "duration": 3.56
+    },
+    {
+      "text": "next lecture where we will cover",
+      "start": 951.92,
+      "duration": 3.76
+    },
+    {
+      "text": "introduction to large language models",
+      "start": 953.8,
+      "duration": 4.24
+    },
+    {
+      "text": "and we'll cover all these things what",
+      "start": 955.68,
+      "duration": 4.599
+    },
+    {
+      "text": "you are seeing in the board right now",
+      "start": 958.04,
+      "duration": 3.88
+    },
+    {
+      "text": "thanks everyone see you in the next",
+      "start": 960.279,
+      "duration": 4.641
+    },
+    {
+      "text": "lecture",
+      "start": 961.92,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to the introductory lecture in this series which is titled build a large language model from scratch my name is Dr Raj dander I graduated from IIT Madras with a bch in mechanical engineering in 2017 after that I did my PhD from the Massachusetts Institute of Technology MIT I graduated from MIT with a PhD in machine learning in 2022 since then I've come back to India and we are all on a mission to basically make AI accessible to everyone U at viua which is our YouTube channel we have made several playlists now on machine learning on deep learning and uh the main approach or the philosophy which we really follow when we teach is to teach everything from from the basics not to assume anything teach you the nuts and bolts of every single concept the real reason behind this series is that as we all know large language models and generative AI are transforming everything around us startups are forming in this space companies are switching to large language models for various tasks the jobs in this field are rising a lot but many people when they are learning learning about this field are making one common mistake they directly switch to the applications they directly run some Google collab notebook they follow some YouTube video and directly run a code uh but very few people really understand how large language models actually work very few people actually know the nuts and the bolds which make large language models really so powerful wouldn't be it amazing if you can build a large language model completely from scratch wouldn't that make you feel very confident about this subject very few people have this knowledge right now and I'm making this YouTube playlist which will be a very comprehensive playlist showing you everything about building an llm from scratch the way I'm making this playlist or the way I will make videos in this playlist is to teach te you everything from the basics as a beginner without assuming anything and at the end of this playlist you will have built an llm from scratch successfully all by yourself you'll see that after this point everything which comes later all the application Parts everything will just start seeming extremely easy to you so that's the whole philosophy behind making this lecture series it takes a huge amount of effort on our part to make this series because as you you will see and I'll show you in some time to make every lecture we are going to make detailed lecture notes I'll share those lecture notes with you and all the videos in this series will be available completely for free okay so now I'm going to tell you a bit about my story of learning llms then I'm going to tell you a bit about what exists right now the material which is already available on the internet for learning llms why it is so inadequate why it is so insufficient and what we are trying to do new with this playlist so let's get into the video so let me take you back in time a bit to show you how large language models looked like in maybe 1960s uh or where the field of natural language processing was really about 50 to 60 years back so this is one of the first chat Bots which humans developed it's called as Elisa it was supposed to be a therapist and let's see how it works so first this interface asks me to choose my language so I'm choosing English let's go so then Elisa tells me how do you do please tell me your problem so then let me type I am trying to learn about large language models but I am finding it difficult could you provide some resources for me to start with then Elisa asks is it because you're trying to learn about large language models that you came to me then I say yes and then Alisa says You seem to be quite positive and then and then Elisa says you are sure you see this conversation is proceeding nowhere this was the state of large language models 50 to 60 years 50 to 60 years back it's not very good right fast forward to chat GPT and you ask what are large language models or let me ask the same thing which I asked over here I am trying to learn about large language models tell me me some resources and then you'll see the response by chat GPT it's extremely useful it's to the point and uh it gives me books it gives me online courses it gives me research papers this is exactly what I need so you see this simple illustration shows that we are living in an age where we should be very lucky that the research on natural language processing and large language models is at such a stage where llm such as GPT are very powerful they are very sophisticated if you're not familiar with chat GPT that's fine we are going to be building our own GPD in this playlist so you'll learn about it along the way but I showed you this demonstration for you to appreciate the times we are living in right now llms have become really powerful and uh that's the first motivation to really learn about them there are several more things which are happening as I'm making this video Facebook released their Lama 3.1 which is one of their most capable large language models up till date and this is an open-source model which means that the entire architecture of the model is available for free uh or rather it's available to the public anyone can see the architecture the models released by open AI are usually closed source which means they don't release the weights uh the architecture not too many things are known about the model itself so here is a graph which shows closed Source versus open source models in 2022 when the field of large language models was booming most of the things were pretty closed Source when gp4 was released in 2023 it blew the world uh away everyone was surprised everyone was happy to see the functionality but still it was a closed Source model now in 2024 can you see the gap between the open source and closed Source model is slowly decreasing and when Lama 3.1 is released you can see that it performs at the same level as gp4 which is closed Source this is to say that all the information which you need is available right now as open source models you should just be willing to learn if you are not sure what's open source close Source models what's this Lama 340 5B I'll explain to you about all of these things as we proceed with the lectures Now text is one thing right there are many other things which generative AI as a field is capable of there is also a lot of confusion with many people regarding what is generative AI what are llms really but generative AI is a broader subset and it includes language it includes video audio 3D models all the things so have a look at some of these videos don't these videos look incredibly realistic this video then this video The Waves video this particular video you'll be surprised to know that all of these videos are made by artificial intelligence these videos are not shot on camera they are made by AI this is the power of generative AI currently finally uh when we work with schools we have developed our own a application so this is viu's AI application uh or application on llms here you can see that there are a huge number of functionalities for example you can click on McQ generator and you can just type in the topic let's say gravity and you can click on generate now you'll see that within a matter of seconds the large language model which is powering this application will generate a set of multiple choice questions see right here we are providing this application to teachers all of this was impossible to even imagine uh just four to 5 years back but now large language models and generative AI are changing every single thing around us in fact what is probably more relevant to all of you watching this video is the global generative AI job market and just look at this growth it's incredible uh and this is the pro projected job market it's expected to grow about five to six times in the next 5 years generate and large language models is an extremely useful skill and the need for this skill is only going to increase in the future so this again brings me to the question that if someone wants to learn about large language models how do they go about doing this so let's say you go to Google and you search build llms learn which say which means you want to learn about large language models there are a number of courses which show up really over here now if you go to many of these courses you will see let let say build llm apps it's about app development it does not teach you how to build a large language model from scratch here is another course Master SL Master large language model Concepts if you look at this course description right they don't teach you how to build an llm from scratch at all they don't teach you the nuts and bolts it's a pretty quick course this is also not what I'm looking for what I'm looking for is one course which teaches me the foundations in a lot of detail and in a lot of depth I want to know about the foundations because I want to build an llm from scratch so that uh my skill set is improved and so that I feel confident about giving generative Ai and even llm job interviews this is what I'm looking for really I don't want a quick crash course I want something in depth then I go to YouTube and search about llm from scratch this is the first video which shows up or rather it's a first playlist you'll see that there are 18 chapters in this playlist but each of these chapters is again only 10 15 minutes and again I'm a bit demotivated seeing this because I'm not looking for this either I'm looking for a massive deep technical course which teaches me how to build an llm right from the very Basics there is Andre karpat is building a GPT course but if you look at this course it's actually quite complex it's not an easy course at all he starts right in the middle of uh a concept and it's not meant for beginners and it's just 90 minutes again this is not what I'm looking for here is another create a large language model from scratch but you see the red bar here I tried taking this course and I finished three hours of this but again this is not explained well it's not explained from scratch I want to make a course which people understand right from the very Basics and none of the courses on YouTube on Google are satisfying that need luckily very luckily I came across this book by an author called Sebastian rashka I think it's one of the best books on large language models I purchased this book and this is going to serve as the reference material for our course what I'm going to do is that this is a 48 page book I'm going to convert every single aspect of this book into a set of videos I'll probably have 35 40 or maybe 50 videos in this playlist similar to my playlist for machine learning and deep learning and uh whatever is given here right I'll convert it into uh I'll convert it into video format so for example here are some of the notes which I've already started to make we'll we'll start covering this when we move to uh the next lecture look at these notes what I've done over here is that I have built my understanding from this book over here and to to transfer my understanding to all of you I have started writing on a white board every single thing in detail look at this and I'm trying to make it as interesting as possible and as fundamental as possible so this is going to be the next lecture uh intro to llms so I finished making the notes for this and I finished making the notes for the lecture after that as well stages of building and llm so basically I'm making I'm in the process of making all these notes but I'm making the videos simultaneously so that I am also motivated and I am also on track eventually this will be a massive lecture notes of maybe 200 to 300 pages and uh there will be 50 to 60 videos based on this you'll learn everything right from the very Basics nothing will be assumed everything will be spelled out and these set of videos will be perfect for serious people who want to transition to large language models really and we want to understand llms the right way uh okay so this is the main idea for the course another thing which I want to say is that you might have heard of applications like Lang chain this is a tool which helps you build llm apps but again it's not useful if you don't know how to build an llm yourself many students directly start deploying apps as I mentioned before but I personally don't think that's the right way to learn about llms you need to know how to build a entire large language model from scratch and we'll teach you that in this playlist finally the goal is to equip all of you so that you feel confident in front of an interviewer right if you have just deployed applications by cloning some GitHub repository then if someone asks you a detailed question about key query and values let's say or positional embedding or positional positional encoding you need to be in a position to say that I have built this from scratch so I know the details better than anyone else that's really going to position you in a different boot than all the other people so this is the main objective of this course this is going to be the outline of this course we are going to follow uh all the top table of contents which have been mentioned over here and I'm going to convert those into video lecture formats and it's going to be an awesome series it's going to be a detailed Series so if this seems of interest to you please uh mention in the comments so that I also feel motivated to build subsequent videos and as I mentioned the plan is to release everything all of this content completely for free so that you all can benefit from it okay thank you so much everyone uh and I look forward to seeing you in the next lecture where we will cover introduction to large language models and we'll cover all these things what you are seeing in the board right now thanks everyone see you in the next lecture"
+}

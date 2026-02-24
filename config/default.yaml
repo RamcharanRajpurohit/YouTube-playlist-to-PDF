@@ -4,8 +4,8 @@ llm:
   primary_provider: gemini
 
   gemini:
-    model: gemini-2.0-flash
-    max_output_tokens: 16384
+    model: gemini-2.5-flash
+    max_output_tokens: 65536
     temperature: 0.3
     max_context_tokens: 1000000
 
@@ -15,18 +15,6 @@ chunking:
   target_chunk_tokens: 12000
   # Number of overlap sentences between consecutive chunks
   overlap_sentences: 3
-
-# ── Transcript ───────────────────────────────────────────────────────
-transcript:
-  # Preferred languages for transcript (in order of priority)
-  languages:
-    - en
-  # Directory to cache raw transcripts
-  cache_dir: output/transcripts
-  # Use an exported browser cookies.txt to avoid YouTube IP bans (optional, leave empty)
-  cookies_file: ""
-  # Number of seconds to delay between transcript API fetch calls
-  delay_seconds: 2.0
 
 # ── Processing ───────────────────────────────────────────────────────
 processing:

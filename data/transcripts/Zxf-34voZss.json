@@ -1,0 +1,5761 @@
+{
+  "video": {
+    "video_id": "Zxf-34voZss",
+    "title": "Coding the entire LLM Pre-training Loop",
+    "duration": 2601.0,
+    "index": 27
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.0
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.12,
+      "duration": 4.92
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 8.0,
+      "duration": 4.96
+    },
+    {
+      "text": "scratch Series today what we are going",
+      "start": 10.04,
+      "duration": 5.24
+    },
+    {
+      "text": "to do is we are going to train our large",
+      "start": 12.96,
+      "duration": 6.96
+    },
+    {
+      "text": "language model until this point in",
+      "start": 15.28,
+      "duration": 8.919
+    },
+    {
+      "text": "the uh llm pre-training stage what we",
+      "start": 19.92,
+      "duration": 7.119
+    },
+    {
+      "text": "have actually done is that we have uh",
+      "start": 24.199,
+      "duration": 4.961
+    },
+    {
+      "text": "found out or rather we have understood",
+      "start": 27.039,
+      "duration": 3.601
+    },
+    {
+      "text": "the method which which is used to",
+      "start": 29.16,
+      "duration": 2.88
+    },
+    {
+      "text": "calculate the training and the",
+      "start": 30.64,
+      "duration": 3.759
+    },
+    {
+      "text": "validation losses for a large language",
+      "start": 32.04,
+      "duration": 4.64
+    },
+    {
+      "text": "model and we covered that extensively in",
+      "start": 34.399,
+      "duration": 4.721
+    },
+    {
+      "text": "the last lecture where we saw that let's",
+      "start": 36.68,
+      "duration": 4.52
+    },
+    {
+      "text": "say if you have an llm model and if you",
+      "start": 39.12,
+      "duration": 4.439
+    },
+    {
+      "text": "feed an input to the model you get an",
+      "start": 41.2,
+      "duration": 4.999
+    },
+    {
+      "text": "output how can you compare the output",
+      "start": 43.559,
+      "duration": 4.921
+    },
+    {
+      "text": "with the target value and how can you",
+      "start": 46.199,
+      "duration": 5.04
+    },
+    {
+      "text": "get the loss function now that we have",
+      "start": 48.48,
+      "duration": 4.28
+    },
+    {
+      "text": "calculated the loss function in the",
+      "start": 51.239,
+      "duration": 3.921
+    },
+    {
+      "text": "previous lecture the door is open for us",
+      "start": 52.76,
+      "duration": 5.439
+    },
+    {
+      "text": "to implement back propagation and to try",
+      "start": 55.16,
+      "duration": 5.52
+    },
+    {
+      "text": "to minimize this loss as much as",
+      "start": 58.199,
+      "duration": 4.88
+    },
+    {
+      "text": "possible before we start learning about",
+      "start": 60.68,
+      "duration": 4.439
+    },
+    {
+      "text": "the llm training function in today's",
+      "start": 63.079,
+      "duration": 4.961
+    },
+    {
+      "text": "lecture let me quickly recap how we",
+      "start": 65.119,
+      "duration": 6.36
+    },
+    {
+      "text": "calculate the loss between the llm",
+      "start": 68.04,
+      "duration": 6.6
+    },
+    {
+      "text": "output and the target values so in last",
+      "start": 71.479,
+      "duration": 5.481
+    },
+    {
+      "text": "lecture and as is the case with today's",
+      "start": 74.64,
+      "duration": 4.32
+    },
+    {
+      "text": "lecture the data set which we are going",
+      "start": 76.96,
+      "duration": 4.159
+    },
+    {
+      "text": "to use is the book which is called the",
+      "start": 78.96,
+      "duration": 5.159
+    },
+    {
+      "text": "verdict it's a book which is written in",
+      "start": 81.119,
+      "duration": 6.32
+    },
+    {
+      "text": "196 and you can download this data set",
+      "start": 84.119,
+      "duration": 5.801
+    },
+    {
+      "text": "completely uh it's an open source dat",
+      "start": 87.439,
+      "duration": 5.801
+    },
+    {
+      "text": "data set and uh it's not too big I think",
+      "start": 89.92,
+      "duration": 7.44
+    },
+    {
+      "text": "it has around 5,000 or 5,500 tokens so",
+      "start": 93.24,
+      "duration": 6.239
+    },
+    {
+      "text": "it has around 20,000 characters and it",
+      "start": 97.36,
+      "duration": 4.68
+    },
+    {
+      "text": "has 5,000 tokens that's the data set we",
+      "start": 99.479,
+      "duration": 4.881
+    },
+    {
+      "text": "are going to use the first step we do is",
+      "start": 102.04,
+      "duration": 4.24
+    },
+    {
+      "text": "that divide this data set into training",
+      "start": 104.36,
+      "duration": 4.399
+    },
+    {
+      "text": "and validation we use a training ratio",
+      "start": 106.28,
+      "duration": 4.6
+    },
+    {
+      "text": "of 0.9 which means that we use the",
+      "start": 108.759,
+      "duration": 5.32
+    },
+    {
+      "text": "initial 90% of this data set as training",
+      "start": 110.88,
+      "duration": 5.48
+    },
+    {
+      "text": "and we use the remaining 10% of the data",
+      "start": 114.079,
+      "duration": 4.161
+    },
+    {
+      "text": "set as the validation",
+      "start": 116.36,
+      "duration": 4.759
+    },
+    {
+      "text": "data great now once we have the training",
+      "start": 118.24,
+      "duration": 6.4
+    },
+    {
+      "text": "data there is uh we first need to divide",
+      "start": 121.119,
+      "duration": 5.721
+    },
+    {
+      "text": "the training data itself into input and",
+      "start": 124.64,
+      "duration": 4.399
+    },
+    {
+      "text": "Target pairs remember we have not even",
+      "start": 126.84,
+      "duration": 4.759
+    },
+    {
+      "text": "come to the llm output for now since",
+      "start": 129.039,
+      "duration": 4.681
+    },
+    {
+      "text": "llms are Auto regressive models we don't",
+      "start": 131.599,
+      "duration": 4.761
+    },
+    {
+      "text": "have labels so there is a special way in",
+      "start": 133.72,
+      "duration": 3.96
+    },
+    {
+      "text": "which the training data and the",
+      "start": 136.36,
+      "duration": 3.04
+    },
+    {
+      "text": "validation data itself needs to be",
+      "start": 137.68,
+      "duration": 3.919
+    },
+    {
+      "text": "divided into input and targets within",
+      "start": 139.4,
+      "duration": 4.88
+    },
+    {
+      "text": "the data itself and we do that using",
+      "start": 141.599,
+      "duration": 4.0
+    },
+    {
+      "text": "something which is called as the data",
+      "start": 144.28,
+      "duration": 3.84
+    },
+    {
+      "text": "loader so what the data loader does is",
+      "start": 145.599,
+      "duration": 4.481
+    },
+    {
+      "text": "that it looks at a data set and it",
+      "start": 148.12,
+      "duration": 4.52
+    },
+    {
+      "text": "creates these input and Target pairs so",
+      "start": 150.08,
+      "duration": 4.239
+    },
+    {
+      "text": "let me give you an example of how these",
+      "start": 152.64,
+      "duration": 3.76
+    },
+    {
+      "text": "input and Target pairs actually look",
+      "start": 154.319,
+      "duration": 5.401
+    },
+    {
+      "text": "like so here's one batch of input and",
+      "start": 156.4,
+      "duration": 5.68
+    },
+    {
+      "text": "Target pairs so this is one batch and",
+      "start": 159.72,
+      "duration": 4.12
+    },
+    {
+      "text": "here you can see that the input consists",
+      "start": 162.08,
+      "duration": 4.439
+    },
+    {
+      "text": "of two samples and the output consists",
+      "start": 163.84,
+      "duration": 4.679
+    },
+    {
+      "text": "of two and the target consists of two",
+      "start": 166.519,
+      "duration": 4.561
+    },
+    {
+      "text": "samples this is from our data set",
+      "start": 168.519,
+      "duration": 5.561
+    },
+    {
+      "text": "itself and in each sample here you can",
+      "start": 171.08,
+      "duration": 4.84
+    },
+    {
+      "text": "see that there are four tokens but",
+      "start": 174.08,
+      "duration": 3.36
+    },
+    {
+      "text": "actually when we code the number of",
+      "start": 175.92,
+      "duration": 3.44
+    },
+    {
+      "text": "tokens is pretty big I think it's around",
+      "start": 177.44,
+      "duration": 4.799
+    },
+    {
+      "text": "250 phic that's the context size or how",
+      "start": 179.36,
+      "duration": 5.159
+    },
+    {
+      "text": "many tokens you are going to see before",
+      "start": 182.239,
+      "duration": 4.881
+    },
+    {
+      "text": "predicting the next token right so this",
+      "start": 184.519,
+      "duration": 5.08
+    },
+    {
+      "text": "is the first sample of the input and",
+      "start": 187.12,
+      "duration": 4.16
+    },
+    {
+      "text": "here you can see this is the first",
+      "start": 189.599,
+      "duration": 3.081
+    },
+    {
+      "text": "sample of the",
+      "start": 191.28,
+      "duration": 5.16
+    },
+    {
+      "text": "output now the output or I should call",
+      "start": 192.68,
+      "duration": 5.279
+    },
+    {
+      "text": "this the target rather I shouldn't call",
+      "start": 196.44,
+      "duration": 3.2
+    },
+    {
+      "text": "it the output because the target is the",
+      "start": 197.959,
+      "duration": 3.681
+    },
+    {
+      "text": "true value the actual value which we",
+      "start": 199.64,
+      "duration": 3.8
+    },
+    {
+      "text": "want our llm to",
+      "start": 201.64,
+      "duration": 4.36
+    },
+    {
+      "text": "approximate so if you look at the first",
+      "start": 203.44,
+      "duration": 4.439
+    },
+    {
+      "text": "row of the input and the first row of",
+      "start": 206.0,
+      "duration": 3.76
+    },
+    {
+      "text": "the target you'll see that the target",
+      "start": 207.879,
+      "duration": 3.72
+    },
+    {
+      "text": "Target is just the first row shifted to",
+      "start": 209.76,
+      "duration": 4.119
+    },
+    {
+      "text": "the right by one and similarly for the",
+      "start": 211.599,
+      "duration": 4.121
+    },
+    {
+      "text": "second row of the input and the second",
+      "start": 213.879,
+      "duration": 4.121
+    },
+    {
+      "text": "row of the target that's how the input",
+      "start": 215.72,
+      "duration": 5.36
+    },
+    {
+      "text": "Target pairs are constructed so we we go",
+      "start": 218.0,
+      "duration": 6.04
+    },
+    {
+      "text": "we first take this data set and uh what",
+      "start": 221.08,
+      "duration": 4.96
+    },
+    {
+      "text": "we do is that based on the context size",
+      "start": 224.04,
+      "duration": 4.04
+    },
+    {
+      "text": "let's say the context size is four so",
+      "start": 226.04,
+      "duration": 4.399
+    },
+    {
+      "text": "the first input is these four tokens",
+      "start": 228.08,
+      "duration": 4.92
+    },
+    {
+      "text": "that is X1 here I'm assuming one token",
+      "start": 230.439,
+      "duration": 4.36
+    },
+    {
+      "text": "is equal to one word but that's not the",
+      "start": 233.0,
+      "duration": 4.159
+    },
+    {
+      "text": "case because we use a bite pair encoder",
+      "start": 234.799,
+      "duration": 3.481
+    },
+    {
+      "text": "so I'm just showing this for",
+      "start": 237.159,
+      "duration": 3.241
+    },
+    {
+      "text": "illustration purposes here so this is",
+      "start": 238.28,
+      "duration": 4.28
+    },
+    {
+      "text": "the first input that's X1 the first four",
+      "start": 240.4,
+      "duration": 4.919
+    },
+    {
+      "text": "tokens then the next four tokens that's",
+      "start": 242.56,
+      "duration": 5.239
+    },
+    {
+      "text": "the second input X2 and here there is",
+      "start": 245.319,
+      "duration": 4.0
+    },
+    {
+      "text": "one more important variable which is",
+      "start": 247.799,
+      "duration": 4.321
+    },
+    {
+      "text": "called as stride so if you see between",
+      "start": 249.319,
+      "duration": 4.56
+    },
+    {
+      "text": "the input one and input two there is no",
+      "start": 252.12,
+      "duration": 4.519
+    },
+    {
+      "text": "overlap right because the stride is",
+      "start": 253.879,
+      "duration": 5.401
+    },
+    {
+      "text": "equal to four so the stride is usually",
+      "start": 256.639,
+      "duration": 5.361
+    },
+    {
+      "text": "equal to the context size so X1 X2 and",
+      "start": 259.28,
+      "duration": 4.72
+    },
+    {
+      "text": "similarly we go through the entire data",
+      "start": 262.0,
+      "duration": 4.68
+    },
+    {
+      "text": "set like this and we get the input and",
+      "start": 264.0,
+      "duration": 4.56
+    },
+    {
+      "text": "similarly corresponding with each input",
+      "start": 266.68,
+      "duration": 3.6
+    },
+    {
+      "text": "we shift the input to the right right",
+      "start": 268.56,
+      "duration": 4.199
+    },
+    {
+      "text": "and we get the target so throughout this",
+      "start": 270.28,
+      "duration": 3.96
+    },
+    {
+      "text": "entire lecture when we are going to",
+      "start": 272.759,
+      "duration": 4.681
+    },
+    {
+      "text": "refer to input and Target pairs we keep",
+      "start": 274.24,
+      "duration": 5.92
+    },
+    {
+      "text": "this visual in mind so this is a batch",
+      "start": 277.44,
+      "duration": 6.4
+    },
+    {
+      "text": "each batch has here two samples so",
+      "start": 280.16,
+      "duration": 5.56
+    },
+    {
+      "text": "here's the input batch and here's one",
+      "start": 283.84,
+      "duration": 4.76
+    },
+    {
+      "text": "output batch similarly sorry one input",
+      "start": 285.72,
+      "duration": 4.96
+    },
+    {
+      "text": "batch and one target batch similarly",
+      "start": 288.6,
+      "duration": 3.72
+    },
+    {
+      "text": "there will be huge number of input and",
+      "start": 290.68,
+      "duration": 5.519
+    },
+    {
+      "text": "Target batches once we split all of the",
+      "start": 292.32,
+      "duration": 6.24
+    },
+    {
+      "text": "data set into input and Target pairs",
+      "start": 296.199,
+      "duration": 4.321
+    },
+    {
+      "text": "right so that's the the first step and",
+      "start": 298.56,
+      "duration": 3.6
+    },
+    {
+      "text": "if you want to understand the details",
+      "start": 300.52,
+      "duration": 3.399
+    },
+    {
+      "text": "about how this input and Target pairs",
+      "start": 302.16,
+      "duration": 3.479
+    },
+    {
+      "text": "are created we have done that in a lot",
+      "start": 303.919,
+      "duration": 4.161
+    },
+    {
+      "text": "of detail in the previous lecture so I'm",
+      "start": 305.639,
+      "duration": 5.12
+    },
+    {
+      "text": "not going to cover that right now so",
+      "start": 308.08,
+      "duration": 5.28
+    },
+    {
+      "text": "these are the input and the target pairs",
+      "start": 310.759,
+      "duration": 4.681
+    },
+    {
+      "text": "right that's the first step then we need",
+      "start": 313.36,
+      "duration": 4.559
+    },
+    {
+      "text": "to get the llm output so what we do is",
+      "start": 315.44,
+      "duration": 5.199
+    },
+    {
+      "text": "that we take the input value so we take",
+      "start": 317.919,
+      "duration": 4.361
+    },
+    {
+      "text": "the first batch take the second batch",
+      "start": 320.639,
+      "duration": 4.201
+    },
+    {
+      "text": "take the third batch Etc and pass all of",
+      "start": 322.28,
+      "duration": 4.919
+    },
+    {
+      "text": "these batches into this llm architecture",
+      "start": 324.84,
+      "duration": 4.4
+    },
+    {
+      "text": "which we have built this is a pretty big",
+      "start": 327.199,
+      "duration": 3.161
+    },
+    {
+      "text": "architecture",
+      "start": 329.24,
+      "duration": 3.92
+    },
+    {
+      "text": "where we first do the tokenization then",
+      "start": 330.36,
+      "duration": 4.959
+    },
+    {
+      "text": "uh do the embedding then add the",
+      "start": 333.16,
+      "duration": 3.84
+    },
+    {
+      "text": "positional embedding add the Dropout",
+      "start": 335.319,
+      "duration": 3.801
+    },
+    {
+      "text": "layer and the output from this Dropout",
+      "start": 337.0,
+      "duration": 3.639
+    },
+    {
+      "text": "layer passes through the Transformer",
+      "start": 339.12,
+      "duration": 4.28
+    },
+    {
+      "text": "block so this blue color this blue color",
+      "start": 340.639,
+      "duration": 4.961
+    },
+    {
+      "text": "block here which I'm highlighting right",
+      "start": 343.4,
+      "duration": 3.96
+    },
+    {
+      "text": "now that's the Transformer block here",
+      "start": 345.6,
+      "duration": 3.48
+    },
+    {
+      "text": "where all the magic happens the",
+      "start": 347.36,
+      "duration": 3.679
+    },
+    {
+      "text": "Transformer has multiple layers such as",
+      "start": 349.08,
+      "duration": 4.08
+    },
+    {
+      "text": "normalization multi-ad attention Dropout",
+      "start": 351.039,
+      "duration": 4.841
+    },
+    {
+      "text": "shortcut connection feed forward Network",
+      "start": 353.16,
+      "duration": 5.24
+    },
+    {
+      "text": "Dropout another shortcut connection Etc",
+      "start": 355.88,
+      "duration": 4.08
+    },
+    {
+      "text": "then we come out of the transform former",
+      "start": 358.4,
+      "duration": 3.44
+    },
+    {
+      "text": "block there is another normalization",
+      "start": 359.96,
+      "duration": 5.0
+    },
+    {
+      "text": "layer followed by a output head or",
+      "start": 361.84,
+      "duration": 5.4
+    },
+    {
+      "text": "output neural network and then we get",
+      "start": 364.96,
+      "duration": 4.239
+    },
+    {
+      "text": "this output tensor which is called as",
+      "start": 367.24,
+      "duration": 3.799
+    },
+    {
+      "text": "the logit",
+      "start": 369.199,
+      "duration": 4.44
+    },
+    {
+      "text": "tensor so the shape of the logit tensor",
+      "start": 371.039,
+      "duration": 4.681
+    },
+    {
+      "text": "is pretty interesting to note over here",
+      "start": 373.639,
+      "duration": 3.601
+    },
+    {
+      "text": "let's say we are looking at the first",
+      "start": 375.72,
+      "duration": 4.479
+    },
+    {
+      "text": "batch right now and the first batch uh",
+      "start": 377.24,
+      "duration": 4.92
+    },
+    {
+      "text": "has two samples right this is the first",
+      "start": 380.199,
+      "duration": 3.801
+    },
+    {
+      "text": "sample I had always thought which I",
+      "start": 382.16,
+      "duration": 3.64
+    },
+    {
+      "text": "mentioned here and this is the second",
+      "start": 384.0,
+      "duration": 3.84
+    },
+    {
+      "text": "sample this is how the logic sensor",
+      "start": 385.8,
+      "duration": 4.56
+    },
+    {
+      "text": "looks like each of the now in each",
+      "start": 387.84,
+      "duration": 5.52
+    },
+    {
+      "text": "sample every token let's say I has the",
+      "start": 390.36,
+      "duration": 4.679
+    },
+    {
+      "text": "number of columns which is equal to the",
+      "start": 393.36,
+      "duration": 3.88
+    },
+    {
+      "text": "vocabulary size that is",
+      "start": 395.039,
+      "duration": 4.801
+    },
+    {
+      "text": "50257 uh so the size of this logic",
+      "start": 397.24,
+      "duration": 6.2
+    },
+    {
+      "text": "tensor is 2 into 4 into 50257 in this",
+      "start": 399.84,
+      "duration": 6.04
+    },
+    {
+      "text": "case because there are two batches four",
+      "start": 403.44,
+      "duration": 5.56
+    },
+    {
+      "text": "tokens in each batch and 50257 columns",
+      "start": 405.88,
+      "duration": 4.879
+    },
+    {
+      "text": "then we flatten this logic stenor which",
+      "start": 409.0,
+      "duration": 5.039
+    },
+    {
+      "text": "means we merge the first uh sample in",
+      "start": 410.759,
+      "duration": 4.921
+    },
+    {
+      "text": "this batch and the second sample in this",
+      "start": 414.039,
+      "duration": 4.761
+    },
+    {
+      "text": "batch and we create this unified tensor",
+      "start": 415.68,
+      "duration": 6.04
+    },
+    {
+      "text": "which is eight and 50257",
+      "start": 418.8,
+      "duration": 5.92
+    },
+    {
+      "text": "columns now when we get the logit sensor",
+      "start": 421.72,
+      "duration": 5.36
+    },
+    {
+      "text": "as the llm output every entry in the",
+      "start": 424.72,
+      "duration": 4.68
+    },
+    {
+      "text": "logic stenor does not correspond to",
+      "start": 427.08,
+      "duration": 3.88
+    },
+    {
+      "text": "probabilities all the entries",
+      "start": 429.4,
+      "duration": 3.519
+    },
+    {
+      "text": "corresponding corresponding to one token",
+      "start": 430.96,
+      "duration": 4.16
+    },
+    {
+      "text": "do not even add up to one so we need to",
+      "start": 432.919,
+      "duration": 4.041
+    },
+    {
+      "text": "implement the soft Max and convert this",
+      "start": 435.12,
+      "duration": 4.359
+    },
+    {
+      "text": "into Vector of probabilities so what",
+      "start": 436.96,
+      "duration": 4.04
+    },
+    {
+      "text": "this means is that when you look at the",
+      "start": 439.479,
+      "duration": 4.361
+    },
+    {
+      "text": "first row I each value here corresponds",
+      "start": 441.0,
+      "duration": 4.759
+    },
+    {
+      "text": "to how much probability is there for",
+      "start": 443.84,
+      "duration": 4.68
+    },
+    {
+      "text": "that token to be the next token so if",
+      "start": 445.759,
+      "duration": 4.321
+    },
+    {
+      "text": "the input is I",
+      "start": 448.52,
+      "duration": 3.92
+    },
+    {
+      "text": "uh every value here corresponds to",
+      "start": 450.08,
+      "duration": 4.519
+    },
+    {
+      "text": "what's the probability for that token to",
+      "start": 452.44,
+      "duration": 5.68
+    },
+    {
+      "text": "be after I so if the llm is trained the",
+      "start": 454.599,
+      "duration": 5.16
+    },
+    {
+      "text": "token index which has the maximum",
+      "start": 458.12,
+      "duration": 3.6
+    },
+    {
+      "text": "probability should correspond correspond",
+      "start": 459.759,
+      "duration": 4.041
+    },
+    {
+      "text": "to had because when I is the input had",
+      "start": 461.72,
+      "duration": 4.12
+    },
+    {
+      "text": "is the output similarly when you look at",
+      "start": 463.8,
+      "duration": 4.32
+    },
+    {
+      "text": "the second row I had is the input if the",
+      "start": 465.84,
+      "duration": 4.479
+    },
+    {
+      "text": "llm is trained the token which has the",
+      "start": 468.12,
+      "duration": 4.799
+    },
+    {
+      "text": "maximum probability should correspond to",
+      "start": 470.319,
+      "duration": 4.641
+    },
+    {
+      "text": "always because when I had is the input",
+      "start": 472.919,
+      "duration": 4.761
+    },
+    {
+      "text": "always is the output similarly when I",
+      "start": 474.96,
+      "duration": 6.16
+    },
+    {
+      "text": "had always thought is the input",
+      "start": 477.68,
+      "duration": 6.519
+    },
+    {
+      "text": "uh the token I the token here which",
+      "start": 481.12,
+      "duration": 4.84
+    },
+    {
+      "text": "corresponds or the index rather which",
+      "start": 484.199,
+      "duration": 3.84
+    },
+    {
+      "text": "corresponds to the maximum probability",
+      "start": 485.96,
+      "duration": 4.519
+    },
+    {
+      "text": "should correspond to uh the next word",
+      "start": 488.039,
+      "duration": 6.44
+    },
+    {
+      "text": "which is I had always uh thought or I",
+      "start": 490.479,
+      "duration": 7.72
+    },
+    {
+      "text": "had always thought Jack",
+      "start": 494.479,
+      "duration": 6.601
+    },
+    {
+      "text": "so let's see yeah I had always thought",
+      "start": 498.199,
+      "duration": 5.44
+    },
+    {
+      "text": "Jack so here the token ID which",
+      "start": 501.08,
+      "duration": 5.16
+    },
+    {
+      "text": "corresponds to the maximum value in this",
+      "start": 503.639,
+      "duration": 5.28
+    },
+    {
+      "text": "case this index should correspond to the",
+      "start": 506.24,
+      "duration": 5.72
+    },
+    {
+      "text": "token for Jack when the llm is actually",
+      "start": 508.919,
+      "duration": 5.281
+    },
+    {
+      "text": "trained now initially when we get this",
+      "start": 511.96,
+      "duration": 4.8
+    },
+    {
+      "text": "tensor of probabilities uh the llm is",
+      "start": 514.2,
+      "duration": 5.04
+    },
+    {
+      "text": "not trained right so what we will do is",
+      "start": 516.76,
+      "duration": 5.12
+    },
+    {
+      "text": "that we know the target we know the",
+      "start": 519.24,
+      "duration": 4.56
+    },
+    {
+      "text": "target values right we know the target",
+      "start": 521.88,
+      "duration": 3.92
+    },
+    {
+      "text": "which we want and we know the token in",
+      "start": 523.8,
+      "duration": 4.479
+    },
+    {
+      "text": "indexes of this target so for example",
+      "start": 525.8,
+      "duration": 4.84
+    },
+    {
+      "text": "for I is the input had is the output and",
+      "start": 528.279,
+      "duration": 4.641
+    },
+    {
+      "text": "that has a certain token Index right so",
+      "start": 530.64,
+      "duration": 4.96
+    },
+    {
+      "text": "let's say if I is the input and had is",
+      "start": 532.92,
+      "duration": 4.919
+    },
+    {
+      "text": "the output I want this token index to",
+      "start": 535.6,
+      "duration": 3.96
+    },
+    {
+      "text": "have the maximum value of the probab",
+      "start": 537.839,
+      "duration": 4.361
+    },
+    {
+      "text": "ility when I had is the input always is",
+      "start": 539.56,
+      "duration": 3.92
+    },
+    {
+      "text": "the output so let's say I want this",
+      "start": 542.2,
+      "duration": 3.6
+    },
+    {
+      "text": "token index so what we do here is that",
+      "start": 543.48,
+      "duration": 4.52
+    },
+    {
+      "text": "we just collect this list of targets and",
+      "start": 545.8,
+      "duration": 5.159
+    },
+    {
+      "text": "their token token IDs and we find the",
+      "start": 548.0,
+      "duration": 4.64
+    },
+    {
+      "text": "probabilities on in each row",
+      "start": 550.959,
+      "duration": 4.601
+    },
+    {
+      "text": "corresponding to these token IDs now the",
+      "start": 552.64,
+      "duration": 6.36
+    },
+    {
+      "text": "whole aim of this uh exercise of",
+      "start": 555.56,
+      "duration": 5.36
+    },
+    {
+      "text": "training llms is to make sure that these",
+      "start": 559.0,
+      "duration": 3.76
+    },
+    {
+      "text": "probabilities are as close to one as",
+      "start": 560.92,
+      "duration": 3.84
+    },
+    {
+      "text": "possible because then we'll make sure",
+      "start": 562.76,
+      "duration": 3.84
+    },
+    {
+      "text": "that the llm outputs are matching the",
+      "start": 564.76,
+      "duration": 4.16
+    },
+    {
+      "text": "target values which means that the next",
+      "start": 566.6,
+      "duration": 5.76
+    },
+    {
+      "text": "token which our llm is predicting uh is",
+      "start": 568.92,
+      "duration": 5.479
+    },
+    {
+      "text": "similar to the Target values Target",
+      "start": 572.36,
+      "duration": 4.479
+    },
+    {
+      "text": "value tokens but initially when the llm",
+      "start": 574.399,
+      "duration": 4.12
+    },
+    {
+      "text": "is not trained these probabilities will",
+      "start": 576.839,
+      "duration": 4.321
+    },
+    {
+      "text": "be not close to one at all so we employ",
+      "start": 578.519,
+      "duration": 5.121
+    },
+    {
+      "text": "the cross entropy loss and we find this",
+      "start": 581.16,
+      "duration": 5.359
+    },
+    {
+      "text": "negative log likelihood and the whole",
+      "start": 583.64,
+      "duration": 5.92
+    },
+    {
+      "text": "aim uh when we train the llm today is to",
+      "start": 586.519,
+      "duration": 4.681
+    },
+    {
+      "text": "make sure that this loss function",
+      "start": 589.56,
+      "duration": 3.88
+    },
+    {
+      "text": "decreases and it becomes close as close",
+      "start": 591.2,
+      "duration": 3.759
+    },
+    {
+      "text": "to zero as",
+      "start": 593.44,
+      "duration": 4.88
+    },
+    {
+      "text": "possible where the uh loss function is",
+      "start": 594.959,
+      "duration": 5.721
+    },
+    {
+      "text": "minimized so today what we are going to",
+      "start": 598.32,
+      "duration": 4.84
+    },
+    {
+      "text": "do is that all the parameters in the GPT",
+      "start": 600.68,
+      "duration": 4.44
+    },
+    {
+      "text": "architecture here all of the parameters",
+      "start": 603.16,
+      "duration": 3.88
+    },
+    {
+      "text": "we'll take a look at them shortly we are",
+      "start": 605.12,
+      "duration": 4.08
+    },
+    {
+      "text": "going to optimize them so that when the",
+      "start": 607.04,
+      "duration": 4.76
+    },
+    {
+      "text": "input inputs are fed into this model and",
+      "start": 609.2,
+      "duration": 4.4
+    },
+    {
+      "text": "when we take the loss function in the",
+      "start": 611.8,
+      "duration": 3.599
+    },
+    {
+      "text": "way I have outlined today the loss",
+      "start": 613.6,
+      "duration": 2.76
+    },
+    {
+      "text": "function is",
+      "start": 615.399,
+      "duration": 3.041
+    },
+    {
+      "text": "minimized uh I went through this in a",
+      "start": 616.36,
+      "duration": 4.0
+    },
+    {
+      "text": "fast manner because we had one hour",
+      "start": 618.44,
+      "duration": 5.24
+    },
+    {
+      "text": "lecture previously detailing this entire",
+      "start": 620.36,
+      "duration": 6.4
+    },
+    {
+      "text": "process okay now I hope you have",
+      "start": 623.68,
+      "duration": 4.839
+    },
+    {
+      "text": "solidified your understanding of how the",
+      "start": 626.76,
+      "duration": 4.12
+    },
+    {
+      "text": "loss function is calculated now that we",
+      "start": 628.519,
+      "duration": 4.32
+    },
+    {
+      "text": "have the loss function we are ready to",
+      "start": 630.88,
+      "duration": 3.88
+    },
+    {
+      "text": "do the llm",
+      "start": 632.839,
+      "duration": 4.12
+    },
+    {
+      "text": "pre-training so here what it means is",
+      "start": 634.76,
+      "duration": 3.879
+    },
+    {
+      "text": "that we are going to try to minimize the",
+      "start": 636.959,
+      "duration": 4.401
+    },
+    {
+      "text": "loss function as much as possible so we",
+      "start": 638.639,
+      "duration": 6.161
+    },
+    {
+      "text": "want the output the llm outputs to be as",
+      "start": 641.36,
+      "duration": 6.479
+    },
+    {
+      "text": "close as possible to the uh Target to",
+      "start": 644.8,
+      "duration": 5.2
+    },
+    {
+      "text": "the Target value tensor and for that",
+      "start": 647.839,
+      "duration": 4.321
+    },
+    {
+      "text": "we'll be doing back propagation so",
+      "start": 650.0,
+      "duration": 4.76
+    },
+    {
+      "text": "here's the pre-training loop schematic",
+      "start": 652.16,
+      "duration": 4.72
+    },
+    {
+      "text": "if you have worked with neural networks",
+      "start": 654.76,
+      "duration": 3.84
+    },
+    {
+      "text": "before if you have done machine learning",
+      "start": 656.88,
+      "duration": 2.88
+    },
+    {
+      "text": "or deep learning",
+      "start": 658.6,
+      "duration": 3.72
+    },
+    {
+      "text": "it's extremely simple to understand",
+      "start": 659.76,
+      "duration": 5.16
+    },
+    {
+      "text": "because once we have written down the",
+      "start": 662.32,
+      "duration": 4.88
+    },
+    {
+      "text": "entire loss function all we need to do",
+      "start": 664.92,
+      "duration": 4.88
+    },
+    {
+      "text": "is just do the backward pass and I I'll",
+      "start": 667.2,
+      "duration": 4.72
+    },
+    {
+      "text": "explain to you what this means so what",
+      "start": 669.8,
+      "duration": 4.44
+    },
+    {
+      "text": "we are going to do is that uh we are",
+      "start": 671.92,
+      "duration": 4.479
+    },
+    {
+      "text": "going to do multiple epochs so let's",
+      "start": 674.24,
+      "duration": 4.32
+    },
+    {
+      "text": "start understanding this step by step we",
+      "start": 676.399,
+      "duration": 4.44
+    },
+    {
+      "text": "are going to do multiple epochs one",
+      "start": 678.56,
+      "duration": 4.399
+    },
+    {
+      "text": "Epoch is going through the entire",
+      "start": 680.839,
+      "duration": 4.841
+    },
+    {
+      "text": "training set once now in each Epoch we",
+      "start": 682.959,
+      "duration": 5.521
+    },
+    {
+      "text": "have multiple batches right uh because",
+      "start": 685.68,
+      "duration": 4.64
+    },
+    {
+      "text": "the training set is divided into batches",
+      "start": 688.48,
+      "duration": 4.52
+    },
+    {
+      "text": "as I showed you we are going to uh look",
+      "start": 690.32,
+      "duration": 6.16
+    },
+    {
+      "text": "at one batch in one Loop and then in",
+      "start": 693.0,
+      "duration": 5.079
+    },
+    {
+      "text": "that batch what we are going to do is we",
+      "start": 696.48,
+      "duration": 4.24
+    },
+    {
+      "text": "are going to find the loss function in",
+      "start": 698.079,
+      "duration": 4.281
+    },
+    {
+      "text": "the same way which I have described to",
+      "start": 700.72,
+      "duration": 4.04
+    },
+    {
+      "text": "you right now and we even wrote a code",
+      "start": 702.36,
+      "duration": 4.12
+    },
+    {
+      "text": "for this in the last lecture I'm going",
+      "start": 704.76,
+      "duration": 3.84
+    },
+    {
+      "text": "to find the cross entropy loss function",
+      "start": 706.48,
+      "duration": 4.24
+    },
+    {
+      "text": "for the entire batch and then I'm going",
+      "start": 708.6,
+      "duration": 3.919
+    },
+    {
+      "text": "to do this step which is the backward",
+      "start": 710.72,
+      "duration": 4.4
+    },
+    {
+      "text": "path to calculate the loss gradients in",
+      "start": 712.519,
+      "duration": 4.521
+    },
+    {
+      "text": "this entire schematic this is the most",
+      "start": 715.12,
+      "duration": 4.56
+    },
+    {
+      "text": "important step the backward pass allows",
+      "start": 717.04,
+      "duration": 4.239
+    },
+    {
+      "text": "us to calculate the gradients of the",
+      "start": 719.68,
+      "duration": 3.48
+    },
+    {
+      "text": "loss and what the gradients of the loss",
+      "start": 721.279,
+      "duration": 3.921
+    },
+    {
+      "text": "will enable us to do is to update the",
+      "start": 723.16,
+      "duration": 4.2
+    },
+    {
+      "text": "model weights and parameters so let's",
+      "start": 725.2,
+      "duration": 5.0
+    },
+    {
+      "text": "say one particular parameter has a value",
+      "start": 727.36,
+      "duration": 5.88
+    },
+    {
+      "text": "of P old in one iteration in the in the",
+      "start": 730.2,
+      "duration": 5.199
+    },
+    {
+      "text": "next iteration its value will be",
+      "start": 733.24,
+      "duration": 4.839
+    },
+    {
+      "text": "something like",
+      "start": 735.399,
+      "duration": 7.041
+    },
+    {
+      "text": "this its value will change uh sorry this",
+      "start": 738.079,
+      "duration": 7.721
+    },
+    {
+      "text": "should be the other way around so this",
+      "start": 742.44,
+      "duration": 6.32
+    },
+    {
+      "text": "should be P new the new value is equal",
+      "start": 745.8,
+      "duration": 6.279
+    },
+    {
+      "text": "to the value minus the step size into",
+      "start": 748.76,
+      "duration": 6.0
+    },
+    {
+      "text": "the loss gradient so the loss gradient",
+      "start": 752.079,
+      "duration": 4.241
+    },
+    {
+      "text": "once we get these loss gradients they",
+      "start": 754.76,
+      "duration": 3.12
+    },
+    {
+      "text": "will enable us to Value all the",
+      "start": 756.32,
+      "duration": 4.44
+    },
+    {
+      "text": "parameters in our GPT architecture and",
+      "start": 757.88,
+      "duration": 4.48
+    },
+    {
+      "text": "if your question is what are these",
+      "start": 760.76,
+      "duration": 3.96
+    },
+    {
+      "text": "parameters I'm going to come to that in",
+      "start": 762.36,
+      "duration": 4.64
+    },
+    {
+      "text": "just a moment and then after we update",
+      "start": 764.72,
+      "duration": 4.08
+    },
+    {
+      "text": "the parameters we are going to print the",
+      "start": 767.0,
+      "duration": 3.56
+    },
+    {
+      "text": "training and validation losses we are",
+      "start": 768.8,
+      "duration": 3.719
+    },
+    {
+      "text": "going to see what the llm output is",
+      "start": 770.56,
+      "duration": 4.2
+    },
+    {
+      "text": "there just for visual inspection and",
+      "start": 772.519,
+      "duration": 4.601
+    },
+    {
+      "text": "then we are going to go to the next next",
+      "start": 774.76,
+      "duration": 4.48
+    },
+    {
+      "text": "batch when we go to the next batch we",
+      "start": 777.12,
+      "duration": 3.64
+    },
+    {
+      "text": "are going to reset the loss gradients",
+      "start": 779.24,
+      "duration": 3.56
+    },
+    {
+      "text": "from the previous batch to zero and then",
+      "start": 780.76,
+      "duration": 4.24
+    },
+    {
+      "text": "do the same process all over again for",
+      "start": 782.8,
+      "duration": 5.2
+    },
+    {
+      "text": "all the batches and we'll do this until",
+      "start": 785.0,
+      "duration": 5.76
+    },
+    {
+      "text": "we finish one training EPO Epoch and",
+      "start": 788.0,
+      "duration": 4.68
+    },
+    {
+      "text": "then we'll do this entire procedure for",
+      "start": 790.76,
+      "duration": 3.4
+    },
+    {
+      "text": "multiple training",
+      "start": 792.68,
+      "duration": 4.24
+    },
+    {
+      "text": "epochs just so that the training uh",
+      "start": 794.16,
+      "duration": 4.88
+    },
+    {
+      "text": "proceeds as many time as possible and",
+      "start": 796.92,
+      "duration": 4.12
+    },
+    {
+      "text": "the parameter values are updated as much",
+      "start": 799.04,
+      "duration": 4.599
+    },
+    {
+      "text": "as possible this is the main algorithm",
+      "start": 801.04,
+      "duration": 4.12
+    },
+    {
+      "text": "for pre-training the large language",
+      "start": 803.639,
+      "duration": 3.361
+    },
+    {
+      "text": "model and it looks pretty simplified",
+      "start": 805.16,
+      "duration": 4.239
+    },
+    {
+      "text": "right now but what we have done so far",
+      "start": 807.0,
+      "duration": 4.12
+    },
+    {
+      "text": "in all of the lectures we have conducted",
+      "start": 809.399,
+      "duration": 5.201
+    },
+    {
+      "text": "is that unless we had a way to calculate",
+      "start": 811.12,
+      "duration": 5.719
+    },
+    {
+      "text": "the loss function getting to this step",
+      "start": 814.6,
+      "duration": 3.56
+    },
+    {
+      "text": "getting the backward pass would have",
+      "start": 816.839,
+      "duration": 3.56
+    },
+    {
+      "text": "been impossible and to get this loss",
+      "start": 818.16,
+      "duration": 4.08
+    },
+    {
+      "text": "function right now to get this loss",
+      "start": 820.399,
+      "duration": 4.0
+    },
+    {
+      "text": "function we first needed to understand",
+      "start": 822.24,
+      "duration": 4.279
+    },
+    {
+      "text": "how this logic sensors are obtained how",
+      "start": 824.399,
+      "duration": 5.081
+    },
+    {
+      "text": "the llm output is obtained to get to how",
+      "start": 826.519,
+      "duration": 5.0
+    },
+    {
+      "text": "the llm output is obtained we need to",
+      "start": 829.48,
+      "duration": 4.0
+    },
+    {
+      "text": "understand this entire GPT architecture",
+      "start": 831.519,
+      "duration": 3.921
+    },
+    {
+      "text": "itself to understand this GPT",
+      "start": 833.48,
+      "duration": 3.32
+    },
+    {
+      "text": "architecture we need to understand",
+      "start": 835.44,
+      "duration": 3.04
+    },
+    {
+      "text": "tokenization positional embedding",
+      "start": 836.8,
+      "duration": 4.08
+    },
+    {
+      "text": "multi-ad attention Dropout layer feed",
+      "start": 838.48,
+      "duration": 5.44
+    },
+    {
+      "text": "forward networks Etc so without doing",
+      "start": 840.88,
+      "duration": 4.12
+    },
+    {
+      "text": "all of this it would have been",
+      "start": 843.92,
+      "duration": 2.599
+    },
+    {
+      "text": "impossible to calculate the loss",
+      "start": 845.0,
+      "duration": 3.079
+    },
+    {
+      "text": "function which I explained to you today",
+      "start": 846.519,
+      "duration": 4.601
+    },
+    {
+      "text": "in 5 minutes so these 5 minutes have",
+      "start": 848.079,
+      "duration": 6.161
+    },
+    {
+      "text": "required a hard work of 20 to 25",
+      "start": 851.12,
+      "duration": 5.12
+    },
+    {
+      "text": "lectures which have been covered",
+      "start": 854.24,
+      "duration": 4.159
+    },
+    {
+      "text": "previously so this is the training Loop",
+      "start": 856.24,
+      "duration": 4.159
+    },
+    {
+      "text": "schematic in in short we are we are",
+      "start": 858.399,
+      "duration": 4.0
+    },
+    {
+      "text": "finding the loss we are doing the",
+      "start": 860.399,
+      "duration": 3.721
+    },
+    {
+      "text": "backward pass to get the loss gradient",
+      "start": 862.399,
+      "duration": 3.8
+    },
+    {
+      "text": "in every iteration and we are updating",
+      "start": 864.12,
+      "duration": 4.04
+    },
+    {
+      "text": "the parameters based on these loss",
+      "start": 866.199,
+      "duration": 4.281
+    },
+    {
+      "text": "gradient values",
+      "start": 868.16,
+      "duration": 4.16
+    },
+    {
+      "text": "and our hope is that as we do the",
+      "start": 870.48,
+      "duration": 3.4
+    },
+    {
+      "text": "updating let's say the loss function",
+      "start": 872.32,
+      "duration": 3.56
+    },
+    {
+      "text": "landscape is this it will not be this at",
+      "start": 873.88,
+      "duration": 3.199
+    },
+    {
+      "text": "all because it's a huge",
+      "start": 875.88,
+      "duration": 3.84
+    },
+    {
+      "text": "multi-dimensional landscape uh if this",
+      "start": 877.079,
+      "duration": 4.56
+    },
+    {
+      "text": "is the loss function landscape and if we",
+      "start": 879.72,
+      "duration": 4.52
+    },
+    {
+      "text": "start from somewhere here our goal is to",
+      "start": 881.639,
+      "duration": 4.64
+    },
+    {
+      "text": "make the optimization so that at the end",
+      "start": 884.24,
+      "duration": 3.68
+    },
+    {
+      "text": "we reach this Minima where the loss",
+      "start": 886.279,
+      "duration": 3.24
+    },
+    {
+      "text": "function is",
+      "start": 887.92,
+      "duration": 4.88
+    },
+    {
+      "text": "minimized great so in this entire code",
+      "start": 889.519,
+      "duration": 4.841
+    },
+    {
+      "text": "the main step is finding the loss",
+      "start": 892.8,
+      "duration": 3.839
+    },
+    {
+      "text": "gradients and we are going to do that in",
+      "start": 894.36,
+      "duration": 4.039
+    },
+    {
+      "text": "Python through this method called loss.",
+      "start": 896.639,
+      "duration": 3.801
+    },
+    {
+      "text": "backward I'm going to show you how",
+      "start": 898.399,
+      "duration": 4.161
+    },
+    {
+      "text": "elegant this pre-training code is in",
+      "start": 900.44,
+      "duration": 4.399
+    },
+    {
+      "text": "just one line python essentially",
+      "start": 902.56,
+      "duration": 5.639
+    },
+    {
+      "text": "computes U or tensor flow pytorch",
+      "start": 904.839,
+      "duration": 5.321
+    },
+    {
+      "text": "essentially computes the entire backward",
+      "start": 908.199,
+      "duration": 4.56
+    },
+    {
+      "text": "pass in just one line of command that's",
+      "start": 910.16,
+      "duration": 4.599
+    },
+    {
+      "text": "pretty awesome but you need to",
+      "start": 912.759,
+      "duration": 4.08
+    },
+    {
+      "text": "understand why it is so awesome the",
+      "start": 914.759,
+      "duration": 4.52
+    },
+    {
+      "text": "reason it's so cool is because the sheer",
+      "start": 916.839,
+      "duration": 4.281
+    },
+    {
+      "text": "scale of the number of parameters we are",
+      "start": 919.279,
+      "duration": 4.0
+    },
+    {
+      "text": "dealing with so what we are essentially",
+      "start": 921.12,
+      "duration": 4.32
+    },
+    {
+      "text": "doing is that we have the inputs we pass",
+      "start": 923.279,
+      "duration": 3.721
+    },
+    {
+      "text": "them through the GPT model we get the",
+      "start": 925.44,
+      "duration": 4.6
+    },
+    {
+      "text": "logits we apply soft Max then we get the",
+      "start": 927.0,
+      "duration": 4.72
+    },
+    {
+      "text": "cross entropy loss between the output",
+      "start": 930.04,
+      "duration": 3.96
+    },
+    {
+      "text": "and the target this whole operation is",
+      "start": 931.72,
+      "duration": 4.479
+    },
+    {
+      "text": "differentiable which means that this",
+      "start": 934.0,
+      "duration": 4.12
+    },
+    {
+      "text": "gives us so once the loss is obtained we",
+      "start": 936.199,
+      "duration": 4.241
+    },
+    {
+      "text": "can do the back propagation and find the",
+      "start": 938.12,
+      "duration": 3.959
+    },
+    {
+      "text": "partial derivative of the loss with",
+      "start": 940.44,
+      "duration": 3.68
+    },
+    {
+      "text": "respect to all the parameters which come",
+      "start": 942.079,
+      "duration": 4.081
+    },
+    {
+      "text": "in in the model and mostly the",
+      "start": 944.12,
+      "duration": 4.68
+    },
+    {
+      "text": "parameters come in this step in fact I",
+      "start": 946.16,
+      "duration": 4.32
+    },
+    {
+      "text": "think all of the parameters come in this",
+      "start": 948.8,
+      "duration": 4.24
+    },
+    {
+      "text": "step in the GPT model itself so the back",
+      "start": 950.48,
+      "duration": 4.76
+    },
+    {
+      "text": "propagation needs us to understand what",
+      "start": 953.04,
+      "duration": 5.039
+    },
+    {
+      "text": "makes the GPT model differentiable so if",
+      "start": 955.24,
+      "duration": 4.719
+    },
+    {
+      "text": "you look at the GP model you will see",
+      "start": 958.079,
+      "duration": 5.2
+    },
+    {
+      "text": "that this is the workflow and",
+      "start": 959.959,
+      "duration": 5.0
+    },
+    {
+      "text": "differentiability is ensured and",
+      "start": 963.279,
+      "duration": 3.521
+    },
+    {
+      "text": "maintained at every single step of this",
+      "start": 964.959,
+      "duration": 3.68
+    },
+    {
+      "text": "workflow so if you have the loss",
+      "start": 966.8,
+      "duration": 3.68
+    },
+    {
+      "text": "function over here you can back",
+      "start": 968.639,
+      "duration": 3.44
+    },
+    {
+      "text": "propagate it and find the partial",
+      "start": 970.48,
+      "duration": 3.359
+    },
+    {
+      "text": "derivative of the loss with respect to",
+      "start": 972.079,
+      "duration": 3.641
+    },
+    {
+      "text": "all of the parameters which come within",
+      "start": 973.839,
+      "duration": 4.24
+    },
+    {
+      "text": "this within all of these layers and if",
+      "start": 975.72,
+      "duration": 4.84
+    },
+    {
+      "text": "you add all of these parameters together",
+      "start": 978.079,
+      "duration": 4.801
+    },
+    {
+      "text": "the number of parameters will be around",
+      "start": 980.56,
+      "duration": 5.16
+    },
+    {
+      "text": "161 million parameters I'm going to show",
+      "start": 982.88,
+      "duration": 6.16
+    },
+    {
+      "text": "show you how it comes to 161 million but",
+      "start": 985.72,
+      "duration": 4.72
+    },
+    {
+      "text": "through this one line of code through",
+      "start": 989.04,
+      "duration": 3.0
+    },
+    {
+      "text": "loss. backwards we are essentially",
+      "start": 990.44,
+      "duration": 3.839
+    },
+    {
+      "text": "finding the gradient of the loss with",
+      "start": 992.04,
+      "duration": 4.44
+    },
+    {
+      "text": "respect to all of these parameter values",
+      "start": 994.279,
+      "duration": 3.961
+    },
+    {
+      "text": "and then updating all of these parameter",
+      "start": 996.48,
+      "duration": 4.039
+    },
+    {
+      "text": "values isn't that pretty awesome the",
+      "start": 998.24,
+      "duration": 3.959
+    },
+    {
+      "text": "sheer scale of these operations would",
+      "start": 1000.519,
+      "duration": 3.76
+    },
+    {
+      "text": "have been impossible to do 50 years back",
+      "start": 1002.199,
+      "duration": 3.64
+    },
+    {
+      "text": "when compute resources were not",
+      "start": 1004.279,
+      "duration": 4.841
+    },
+    {
+      "text": "available but now I can do this backward",
+      "start": 1005.839,
+      "duration": 6.201
+    },
+    {
+      "text": "pass and this optimization on my laptop",
+      "start": 1009.12,
+      "duration": 6.44
+    },
+    {
+      "text": "and uh I did this training in 6 minutes",
+      "start": 1012.04,
+      "duration": 5.32
+    },
+    {
+      "text": "uh which I think even on your laptop you",
+      "start": 1015.56,
+      "duration": 3.88
+    },
+    {
+      "text": "can do it in five to 6 minutes we",
+      "start": 1017.36,
+      "duration": 4.76
+    },
+    {
+      "text": "optimized 161 million parameters in this",
+      "start": 1019.44,
+      "duration": 4.759
+    },
+    {
+      "text": "much amount of time and I'll show you",
+      "start": 1022.12,
+      "duration": 5.199
+    },
+    {
+      "text": "how we can do that first let me uh draw",
+      "start": 1024.199,
+      "duration": 4.88
+    },
+    {
+      "text": "your attention to what makes the number",
+      "start": 1027.319,
+      "duration": 5.24
+    },
+    {
+      "text": "of parameters to be this high so uh if",
+      "start": 1029.079,
+      "duration": 6.081
+    },
+    {
+      "text": "you have followed the GPT model the GPT",
+      "start": 1032.559,
+      "duration": 3.961
+    },
+    {
+      "text": "model consists of the embedding",
+      "start": 1035.16,
+      "duration": 2.84
+    },
+    {
+      "text": "parameters the token embeddings",
+      "start": 1036.52,
+      "duration": 3.559
+    },
+    {
+      "text": "positional embeddings it consists of the",
+      "start": 1038.0,
+      "duration": 4.439
+    },
+    {
+      "text": "Transformer block parameters and it also",
+      "start": 1040.079,
+      "duration": 4.801
+    },
+    {
+      "text": "consists of the final layer before we",
+      "start": 1042.439,
+      "duration": 4.48
+    },
+    {
+      "text": "get the logits so the embedding",
+      "start": 1044.88,
+      "duration": 4.08
+    },
+    {
+      "text": "parameters have the token embeddings",
+      "start": 1046.919,
+      "duration": 4.961
+    },
+    {
+      "text": "whose size is equal to uh the vocabulary",
+      "start": 1048.96,
+      "duration": 4.8
+    },
+    {
+      "text": "size multiplied by the embedding",
+      "start": 1051.88,
+      "duration": 4.4
+    },
+    {
+      "text": "Dimension and the positional embedding",
+      "start": 1053.76,
+      "duration": 4.76
+    },
+    {
+      "text": "which is defined by the context size",
+      "start": 1056.28,
+      "duration": 4.72
+    },
+    {
+      "text": "multiplied by the embedding Dimension if",
+      "start": 1058.52,
+      "duration": 4.84
+    },
+    {
+      "text": "you add the these two parameters this is",
+      "start": 1061.0,
+      "duration": 5.24
+    },
+    {
+      "text": "38.4 million these parameters are not",
+      "start": 1063.36,
+      "duration": 4.679
+    },
+    {
+      "text": "known to us we are even optimizing for",
+      "start": 1066.24,
+      "duration": 4.0
+    },
+    {
+      "text": "the token and positional embedding",
+      "start": 1068.039,
+      "duration": 4.0
+    },
+    {
+      "text": "parameters now if you look at the",
+      "start": 1070.24,
+      "duration": 4.24
+    },
+    {
+      "text": "multi-ad attention we have the query key",
+      "start": 1072.039,
+      "duration": 4.681
+    },
+    {
+      "text": "and value trainable weights so there are",
+      "start": 1074.48,
+      "duration": 4.48
+    },
+    {
+      "text": "three matrices here and each M each each",
+      "start": 1076.72,
+      "duration": 4.76
+    },
+    {
+      "text": "matrice has dimension of 768 which is",
+      "start": 1078.96,
+      "duration": 4.8
+    },
+    {
+      "text": "the input embedding and the output embed",
+      "start": 1081.48,
+      "duration": 4.319
+    },
+    {
+      "text": "embedding which are generally same in",
+      "start": 1083.76,
+      "duration": 4.0
+    },
+    {
+      "text": "this multi- tension and multiplied by",
+      "start": 1085.799,
+      "duration": 3.88
+    },
+    {
+      "text": "three because we have query key and",
+      "start": 1087.76,
+      "duration": 5.08
+    },
+    {
+      "text": "value three matrices so this is 1.77",
+      "start": 1089.679,
+      "duration": 5.12
+    },
+    {
+      "text": "million parameters and then there is",
+      "start": 1092.84,
+      "duration": 4.959
+    },
+    {
+      "text": "also an output head um whose number of",
+      "start": 1094.799,
+      "duration": 5.481
+    },
+    {
+      "text": "parameters are equal to 59 million the",
+      "start": 1097.799,
+      "duration": 3.88
+    },
+    {
+      "text": "total number of parameters in the",
+      "start": 1100.28,
+      "duration": 4.0
+    },
+    {
+      "text": "multi-ad attention block that itself is",
+      "start": 1101.679,
+      "duration": 7.401
+    },
+    {
+      "text": "equal to uh 2.36 million so 2. 36",
+      "start": 1104.28,
+      "duration": 6.48
+    },
+    {
+      "text": "million parameters here and then we have",
+      "start": 1109.08,
+      "duration": 3.76
+    },
+    {
+      "text": "a feed forward neural network in the",
+      "start": 1110.76,
+      "duration": 4.68
+    },
+    {
+      "text": "Transformer block and the feed forward",
+      "start": 1112.84,
+      "duration": 4.6
+    },
+    {
+      "text": "neural network is like this expansion",
+      "start": 1115.44,
+      "duration": 3.76
+    },
+    {
+      "text": "contraction type of a setting where we",
+      "start": 1117.44,
+      "duration": 3.84
+    },
+    {
+      "text": "have the input equal to the embedding",
+      "start": 1119.2,
+      "duration": 4.24
+    },
+    {
+      "text": "Dimension that's projected into an",
+      "start": 1121.28,
+      "duration": 4.24
+    },
+    {
+      "text": "hidden layer which whose dimensions are",
+      "start": 1123.44,
+      "duration": 4.599
+    },
+    {
+      "text": "four times the embedding Dimension and",
+      "start": 1125.52,
+      "duration": 5.399
+    },
+    {
+      "text": "then we compress it back to the original",
+      "start": 1128.039,
+      "duration": 6.441
+    },
+    {
+      "text": "Dimension so uh the number of parameters",
+      "start": 1130.919,
+      "duration": 6.481
+    },
+    {
+      "text": "here are 768 which is the embedding",
+      "start": 1134.48,
+      "duration": 5.12
+    },
+    {
+      "text": "Dimension then 4 into 7 68 which are the",
+      "start": 1137.4,
+      "duration": 4.399
+    },
+    {
+      "text": "number of parameters here so these are",
+      "start": 1139.6,
+      "duration": 4.559
+    },
+    {
+      "text": "the parameters in this expansion layer",
+      "start": 1141.799,
+      "duration": 3.921
+    },
+    {
+      "text": "and these are the number of parameters",
+      "start": 1144.159,
+      "duration": 3.201
+    },
+    {
+      "text": "in the contraction layer both are the",
+      "start": 1145.72,
+      "duration": 4.8
+    },
+    {
+      "text": "same and they add up to 4.72 million now",
+      "start": 1147.36,
+      "duration": 4.679
+    },
+    {
+      "text": "if you add up the parameters in the",
+      "start": 1150.52,
+      "duration": 3.039
+    },
+    {
+      "text": "multi-ad attention the feed forward",
+      "start": 1152.039,
+      "duration": 3.64
+    },
+    {
+      "text": "neural network and the output head it",
+      "start": 1153.559,
+      "duration": 6.681
+    },
+    {
+      "text": "comes out to be 2.36 + 4.72 million this",
+      "start": 1155.679,
+      "duration": 5.961
+    },
+    {
+      "text": "these are the number of parameters in",
+      "start": 1160.24,
+      "duration": 3.76
+    },
+    {
+      "text": "one Transformer block and we have 12",
+      "start": 1161.64,
+      "duration": 4.6
+    },
+    {
+      "text": "Transformer blocks so the total number",
+      "start": 1164.0,
+      "duration": 3.88
+    },
+    {
+      "text": "of parameters which are coming from the",
+      "start": 1166.24,
+      "duration": 5.08
+    },
+    {
+      "text": "Transformer block itself is 85.2 million",
+      "start": 1167.88,
+      "duration": 5.36
+    },
+    {
+      "text": "parameters and then there is a final",
+      "start": 1171.32,
+      "duration": 3.599
+    },
+    {
+      "text": "layer which is a soft",
+      "start": 1173.24,
+      "duration": 4.76
+    },
+    {
+      "text": "Max uh which gets us the logic tensor",
+      "start": 1174.919,
+      "duration": 4.721
+    },
+    {
+      "text": "and the number of parameters here are",
+      "start": 1178.0,
+      "duration": 3.32
+    },
+    {
+      "text": "the embedding Dimension multiplied by",
+      "start": 1179.64,
+      "duration": 3.88
+    },
+    {
+      "text": "the vocabulary size and that's 38.4",
+      "start": 1181.32,
+      "duration": 4.64
+    },
+    {
+      "text": "million parameters so if you add up this",
+      "start": 1183.52,
+      "duration": 4.32
+    },
+    {
+      "text": "number of parameters together the",
+      "start": 1185.96,
+      "duration": 4.56
+    },
+    {
+      "text": "embedding has 38.4 million Transformer",
+      "start": 1187.84,
+      "duration": 5.24
+    },
+    {
+      "text": "has 85.2 million and then the final",
+      "start": 1190.52,
+      "duration": 5.2
+    },
+    {
+      "text": "layer is 38.4 million so the total",
+      "start": 1193.08,
+      "duration": 4.599
+    },
+    {
+      "text": "number of parameters if you add up are",
+      "start": 1195.72,
+      "duration": 3.64
+    },
+    {
+      "text": "162 million",
+      "start": 1197.679,
+      "duration": 3.521
+    },
+    {
+      "text": "gpt2 on the other hand the smallest",
+      "start": 1199.36,
+      "duration": 4.28
+    },
+    {
+      "text": "model is 124 million right so the reason",
+      "start": 1201.2,
+      "duration": 4.16
+    },
+    {
+      "text": "between this discrepancy is that they",
+      "start": 1203.64,
+      "duration": 4.2
+    },
+    {
+      "text": "use something called weight time so in",
+      "start": 1205.36,
+      "duration": 5.96
+    },
+    {
+      "text": "the output projection layer they recycle",
+      "start": 1207.84,
+      "duration": 6.0
+    },
+    {
+      "text": "the uh same number of parameters in the",
+      "start": 1211.32,
+      "duration": 3.52
+    },
+    {
+      "text": "embedding",
+      "start": 1213.84,
+      "duration": 4.839
+    },
+    {
+      "text": "layer so hence we we reduce those many",
+      "start": 1214.84,
+      "duration": 6.199
+    },
+    {
+      "text": "number of parameters and that's why the",
+      "start": 1218.679,
+      "duration": 4.401
+    },
+    {
+      "text": "number of parameters in gpt2 smallest",
+      "start": 1221.039,
+      "duration": 4.76
+    },
+    {
+      "text": "model comes out to be 124 million in any",
+      "start": 1223.08,
+      "duration": 4.599
+    },
+    {
+      "text": "ways I want to illustrate here the scale",
+      "start": 1225.799,
+      "duration": 3.921
+    },
+    {
+      "text": "of this operation and I want you to",
+      "start": 1227.679,
+      "duration": 3.48
+    },
+    {
+      "text": "understand how the number of parameters",
+      "start": 1229.72,
+      "duration": 3.959
+    },
+    {
+      "text": "comes to be of the order of 100 million",
+      "start": 1231.159,
+      "duration": 4.52
+    },
+    {
+      "text": "so when we do back propagation what we",
+      "start": 1233.679,
+      "duration": 3.641
+    },
+    {
+      "text": "are doing is that for each of these",
+      "start": 1235.679,
+      "duration": 4.441
+    },
+    {
+      "text": "parameters we'll first get this gradient",
+      "start": 1237.32,
+      "duration": 5.359
+    },
+    {
+      "text": "and that's obtained in this step you see",
+      "start": 1240.12,
+      "duration": 4.36
+    },
+    {
+      "text": "uh backward pass to calculate gradients",
+      "start": 1242.679,
+      "duration": 3.441
+    },
+    {
+      "text": "and once we get the gradients we are",
+      "start": 1244.48,
+      "duration": 4.52
+    },
+    {
+      "text": "going to update all of the model weights",
+      "start": 1246.12,
+      "duration": 4.52
+    },
+    {
+      "text": "uh so the way to update the model",
+      "start": 1249.0,
+      "duration": 3.32
+    },
+    {
+      "text": "weights so this is just a simple",
+      "start": 1250.64,
+      "duration": 3.8
+    },
+    {
+      "text": "gradient descent which I have shown in",
+      "start": 1252.32,
+      "duration": 3.76
+    },
+    {
+      "text": "the actual code we'll use a version",
+      "start": 1254.44,
+      "duration": 3.359
+    },
+    {
+      "text": "which is called Adam which is a bit more",
+      "start": 1256.08,
+      "duration": 4.719
+    },
+    {
+      "text": "complex but at the underlying core the",
+      "start": 1257.799,
+      "duration": 5.081
+    },
+    {
+      "text": "operation is similar we get the",
+      "start": 1260.799,
+      "duration": 3.441
+    },
+    {
+      "text": "gradients which is the partial",
+      "start": 1262.88,
+      "duration": 2.88
+    },
+    {
+      "text": "derivative of loss with respect to the",
+      "start": 1264.24,
+      "duration": 3.4
+    },
+    {
+      "text": "weights and then we update all the",
+      "start": 1265.76,
+      "duration": 3.76
+    },
+    {
+      "text": "parameter values based on this gradient",
+      "start": 1267.64,
+      "duration": 3.519
+    },
+    {
+      "text": "in the backward",
+      "start": 1269.52,
+      "duration": 4.32
+    },
+    {
+      "text": "pass awesome right so this is how the",
+      "start": 1271.159,
+      "duration": 5.081
+    },
+    {
+      "text": "parameters are going to be updated in",
+      "start": 1273.84,
+      "duration": 5.04
+    },
+    {
+      "text": "each uh in each iteration and we hope",
+      "start": 1276.24,
+      "duration": 4.88
+    },
+    {
+      "text": "that as the parameters are updated the",
+      "start": 1278.88,
+      "duration": 4.32
+    },
+    {
+      "text": "loss function value goes on decreasing",
+      "start": 1281.12,
+      "duration": 4.039
+    },
+    {
+      "text": "like I have shown over here and it",
+      "start": 1283.2,
+      "duration": 4.56
+    },
+    {
+      "text": "reaches some sort of a Minima that is",
+      "start": 1285.159,
+      "duration": 4.961
+    },
+    {
+      "text": "what the go is so let's see whether this",
+      "start": 1287.76,
+      "duration": 4.48
+    },
+    {
+      "text": "goal is satisfied now what I'm going to",
+      "start": 1290.12,
+      "duration": 4.0
+    },
+    {
+      "text": "do is I'm going to take you through code",
+      "start": 1292.24,
+      "duration": 3.2
+    },
+    {
+      "text": "and we are going to implement the",
+      "start": 1294.12,
+      "duration": 3.84
+    },
+    {
+      "text": "pre-training loop for the large language",
+      "start": 1295.44,
+      "duration": 5.52
+    },
+    {
+      "text": "model so the loop looks like this I I",
+      "start": 1297.96,
+      "duration": 5.36
+    },
+    {
+      "text": "want to draw your attention to uh",
+      "start": 1300.96,
+      "duration": 3.92
+    },
+    {
+      "text": "something like so I want to draw your",
+      "start": 1303.32,
+      "duration": 3.16
+    },
+    {
+      "text": "attention first to the most important",
+      "start": 1304.88,
+      "duration": 3.679
+    },
+    {
+      "text": "part what we are going to do is that",
+      "start": 1306.48,
+      "duration": 3.64
+    },
+    {
+      "text": "remember I mentioned that we have a",
+      "start": 1308.559,
+      "duration": 3.681
+    },
+    {
+      "text": "loader a data loader for the training",
+      "start": 1310.12,
+      "duration": 4.679
+    },
+    {
+      "text": "and the validation set correct so first",
+      "start": 1312.24,
+      "duration": 4.12
+    },
+    {
+      "text": "what we are going to do is that we are",
+      "start": 1314.799,
+      "duration": 3.201
+    },
+    {
+      "text": "going to look at the training loader",
+      "start": 1316.36,
+      "duration": 3.96
+    },
+    {
+      "text": "first and we are going to divide it into",
+      "start": 1318.0,
+      "duration": 4.24
+    },
+    {
+      "text": "the input batch and the target batch",
+      "start": 1320.32,
+      "duration": 3.68
+    },
+    {
+      "text": "this is similar to what I explained to",
+      "start": 1322.24,
+      "duration": 3.439
+    },
+    {
+      "text": "you right now over",
+      "start": 1324.0,
+      "duration": 4.12
+    },
+    {
+      "text": "here see when I say input batch and",
+      "start": 1325.679,
+      "duration": 4.641
+    },
+    {
+      "text": "Target batch always keep this this in",
+      "start": 1328.12,
+      "duration": 4.36
+    },
+    {
+      "text": "mind so the data set is divided into",
+      "start": 1330.32,
+      "duration": 4.4
+    },
+    {
+      "text": "input batch and Target batches so there",
+      "start": 1332.48,
+      "duration": 3.92
+    },
+    {
+      "text": "are multiple batches like this and at",
+      "start": 1334.72,
+      "duration": 4.319
+    },
+    {
+      "text": "one time I'm processing one such batch",
+      "start": 1336.4,
+      "duration": 4.48
+    },
+    {
+      "text": "so at one time I'll look at one input",
+      "start": 1339.039,
+      "duration": 3.681
+    },
+    {
+      "text": "and one target batch and I'll find the",
+      "start": 1340.88,
+      "duration": 3.52
+    },
+    {
+      "text": "loss between the input and the target",
+      "start": 1342.72,
+      "duration": 4.0
+    },
+    {
+      "text": "batch how do I find the loss using this",
+      "start": 1344.4,
+      "duration": 4.6
+    },
+    {
+      "text": "same workflow using the category cross",
+      "start": 1346.72,
+      "duration": 6.24
+    },
+    {
+      "text": "entropy towards the end I find the loss",
+      "start": 1349.0,
+      "duration": 6.24
+    },
+    {
+      "text": "that is this step and then this this",
+      "start": 1352.96,
+      "duration": 4.04
+    },
+    {
+      "text": "step right here is the most important",
+      "start": 1355.24,
+      "duration": 3.64
+    },
+    {
+      "text": "step in this whole code we are doing",
+      "start": 1357.0,
+      "duration": 4.64
+    },
+    {
+      "text": "loss do backward what the loss. backward",
+      "start": 1358.88,
+      "duration": 4.48
+    },
+    {
+      "text": "does is that it calculates the backward",
+      "start": 1361.64,
+      "duration": 3.8
+    },
+    {
+      "text": "pass which means that it will calculate",
+      "start": 1363.36,
+      "duration": 4.0
+    },
+    {
+      "text": "the gradient of the loss with respect to",
+      "start": 1365.44,
+      "duration": 4.68
+    },
+    {
+      "text": "all of the parameters all of the 160",
+      "start": 1367.36,
+      "duration": 4.52
+    },
+    {
+      "text": "million parameters this one step is",
+      "start": 1370.12,
+      "duration": 4.08
+    },
+    {
+      "text": "going to find the gradient of the loss",
+      "start": 1371.88,
+      "duration": 4.0
+    },
+    {
+      "text": "then we are going to do Optimizer dot",
+      "start": 1374.2,
+      "duration": 4.0
+    },
+    {
+      "text": "step what this Optimizer do step does is",
+      "start": 1375.88,
+      "duration": 4.919
+    },
+    {
+      "text": "that it essentially looks at",
+      "start": 1378.2,
+      "duration": 5.24
+    },
+    {
+      "text": "uh it essentially looks at this update",
+      "start": 1380.799,
+      "duration": 4.921
+    },
+    {
+      "text": "Rule and it will update the parameter",
+      "start": 1383.44,
+      "duration": 4.239
+    },
+    {
+      "text": "values based on the gradient values",
+      "start": 1385.72,
+      "duration": 4.88
+    },
+    {
+      "text": "which are obtained so this is the update",
+      "start": 1387.679,
+      "duration": 4.36
+    },
+    {
+      "text": "model weights",
+      "start": 1390.6,
+      "duration": 4.84
+    },
+    {
+      "text": "part and what I'm doing is that I'm just",
+      "start": 1392.039,
+      "duration": 6.361
+    },
+    {
+      "text": "uh mentioning how many tokens the model",
+      "start": 1395.44,
+      "duration": 5.08
+    },
+    {
+      "text": "has seen and I'll show you where this",
+      "start": 1398.4,
+      "duration": 4.6
+    },
+    {
+      "text": "number comes into the picture but let's",
+      "start": 1400.52,
+      "duration": 4.279
+    },
+    {
+      "text": "say we are looking at the input and",
+      "start": 1403.0,
+      "duration": 4.039
+    },
+    {
+      "text": "Target batch and the cont context size",
+      "start": 1404.799,
+      "duration": 4.161
+    },
+    {
+      "text": "is uh 256",
+      "start": 1407.039,
+      "duration": 4.441
+    },
+    {
+      "text": "so we are looking at 256 tokens in one",
+      "start": 1408.96,
+      "duration": 4.64
+    },
+    {
+      "text": "sample 256 in the second sample so we",
+      "start": 1411.48,
+      "duration": 5.079
+    },
+    {
+      "text": "are looking at 512 tokens in one batch",
+      "start": 1413.6,
+      "duration": 4.679
+    },
+    {
+      "text": "in the one input batch at a time so the",
+      "start": 1416.559,
+      "duration": 4.24
+    },
+    {
+      "text": "tokens seen will just return the number",
+      "start": 1418.279,
+      "duration": 4.921
+    },
+    {
+      "text": "of tokens which we are seeing at a",
+      "start": 1420.799,
+      "duration": 4.48
+    },
+    {
+      "text": "particular time and you see we are doing",
+      "start": 1423.2,
+      "duration": 4.479
+    },
+    {
+      "text": "so it will get added up as the as we",
+      "start": 1425.279,
+      "duration": 4.721
+    },
+    {
+      "text": "Loop through different number of batches",
+      "start": 1427.679,
+      "duration": 4.36
+    },
+    {
+      "text": "so this Loop is for going through each",
+      "start": 1430.0,
+      "duration": 4.44
+    },
+    {
+      "text": "batch in the training data set and this",
+      "start": 1432.039,
+      "duration": 5.801
+    },
+    {
+      "text": "Loop is for the number of epoch so after",
+      "start": 1434.44,
+      "duration": 5.28
+    },
+    {
+      "text": "we go through all of the batches we we",
+      "start": 1437.84,
+      "duration": 4.76
+    },
+    {
+      "text": "will do the same thing again uh so the",
+      "start": 1439.72,
+      "duration": 6.24
+    },
+    {
+      "text": "number of epo is specified by numor EPO",
+      "start": 1442.6,
+      "duration": 5.76
+    },
+    {
+      "text": "right now what we are doing is that this",
+      "start": 1445.96,
+      "duration": 4.319
+    },
+    {
+      "text": "step is actually an evaluation step so",
+      "start": 1448.36,
+      "duration": 3.6
+    },
+    {
+      "text": "you can even get rid of this but it's",
+      "start": 1450.279,
+      "duration": 3.88
+    },
+    {
+      "text": "important for us to see the validation",
+      "start": 1451.96,
+      "duration": 4.199
+    },
+    {
+      "text": "loss so in this step what we are doing",
+      "start": 1454.159,
+      "duration": 3.961
+    },
+    {
+      "text": "is that we are going to define a",
+      "start": 1456.159,
+      "duration": 4.201
+    },
+    {
+      "text": "function called evaluate model and we",
+      "start": 1458.12,
+      "duration": 4.36
+    },
+    {
+      "text": "are going to get the training loss and",
+      "start": 1460.36,
+      "duration": 3.76
+    },
+    {
+      "text": "the validation loss and we are going to",
+      "start": 1462.48,
+      "duration": 4.04
+    },
+    {
+      "text": "print these out as the training proceeds",
+      "start": 1464.12,
+      "duration": 4.0
+    },
+    {
+      "text": "so let me show you what the evaluate",
+      "start": 1466.52,
+      "duration": 3.56
+    },
+    {
+      "text": "model function looks like the evaluate",
+      "start": 1468.12,
+      "duration": 4.48
+    },
+    {
+      "text": "model function is actually pretty simple",
+      "start": 1470.08,
+      "duration": 6.079
+    },
+    {
+      "text": "we calculate the loss U the Cal loss",
+      "start": 1472.6,
+      "duration": 5.72
+    },
+    {
+      "text": "loader is we calculate the loss for the",
+      "start": 1476.159,
+      "duration": 3.88
+    },
+    {
+      "text": "training loader and we calculate the",
+      "start": 1478.32,
+      "duration": 3.359
+    },
+    {
+      "text": "loss for the validation loader for the",
+      "start": 1480.039,
+      "duration": 3.721
+    },
+    {
+      "text": "entire data set and we have defined",
+      "start": 1481.679,
+      "duration": 4.281
+    },
+    {
+      "text": "these functions before see in the",
+      "start": 1483.76,
+      "duration": 4.039
+    },
+    {
+      "text": "previous lecture we used the same two",
+      "start": 1485.96,
+      "duration": 3.439
+    },
+    {
+      "text": "functions Cal Closs loader for the",
+      "start": 1487.799,
+      "duration": 3.521
+    },
+    {
+      "text": "training and the validation and it",
+      "start": 1489.399,
+      "duration": 3.361
+    },
+    {
+      "text": "Returns the training and the validation",
+      "start": 1491.32,
+      "duration": 4.04
+    },
+    {
+      "text": "lots for the entire data set at that",
+      "start": 1492.76,
+      "duration": 6.12
+    },
+    {
+      "text": "particular uh at when that particular",
+      "start": 1495.36,
+      "duration": 5.559
+    },
+    {
+      "text": "batch is being processed so what we'll",
+      "start": 1498.88,
+      "duration": 3.76
+    },
+    {
+      "text": "do is that after the first batch is",
+      "start": 1500.919,
+      "duration": 3.961
+    },
+    {
+      "text": "processed we will run this part which",
+      "start": 1502.64,
+      "duration": 4.039
+    },
+    {
+      "text": "means that after the first batch is",
+      "start": 1504.88,
+      "duration": 4.48
+    },
+    {
+      "text": "processed we will evaluate the model and",
+      "start": 1506.679,
+      "duration": 4.041
+    },
+    {
+      "text": "we will get the training and the",
+      "start": 1509.36,
+      "duration": 3.679
+    },
+    {
+      "text": "validation loss correct but we are going",
+      "start": 1510.72,
+      "duration": 5.36
+    },
+    {
+      "text": "to show it we are going to show it",
+      "start": 1513.039,
+      "duration": 6.12
+    },
+    {
+      "text": "only uh only at a particular evaluation",
+      "start": 1516.08,
+      "duration": 5.36
+    },
+    {
+      "text": "frequency so what I'm showing is that",
+      "start": 1519.159,
+      "duration": 4.76
+    },
+    {
+      "text": "here I'm set I will set the evaluation",
+      "start": 1521.44,
+      "duration": 5.0
+    },
+    {
+      "text": "iteration and the evaluation frequency",
+      "start": 1523.919,
+      "duration": 4.64
+    },
+    {
+      "text": "to be equal to five which means means",
+      "start": 1526.44,
+      "duration": 4.44
+    },
+    {
+      "text": "that after every five batches are",
+      "start": 1528.559,
+      "duration": 4.521
+    },
+    {
+      "text": "processed only then I will show the",
+      "start": 1530.88,
+      "duration": 4.0
+    },
+    {
+      "text": "training and the validation loss so",
+      "start": 1533.08,
+      "duration": 3.88
+    },
+    {
+      "text": "remember what is happening here when one",
+      "start": 1534.88,
+      "duration": 3.799
+    },
+    {
+      "text": "batch is processed Global step will be",
+      "start": 1536.96,
+      "duration": 3.439
+    },
+    {
+      "text": "one when the second batch is processed",
+      "start": 1538.679,
+      "duration": 3.72
+    },
+    {
+      "text": "Global step will be two now if the",
+      "start": 1540.399,
+      "duration": 4.16
+    },
+    {
+      "text": "evaluation frequency is five this will",
+      "start": 1542.399,
+      "duration": 4.76
+    },
+    {
+      "text": "be zero only when Global step is equal",
+      "start": 1544.559,
+      "duration": 4.12
+    },
+    {
+      "text": "to five",
+      "start": 1547.159,
+      "duration": 4.321
+    },
+    {
+      "text": "right uh that is when the remainder will",
+      "start": 1548.679,
+      "duration": 5.321
+    },
+    {
+      "text": "be zero and only at that step only at",
+      "start": 1551.48,
+      "duration": 4.6
+    },
+    {
+      "text": "that when I reach batch number five I am",
+      "start": 1554.0,
+      "duration": 3.64
+    },
+    {
+      "text": "going to calculate the training and the",
+      "start": 1556.08,
+      "duration": 3.0
+    },
+    {
+      "text": "validation loss and I'm going to print",
+      "start": 1557.64,
+      "duration": 3.48
+    },
+    {
+      "text": "it out that's it when I come to batch",
+      "start": 1559.08,
+      "duration": 3.76
+    },
+    {
+      "text": "number 10 I'll do the same I'll",
+      "start": 1561.12,
+      "duration": 3.12
+    },
+    {
+      "text": "calculate the training and validation",
+      "start": 1562.84,
+      "duration": 3.52
+    },
+    {
+      "text": "loss I'll print it out and I'll do this",
+      "start": 1564.24,
+      "duration": 4.88
+    },
+    {
+      "text": "for every single Epoch so in this step",
+      "start": 1566.36,
+      "duration": 4.28
+    },
+    {
+      "text": "what I'm doing is when I reach at a",
+      "start": 1569.12,
+      "duration": 4.32
+    },
+    {
+      "text": "particular batch number when the llm has",
+      "start": 1570.64,
+      "duration": 5.0
+    },
+    {
+      "text": "processed that particular batch I will",
+      "start": 1573.44,
+      "duration": 3.8
+    },
+    {
+      "text": "print out the training and validation",
+      "start": 1575.64,
+      "duration": 4.039
+    },
+    {
+      "text": "loss that's all we are doing up till now",
+      "start": 1577.24,
+      "duration": 4.52
+    },
+    {
+      "text": "and then just for the sake of uh",
+      "start": 1579.679,
+      "duration": 4.441
+    },
+    {
+      "text": "visualization and understanding after",
+      "start": 1581.76,
+      "duration": 6.84
+    },
+    {
+      "text": "one batch is processed so after uh one",
+      "start": 1584.12,
+      "duration": 6.24
+    },
+    {
+      "text": "batch is processed what I'm going to do",
+      "start": 1588.6,
+      "duration": 3.6
+    },
+    {
+      "text": "is that I'm also going to print out a",
+      "start": 1590.36,
+      "duration": 4.16
+    },
+    {
+      "text": "sample text or here I should say that",
+      "start": 1592.2,
+      "duration": 4.4
+    },
+    {
+      "text": "after each Epoch is processed sorry not",
+      "start": 1594.52,
+      "duration": 3.92
+    },
+    {
+      "text": "after each batch is processed we'll",
+      "start": 1596.6,
+      "duration": 3.439
+    },
+    {
+      "text": "first make sure we go through all of the",
+      "start": 1598.44,
+      "duration": 4.32
+    },
+    {
+      "text": "batches for one Epoch so after each",
+      "start": 1600.039,
+      "duration": 4.321
+    },
+    {
+      "text": "Epoch is processed what I'm going to",
+      "start": 1602.76,
+      "duration": 3.56
+    },
+    {
+      "text": "print is okay here's what the next",
+      "start": 1604.36,
+      "duration": 5.76
+    },
+    {
+      "text": "tokens my llm is generating right now so",
+      "start": 1606.32,
+      "duration": 5.719
+    },
+    {
+      "text": "uh this generate and print sample is",
+      "start": 1610.12,
+      "duration": 3.48
+    },
+    {
+      "text": "another function which we have defined",
+      "start": 1612.039,
+      "duration": 3.841
+    },
+    {
+      "text": "over here and what this will do is that",
+      "start": 1613.6,
+      "duration": 4.76
+    },
+    {
+      "text": "it will print out the next 50 tokens",
+      "start": 1615.88,
+      "duration": 3.799
+    },
+    {
+      "text": "which our large language model is",
+      "start": 1618.36,
+      "duration": 3.16
+    },
+    {
+      "text": "predicting we have already seen this",
+      "start": 1619.679,
+      "duration": 4.161
+    },
+    {
+      "text": "generate Tex simple function before what",
+      "start": 1621.52,
+      "duration": 3.84
+    },
+    {
+      "text": "this function does is that it takes the",
+      "start": 1623.84,
+      "duration": 3.8
+    },
+    {
+      "text": "model at its current stage so if we are",
+      "start": 1625.36,
+      "duration": 4.4
+    },
+    {
+      "text": "at Epoch number five the parameters are",
+      "start": 1627.64,
+      "duration": 3.72
+    },
+    {
+      "text": "optimized maybe they are not very",
+      "start": 1629.76,
+      "duration": 3.039
+    },
+    {
+      "text": "correctly optimized but we are at",
+      "start": 1631.36,
+      "duration": 3.6
+    },
+    {
+      "text": "certain stage and we want to see what",
+      "start": 1632.799,
+      "duration": 4.281
+    },
+    {
+      "text": "the output the llm is predicting for the",
+      "start": 1634.96,
+      "duration": 5.04
+    },
+    {
+      "text": "input right so this function is",
+      "start": 1637.08,
+      "duration": 4.52
+    },
+    {
+      "text": "essentially going to generate the tokens",
+      "start": 1640.0,
+      "duration": 3.24
+    },
+    {
+      "text": "for us and it will generate 50 new",
+      "start": 1641.6,
+      "duration": 4.04
+    },
+    {
+      "text": "topens for us to visualize and we can",
+      "start": 1643.24,
+      "duration": 4.159
+    },
+    {
+      "text": "see right whether the output is correct",
+      "start": 1645.64,
+      "duration": 3.039
+    },
+    {
+      "text": "or not whether",
+      "start": 1647.399,
+      "duration": 3.361
+    },
+    {
+      "text": "the output of the llm is making sense or",
+      "start": 1648.679,
+      "duration": 3.6
+    },
+    {
+      "text": "not so this will be a lot of fun we are",
+      "start": 1650.76,
+      "duration": 4.56
+    },
+    {
+      "text": "going to print this out at every single",
+      "start": 1652.279,
+      "duration": 5.921
+    },
+    {
+      "text": "Epoch so the main step in this code is",
+      "start": 1655.32,
+      "duration": 4.8
+    },
+    {
+      "text": "this loss. backward what we are doing",
+      "start": 1658.2,
+      "duration": 4.0
+    },
+    {
+      "text": "after this point is just printing the",
+      "start": 1660.12,
+      "duration": 3.76
+    },
+    {
+      "text": "training and the validation loss after",
+      "start": 1662.2,
+      "duration": 4.24
+    },
+    {
+      "text": "every five batches and we are going to",
+      "start": 1663.88,
+      "duration": 5.32
+    },
+    {
+      "text": "print the Tex sample after each epox and",
+      "start": 1666.44,
+      "duration": 4.359
+    },
+    {
+      "text": "we are returning the training losses",
+      "start": 1669.2,
+      "duration": 3.079
+    },
+    {
+      "text": "validation losses and we are also",
+      "start": 1670.799,
+      "duration": 3.561
+    },
+    {
+      "text": "tracking the token scene see we are",
+      "start": 1672.279,
+      "duration": 4.321
+    },
+    {
+      "text": "tracking this token scene which is the",
+      "start": 1674.36,
+      "duration": 4.159
+    },
+    {
+      "text": "number of tokens the input batch is",
+      "start": 1676.6,
+      "duration": 4.4
+    },
+    {
+      "text": "using uh that will give us a sense of",
+      "start": 1678.519,
+      "duration": 6.681
+    },
+    {
+      "text": "how many tokens the um so it Returns the",
+      "start": 1681.0,
+      "duration": 6.12
+    },
+    {
+      "text": "elements how many tokens have been",
+      "start": 1685.2,
+      "duration": 4.079
+    },
+    {
+      "text": "consumed until that particular point in",
+      "start": 1687.12,
+      "duration": 4.48
+    },
+    {
+      "text": "the model and we'll also plot the number",
+      "start": 1689.279,
+      "duration": 5.481
+    },
+    {
+      "text": "of tokens in the output so remember one",
+      "start": 1691.6,
+      "duration": 4.88
+    },
+    {
+      "text": "one Epoch will go through the entire",
+      "start": 1694.76,
+      "duration": 3.919
+    },
+    {
+      "text": "data set once right and if we look at",
+      "start": 1696.48,
+      "duration": 4.84
+    },
+    {
+      "text": "our data set again um the data set which",
+      "start": 1698.679,
+      "duration": 5.321
+    },
+    {
+      "text": "we are considering I think it has around",
+      "start": 1701.32,
+      "duration": 6.64
+    },
+    {
+      "text": "5,000 tokens so if we go through the if",
+      "start": 1704.0,
+      "duration": 6.279
+    },
+    {
+      "text": "the the number of epo are 10 so which",
+      "start": 1707.96,
+      "duration": 3.719
+    },
+    {
+      "text": "means that if you go through the entire",
+      "start": 1710.279,
+      "duration": 3.921
+    },
+    {
+      "text": "data set 10 times it actually means that",
+      "start": 1711.679,
+      "duration": 4.961
+    },
+    {
+      "text": "the number of tokens seen should be",
+      "start": 1714.2,
+      "duration": 4.44
+    },
+    {
+      "text": "5,000 multiplied by 10 so it should be",
+      "start": 1716.64,
+      "duration": 4.6
+    },
+    {
+      "text": "of the order of magnitude of 50,000 just",
+      "start": 1718.64,
+      "duration": 3.72
+    },
+    {
+      "text": "keep this in",
+      "start": 1721.24,
+      "duration": 4.319
+    },
+    {
+      "text": "mind so yeah this is the code and it's",
+      "start": 1722.36,
+      "duration": 5.439
+    },
+    {
+      "text": "pretty simple it just I think around 15",
+      "start": 1725.559,
+      "duration": 4.761
+    },
+    {
+      "text": "to 20 lines of code and the reason it's",
+      "start": 1727.799,
+      "duration": 4.36
+    },
+    {
+      "text": "made so simple in Python is because of",
+      "start": 1730.32,
+      "duration": 3.92
+    },
+    {
+      "text": "this loss. backward method it's pretty",
+      "start": 1732.159,
+      "duration": 4.76
+    },
+    {
+      "text": "awesome and it does the gradient updates",
+      "start": 1734.24,
+      "duration": 4.12
+    },
+    {
+      "text": "uh sorry it calculates the loss",
+      "start": 1736.919,
+      "duration": 2.841
+    },
+    {
+      "text": "gradients and then we just do the",
+      "start": 1738.36,
+      "duration": 3.439
+    },
+    {
+      "text": "optimizer do step we have not yet",
+      "start": 1739.76,
+      "duration": 3.799
+    },
+    {
+      "text": "defined the optimizer but we'll be doing",
+      "start": 1741.799,
+      "duration": 3.081
+    },
+    {
+      "text": "it",
+      "start": 1743.559,
+      "duration": 3.761
+    },
+    {
+      "text": "shortly okay now what we are going to do",
+      "start": 1744.88,
+      "duration": 4.76
+    },
+    {
+      "text": "is that uh I'm just going to explain the",
+      "start": 1747.32,
+      "duration": 4.199
+    },
+    {
+      "text": "evaluate model function and the generate",
+      "start": 1749.64,
+      "duration": 4.519
+    },
+    {
+      "text": "and print sample so that it's more clear",
+      "start": 1751.519,
+      "duration": 4.961
+    },
+    {
+      "text": "for you so the evaluate model function",
+      "start": 1754.159,
+      "duration": 3.921
+    },
+    {
+      "text": "calculates the loss over the training",
+      "start": 1756.48,
+      "duration": 4.0
+    },
+    {
+      "text": "and the validation set and we ensure",
+      "start": 1758.08,
+      "duration": 4.92
+    },
+    {
+      "text": "that the mod model is in evaluation",
+      "start": 1760.48,
+      "duration": 4.919
+    },
+    {
+      "text": "mode uh with gradient tracking and",
+      "start": 1763.0,
+      "duration": 4.399
+    },
+    {
+      "text": "Dropout disabled remember that when the",
+      "start": 1765.399,
+      "duration": 4.12
+    },
+    {
+      "text": "model when we evaluating the model when",
+      "start": 1767.399,
+      "duration": 3.481
+    },
+    {
+      "text": "we are printing the training and",
+      "start": 1769.519,
+      "duration": 3.441
+    },
+    {
+      "text": "validation loss we don't need to keep",
+      "start": 1770.88,
+      "duration": 4.48
+    },
+    {
+      "text": "track of the gradient updates and we can",
+      "start": 1772.96,
+      "duration": 4.12
+    },
+    {
+      "text": "even disable the Dropout because we are",
+      "start": 1775.36,
+      "duration": 3.24
+    },
+    {
+      "text": "just calculating the loss we are just",
+      "start": 1777.08,
+      "duration": 3.959
+    },
+    {
+      "text": "doing the forward pass and then this",
+      "start": 1778.6,
+      "duration": 4.199
+    },
+    {
+      "text": "generate and print sample right what we",
+      "start": 1781.039,
+      "duration": 3.041
+    },
+    {
+      "text": "are doing here is that it's a",
+      "start": 1782.799,
+      "duration": 2.841
+    },
+    {
+      "text": "convenience function that we use to",
+      "start": 1784.08,
+      "duration": 3.479
+    },
+    {
+      "text": "track whether the model improves during",
+      "start": 1785.64,
+      "duration": 4.36
+    },
+    {
+      "text": "training because we will be able to see",
+      "start": 1787.559,
+      "duration": 3.921
+    },
+    {
+      "text": "what text is being",
+      "start": 1790.0,
+      "duration": 3.84
+    },
+    {
+      "text": "generated the generate and print sample",
+      "start": 1791.48,
+      "duration": 4.24
+    },
+    {
+      "text": "function takes a text snippet which is",
+      "start": 1793.84,
+      "duration": 4.199
+    },
+    {
+      "text": "called start context as an input and",
+      "start": 1795.72,
+      "duration": 4.76
+    },
+    {
+      "text": "converts it into token IDs feeds it to",
+      "start": 1798.039,
+      "duration": 6.041
+    },
+    {
+      "text": "the llm to generate a text sample at",
+      "start": 1800.48,
+      "duration": 5.799
+    },
+    {
+      "text": "that particular point in the training",
+      "start": 1804.08,
+      "duration": 3.92
+    },
+    {
+      "text": "and we are going to print the text",
+      "start": 1806.279,
+      "duration": 5.64
+    },
+    {
+      "text": "sample after every Epoch right now let's",
+      "start": 1808.0,
+      "duration": 6.12
+    },
+    {
+      "text": "see all of this in action by training a",
+      "start": 1811.919,
+      "duration": 5.081
+    },
+    {
+      "text": "GPT model instance for 10 EPO using an",
+      "start": 1814.12,
+      "duration": 6.08
+    },
+    {
+      "text": "admw Optimizer now two things I would",
+      "start": 1817.0,
+      "duration": 5.24
+    },
+    {
+      "text": "like to clarify here when I say we are",
+      "start": 1820.2,
+      "duration": 5.04
+    },
+    {
+      "text": "training a GPT model instance the model",
+      "start": 1822.24,
+      "duration": 4.6
+    },
+    {
+      "text": "which we are defining is an instance of",
+      "start": 1825.24,
+      "duration": 3.279
+    },
+    {
+      "text": "the GPT model class which we have",
+      "start": 1826.84,
+      "duration": 3.8
+    },
+    {
+      "text": "already defined before so this is the",
+      "start": 1828.519,
+      "duration": 4.681
+    },
+    {
+      "text": "GPT model class what this class does is",
+      "start": 1830.64,
+      "duration": 4.879
+    },
+    {
+      "text": "that it essentially performs all the",
+      "start": 1833.2,
+      "duration": 5.479
+    },
+    {
+      "text": "operations which we saw in the uh GPT",
+      "start": 1835.519,
+      "duration": 5.801
+    },
+    {
+      "text": "model architecture schematic yeah all of",
+      "start": 1838.679,
+      "duration": 5.041
+    },
+    {
+      "text": "these operations so it will con it will",
+      "start": 1841.32,
+      "duration": 4.52
+    },
+    {
+      "text": "create create or it will give us the llm",
+      "start": 1843.72,
+      "duration": 3.679
+    },
+    {
+      "text": "output at the",
+      "start": 1845.84,
+      "duration": 4.88
+    },
+    {
+      "text": "end uh okay so that's",
+      "start": 1847.399,
+      "duration": 6.12
+    },
+    {
+      "text": "what uh that's what this GPT model class",
+      "start": 1850.72,
+      "duration": 3.919
+    },
+    {
+      "text": "is actually",
+      "start": 1853.519,
+      "duration": 4.52
+    },
+    {
+      "text": "doing great now what we are what I also",
+      "start": 1854.639,
+      "duration": 4.481
+    },
+    {
+      "text": "want to show you is the model",
+      "start": 1858.039,
+      "duration": 2.64
+    },
+    {
+      "text": "configuration which we are using for",
+      "start": 1859.12,
+      "duration": 3.48
+    },
+    {
+      "text": "this particular code so this is the",
+      "start": 1860.679,
+      "duration": 3.401
+    },
+    {
+      "text": "model configuration we are using",
+      "start": 1862.6,
+      "duration": 3.0
+    },
+    {
+      "text": "vocabulary size of",
+      "start": 1864.08,
+      "duration": 4.76
+    },
+    {
+      "text": "50257 a context length of 256 remember",
+      "start": 1865.6,
+      "duration": 5.72
+    },
+    {
+      "text": "gpt2 smallest model originally used a",
+      "start": 1868.84,
+      "duration": 5.959
+    },
+    {
+      "text": "context size of 1024 but I'm showing 256",
+      "start": 1871.32,
+      "duration": 6.0
+    },
+    {
+      "text": "here because I want the code to run on",
+      "start": 1874.799,
+      "duration": 4.561
+    },
+    {
+      "text": "your machine in small amount of time and",
+      "start": 1877.32,
+      "duration": 4.319
+    },
+    {
+      "text": "using small amount of resources you can",
+      "start": 1879.36,
+      "duration": 4.52
+    },
+    {
+      "text": "change it to one24 and the code will not",
+      "start": 1881.639,
+      "duration": 3.601
+    },
+    {
+      "text": "change",
+      "start": 1883.88,
+      "duration": 3.279
+    },
+    {
+      "text": "significantly the vector embedding",
+      "start": 1885.24,
+      "duration": 4.52
+    },
+    {
+      "text": "Dimension which we we are using is 768",
+      "start": 1887.159,
+      "duration": 4.721
+    },
+    {
+      "text": "because the inputs will be projected",
+      "start": 1889.76,
+      "duration": 4.2
+    },
+    {
+      "text": "into that much Dimension space the",
+      "start": 1891.88,
+      "duration": 4.08
+    },
+    {
+      "text": "number of attention heads is 12 the",
+      "start": 1893.96,
+      "duration": 3.719
+    },
+    {
+      "text": "number of Transformers we are using is",
+      "start": 1895.96,
+      "duration": 4.76
+    },
+    {
+      "text": "12 and the dropout rate is 0.1 and the",
+      "start": 1897.679,
+      "duration": 7.081
+    },
+    {
+      "text": "key query value query key value bias uh",
+      "start": 1900.72,
+      "duration": 6.04
+    },
+    {
+      "text": "term bias is false because when we",
+      "start": 1904.76,
+      "duration": 3.919
+    },
+    {
+      "text": "initialize the weight matrices for query",
+      "start": 1906.76,
+      "duration": 3.96
+    },
+    {
+      "text": "key and values we don't need the bias",
+      "start": 1908.679,
+      "duration": 4.561
+    },
+    {
+      "text": "term so this is the GPT configuration",
+      "start": 1910.72,
+      "duration": 3.959
+    },
+    {
+      "text": "which I'm using and I thought it's",
+      "start": 1913.24,
+      "duration": 4.12
+    },
+    {
+      "text": "important for you to know that when we",
+      "start": 1914.679,
+      "duration": 4.84
+    },
+    {
+      "text": "uh create an instance of the GPT model",
+      "start": 1917.36,
+      "duration": 4.76
+    },
+    {
+      "text": "class using this configuration right so",
+      "start": 1919.519,
+      "duration": 4.561
+    },
+    {
+      "text": "we create an instance of the GPT model",
+      "start": 1922.12,
+      "duration": 5.72
+    },
+    {
+      "text": "class and uh the second thing I want to",
+      "start": 1924.08,
+      "duration": 6.0
+    },
+    {
+      "text": "mention is the optimizer so we are using",
+      "start": 1927.84,
+      "duration": 5.6
+    },
+    {
+      "text": "this Optimizer called adamw uh adamw is",
+      "start": 1930.08,
+      "duration": 5.319
+    },
+    {
+      "text": "a variation of Adam which uses weight",
+      "start": 1933.44,
+      "duration": 4.199
+    },
+    {
+      "text": "Decay if you are not familiar with Adam",
+      "start": 1935.399,
+      "duration": 5.201
+    },
+    {
+      "text": "or adamw that's totally fine just know",
+      "start": 1937.639,
+      "duration": 4.961
+    },
+    {
+      "text": "for right now that for all modern",
+      "start": 1940.6,
+      "duration": 3.48
+    },
+    {
+      "text": "machine learning algorithms for",
+      "start": 1942.6,
+      "duration": 3.84
+    },
+    {
+      "text": "classification regression Adam has now",
+      "start": 1944.08,
+      "duration": 4.439
+    },
+    {
+      "text": "become the go-to optimizer of choice for",
+      "start": 1946.44,
+      "duration": 4.04
+    },
+    {
+      "text": "all of these algorithms because it works",
+      "start": 1948.519,
+      "duration": 4.561
+    },
+    {
+      "text": "very well it avoids local Minima and it",
+      "start": 1950.48,
+      "duration": 6.24
+    },
+    {
+      "text": "leads to faster convergence as well Adam",
+      "start": 1953.08,
+      "duration": 6.0
+    },
+    {
+      "text": "W is another version of Adam where we",
+      "start": 1956.72,
+      "duration": 4.36
+    },
+    {
+      "text": "specify the learning rate and we specify",
+      "start": 1959.08,
+      "duration": 3.92
+    },
+    {
+      "text": "the weight Decay now these are the",
+      "start": 1961.08,
+      "duration": 3.68
+    },
+    {
+      "text": "parameters which you can play around",
+      "start": 1963.0,
+      "duration": 3.36
+    },
+    {
+      "text": "with these are generally called hyper",
+      "start": 1964.76,
+      "duration": 4.72
+    },
+    {
+      "text": "parameters because we need to tune them",
+      "start": 1966.36,
+      "duration": 5.039
+    },
+    {
+      "text": "there are some other variables which we",
+      "start": 1969.48,
+      "duration": 3.84
+    },
+    {
+      "text": "are going to Define before we run the",
+      "start": 1971.399,
+      "duration": 3.921
+    },
+    {
+      "text": "pre-training code we Define the number",
+      "start": 1973.32,
+      "duration": 4.839
+    },
+    {
+      "text": "of epoch to be equal to 10 so here I",
+      "start": 1975.32,
+      "duration": 4.16
+    },
+    {
+      "text": "told you right we are going to go",
+      "start": 1978.159,
+      "duration": 5.88
+    },
+    {
+      "text": "through the entire data set uh based on",
+      "start": 1979.48,
+      "duration": 6.319
+    },
+    {
+      "text": "what we set in the number of epoch so if",
+      "start": 1984.039,
+      "duration": 3.52
+    },
+    {
+      "text": "we set the number of epo equal to 10 we",
+      "start": 1985.799,
+      "duration": 4.041
+    },
+    {
+      "text": "are going to repeat this entire process",
+      "start": 1987.559,
+      "duration": 4.12
+    },
+    {
+      "text": "10 times which means we are going to",
+      "start": 1989.84,
+      "duration": 4.839
+    },
+    {
+      "text": "print the generated sample after every",
+      "start": 1991.679,
+      "duration": 4.681
+    },
+    {
+      "text": "one Epoch for 10",
+      "start": 1994.679,
+      "duration": 5.041
+    },
+    {
+      "text": "times okay now uh one more thing is that",
+      "start": 1996.36,
+      "duration": 5.439
+    },
+    {
+      "text": "evaluation frequency and evaluation",
+      "start": 1999.72,
+      "duration": 4.04
+    },
+    {
+      "text": "iteration is five which means that after",
+      "start": 2001.799,
+      "duration": 3.84
+    },
+    {
+      "text": "every five batches I'm going to print",
+      "start": 2003.76,
+      "duration": 4.039
+    },
+    {
+      "text": "the training and the validation LW and",
+      "start": 2005.639,
+      "duration": 3.76
+    },
+    {
+      "text": "and the initial text which I have given",
+      "start": 2007.799,
+      "duration": 4.0
+    },
+    {
+      "text": "is every effort moves you because the",
+      "start": 2009.399,
+      "duration": 4.16
+    },
+    {
+      "text": "generate and the print sample requires",
+      "start": 2011.799,
+      "duration": 3.521
+    },
+    {
+      "text": "us to give an initial text then it will",
+      "start": 2013.559,
+      "duration": 4.12
+    },
+    {
+      "text": "print out what the llm is predicting for",
+      "start": 2015.32,
+      "duration": 3.719
+    },
+    {
+      "text": "this initial",
+      "start": 2017.679,
+      "duration": 3.921
+    },
+    {
+      "text": "text awesome so what I've done here is",
+      "start": 2019.039,
+      "duration": 4.76
+    },
+    {
+      "text": "that I've also uh recorded the start",
+      "start": 2021.6,
+      "duration": 3.84
+    },
+    {
+      "text": "time at at which I start running this",
+      "start": 2023.799,
+      "duration": 3.88
+    },
+    {
+      "text": "code and the end time because remember",
+      "start": 2025.44,
+      "duration": 3.68
+    },
+    {
+      "text": "the number of parameters which we are",
+      "start": 2027.679,
+      "duration": 3.441
+    },
+    {
+      "text": "using here are huge they are of the",
+      "start": 2029.12,
+      "duration": 3.48
+    },
+    {
+      "text": "order of more than 100 million",
+      "start": 2031.12,
+      "duration": 3.12
+    },
+    {
+      "text": "parameters and I just want to record the",
+      "start": 2032.6,
+      "duration": 4.12
+    },
+    {
+      "text": "time it takes so I'm running my code on",
+      "start": 2034.24,
+      "duration": 4.64
+    },
+    {
+      "text": "a MacBook Air right now I think it takes",
+      "start": 2036.72,
+      "duration": 6.24
+    },
+    {
+      "text": "similar time on I5 or i7 um computers as",
+      "start": 2038.88,
+      "duration": 7.88
+    },
+    {
+      "text": "well as MacBook even the smallest or the",
+      "start": 2042.96,
+      "duration": 6.119
+    },
+    {
+      "text": "earliest MacBook model should run this",
+      "start": 2046.76,
+      "duration": 5.72
+    },
+    {
+      "text": "code in in a short amount of time so now",
+      "start": 2049.079,
+      "duration": 4.881
+    },
+    {
+      "text": "uh here you can see that I've already",
+      "start": 2052.48,
+      "duration": 3.879
+    },
+    {
+      "text": "run the training process before looking",
+      "start": 2053.96,
+      "duration": 3.919
+    },
+    {
+      "text": "at the output the first thing which I",
+      "start": 2056.359,
+      "duration": 3.161
+    },
+    {
+      "text": "want to show you is training completed",
+      "start": 2057.879,
+      "duration": 4.76
+    },
+    {
+      "text": "in 6.6 minutes and I continue to be",
+      "start": 2059.52,
+      "duration": 6.8
+    },
+    {
+      "text": "amazed by this because I ran a llm",
+      "start": 2062.639,
+      "duration": 7.121
+    },
+    {
+      "text": "architecture code on on my laptop which",
+      "start": 2066.32,
+      "duration": 7.599
+    },
+    {
+      "text": "had this code was optimizing 160 million",
+      "start": 2069.76,
+      "duration": 6.56
+    },
+    {
+      "text": "parameters and it was doing it 10 times",
+      "start": 2073.919,
+      "duration": 4.92
+    },
+    {
+      "text": "or 10 EPO and the compute power which my",
+      "start": 2076.32,
+      "duration": 4.759
+    },
+    {
+      "text": "laptop had made it so that in 6.6",
+      "start": 2078.839,
+      "duration": 5.441
+    },
+    {
+      "text": "minutes this entire code was run and uh",
+      "start": 2081.079,
+      "duration": 4.76
+    },
+    {
+      "text": "that's pretty awesome you can run it on",
+      "start": 2084.28,
+      "duration": 3.16
+    },
+    {
+      "text": "your own machine and then when you see",
+      "start": 2085.839,
+      "duration": 3.401
+    },
+    {
+      "text": "this you'll feel a lot of satisfaction",
+      "start": 2087.44,
+      "duration": 3.88
+    },
+    {
+      "text": "because to get to this point we needed",
+      "start": 2089.24,
+      "duration": 3.879
+    },
+    {
+      "text": "to understand so many things we needed",
+      "start": 2091.32,
+      "duration": 5.4
+    },
+    {
+      "text": "to understand about the llm data set how",
+      "start": 2093.119,
+      "duration": 5.361
+    },
+    {
+      "text": "the data set is pre process the data",
+      "start": 2096.72,
+      "duration": 4.2
+    },
+    {
+      "text": "pre-processing pipeline then the llm",
+      "start": 2098.48,
+      "duration": 4.92
+    },
+    {
+      "text": "architecture itself multi-ad attention",
+      "start": 2100.92,
+      "duration": 4.52
+    },
+    {
+      "text": "Dropout layers M multi-ad attention",
+      "start": 2103.4,
+      "duration": 4.32
+    },
+    {
+      "text": "causal attention then we needed to",
+      "start": 2105.44,
+      "duration": 3.52
+    },
+    {
+      "text": "understand how to define the loss",
+      "start": 2107.72,
+      "duration": 3.399
+    },
+    {
+      "text": "function after all of this effort we",
+      "start": 2108.96,
+      "duration": 3.76
+    },
+    {
+      "text": "have reached the stage where we are able",
+      "start": 2111.119,
+      "duration": 4.561
+    },
+    {
+      "text": "to train our own llm from scratch so",
+      "start": 2112.72,
+      "duration": 4.32
+    },
+    {
+      "text": "let's look at the training and",
+      "start": 2115.68,
+      "duration": 3.0
+    },
+    {
+      "text": "validation losses which have been which",
+      "start": 2117.04,
+      "duration": 3.2
+    },
+    {
+      "text": "are being printed after every five",
+      "start": 2118.68,
+      "duration": 3.64
+    },
+    {
+      "text": "batches so here you can see that the",
+      "start": 2120.24,
+      "duration": 4.52
+    },
+    {
+      "text": "training loss if I if I see towards the",
+      "start": 2122.32,
+      "duration": 5.0
+    },
+    {
+      "text": "end the training loss started from 9.78",
+      "start": 2124.76,
+      "duration": 3.52
+    },
+    {
+      "text": "one",
+      "start": 2127.32,
+      "duration": 2.56
+    },
+    {
+      "text": "and you will see that the training loss",
+      "start": 2128.28,
+      "duration": 5.04
+    },
+    {
+      "text": "has decreased to 39 what awesome so as",
+      "start": 2129.88,
+      "duration": 5.8
+    },
+    {
+      "text": "we can see the training loss improves",
+      "start": 2133.32,
+      "duration": 4.72
+    },
+    {
+      "text": "drastically which means it has started",
+      "start": 2135.68,
+      "duration": 3.12
+    },
+    {
+      "text": "with",
+      "start": 2138.04,
+      "duration": 3.2
+    },
+    {
+      "text": "9.58 and it has reduced to a very small",
+      "start": 2138.8,
+      "duration": 4.88
+    },
+    {
+      "text": "value that's actually awesome right in",
+      "start": 2141.24,
+      "duration": 4.0
+    },
+    {
+      "text": "our case actually the training law",
+      "start": 2143.68,
+      "duration": 4.88
+    },
+    {
+      "text": "started from 9.78 1 and it reduced to",
+      "start": 2145.24,
+      "duration": 6.52
+    },
+    {
+      "text": "391 so let me change it uh the training",
+      "start": 2148.56,
+      "duration": 6.6
+    },
+    {
+      "text": "law started from",
+      "start": 2151.76,
+      "duration": 8.04
+    },
+    {
+      "text": "9 781 and it it reduced to 391 when I",
+      "start": 2155.16,
+      "duration": 6.72
+    },
+    {
+      "text": "had run it earlier these were the values",
+      "start": 2159.8,
+      "duration": 3.68
+    },
+    {
+      "text": "I had obtained but for now the values",
+      "start": 2161.88,
+      "duration": 3.8
+    },
+    {
+      "text": "are even better awesome let's look at",
+      "start": 2163.48,
+      "duration": 4.359
+    },
+    {
+      "text": "the validation loss the validation loss",
+      "start": 2165.68,
+      "duration": 4.72
+    },
+    {
+      "text": "as you see started from 9.93 3 and it",
+      "start": 2167.839,
+      "duration": 5.48
+    },
+    {
+      "text": "did not decrease that much it stay it",
+      "start": 2170.4,
+      "duration": 7.08
+    },
+    {
+      "text": "stagnated at around 6.4 6.3 6.2 this is",
+      "start": 2173.319,
+      "duration": 6.241
+    },
+    {
+      "text": "a classic sign of overfitting we'll come",
+      "start": 2177.48,
+      "duration": 5.119
+    },
+    {
+      "text": "to that in a bit but let's look at what",
+      "start": 2179.56,
+      "duration": 4.96
+    },
+    {
+      "text": "the llm has predicted and does it make",
+      "start": 2182.599,
+      "duration": 4.441
+    },
+    {
+      "text": "sense so the remember we are printing",
+      "start": 2184.52,
+      "duration": 5.319
+    },
+    {
+      "text": "the generator text after every Epoch so",
+      "start": 2187.04,
+      "duration": 5.24
+    },
+    {
+      "text": "after the first Epoch the next so we are",
+      "start": 2189.839,
+      "duration": 5.201
+    },
+    {
+      "text": "printing out 50 tokens and so the llm is",
+      "start": 2192.28,
+      "duration": 4.559
+    },
+    {
+      "text": "printing out comma comma comma comma",
+      "start": 2195.04,
+      "duration": 4.12
+    },
+    {
+      "text": "comma it has not understood anything",
+      "start": 2196.839,
+      "duration": 4.321
+    },
+    {
+      "text": "after the second EPO the LM is printing",
+      "start": 2199.16,
+      "duration": 4.56
+    },
+    {
+      "text": "U comma and and and and and still not",
+      "start": 2201.16,
+      "duration": 4.4
+    },
+    {
+      "text": "understanding anything after the third",
+      "start": 2203.72,
+      "duration": 4.32
+    },
+    {
+      "text": "Epoch it printed and I had been after",
+      "start": 2205.56,
+      "duration": 4.4
+    },
+    {
+      "text": "the four fourth Epoch it printed you",
+      "start": 2208.04,
+      "duration": 5.039
+    },
+    {
+      "text": "know the I had the donkey and I had the",
+      "start": 2209.96,
+      "duration": 5.32
+    },
+    {
+      "text": "then let's see after Epoch number seven",
+      "start": 2213.079,
+      "duration": 4.52
+    },
+    {
+      "text": "it printed every effort moves you know",
+      "start": 2215.28,
+      "duration": 3.839
+    },
+    {
+      "text": "was one of the picture for nothing I",
+      "start": 2217.599,
+      "duration": 4.361
+    },
+    {
+      "text": "told Mrs now you see that it started to",
+      "start": 2219.119,
+      "duration": 6.161
+    },
+    {
+      "text": "use some of the words from our text and",
+      "start": 2221.96,
+      "duration": 5.56
+    },
+    {
+      "text": "after Epoch number nine you see every",
+      "start": 2225.28,
+      "duration": 4.28
+    },
+    {
+      "text": "effort moves you question mark yes quite",
+      "start": 2227.52,
+      "duration": 4.72
+    },
+    {
+      "text": "insensible to the irony she wanted him a",
+      "start": 2229.56,
+      "duration": 6.559
+    },
+    {
+      "text": "Vindicated and by me now here if you if",
+      "start": 2232.24,
+      "duration": 6.48
+    },
+    {
+      "text": "you go to the training data set and",
+      "start": 2236.119,
+      "duration": 5.161
+    },
+    {
+      "text": "search irony you'll see yes quite",
+      "start": 2238.72,
+      "duration": 4.359
+    },
+    {
+      "text": "insensible to the irony she wanted him",
+      "start": 2241.28,
+      "duration": 4.12
+    },
+    {
+      "text": "indicated and by me so here you see the",
+      "start": 2243.079,
+      "duration": 4.441
+    },
+    {
+      "text": "llm is predicting something which does",
+      "start": 2245.4,
+      "duration": 3.64
+    },
+    {
+      "text": "does make sense but it is directly",
+      "start": 2247.52,
+      "duration": 4.04
+    },
+    {
+      "text": "recycling text from the data another",
+      "start": 2249.04,
+      "duration": 4.0
+    },
+    {
+      "text": "classic sign of",
+      "start": 2251.56,
+      "duration": 4.32
+    },
+    {
+      "text": "overfitting so the final text which we",
+      "start": 2253.04,
+      "duration": 4.84
+    },
+    {
+      "text": "obtain at the end of 10 epoxes every",
+      "start": 2255.88,
+      "duration": 5.28
+    },
+    {
+      "text": "effort moves that was our input youo was",
+      "start": 2257.88,
+      "duration": 5.439
+    },
+    {
+      "text": "one of the xmc laid down across the SE",
+      "start": 2261.16,
+      "duration": 4.28
+    },
+    {
+      "text": "and silver of an exquisitely appointed",
+      "start": 2263.319,
+      "duration": 4.881
+    },
+    {
+      "text": "luncheon table I had run over from Monte",
+      "start": 2265.44,
+      "duration": 5.84
+    },
+    {
+      "text": "Carlo and Mrs J this is the output which",
+      "start": 2268.2,
+      "duration": 4.36
+    },
+    {
+      "text": "has been",
+      "start": 2271.28,
+      "duration": 4.16
+    },
+    {
+      "text": "printed and uh you'll see that the",
+      "start": 2272.56,
+      "duration": 4.96
+    },
+    {
+      "text": "language skills of the llm have improved",
+      "start": 2275.44,
+      "duration": 3.639
+    },
+    {
+      "text": "during this training first it started",
+      "start": 2277.52,
+      "duration": 3.96
+    },
+    {
+      "text": "with comma comma comma comma comma and",
+      "start": 2279.079,
+      "duration": 4.481
+    },
+    {
+      "text": "then you'll see that this is the output",
+      "start": 2281.48,
+      "duration": 3.72
+    },
+    {
+      "text": "which it is predicting now so the",
+      "start": 2283.56,
+      "duration": 3.799
+    },
+    {
+      "text": "language skills have improved a lot in",
+      "start": 2285.2,
+      "duration": 3.8
+    },
+    {
+      "text": "the beginning the model is only able to",
+      "start": 2287.359,
+      "duration": 4.161
+    },
+    {
+      "text": "append commas uh at the end of the",
+      "start": 2289.0,
+      "duration": 4.119
+    },
+    {
+      "text": "training it can generate grammatically",
+      "start": 2291.52,
+      "duration": 3.839
+    },
+    {
+      "text": "correct text like was one of the exams",
+      "start": 2293.119,
+      "duration": 5.321
+    },
+    {
+      "text": "Etc that itself is a huge win for us",
+      "start": 2295.359,
+      "duration": 4.921
+    },
+    {
+      "text": "because it's a positive sign the llm is",
+      "start": 2298.44,
+      "duration": 3.6
+    },
+    {
+      "text": "not generating something completely",
+      "start": 2300.28,
+      "duration": 4.039
+    },
+    {
+      "text": "random it had so many options to",
+      "start": 2302.04,
+      "duration": 4.88
+    },
+    {
+      "text": "generate completely random things right",
+      "start": 2304.319,
+      "duration": 4.401
+    },
+    {
+      "text": "but due to training process it is at",
+      "start": 2306.92,
+      "duration": 4.24
+    },
+    {
+      "text": "least generating Words which makes",
+      "start": 2308.72,
+      "duration": 4.72
+    },
+    {
+      "text": "sense okay so similar to the training",
+      "start": 2311.16,
+      "duration": 5.0
+    },
+    {
+      "text": "set loss the validation loss starts high",
+      "start": 2313.44,
+      "duration": 4.48
+    },
+    {
+      "text": "and decreases during the training",
+      "start": 2316.16,
+      "duration": 3.52
+    },
+    {
+      "text": "however it never becomes as small as the",
+      "start": 2317.92,
+      "duration": 4.399
+    },
+    {
+      "text": "training loss and it stagnates at 6.37",
+      "start": 2319.68,
+      "duration": 5.84
+    },
+    {
+      "text": "to after the 10th EPO what we can do is",
+      "start": 2322.319,
+      "duration": 4.921
+    },
+    {
+      "text": "that we can even create a plot which",
+      "start": 2325.52,
+      "duration": 3.4
+    },
+    {
+      "text": "shows the training and the validation",
+      "start": 2327.24,
+      "duration": 3.359
+    },
+    {
+      "text": "loss so you'll see that the training",
+      "start": 2328.92,
+      "duration": 3.6
+    },
+    {
+      "text": "loss continuously goes on decreasing as",
+      "start": 2330.599,
+      "duration": 4.081
+    },
+    {
+      "text": "shown by the Blue Line the validation",
+      "start": 2332.52,
+      "duration": 4.079
+    },
+    {
+      "text": "loss on the other hand you'll see that",
+      "start": 2334.68,
+      "duration": 3.72
+    },
+    {
+      "text": "the validation loss decreases and then",
+      "start": 2336.599,
+      "duration": 3.921
+    },
+    {
+      "text": "remain stagnant so here you see we are",
+      "start": 2338.4,
+      "duration": 4.36
+    },
+    {
+      "text": "also tracking the number of tokens and",
+      "start": 2340.52,
+      "duration": 4.559
+    },
+    {
+      "text": "as I told you each Epoch is going",
+      "start": 2342.76,
+      "duration": 4.24
+    },
+    {
+      "text": "through the data set once the data set",
+      "start": 2345.079,
+      "duration": 4.641
+    },
+    {
+      "text": "has around 5,000 tokens so when we do 10",
+      "start": 2347.0,
+      "duration": 5.0
+    },
+    {
+      "text": "EPO we should roughly see 10,000 tokens",
+      "start": 2349.72,
+      "duration": 4.68
+    },
+    {
+      "text": "which is what we are seeing right now so",
+      "start": 2352.0,
+      "duration": 4.44
+    },
+    {
+      "text": "as the number of tokens seen increases",
+      "start": 2354.4,
+      "duration": 3.32
+    },
+    {
+      "text": "you'll see that the training loss",
+      "start": 2356.44,
+      "duration": 3.44
+    },
+    {
+      "text": "decreases a lot but the validation loss",
+      "start": 2357.72,
+      "duration": 4.44
+    },
+    {
+      "text": "stagnates so both of the training and",
+      "start": 2359.88,
+      "duration": 4.719
+    },
+    {
+      "text": "validation loss improve after the first",
+      "start": 2362.16,
+      "duration": 4.24
+    },
+    {
+      "text": "Epoch however the losses start to",
+      "start": 2364.599,
+      "duration": 3.801
+    },
+    {
+      "text": "diverge past the second Depo see over",
+      "start": 2366.4,
+      "duration": 4.04
+    },
+    {
+      "text": "here after the second Depot the losses",
+      "start": 2368.4,
+      "duration": 4.56
+    },
+    {
+      "text": "have started to diverge this Divergence",
+      "start": 2370.44,
+      "duration": 4.32
+    },
+    {
+      "text": "and the fact that the validation loss is",
+      "start": 2372.96,
+      "duration": 3.72
+    },
+    {
+      "text": "much larger than the training loss",
+      "start": 2374.76,
+      "duration": 3.44
+    },
+    {
+      "text": "indicate that the model is actually",
+      "start": 2376.68,
+      "duration": 3.679
+    },
+    {
+      "text": "overfitting to the training",
+      "start": 2378.2,
+      "duration": 4.639
+    },
+    {
+      "text": "data and we can confirm that the model",
+      "start": 2380.359,
+      "duration": 5.041
+    },
+    {
+      "text": "memorizes the training data because",
+      "start": 2382.839,
+      "duration": 4.561
+    },
+    {
+      "text": "quite insensible to the irony remember I",
+      "start": 2385.4,
+      "duration": 5.4
+    },
+    {
+      "text": "showed you this after uh the epoch",
+      "start": 2387.4,
+      "duration": 6.04
+    },
+    {
+      "text": "number n quite insensible to the irony",
+      "start": 2390.8,
+      "duration": 5.36
+    },
+    {
+      "text": "and this is exactly taken from this data",
+      "start": 2393.44,
+      "duration": 5.08
+    },
+    {
+      "text": "set so it's memorizing it basically so",
+      "start": 2396.16,
+      "duration": 4.08
+    },
+    {
+      "text": "it's memorizing what is already present",
+      "start": 2398.52,
+      "duration": 4.24
+    },
+    {
+      "text": "in the data set and memorization is a",
+      "start": 2400.24,
+      "duration": 4.879
+    },
+    {
+      "text": "classic sign of overfitting so this",
+      "start": 2402.76,
+      "duration": 4.4
+    },
+    {
+      "text": "memorization is expected since we are",
+      "start": 2405.119,
+      "duration": 3.96
+    },
+    {
+      "text": "working with a very very small training",
+      "start": 2407.16,
+      "duration": 4.12
+    },
+    {
+      "text": "data set and training the model for",
+      "start": 2409.079,
+      "duration": 4.081
+    },
+    {
+      "text": "multiple",
+      "start": 2411.28,
+      "duration": 6.52
+    },
+    {
+      "text": "epochs okay and uh usually it's common",
+      "start": 2413.16,
+      "duration": 7.199
+    },
+    {
+      "text": "to train the model on a much much larger",
+      "start": 2417.8,
+      "duration": 5.16
+    },
+    {
+      "text": "data set for only one Epoch so what",
+      "start": 2420.359,
+      "duration": 5.72
+    },
+    {
+      "text": "other if actually in real life practice",
+      "start": 2422.96,
+      "duration": 4.56
+    },
+    {
+      "text": "what's done is that the data set set",
+      "start": 2426.079,
+      "duration": 3.561
+    },
+    {
+      "text": "which is used is huge we are using a",
+      "start": 2427.52,
+      "duration": 3.96
+    },
+    {
+      "text": "data set which is quite small this data",
+      "start": 2429.64,
+      "duration": 4.32
+    },
+    {
+      "text": "set only has 5,000 tokens and 20,000",
+      "start": 2431.48,
+      "duration": 5.56
+    },
+    {
+      "text": "characters usually people train such a",
+      "start": 2433.96,
+      "duration": 4.56
+    },
+    {
+      "text": "model which we have developed this large",
+      "start": 2437.04,
+      "duration": 3.4
+    },
+    {
+      "text": "language model on extremely large number",
+      "start": 2438.52,
+      "duration": 3.88
+    },
+    {
+      "text": "of data set which consist of millions of",
+      "start": 2440.44,
+      "duration": 4.28
+    },
+    {
+      "text": "tokens and at that time the model does",
+      "start": 2442.4,
+      "duration": 4.08
+    },
+    {
+      "text": "not overfit too much because the data",
+      "start": 2444.72,
+      "duration": 4.24
+    },
+    {
+      "text": "itself has so much variability our in",
+      "start": 2446.48,
+      "duration": 4.56
+    },
+    {
+      "text": "our case the model is overfitting on the",
+      "start": 2448.96,
+      "duration": 4.159
+    },
+    {
+      "text": "data because the data itself is small so",
+      "start": 2451.04,
+      "duration": 4.559
+    },
+    {
+      "text": "it it gets away by memorizing pieces of",
+      "start": 2453.119,
+      "duration": 7.321
+    },
+    {
+      "text": "data I actually encourage you to uh vary",
+      "start": 2455.599,
+      "duration": 6.801
+    },
+    {
+      "text": "various or change various parameters",
+      "start": 2460.44,
+      "duration": 4.2
+    },
+    {
+      "text": "here such as learning rate weight Decay",
+      "start": 2462.4,
+      "duration": 3.88
+    },
+    {
+      "text": "you can change the number of epoch you",
+      "start": 2464.64,
+      "duration": 3.04
+    },
+    {
+      "text": "can even change the training and the",
+      "start": 2466.28,
+      "duration": 4.0
+    },
+    {
+      "text": "validation loss percentage uh change the",
+      "start": 2467.68,
+      "duration": 4.24
+    },
+    {
+      "text": "maximum number of tokens although this",
+      "start": 2470.28,
+      "duration": 3.559
+    },
+    {
+      "text": "might not lead to too many changes if",
+      "start": 2471.92,
+      "duration": 3.96
+    },
+    {
+      "text": "you want to see changes in the code I",
+      "start": 2473.839,
+      "duration": 3.601
+    },
+    {
+      "text": "encourage you to change these hyper",
+      "start": 2475.88,
+      "duration": 3.479
+    },
+    {
+      "text": "parameters like learning learning rate",
+      "start": 2477.44,
+      "duration": 4.8
+    },
+    {
+      "text": "weight DK number of epo Etc and convince",
+      "start": 2479.359,
+      "duration": 4.321
+    },
+    {
+      "text": "yourself that our model might be",
+      "start": 2482.24,
+      "duration": 3.359
+    },
+    {
+      "text": "overfitting but at least we have tried",
+      "start": 2483.68,
+      "duration": 3.72
+    },
+    {
+      "text": "to reduce the loss function as much as",
+      "start": 2485.599,
+      "duration": 3.48
+    },
+    {
+      "text": "possible and we have set up this Loop",
+      "start": 2487.4,
+      "duration": 4.0
+    },
+    {
+      "text": "where the loss can be minimized and our",
+      "start": 2489.079,
+      "duration": 4.641
+    },
+    {
+      "text": "large language model is learning that's",
+      "start": 2491.4,
+      "duration": 3.88
+    },
+    {
+      "text": "pretty awesome and we have reached this",
+      "start": 2493.72,
+      "duration": 3.08
+    },
+    {
+      "text": "stage completely from scratch we have",
+      "start": 2495.28,
+      "duration": 4.559
+    },
+    {
+      "text": "not used any Library such as Lang chain",
+      "start": 2496.8,
+      "duration": 5.44
+    },
+    {
+      "text": "Etc okay so this is where we are at",
+      "start": 2499.839,
+      "duration": 4.961
+    },
+    {
+      "text": "right now and what we'll do in next",
+      "start": 2502.24,
+      "duration": 4.48
+    },
+    {
+      "text": "lecture is that we'll make sure that the",
+      "start": 2504.8,
+      "duration": 4.36
+    },
+    {
+      "text": "model does not overfit too much and",
+      "start": 2506.72,
+      "duration": 4.24
+    },
+    {
+      "text": "these are called as decoding strategies",
+      "start": 2509.16,
+      "duration": 4.08
+    },
+    {
+      "text": "so we'll make sure that the randomness",
+      "start": 2510.96,
+      "duration": 4.28
+    },
+    {
+      "text": "is controlled so that in the models",
+      "start": 2513.24,
+      "duration": 5.079
+    },
+    {
+      "text": "prediction we will uh make sure that the",
+      "start": 2515.24,
+      "duration": 5.079
+    },
+    {
+      "text": "model is predicting new words and not",
+      "start": 2518.319,
+      "duration": 4.681
+    },
+    {
+      "text": "just memorizing the text and there in",
+      "start": 2520.319,
+      "duration": 5.921
+    },
+    {
+      "text": "come strategies such as temperature",
+      "start": 2523.0,
+      "duration": 6.24
+    },
+    {
+      "text": "scaling uh Etc and I'll explain all of",
+      "start": 2526.24,
+      "duration": 4.56
+    },
+    {
+      "text": "those to you in the next lecture which",
+      "start": 2529.24,
+      "duration": 3.2
+    },
+    {
+      "text": "will also be a very interesting lecture",
+      "start": 2530.8,
+      "duration": 4.48
+    },
+    {
+      "text": "like this one okay so that brings us to",
+      "start": 2532.44,
+      "duration": 4.44
+    },
+    {
+      "text": "the end of today's lecture I think",
+      "start": 2535.28,
+      "duration": 3.64
+    },
+    {
+      "text": "today's lecture was a very very",
+      "start": 2536.88,
+      "duration": 5.08
+    },
+    {
+      "text": "important lecture for us in this course",
+      "start": 2538.92,
+      "duration": 5.84
+    },
+    {
+      "text": "because we actually trained a large",
+      "start": 2541.96,
+      "duration": 5.2
+    },
+    {
+      "text": "language model we got its lost to",
+      "start": 2544.76,
+      "duration": 4.559
+    },
+    {
+      "text": "minimize as as much as possible we",
+      "start": 2547.16,
+      "duration": 4.439
+    },
+    {
+      "text": "reached into some errors towards the end",
+      "start": 2549.319,
+      "duration": 4.441
+    },
+    {
+      "text": "like overfitting but that is good I",
+      "start": 2551.599,
+      "duration": 3.841
+    },
+    {
+      "text": "would say because now we are at a stage",
+      "start": 2553.76,
+      "duration": 3.16
+    },
+    {
+      "text": "where we can reduce overfitting and",
+      "start": 2555.44,
+      "duration": 3.84
+    },
+    {
+      "text": "improve the performance of the",
+      "start": 2556.92,
+      "duration": 5.24
+    },
+    {
+      "text": "model and uh it took us several lectures",
+      "start": 2559.28,
+      "duration": 4.88
+    },
+    {
+      "text": "to reach this stage but I hope you are",
+      "start": 2562.16,
+      "duration": 3.64
+    },
+    {
+      "text": "following along and you liking these",
+      "start": 2564.16,
+      "duration": 3.439
+    },
+    {
+      "text": "lectures because I don't think anywhere",
+      "start": 2565.8,
+      "duration": 4.08
+    },
+    {
+      "text": "else these lectures are covered in this",
+      "start": 2567.599,
+      "duration": 4.441
+    },
+    {
+      "text": "much depth and in this much detail my",
+      "start": 2569.88,
+      "duration": 3.8
+    },
+    {
+      "text": "aim is to always show you these",
+      "start": 2572.04,
+      "duration": 3.68
+    },
+    {
+      "text": "explanations on a whiteboard and then",
+      "start": 2573.68,
+      "duration": 3.96
+    },
+    {
+      "text": "also take you to the code",
+      "start": 2575.72,
+      "duration": 3.8
+    },
+    {
+      "text": "so that along with the Whiteboard",
+      "start": 2577.64,
+      "duration": 3.919
+    },
+    {
+      "text": "explanations you can also do the coding",
+      "start": 2579.52,
+      "duration": 4.2
+    },
+    {
+      "text": "on your own so thank you so much",
+      "start": 2581.559,
+      "duration": 4.121
+    },
+    {
+      "text": "everyone I look forward to seeing you in",
+      "start": 2583.72,
+      "duration": 3.879
+    },
+    {
+      "text": "the next lecture where we will be",
+      "start": 2585.68,
+      "duration": 4.2
+    },
+    {
+      "text": "covering decoding strategies to make",
+      "start": 2587.599,
+      "duration": 4.041
+    },
+    {
+      "text": "sure that the llm output is more",
+      "start": 2589.88,
+      "duration": 3.92
+    },
+    {
+      "text": "coherent and more robust thanks so much",
+      "start": 2591.64,
+      "duration": 6.199
+    },
+    {
+      "text": "and I'll see you in the next lecture",
+      "start": 2593.8,
+      "duration": 4.039
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series today what we are going to do is we are going to train our large language model until this point in the uh llm pre-training stage what we have actually done is that we have uh found out or rather we have understood the method which which is used to calculate the training and the validation losses for a large language model and we covered that extensively in the last lecture where we saw that let's say if you have an llm model and if you feed an input to the model you get an output how can you compare the output with the target value and how can you get the loss function now that we have calculated the loss function in the previous lecture the door is open for us to implement back propagation and to try to minimize this loss as much as possible before we start learning about the llm training function in today's lecture let me quickly recap how we calculate the loss between the llm output and the target values so in last lecture and as is the case with today's lecture the data set which we are going to use is the book which is called the verdict it's a book which is written in 196 and you can download this data set completely uh it's an open source dat data set and uh it's not too big I think it has around 5,000 or 5,500 tokens so it has around 20,000 characters and it has 5,000 tokens that's the data set we are going to use the first step we do is that divide this data set into training and validation we use a training ratio of 0.9 which means that we use the initial 90% of this data set as training and we use the remaining 10% of the data set as the validation data great now once we have the training data there is uh we first need to divide the training data itself into input and Target pairs remember we have not even come to the llm output for now since llms are Auto regressive models we don't have labels so there is a special way in which the training data and the validation data itself needs to be divided into input and targets within the data itself and we do that using something which is called as the data loader so what the data loader does is that it looks at a data set and it creates these input and Target pairs so let me give you an example of how these input and Target pairs actually look like so here's one batch of input and Target pairs so this is one batch and here you can see that the input consists of two samples and the output consists of two and the target consists of two samples this is from our data set itself and in each sample here you can see that there are four tokens but actually when we code the number of tokens is pretty big I think it's around 250 phic that's the context size or how many tokens you are going to see before predicting the next token right so this is the first sample of the input and here you can see this is the first sample of the output now the output or I should call this the target rather I shouldn't call it the output because the target is the true value the actual value which we want our llm to approximate so if you look at the first row of the input and the first row of the target you'll see that the target Target is just the first row shifted to the right by one and similarly for the second row of the input and the second row of the target that's how the input Target pairs are constructed so we we go we first take this data set and uh what we do is that based on the context size let's say the context size is four so the first input is these four tokens that is X1 here I'm assuming one token is equal to one word but that's not the case because we use a bite pair encoder so I'm just showing this for illustration purposes here so this is the first input that's X1 the first four tokens then the next four tokens that's the second input X2 and here there is one more important variable which is called as stride so if you see between the input one and input two there is no overlap right because the stride is equal to four so the stride is usually equal to the context size so X1 X2 and similarly we go through the entire data set like this and we get the input and similarly corresponding with each input we shift the input to the right right and we get the target so throughout this entire lecture when we are going to refer to input and Target pairs we keep this visual in mind so this is a batch each batch has here two samples so here's the input batch and here's one output batch similarly sorry one input batch and one target batch similarly there will be huge number of input and Target batches once we split all of the data set into input and Target pairs right so that's the the first step and if you want to understand the details about how this input and Target pairs are created we have done that in a lot of detail in the previous lecture so I'm not going to cover that right now so these are the input and the target pairs right that's the first step then we need to get the llm output so what we do is that we take the input value so we take the first batch take the second batch take the third batch Etc and pass all of these batches into this llm architecture which we have built this is a pretty big architecture where we first do the tokenization then uh do the embedding then add the positional embedding add the Dropout layer and the output from this Dropout layer passes through the Transformer block so this blue color this blue color block here which I'm highlighting right now that's the Transformer block here where all the magic happens the Transformer has multiple layers such as normalization multi-ad attention Dropout shortcut connection feed forward Network Dropout another shortcut connection Etc then we come out of the transform former block there is another normalization layer followed by a output head or output neural network and then we get this output tensor which is called as the logit tensor so the shape of the logit tensor is pretty interesting to note over here let's say we are looking at the first batch right now and the first batch uh has two samples right this is the first sample I had always thought which I mentioned here and this is the second sample this is how the logic sensor looks like each of the now in each sample every token let's say I has the number of columns which is equal to the vocabulary size that is 50257 uh so the size of this logic tensor is 2 into 4 into 50257 in this case because there are two batches four tokens in each batch and 50257 columns then we flatten this logic stenor which means we merge the first uh sample in this batch and the second sample in this batch and we create this unified tensor which is eight and 50257 columns now when we get the logit sensor as the llm output every entry in the logic stenor does not correspond to probabilities all the entries corresponding corresponding to one token do not even add up to one so we need to implement the soft Max and convert this into Vector of probabilities so what this means is that when you look at the first row I each value here corresponds to how much probability is there for that token to be the next token so if the input is I uh every value here corresponds to what's the probability for that token to be after I so if the llm is trained the token index which has the maximum probability should correspond correspond to had because when I is the input had is the output similarly when you look at the second row I had is the input if the llm is trained the token which has the maximum probability should correspond to always because when I had is the input always is the output similarly when I had always thought is the input uh the token I the token here which corresponds or the index rather which corresponds to the maximum probability should correspond to uh the next word which is I had always uh thought or I had always thought Jack so let's see yeah I had always thought Jack so here the token ID which corresponds to the maximum value in this case this index should correspond to the token for Jack when the llm is actually trained now initially when we get this tensor of probabilities uh the llm is not trained right so what we will do is that we know the target we know the target values right we know the target which we want and we know the token in indexes of this target so for example for I is the input had is the output and that has a certain token Index right so let's say if I is the input and had is the output I want this token index to have the maximum value of the probab ility when I had is the input always is the output so let's say I want this token index so what we do here is that we just collect this list of targets and their token token IDs and we find the probabilities on in each row corresponding to these token IDs now the whole aim of this uh exercise of training llms is to make sure that these probabilities are as close to one as possible because then we'll make sure that the llm outputs are matching the target values which means that the next token which our llm is predicting uh is similar to the Target values Target value tokens but initially when the llm is not trained these probabilities will be not close to one at all so we employ the cross entropy loss and we find this negative log likelihood and the whole aim uh when we train the llm today is to make sure that this loss function decreases and it becomes close as close to zero as possible where the uh loss function is minimized so today what we are going to do is that all the parameters in the GPT architecture here all of the parameters we'll take a look at them shortly we are going to optimize them so that when the input inputs are fed into this model and when we take the loss function in the way I have outlined today the loss function is minimized uh I went through this in a fast manner because we had one hour lecture previously detailing this entire process okay now I hope you have solidified your understanding of how the loss function is calculated now that we have the loss function we are ready to do the llm pre-training so here what it means is that we are going to try to minimize the loss function as much as possible so we want the output the llm outputs to be as close as possible to the uh Target to the Target value tensor and for that we'll be doing back propagation so here's the pre-training loop schematic if you have worked with neural networks before if you have done machine learning or deep learning it's extremely simple to understand because once we have written down the entire loss function all we need to do is just do the backward pass and I I'll explain to you what this means so what we are going to do is that uh we are going to do multiple epochs so let's start understanding this step by step we are going to do multiple epochs one Epoch is going through the entire training set once now in each Epoch we have multiple batches right uh because the training set is divided into batches as I showed you we are going to uh look at one batch in one Loop and then in that batch what we are going to do is we are going to find the loss function in the same way which I have described to you right now and we even wrote a code for this in the last lecture I'm going to find the cross entropy loss function for the entire batch and then I'm going to do this step which is the backward path to calculate the loss gradients in this entire schematic this is the most important step the backward pass allows us to calculate the gradients of the loss and what the gradients of the loss will enable us to do is to update the model weights and parameters so let's say one particular parameter has a value of P old in one iteration in the in the next iteration its value will be something like this its value will change uh sorry this should be the other way around so this should be P new the new value is equal to the value minus the step size into the loss gradient so the loss gradient once we get these loss gradients they will enable us to Value all the parameters in our GPT architecture and if your question is what are these parameters I'm going to come to that in just a moment and then after we update the parameters we are going to print the training and validation losses we are going to see what the llm output is there just for visual inspection and then we are going to go to the next next batch when we go to the next batch we are going to reset the loss gradients from the previous batch to zero and then do the same process all over again for all the batches and we'll do this until we finish one training EPO Epoch and then we'll do this entire procedure for multiple training epochs just so that the training uh proceeds as many time as possible and the parameter values are updated as much as possible this is the main algorithm for pre-training the large language model and it looks pretty simplified right now but what we have done so far in all of the lectures we have conducted is that unless we had a way to calculate the loss function getting to this step getting the backward pass would have been impossible and to get this loss function right now to get this loss function we first needed to understand how this logic sensors are obtained how the llm output is obtained to get to how the llm output is obtained we need to understand this entire GPT architecture itself to understand this GPT architecture we need to understand tokenization positional embedding multi-ad attention Dropout layer feed forward networks Etc so without doing all of this it would have been impossible to calculate the loss function which I explained to you today in 5 minutes so these 5 minutes have required a hard work of 20 to 25 lectures which have been covered previously so this is the training Loop schematic in in short we are we are finding the loss we are doing the backward pass to get the loss gradient in every iteration and we are updating the parameters based on these loss gradient values and our hope is that as we do the updating let's say the loss function landscape is this it will not be this at all because it's a huge multi-dimensional landscape uh if this is the loss function landscape and if we start from somewhere here our goal is to make the optimization so that at the end we reach this Minima where the loss function is minimized great so in this entire code the main step is finding the loss gradients and we are going to do that in Python through this method called loss. backward I'm going to show you how elegant this pre-training code is in just one line python essentially computes U or tensor flow pytorch essentially computes the entire backward pass in just one line of command that's pretty awesome but you need to understand why it is so awesome the reason it's so cool is because the sheer scale of the number of parameters we are dealing with so what we are essentially doing is that we have the inputs we pass them through the GPT model we get the logits we apply soft Max then we get the cross entropy loss between the output and the target this whole operation is differentiable which means that this gives us so once the loss is obtained we can do the back propagation and find the partial derivative of the loss with respect to all the parameters which come in in the model and mostly the parameters come in this step in fact I think all of the parameters come in this step in the GPT model itself so the back propagation needs us to understand what makes the GPT model differentiable so if you look at the GP model you will see that this is the workflow and differentiability is ensured and maintained at every single step of this workflow so if you have the loss function over here you can back propagate it and find the partial derivative of the loss with respect to all of the parameters which come within this within all of these layers and if you add all of these parameters together the number of parameters will be around 161 million parameters I'm going to show show you how it comes to 161 million but through this one line of code through loss. backwards we are essentially finding the gradient of the loss with respect to all of these parameter values and then updating all of these parameter values isn't that pretty awesome the sheer scale of these operations would have been impossible to do 50 years back when compute resources were not available but now I can do this backward pass and this optimization on my laptop and uh I did this training in 6 minutes uh which I think even on your laptop you can do it in five to 6 minutes we optimized 161 million parameters in this much amount of time and I'll show you how we can do that first let me uh draw your attention to what makes the number of parameters to be this high so uh if you have followed the GPT model the GPT model consists of the embedding parameters the token embeddings positional embeddings it consists of the Transformer block parameters and it also consists of the final layer before we get the logits so the embedding parameters have the token embeddings whose size is equal to uh the vocabulary size multiplied by the embedding Dimension and the positional embedding which is defined by the context size multiplied by the embedding Dimension if you add the these two parameters this is 38.4 million these parameters are not known to us we are even optimizing for the token and positional embedding parameters now if you look at the multi-ad attention we have the query key and value trainable weights so there are three matrices here and each M each each matrice has dimension of 768 which is the input embedding and the output embed embedding which are generally same in this multi- tension and multiplied by three because we have query key and value three matrices so this is 1.77 million parameters and then there is also an output head um whose number of parameters are equal to 59 million the total number of parameters in the multi-ad attention block that itself is equal to uh 2.36 million so 2. 36 million parameters here and then we have a feed forward neural network in the Transformer block and the feed forward neural network is like this expansion contraction type of a setting where we have the input equal to the embedding Dimension that's projected into an hidden layer which whose dimensions are four times the embedding Dimension and then we compress it back to the original Dimension so uh the number of parameters here are 768 which is the embedding Dimension then 4 into 7 68 which are the number of parameters here so these are the parameters in this expansion layer and these are the number of parameters in the contraction layer both are the same and they add up to 4.72 million now if you add up the parameters in the multi-ad attention the feed forward neural network and the output head it comes out to be 2.36 + 4.72 million this these are the number of parameters in one Transformer block and we have 12 Transformer blocks so the total number of parameters which are coming from the Transformer block itself is 85.2 million parameters and then there is a final layer which is a soft Max uh which gets us the logic tensor and the number of parameters here are the embedding Dimension multiplied by the vocabulary size and that's 38.4 million parameters so if you add up this number of parameters together the embedding has 38.4 million Transformer has 85.2 million and then the final layer is 38.4 million so the total number of parameters if you add up are 162 million gpt2 on the other hand the smallest model is 124 million right so the reason between this discrepancy is that they use something called weight time so in the output projection layer they recycle the uh same number of parameters in the embedding layer so hence we we reduce those many number of parameters and that's why the number of parameters in gpt2 smallest model comes out to be 124 million in any ways I want to illustrate here the scale of this operation and I want you to understand how the number of parameters comes to be of the order of 100 million so when we do back propagation what we are doing is that for each of these parameters we'll first get this gradient and that's obtained in this step you see uh backward pass to calculate gradients and once we get the gradients we are going to update all of the model weights uh so the way to update the model weights so this is just a simple gradient descent which I have shown in the actual code we'll use a version which is called Adam which is a bit more complex but at the underlying core the operation is similar we get the gradients which is the partial derivative of loss with respect to the weights and then we update all the parameter values based on this gradient in the backward pass awesome right so this is how the parameters are going to be updated in each uh in each iteration and we hope that as the parameters are updated the loss function value goes on decreasing like I have shown over here and it reaches some sort of a Minima that is what the go is so let's see whether this goal is satisfied now what I'm going to do is I'm going to take you through code and we are going to implement the pre-training loop for the large language model so the loop looks like this I I want to draw your attention to uh something like so I want to draw your attention first to the most important part what we are going to do is that remember I mentioned that we have a loader a data loader for the training and the validation set correct so first what we are going to do is that we are going to look at the training loader first and we are going to divide it into the input batch and the target batch this is similar to what I explained to you right now over here see when I say input batch and Target batch always keep this this in mind so the data set is divided into input batch and Target batches so there are multiple batches like this and at one time I'm processing one such batch so at one time I'll look at one input and one target batch and I'll find the loss between the input and the target batch how do I find the loss using this same workflow using the category cross entropy towards the end I find the loss that is this step and then this this step right here is the most important step in this whole code we are doing loss do backward what the loss. backward does is that it calculates the backward pass which means that it will calculate the gradient of the loss with respect to all of the parameters all of the 160 million parameters this one step is going to find the gradient of the loss then we are going to do Optimizer dot step what this Optimizer do step does is that it essentially looks at uh it essentially looks at this update Rule and it will update the parameter values based on the gradient values which are obtained so this is the update model weights part and what I'm doing is that I'm just uh mentioning how many tokens the model has seen and I'll show you where this number comes into the picture but let's say we are looking at the input and Target batch and the cont context size is uh 256 so we are looking at 256 tokens in one sample 256 in the second sample so we are looking at 512 tokens in one batch in the one input batch at a time so the tokens seen will just return the number of tokens which we are seeing at a particular time and you see we are doing so it will get added up as the as we Loop through different number of batches so this Loop is for going through each batch in the training data set and this Loop is for the number of epoch so after we go through all of the batches we we will do the same thing again uh so the number of epo is specified by numor EPO right now what we are doing is that this step is actually an evaluation step so you can even get rid of this but it's important for us to see the validation loss so in this step what we are doing is that we are going to define a function called evaluate model and we are going to get the training loss and the validation loss and we are going to print these out as the training proceeds so let me show you what the evaluate model function looks like the evaluate model function is actually pretty simple we calculate the loss U the Cal loss loader is we calculate the loss for the training loader and we calculate the loss for the validation loader for the entire data set and we have defined these functions before see in the previous lecture we used the same two functions Cal Closs loader for the training and the validation and it Returns the training and the validation lots for the entire data set at that particular uh at when that particular batch is being processed so what we'll do is that after the first batch is processed we will run this part which means that after the first batch is processed we will evaluate the model and we will get the training and the validation loss correct but we are going to show it we are going to show it only uh only at a particular evaluation frequency so what I'm showing is that here I'm set I will set the evaluation iteration and the evaluation frequency to be equal to five which means means that after every five batches are processed only then I will show the training and the validation loss so remember what is happening here when one batch is processed Global step will be one when the second batch is processed Global step will be two now if the evaluation frequency is five this will be zero only when Global step is equal to five right uh that is when the remainder will be zero and only at that step only at that when I reach batch number five I am going to calculate the training and the validation loss and I'm going to print it out that's it when I come to batch number 10 I'll do the same I'll calculate the training and validation loss I'll print it out and I'll do this for every single Epoch so in this step what I'm doing is when I reach at a particular batch number when the llm has processed that particular batch I will print out the training and validation loss that's all we are doing up till now and then just for the sake of uh visualization and understanding after one batch is processed so after uh one batch is processed what I'm going to do is that I'm also going to print out a sample text or here I should say that after each Epoch is processed sorry not after each batch is processed we'll first make sure we go through all of the batches for one Epoch so after each Epoch is processed what I'm going to print is okay here's what the next tokens my llm is generating right now so uh this generate and print sample is another function which we have defined over here and what this will do is that it will print out the next 50 tokens which our large language model is predicting we have already seen this generate Tex simple function before what this function does is that it takes the model at its current stage so if we are at Epoch number five the parameters are optimized maybe they are not very correctly optimized but we are at certain stage and we want to see what the output the llm is predicting for the input right so this function is essentially going to generate the tokens for us and it will generate 50 new topens for us to visualize and we can see right whether the output is correct or not whether the output of the llm is making sense or not so this will be a lot of fun we are going to print this out at every single Epoch so the main step in this code is this loss. backward what we are doing after this point is just printing the training and the validation loss after every five batches and we are going to print the Tex sample after each epox and we are returning the training losses validation losses and we are also tracking the token scene see we are tracking this token scene which is the number of tokens the input batch is using uh that will give us a sense of how many tokens the um so it Returns the elements how many tokens have been consumed until that particular point in the model and we'll also plot the number of tokens in the output so remember one one Epoch will go through the entire data set once right and if we look at our data set again um the data set which we are considering I think it has around 5,000 tokens so if we go through the if the the number of epo are 10 so which means that if you go through the entire data set 10 times it actually means that the number of tokens seen should be 5,000 multiplied by 10 so it should be of the order of magnitude of 50,000 just keep this in mind so yeah this is the code and it's pretty simple it just I think around 15 to 20 lines of code and the reason it's made so simple in Python is because of this loss. backward method it's pretty awesome and it does the gradient updates uh sorry it calculates the loss gradients and then we just do the optimizer do step we have not yet defined the optimizer but we'll be doing it shortly okay now what we are going to do is that uh I'm just going to explain the evaluate model function and the generate and print sample so that it's more clear for you so the evaluate model function calculates the loss over the training and the validation set and we ensure that the mod model is in evaluation mode uh with gradient tracking and Dropout disabled remember that when the model when we evaluating the model when we are printing the training and validation loss we don't need to keep track of the gradient updates and we can even disable the Dropout because we are just calculating the loss we are just doing the forward pass and then this generate and print sample right what we are doing here is that it's a convenience function that we use to track whether the model improves during training because we will be able to see what text is being generated the generate and print sample function takes a text snippet which is called start context as an input and converts it into token IDs feeds it to the llm to generate a text sample at that particular point in the training and we are going to print the text sample after every Epoch right now let's see all of this in action by training a GPT model instance for 10 EPO using an admw Optimizer now two things I would like to clarify here when I say we are training a GPT model instance the model which we are defining is an instance of the GPT model class which we have already defined before so this is the GPT model class what this class does is that it essentially performs all the operations which we saw in the uh GPT model architecture schematic yeah all of these operations so it will con it will create create or it will give us the llm output at the end uh okay so that's what uh that's what this GPT model class is actually doing great now what we are what I also want to show you is the model configuration which we are using for this particular code so this is the model configuration we are using vocabulary size of 50257 a context length of 256 remember gpt2 smallest model originally used a context size of 1024 but I'm showing 256 here because I want the code to run on your machine in small amount of time and using small amount of resources you can change it to one24 and the code will not change significantly the vector embedding Dimension which we we are using is 768 because the inputs will be projected into that much Dimension space the number of attention heads is 12 the number of Transformers we are using is 12 and the dropout rate is 0.1 and the key query value query key value bias uh term bias is false because when we initialize the weight matrices for query key and values we don't need the bias term so this is the GPT configuration which I'm using and I thought it's important for you to know that when we uh create an instance of the GPT model class using this configuration right so we create an instance of the GPT model class and uh the second thing I want to mention is the optimizer so we are using this Optimizer called adamw uh adamw is a variation of Adam which uses weight Decay if you are not familiar with Adam or adamw that's totally fine just know for right now that for all modern machine learning algorithms for classification regression Adam has now become the go-to optimizer of choice for all of these algorithms because it works very well it avoids local Minima and it leads to faster convergence as well Adam W is another version of Adam where we specify the learning rate and we specify the weight Decay now these are the parameters which you can play around with these are generally called hyper parameters because we need to tune them there are some other variables which we are going to Define before we run the pre-training code we Define the number of epoch to be equal to 10 so here I told you right we are going to go through the entire data set uh based on what we set in the number of epoch so if we set the number of epo equal to 10 we are going to repeat this entire process 10 times which means we are going to print the generated sample after every one Epoch for 10 times okay now uh one more thing is that evaluation frequency and evaluation iteration is five which means that after every five batches I'm going to print the training and the validation LW and and the initial text which I have given is every effort moves you because the generate and the print sample requires us to give an initial text then it will print out what the llm is predicting for this initial text awesome so what I've done here is that I've also uh recorded the start time at at which I start running this code and the end time because remember the number of parameters which we are using here are huge they are of the order of more than 100 million parameters and I just want to record the time it takes so I'm running my code on a MacBook Air right now I think it takes similar time on I5 or i7 um computers as well as MacBook even the smallest or the earliest MacBook model should run this code in in a short amount of time so now uh here you can see that I've already run the training process before looking at the output the first thing which I want to show you is training completed in 6.6 minutes and I continue to be amazed by this because I ran a llm architecture code on on my laptop which had this code was optimizing 160 million parameters and it was doing it 10 times or 10 EPO and the compute power which my laptop had made it so that in 6.6 minutes this entire code was run and uh that's pretty awesome you can run it on your own machine and then when you see this you'll feel a lot of satisfaction because to get to this point we needed to understand so many things we needed to understand about the llm data set how the data set is pre process the data pre-processing pipeline then the llm architecture itself multi-ad attention Dropout layers M multi-ad attention causal attention then we needed to understand how to define the loss function after all of this effort we have reached the stage where we are able to train our own llm from scratch so let's look at the training and validation losses which have been which are being printed after every five batches so here you can see that the training loss if I if I see towards the end the training loss started from 9.78 one and you will see that the training loss has decreased to 39 what awesome so as we can see the training loss improves drastically which means it has started with 9.58 and it has reduced to a very small value that's actually awesome right in our case actually the training law started from 9.78 1 and it reduced to 391 so let me change it uh the training law started from 9 781 and it it reduced to 391 when I had run it earlier these were the values I had obtained but for now the values are even better awesome let's look at the validation loss the validation loss as you see started from 9.93 3 and it did not decrease that much it stay it stagnated at around 6.4 6.3 6.2 this is a classic sign of overfitting we'll come to that in a bit but let's look at what the llm has predicted and does it make sense so the remember we are printing the generator text after every Epoch so after the first Epoch the next so we are printing out 50 tokens and so the llm is printing out comma comma comma comma comma it has not understood anything after the second EPO the LM is printing U comma and and and and and still not understanding anything after the third Epoch it printed and I had been after the four fourth Epoch it printed you know the I had the donkey and I had the then let's see after Epoch number seven it printed every effort moves you know was one of the picture for nothing I told Mrs now you see that it started to use some of the words from our text and after Epoch number nine you see every effort moves you question mark yes quite insensible to the irony she wanted him a Vindicated and by me now here if you if you go to the training data set and search irony you'll see yes quite insensible to the irony she wanted him indicated and by me so here you see the llm is predicting something which does does make sense but it is directly recycling text from the data another classic sign of overfitting so the final text which we obtain at the end of 10 epoxes every effort moves that was our input youo was one of the xmc laid down across the SE and silver of an exquisitely appointed luncheon table I had run over from Monte Carlo and Mrs J this is the output which has been printed and uh you'll see that the language skills of the llm have improved during this training first it started with comma comma comma comma comma and then you'll see that this is the output which it is predicting now so the language skills have improved a lot in the beginning the model is only able to append commas uh at the end of the training it can generate grammatically correct text like was one of the exams Etc that itself is a huge win for us because it's a positive sign the llm is not generating something completely random it had so many options to generate completely random things right but due to training process it is at least generating Words which makes sense okay so similar to the training set loss the validation loss starts high and decreases during the training however it never becomes as small as the training loss and it stagnates at 6.37 to after the 10th EPO what we can do is that we can even create a plot which shows the training and the validation loss so you'll see that the training loss continuously goes on decreasing as shown by the Blue Line the validation loss on the other hand you'll see that the validation loss decreases and then remain stagnant so here you see we are also tracking the number of tokens and as I told you each Epoch is going through the data set once the data set has around 5,000 tokens so when we do 10 EPO we should roughly see 10,000 tokens which is what we are seeing right now so as the number of tokens seen increases you'll see that the training loss decreases a lot but the validation loss stagnates so both of the training and validation loss improve after the first Epoch however the losses start to diverge past the second Depo see over here after the second Depot the losses have started to diverge this Divergence and the fact that the validation loss is much larger than the training loss indicate that the model is actually overfitting to the training data and we can confirm that the model memorizes the training data because quite insensible to the irony remember I showed you this after uh the epoch number n quite insensible to the irony and this is exactly taken from this data set so it's memorizing it basically so it's memorizing what is already present in the data set and memorization is a classic sign of overfitting so this memorization is expected since we are working with a very very small training data set and training the model for multiple epochs okay and uh usually it's common to train the model on a much much larger data set for only one Epoch so what other if actually in real life practice what's done is that the data set set which is used is huge we are using a data set which is quite small this data set only has 5,000 tokens and 20,000 characters usually people train such a model which we have developed this large language model on extremely large number of data set which consist of millions of tokens and at that time the model does not overfit too much because the data itself has so much variability our in our case the model is overfitting on the data because the data itself is small so it it gets away by memorizing pieces of data I actually encourage you to uh vary various or change various parameters here such as learning rate weight Decay you can change the number of epoch you can even change the training and the validation loss percentage uh change the maximum number of tokens although this might not lead to too many changes if you want to see changes in the code I encourage you to change these hyper parameters like learning learning rate weight DK number of epo Etc and convince yourself that our model might be overfitting but at least we have tried to reduce the loss function as much as possible and we have set up this Loop where the loss can be minimized and our large language model is learning that's pretty awesome and we have reached this stage completely from scratch we have not used any Library such as Lang chain Etc okay so this is where we are at right now and what we'll do in next lecture is that we'll make sure that the model does not overfit too much and these are called as decoding strategies so we'll make sure that the randomness is controlled so that in the models prediction we will uh make sure that the model is predicting new words and not just memorizing the text and there in come strategies such as temperature scaling uh Etc and I'll explain all of those to you in the next lecture which will also be a very interesting lecture like this one okay so that brings us to the end of today's lecture I think today's lecture was a very very important lecture for us in this course because we actually trained a large language model we got its lost to minimize as as much as possible we reached into some errors towards the end like overfitting but that is good I would say because now we are at a stage where we can reduce overfitting and improve the performance of the model and uh it took us several lectures to reach this stage but I hope you are following along and you liking these lectures because I don't think anywhere else these lectures are covered in this much depth and in this much detail my aim is to always show you these explanations on a whiteboard and then also take you to the code so that along with the Whiteboard explanations you can also do the coding on your own so thank you so much everyone I look forward to seeing you in the next lecture where we will be covering decoding strategies to make sure that the llm output is more coherent and more robust thanks so much and I'll see you in the next lecture"
+}

@@ -1,0 +1,3261 @@
+{
+  "video": {
+    "video_id": "1bLhvqZzdaQ",
+    "title": "Introduction to LLM Instruction Fine-tuning | Loading Dataset | Alpaca Prompt format",
+    "duration": 1532.0,
+    "index": 36
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone and uh welcome to this",
+      "start": 5.08,
+      "duration": 4.639
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.68,
+      "duration": 5.36
+    },
+    {
+      "text": "models from scratch Series today we are",
+      "start": 9.719,
+      "duration": 5.721
+    },
+    {
+      "text": "going to look at a topic which is called",
+      "start": 13.04,
+      "duration": 4.56
+    },
+    {
+      "text": "as instruction fine",
+      "start": 15.44,
+      "duration": 4.8
+    },
+    {
+      "text": "tuning in the previous set of lectures",
+      "start": 17.6,
+      "duration": 5.0
+    },
+    {
+      "text": "we have covered this much so far in",
+      "start": 20.24,
+      "duration": 4.68
+    },
+    {
+      "text": "building a large language model",
+      "start": 22.6,
+      "duration": 4.8
+    },
+    {
+      "text": "initially in the first set of lectures",
+      "start": 24.92,
+      "duration": 5.88
+    },
+    {
+      "text": "we saw how to prepare data we learned",
+      "start": 27.4,
+      "duration": 5.56
+    },
+    {
+      "text": "everything about the attention mechanism",
+      "start": 30.8,
+      "duration": 3.599
+    },
+    {
+      "text": "and we learned about the llm",
+      "start": 32.96,
+      "duration": 4.4
+    },
+    {
+      "text": "architecture this was the stage one the",
+      "start": 34.399,
+      "duration": 5.0
+    },
+    {
+      "text": "stage two was the pre-training process",
+      "start": 37.36,
+      "duration": 4.08
+    },
+    {
+      "text": "where we learned about the pre-training",
+      "start": 39.399,
+      "duration": 5.041
+    },
+    {
+      "text": "loop model evaluation and then we",
+      "start": 41.44,
+      "duration": 5.2
+    },
+    {
+      "text": "learned how to load pre-rain weights",
+      "start": 44.44,
+      "duration": 5.2
+    },
+    {
+      "text": "given by open AI gpt2 to construct our",
+      "start": 46.64,
+      "duration": 5.2
+    },
+    {
+      "text": "foundation model and this Foundation",
+      "start": 49.64,
+      "duration": 6.0
+    },
+    {
+      "text": "model is also called as pre-trained",
+      "start": 51.84,
+      "duration": 3.8
+    },
+    {
+      "text": "model and then we started looking at",
+      "start": 56.239,
+      "duration": 5.441
+    },
+    {
+      "text": "fine tuning so until this point in our",
+      "start": 58.6,
+      "duration": 5.04
+    },
+    {
+      "text": "lecture series we have looked at one",
+      "start": 61.68,
+      "duration": 4.64
+    },
+    {
+      "text": "type of f fine tuning which is called as",
+      "start": 63.64,
+      "duration": 4.799
+    },
+    {
+      "text": "classification based fine tuning in",
+      "start": 66.32,
+      "duration": 4.56
+    },
+    {
+      "text": "which we were given a set of emails and",
+      "start": 68.439,
+      "duration": 5.401
+    },
+    {
+      "text": "then the task was to fine tune our",
+      "start": 70.88,
+      "duration": 5.36
+    },
+    {
+      "text": "pre-train model so that it can classify",
+      "start": 73.84,
+      "duration": 5.2
+    },
+    {
+      "text": "any new email as whether it's a Spam or",
+      "start": 76.24,
+      "duration": 5.16
+    },
+    {
+      "text": "not a Spam and we completed this",
+      "start": 79.04,
+      "duration": 5.24
+    },
+    {
+      "text": "Hands-On project fully from scratch and",
+      "start": 81.4,
+      "duration": 4.88
+    },
+    {
+      "text": "now what we are going to do is that we",
+      "start": 84.28,
+      "duration": 3.96
+    },
+    {
+      "text": "are going to start looking at another",
+      "start": 86.28,
+      "duration": 3.96
+    },
+    {
+      "text": "category of fine tuning which is is much",
+      "start": 88.24,
+      "duration": 4.12
+    },
+    {
+      "text": "more common and that's called as",
+      "start": 90.24,
+      "duration": 5.239
+    },
+    {
+      "text": "instruction based fine",
+      "start": 92.36,
+      "duration": 3.119
+    },
+    {
+      "text": "tuning instruction based fine tuning in",
+      "start": 97.64,
+      "duration": 4.88
+    },
+    {
+      "text": "these series of lectures which will be",
+      "start": 100.759,
+      "duration": 5.241
+    },
+    {
+      "text": "five to six lectures we'll build our own",
+      "start": 102.52,
+      "duration": 6.279
+    },
+    {
+      "text": "personal assistant from scratch so we",
+      "start": 106.0,
+      "duration": 5.119
+    },
+    {
+      "text": "have already we already have a",
+      "start": 108.799,
+      "duration": 4.92
+    },
+    {
+      "text": "pre-trained model but the pre-trained",
+      "start": 111.119,
+      "duration": 4.64
+    },
+    {
+      "text": "model needs to be improved and it needs",
+      "start": 113.719,
+      "duration": 4.68
+    },
+    {
+      "text": "to be fine tuned further so that it can",
+      "start": 115.759,
+      "duration": 5.121
+    },
+    {
+      "text": "serve as our own personal assistant",
+      "start": 118.399,
+      "duration": 4.441
+    },
+    {
+      "text": "so let's get started with this chapter",
+      "start": 120.88,
+      "duration": 3.44
+    },
+    {
+      "text": "in which we will fine tune the",
+      "start": 122.84,
+      "duration": 4.12
+    },
+    {
+      "text": "pre-trained llm to follow",
+      "start": 124.32,
+      "duration": 4.919
+    },
+    {
+      "text": "instructions first we need to understand",
+      "start": 126.96,
+      "duration": 4.96
+    },
+    {
+      "text": "why do we need fine tuning right so the",
+      "start": 129.239,
+      "duration": 4.841
+    },
+    {
+      "text": "main reason why we need fine tuning is",
+      "start": 131.92,
+      "duration": 4.16
+    },
+    {
+      "text": "that pre-trained large language large",
+      "start": 134.08,
+      "duration": 4.239
+    },
+    {
+      "text": "language models uh like the one which we",
+      "start": 136.08,
+      "duration": 4.84
+    },
+    {
+      "text": "trained in this series so far are quite",
+      "start": 138.319,
+      "duration": 5.681
+    },
+    {
+      "text": "good at text completions but they really",
+      "start": 140.92,
+      "duration": 5.84
+    },
+    {
+      "text": "struggle with following instructions so",
+      "start": 144.0,
+      "duration": 4.48
+    },
+    {
+      "text": "what are these instructions let's say if",
+      "start": 146.76,
+      "duration": 4.68
+    },
+    {
+      "text": "you use the pre-trained M and if you ask",
+      "start": 148.48,
+      "duration": 5.44
+    },
+    {
+      "text": "it to to fix the grammar in the text it",
+      "start": 151.44,
+      "duration": 4.799
+    },
+    {
+      "text": "will not be able to do this if you ask",
+      "start": 153.92,
+      "duration": 4.599
+    },
+    {
+      "text": "the llm convert the text from an active",
+      "start": 156.239,
+      "duration": 4.241
+    },
+    {
+      "text": "voice to a passive voice it will not be",
+      "start": 158.519,
+      "duration": 6.0
+    },
+    {
+      "text": "able to do this uh so similar",
+      "start": 160.48,
+      "duration": 6.64
+    },
+    {
+      "text": "instructions are difficult to follow for",
+      "start": 164.519,
+      "duration": 4.761
+    },
+    {
+      "text": "a pre-trained large language model",
+      "start": 167.12,
+      "duration": 4.92
+    },
+    {
+      "text": "without fine tuning without fine tuning",
+      "start": 169.28,
+      "duration": 5.4
+    },
+    {
+      "text": "an llm can generate new tokens it can",
+      "start": 172.04,
+      "duration": 5.479
+    },
+    {
+      "text": "generate new sentences fully but it",
+      "start": 174.68,
+      "duration": 6.36
+    },
+    {
+      "text": "cannot follow instructions",
+      "start": 177.519,
+      "duration": 5.64
+    },
+    {
+      "text": "and we want our large language model to",
+      "start": 181.04,
+      "duration": 3.919
+    },
+    {
+      "text": "follow instructions if we want to build",
+      "start": 183.159,
+      "duration": 4.0
+    },
+    {
+      "text": "a personal assistant right if we tell",
+      "start": 184.959,
+      "duration": 4.241
+    },
+    {
+      "text": "the personal assistant that hey look at",
+      "start": 187.159,
+      "duration": 4.321
+    },
+    {
+      "text": "my sentence correct the grammar or hey",
+      "start": 189.2,
+      "duration": 4.399
+    },
+    {
+      "text": "look at my sentence remove all the does",
+      "start": 191.48,
+      "duration": 4.64
+    },
+    {
+      "text": "and the O in the sentence or hey look at",
+      "start": 193.599,
+      "duration": 4.92
+    },
+    {
+      "text": "the sentence and make it very short make",
+      "start": 196.12,
+      "duration": 5.28
+    },
+    {
+      "text": "it concise uh and make the tone very",
+      "start": 198.519,
+      "duration": 4.761
+    },
+    {
+      "text": "professional it won't be able to",
+      "start": 201.4,
+      "duration": 3.399
+    },
+    {
+      "text": "understand these instructions without",
+      "start": 203.28,
+      "duration": 3.8
+    },
+    {
+      "text": "fine tuning and that's why we have to",
+      "start": 204.799,
+      "duration": 5.0
+    },
+    {
+      "text": "learn about fine tuning I went to chat",
+      "start": 207.08,
+      "duration": 4.76
+    },
+    {
+      "text": "GPT and I asked Chad GPT give two",
+      "start": 209.799,
+      "duration": 4.761
+    },
+    {
+      "text": "examples of fine tuning in real life and",
+      "start": 211.84,
+      "duration": 5.479
+    },
+    {
+      "text": "here's what Chad GPT came up with so",
+      "start": 214.56,
+      "duration": 5.039
+    },
+    {
+      "text": "imagine first of all you are in an",
+      "start": 217.319,
+      "duration": 4.12
+    },
+    {
+      "text": "e-commerce company who wants to build a",
+      "start": 219.599,
+      "duration": 3.2
+    },
+    {
+      "text": "customer support",
+      "start": 221.439,
+      "duration": 4.08
+    },
+    {
+      "text": "chatbot so suppose an e-commerce company",
+      "start": 222.799,
+      "duration": 6.241
+    },
+    {
+      "text": "like Amazon uh wants to or Walmart let's",
+      "start": 225.519,
+      "duration": 6.36
+    },
+    {
+      "text": "say wants to develop or deploy a",
+      "start": 229.04,
+      "duration": 5.36
+    },
+    {
+      "text": "customer support chatbot that helps",
+      "start": 231.879,
+      "duration": 4.601
+    },
+    {
+      "text": "users with order status returns and",
+      "start": 234.4,
+      "duration": 4.24
+    },
+    {
+      "text": "product recommendations so they want to",
+      "start": 236.48,
+      "duration": 4.8
+    },
+    {
+      "text": "build an aias bot where users can go and",
+      "start": 238.64,
+      "duration": 4.92
+    },
+    {
+      "text": "ask the chatbot some questions such as",
+      "start": 241.28,
+      "duration": 5.48
+    },
+    {
+      "text": "what's the refund policy or if I want to",
+      "start": 243.56,
+      "duration": 5.039
+    },
+    {
+      "text": "return an order what's the policy with",
+      "start": 246.76,
+      "duration": 4.52
+    },
+    {
+      "text": "respect to that now if the company",
+      "start": 248.599,
+      "duration": 5.48
+    },
+    {
+      "text": "starts with only a pre-train model uh it",
+      "start": 251.28,
+      "duration": 5.04
+    },
+    {
+      "text": "will be very difficult for the model to",
+      "start": 254.079,
+      "duration": 4.16
+    },
+    {
+      "text": "understand specific customer queries",
+      "start": 256.32,
+      "duration": 4.319
+    },
+    {
+      "text": "which is based on the company's policies",
+      "start": 258.239,
+      "duration": 4.24
+    },
+    {
+      "text": "which is based on the company's products",
+      "start": 260.639,
+      "duration": 3.041
+    },
+    {
+      "text": "policies and",
+      "start": 262.479,
+      "duration": 4.081
+    },
+    {
+      "text": "services so the model won't be able to",
+      "start": 263.68,
+      "duration": 5.0
+    },
+    {
+      "text": "answer the questions which are given by",
+      "start": 266.56,
+      "duration": 3.88
+    },
+    {
+      "text": "the user since since it is not",
+      "start": 268.68,
+      "duration": 5.0
+    },
+    {
+      "text": "instruction finetuned yet and as a",
+      "start": 270.44,
+      "duration": 5.599
+    },
+    {
+      "text": "result we need to finetune the model to",
+      "start": 273.68,
+      "duration": 4.12
+    },
+    {
+      "text": "understand specific customer queries",
+      "start": 276.039,
+      "duration": 3.481
+    },
+    {
+      "text": "about the company's own products",
+      "start": 277.8,
+      "duration": 2.959
+    },
+    {
+      "text": "policies and",
+      "start": 279.52,
+      "duration": 3.72
+    },
+    {
+      "text": "services so the reason this is necessary",
+      "start": 280.759,
+      "duration": 4.201
+    },
+    {
+      "text": "is that the base language model which is",
+      "start": 283.24,
+      "duration": 4.239
+    },
+    {
+      "text": "only pre-trained may not have knowledge",
+      "start": 284.96,
+      "duration": 4.36
+    },
+    {
+      "text": "specific to the company's policies or",
+      "start": 287.479,
+      "duration": 3.44
+    },
+    {
+      "text": "products because many of times this",
+      "start": 289.32,
+      "duration": 4.159
+    },
+    {
+      "text": "information is private instruction find",
+      "start": 290.919,
+      "duration": 4.361
+    },
+    {
+      "text": "tuning allows the company to provide",
+      "start": 293.479,
+      "duration": 4.761
+    },
+    {
+      "text": "domain specific instructions such as if",
+      "start": 295.28,
+      "duration": 5.28
+    },
+    {
+      "text": "a user asks about return policy provide",
+      "start": 298.24,
+      "duration": 5.12
+    },
+    {
+      "text": "steps to in initiate a return or if a",
+      "start": 300.56,
+      "duration": 5.919
+    },
+    {
+      "text": "user asks about the refund policy",
+      "start": 303.36,
+      "duration": 5.48
+    },
+    {
+      "text": "provide these these instructions you can",
+      "start": 306.479,
+      "duration": 4.641
+    },
+    {
+      "text": "train or fine-tune the llm further so",
+      "start": 308.84,
+      "duration": 4.0
+    },
+    {
+      "text": "that it can it can respond to queries",
+      "start": 311.12,
+      "duration": 4.76
+    },
+    {
+      "text": "such as these so this ensures that the",
+      "start": 312.84,
+      "duration": 5.0
+    },
+    {
+      "text": "chatbot not only understands General",
+      "start": 315.88,
+      "duration": 4.68
+    },
+    {
+      "text": "language but also responds with company",
+      "start": 317.84,
+      "duration": 5.079
+    },
+    {
+      "text": "specific information improving accuracy",
+      "start": 320.56,
+      "duration": 4.359
+    },
+    {
+      "text": "and relevance that's why it's called",
+      "start": 322.919,
+      "duration": 4.12
+    },
+    {
+      "text": "instruction fine tuning we have to train",
+      "start": 324.919,
+      "duration": 4.081
+    },
+    {
+      "text": "the llm by saying that if you are asked",
+      "start": 327.039,
+      "duration": 4.081
+    },
+    {
+      "text": "these instruction here is the answer",
+      "start": 329.0,
+      "duration": 3.16
+    },
+    {
+      "text": "which you",
+      "start": 331.12,
+      "duration": 3.519
+    },
+    {
+      "text": "provide the second example is that of",
+      "start": 332.16,
+      "duration": 5.24
+    },
+    {
+      "text": "personalized Healthcare so a virtual",
+      "start": 334.639,
+      "duration": 4.56
+    },
+    {
+      "text": "assistant in a healthcare setting is",
+      "start": 337.4,
+      "duration": 3.68
+    },
+    {
+      "text": "designed to help patients schedule",
+      "start": 339.199,
+      "duration": 3.801
+    },
+    {
+      "text": "appointments remind them to take Med",
+      "start": 341.08,
+      "duration": 4.72
+    },
+    {
+      "text": "medications Etc now if you just take the",
+      "start": 343.0,
+      "duration": 5.24
+    },
+    {
+      "text": "pre-trained model it may have General",
+      "start": 345.8,
+      "duration": 4.92
+    },
+    {
+      "text": "Healthcare knowledge but it does not",
+      "start": 348.24,
+      "duration": 4.44
+    },
+    {
+      "text": "have knowledge about the specific health",
+      "start": 350.72,
+      "duration": 4.64
+    },
+    {
+      "text": "care provider practices treatment plans",
+      "start": 352.68,
+      "duration": 5.32
+    },
+    {
+      "text": "Etc so the base language model may have",
+      "start": 355.36,
+      "duration": 4.44
+    },
+    {
+      "text": "General Healthcare knowledge but find in",
+      "start": 358.0,
+      "duration": 4.56
+    },
+    {
+      "text": "tuning it with The Specific Instructions",
+      "start": 359.8,
+      "duration": 4.64
+    },
+    {
+      "text": "related to the healthc care providers",
+      "start": 362.56,
+      "duration": 3.88
+    },
+    {
+      "text": "practices treatment plans and patient",
+      "start": 364.44,
+      "duration": 3.64
+    },
+    {
+      "text": "needs is",
+      "start": 366.44,
+      "duration": 4.36
+    },
+    {
+      "text": "crucial so fine tuning ensures that the",
+      "start": 368.08,
+      "duration": 4.32
+    },
+    {
+      "text": "assistant understands medical",
+      "start": 370.8,
+      "duration": 4.44
+    },
+    {
+      "text": "terminology follows specific Healthcare",
+      "start": 372.4,
+      "duration": 4.6
+    },
+    {
+      "text": "guidelines and personalizes the",
+      "start": 375.24,
+      "duration": 4.44
+    },
+    {
+      "text": "responses based on the patient history",
+      "start": 377.0,
+      "duration": 4.72
+    },
+    {
+      "text": "for example when a patient asks about",
+      "start": 379.68,
+      "duration": 5.48
+    },
+    {
+      "text": "diabetes management so uh how should I",
+      "start": 381.72,
+      "duration": 5.56
+    },
+    {
+      "text": "or weekly what should be my plan with",
+      "start": 385.16,
+      "duration": 4.0
+    },
+    {
+      "text": "respect to managing diabetes the",
+      "start": 387.28,
+      "duration": 3.84
+    },
+    {
+      "text": "assistant can be fine tuned to provide",
+      "start": 389.16,
+      "duration": 4.52
+    },
+    {
+      "text": "personally personalized advice based on",
+      "start": 391.12,
+      "duration": 4.519
+    },
+    {
+      "text": "specific medical",
+      "start": 393.68,
+      "duration": 4.16
+    },
+    {
+      "text": "guidelines so these are some practical",
+      "start": 395.639,
+      "duration": 4.081
+    },
+    {
+      "text": "examples we show why fine tuning is",
+      "start": 397.84,
+      "duration": 4.079
+    },
+    {
+      "text": "necessary fine tuning is necessary for",
+      "start": 399.72,
+      "duration": 4.479
+    },
+    {
+      "text": "two main things first of all to train",
+      "start": 401.919,
+      "duration": 4.441
+    },
+    {
+      "text": "the llm to follow instructions and",
+      "start": 404.199,
+      "duration": 4.961
+    },
+    {
+      "text": "second to train on domain specific data",
+      "start": 406.36,
+      "duration": 4.679
+    },
+    {
+      "text": "with respect to the company or with",
+      "start": 409.16,
+      "duration": 3.879
+    },
+    {
+      "text": "respect to anyone who wants to deploy a",
+      "start": 411.039,
+      "duration": 3.481
+    },
+    {
+      "text": "large language",
+      "start": 413.039,
+      "duration": 3.88
+    },
+    {
+      "text": "model now let us look at some of the",
+      "start": 414.52,
+      "duration": 5.32
+    },
+    {
+      "text": "instructions on which we can find tune",
+      "start": 416.919,
+      "duration": 5.041
+    },
+    {
+      "text": "the large language model so one such",
+      "start": 419.84,
+      "duration": 4.72
+    },
+    {
+      "text": "instruction can be convert 45 km to",
+      "start": 421.96,
+      "duration": 5.84
+    },
+    {
+      "text": "meters and then the answer is 45 km is",
+      "start": 424.56,
+      "duration": 6.52
+    },
+    {
+      "text": "45,000 M the second instruction can be",
+      "start": 427.8,
+      "duration": 5.679
+    },
+    {
+      "text": "provide a synonym for bright and then",
+      "start": 431.08,
+      "duration": 4.6
+    },
+    {
+      "text": "the desired response can be a synonym",
+      "start": 433.479,
+      "duration": 4.641
+    },
+    {
+      "text": "for bright is radiant the third",
+      "start": 435.68,
+      "duration": 4.359
+    },
+    {
+      "text": "instruction can be edit the following",
+      "start": 438.12,
+      "duration": 4.519
+    },
+    {
+      "text": "sentence to remove all passive voice the",
+      "start": 440.039,
+      "duration": 5.081
+    },
+    {
+      "text": "song was composed by the artist and the",
+      "start": 442.639,
+      "duration": 4.601
+    },
+    {
+      "text": "desired response is the artist compos",
+      "start": 445.12,
+      "duration": 4.639
+    },
+    {
+      "text": "the song",
+      "start": 447.24,
+      "duration": 4.16
+    },
+    {
+      "text": "so now we have removed all the passive",
+      "start": 449.759,
+      "duration": 3.72
+    },
+    {
+      "text": "voice and convert converted it into",
+      "start": 451.4,
+      "duration": 5.0
+    },
+    {
+      "text": "active voice right so these are the type",
+      "start": 453.479,
+      "duration": 5.081
+    },
+    {
+      "text": "of data sets on which we have to train",
+      "start": 456.4,
+      "duration": 4.44
+    },
+    {
+      "text": "the large language model so that it can",
+      "start": 458.56,
+      "duration": 3.919
+    },
+    {
+      "text": "understand how to follow",
+      "start": 460.84,
+      "duration": 3.68
+    },
+    {
+      "text": "instructions and this is what is called",
+      "start": 462.479,
+      "duration": 4.201
+    },
+    {
+      "text": "finetuning so training on such a data",
+      "start": 464.52,
+      "duration": 4.48
+    },
+    {
+      "text": "set which I just showed where the input",
+      "start": 466.68,
+      "duration": 5.479
+    },
+    {
+      "text": "output pairs are explicitly provided",
+      "start": 469.0,
+      "duration": 4.96
+    },
+    {
+      "text": "such as in this case where we provide",
+      "start": 472.159,
+      "duration": 3.681
+    },
+    {
+      "text": "the instruction the input and the output",
+      "start": 473.96,
+      "duration": 3.959
+    },
+    {
+      "text": "and tell the llm that hey I know you are",
+      "start": 475.84,
+      "duration": 4.24
+    },
+    {
+      "text": "pre-trained but you can do better with",
+      "start": 477.919,
+      "duration": 3.921
+    },
+    {
+      "text": "respect to instructions here is a",
+      "start": 480.08,
+      "duration": 3.48
+    },
+    {
+      "text": "training data set which will help you",
+      "start": 481.84,
+      "duration": 3.639
+    },
+    {
+      "text": "get better at following",
+      "start": 483.56,
+      "duration": 4.56
+    },
+    {
+      "text": "instructions now this approach is has",
+      "start": 485.479,
+      "duration": 4.601
+    },
+    {
+      "text": "also another terminology which is called",
+      "start": 488.12,
+      "duration": 4.359
+    },
+    {
+      "text": "as supervised instruction fine tuning",
+      "start": 490.08,
+      "duration": 4.0
+    },
+    {
+      "text": "the reason it's called supervised is",
+      "start": 492.479,
+      "duration": 4.28
+    },
+    {
+      "text": "that we are providing it a pair or a big",
+      "start": 494.08,
+      "duration": 4.679
+    },
+    {
+      "text": "set of instructions and the responses",
+      "start": 496.759,
+      "duration": 3.641
+    },
+    {
+      "text": "which we",
+      "start": 498.759,
+      "duration": 4.12
+    },
+    {
+      "text": "expect all right now let's get started",
+      "start": 500.4,
+      "duration": 4.04
+    },
+    {
+      "text": "with a Hands-On project which we are",
+      "start": 502.879,
+      "duration": 4.16
+    },
+    {
+      "text": "going to implement so as I mentioned our",
+      "start": 504.44,
+      "duration": 5.319
+    },
+    {
+      "text": "main goal is that we want to construct a",
+      "start": 507.039,
+      "duration": 4.761
+    },
+    {
+      "text": "personal assistant so we won't be doing",
+      "start": 509.759,
+      "duration": 3.84
+    },
+    {
+      "text": "all of that in this lecture but we'll be",
+      "start": 511.8,
+      "duration": 4.0
+    },
+    {
+      "text": "covering a part of it here is the",
+      "start": 513.599,
+      "duration": 3.8
+    },
+    {
+      "text": "sequential workflow which we are going",
+      "start": 515.8,
+      "duration": 3.84
+    },
+    {
+      "text": "to follow to build our personal",
+      "start": 517.399,
+      "duration": 4.401
+    },
+    {
+      "text": "assistant first we'll load the training",
+      "start": 519.64,
+      "duration": 4.16
+    },
+    {
+      "text": "data set which consists of such",
+      "start": 521.8,
+      "duration": 4.599
+    },
+    {
+      "text": "instructions and responses it won't be",
+      "start": 523.8,
+      "duration": 4.159
+    },
+    {
+      "text": "just three but there will be more than",
+      "start": 526.399,
+      "duration": 4.361
+    },
+    {
+      "text": "thousand instruction response pairs then",
+      "start": 527.959,
+      "duration": 5.44
+    },
+    {
+      "text": "we will batch the data set create data",
+      "start": 530.76,
+      "duration": 4.96
+    },
+    {
+      "text": "loaders then we'll load the pre-train",
+      "start": 533.399,
+      "duration": 5.12
+    },
+    {
+      "text": "llm and then we'll finetune the llm",
+      "start": 535.72,
+      "duration": 4.28
+    },
+    {
+      "text": "inspect the loss",
+      "start": 538.519,
+      "duration": 4.161
+    },
+    {
+      "text": "extract responses do the evaluation and",
+      "start": 540.0,
+      "duration": 5.24
+    },
+    {
+      "text": "then score the output or score how well",
+      "start": 542.68,
+      "duration": 5.08
+    },
+    {
+      "text": "we are doing in today's lecture we are",
+      "start": 545.24,
+      "duration": 4.52
+    },
+    {
+      "text": "going to see the first step which is",
+      "start": 547.76,
+      "duration": 4.72
+    },
+    {
+      "text": "data set download and formatting this is",
+      "start": 549.76,
+      "duration": 4.319
+    },
+    {
+      "text": "a bit different than what all we have",
+      "start": 552.48,
+      "duration": 3.4
+    },
+    {
+      "text": "seen so far so this will be a very",
+      "start": 554.079,
+      "duration": 4.081
+    },
+    {
+      "text": "interesting lecture all right so let's",
+      "start": 555.88,
+      "duration": 3.48
+    },
+    {
+      "text": "get",
+      "start": 558.16,
+      "duration": 3.679
+    },
+    {
+      "text": "started so we are looking at the first",
+      "start": 559.36,
+      "duration": 4.479
+    },
+    {
+      "text": "step which is preparing a data set for",
+      "start": 561.839,
+      "duration": 4.401
+    },
+    {
+      "text": "instruction fine tuning right so first",
+      "start": 563.839,
+      "duration": 4.401
+    },
+    {
+      "text": "let us go to code and let me show you",
+      "start": 566.24,
+      "duration": 4.64
+    },
+    {
+      "text": "how to download the data set",
+      "start": 568.24,
+      "duration": 5.279
+    },
+    {
+      "text": "itself uh okay so here we are in the",
+      "start": 570.88,
+      "duration": 4.16
+    },
+    {
+      "text": "code where we have started to look at",
+      "start": 573.519,
+      "duration": 4.0
+    },
+    {
+      "text": "instruction find tuning in this section",
+      "start": 575.04,
+      "duration": 4.64
+    },
+    {
+      "text": "we download and format the instruction",
+      "start": 577.519,
+      "duration": 4.481
+    },
+    {
+      "text": "data set for instruction fine tuning a",
+      "start": 579.68,
+      "duration": 4.68
+    },
+    {
+      "text": "pre-trend llm so we already have a",
+      "start": 582.0,
+      "duration": 4.36
+    },
+    {
+      "text": "pre-trend llm in this section we are",
+      "start": 584.36,
+      "duration": 3.719
+    },
+    {
+      "text": "going to download and format the",
+      "start": 586.36,
+      "duration": 4.52
+    },
+    {
+      "text": "instruction data set the data set",
+      "start": 588.079,
+      "duration": 6.281
+    },
+    {
+      "text": "consists of 1100 in 1100 instruction",
+      "start": 590.88,
+      "duration": 5.959
+    },
+    {
+      "text": "response pairs let me just show you the",
+      "start": 594.36,
+      "duration": 4.56
+    },
+    {
+      "text": "data set which we are going to use so",
+      "start": 596.839,
+      "duration": 3.641
+    },
+    {
+      "text": "here's the data set which we are going",
+      "start": 598.92,
+      "duration": 4.599
+    },
+    {
+      "text": "to use as you can see if you scroll down",
+      "start": 600.48,
+      "duration": 5.56
+    },
+    {
+      "text": "below this is a huge data set which",
+      "start": 603.519,
+      "duration": 5.841
+    },
+    {
+      "text": "consists of 1100 pairs of instruction",
+      "start": 606.04,
+      "duration": 6.039
+    },
+    {
+      "text": "and responses and let's see how some",
+      "start": 609.36,
+      "duration": 5.2
+    },
+    {
+      "text": "examples are defined over here so let's",
+      "start": 612.079,
+      "duration": 6.721
+    },
+    {
+      "text": "take any example so let's take this so",
+      "start": 614.56,
+      "duration": 6.519
+    },
+    {
+      "text": "you see there are if you think of it as",
+      "start": 618.8,
+      "duration": 4.159
+    },
+    {
+      "text": "dictionary there are these keys so there",
+      "start": 621.079,
+      "duration": 4.241
+    },
+    {
+      "text": "is an instruction for",
+      "start": 622.959,
+      "duration": 5.081
+    },
+    {
+      "text": "each uh for each instruction response",
+      "start": 625.32,
+      "duration": 4.92
+    },
+    {
+      "text": "pair we have an instruction an input and",
+      "start": 628.04,
+      "duration": 4.799
+    },
+    {
+      "text": "an output so instruction is edit the",
+      "start": 630.24,
+      "duration": 5.32
+    },
+    {
+      "text": "following sentence for grammar the input",
+      "start": 632.839,
+      "duration": 5.161
+    },
+    {
+      "text": "is he goes to the park every day and the",
+      "start": 635.56,
+      "duration": 5.0
+    },
+    {
+      "text": "output is he goes so the input is he go",
+      "start": 638.0,
+      "duration": 5.0
+    },
+    {
+      "text": "to the park every day and the output is",
+      "start": 640.56,
+      "duration": 4.36
+    },
+    {
+      "text": "he goes to the park every day so",
+      "start": 643.0,
+      "duration": 3.399
+    },
+    {
+      "text": "remember three things we have to give",
+      "start": 644.92,
+      "duration": 2.84
+    },
+    {
+      "text": "the instruction we have to give the",
+      "start": 646.399,
+      "duration": 3.321
+    },
+    {
+      "text": "input and we have to give the output",
+      "start": 647.76,
+      "duration": 3.519
+    },
+    {
+      "text": "that's done for all the questions so",
+      "start": 649.72,
+      "duration": 4.0
+    },
+    {
+      "text": "here see instruction what are the first",
+      "start": 651.279,
+      "duration": 4.68
+    },
+    {
+      "text": "10 square numbers in this case there is",
+      "start": 653.72,
+      "duration": 3.72
+    },
+    {
+      "text": "no need to give an input because there",
+      "start": 655.959,
+      "duration": 4.241
+    },
+    {
+      "text": "is a fixed answer and then the output is",
+      "start": 657.44,
+      "duration": 5.639
+    },
+    {
+      "text": "14916 up to",
+      "start": 660.2,
+      "duration": 6.28
+    },
+    {
+      "text": "100 uh then instruction is translate the",
+      "start": 663.079,
+      "duration": 5.681
+    },
+    {
+      "text": "following sentence into French the input",
+      "start": 666.48,
+      "duration": 4.12
+    },
+    {
+      "text": "is where is the nearest restaurant and",
+      "start": 668.76,
+      "duration": 3.759
+    },
+    {
+      "text": "the output is it's translated into",
+      "start": 670.6,
+      "duration": 4.239
+    },
+    {
+      "text": "French so as you scroll down you'll see",
+      "start": 672.519,
+      "duration": 4.32
+    },
+    {
+      "text": "that there are instruction input output",
+      "start": 674.839,
+      "duration": 5.321
+    },
+    {
+      "text": "pairs there are 1100 of them and some of",
+      "start": 676.839,
+      "duration": 4.8
+    },
+    {
+      "text": "them have",
+      "start": 680.16,
+      "duration": 3.919
+    },
+    {
+      "text": "inputs as you can see some of them have",
+      "start": 681.639,
+      "duration": 4.121
+    },
+    {
+      "text": "inputs but some of them don't have an",
+      "start": 684.079,
+      "duration": 3.961
+    },
+    {
+      "text": "input at all so for example if the",
+      "start": 685.76,
+      "duration": 4.56
+    },
+    {
+      "text": "instruction is converted fet to meters",
+      "start": 688.04,
+      "duration": 3.76
+    },
+    {
+      "text": "there is one answer to this right we",
+      "start": 690.32,
+      "duration": 2.959
+    },
+    {
+      "text": "don't need to specify an input",
+      "start": 691.8,
+      "duration": 3.24
+    },
+    {
+      "text": "separately so there is just the",
+      "start": 693.279,
+      "duration": 3.761
+    },
+    {
+      "text": "instruction and there is just the",
+      "start": 695.04,
+      "duration": 4.4
+    },
+    {
+      "text": "output so this is the data set which we",
+      "start": 697.04,
+      "duration": 4.4
+    },
+    {
+      "text": "are going to load in the first step and",
+      "start": 699.44,
+      "duration": 3.48
+    },
+    {
+      "text": "we are going to use the function called",
+      "start": 701.44,
+      "duration": 3.56
+    },
+    {
+      "text": "download and load file so what this",
+      "start": 702.92,
+      "duration": 3.84
+    },
+    {
+      "text": "function does is that it goes to this",
+      "start": 705.0,
+      "duration": 4.2
+    },
+    {
+      "text": "URL which I just shared with you and it",
+      "start": 706.76,
+      "duration": 4.48
+    },
+    {
+      "text": "downloads the data set from this URL so",
+      "start": 709.2,
+      "duration": 3.68
+    },
+    {
+      "text": "you can run this function and it even",
+      "start": 711.24,
+      "duration": 3.36
+    },
+    {
+      "text": "prints out the number of entries in this",
+      "start": 712.88,
+      "duration": 3.72
+    },
+    {
+      "text": "function so we can see that the number",
+      "start": 714.6,
+      "duration": 3.64
+    },
+    {
+      "text": "of entries is",
+      "start": 716.6,
+      "duration": 4.679
+    },
+    {
+      "text": "1100 that indicates that we have indeed",
+      "start": 718.24,
+      "duration": 5.88
+    },
+    {
+      "text": "downloaded the data set correctly now",
+      "start": 721.279,
+      "duration": 5.601
+    },
+    {
+      "text": "let's go to the next step uh the data",
+      "start": 724.12,
+      "duration": 5.24
+    },
+    {
+      "text": "list which we loaded from the Json file",
+      "start": 726.88,
+      "duration": 4.84
+    },
+    {
+      "text": "contains 1100 entries of the instruction",
+      "start": 729.36,
+      "duration": 4.719
+    },
+    {
+      "text": "data set let us print one of these so",
+      "start": 731.72,
+      "duration": 5.559
+    },
+    {
+      "text": "let us print the 50th entry so data is",
+      "start": 734.079,
+      "duration": 5.681
+    },
+    {
+      "text": "my final uh data set and I'm going to",
+      "start": 737.279,
+      "duration": 5.281
+    },
+    {
+      "text": "access the 50th entry so this says that",
+      "start": 739.76,
+      "duration": 4.519
+    },
+    {
+      "text": "identify the correct spelling of the",
+      "start": 742.56,
+      "duration": 4.04
+    },
+    {
+      "text": "following word occasion and the correct",
+      "start": 744.279,
+      "duration": 4.161
+    },
+    {
+      "text": "spelling is occasion let's check if this",
+      "start": 746.6,
+      "duration": 3.599
+    },
+    {
+      "text": "is present in this data set so I'm going",
+      "start": 748.44,
+      "duration": 5.44
+    },
+    {
+      "text": "to control F occasion and see it's",
+      "start": 750.199,
+      "duration": 7.161
+    },
+    {
+      "text": "present this is the 50th entry great let",
+      "start": 753.88,
+      "duration": 6.44
+    },
+    {
+      "text": "us print another entry which is 999 so",
+      "start": 757.36,
+      "duration": 4.56
+    },
+    {
+      "text": "here you can see that instruction what",
+      "start": 760.32,
+      "duration": 3.36
+    },
+    {
+      "text": "is the antonym of complicated there is",
+      "start": 761.92,
+      "duration": 4.64
+    },
+    {
+      "text": "no input over here the output is the",
+      "start": 763.68,
+      "duration": 5.12
+    },
+    {
+      "text": "antonym of complicated is",
+      "start": 766.56,
+      "duration": 6.0
+    },
+    {
+      "text": "simple antonym is opposite awesome so we",
+      "start": 768.8,
+      "duration": 6.279
+    },
+    {
+      "text": "have just tested that the data is loaded",
+      "start": 772.56,
+      "duration": 4.8
+    },
+    {
+      "text": "correctly and we are able to access",
+      "start": 775.079,
+      "duration": 7.0
+    },
+    {
+      "text": "specific instances or specific um index",
+      "start": 777.36,
+      "duration": 6.44
+    },
+    {
+      "text": "of the data to see what is the",
+      "start": 782.079,
+      "duration": 3.841
+    },
+    {
+      "text": "instruction input and the output",
+      "start": 783.8,
+      "duration": 5.279
+    },
+    {
+      "text": "remember three things instruction input",
+      "start": 785.92,
+      "duration": 4.719
+    },
+    {
+      "text": "and the",
+      "start": 789.079,
+      "duration": 3.921
+    },
+    {
+      "text": "output next thing which we have to do is",
+      "start": 790.639,
+      "duration": 4.2
+    },
+    {
+      "text": "that we cannot leave the instruction",
+      "start": 793.0,
+      "duration": 4.399
+    },
+    {
+      "text": "input and output in this format because",
+      "start": 794.839,
+      "duration": 4.601
+    },
+    {
+      "text": "researchers have discovered that or",
+      "start": 797.399,
+      "duration": 3.88
+    },
+    {
+      "text": "found out through experimentation that",
+      "start": 799.44,
+      "duration": 3.72
+    },
+    {
+      "text": "there is a specific way in which the",
+      "start": 801.279,
+      "duration": 4.521
+    },
+    {
+      "text": "prompt needs to be given to the llm",
+      "start": 803.16,
+      "duration": 5.039
+    },
+    {
+      "text": "during the training process and that",
+      "start": 805.8,
+      "duration": 4.36
+    },
+    {
+      "text": "specific way is",
+      "start": 808.199,
+      "duration": 4.44
+    },
+    {
+      "text": "documented in terms of formats so for",
+      "start": 810.16,
+      "duration": 4.6
+    },
+    {
+      "text": "example there is a specific format",
+      "start": 812.639,
+      "duration": 3.401
+    },
+    {
+      "text": "through which you have to give these",
+      "start": 814.76,
+      "duration": 3.879
+    },
+    {
+      "text": "instructions as mentioned by Stanford",
+      "start": 816.04,
+      "duration": 4.64
+    },
+    {
+      "text": "alpaka there is one more different",
+      "start": 818.639,
+      "duration": 7.32
+    },
+    {
+      "text": "format which was used by 53 so 53",
+      "start": 820.68,
+      "duration": 8.279
+    },
+    {
+      "text": "Microsoft uh so for 53 open models there",
+      "start": 825.959,
+      "duration": 4.921
+    },
+    {
+      "text": "was a different format which was used",
+      "start": 828.959,
+      "duration": 4.481
+    },
+    {
+      "text": "for fine tuning but the most common one",
+      "start": 830.88,
+      "duration": 5.28
+    },
+    {
+      "text": "which I've seen is uh the Stanford",
+      "start": 833.44,
+      "duration": 5.92
+    },
+    {
+      "text": "alpaka based format in which what these",
+      "start": 836.16,
+      "duration": 5.84
+    },
+    {
+      "text": "people do is that they also have similar",
+      "start": 839.36,
+      "duration": 4.56
+    },
+    {
+      "text": "Json file where they have a list of",
+      "start": 842.0,
+      "duration": 5.12
+    },
+    {
+      "text": "52,000 input output Pairs and they have",
+      "start": 843.92,
+      "duration": 5.2
+    },
+    {
+      "text": "constructed a very specific prompt out",
+      "start": 847.12,
+      "duration": 4.159
+    },
+    {
+      "text": "of these input output pairs so you can",
+      "start": 849.12,
+      "duration": 3.959
+    },
+    {
+      "text": "see that as we showed you they have an",
+      "start": 851.279,
+      "duration": 3.281
+    },
+    {
+      "text": "instruction they have an input and they",
+      "start": 853.079,
+      "duration": 4.801
+    },
+    {
+      "text": "have an output for every uh input",
+      "start": 854.56,
+      "duration": 5.6
+    },
+    {
+      "text": "response pair but then they convert it",
+      "start": 857.88,
+      "duration": 4.0
+    },
+    {
+      "text": "into a prompt like",
+      "start": 860.16,
+      "duration": 4.76
+    },
+    {
+      "text": "this so the prompt which they give to",
+      "start": 861.88,
+      "duration": 5.8
+    },
+    {
+      "text": "finetune the alpaka model is that below",
+      "start": 864.92,
+      "duration": 5.719
+    },
+    {
+      "text": "is an instruction that describes a task",
+      "start": 867.68,
+      "duration": 5.599
+    },
+    {
+      "text": "paired with an input that provides",
+      "start": 870.639,
+      "duration": 5.64
+    },
+    {
+      "text": "further context Write a response that",
+      "start": 873.279,
+      "duration": 5.48
+    },
+    {
+      "text": "appropriately completes the request this",
+      "start": 876.279,
+      "duration": 4.48
+    },
+    {
+      "text": "is the prompt which they train the llm",
+      "start": 878.759,
+      "duration": 4.2
+    },
+    {
+      "text": "with below is an instruction that",
+      "start": 880.759,
+      "duration": 5.041
+    },
+    {
+      "text": "describes a task paired with an input",
+      "start": 882.959,
+      "duration": 6.44
+    },
+    {
+      "text": "that provides further context Write a",
+      "start": 885.8,
+      "duration": 5.44
+    },
+    {
+      "text": "response that appropriately completes",
+      "start": 889.399,
+      "duration": 4.24
+    },
+    {
+      "text": "the request and then they provide the",
+      "start": 891.24,
+      "duration": 5.64
+    },
+    {
+      "text": "instruction the input and the response",
+      "start": 893.639,
+      "duration": 5.44
+    },
+    {
+      "text": "so instruction is provided through this",
+      "start": 896.88,
+      "duration": 5.24
+    },
+    {
+      "text": "this instruction which is over",
+      "start": 899.079,
+      "duration": 7.281
+    },
+    {
+      "text": "here uh input is the input which is",
+      "start": 902.12,
+      "duration": 6.44
+    },
+    {
+      "text": "accessed through the input field and",
+      "start": 906.36,
+      "duration": 3.96
+    },
+    {
+      "text": "then the response is accessed through",
+      "start": 908.56,
+      "duration": 4.32
+    },
+    {
+      "text": "this output field so this instruction",
+      "start": 910.32,
+      "duration": 4.68
+    },
+    {
+      "text": "input and output is converted into a",
+      "start": 912.88,
+      "duration": 4.24
+    },
+    {
+      "text": "prompt like this which is then provided",
+      "start": 915.0,
+      "duration": 4.36
+    },
+    {
+      "text": "to the large language",
+      "start": 917.12,
+      "duration": 4.8
+    },
+    {
+      "text": "model uh and this is exactly what we are",
+      "start": 919.36,
+      "duration": 5.12
+    },
+    {
+      "text": "going to do in the code right now before",
+      "start": 921.92,
+      "duration": 4.359
+    },
+    {
+      "text": "that I just want to show you these two",
+      "start": 924.48,
+      "duration": 3.24
+    },
+    {
+      "text": "types of",
+      "start": 926.279,
+      "duration": 4.8
+    },
+    {
+      "text": "formatting uh so if so currently we have",
+      "start": 927.72,
+      "duration": 5.88
+    },
+    {
+      "text": "this instruction input and output right",
+      "start": 931.079,
+      "duration": 4.56
+    },
+    {
+      "text": "there are two ways to actually format",
+      "start": 933.6,
+      "duration": 3.799
+    },
+    {
+      "text": "this data set and convert it into a",
+      "start": 935.639,
+      "duration": 4.081
+    },
+    {
+      "text": "prompt the first is the alpaka prompt",
+      "start": 937.399,
+      "duration": 5.161
+    },
+    {
+      "text": "style and the second is the 53 prompt",
+      "start": 939.72,
+      "duration": 5.239
+    },
+    {
+      "text": "style so as I showed you the alpaka",
+      "start": 942.56,
+      "duration": 5.519
+    },
+    {
+      "text": "prompt style is that uh you convert you",
+      "start": 944.959,
+      "duration": 4.841
+    },
+    {
+      "text": "have the prompt which is as follows",
+      "start": 948.079,
+      "duration": 3.961
+    },
+    {
+      "text": "below is an instruction that describes a",
+      "start": 949.8,
+      "duration": 5.519
+    },
+    {
+      "text": "task Write a response that appropriately",
+      "start": 952.04,
+      "duration": 5.52
+    },
+    {
+      "text": "completes the request then in the",
+      "start": 955.319,
+      "duration": 4.2
+    },
+    {
+      "text": "instruction you",
+      "start": 957.56,
+      "duration": 5.959
+    },
+    {
+      "text": "uh add this you add this",
+      "start": 959.519,
+      "duration": 7.56
+    },
+    {
+      "text": "instruction uh then in the input you add",
+      "start": 963.519,
+      "duration": 5.24
+    },
+    {
+      "text": "the input and in the response you add",
+      "start": 967.079,
+      "duration": 4.76
+    },
+    {
+      "text": "the output so that's the alpaka prompt",
+      "start": 968.759,
+      "duration": 4.88
+    },
+    {
+      "text": "so this instruction input and output",
+      "start": 971.839,
+      "duration": 4.841
+    },
+    {
+      "text": "which was there uh that is converted",
+      "start": 973.639,
+      "duration": 4.841
+    },
+    {
+      "text": "into this type of a prompt that below is",
+      "start": 976.68,
+      "duration": 3.8
+    },
+    {
+      "text": "an instruction here is the instruction",
+      "start": 978.48,
+      "duration": 3.719
+    },
+    {
+      "text": "here is the input occasion and the",
+      "start": 980.48,
+      "duration": 3.2
+    },
+    {
+      "text": "response is the correct spelling which",
+      "start": 982.199,
+      "duration": 5.0
+    },
+    {
+      "text": "is occasion with One S now 53 which was",
+      "start": 983.68,
+      "duration": 5.519
+    },
+    {
+      "text": "developed by Microsoft it's another fine",
+      "start": 987.199,
+      "duration": 4.801
+    },
+    {
+      "text": "tuning style where the prompt is user",
+      "start": 989.199,
+      "duration": 5.921
+    },
+    {
+      "text": "and assistant in the user you directly",
+      "start": 992.0,
+      "duration": 4.959
+    },
+    {
+      "text": "give the instruction which is identify",
+      "start": 995.12,
+      "duration": 3.12
+    },
+    {
+      "text": "the correct spelling of the following",
+      "start": 996.959,
+      "duration": 3.761
+    },
+    {
+      "text": "word occasion and then in the assistant",
+      "start": 998.24,
+      "duration": 4.719
+    },
+    {
+      "text": "you directly give the output so here you",
+      "start": 1000.72,
+      "duration": 3.88
+    },
+    {
+      "text": "see the difference between F and the",
+      "start": 1002.959,
+      "duration": 4.721
+    },
+    {
+      "text": "alpaka is that in the F prompting the",
+      "start": 1004.6,
+      "duration": 5.799
+    },
+    {
+      "text": "user what the user has is instruction",
+      "start": 1007.68,
+      "duration": 6.2
+    },
+    {
+      "text": "plus the input",
+      "start": 1010.399,
+      "duration": 7.761
+    },
+    {
+      "text": "so so instruction",
+      "start": 1013.88,
+      "duration": 4.28
+    },
+    {
+      "text": "so instruction",
+      "start": 1019.48,
+      "duration": 5.439
+    },
+    {
+      "text": "plus the input is actually fused over",
+      "start": 1021.199,
+      "duration": 6.6
+    },
+    {
+      "text": "here whereas in the alpaka prompt the",
+      "start": 1024.919,
+      "duration": 5.481
+    },
+    {
+      "text": "instruction and the input is separated",
+      "start": 1027.799,
+      "duration": 4.321
+    },
+    {
+      "text": "we can use either of these in fact when",
+      "start": 1030.4,
+      "duration": 3.799
+    },
+    {
+      "text": "I share the code file with you I will",
+      "start": 1032.12,
+      "duration": 4.559
+    },
+    {
+      "text": "encourage you to try the 53 prompt style",
+      "start": 1034.199,
+      "duration": 5.24
+    },
+    {
+      "text": "as well uh but since the alpaka prompt",
+      "start": 1036.679,
+      "duration": 4.721
+    },
+    {
+      "text": "style is more common we are going to use",
+      "start": 1039.439,
+      "duration": 4.76
+    },
+    {
+      "text": "this and we are going to convert the",
+      "start": 1041.4,
+      "duration": 4.519
+    },
+    {
+      "text": "instruction input and output which we",
+      "start": 1044.199,
+      "duration": 4.921
+    },
+    {
+      "text": "have into prompts such as what is",
+      "start": 1045.919,
+      "duration": 5.441
+    },
+    {
+      "text": "mentioned in the alpaka prompt",
+      "start": 1049.12,
+      "duration": 4.76
+    },
+    {
+      "text": "style okay so let us convert our",
+      "start": 1051.36,
+      "duration": 4.96
+    },
+    {
+      "text": "instructions into alpaka format we are",
+      "start": 1053.88,
+      "duration": 3.84
+    },
+    {
+      "text": "going to define a function which is",
+      "start": 1056.32,
+      "duration": 3.359
+    },
+    {
+      "text": "called format input it's going to take",
+      "start": 1057.72,
+      "duration": 5.16
+    },
+    {
+      "text": "an entry uh so you can think of as one",
+      "start": 1059.679,
+      "duration": 5.841
+    },
+    {
+      "text": "entry as this thing which has key value",
+      "start": 1062.88,
+      "duration": 5.0
+    },
+    {
+      "text": "pairs the key has instruction input",
+      "start": 1065.52,
+      "duration": 5.6
+    },
+    {
+      "text": "output and corresponding values right so",
+      "start": 1067.88,
+      "duration": 4.32
+    },
+    {
+      "text": "when this",
+      "start": 1071.12,
+      "duration": 4.52
+    },
+    {
+      "text": "function uh returns an entry you first",
+      "start": 1072.2,
+      "duration": 5.28
+    },
+    {
+      "text": "construct the instruction text which is",
+      "start": 1075.64,
+      "duration": 3.84
+    },
+    {
+      "text": "below is an instruction that describes a",
+      "start": 1077.48,
+      "duration": 4.4
+    },
+    {
+      "text": "task Write a response that appropriately",
+      "start": 1079.48,
+      "duration": 4.319
+    },
+    {
+      "text": "completes the request and then in the",
+      "start": 1081.88,
+      "duration": 5.56
+    },
+    {
+      "text": "instruction you take the dictionary",
+      "start": 1083.799,
+      "duration": 5.641
+    },
+    {
+      "text": "which is entry and then you find the",
+      "start": 1087.44,
+      "duration": 3.76
+    },
+    {
+      "text": "value corresponding to the instruction",
+      "start": 1089.44,
+      "duration": 4.04
+    },
+    {
+      "text": "key so in this case the value will be",
+      "start": 1091.2,
+      "duration": 3.92
+    },
+    {
+      "text": "identify the correct spelling of the",
+      "start": 1093.48,
+      "duration": 4.04
+    },
+    {
+      "text": "following word so then the prompt will",
+      "start": 1095.12,
+      "duration": 3.679
+    },
+    {
+      "text": "be below is an",
+      "start": 1097.52,
+      "duration": 4.12
+    },
+    {
+      "text": "instruction uh and then this is identify",
+      "start": 1098.799,
+      "duration": 5.721
+    },
+    {
+      "text": "the correct uh identify the correct",
+      "start": 1101.64,
+      "duration": 4.88
+    },
+    {
+      "text": "spelling of the following word that's",
+      "start": 1104.52,
+      "duration": 3.84
+    },
+    {
+      "text": "the instruction text then you have to",
+      "start": 1106.52,
+      "duration": 4.36
+    },
+    {
+      "text": "specify the input text which is input",
+      "start": 1108.36,
+      "duration": 4.559
+    },
+    {
+      "text": "and then you specify that particular",
+      "start": 1110.88,
+      "duration": 4.6
+    },
+    {
+      "text": "input in this case the input is occasion",
+      "start": 1112.919,
+      "duration": 4.321
+    },
+    {
+      "text": "now see what we are doing here if the",
+      "start": 1115.48,
+      "duration": 3.72
+    },
+    {
+      "text": "input is not present then you just",
+      "start": 1117.24,
+      "duration": 4.559
+    },
+    {
+      "text": "return blank so in cases like these",
+      "start": 1119.2,
+      "duration": 4.8
+    },
+    {
+      "text": "where the input is not present the input",
+      "start": 1121.799,
+      "duration": 4.521
+    },
+    {
+      "text": "will be left blank and this is mentioned",
+      "start": 1124.0,
+      "duration": 5.64
+    },
+    {
+      "text": "in the alpaka repository also if the in",
+      "start": 1126.32,
+      "duration": 5.28
+    },
+    {
+      "text": "input is not present then we just have",
+      "start": 1129.64,
+      "duration": 4.12
+    },
+    {
+      "text": "below is an instruction instruction and",
+      "start": 1131.6,
+      "duration": 3.4
+    },
+    {
+      "text": "the",
+      "start": 1133.76,
+      "duration": 4.2
+    },
+    {
+      "text": "response right so this is my format in",
+      "start": 1135.0,
+      "duration": 5.64
+    },
+    {
+      "text": "input function which takes the entry",
+      "start": 1137.96,
+      "duration": 4.64
+    },
+    {
+      "text": "dictionary and then it gives me the",
+      "start": 1140.64,
+      "duration": 3.76
+    },
+    {
+      "text": "instruction text and it gives me the",
+      "start": 1142.6,
+      "duration": 4.24
+    },
+    {
+      "text": "input text and it combines them together",
+      "start": 1144.4,
+      "duration": 5.04
+    },
+    {
+      "text": "so when you run the format input it will",
+      "start": 1146.84,
+      "duration": 5.6
+    },
+    {
+      "text": "give you this output if the input is",
+      "start": 1149.44,
+      "duration": 5.16
+    },
+    {
+      "text": "present and it will give you this output",
+      "start": 1152.44,
+      "duration": 4.92
+    },
+    {
+      "text": "if the input is absent currently we have",
+      "start": 1154.6,
+      "duration": 4.6
+    },
+    {
+      "text": "not added the response but I'll show you",
+      "start": 1157.36,
+      "duration": 4.88
+    },
+    {
+      "text": "where we can add it okay so this is the",
+      "start": 1159.2,
+      "duration": 5.959
+    },
+    {
+      "text": "format input function now let us test it",
+      "start": 1162.24,
+      "duration": 5.04
+    },
+    {
+      "text": "uh on a data set so we'll take the data",
+      "start": 1165.159,
+      "duration": 4.201
+    },
+    {
+      "text": "index by 50 and we have already seen",
+      "start": 1167.28,
+      "duration": 3.8
+    },
+    {
+      "text": "what that is before identify the correct",
+      "start": 1169.36,
+      "duration": 3.92
+    },
+    {
+      "text": "spelling of the following word and we",
+      "start": 1171.08,
+      "duration": 5.24
+    },
+    {
+      "text": "will pass this input to the format input",
+      "start": 1173.28,
+      "duration": 5.399
+    },
+    {
+      "text": "so now the format input takes in this",
+      "start": 1176.32,
+      "duration": 4.839
+    },
+    {
+      "text": "data and gives the model input the model",
+      "start": 1178.679,
+      "duration": 5.041
+    },
+    {
+      "text": "input is basically until this point",
+      "start": 1181.159,
+      "duration": 4.241
+    },
+    {
+      "text": "below is an instruction and then input",
+      "start": 1183.72,
+      "duration": 3.76
+    },
+    {
+      "text": "is the occasion and then we have to add",
+      "start": 1185.4,
+      "duration": 3.84
+    },
+    {
+      "text": "the response to this right so then here",
+      "start": 1187.48,
+      "duration": 4.079
+    },
+    {
+      "text": "we say that the response will be the",
+      "start": 1189.24,
+      "duration": 5.559
+    },
+    {
+      "text": "output um so the dictionary",
+      "start": 1191.559,
+      "duration": 5.36
+    },
+    {
+      "text": "indexed uh dictionary and then we look",
+      "start": 1194.799,
+      "duration": 4.521
+    },
+    {
+      "text": "at the value corresponding to the output",
+      "start": 1196.919,
+      "duration": 4.76
+    },
+    {
+      "text": "key so then we have the instruction and",
+      "start": 1199.32,
+      "duration": 3.92
+    },
+    {
+      "text": "the input and then we append this",
+      "start": 1201.679,
+      "duration": 4.521
+    },
+    {
+      "text": "desired response to the model input and",
+      "start": 1203.24,
+      "duration": 4.559
+    },
+    {
+      "text": "so the desired response is the correct",
+      "start": 1206.2,
+      "duration": 3.92
+    },
+    {
+      "text": "spelling is occasion so when you print",
+      "start": 1207.799,
+      "duration": 3.961
+    },
+    {
+      "text": "the model input plus the desired",
+      "start": 1210.12,
+      "duration": 3.679
+    },
+    {
+      "text": "response you'll get the model input as",
+      "start": 1211.76,
+      "duration": 3.32
+    },
+    {
+      "text": "the prompt and then you'll get the",
+      "start": 1213.799,
+      "duration": 3.521
+    },
+    {
+      "text": "response itself now this full thing is",
+      "start": 1215.08,
+      "duration": 4.64
+    },
+    {
+      "text": "later fed as an input to the large",
+      "start": 1217.32,
+      "duration": 4.16
+    },
+    {
+      "text": "language model so that it trains on this",
+      "start": 1219.72,
+      "duration": 3.36
+    },
+    {
+      "text": "entire",
+      "start": 1221.48,
+      "duration": 4.319
+    },
+    {
+      "text": "prompt So currently we saw an example of",
+      "start": 1223.08,
+      "duration": 4.76
+    },
+    {
+      "text": "a data which has the input right what if",
+      "start": 1225.799,
+      "duration": 3.721
+    },
+    {
+      "text": "we have an example of a data which does",
+      "start": 1227.84,
+      "duration": 4.64
+    },
+    {
+      "text": "not have the input so data index by",
+      "start": 1229.52,
+      "duration": 5.48
+    },
+    {
+      "text": "999 you see here the instruction is what",
+      "start": 1232.48,
+      "duration": 4.36
+    },
+    {
+      "text": "is the opposite of complicated there is",
+      "start": 1235.0,
+      "duration": 4.0
+    },
+    {
+      "text": "no input over here so let's see how our",
+      "start": 1236.84,
+      "duration": 4.24
+    },
+    {
+      "text": "code deals with that so when you input",
+      "start": 1239.0,
+      "duration": 4.679
+    },
+    {
+      "text": "the data index by 999 into the format",
+      "start": 1241.08,
+      "duration": 5.2
+    },
+    {
+      "text": "input function it gives the model input",
+      "start": 1243.679,
+      "duration": 4.521
+    },
+    {
+      "text": "and this will be below is an instruction",
+      "start": 1246.28,
+      "duration": 3.36
+    },
+    {
+      "text": "and then we just have the instruction",
+      "start": 1248.2,
+      "duration": 3.839
+    },
+    {
+      "text": "there is no input and then you have to",
+      "start": 1249.64,
+      "duration": 3.96
+    },
+    {
+      "text": "give the desired response which is",
+      "start": 1252.039,
+      "duration": 4.561
+    },
+    {
+      "text": "response and then the output here so the",
+      "start": 1253.6,
+      "duration": 6.04
+    },
+    {
+      "text": "output in this case was an antonym of",
+      "start": 1256.6,
+      "duration": 5.6
+    },
+    {
+      "text": "complicated is simple right so then that",
+      "start": 1259.64,
+      "duration": 6.08
+    },
+    {
+      "text": "will be the desired response and then",
+      "start": 1262.2,
+      "duration": 5.52
+    },
+    {
+      "text": "the model input will be combined with",
+      "start": 1265.72,
+      "duration": 3.64
+    },
+    {
+      "text": "the desired response and then we'll get",
+      "start": 1267.72,
+      "duration": 4.72
+    },
+    {
+      "text": "this entire answer so this entire output",
+      "start": 1269.36,
+      "duration": 5.64
+    },
+    {
+      "text": "is a mix of the prompt and the response",
+      "start": 1272.44,
+      "duration": 4.359
+    },
+    {
+      "text": "and then this whole thing is fed to the",
+      "start": 1275.0,
+      "duration": 3.64
+    },
+    {
+      "text": "large language model when we do the fine",
+      "start": 1276.799,
+      "duration": 2.841
+    },
+    {
+      "text": "tuning",
+      "start": 1278.64,
+      "duration": 4.039
+    },
+    {
+      "text": "later for now I just want to show you",
+      "start": 1279.64,
+      "duration": 6.48
+    },
+    {
+      "text": "that the data set uh was first",
+      "start": 1282.679,
+      "duration": 6.161
+    },
+    {
+      "text": "formatted uh through the Alpac style",
+      "start": 1286.12,
+      "duration": 4.559
+    },
+    {
+      "text": "format and converted into a specific",
+      "start": 1288.84,
+      "duration": 4.76
+    },
+    {
+      "text": "prompt and response output like this you",
+      "start": 1290.679,
+      "duration": 4.6
+    },
+    {
+      "text": "can of course change this when I share",
+      "start": 1293.6,
+      "duration": 3.36
+    },
+    {
+      "text": "this code file with you there is no need",
+      "start": 1295.279,
+      "duration": 4.081
+    },
+    {
+      "text": "to stick with this particular prompt but",
+      "start": 1296.96,
+      "duration": 4.319
+    },
+    {
+      "text": "for the sake of Simplicity and to follow",
+      "start": 1299.36,
+      "duration": 4.16
+    },
+    {
+      "text": "the convention we are doing this in this",
+      "start": 1301.279,
+      "duration": 5.041
+    },
+    {
+      "text": "video because uh if you see the Stanford",
+      "start": 1303.52,
+      "duration": 5.68
+    },
+    {
+      "text": "alpaka repository there are about",
+      "start": 1306.32,
+      "duration": 5.56
+    },
+    {
+      "text": "29,000 um stars",
+      "start": 1309.2,
+      "duration": 5.88
+    },
+    {
+      "text": "and around 4,000 Forks which means that",
+      "start": 1311.88,
+      "duration": 5.279
+    },
+    {
+      "text": "it's a pretty popular repository and",
+      "start": 1315.08,
+      "duration": 4.52
+    },
+    {
+      "text": "many people use this this kind of a",
+      "start": 1317.159,
+      "duration": 4.361
+    },
+    {
+      "text": "configuration this this kind of a",
+      "start": 1319.6,
+      "duration": 4.88
+    },
+    {
+      "text": "configuration when they do find",
+      "start": 1321.52,
+      "duration": 5.399
+    },
+    {
+      "text": "tuning great so up till now what we have",
+      "start": 1324.48,
+      "duration": 3.84
+    },
+    {
+      "text": "done is that we have converted our",
+      "start": 1326.919,
+      "duration": 3.801
+    },
+    {
+      "text": "instructions into alpaka format now the",
+      "start": 1328.32,
+      "duration": 4.32
+    },
+    {
+      "text": "next thing is we will split our data set",
+      "start": 1330.72,
+      "duration": 4.0
+    },
+    {
+      "text": "into training testing and validation",
+      "start": 1332.64,
+      "duration": 4.84
+    },
+    {
+      "text": "right so we have the data now uh which I",
+      "start": 1334.72,
+      "duration": 5.12
+    },
+    {
+      "text": "have showed over here this has 1100",
+      "start": 1337.48,
+      "duration": 4.52
+    },
+    {
+      "text": "pairs we'll split them into training",
+      "start": 1339.84,
+      "duration": 4.24
+    },
+    {
+      "text": "testing and validation so we are going",
+      "start": 1342.0,
+      "duration": 5.679
+    },
+    {
+      "text": "to use 85% for training 10% for testing",
+      "start": 1344.08,
+      "duration": 6.52
+    },
+    {
+      "text": "and the remaining five 5% for validation",
+      "start": 1347.679,
+      "duration": 5.761
+    },
+    {
+      "text": "so we'll just uh index or we'll just get",
+      "start": 1350.6,
+      "duration": 4.76
+    },
+    {
+      "text": "the train data the test data and the",
+      "start": 1353.44,
+      "duration": 4.92
+    },
+    {
+      "text": "validation data from our main data based",
+      "start": 1355.36,
+      "duration": 4.439
+    },
+    {
+      "text": "on this these",
+      "start": 1358.36,
+      "duration": 4.28
+    },
+    {
+      "text": "fractions so the initial 85% is the",
+      "start": 1359.799,
+      "duration": 5.88
+    },
+    {
+      "text": "train data then the 10% is the test data",
+      "start": 1362.64,
+      "duration": 5.039
+    },
+    {
+      "text": "and the remaining 5% is the validation",
+      "start": 1365.679,
+      "duration": 4.641
+    },
+    {
+      "text": "data you can even print out the training",
+      "start": 1367.679,
+      "duration": 5.12
+    },
+    {
+      "text": "data set length the validation data set",
+      "start": 1370.32,
+      "duration": 4.64
+    },
+    {
+      "text": "length and the testing data set length",
+      "start": 1372.799,
+      "duration": 4.0
+    },
+    {
+      "text": "so you'll see that the training data is",
+      "start": 1374.96,
+      "duration": 5.76
+    },
+    {
+      "text": "9 935 pairs the validation data is 55",
+      "start": 1376.799,
+      "duration": 7.521
+    },
+    {
+      "text": "Pairs and the testing data is 110",
+      "start": 1380.72,
+      "duration": 6.24
+    },
+    {
+      "text": "pairs even on the Whiteboard I have seen",
+      "start": 1384.32,
+      "duration": 4.599
+    },
+    {
+      "text": "that or I've written rather that the",
+      "start": 1386.96,
+      "duration": 3.92
+    },
+    {
+      "text": "next step is partitioning the data set",
+      "start": 1388.919,
+      "duration": 4.721
+    },
+    {
+      "text": "into training testing and validation",
+      "start": 1390.88,
+      "duration": 5.52
+    },
+    {
+      "text": "training is 85% testing is 10%",
+      "start": 1393.64,
+      "duration": 5.44
+    },
+    {
+      "text": "validation is 5% of course you can feel",
+      "start": 1396.4,
+      "duration": 3.92
+    },
+    {
+      "text": "free to play around with these",
+      "start": 1399.08,
+      "duration": 2.92
+    },
+    {
+      "text": "parameters when I share the code with",
+      "start": 1400.32,
+      "duration": 3.719
+    },
+    {
+      "text": "you there are many things in this code",
+      "start": 1402.0,
+      "duration": 4.24
+    },
+    {
+      "text": "which are not set in stone which means",
+      "start": 1404.039,
+      "duration": 4.481
+    },
+    {
+      "text": "they are not fixed and we can continue",
+      "start": 1406.24,
+      "duration": 4.24
+    },
+    {
+      "text": "changing so many things we can change",
+      "start": 1408.52,
+      "duration": 5.56
+    },
+    {
+      "text": "these these fractions we can change this",
+      "start": 1410.48,
+      "duration": 5.52
+    },
+    {
+      "text": "format we can use the",
+      "start": 1414.08,
+      "duration": 5.079
+    },
+    {
+      "text": "Microsoft 53 format which I showed you",
+      "start": 1416.0,
+      "duration": 5.2
+    },
+    {
+      "text": "and all of this is open for exploration",
+      "start": 1419.159,
+      "duration": 5.12
+    },
+    {
+      "text": "right now this field is so new that uh",
+      "start": 1421.2,
+      "duration": 4.8
+    },
+    {
+      "text": "right now is the time to really start",
+      "start": 1424.279,
+      "duration": 4.0
+    },
+    {
+      "text": "exploring get into research that way you",
+      "start": 1426.0,
+      "duration": 4.64
+    },
+    {
+      "text": "will also develop lot of confidence as a",
+      "start": 1428.279,
+      "duration": 4.921
+    },
+    {
+      "text": "machine learning and an llm",
+      "start": 1430.64,
+      "duration": 4.84
+    },
+    {
+      "text": "engineer so today we are going to end",
+      "start": 1433.2,
+      "duration": 4.0
+    },
+    {
+      "text": "this lecture until this part where we",
+      "start": 1435.48,
+      "duration": 4.4
+    },
+    {
+      "text": "saw the dat data set download and",
+      "start": 1437.2,
+      "duration": 4.959
+    },
+    {
+      "text": "formatting in The Next Step what we are",
+      "start": 1439.88,
+      "duration": 3.6
+    },
+    {
+      "text": "going to see is that we are going to",
+      "start": 1442.159,
+      "duration": 5.64
+    },
+    {
+      "text": "batch the data set now this is a um",
+      "start": 1443.48,
+      "duration": 6.0
+    },
+    {
+      "text": "topic which will need some amount of",
+      "start": 1447.799,
+      "duration": 3.201
+    },
+    {
+      "text": "detailing because it's not very",
+      "start": 1449.48,
+      "duration": 3.48
+    },
+    {
+      "text": "straightforward we have to make sure",
+      "start": 1451.0,
+      "duration": 5.48
+    },
+    {
+      "text": "that the input length is the same for uh",
+      "start": 1452.96,
+      "duration": 6.319
+    },
+    {
+      "text": "all of the instructions then we have to",
+      "start": 1456.48,
+      "duration": 4.76
+    },
+    {
+      "text": "convert the instructions into token IDs",
+      "start": 1459.279,
+      "duration": 4.561
+    },
+    {
+      "text": "we have to pad them with tokens uh there",
+      "start": 1461.24,
+      "duration": 4.36
+    },
+    {
+      "text": "are some specific things which we need",
+      "start": 1463.84,
+      "duration": 3.52
+    },
+    {
+      "text": "to do which we'll look at in The Next",
+      "start": 1465.6,
+      "duration": 3.48
+    },
+    {
+      "text": "Step which is organizing data into",
+      "start": 1467.36,
+      "duration": 4.199
+    },
+    {
+      "text": "training batches and I've also started",
+      "start": 1469.08,
+      "duration": 5.04
+    },
+    {
+      "text": "writing the code for the next",
+      "start": 1471.559,
+      "duration": 4.921
+    },
+    {
+      "text": "lecture uh in four to five lectures",
+      "start": 1474.12,
+      "duration": 4.08
+    },
+    {
+      "text": "we'll build our own personal assistant",
+      "start": 1476.48,
+      "duration": 3.88
+    },
+    {
+      "text": "chatbot so then you will have built your",
+      "start": 1478.2,
+      "duration": 5.52
+    },
+    {
+      "text": "own chat GPT completely from scratch um",
+      "start": 1480.36,
+      "duration": 5.16
+    },
+    {
+      "text": "and that will set you apart from all the",
+      "start": 1483.72,
+      "duration": 3.92
+    },
+    {
+      "text": "students who are just consumers of chat",
+      "start": 1485.52,
+      "duration": 3.72
+    },
+    {
+      "text": "GPT you'll now build your own",
+      "start": 1487.64,
+      "duration": 4.0
+    },
+    {
+      "text": "personalized assistant and then you will",
+      "start": 1489.24,
+      "duration": 4.36
+    },
+    {
+      "text": "have the confidence that whenever you",
+      "start": 1491.64,
+      "duration": 3.639
+    },
+    {
+      "text": "approach any company you can build a",
+      "start": 1493.6,
+      "duration": 3.959
+    },
+    {
+      "text": "custom chatbot for that company as well",
+      "start": 1495.279,
+      "duration": 5.0
+    },
+    {
+      "text": "by following the same procedure thank",
+      "start": 1497.559,
+      "duration": 4.24
+    },
+    {
+      "text": "you so much everyone I hope you are",
+      "start": 1500.279,
+      "duration": 3.361
+    },
+    {
+      "text": "enjoying these lectures where it's a mix",
+      "start": 1501.799,
+      "duration": 4.841
+    },
+    {
+      "text": "of whiteboard approach as well as coding",
+      "start": 1503.64,
+      "duration": 5.6
+    },
+    {
+      "text": "approach uh please try to follow along",
+      "start": 1506.64,
+      "duration": 4.48
+    },
+    {
+      "text": "write notes if you are coming to this",
+      "start": 1509.24,
+      "duration": 3.679
+    },
+    {
+      "text": "lecture for the first time I encourage",
+      "start": 1511.12,
+      "duration": 3.72
+    },
+    {
+      "text": "you to watch all the previous lectures",
+      "start": 1512.919,
+      "duration": 3.76
+    },
+    {
+      "text": "which have happened so far so that you",
+      "start": 1514.84,
+      "duration": 3.8
+    },
+    {
+      "text": "can strengthen your understanding",
+      "start": 1516.679,
+      "duration": 3.841
+    },
+    {
+      "text": "anyways I make the lecture so that it's",
+      "start": 1518.64,
+      "duration": 4.36
+    },
+    {
+      "text": "as selfcontained as possible thanks",
+      "start": 1520.52,
+      "duration": 3.96
+    },
+    {
+      "text": "everyone and I look forward to seeing",
+      "start": 1523.0,
+      "duration": 5.2
+    },
+    {
+      "text": "you in the next lecture",
+      "start": 1524.48,
+      "duration": 3.72
+    }
+  ],
+  "full_text": "[Music] hello everyone and uh welcome to this lecture in the build large language models from scratch Series today we are going to look at a topic which is called as instruction fine tuning in the previous set of lectures we have covered this much so far in building a large language model initially in the first set of lectures we saw how to prepare data we learned everything about the attention mechanism and we learned about the llm architecture this was the stage one the stage two was the pre-training process where we learned about the pre-training loop model evaluation and then we learned how to load pre-rain weights given by open AI gpt2 to construct our foundation model and this Foundation model is also called as pre-trained model and then we started looking at fine tuning so until this point in our lecture series we have looked at one type of f fine tuning which is called as classification based fine tuning in which we were given a set of emails and then the task was to fine tune our pre-train model so that it can classify any new email as whether it's a Spam or not a Spam and we completed this Hands-On project fully from scratch and now what we are going to do is that we are going to start looking at another category of fine tuning which is is much more common and that's called as instruction based fine tuning instruction based fine tuning in these series of lectures which will be five to six lectures we'll build our own personal assistant from scratch so we have already we already have a pre-trained model but the pre-trained model needs to be improved and it needs to be fine tuned further so that it can serve as our own personal assistant so let's get started with this chapter in which we will fine tune the pre-trained llm to follow instructions first we need to understand why do we need fine tuning right so the main reason why we need fine tuning is that pre-trained large language large language models uh like the one which we trained in this series so far are quite good at text completions but they really struggle with following instructions so what are these instructions let's say if you use the pre-trained M and if you ask it to to fix the grammar in the text it will not be able to do this if you ask the llm convert the text from an active voice to a passive voice it will not be able to do this uh so similar instructions are difficult to follow for a pre-trained large language model without fine tuning without fine tuning an llm can generate new tokens it can generate new sentences fully but it cannot follow instructions and we want our large language model to follow instructions if we want to build a personal assistant right if we tell the personal assistant that hey look at my sentence correct the grammar or hey look at my sentence remove all the does and the O in the sentence or hey look at the sentence and make it very short make it concise uh and make the tone very professional it won't be able to understand these instructions without fine tuning and that's why we have to learn about fine tuning I went to chat GPT and I asked Chad GPT give two examples of fine tuning in real life and here's what Chad GPT came up with so imagine first of all you are in an e-commerce company who wants to build a customer support chatbot so suppose an e-commerce company like Amazon uh wants to or Walmart let's say wants to develop or deploy a customer support chatbot that helps users with order status returns and product recommendations so they want to build an aias bot where users can go and ask the chatbot some questions such as what's the refund policy or if I want to return an order what's the policy with respect to that now if the company starts with only a pre-train model uh it will be very difficult for the model to understand specific customer queries which is based on the company's policies which is based on the company's products policies and services so the model won't be able to answer the questions which are given by the user since since it is not instruction finetuned yet and as a result we need to finetune the model to understand specific customer queries about the company's own products policies and services so the reason this is necessary is that the base language model which is only pre-trained may not have knowledge specific to the company's policies or products because many of times this information is private instruction find tuning allows the company to provide domain specific instructions such as if a user asks about return policy provide steps to in initiate a return or if a user asks about the refund policy provide these these instructions you can train or fine-tune the llm further so that it can it can respond to queries such as these so this ensures that the chatbot not only understands General language but also responds with company specific information improving accuracy and relevance that's why it's called instruction fine tuning we have to train the llm by saying that if you are asked these instruction here is the answer which you provide the second example is that of personalized Healthcare so a virtual assistant in a healthcare setting is designed to help patients schedule appointments remind them to take Med medications Etc now if you just take the pre-trained model it may have General Healthcare knowledge but it does not have knowledge about the specific health care provider practices treatment plans Etc so the base language model may have General Healthcare knowledge but find in tuning it with The Specific Instructions related to the healthc care providers practices treatment plans and patient needs is crucial so fine tuning ensures that the assistant understands medical terminology follows specific Healthcare guidelines and personalizes the responses based on the patient history for example when a patient asks about diabetes management so uh how should I or weekly what should be my plan with respect to managing diabetes the assistant can be fine tuned to provide personally personalized advice based on specific medical guidelines so these are some practical examples we show why fine tuning is necessary fine tuning is necessary for two main things first of all to train the llm to follow instructions and second to train on domain specific data with respect to the company or with respect to anyone who wants to deploy a large language model now let us look at some of the instructions on which we can find tune the large language model so one such instruction can be convert 45 km to meters and then the answer is 45 km is 45,000 M the second instruction can be provide a synonym for bright and then the desired response can be a synonym for bright is radiant the third instruction can be edit the following sentence to remove all passive voice the song was composed by the artist and the desired response is the artist compos the song so now we have removed all the passive voice and convert converted it into active voice right so these are the type of data sets on which we have to train the large language model so that it can understand how to follow instructions and this is what is called finetuning so training on such a data set which I just showed where the input output pairs are explicitly provided such as in this case where we provide the instruction the input and the output and tell the llm that hey I know you are pre-trained but you can do better with respect to instructions here is a training data set which will help you get better at following instructions now this approach is has also another terminology which is called as supervised instruction fine tuning the reason it's called supervised is that we are providing it a pair or a big set of instructions and the responses which we expect all right now let's get started with a Hands-On project which we are going to implement so as I mentioned our main goal is that we want to construct a personal assistant so we won't be doing all of that in this lecture but we'll be covering a part of it here is the sequential workflow which we are going to follow to build our personal assistant first we'll load the training data set which consists of such instructions and responses it won't be just three but there will be more than thousand instruction response pairs then we will batch the data set create data loaders then we'll load the pre-train llm and then we'll finetune the llm inspect the loss extract responses do the evaluation and then score the output or score how well we are doing in today's lecture we are going to see the first step which is data set download and formatting this is a bit different than what all we have seen so far so this will be a very interesting lecture all right so let's get started so we are looking at the first step which is preparing a data set for instruction fine tuning right so first let us go to code and let me show you how to download the data set itself uh okay so here we are in the code where we have started to look at instruction find tuning in this section we download and format the instruction data set for instruction fine tuning a pre-trend llm so we already have a pre-trend llm in this section we are going to download and format the instruction data set the data set consists of 1100 in 1100 instruction response pairs let me just show you the data set which we are going to use so here's the data set which we are going to use as you can see if you scroll down below this is a huge data set which consists of 1100 pairs of instruction and responses and let's see how some examples are defined over here so let's take any example so let's take this so you see there are if you think of it as dictionary there are these keys so there is an instruction for each uh for each instruction response pair we have an instruction an input and an output so instruction is edit the following sentence for grammar the input is he goes to the park every day and the output is he goes so the input is he go to the park every day and the output is he goes to the park every day so remember three things we have to give the instruction we have to give the input and we have to give the output that's done for all the questions so here see instruction what are the first 10 square numbers in this case there is no need to give an input because there is a fixed answer and then the output is 14916 up to 100 uh then instruction is translate the following sentence into French the input is where is the nearest restaurant and the output is it's translated into French so as you scroll down you'll see that there are instruction input output pairs there are 1100 of them and some of them have inputs as you can see some of them have inputs but some of them don't have an input at all so for example if the instruction is converted fet to meters there is one answer to this right we don't need to specify an input separately so there is just the instruction and there is just the output so this is the data set which we are going to load in the first step and we are going to use the function called download and load file so what this function does is that it goes to this URL which I just shared with you and it downloads the data set from this URL so you can run this function and it even prints out the number of entries in this function so we can see that the number of entries is 1100 that indicates that we have indeed downloaded the data set correctly now let's go to the next step uh the data list which we loaded from the Json file contains 1100 entries of the instruction data set let us print one of these so let us print the 50th entry so data is my final uh data set and I'm going to access the 50th entry so this says that identify the correct spelling of the following word occasion and the correct spelling is occasion let's check if this is present in this data set so I'm going to control F occasion and see it's present this is the 50th entry great let us print another entry which is 999 so here you can see that instruction what is the antonym of complicated there is no input over here the output is the antonym of complicated is simple antonym is opposite awesome so we have just tested that the data is loaded correctly and we are able to access specific instances or specific um index of the data to see what is the instruction input and the output remember three things instruction input and the output next thing which we have to do is that we cannot leave the instruction input and output in this format because researchers have discovered that or found out through experimentation that there is a specific way in which the prompt needs to be given to the llm during the training process and that specific way is documented in terms of formats so for example there is a specific format through which you have to give these instructions as mentioned by Stanford alpaka there is one more different format which was used by 53 so 53 Microsoft uh so for 53 open models there was a different format which was used for fine tuning but the most common one which I've seen is uh the Stanford alpaka based format in which what these people do is that they also have similar Json file where they have a list of 52,000 input output Pairs and they have constructed a very specific prompt out of these input output pairs so you can see that as we showed you they have an instruction they have an input and they have an output for every uh input response pair but then they convert it into a prompt like this so the prompt which they give to finetune the alpaka model is that below is an instruction that describes a task paired with an input that provides further context Write a response that appropriately completes the request this is the prompt which they train the llm with below is an instruction that describes a task paired with an input that provides further context Write a response that appropriately completes the request and then they provide the instruction the input and the response so instruction is provided through this this instruction which is over here uh input is the input which is accessed through the input field and then the response is accessed through this output field so this instruction input and output is converted into a prompt like this which is then provided to the large language model uh and this is exactly what we are going to do in the code right now before that I just want to show you these two types of formatting uh so if so currently we have this instruction input and output right there are two ways to actually format this data set and convert it into a prompt the first is the alpaka prompt style and the second is the 53 prompt style so as I showed you the alpaka prompt style is that uh you convert you have the prompt which is as follows below is an instruction that describes a task Write a response that appropriately completes the request then in the instruction you uh add this you add this instruction uh then in the input you add the input and in the response you add the output so that's the alpaka prompt so this instruction input and output which was there uh that is converted into this type of a prompt that below is an instruction here is the instruction here is the input occasion and the response is the correct spelling which is occasion with One S now 53 which was developed by Microsoft it's another fine tuning style where the prompt is user and assistant in the user you directly give the instruction which is identify the correct spelling of the following word occasion and then in the assistant you directly give the output so here you see the difference between F and the alpaka is that in the F prompting the user what the user has is instruction plus the input so so instruction so instruction plus the input is actually fused over here whereas in the alpaka prompt the instruction and the input is separated we can use either of these in fact when I share the code file with you I will encourage you to try the 53 prompt style as well uh but since the alpaka prompt style is more common we are going to use this and we are going to convert the instruction input and output which we have into prompts such as what is mentioned in the alpaka prompt style okay so let us convert our instructions into alpaka format we are going to define a function which is called format input it's going to take an entry uh so you can think of as one entry as this thing which has key value pairs the key has instruction input output and corresponding values right so when this function uh returns an entry you first construct the instruction text which is below is an instruction that describes a task Write a response that appropriately completes the request and then in the instruction you take the dictionary which is entry and then you find the value corresponding to the instruction key so in this case the value will be identify the correct spelling of the following word so then the prompt will be below is an instruction uh and then this is identify the correct uh identify the correct spelling of the following word that's the instruction text then you have to specify the input text which is input and then you specify that particular input in this case the input is occasion now see what we are doing here if the input is not present then you just return blank so in cases like these where the input is not present the input will be left blank and this is mentioned in the alpaka repository also if the in input is not present then we just have below is an instruction instruction and the response right so this is my format in input function which takes the entry dictionary and then it gives me the instruction text and it gives me the input text and it combines them together so when you run the format input it will give you this output if the input is present and it will give you this output if the input is absent currently we have not added the response but I'll show you where we can add it okay so this is the format input function now let us test it uh on a data set so we'll take the data index by 50 and we have already seen what that is before identify the correct spelling of the following word and we will pass this input to the format input so now the format input takes in this data and gives the model input the model input is basically until this point below is an instruction and then input is the occasion and then we have to add the response to this right so then here we say that the response will be the output um so the dictionary indexed uh dictionary and then we look at the value corresponding to the output key so then we have the instruction and the input and then we append this desired response to the model input and so the desired response is the correct spelling is occasion so when you print the model input plus the desired response you'll get the model input as the prompt and then you'll get the response itself now this full thing is later fed as an input to the large language model so that it trains on this entire prompt So currently we saw an example of a data which has the input right what if we have an example of a data which does not have the input so data index by 999 you see here the instruction is what is the opposite of complicated there is no input over here so let's see how our code deals with that so when you input the data index by 999 into the format input function it gives the model input and this will be below is an instruction and then we just have the instruction there is no input and then you have to give the desired response which is response and then the output here so the output in this case was an antonym of complicated is simple right so then that will be the desired response and then the model input will be combined with the desired response and then we'll get this entire answer so this entire output is a mix of the prompt and the response and then this whole thing is fed to the large language model when we do the fine tuning later for now I just want to show you that the data set uh was first formatted uh through the Alpac style format and converted into a specific prompt and response output like this you can of course change this when I share this code file with you there is no need to stick with this particular prompt but for the sake of Simplicity and to follow the convention we are doing this in this video because uh if you see the Stanford alpaka repository there are about 29,000 um stars and around 4,000 Forks which means that it's a pretty popular repository and many people use this this kind of a configuration this this kind of a configuration when they do find tuning great so up till now what we have done is that we have converted our instructions into alpaka format now the next thing is we will split our data set into training testing and validation right so we have the data now uh which I have showed over here this has 1100 pairs we'll split them into training testing and validation so we are going to use 85% for training 10% for testing and the remaining five 5% for validation so we'll just uh index or we'll just get the train data the test data and the validation data from our main data based on this these fractions so the initial 85% is the train data then the 10% is the test data and the remaining 5% is the validation data you can even print out the training data set length the validation data set length and the testing data set length so you'll see that the training data is 9 935 pairs the validation data is 55 Pairs and the testing data is 110 pairs even on the Whiteboard I have seen that or I've written rather that the next step is partitioning the data set into training testing and validation training is 85% testing is 10% validation is 5% of course you can feel free to play around with these parameters when I share the code with you there are many things in this code which are not set in stone which means they are not fixed and we can continue changing so many things we can change these these fractions we can change this format we can use the Microsoft 53 format which I showed you and all of this is open for exploration right now this field is so new that uh right now is the time to really start exploring get into research that way you will also develop lot of confidence as a machine learning and an llm engineer so today we are going to end this lecture until this part where we saw the dat data set download and formatting in The Next Step what we are going to see is that we are going to batch the data set now this is a um topic which will need some amount of detailing because it's not very straightforward we have to make sure that the input length is the same for uh all of the instructions then we have to convert the instructions into token IDs we have to pad them with tokens uh there are some specific things which we need to do which we'll look at in The Next Step which is organizing data into training batches and I've also started writing the code for the next lecture uh in four to five lectures we'll build our own personal assistant chatbot so then you will have built your own chat GPT completely from scratch um and that will set you apart from all the students who are just consumers of chat GPT you'll now build your own personalized assistant and then you will have the confidence that whenever you approach any company you can build a custom chatbot for that company as well by following the same procedure thank you so much everyone I hope you are enjoying these lectures where it's a mix of whiteboard approach as well as coding approach uh please try to follow along write notes if you are coming to this lecture for the first time I encourage you to watch all the previous lectures which have happened so far so that you can strengthen your understanding anyways I make the lecture so that it's as selfcontained as possible thanks everyone and I look forward to seeing you in the next lecture"
+}

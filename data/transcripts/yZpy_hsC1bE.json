@@ -1,0 +1,3431 @@
+{
+  "video": {
+    "video_id": "yZpy_hsC1bE",
+    "title": "Introduction to LLM Finetuning | Python Coding with hands-on-example",
+    "duration": 1644.0,
+    "index": 32
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.08,
+      "duration": 4.439
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.56,
+      "duration": 5.4
+    },
+    {
+      "text": "models from scratch Series today what we",
+      "start": 9.519,
+      "duration": 5.28
+    },
+    {
+      "text": "are going to do is that we are going to",
+      "start": 12.96,
+      "duration": 4.28
+    },
+    {
+      "text": "have an introductory lecture on large",
+      "start": 14.799,
+      "duration": 5.281
+    },
+    {
+      "text": "language model fine tuning if you have",
+      "start": 17.24,
+      "duration": 4.6
+    },
+    {
+      "text": "followed this series so far we have",
+      "start": 20.08,
+      "duration": 5.08
+    },
+    {
+      "text": "conducted around 30 to 32 lectures and",
+      "start": 21.84,
+      "duration": 5.199
+    },
+    {
+      "text": "Within These lectures we have finished",
+      "start": 25.16,
+      "duration": 4.119
+    },
+    {
+      "text": "the stage one which is understanding the",
+      "start": 27.039,
+      "duration": 4.681
+    },
+    {
+      "text": "L Market Ure the attention mechanism",
+      "start": 29.279,
+      "duration": 4.881
+    },
+    {
+      "text": "data preparation and sampling and we",
+      "start": 31.72,
+      "duration": 4.56
+    },
+    {
+      "text": "have also finished stage number two",
+      "start": 34.16,
+      "duration": 3.919
+    },
+    {
+      "text": "which is pre-training the large language",
+      "start": 36.28,
+      "duration": 4.4
+    },
+    {
+      "text": "model model evaluation and loading",
+      "start": 38.079,
+      "duration": 4.0
+    },
+    {
+      "text": "pre-trained",
+      "start": 40.68,
+      "duration": 4.039
+    },
+    {
+      "text": "weights now that stage one and stage two",
+      "start": 42.079,
+      "duration": 5.48
+    },
+    {
+      "text": "are finished we are now ready to move to",
+      "start": 44.719,
+      "duration": 4.641
+    },
+    {
+      "text": "the last stage of building a large",
+      "start": 47.559,
+      "duration": 4.241
+    },
+    {
+      "text": "language model from scratch and that is",
+      "start": 49.36,
+      "duration": 3.76
+    },
+    {
+      "text": "the stage of",
+      "start": 51.8,
+      "duration": 3.559
+    },
+    {
+      "text": "fine-tuning with pre-training we saw",
+      "start": 53.12,
+      "duration": 4.52
+    },
+    {
+      "text": "that we are getting good results and",
+      "start": 55.359,
+      "duration": 4.68
+    },
+    {
+      "text": "when we give an input text we are",
+      "start": 57.64,
+      "duration": 4.84
+    },
+    {
+      "text": "getting output which makes a lot of",
+      "start": 60.039,
+      "duration": 4.44
+    },
+    {
+      "text": "sense and it's pretty awesome so it's",
+      "start": 62.48,
+      "duration": 4.76
+    },
+    {
+      "text": "like we have built our own GPT from",
+      "start": 64.479,
+      "duration": 5.0
+    },
+    {
+      "text": "scratch and here's the architecture",
+      "start": 67.24,
+      "duration": 3.919
+    },
+    {
+      "text": "which we use to construct our large",
+      "start": 69.479,
+      "duration": 4.601
+    },
+    {
+      "text": "language model uh we spent a huge amount",
+      "start": 71.159,
+      "duration": 4.761
+    },
+    {
+      "text": "of time and a number of lectures to",
+      "start": 74.08,
+      "duration": 3.44
+    },
+    {
+      "text": "understand this",
+      "start": 75.92,
+      "duration": 3.839
+    },
+    {
+      "text": "architecture awesome so now we are ready",
+      "start": 77.52,
+      "duration": 4.559
+    },
+    {
+      "text": "to begin with this next stage which is",
+      "start": 79.759,
+      "duration": 4.72
+    },
+    {
+      "text": "the stage of fine tuning so first you",
+      "start": 82.079,
+      "duration": 4.561
+    },
+    {
+      "text": "might be thinking that okay we already",
+      "start": 84.479,
+      "duration": 4.161
+    },
+    {
+      "text": "pre-trained the large language model and",
+      "start": 86.64,
+      "duration": 4.0
+    },
+    {
+      "text": "it seems to already work pretty well",
+      "start": 88.64,
+      "duration": 4.36
+    },
+    {
+      "text": "right so then does that mean we have",
+      "start": 90.64,
+      "duration": 5.0
+    },
+    {
+      "text": "finished building our llm",
+      "start": 93.0,
+      "duration": 5.479
+    },
+    {
+      "text": "no let me explain to you why do we need",
+      "start": 95.64,
+      "duration": 5.72
+    },
+    {
+      "text": "fine tuning so let's say if you have",
+      "start": 98.479,
+      "duration": 4.68
+    },
+    {
+      "text": "pre-trained the model that's fine but",
+      "start": 101.36,
+      "duration": 4.68
+    },
+    {
+      "text": "what if you have a specific task so that",
+      "start": 103.159,
+      "duration": 4.92
+    },
+    {
+      "text": "specific task can be constructing a",
+      "start": 106.04,
+      "duration": 4.88
+    },
+    {
+      "text": "chatbot based on your own data as a",
+      "start": 108.079,
+      "duration": 4.72
+    },
+    {
+      "text": "company or let's say you're an",
+      "start": 110.92,
+      "duration": 4.159
+    },
+    {
+      "text": "educational company who wants to make an",
+      "start": 112.799,
+      "duration": 6.041
+    },
+    {
+      "text": "educational app using your data let's",
+      "start": 115.079,
+      "duration": 5.521
+    },
+    {
+      "text": "say if you want to make a chatbot as an",
+      "start": 118.84,
+      "duration": 4.16
+    },
+    {
+      "text": "airline using your",
+      "start": 120.6,
+      "duration": 5.519
+    },
+    {
+      "text": "data essentially if you want to make a",
+      "start": 123.0,
+      "duration": 5.319
+    },
+    {
+      "text": "specific",
+      "start": 126.119,
+      "duration": 4.601
+    },
+    {
+      "text": "application the pre-trained model is not",
+      "start": 128.319,
+      "duration": 3.92
+    },
+    {
+      "text": "enough because it's pre-trained on",
+      "start": 130.72,
+      "duration": 3.799
+    },
+    {
+      "text": "General data available from all over the",
+      "start": 132.239,
+      "duration": 5.881
+    },
+    {
+      "text": "Internet you need to train the model",
+      "start": 134.519,
+      "duration": 7.44
+    },
+    {
+      "text": "again on additional data this is called",
+      "start": 138.12,
+      "duration": 4.6
+    },
+    {
+      "text": "as",
+      "start": 141.959,
+      "duration": 3.481
+    },
+    {
+      "text": "finetuning so the formal definition of",
+      "start": 142.72,
+      "duration": 5.239
+    },
+    {
+      "text": "fine tuning is adapting a pre-trained",
+      "start": 145.44,
+      "duration": 5.4
+    },
+    {
+      "text": "model to a specific task",
+      "start": 147.959,
+      "duration": 5.36
+    },
+    {
+      "text": "by training the model again on fine tune",
+      "start": 150.84,
+      "duration": 4.759
+    },
+    {
+      "text": "on additional data there are some things",
+      "start": 153.319,
+      "duration": 3.721
+    },
+    {
+      "text": "which are very important here some",
+      "start": 155.599,
+      "duration": 3.681
+    },
+    {
+      "text": "terminologies the first terminology is",
+      "start": 157.04,
+      "duration": 4.44
+    },
+    {
+      "text": "this specific",
+      "start": 159.28,
+      "duration": 5.48
+    },
+    {
+      "text": "task so uh fine tuning is needed when",
+      "start": 161.48,
+      "duration": 5.2
+    },
+    {
+      "text": "you have certain specific tasks which",
+      "start": 164.76,
+      "duration": 4.199
+    },
+    {
+      "text": "need to be performed such as if you are",
+      "start": 166.68,
+      "duration": 4.12
+    },
+    {
+      "text": "a company and if you want to develop a",
+      "start": 168.959,
+      "duration": 3.92
+    },
+    {
+      "text": "model put it into production you cannot",
+      "start": 170.8,
+      "duration": 4.2
+    },
+    {
+      "text": "just use a pre-trained model as I",
+      "start": 172.879,
+      "duration": 4.201
+    },
+    {
+      "text": "mentioned it's trained on a generic data",
+      "start": 175.0,
+      "duration": 4.08
+    },
+    {
+      "text": "right it will not give answers which you",
+      "start": 177.08,
+      "duration": 4.799
+    },
+    {
+      "text": "expect based on your individual private",
+      "start": 179.08,
+      "duration": 6.12
+    },
+    {
+      "text": "data so there is a specific task if you",
+      "start": 181.879,
+      "duration": 5.241
+    },
+    {
+      "text": "need to do a specific task you need to",
+      "start": 185.2,
+      "duration": 4.28
+    },
+    {
+      "text": "fine tune the pre-trend model and the",
+      "start": 187.12,
+      "duration": 5.24
+    },
+    {
+      "text": "second thing is training the model again",
+      "start": 189.48,
+      "duration": 5.0
+    },
+    {
+      "text": "that means that until now the certain",
+      "start": 192.36,
+      "duration": 4.48
+    },
+    {
+      "text": "weights and biases of the model have",
+      "start": 194.48,
+      "duration": 4.16
+    },
+    {
+      "text": "been optimized during the pre",
+      "start": 196.84,
+      "duration": 3.679
+    },
+    {
+      "text": "pre-training but now you are going to",
+      "start": 198.64,
+      "duration": 4.04
+    },
+    {
+      "text": "feed the model with additional data so",
+      "start": 200.519,
+      "duration": 3.561
+    },
+    {
+      "text": "naturally you will need to train the",
+      "start": 202.68,
+      "duration": 3.199
+    },
+    {
+      "text": "model again the parameters the weights",
+      "start": 204.08,
+      "duration": 4.04
+    },
+    {
+      "text": "the biases are going to change and",
+      "start": 205.879,
+      "duration": 3.92
+    },
+    {
+      "text": "that's usually done in the process of",
+      "start": 208.12,
+      "duration": 2.8
+    },
+    {
+      "text": "fine",
+      "start": 209.799,
+      "duration": 4.281
+    },
+    {
+      "text": "tuning so there are some in fact a lot",
+      "start": 210.92,
+      "duration": 5.2
+    },
+    {
+      "text": "of Articles written about fine tuning so",
+      "start": 214.08,
+      "duration": 4.48
+    },
+    {
+      "text": "here is the schematic you have a large",
+      "start": 216.12,
+      "duration": 4.759
+    },
+    {
+      "text": "language model which is pre-trained then",
+      "start": 218.56,
+      "duration": 4.84
+    },
+    {
+      "text": "you train it further on custom data set",
+      "start": 220.879,
+      "duration": 5.121
+    },
+    {
+      "text": "and that leads to a fine tuned large",
+      "start": 223.4,
+      "duration": 5.559
+    },
+    {
+      "text": "language model okay so the formal",
+      "start": 226.0,
+      "duration": 5.519
+    },
+    {
+      "text": "definition of llm fine tuning is that",
+      "start": 228.959,
+      "duration": 6.0
+    },
+    {
+      "text": "fine tuning llm",
+      "start": 231.519,
+      "duration": 6.761
+    },
+    {
+      "text": "involves the additional training of a",
+      "start": 234.959,
+      "duration": 5.721
+    },
+    {
+      "text": "pre-existing model",
+      "start": 238.28,
+      "duration": 4.319
+    },
+    {
+      "text": "which has previously acquired patterns",
+      "start": 240.68,
+      "duration": 4.279
+    },
+    {
+      "text": "and features from an extensive data set",
+      "start": 242.599,
+      "duration": 5.801
+    },
+    {
+      "text": "using a smaller domain specific data set",
+      "start": 244.959,
+      "duration": 5.84
+    },
+    {
+      "text": "so see we are training a pre-existing",
+      "start": 248.4,
+      "duration": 4.119
+    },
+    {
+      "text": "model again so that's why it's called",
+      "start": 250.799,
+      "duration": 3.881
+    },
+    {
+      "text": "additional training why are we training",
+      "start": 252.519,
+      "duration": 4.321
+    },
+    {
+      "text": "this model again because we have a newer",
+      "start": 254.68,
+      "duration": 4.76
+    },
+    {
+      "text": "smaller domain specific data set so we",
+      "start": 256.84,
+      "duration": 4.44
+    },
+    {
+      "text": "need to train the model again so that it",
+      "start": 259.44,
+      "duration": 4.759
+    },
+    {
+      "text": "adapt its parameters it adapt it adapts",
+      "start": 261.28,
+      "duration": 5.479
+    },
+    {
+      "text": "its weights and its",
+      "start": 264.199,
+      "duration": 7.081
+    },
+    {
+      "text": "biases okay so fine tuning is necessary",
+      "start": 266.759,
+      "duration": 8.16
+    },
+    {
+      "text": "to to be done after pre-training is done",
+      "start": 271.28,
+      "duration": 7.68
+    },
+    {
+      "text": "okay so open AI even provides this",
+      "start": 274.919,
+      "duration": 7.201
+    },
+    {
+      "text": "uh description about fine tuning where",
+      "start": 278.96,
+      "duration": 5.079
+    },
+    {
+      "text": "it gives you instructions about how you",
+      "start": 282.12,
+      "duration": 5.639
+    },
+    {
+      "text": "can do fine tuning using open models so",
+      "start": 284.039,
+      "duration": 5.681
+    },
+    {
+      "text": "to give you a practical example of fine",
+      "start": 287.759,
+      "duration": 3.961
+    },
+    {
+      "text": "tuning this is the website which I had",
+      "start": 289.72,
+      "duration": 4.479
+    },
+    {
+      "text": "made in the final year of my PhD it",
+      "start": 291.72,
+      "duration": 5.0
+    },
+    {
+      "text": "talks about my Publications my talks my",
+      "start": 294.199,
+      "duration": 5.28
+    },
+    {
+      "text": "media Etc so let's say if you also have",
+      "start": 296.72,
+      "duration": 4.759
+    },
+    {
+      "text": "a website or if you have a blog post",
+      "start": 299.479,
+      "duration": 4.481
+    },
+    {
+      "text": "site like this and if you want to make a",
+      "start": 301.479,
+      "duration": 5.401
+    },
+    {
+      "text": "chatbot which does not answer like how",
+      "start": 303.96,
+      "duration": 5.12
+    },
+    {
+      "text": "chat GPT answers but you want the",
+      "start": 306.88,
+      "duration": 5.039
+    },
+    {
+      "text": "chatbot to answer like how you speak",
+      "start": 309.08,
+      "duration": 5.959
+    },
+    {
+      "text": "right you want the chatbot to answer",
+      "start": 311.919,
+      "duration": 5.601
+    },
+    {
+      "text": "based on your data how you generally",
+      "start": 315.039,
+      "duration": 5.641
+    },
+    {
+      "text": "write articles how your how you word the",
+      "start": 317.52,
+      "duration": 5.72
+    },
+    {
+      "text": "different paragraphs on your website you",
+      "start": 320.68,
+      "duration": 4.639
+    },
+    {
+      "text": "have a specific tone and you want that",
+      "start": 323.24,
+      "duration": 4.239
+    },
+    {
+      "text": "tone to come in your chat bot how will",
+      "start": 325.319,
+      "duration": 5.0
+    },
+    {
+      "text": "you do this with pre training it's not",
+      "start": 327.479,
+      "duration": 5.881
+    },
+    {
+      "text": "possible because in the pre-train model",
+      "start": 330.319,
+      "duration": 4.88
+    },
+    {
+      "text": "might be your data is not even there in",
+      "start": 333.36,
+      "duration": 3.679
+    },
+    {
+      "text": "the pre-training so then you will need",
+      "start": 335.199,
+      "duration": 3.44
+    },
+    {
+      "text": "to find tune you will need to give",
+      "start": 337.039,
+      "duration": 3.401
+    },
+    {
+      "text": "additional data such as whatever is",
+      "start": 338.639,
+      "duration": 4.081
+    },
+    {
+      "text": "present on my website my blogs my",
+      "start": 340.44,
+      "duration": 5.08
+    },
+    {
+      "text": "Publications my talks so that the model",
+      "start": 342.72,
+      "duration": 4.68
+    },
+    {
+      "text": "can understand and learn what is your",
+      "start": 345.52,
+      "duration": 4.08
+    },
+    {
+      "text": "tone of speaking how do you generally",
+      "start": 347.4,
+      "duration": 4.44
+    },
+    {
+      "text": "construct sentences and then it will",
+      "start": 349.6,
+      "duration": 5.56
+    },
+    {
+      "text": "adapt so the resulting chatbot which",
+      "start": 351.84,
+      "duration": 7.0
+    },
+    {
+      "text": "will be developed will now be speaking",
+      "start": 355.16,
+      "duration": 6.08
+    },
+    {
+      "text": "in your tone or my tone rather in this",
+      "start": 358.84,
+      "duration": 4.919
+    },
+    {
+      "text": "example that is called as fine tuning so",
+      "start": 361.24,
+      "duration": 4.079
+    },
+    {
+      "text": "the specific application which I'm",
+      "start": 363.759,
+      "duration": 3.361
+    },
+    {
+      "text": "looking for is constructing a chatbot",
+      "start": 365.319,
+      "duration": 4.16
+    },
+    {
+      "text": "which speaks in my tone for this",
+      "start": 367.12,
+      "duration": 3.88
+    },
+    {
+      "text": "specific application I have this",
+      "start": 369.479,
+      "duration": 3.801
+    },
+    {
+      "text": "additional data which is my website my",
+      "start": 371.0,
+      "duration": 4.4
+    },
+    {
+      "text": "Publications my talks and my media which",
+      "start": 373.28,
+      "duration": 4.319
+    },
+    {
+      "text": "I'll feed to the model and I'll ask the",
+      "start": 375.4,
+      "duration": 4.359
+    },
+    {
+      "text": "model to be trained again or rather I'll",
+      "start": 377.599,
+      "duration": 4.6
+    },
+    {
+      "text": "train the model again based on this",
+      "start": 379.759,
+      "duration": 4.681
+    },
+    {
+      "text": "additional data this process of training",
+      "start": 382.199,
+      "duration": 5.28
+    },
+    {
+      "text": "the model again is called as finetuning",
+      "start": 384.44,
+      "duration": 5.159
+    },
+    {
+      "text": "so now the finetune model will behave EX",
+      "start": 387.479,
+      "duration": 4.921
+    },
+    {
+      "text": "exactly like how I want it will speak in",
+      "start": 389.599,
+      "duration": 4.641
+    },
+    {
+      "text": "my tone it will use grammatical",
+      "start": 392.4,
+      "duration": 4.32
+    },
+    {
+      "text": "sentences like I do that's a practical",
+      "start": 394.24,
+      "duration": 4.959
+    },
+    {
+      "text": "example of fine tuning another example",
+      "start": 396.72,
+      "duration": 6.319
+    },
+    {
+      "text": "is let's say you have uh your research",
+      "start": 399.199,
+      "duration": 5.84
+    },
+    {
+      "text": "Publications like how I'm describing",
+      "start": 403.039,
+      "duration": 3.921
+    },
+    {
+      "text": "right here and you want to make a",
+      "start": 405.039,
+      "duration": 5.481
+    },
+    {
+      "text": "chatbot which basically answers people's",
+      "start": 406.96,
+      "duration": 5.76
+    },
+    {
+      "text": "queries about your Publications so then",
+      "start": 410.52,
+      "duration": 4.44
+    },
+    {
+      "text": "you can feed specific data based on your",
+      "start": 412.72,
+      "duration": 4.36
+    },
+    {
+      "text": "Publications that's another example of",
+      "start": 414.96,
+      "duration": 5.04
+    },
+    {
+      "text": "fine tuning in fact uh the reason I",
+      "start": 417.08,
+      "duration": 6.399
+    },
+    {
+      "text": "thought of this example was I saw a Blog",
+      "start": 420.0,
+      "duration": 6.96
+    },
+    {
+      "text": "uh in fact I saw a question asked on the",
+      "start": 423.479,
+      "duration": 6.16
+    },
+    {
+      "text": "open AI question Forum where the person",
+      "start": 426.96,
+      "duration": 4.04
+    },
+    {
+      "text": "was saying that they are a beginner at",
+      "start": 429.639,
+      "duration": 3.641
+    },
+    {
+      "text": "learning fine tuning and their purpose",
+      "start": 431.0,
+      "duration": 4.24
+    },
+    {
+      "text": "is to create the model which could use",
+      "start": 433.28,
+      "duration": 4.68
+    },
+    {
+      "text": "the tone of their voice from their blog",
+      "start": 435.24,
+      "duration": 5.12
+    },
+    {
+      "text": "exactly like what we had discussed and",
+      "start": 437.96,
+      "duration": 4.76
+    },
+    {
+      "text": "they are asking a number of questions",
+      "start": 440.36,
+      "duration": 4.76
+    },
+    {
+      "text": "about how exactly to go about this how",
+      "start": 442.72,
+      "duration": 4.36
+    },
+    {
+      "text": "to make sure that the accuracy obtained",
+      "start": 445.12,
+      "duration": 3.4
+    },
+    {
+      "text": "is very good how to prevent",
+      "start": 447.08,
+      "duration": 3.559
+    },
+    {
+      "text": "hallucinations which are wrong answers",
+      "start": 448.52,
+      "duration": 4.44
+    },
+    {
+      "text": "Etc so and then there are number of",
+      "start": 450.639,
+      "duration": 4.0
+    },
+    {
+      "text": "answers which is given by the opena",
+      "start": 452.96,
+      "duration": 3.6
+    },
+    {
+      "text": "community to help this person F tune",
+      "start": 454.639,
+      "duration": 3.4
+    },
+    {
+      "text": "their",
+      "start": 456.56,
+      "duration": 4.039
+    },
+    {
+      "text": "model great so this is the general",
+      "start": 458.039,
+      "duration": 4.801
+    },
+    {
+      "text": "introduction of fine tuning now within",
+      "start": 460.599,
+      "duration": 4.401
+    },
+    {
+      "text": "fine tuning itself there are two broad",
+      "start": 462.84,
+      "duration": 5.28
+    },
+    {
+      "text": "categories of fine tuning and let me",
+      "start": 465.0,
+      "duration": 4.8
+    },
+    {
+      "text": "Mark them here for you the first",
+      "start": 468.12,
+      "duration": 3.479
+    },
+    {
+      "text": "category is called as instruction fine",
+      "start": 469.8,
+      "duration": 4.079
+    },
+    {
+      "text": "tuning and this is much more common and",
+      "start": 471.599,
+      "duration": 4.961
+    },
+    {
+      "text": "much more broader the second category is",
+      "start": 473.879,
+      "duration": 5.44
+    },
+    {
+      "text": "called as classification F unun what's",
+      "start": 476.56,
+      "duration": 5.0
+    },
+    {
+      "text": "the difference between the two so in",
+      "start": 479.319,
+      "duration": 4.521
+    },
+    {
+      "text": "instruction find tuning what we do is",
+      "start": 481.56,
+      "duration": 4.88
+    },
+    {
+      "text": "that we train the language model on a",
+      "start": 483.84,
+      "duration": 6.56
+    },
+    {
+      "text": "set of tasks using Specific Instructions",
+      "start": 486.44,
+      "duration": 7.24
+    },
+    {
+      "text": "so here I have given two examples for",
+      "start": 490.4,
+      "duration": 5.519
+    },
+    {
+      "text": "instruction uh instruction based F",
+      "start": 493.68,
+      "duration": 5.72
+    },
+    {
+      "text": "tuning so let's say the instructions are",
+      "start": 495.919,
+      "duration": 6.361
+    },
+    {
+      "text": "U is the following text spam answer with",
+      "start": 499.4,
+      "duration": 4.919
+    },
+    {
+      "text": "a yes or no this is an example of",
+      "start": 502.28,
+      "duration": 4.16
+    },
+    {
+      "text": "instruction based fine tuning because we",
+      "start": 504.319,
+      "duration": 4.28
+    },
+    {
+      "text": "are asking the llm that you will be",
+      "start": 506.44,
+      "duration": 4.68
+    },
+    {
+      "text": "given text like this and your task is to",
+      "start": 508.599,
+      "duration": 4.56
+    },
+    {
+      "text": "look at the text and answer whether it's",
+      "start": 511.12,
+      "duration": 4.44
+    },
+    {
+      "text": "spam so classify or say whether it's yes",
+      "start": 513.159,
+      "duration": 4.76
+    },
+    {
+      "text": "or no that's why this is an example of",
+      "start": 515.56,
+      "duration": 3.959
+    },
+    {
+      "text": "instruction fine tuning we are adding",
+      "start": 517.919,
+      "duration": 3.56
+    },
+    {
+      "text": "instructions here which are in blue",
+      "start": 519.519,
+      "duration": 4.32
+    },
+    {
+      "text": "color that's very important or the",
+      "start": 521.479,
+      "duration": 4.201
+    },
+    {
+      "text": "instruction could be your given sentence",
+      "start": 523.839,
+      "duration": 3.801
+    },
+    {
+      "text": "and translate it into German",
+      "start": 525.68,
+      "duration": 4.12
+    },
+    {
+      "text": "appropriately that is another example of",
+      "start": 527.64,
+      "duration": 4.68
+    },
+    {
+      "text": "instruction find tuning so the llm takes",
+      "start": 529.8,
+      "duration": 4.44
+    },
+    {
+      "text": "the input sentence in the first case it",
+      "start": 532.32,
+      "duration": 4.12
+    },
+    {
+      "text": "gives the output as yes or no in the",
+      "start": 534.24,
+      "duration": 3.88
+    },
+    {
+      "text": "second case it translates the English",
+      "start": 536.44,
+      "duration": 4.079
+    },
+    {
+      "text": "sentence into German",
+      "start": 538.12,
+      "duration": 3.839
+    },
+    {
+      "text": "the reason these are examples of",
+      "start": 540.519,
+      "duration": 3.041
+    },
+    {
+      "text": "instruction fine tuning is that we are",
+      "start": 541.959,
+      "duration": 3.481
+    },
+    {
+      "text": "giving a specific instruction and the",
+      "start": 543.56,
+      "duration": 5.519
+    },
+    {
+      "text": "llm is behaving based on that",
+      "start": 545.44,
+      "duration": 5.839
+    },
+    {
+      "text": "instruction the second example is",
+      "start": 549.079,
+      "duration": 4.521
+    },
+    {
+      "text": "classification fine tuning this is not",
+      "start": 551.279,
+      "duration": 5.161
+    },
+    {
+      "text": "as common but readers or listeners",
+      "start": 553.6,
+      "duration": 5.16
+    },
+    {
+      "text": "rather who have learned about machine",
+      "start": 556.44,
+      "duration": 4.839
+    },
+    {
+      "text": "learning and classification examples",
+      "start": 558.76,
+      "duration": 5.04
+    },
+    {
+      "text": "such as brain tumor classification image",
+      "start": 561.279,
+      "duration": 4.361
+    },
+    {
+      "text": "classification between cats and dogs",
+      "start": 563.8,
+      "duration": 3.52
+    },
+    {
+      "text": "this is pretty similar but now you just",
+      "start": 565.64,
+      "duration": 4.04
+    },
+    {
+      "text": "use a large language model inste of",
+      "start": 567.32,
+      "duration": 4.16
+    },
+    {
+      "text": "let's say a convolutional neural network",
+      "start": 569.68,
+      "duration": 4.92
+    },
+    {
+      "text": "for example or any other neural network",
+      "start": 571.48,
+      "duration": 5.599
+    },
+    {
+      "text": "to make the classification so here no",
+      "start": 574.6,
+      "duration": 4.72
+    },
+    {
+      "text": "instruction is given to the llm just the",
+      "start": 577.079,
+      "duration": 4.32
+    },
+    {
+      "text": "input is given without",
+      "start": 579.32,
+      "duration": 4.72
+    },
+    {
+      "text": "instructions and the llm has to classify",
+      "start": 581.399,
+      "duration": 5.081
+    },
+    {
+      "text": "whether the email is Spam or not spam",
+      "start": 584.04,
+      "duration": 5.0
+    },
+    {
+      "text": "here also we saw a Spam not spam example",
+      "start": 586.48,
+      "duration": 4.599
+    },
+    {
+      "text": "right but here instructions were given",
+      "start": 589.04,
+      "duration": 4.32
+    },
+    {
+      "text": "that the llm has to answer with a yes or",
+      "start": 591.079,
+      "duration": 4.921
+    },
+    {
+      "text": "no but here instruction is not given",
+      "start": 593.36,
+      "duration": 4.32
+    },
+    {
+      "text": "just two categories will be there spam",
+      "start": 596.0,
+      "duration": 4.04
+    },
+    {
+      "text": "and not spam and we train the llm to",
+      "start": 597.68,
+      "duration": 4.719
+    },
+    {
+      "text": "make the output based on these two",
+      "start": 600.04,
+      "duration": 5.0
+    },
+    {
+      "text": "categories so the llm receives a text",
+      "start": 602.399,
+      "duration": 4.201
+    },
+    {
+      "text": "and then it predicts whether it's a Spam",
+      "start": 605.04,
+      "duration": 3.799
+    },
+    {
+      "text": "or no spam although the result is same",
+      "start": 606.6,
+      "duration": 5.4
+    },
+    {
+      "text": "in this case and this case the way the",
+      "start": 608.839,
+      "duration": 5.0
+    },
+    {
+      "text": "prompt itself is constructed or way the",
+      "start": 612.0,
+      "duration": 4.12
+    },
+    {
+      "text": "llm is constructed is different that's",
+      "start": 613.839,
+      "duration": 4.201
+    },
+    {
+      "text": "why this what I'm highlighting right now",
+      "start": 616.12,
+      "duration": 4.24
+    },
+    {
+      "text": "this is an example of instruction F",
+      "start": 618.04,
+      "duration": 5.12
+    },
+    {
+      "text": "tuning and this example where the model",
+      "start": 620.36,
+      "duration": 4.52
+    },
+    {
+      "text": "input is given without instructions",
+      "start": 623.16,
+      "duration": 3.799
+    },
+    {
+      "text": "that's an example of classification",
+      "start": 624.88,
+      "duration": 3.32
+    },
+    {
+      "text": "based fine",
+      "start": 626.959,
+      "duration": 4.161
+    },
+    {
+      "text": "tuning uh um where we just classify into",
+      "start": 628.2,
+      "duration": 5.12
+    },
+    {
+      "text": "categories using large language models",
+      "start": 631.12,
+      "duration": 4.0
+    },
+    {
+      "text": "when I saw this it was pretty surprising",
+      "start": 633.32,
+      "duration": 3.68
+    },
+    {
+      "text": "to me because I did not know that llms",
+      "start": 635.12,
+      "duration": 4.48
+    },
+    {
+      "text": "could be used for classification tasks",
+      "start": 637.0,
+      "duration": 5.079
+    },
+    {
+      "text": "in fact classification fing is also used",
+      "start": 639.6,
+      "duration": 4.479
+    },
+    {
+      "text": "for sentiment classification such as",
+      "start": 642.079,
+      "duration": 4.76
+    },
+    {
+      "text": "angry sad happy Etc if you have given",
+      "start": 644.079,
+      "duration": 4.081
+    },
+    {
+      "text": "piece of text and if you want to",
+      "start": 646.839,
+      "duration": 3.0
+    },
+    {
+      "text": "classify it into either of these five",
+      "start": 648.16,
+      "duration": 3.84
+    },
+    {
+      "text": "buckets you can use class you can use",
+      "start": 649.839,
+      "duration": 3.761
+    },
+    {
+      "text": "classification fine",
+      "start": 652.0,
+      "duration": 4.76
+    },
+    {
+      "text": "tuning but instruction fine tuning is a",
+      "start": 653.6,
+      "duration": 7.4
+    },
+    {
+      "text": "much more uh common B common fine tuning",
+      "start": 656.76,
+      "duration": 6.4
+    },
+    {
+      "text": "it can handle broader set of",
+      "start": 661.0,
+      "duration": 5.92
+    },
+    {
+      "text": "tasks and usually it can even handle or",
+      "start": 663.16,
+      "duration": 6.119
+    },
+    {
+      "text": "it rather needs larger data sets because",
+      "start": 666.92,
+      "duration": 4.919
+    },
+    {
+      "text": "you want it to handle a broader set of",
+      "start": 669.279,
+      "duration": 4.881
+    },
+    {
+      "text": "tasks right so greater amount of",
+      "start": 671.839,
+      "duration": 4.201
+    },
+    {
+      "text": "computational power is also usually",
+      "start": 674.16,
+      "duration": 3.56
+    },
+    {
+      "text": "needed for instruction based Point",
+      "start": 676.04,
+      "duration": 3.599
+    },
+    {
+      "text": "tuning why is greater amount of",
+      "start": 677.72,
+      "duration": 3.919
+    },
+    {
+      "text": "computational power needed because you",
+      "start": 679.639,
+      "duration": 3.841
+    },
+    {
+      "text": "have given instructions to the model and",
+      "start": 681.639,
+      "duration": 3.961
+    },
+    {
+      "text": "it has to search for the entire Corpus",
+      "start": 683.48,
+      "duration": 3.599
+    },
+    {
+      "text": "based on the instructions which you have",
+      "start": 685.6,
+      "duration": 4.039
+    },
+    {
+      "text": "given right and the actions which it",
+      "start": 687.079,
+      "duration": 4.88
+    },
+    {
+      "text": "perform is not specific so for example",
+      "start": 689.639,
+      "duration": 4.241
+    },
+    {
+      "text": "here the action is pretty specific spam",
+      "start": 691.959,
+      "duration": 4.12
+    },
+    {
+      "text": "or no spam the action here which it has",
+      "start": 693.88,
+      "duration": 4.32
+    },
+    {
+      "text": "to perform can be something complex as",
+      "start": 696.079,
+      "duration": 4.361
+    },
+    {
+      "text": "translation using the same instruction",
+      "start": 698.2,
+      "duration": 4.16
+    },
+    {
+      "text": "based model you can do other other",
+      "start": 700.44,
+      "duration": 4.28
+    },
+    {
+      "text": "things also so one instruction based",
+      "start": 702.36,
+      "duration": 4.32
+    },
+    {
+      "text": "model can actually handle broader set of",
+      "start": 704.72,
+      "duration": 4.6
+    },
+    {
+      "text": "tasks such as translation summarization",
+      "start": 706.68,
+      "duration": 6.24
+    },
+    {
+      "text": "Etc but in classification fine tuning",
+      "start": 709.32,
+      "duration": 5.959
+    },
+    {
+      "text": "the only action which is performed is",
+      "start": 712.92,
+      "duration": 5.039
+    },
+    {
+      "text": "classifying in which category the text",
+      "start": 715.279,
+      "duration": 4.841
+    },
+    {
+      "text": "belongs so so that's why the",
+      "start": 717.959,
+      "duration": 4.0
+    },
+    {
+      "text": "classification fine tuning can handle an",
+      "start": 720.12,
+      "duration": 3.0
+    },
+    {
+      "text": "arrow set of",
+      "start": 721.959,
+      "duration": 3.721
+    },
+    {
+      "text": "prompts so when you think of fine tuning",
+      "start": 723.12,
+      "duration": 4.08
+    },
+    {
+      "text": "people usually only talk about",
+      "start": 725.68,
+      "duration": 3.599
+    },
+    {
+      "text": "instruction based fine tuning but I find",
+      "start": 727.2,
+      "duration": 3.879
+    },
+    {
+      "text": "that classification fine tuning is also",
+      "start": 729.279,
+      "duration": 4.0
+    },
+    {
+      "text": "equally important so the example which",
+      "start": 731.079,
+      "duration": 3.961
+    },
+    {
+      "text": "we are going to start in today's lecture",
+      "start": 733.279,
+      "duration": 3.601
+    },
+    {
+      "text": "is actually based on the concept of",
+      "start": 735.04,
+      "duration": 4.08
+    },
+    {
+      "text": "classification fine",
+      "start": 736.88,
+      "duration": 5.16
+    },
+    {
+      "text": "tuning okay so now in instruction based",
+      "start": 739.12,
+      "duration": 5.88
+    },
+    {
+      "text": "fine tuning what usually people also",
+      "start": 742.04,
+      "duration": 5.76
+    },
+    {
+      "text": "talk about is methods to make the fine",
+      "start": 745.0,
+      "duration": 4.76
+    },
+    {
+      "text": "tuning more efficient So within",
+      "start": 747.8,
+      "duration": 3.719
+    },
+    {
+      "text": "instruction based fine tuning there are",
+      "start": 749.76,
+      "duration": 4.519
+    },
+    {
+      "text": "actually two other methods which are",
+      "start": 751.519,
+      "duration": 6.44
+    },
+    {
+      "text": "called as Laura and QA so basically",
+      "start": 754.279,
+      "duration": 5.161
+    },
+    {
+      "text": "these come under the category of",
+      "start": 757.959,
+      "duration": 3.761
+    },
+    {
+      "text": "parameter efficient fine tuning so it's",
+      "start": 759.44,
+      "duration": 4.32
+    },
+    {
+      "text": "a form of instruction fine tuning which",
+      "start": 761.72,
+      "duration": 5.2
+    },
+    {
+      "text": "is more efficient than full fine tuning",
+      "start": 763.76,
+      "duration": 4.96
+    },
+    {
+      "text": "essentially what is done in parameter",
+      "start": 766.92,
+      "duration": 4.4
+    },
+    {
+      "text": "efficient fine tuning is that we only",
+      "start": 768.72,
+      "duration": 5.239
+    },
+    {
+      "text": "update a subset of parameters and freeze",
+      "start": 771.32,
+      "duration": 5.16
+    },
+    {
+      "text": "the rest of the parameters at a time so",
+      "start": 773.959,
+      "duration": 4.32
+    },
+    {
+      "text": "this reduces the number of trainable",
+      "start": 776.48,
+      "duration": 4.039
+    },
+    {
+      "text": "parameters making memory requirements",
+      "start": 778.279,
+      "duration": 4.56
+    },
+    {
+      "text": "for instruction fine tuning more",
+      "start": 780.519,
+      "duration": 5.281
+    },
+    {
+      "text": "manageable so Laura is",
+      "start": 782.839,
+      "duration": 5.56
+    },
+    {
+      "text": "uh basically an improved fine tuning",
+      "start": 785.8,
+      "duration": 4.64
+    },
+    {
+      "text": "method where instead of fine tuning all",
+      "start": 788.399,
+      "duration": 4.0
+    },
+    {
+      "text": "the weights that constitute the weight",
+      "start": 790.44,
+      "duration": 4.72
+    },
+    {
+      "text": "Matrix two smaller matrices that",
+      "start": 792.399,
+      "duration": 4.721
+    },
+    {
+      "text": "approximate this larger Matrix are fine",
+      "start": 795.16,
+      "duration": 4.28
+    },
+    {
+      "text": "tuned right now we are not going into",
+      "start": 797.12,
+      "duration": 4.079
+    },
+    {
+      "text": "details of Laura we'll cover that in a",
+      "start": 799.44,
+      "duration": 3.36
+    },
+    {
+      "text": "subsequent lecture as it's a pretty",
+      "start": 801.199,
+      "duration": 3.76
+    },
+    {
+      "text": "broad topic but I just want to introduce",
+      "start": 802.8,
+      "duration": 4.36
+    },
+    {
+      "text": "the concept to you today and the second",
+      "start": 804.959,
+      "duration": 6.081
+    },
+    {
+      "text": "is Q Laura which is basically quantized",
+      "start": 807.16,
+      "duration": 6.72
+    },
+    {
+      "text": "Laura and this is a more memory",
+      "start": 811.04,
+      "duration": 5.88
+    },
+    {
+      "text": "efficient iteration of Laura and Q Laura",
+      "start": 813.88,
+      "duration": 5.68
+    },
+    {
+      "text": "takes Laura a step further by quantizing",
+      "start": 816.92,
+      "duration": 4.2
+    },
+    {
+      "text": "the weights of the Laura adapters to",
+      "start": 819.56,
+      "duration": 4.24
+    },
+    {
+      "text": "lower Precision so right now just keep",
+      "start": 821.12,
+      "duration": 5.8
+    },
+    {
+      "text": "in mind that Laura and qora are forms of",
+      "start": 823.8,
+      "duration": 5.76
+    },
+    {
+      "text": "more efficient fine tuning which reduce",
+      "start": 826.92,
+      "duration": 4.32
+    },
+    {
+      "text": "the memory requirement which is",
+      "start": 829.56,
+      "duration": 3.639
+    },
+    {
+      "text": "traditionally needed in instruction",
+      "start": 831.24,
+      "duration": 3.48
+    },
+    {
+      "text": "based V",
+      "start": 833.199,
+      "duration": 3.88
+    },
+    {
+      "text": "tuning awesome so I hope you have",
+      "start": 834.72,
+      "duration": 6.0
+    },
+    {
+      "text": "understood the differences between",
+      "start": 837.079,
+      "duration": 6.281
+    },
+    {
+      "text": "uh instruction fine tuning and",
+      "start": 840.72,
+      "duration": 5.32
+    },
+    {
+      "text": "classification fine tuning right and now",
+      "start": 843.36,
+      "duration": 4.159
+    },
+    {
+      "text": "what we are going to do in today's",
+      "start": 846.04,
+      "duration": 3.68
+    },
+    {
+      "text": "lecture is we are going to start working",
+      "start": 847.519,
+      "duration": 4.641
+    },
+    {
+      "text": "on a Hands-On problem which is a fine",
+      "start": 849.72,
+      "duration": 5.359
+    },
+    {
+      "text": "tuning classification problem so we are",
+      "start": 852.16,
+      "duration": 5.44
+    },
+    {
+      "text": "going to look at the second category now",
+      "start": 855.079,
+      "duration": 5.68
+    },
+    {
+      "text": "and we are going to take a real data set",
+      "start": 857.6,
+      "duration": 5.28
+    },
+    {
+      "text": "we are going to look at emails a youth",
+      "start": 860.759,
+      "duration": 3.961
+    },
+    {
+      "text": "set of emails which are spam as well as",
+      "start": 862.88,
+      "duration": 3.8
+    },
+    {
+      "text": "no spam and we are going to train a",
+      "start": 864.72,
+      "duration": 3.799
+    },
+    {
+      "text": "large language model to classify whether",
+      "start": 866.68,
+      "duration": 4.64
+    },
+    {
+      "text": "it's spam or or nopan we won't be doing",
+      "start": 868.519,
+      "duration": 4.56
+    },
+    {
+      "text": "all of this in today's lecture because",
+      "start": 871.32,
+      "duration": 4.079
+    },
+    {
+      "text": "this this involves a lot of steps first",
+      "start": 873.079,
+      "duration": 4.241
+    },
+    {
+      "text": "we have to download the data set",
+      "start": 875.399,
+      "duration": 4.041
+    },
+    {
+      "text": "pre-process the data set create data",
+      "start": 877.32,
+      "duration": 4.4
+    },
+    {
+      "text": "loaders this is in the stage one of data",
+      "start": 879.44,
+      "duration": 3.0
+    },
+    {
+      "text": "set",
+      "start": 881.72,
+      "duration": 3.119
+    },
+    {
+      "text": "preparation this data set will be the",
+      "start": 882.44,
+      "duration": 4.12
+    },
+    {
+      "text": "all the emails which will be classifying",
+      "start": 884.839,
+      "duration": 4.321
+    },
+    {
+      "text": "into spam and no spam then in stage",
+      "start": 886.56,
+      "duration": 4.24
+    },
+    {
+      "text": "number two we'll have to initialize the",
+      "start": 889.16,
+      "duration": 4.359
+    },
+    {
+      "text": "llm model load pre-train weights then",
+      "start": 890.8,
+      "duration": 4.64
+    },
+    {
+      "text": "modify the model for fine tuning",
+      "start": 893.519,
+      "duration": 4.361
+    },
+    {
+      "text": "Implement evaluation utilities and then",
+      "start": 895.44,
+      "duration": 4.0
+    },
+    {
+      "text": "in the final stage we are going to",
+      "start": 897.88,
+      "duration": 4.12
+    },
+    {
+      "text": "finetune the model evaluate the finetune",
+      "start": 899.44,
+      "duration": 5.68
+    },
+    {
+      "text": "model and use model on new data I could",
+      "start": 902.0,
+      "duration": 5.36
+    },
+    {
+      "text": "have covered all of this in one lecture",
+      "start": 905.12,
+      "duration": 4.24
+    },
+    {
+      "text": "but then I would have to rush through it",
+      "start": 907.36,
+      "duration": 3.76
+    },
+    {
+      "text": "instead I'm going to split this into",
+      "start": 909.36,
+      "duration": 3.88
+    },
+    {
+      "text": "five to six lectures so that you",
+      "start": 911.12,
+      "duration": 3.519
+    },
+    {
+      "text": "understand the entire fine tuning",
+      "start": 913.24,
+      "duration": 3.36
+    },
+    {
+      "text": "process sequentially this is the",
+      "start": 914.639,
+      "duration": 3.76
+    },
+    {
+      "text": "philosophy which we follow in all of the",
+      "start": 916.6,
+      "duration": 3.72
+    },
+    {
+      "text": "lectures in this series I take you",
+      "start": 918.399,
+      "duration": 4.081
+    },
+    {
+      "text": "through every single step in a lot of",
+      "start": 920.32,
+      "duration": 4.48
+    },
+    {
+      "text": "detail first on a whiteboard and then",
+      "start": 922.48,
+      "duration": 4.599
+    },
+    {
+      "text": "through code today what we are going to",
+      "start": 924.8,
+      "duration": 3.92
+    },
+    {
+      "text": "do is we are going to do two things we",
+      "start": 927.079,
+      "duration": 2.76
+    },
+    {
+      "text": "are going",
+      "start": 928.72,
+      "duration": 4.44
+    },
+    {
+      "text": "to first download the data set and the",
+      "start": 929.839,
+      "duration": 4.881
+    },
+    {
+      "text": "second thing what we are going to do is",
+      "start": 933.16,
+      "duration": 4.479
+    },
+    {
+      "text": "we are going to pre-process the data set",
+      "start": 934.72,
+      "duration": 4.479
+    },
+    {
+      "text": "and in the next lecture we'll create",
+      "start": 937.639,
+      "duration": 3.921
+    },
+    {
+      "text": "data loaders initialize the model and",
+      "start": 939.199,
+      "duration": 4.12
+    },
+    {
+      "text": "then later we'll also load the pre-train",
+      "start": 941.56,
+      "duration": 4.399
+    },
+    {
+      "text": "weights for now let's just focus on step",
+      "start": 943.319,
+      "duration": 4.88
+    },
+    {
+      "text": "number one and step number yeah actually",
+      "start": 945.959,
+      "duration": 3.761
+    },
+    {
+      "text": "just step number one in this lecture",
+      "start": 948.199,
+      "duration": 3.161
+    },
+    {
+      "text": "which is download and pre-process the",
+      "start": 949.72,
+      "duration": 3.64
+    },
+    {
+      "text": "data set in the next lecture we'll look",
+      "start": 951.36,
+      "duration": 3.88
+    },
+    {
+      "text": "at step two which is creating data",
+      "start": 953.36,
+      "duration": 4.32
+    },
+    {
+      "text": "loaders so let me take you through code",
+      "start": 955.24,
+      "duration": 6.8
+    },
+    {
+      "text": "right now uh um right so in this section",
+      "start": 957.68,
+      "duration": 6.12
+    },
+    {
+      "text": "of the this section of the code I have",
+      "start": 962.04,
+      "duration": 4.32
+    },
+    {
+      "text": "titled as fine tuning for classification",
+      "start": 963.8,
+      "duration": 4.0
+    },
+    {
+      "text": "the first step as I mentioned is",
+      "start": 966.36,
+      "duration": 3.56
+    },
+    {
+      "text": "downloading the data set this is just",
+      "start": 967.8,
+      "duration": 4.08
+    },
+    {
+      "text": "the code for downloading and unzipping",
+      "start": 969.92,
+      "duration": 4.399
+    },
+    {
+      "text": "the data set let me take you through the",
+      "start": 971.88,
+      "duration": 4.879
+    },
+    {
+      "text": "place where the data set exists so this",
+      "start": 974.319,
+      "duration": 4.361
+    },
+    {
+      "text": "is the UC arwine machine learning",
+      "start": 976.759,
+      "duration": 3.721
+    },
+    {
+      "text": "repository it's quite famous because it",
+      "start": 978.68,
+      "duration": 4.32
+    },
+    {
+      "text": "has a large number of data sets within",
+      "start": 980.48,
+      "duration": 4.599
+    },
+    {
+      "text": "this repository there is also an SMS",
+      "start": 983.0,
+      "duration": 4.8
+    },
+    {
+      "text": "spam collection data this is the data",
+      "start": 985.079,
+      "duration": 4.521
+    },
+    {
+      "text": "set which we'll be using it contains a",
+      "start": 987.8,
+      "duration": 5.0
+    },
+    {
+      "text": "huge list of emails both spam as well as",
+      "start": 989.6,
+      "duration": 5.64
+    },
+    {
+      "text": "non-spam so if you scroll down here you",
+      "start": 992.8,
+      "duration": 5.399
+    },
+    {
+      "text": "will see that uh you'll see information",
+      "start": 995.24,
+      "duration": 4.719
+    },
+    {
+      "text": "about what exactly is present in this",
+      "start": 998.199,
+      "duration": 5.521
+    },
+    {
+      "text": "data set first you will see that 425 SMS",
+      "start": 999.959,
+      "duration": 6.12
+    },
+    {
+      "text": "spam messages were manually",
+      "start": 1003.72,
+      "duration": 4.96
+    },
+    {
+      "text": "extracted uh this is a UK Forum in which",
+      "start": 1006.079,
+      "duration": 4.361
+    },
+    {
+      "text": "cell phone users make public claims",
+      "start": 1008.68,
+      "duration": 5.36
+    },
+    {
+      "text": "about SMS spam messages so 425 spam",
+      "start": 1010.44,
+      "duration": 5.959
+    },
+    {
+      "text": "messages and they also have 322 more",
+      "start": 1014.04,
+      "duration": 4.359
+    },
+    {
+      "text": "spam messages which are publicly",
+      "start": 1016.399,
+      "duration": 4.401
+    },
+    {
+      "text": "available some other website so overall",
+      "start": 1018.399,
+      "duration": 5.881
+    },
+    {
+      "text": "there are 747 spam messages now let's",
+      "start": 1020.8,
+      "duration": 6.239
+    },
+    {
+      "text": "look at the no spam so in no spam they",
+      "start": 1024.28,
+      "duration": 4.639
+    },
+    {
+      "text": "have a large number of messages as you",
+      "start": 1027.039,
+      "duration": 5.481
+    },
+    {
+      "text": "can imagine it's it's easier to Source",
+      "start": 1028.919,
+      "duration": 6.481
+    },
+    {
+      "text": "legitimate no spam messages the way they",
+      "start": 1032.52,
+      "duration": 5.64
+    },
+    {
+      "text": "collected no spam messages is at the",
+      "start": 1035.4,
+      "duration": 4.48
+    },
+    {
+      "text": "department of computer science at the",
+      "start": 1038.16,
+      "duration": 4.399
+    },
+    {
+      "text": "National University of Singapore so",
+      "start": 1039.88,
+      "duration": 5.36
+    },
+    {
+      "text": "naturally if it's emails originating in",
+      "start": 1042.559,
+      "duration": 5.441
+    },
+    {
+      "text": "the University between students uh they",
+      "start": 1045.24,
+      "duration": 5.72
+    },
+    {
+      "text": "are likely to be not spam so we have",
+      "start": 1048.0,
+      "duration": 5.2
+    },
+    {
+      "text": "much larger no spam messages compared to",
+      "start": 1050.96,
+      "duration": 5.32
+    },
+    {
+      "text": "spam messages so the data set is a bit",
+      "start": 1053.2,
+      "duration": 5.68
+    },
+    {
+      "text": "not balanced and the no spam messages",
+      "start": 1056.28,
+      "duration": 5.0
+    },
+    {
+      "text": "are also called ham messages I'm not",
+      "start": 1058.88,
+      "duration": 5.52
+    },
+    {
+      "text": "sure why this terminology exists but no",
+      "start": 1061.28,
+      "duration": 4.92
+    },
+    {
+      "text": "spam messages are called ham and the",
+      "start": 1064.4,
+      "duration": 3.48
+    },
+    {
+      "text": "spam messages are just called spam",
+      "start": 1066.2,
+      "duration": 4.479
+    },
+    {
+      "text": "messages so this is the data set you can",
+      "start": 1067.88,
+      "duration": 5.12
+    },
+    {
+      "text": "even download the data set from here or",
+      "start": 1070.679,
+      "duration": 4.24
+    },
+    {
+      "text": "you can just run the code which I will",
+      "start": 1073.0,
+      "duration": 3.559
+    },
+    {
+      "text": "be providing to you which downloads and",
+      "start": 1074.919,
+      "duration": 4.12
+    },
+    {
+      "text": "unzips the data once you run this piece",
+      "start": 1076.559,
+      "duration": 4.921
+    },
+    {
+      "text": "of code the data set will be downloaded",
+      "start": 1079.039,
+      "duration": 6.481
+    },
+    {
+      "text": "onto your local machine and uh it will",
+      "start": 1081.48,
+      "duration": 6.36
+    },
+    {
+      "text": "be downloaded in this collection SMS",
+      "start": 1085.52,
+      "duration": 5.56
+    },
+    {
+      "text": "spam collection. tsv so here you can see",
+      "start": 1087.84,
+      "duration": 5.0
+    },
+    {
+      "text": "on my vs code there is this folder",
+      "start": 1091.08,
+      "duration": 4.28
+    },
+    {
+      "text": "called SMS spam collection and this is",
+      "start": 1092.84,
+      "duration": 4.64
+    },
+    {
+      "text": "the tsv file which I'm showing on the",
+      "start": 1095.36,
+      "duration": 4.559
+    },
+    {
+      "text": "screen to you right now uh so here you",
+      "start": 1097.48,
+      "duration": 4.36
+    },
+    {
+      "text": "can see that the messages can either be",
+      "start": 1099.919,
+      "duration": 5.161
+    },
+    {
+      "text": "ham which is no spam or spam so ham",
+      "start": 1101.84,
+      "duration": 5.44
+    },
+    {
+      "text": "means not a Spam and spam is of course",
+      "start": 1105.08,
+      "duration": 5.68
+    },
+    {
+      "text": "spam so as expected spam uh is free",
+      "start": 1107.28,
+      "duration": 6.6
+    },
+    {
+      "text": "entry and uh winner basically as things",
+      "start": 1110.76,
+      "duration": 5.08
+    },
+    {
+      "text": "like this so here we can see that these",
+      "start": 1113.88,
+      "duration": 4.08
+    },
+    {
+      "text": "emails are indeed making sense and this",
+      "start": 1115.84,
+      "duration": 4.68
+    },
+    {
+      "text": "classification is making sense so this",
+      "start": 1117.96,
+      "duration": 4.24
+    },
+    {
+      "text": "is the entire data set which you can",
+      "start": 1120.52,
+      "duration": 4.039
+    },
+    {
+      "text": "download either through code or you can",
+      "start": 1122.2,
+      "duration": 5.16
+    },
+    {
+      "text": "download it from the UC repository which",
+      "start": 1124.559,
+      "duration": 4.961
+    },
+    {
+      "text": "I just showed you once the data set is",
+      "start": 1127.36,
+      "duration": 3.88
+    },
+    {
+      "text": "downloaded what you can do is that you",
+      "start": 1129.52,
+      "duration": 4.08
+    },
+    {
+      "text": "can use pandas and you can convert it",
+      "start": 1131.24,
+      "duration": 4.0
+    },
+    {
+      "text": "into a data frame so that reading the",
+      "start": 1133.6,
+      "duration": 4.079
+    },
+    {
+      "text": "data becomes much more easier so you can",
+      "start": 1135.24,
+      "duration": 4.12
+    },
+    {
+      "text": "print out the data frame and it looks",
+      "start": 1137.679,
+      "duration": 3.201
+    },
+    {
+      "text": "something like this so the label is",
+      "start": 1139.36,
+      "duration": 5.16
+    },
+    {
+      "text": "either ham or spam so here we can see",
+      "start": 1140.88,
+      "duration": 7.799
+    },
+    {
+      "text": "that there are total 5572 rows so 5572",
+      "start": 1144.52,
+      "duration": 7.279
+    },
+    {
+      "text": "emails but now we can print the value",
+      "start": 1148.679,
+      "duration": 6.081
+    },
+    {
+      "text": "counts for the label in this data frame",
+      "start": 1151.799,
+      "duration": 5.401
+    },
+    {
+      "text": "so the label is a column name and we can",
+      "start": 1154.76,
+      "duration": 5.039
+    },
+    {
+      "text": "print out the number of ham entries",
+      "start": 1157.2,
+      "duration": 5.28
+    },
+    {
+      "text": "which are 4825 which are no spam and the",
+      "start": 1159.799,
+      "duration": 4.641
+    },
+    {
+      "text": "number of spam entries is much lesser",
+      "start": 1162.48,
+      "duration": 2.96
+    },
+    {
+      "text": "which is",
+      "start": 1164.44,
+      "duration": 5.2
+    },
+    {
+      "text": "747 now uh what what we can do here is",
+      "start": 1165.44,
+      "duration": 5.64
+    },
+    {
+      "text": "that we need to make the data set",
+      "start": 1169.64,
+      "duration": 3.48
+    },
+    {
+      "text": "balanced right there are number of ways",
+      "start": 1171.08,
+      "duration": 4.2
+    },
+    {
+      "text": "to make the data set balanced but we",
+      "start": 1173.12,
+      "duration": 5.039
+    },
+    {
+      "text": "will uh take a simple approach here",
+      "start": 1175.28,
+      "duration": 4.68
+    },
+    {
+      "text": "since this is not a classification",
+      "start": 1178.159,
+      "duration": 4.0
+    },
+    {
+      "text": "machine learning class this is a class",
+      "start": 1179.96,
+      "duration": 4.199
+    },
+    {
+      "text": "on large language models so we are going",
+      "start": 1182.159,
+      "duration": 3.481
+    },
+    {
+      "text": "to take a simple approach and we are",
+      "start": 1184.159,
+      "duration": 5.041
+    },
+    {
+      "text": "just going to randomly take 747 entries",
+      "start": 1185.64,
+      "duration": 5.84
+    },
+    {
+      "text": "from no spam so that the number of no",
+      "start": 1189.2,
+      "duration": 4.28
+    },
+    {
+      "text": "spam and the number of spam emails match",
+      "start": 1191.48,
+      "duration": 3.88
+    },
+    {
+      "text": "each other both should be",
+      "start": 1193.48,
+      "duration": 5.199
+    },
+    {
+      "text": "747 so as has been written here for simp",
+      "start": 1195.36,
+      "duration": 5.24
+    },
+    {
+      "text": "licity and because we prefer a small",
+      "start": 1198.679,
+      "duration": 4.36
+    },
+    {
+      "text": "data set for educational purposes we",
+      "start": 1200.6,
+      "duration": 4.319
+    },
+    {
+      "text": "subsample the data set so that it",
+      "start": 1203.039,
+      "duration": 5.361
+    },
+    {
+      "text": "contains 747 instances from each class",
+      "start": 1204.919,
+      "duration": 5.081
+    },
+    {
+      "text": "so this is a function which creates a",
+      "start": 1208.4,
+      "duration": 3.44
+    },
+    {
+      "text": "Balan data set what this function is",
+      "start": 1210.0,
+      "duration": 4.44
+    },
+    {
+      "text": "going to do is that it's it's going to",
+      "start": 1211.84,
+      "duration": 5.44
+    },
+    {
+      "text": "randomly sample ham instances so that we",
+      "start": 1214.44,
+      "duration": 4.88
+    },
+    {
+      "text": "can match the number of spam instances",
+      "start": 1217.28,
+      "duration": 4.759
+    },
+    {
+      "text": "that's equal to 747 it's done by this",
+      "start": 1219.32,
+      "duration": 5.92
+    },
+    {
+      "text": "line of code uh and then we combine the",
+      "start": 1222.039,
+      "duration": 5.961
+    },
+    {
+      "text": "ham subset with the spam so the total",
+      "start": 1225.24,
+      "duration": 5.6
+    },
+    {
+      "text": "now the new data frame is balance DF and",
+      "start": 1228.0,
+      "duration": 5.76
+    },
+    {
+      "text": "if you print out the balance DF value",
+      "start": 1230.84,
+      "duration": 5.16
+    },
+    {
+      "text": "counts you'll see that the number of ham",
+      "start": 1233.76,
+      "duration": 5.12
+    },
+    {
+      "text": "which is no spam emails are 747 and the",
+      "start": 1236.0,
+      "duration": 5.039
+    },
+    {
+      "text": "number of spam emails are",
+      "start": 1238.88,
+      "duration": 5.4
+    },
+    {
+      "text": "747 so after executing the previous code",
+      "start": 1241.039,
+      "duration": 5.12
+    },
+    {
+      "text": "to balance the data set we can see that",
+      "start": 1244.28,
+      "duration": 3.8
+    },
+    {
+      "text": "we now have an equal amount of spam and",
+      "start": 1246.159,
+      "duration": 4.081
+    },
+    {
+      "text": "no spam messages great this is exactly",
+      "start": 1248.08,
+      "duration": 4.56
+    },
+    {
+      "text": "what we wanted now we can go a step",
+      "start": 1250.24,
+      "duration": 4.2
+    },
+    {
+      "text": "further and we can to take a look at the",
+      "start": 1252.64,
+      "duration": 5.44
+    },
+    {
+      "text": "labels instead of having ham and spam uh",
+      "start": 1254.44,
+      "duration": 6.359
+    },
+    {
+      "text": "we can assign ham to be equal to zero",
+      "start": 1258.08,
+      "duration": 4.76
+    },
+    {
+      "text": "and spam to be equal to",
+      "start": 1260.799,
+      "duration": 6.081
+    },
+    {
+      "text": "one so these are the label encodings of",
+      "start": 1262.84,
+      "duration": 6.68
+    },
+    {
+      "text": "each of our emails so one note which",
+      "start": 1266.88,
+      "duration": 4.32
+    },
+    {
+      "text": "I've written here is that this process",
+      "start": 1269.52,
+      "duration": 3.8
+    },
+    {
+      "text": "is similar to converting text into token",
+      "start": 1271.2,
+      "duration": 6.12
+    },
+    {
+      "text": "IDs remember in uh when we pre-trained",
+      "start": 1273.32,
+      "duration": 5.599
+    },
+    {
+      "text": "the large language model we had a big",
+      "start": 1277.32,
+      "duration": 4.8
+    },
+    {
+      "text": "vocabulary the GPT vocabulary which had",
+      "start": 1278.919,
+      "duration": 5.481
+    },
+    {
+      "text": "uh more than 50,000 words in fact it had",
+      "start": 1282.12,
+      "duration": 5.679
+    },
+    {
+      "text": "50257 tokens and every token had a token",
+      "start": 1284.4,
+      "duration": 4.72
+    },
+    {
+      "text": "idid",
+      "start": 1287.799,
+      "duration": 3.081
+    },
+    {
+      "text": "this is a much simpler mapping we have",
+      "start": 1289.12,
+      "duration": 4.32
+    },
+    {
+      "text": "only two tokens kind of and they're",
+      "start": 1290.88,
+      "duration": 4.24
+    },
+    {
+      "text": "mapped to zero and",
+      "start": 1293.44,
+      "duration": 4.359
+    },
+    {
+      "text": "one now as we usually do in machine",
+      "start": 1295.12,
+      "duration": 4.559
+    },
+    {
+      "text": "learning tasks we'll take the data set",
+      "start": 1297.799,
+      "duration": 4.201
+    },
+    {
+      "text": "and split it into three parts we will",
+      "start": 1299.679,
+      "duration": 5.12
+    },
+    {
+      "text": "take this 747 data and we'll split it",
+      "start": 1302.0,
+      "duration": 5.919
+    },
+    {
+      "text": "70% will be used for training 10% will",
+      "start": 1304.799,
+      "duration": 6.0
+    },
+    {
+      "text": "will use for validation and 20% will use",
+      "start": 1307.919,
+      "duration": 4.441
+    },
+    {
+      "text": "for",
+      "start": 1310.799,
+      "duration": 4.24
+    },
+    {
+      "text": "testing um as I've mentioned here these",
+      "start": 1312.36,
+      "duration": 4.439
+    },
+    {
+      "text": "ratios are generally common in machine",
+      "start": 1315.039,
+      "duration": 3.841
+    },
+    {
+      "text": "learning to train adjust and eval at",
+      "start": 1316.799,
+      "duration": 4.201
+    },
+    {
+      "text": "models so here you can see I've written",
+      "start": 1318.88,
+      "duration": 4.48
+    },
+    {
+      "text": "a random split function what this",
+      "start": 1321.0,
+      "duration": 4.24
+    },
+    {
+      "text": "function is doing is that it just takes",
+      "start": 1323.36,
+      "duration": 3.76
+    },
+    {
+      "text": "the train end which is the fraction of",
+      "start": 1325.24,
+      "duration": 4.12
+    },
+    {
+      "text": "the training data which is train Frack",
+      "start": 1327.12,
+      "duration": 4.6
+    },
+    {
+      "text": "it's going to be 7 validation Frack is",
+      "start": 1329.36,
+      "duration": 5.28
+    },
+    {
+      "text": "going to be 0.2 so we first construct",
+      "start": 1331.72,
+      "duration": 5.439
+    },
+    {
+      "text": "the training data frame which is 70% of",
+      "start": 1334.64,
+      "duration": 5.639
+    },
+    {
+      "text": "the main data frame the validation data",
+      "start": 1337.159,
+      "duration": 5.681
+    },
+    {
+      "text": "frame is the remaining is 20% and the",
+      "start": 1340.279,
+      "duration": 4.88
+    },
+    {
+      "text": "test data frame is the remaining 10% is",
+      "start": 1342.84,
+      "duration": 4.88
+    },
+    {
+      "text": "the remaining 20% sorry the validation",
+      "start": 1345.159,
+      "duration": 5.201
+    },
+    {
+      "text": "data frame is the 10% the test data",
+      "start": 1347.72,
+      "duration": 5.04
+    },
+    {
+      "text": "frame is the remaining 20% of the full",
+      "start": 1350.36,
+      "duration": 3.36
+    },
+    {
+      "text": "data",
+      "start": 1352.76,
+      "duration": 3.2
+    },
+    {
+      "text": "frame and then when this function is",
+      "start": 1353.72,
+      "duration": 4.24
+    },
+    {
+      "text": "called out it will actually return the",
+      "start": 1355.96,
+      "duration": 4.36
+    },
+    {
+      "text": "training data frame the validation data",
+      "start": 1357.96,
+      "duration": 4.16
+    },
+    {
+      "text": "frame and the testing data frame so it",
+      "start": 1360.32,
+      "duration": 5.12
+    },
+    {
+      "text": "will return three data frames to us so",
+      "start": 1362.12,
+      "duration": 5.039
+    },
+    {
+      "text": "we now we can actually test this",
+      "start": 1365.44,
+      "duration": 3.32
+    },
+    {
+      "text": "function so we have this balance data",
+      "start": 1367.159,
+      "duration": 3.361
+    },
+    {
+      "text": "frame and we pass it into this function",
+      "start": 1368.76,
+      "duration": 4.0
+    },
+    {
+      "text": "called random split and once it is",
+      "start": 1370.52,
+      "duration": 3.759
+    },
+    {
+      "text": "passed into this function we also",
+      "start": 1372.76,
+      "duration": 4.32
+    },
+    {
+      "text": "specify the train fraction which is 7",
+      "start": 1374.279,
+      "duration": 4.76
+    },
+    {
+      "text": "and we specify the validation fraction",
+      "start": 1377.08,
+      "duration": 4.479
+    },
+    {
+      "text": "which is 0.1 and then we construct the",
+      "start": 1379.039,
+      "duration": 4.321
+    },
+    {
+      "text": "train data frame the validation data",
+      "start": 1381.559,
+      "duration": 4.961
+    },
+    {
+      "text": "frame and the test data frame so let us",
+      "start": 1383.36,
+      "duration": 4.799
+    },
+    {
+      "text": "check",
+      "start": 1386.52,
+      "duration": 5.639
+    },
+    {
+      "text": "uh whether the length makes sense so I'm",
+      "start": 1388.159,
+      "duration": 6.161
+    },
+    {
+      "text": "just going to type in new code here",
+      "start": 1392.159,
+      "duration": 5.961
+    },
+    {
+      "text": "which is length of train DF let's see",
+      "start": 1394.32,
+      "duration": 4.88
+    },
+    {
+      "text": "what's the",
+      "start": 1398.12,
+      "duration": 4.28
+    },
+    {
+      "text": "length it's",
+      "start": 1399.2,
+      "duration": 3.2
+    },
+    {
+      "text": "1045 yeah so length of train DF is",
+      "start": 1402.72,
+      "duration": 6.199
+    },
+    {
+      "text": "1045 uh because the total number of spam",
+      "start": 1405.84,
+      "duration": 6.56
+    },
+    {
+      "text": "and not spam is 747 + 747 which is",
+      "start": 1408.919,
+      "duration": 8.841
+    },
+    {
+      "text": "1494 then let me also print out length",
+      "start": 1412.4,
+      "duration": 7.96
+    },
+    {
+      "text": "of validation",
+      "start": 1417.76,
+      "duration": 6.84
+    },
+    {
+      "text": "DF and let me also print out length of",
+      "start": 1420.36,
+      "duration": 7.96
+    },
+    {
+      "text": "test DF and let me print out all of",
+      "start": 1424.6,
+      "duration": 6.959
+    },
+    {
+      "text": "these actually so that uh we can see",
+      "start": 1428.32,
+      "duration": 6.28
+    },
+    {
+      "text": "whether all of them indeed add up to",
+      "start": 1431.559,
+      "duration": 7.401
+    },
+    {
+      "text": "1494 Okay so",
+      "start": 1434.6,
+      "duration": 4.36
+    },
+    {
+      "text": "right so now I'm printing",
+      "start": 1439.6,
+      "duration": 5.16
+    },
+    {
+      "text": "this",
+      "start": 1441.76,
+      "duration": 3.0
+    },
+    {
+      "text": "uh okay so here you see that the length",
+      "start": 1458.679,
+      "duration": 6.48
+    },
+    {
+      "text": "of train DF is 1045 validation DF is 149",
+      "start": 1461.24,
+      "duration": 6.72
+    },
+    {
+      "text": "and test DF is 300 so let's add them",
+      "start": 1465.159,
+      "duration": 8.321
+    },
+    {
+      "text": "here 1045 1045 + 149 +",
+      "start": 1467.96,
+      "duration": 8.68
+    },
+    {
+      "text": "300 and let's see so it's 1494 and this",
+      "start": 1473.48,
+      "duration": 6.799
+    },
+    {
+      "text": "is 747 + 747 so that makes sense this is",
+      "start": 1476.64,
+      "duration": 5.44
+    },
+    {
+      "text": "kind of a check that the training",
+      "start": 1480.279,
+      "duration": 3.601
+    },
+    {
+      "text": "validation and testing data frames have",
+      "start": 1482.08,
+      "duration": 4.04
+    },
+    {
+      "text": "been created correctly I like to do",
+      "start": 1483.88,
+      "duration": 4.2
+    },
+    {
+      "text": "these checks once in a while to just",
+      "start": 1486.12,
+      "duration": 3.439
+    },
+    {
+      "text": "make sure that we are on the right track",
+      "start": 1488.08,
+      "duration": 4.4
+    },
+    {
+      "text": "in the code now what you can do is that",
+      "start": 1489.559,
+      "duration": 4.561
+    },
+    {
+      "text": "we'll also convert these data frames",
+      "start": 1492.48,
+      "duration": 3.64
+    },
+    {
+      "text": "into CSV files because we'll need to",
+      "start": 1494.12,
+      "duration": 4.439
+    },
+    {
+      "text": "reuse them later so we are just going to",
+      "start": 1496.12,
+      "duration": 6.439
+    },
+    {
+      "text": "use the 2 CSV function so you can search",
+      "start": 1498.559,
+      "duration": 5.881
+    },
+    {
+      "text": "this 2",
+      "start": 1502.559,
+      "duration": 5.201
+    },
+    {
+      "text": "CSV pandas what this does is that it can",
+      "start": 1504.44,
+      "duration": 5.119
+    },
+    {
+      "text": "take your data frame and it can convert",
+      "start": 1507.76,
+      "duration": 4.48
+    },
+    {
+      "text": "it into a CSV file I'll also add the",
+      "start": 1509.559,
+      "duration": 4.84
+    },
+    {
+      "text": "link to this in the information",
+      "start": 1512.24,
+      "duration": 4.88
+    },
+    {
+      "text": "description uh so you can apply this",
+      "start": 1514.399,
+      "duration": 4.4
+    },
+    {
+      "text": "function to the training data frame",
+      "start": 1517.12,
+      "duration": 3.439
+    },
+    {
+      "text": "validation data frame and also to the",
+      "start": 1518.799,
+      "duration": 3.441
+    },
+    {
+      "text": "testing data frame and then you can get",
+      "start": 1520.559,
+      "duration": 4.6
+    },
+    {
+      "text": "the train. CSV validation. CSV and the",
+      "start": 1522.24,
+      "duration": 6.12
+    },
+    {
+      "text": "test. CSV files so until now we have we",
+      "start": 1525.159,
+      "duration": 4.921
+    },
+    {
+      "text": "have reached a stage where we have",
+      "start": 1528.36,
+      "duration": 3.679
+    },
+    {
+      "text": "finished the first step which I had",
+      "start": 1530.08,
+      "duration": 4.199
+    },
+    {
+      "text": "mentioned over here and that first step",
+      "start": 1532.039,
+      "duration": 4.24
+    },
+    {
+      "text": "was to download and pre-process the data",
+      "start": 1534.279,
+      "duration": 4.201
+    },
+    {
+      "text": "set we downloaded the data set we",
+      "start": 1536.279,
+      "duration": 4.0
+    },
+    {
+      "text": "balanced the data set which was a part",
+      "start": 1538.48,
+      "duration": 3.96
+    },
+    {
+      "text": "of pre-processing so that the number of",
+      "start": 1540.279,
+      "duration": 5.12
+    },
+    {
+      "text": "spam and not spam are the same which is",
+      "start": 1542.44,
+      "duration": 5.839
+    },
+    {
+      "text": "747 and then we cons divided the data",
+      "start": 1545.399,
+      "duration": 6.88
+    },
+    {
+      "text": "set into training 70% validation 20% and",
+      "start": 1548.279,
+      "duration": 5.76
+    },
+    {
+      "text": "testing",
+      "start": 1552.279,
+      "duration": 4.321
+    },
+    {
+      "text": "10% and now in the next lecture what we",
+      "start": 1554.039,
+      "duration": 4.401
+    },
+    {
+      "text": "are going to see is that we are going to",
+      "start": 1556.6,
+      "duration": 4.199
+    },
+    {
+      "text": "first create data loaders so that we can",
+      "start": 1558.44,
+      "duration": 3.88
+    },
+    {
+      "text": "also do batch processing and it's",
+      "start": 1560.799,
+      "duration": 3.641
+    },
+    {
+      "text": "generally much better when you work with",
+      "start": 1562.32,
+      "duration": 3.8
+    },
+    {
+      "text": "large language models to use data",
+      "start": 1564.44,
+      "duration": 4.359
+    },
+    {
+      "text": "loaders and then we are going to see how",
+      "start": 1566.12,
+      "duration": 4.84
+    },
+    {
+      "text": "can we load the pre-trend Ws how can we",
+      "start": 1568.799,
+      "duration": 4.841
+    },
+    {
+      "text": "modify the model Etc you might be",
+      "start": 1570.96,
+      "duration": 4.48
+    },
+    {
+      "text": "thinking right how can a classification",
+      "start": 1573.64,
+      "duration": 4.399
+    },
+    {
+      "text": "task be done using large language models",
+      "start": 1575.44,
+      "duration": 4.359
+    },
+    {
+      "text": "so what happens towards the end is that",
+      "start": 1578.039,
+      "duration": 4.281
+    },
+    {
+      "text": "we usually fit another neural network at",
+      "start": 1579.799,
+      "duration": 5.0
+    },
+    {
+      "text": "the end of this and that will have a",
+      "start": 1582.32,
+      "duration": 6.52
+    },
+    {
+      "text": "softmax output so that the uh class so",
+      "start": 1584.799,
+      "duration": 5.6
+    },
+    {
+      "text": "that will be the",
+      "start": 1588.84,
+      "duration": 3.88
+    },
+    {
+      "text": "classification output so there is some",
+      "start": 1590.399,
+      "duration": 4.081
+    },
+    {
+      "text": "augmentation which we'll need to do here",
+      "start": 1592.72,
+      "duration": 4.24
+    },
+    {
+      "text": "so that the output is either spam or no",
+      "start": 1594.48,
+      "duration": 4.84
+    },
+    {
+      "text": "spam which is zero or one so we'll take",
+      "start": 1596.96,
+      "duration": 4.199
+    },
+    {
+      "text": "the architecture the same architecture",
+      "start": 1599.32,
+      "duration": 3.599
+    },
+    {
+      "text": "we worked on earlier but we'll augment",
+      "start": 1601.159,
+      "duration": 4.361
+    },
+    {
+      "text": "it we'll augment the end part of it the",
+      "start": 1602.919,
+      "duration": 5.281
+    },
+    {
+      "text": "architecture so that it's suitable for",
+      "start": 1605.52,
+      "duration": 4.68
+    },
+    {
+      "text": "classification so this brings us to the",
+      "start": 1608.2,
+      "duration": 4.12
+    },
+    {
+      "text": "end of the lecture thanks a lot everyone",
+      "start": 1610.2,
+      "duration": 4.0
+    },
+    {
+      "text": "I hope you are liking this approach of",
+      "start": 1612.32,
+      "duration": 4.719
+    },
+    {
+      "text": "whiteboard notes plus coding we have",
+      "start": 1614.2,
+      "duration": 4.56
+    },
+    {
+      "text": "covered a huge number of lectures in",
+      "start": 1617.039,
+      "duration": 3.561
+    },
+    {
+      "text": "this series before but if you are",
+      "start": 1618.76,
+      "duration": 3.84
+    },
+    {
+      "text": "landing onto this video series for the",
+      "start": 1620.6,
+      "duration": 4.04
+    },
+    {
+      "text": "first time it's fine I usually try to",
+      "start": 1622.6,
+      "duration": 4.319
+    },
+    {
+      "text": "make every lecture self-content but if",
+      "start": 1624.64,
+      "duration": 4.24
+    },
+    {
+      "text": "you want to revise any of your Concepts",
+      "start": 1626.919,
+      "duration": 4.041
+    },
+    {
+      "text": "or want to learn these Concepts from",
+      "start": 1628.88,
+      "duration": 4.039
+    },
+    {
+      "text": "scratch please go through the previous",
+      "start": 1630.96,
+      "duration": 4.16
+    },
+    {
+      "text": "lectures in this series also thanks a",
+      "start": 1632.919,
+      "duration": 3.561
+    },
+    {
+      "text": "lot everyone and I look forward to",
+      "start": 1635.12,
+      "duration": 5.439
+    },
+    {
+      "text": "seeing you in the next lecture",
+      "start": 1636.48,
+      "duration": 4.079
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the build large language models from scratch Series today what we are going to do is that we are going to have an introductory lecture on large language model fine tuning if you have followed this series so far we have conducted around 30 to 32 lectures and Within These lectures we have finished the stage one which is understanding the L Market Ure the attention mechanism data preparation and sampling and we have also finished stage number two which is pre-training the large language model model evaluation and loading pre-trained weights now that stage one and stage two are finished we are now ready to move to the last stage of building a large language model from scratch and that is the stage of fine-tuning with pre-training we saw that we are getting good results and when we give an input text we are getting output which makes a lot of sense and it's pretty awesome so it's like we have built our own GPT from scratch and here's the architecture which we use to construct our large language model uh we spent a huge amount of time and a number of lectures to understand this architecture awesome so now we are ready to begin with this next stage which is the stage of fine tuning so first you might be thinking that okay we already pre-trained the large language model and it seems to already work pretty well right so then does that mean we have finished building our llm no let me explain to you why do we need fine tuning so let's say if you have pre-trained the model that's fine but what if you have a specific task so that specific task can be constructing a chatbot based on your own data as a company or let's say you're an educational company who wants to make an educational app using your data let's say if you want to make a chatbot as an airline using your data essentially if you want to make a specific application the pre-trained model is not enough because it's pre-trained on General data available from all over the Internet you need to train the model again on additional data this is called as finetuning so the formal definition of fine tuning is adapting a pre-trained model to a specific task by training the model again on fine tune on additional data there are some things which are very important here some terminologies the first terminology is this specific task so uh fine tuning is needed when you have certain specific tasks which need to be performed such as if you are a company and if you want to develop a model put it into production you cannot just use a pre-trained model as I mentioned it's trained on a generic data right it will not give answers which you expect based on your individual private data so there is a specific task if you need to do a specific task you need to fine tune the pre-trend model and the second thing is training the model again that means that until now the certain weights and biases of the model have been optimized during the pre pre-training but now you are going to feed the model with additional data so naturally you will need to train the model again the parameters the weights the biases are going to change and that's usually done in the process of fine tuning so there are some in fact a lot of Articles written about fine tuning so here is the schematic you have a large language model which is pre-trained then you train it further on custom data set and that leads to a fine tuned large language model okay so the formal definition of llm fine tuning is that fine tuning llm involves the additional training of a pre-existing model which has previously acquired patterns and features from an extensive data set using a smaller domain specific data set so see we are training a pre-existing model again so that's why it's called additional training why are we training this model again because we have a newer smaller domain specific data set so we need to train the model again so that it adapt its parameters it adapt it adapts its weights and its biases okay so fine tuning is necessary to to be done after pre-training is done okay so open AI even provides this uh description about fine tuning where it gives you instructions about how you can do fine tuning using open models so to give you a practical example of fine tuning this is the website which I had made in the final year of my PhD it talks about my Publications my talks my media Etc so let's say if you also have a website or if you have a blog post site like this and if you want to make a chatbot which does not answer like how chat GPT answers but you want the chatbot to answer like how you speak right you want the chatbot to answer based on your data how you generally write articles how your how you word the different paragraphs on your website you have a specific tone and you want that tone to come in your chat bot how will you do this with pre training it's not possible because in the pre-train model might be your data is not even there in the pre-training so then you will need to find tune you will need to give additional data such as whatever is present on my website my blogs my Publications my talks so that the model can understand and learn what is your tone of speaking how do you generally construct sentences and then it will adapt so the resulting chatbot which will be developed will now be speaking in your tone or my tone rather in this example that is called as fine tuning so the specific application which I'm looking for is constructing a chatbot which speaks in my tone for this specific application I have this additional data which is my website my Publications my talks and my media which I'll feed to the model and I'll ask the model to be trained again or rather I'll train the model again based on this additional data this process of training the model again is called as finetuning so now the finetune model will behave EX exactly like how I want it will speak in my tone it will use grammatical sentences like I do that's a practical example of fine tuning another example is let's say you have uh your research Publications like how I'm describing right here and you want to make a chatbot which basically answers people's queries about your Publications so then you can feed specific data based on your Publications that's another example of fine tuning in fact uh the reason I thought of this example was I saw a Blog uh in fact I saw a question asked on the open AI question Forum where the person was saying that they are a beginner at learning fine tuning and their purpose is to create the model which could use the tone of their voice from their blog exactly like what we had discussed and they are asking a number of questions about how exactly to go about this how to make sure that the accuracy obtained is very good how to prevent hallucinations which are wrong answers Etc so and then there are number of answers which is given by the opena community to help this person F tune their model great so this is the general introduction of fine tuning now within fine tuning itself there are two broad categories of fine tuning and let me Mark them here for you the first category is called as instruction fine tuning and this is much more common and much more broader the second category is called as classification F unun what's the difference between the two so in instruction find tuning what we do is that we train the language model on a set of tasks using Specific Instructions so here I have given two examples for instruction uh instruction based F tuning so let's say the instructions are U is the following text spam answer with a yes or no this is an example of instruction based fine tuning because we are asking the llm that you will be given text like this and your task is to look at the text and answer whether it's spam so classify or say whether it's yes or no that's why this is an example of instruction fine tuning we are adding instructions here which are in blue color that's very important or the instruction could be your given sentence and translate it into German appropriately that is another example of instruction find tuning so the llm takes the input sentence in the first case it gives the output as yes or no in the second case it translates the English sentence into German the reason these are examples of instruction fine tuning is that we are giving a specific instruction and the llm is behaving based on that instruction the second example is classification fine tuning this is not as common but readers or listeners rather who have learned about machine learning and classification examples such as brain tumor classification image classification between cats and dogs this is pretty similar but now you just use a large language model inste of let's say a convolutional neural network for example or any other neural network to make the classification so here no instruction is given to the llm just the input is given without instructions and the llm has to classify whether the email is Spam or not spam here also we saw a Spam not spam example right but here instructions were given that the llm has to answer with a yes or no but here instruction is not given just two categories will be there spam and not spam and we train the llm to make the output based on these two categories so the llm receives a text and then it predicts whether it's a Spam or no spam although the result is same in this case and this case the way the prompt itself is constructed or way the llm is constructed is different that's why this what I'm highlighting right now this is an example of instruction F tuning and this example where the model input is given without instructions that's an example of classification based fine tuning uh um where we just classify into categories using large language models when I saw this it was pretty surprising to me because I did not know that llms could be used for classification tasks in fact classification fing is also used for sentiment classification such as angry sad happy Etc if you have given piece of text and if you want to classify it into either of these five buckets you can use class you can use classification fine tuning but instruction fine tuning is a much more uh common B common fine tuning it can handle broader set of tasks and usually it can even handle or it rather needs larger data sets because you want it to handle a broader set of tasks right so greater amount of computational power is also usually needed for instruction based Point tuning why is greater amount of computational power needed because you have given instructions to the model and it has to search for the entire Corpus based on the instructions which you have given right and the actions which it perform is not specific so for example here the action is pretty specific spam or no spam the action here which it has to perform can be something complex as translation using the same instruction based model you can do other other things also so one instruction based model can actually handle broader set of tasks such as translation summarization Etc but in classification fine tuning the only action which is performed is classifying in which category the text belongs so so that's why the classification fine tuning can handle an arrow set of prompts so when you think of fine tuning people usually only talk about instruction based fine tuning but I find that classification fine tuning is also equally important so the example which we are going to start in today's lecture is actually based on the concept of classification fine tuning okay so now in instruction based fine tuning what usually people also talk about is methods to make the fine tuning more efficient So within instruction based fine tuning there are actually two other methods which are called as Laura and QA so basically these come under the category of parameter efficient fine tuning so it's a form of instruction fine tuning which is more efficient than full fine tuning essentially what is done in parameter efficient fine tuning is that we only update a subset of parameters and freeze the rest of the parameters at a time so this reduces the number of trainable parameters making memory requirements for instruction fine tuning more manageable so Laura is uh basically an improved fine tuning method where instead of fine tuning all the weights that constitute the weight Matrix two smaller matrices that approximate this larger Matrix are fine tuned right now we are not going into details of Laura we'll cover that in a subsequent lecture as it's a pretty broad topic but I just want to introduce the concept to you today and the second is Q Laura which is basically quantized Laura and this is a more memory efficient iteration of Laura and Q Laura takes Laura a step further by quantizing the weights of the Laura adapters to lower Precision so right now just keep in mind that Laura and qora are forms of more efficient fine tuning which reduce the memory requirement which is traditionally needed in instruction based V tuning awesome so I hope you have understood the differences between uh instruction fine tuning and classification fine tuning right and now what we are going to do in today's lecture is we are going to start working on a Hands-On problem which is a fine tuning classification problem so we are going to look at the second category now and we are going to take a real data set we are going to look at emails a youth set of emails which are spam as well as no spam and we are going to train a large language model to classify whether it's spam or or nopan we won't be doing all of this in today's lecture because this this involves a lot of steps first we have to download the data set pre-process the data set create data loaders this is in the stage one of data set preparation this data set will be the all the emails which will be classifying into spam and no spam then in stage number two we'll have to initialize the llm model load pre-train weights then modify the model for fine tuning Implement evaluation utilities and then in the final stage we are going to finetune the model evaluate the finetune model and use model on new data I could have covered all of this in one lecture but then I would have to rush through it instead I'm going to split this into five to six lectures so that you understand the entire fine tuning process sequentially this is the philosophy which we follow in all of the lectures in this series I take you through every single step in a lot of detail first on a whiteboard and then through code today what we are going to do is we are going to do two things we are going to first download the data set and the second thing what we are going to do is we are going to pre-process the data set and in the next lecture we'll create data loaders initialize the model and then later we'll also load the pre-train weights for now let's just focus on step number one and step number yeah actually just step number one in this lecture which is download and pre-process the data set in the next lecture we'll look at step two which is creating data loaders so let me take you through code right now uh um right so in this section of the this section of the code I have titled as fine tuning for classification the first step as I mentioned is downloading the data set this is just the code for downloading and unzipping the data set let me take you through the place where the data set exists so this is the UC arwine machine learning repository it's quite famous because it has a large number of data sets within this repository there is also an SMS spam collection data this is the data set which we'll be using it contains a huge list of emails both spam as well as non-spam so if you scroll down here you will see that uh you'll see information about what exactly is present in this data set first you will see that 425 SMS spam messages were manually extracted uh this is a UK Forum in which cell phone users make public claims about SMS spam messages so 425 spam messages and they also have 322 more spam messages which are publicly available some other website so overall there are 747 spam messages now let's look at the no spam so in no spam they have a large number of messages as you can imagine it's it's easier to Source legitimate no spam messages the way they collected no spam messages is at the department of computer science at the National University of Singapore so naturally if it's emails originating in the University between students uh they are likely to be not spam so we have much larger no spam messages compared to spam messages so the data set is a bit not balanced and the no spam messages are also called ham messages I'm not sure why this terminology exists but no spam messages are called ham and the spam messages are just called spam messages so this is the data set you can even download the data set from here or you can just run the code which I will be providing to you which downloads and unzips the data once you run this piece of code the data set will be downloaded onto your local machine and uh it will be downloaded in this collection SMS spam collection. tsv so here you can see on my vs code there is this folder called SMS spam collection and this is the tsv file which I'm showing on the screen to you right now uh so here you can see that the messages can either be ham which is no spam or spam so ham means not a Spam and spam is of course spam so as expected spam uh is free entry and uh winner basically as things like this so here we can see that these emails are indeed making sense and this classification is making sense so this is the entire data set which you can download either through code or you can download it from the UC repository which I just showed you once the data set is downloaded what you can do is that you can use pandas and you can convert it into a data frame so that reading the data becomes much more easier so you can print out the data frame and it looks something like this so the label is either ham or spam so here we can see that there are total 5572 rows so 5572 emails but now we can print the value counts for the label in this data frame so the label is a column name and we can print out the number of ham entries which are 4825 which are no spam and the number of spam entries is much lesser which is 747 now uh what what we can do here is that we need to make the data set balanced right there are number of ways to make the data set balanced but we will uh take a simple approach here since this is not a classification machine learning class this is a class on large language models so we are going to take a simple approach and we are just going to randomly take 747 entries from no spam so that the number of no spam and the number of spam emails match each other both should be 747 so as has been written here for simp licity and because we prefer a small data set for educational purposes we subsample the data set so that it contains 747 instances from each class so this is a function which creates a Balan data set what this function is going to do is that it's it's going to randomly sample ham instances so that we can match the number of spam instances that's equal to 747 it's done by this line of code uh and then we combine the ham subset with the spam so the total now the new data frame is balance DF and if you print out the balance DF value counts you'll see that the number of ham which is no spam emails are 747 and the number of spam emails are 747 so after executing the previous code to balance the data set we can see that we now have an equal amount of spam and no spam messages great this is exactly what we wanted now we can go a step further and we can to take a look at the labels instead of having ham and spam uh we can assign ham to be equal to zero and spam to be equal to one so these are the label encodings of each of our emails so one note which I've written here is that this process is similar to converting text into token IDs remember in uh when we pre-trained the large language model we had a big vocabulary the GPT vocabulary which had uh more than 50,000 words in fact it had 50257 tokens and every token had a token idid this is a much simpler mapping we have only two tokens kind of and they're mapped to zero and one now as we usually do in machine learning tasks we'll take the data set and split it into three parts we will take this 747 data and we'll split it 70% will be used for training 10% will will use for validation and 20% will use for testing um as I've mentioned here these ratios are generally common in machine learning to train adjust and eval at models so here you can see I've written a random split function what this function is doing is that it just takes the train end which is the fraction of the training data which is train Frack it's going to be 7 validation Frack is going to be 0.2 so we first construct the training data frame which is 70% of the main data frame the validation data frame is the remaining is 20% and the test data frame is the remaining 10% is the remaining 20% sorry the validation data frame is the 10% the test data frame is the remaining 20% of the full data frame and then when this function is called out it will actually return the training data frame the validation data frame and the testing data frame so it will return three data frames to us so we now we can actually test this function so we have this balance data frame and we pass it into this function called random split and once it is passed into this function we also specify the train fraction which is 7 and we specify the validation fraction which is 0.1 and then we construct the train data frame the validation data frame and the test data frame so let us check uh whether the length makes sense so I'm just going to type in new code here which is length of train DF let's see what's the length it's 1045 yeah so length of train DF is 1045 uh because the total number of spam and not spam is 747 + 747 which is 1494 then let me also print out length of validation DF and let me also print out length of test DF and let me print out all of these actually so that uh we can see whether all of them indeed add up to 1494 Okay so right so now I'm printing this uh okay so here you see that the length of train DF is 1045 validation DF is 149 and test DF is 300 so let's add them here 1045 1045 + 149 + 300 and let's see so it's 1494 and this is 747 + 747 so that makes sense this is kind of a check that the training validation and testing data frames have been created correctly I like to do these checks once in a while to just make sure that we are on the right track in the code now what you can do is that we'll also convert these data frames into CSV files because we'll need to reuse them later so we are just going to use the 2 CSV function so you can search this 2 CSV pandas what this does is that it can take your data frame and it can convert it into a CSV file I'll also add the link to this in the information description uh so you can apply this function to the training data frame validation data frame and also to the testing data frame and then you can get the train. CSV validation. CSV and the test. CSV files so until now we have we have reached a stage where we have finished the first step which I had mentioned over here and that first step was to download and pre-process the data set we downloaded the data set we balanced the data set which was a part of pre-processing so that the number of spam and not spam are the same which is 747 and then we cons divided the data set into training 70% validation 20% and testing 10% and now in the next lecture what we are going to see is that we are going to first create data loaders so that we can also do batch processing and it's generally much better when you work with large language models to use data loaders and then we are going to see how can we load the pre-trend Ws how can we modify the model Etc you might be thinking right how can a classification task be done using large language models so what happens towards the end is that we usually fit another neural network at the end of this and that will have a softmax output so that the uh class so that will be the classification output so there is some augmentation which we'll need to do here so that the output is either spam or no spam which is zero or one so we'll take the architecture the same architecture we worked on earlier but we'll augment it we'll augment the end part of it the architecture so that it's suitable for classification so this brings us to the end of the lecture thanks a lot everyone I hope you are liking this approach of whiteboard notes plus coding we have covered a huge number of lectures in this series before but if you are landing onto this video series for the first time it's fine I usually try to make every lecture self-content but if you want to revise any of your Concepts or want to learn these Concepts from scratch please go through the previous lectures in this series also thanks a lot everyone and I look forward to seeing you in the next lecture"
+}

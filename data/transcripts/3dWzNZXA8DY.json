@@ -1,0 +1,4086 @@
+{
+  "video": {
+    "video_id": "3dWzNZXA8DY",
+    "title": "Lecture 2: Large Language Models (LLM) Basics",
+    "duration": 2022.0,
+    "index": 1 
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.36
+    },
+    {
+      "text": "hello everyone welcome to the second",
+      "start": 5.48,
+      "duration": 5.48
+    },
+    {
+      "text": "lecture in the building large language",
+      "start": 8.36,
+      "duration": 4.72
+    },
+    {
+      "text": "models from scratch",
+      "start": 10.96,
+      "duration": 5.399
+    },
+    {
+      "text": "series the previous lecture was an",
+      "start": 13.08,
+      "duration": 6.359
+    },
+    {
+      "text": "introduction to the entire series and in",
+      "start": 16.359,
+      "duration": 5.521
+    },
+    {
+      "text": "that lecture I described about what we",
+      "start": 19.439,
+      "duration": 5.401
+    },
+    {
+      "text": "are planning to cover in this playlist",
+      "start": 21.88,
+      "duration": 5.84
+    },
+    {
+      "text": "and uh I mentioned about our end goal of",
+      "start": 24.84,
+      "duration": 6.04
+    },
+    {
+      "text": "learning the nuts and Bol of building a",
+      "start": 27.72,
+      "duration": 5.72
+    },
+    {
+      "text": "large language model in this series we",
+      "start": 30.88,
+      "duration": 4.08
+    },
+    {
+      "text": "are not just going to look at",
+      "start": 33.44,
+      "duration": 4.0
+    },
+    {
+      "text": "applications we are going to understand",
+      "start": 34.96,
+      "duration": 4.72
+    },
+    {
+      "text": "how things really work from a very very",
+      "start": 37.44,
+      "duration": 3.639
+    },
+    {
+      "text": "fundamental",
+      "start": 39.68,
+      "duration": 4.76
+    },
+    {
+      "text": "level so let's get started my name is Dr",
+      "start": 41.079,
+      "duration": 7.16
+    },
+    {
+      "text": "Raj dander and I graduated with a PhD",
+      "start": 44.44,
+      "duration": 5.639
+    },
+    {
+      "text": "from Massachusetts Institute of",
+      "start": 48.239,
+      "duration": 5.721
+    },
+    {
+      "text": "Technology in 2022 since two years uh I",
+      "start": 50.079,
+      "duration": 6.201
+    },
+    {
+      "text": "have been in India working on our vision",
+      "start": 53.96,
+      "duration": 5.119
+    },
+    {
+      "text": "to make AI accessible to all this",
+      "start": 56.28,
+      "duration": 5.799
+    },
+    {
+      "text": "playlist is a part of that Vision so",
+      "start": 59.079,
+      "duration": 5.521
+    },
+    {
+      "text": "let's get started with today's lecture",
+      "start": 62.079,
+      "duration": 5.04
+    },
+    {
+      "text": "today we are going to cover six major",
+      "start": 64.6,
+      "duration": 4.92
+    },
+    {
+      "text": "aspects first we are going to learn",
+      "start": 67.119,
+      "duration": 4.801
+    },
+    {
+      "text": "about what exactly is a large language",
+      "start": 69.52,
+      "duration": 5.04
+    },
+    {
+      "text": "model secondly we are going to learn",
+      "start": 71.92,
+      "duration": 5.519
+    },
+    {
+      "text": "about what does large mean in the large",
+      "start": 74.56,
+      "duration": 4.559
+    },
+    {
+      "text": "language model",
+      "start": 77.439,
+      "duration": 4.68
+    },
+    {
+      "text": "terminology third we are going to see",
+      "start": 79.119,
+      "duration": 5.32
+    },
+    {
+      "text": "what the difference between modern large",
+      "start": 82.119,
+      "duration": 5.561
+    },
+    {
+      "text": "large language models and earlier NLP",
+      "start": 84.439,
+      "duration": 5.761
+    },
+    {
+      "text": "models fourth we are going to see see",
+      "start": 87.68,
+      "duration": 5.0
+    },
+    {
+      "text": "what's the secret Source behind llms",
+      "start": 90.2,
+      "duration": 5.76
+    },
+    {
+      "text": "what really makes them so good fifth we",
+      "start": 92.68,
+      "duration": 5.119
+    },
+    {
+      "text": "are going to see the difference between",
+      "start": 95.96,
+      "duration": 3.68
+    },
+    {
+      "text": "these terminologies which you might have",
+      "start": 97.799,
+      "duration": 5.401
+    },
+    {
+      "text": "heard llm generative AI deep learning",
+      "start": 99.64,
+      "duration": 6.04
+    },
+    {
+      "text": "machine learning artificial intelligence",
+      "start": 103.2,
+      "duration": 4.64
+    },
+    {
+      "text": "it's getting so confusing right the",
+      "start": 105.68,
+      "duration": 4.079
+    },
+    {
+      "text": "number of terminologies just keep",
+      "start": 107.84,
+      "duration": 4.52
+    },
+    {
+      "text": "increasing day by day how do we know",
+      "start": 109.759,
+      "duration": 4.761
+    },
+    {
+      "text": "which terminology means",
+      "start": 112.36,
+      "duration": 5.56
+    },
+    {
+      "text": "what and then in the last section I'm",
+      "start": 114.52,
+      "duration": 5.44
+    },
+    {
+      "text": "going to discuss about the applications",
+      "start": 117.92,
+      "duration": 5.199
+    },
+    {
+      "text": "of llms and what all cool stuff we can",
+      "start": 119.96,
+      "duration": 4.799
+    },
+    {
+      "text": "build with",
+      "start": 123.119,
+      "duration": 4.92
+    },
+    {
+      "text": "llms so with this we'll get started with",
+      "start": 124.759,
+      "duration": 5.56
+    },
+    {
+      "text": "the part one or section one of today's",
+      "start": 128.039,
+      "duration": 4.681
+    },
+    {
+      "text": "lecture which is explaining what is a",
+      "start": 130.319,
+      "duration": 5.321
+    },
+    {
+      "text": "large language model in the first place",
+      "start": 132.72,
+      "duration": 5.36
+    },
+    {
+      "text": "now unless you have been living under a",
+      "start": 135.64,
+      "duration": 6.08
+    },
+    {
+      "text": "rock it might you would have definitely",
+      "start": 138.08,
+      "duration": 7.04
+    },
+    {
+      "text": "heard of llms open AI generative AI so",
+      "start": 141.72,
+      "duration": 5.08
+    },
+    {
+      "text": "you might have heard about the term",
+      "start": 145.12,
+      "duration": 4.36
+    },
+    {
+      "text": "large language model but you might not",
+      "start": 146.8,
+      "duration": 4.84
+    },
+    {
+      "text": "be kn knowing what it exactly is you",
+      "start": 149.48,
+      "duration": 4.28
+    },
+    {
+      "text": "might have even used chat GPT without",
+      "start": 151.64,
+      "duration": 5.4
+    },
+    {
+      "text": "knowing what an llm is at its simplest",
+      "start": 153.76,
+      "duration": 7.0
+    },
+    {
+      "text": "form an llm is just a neural network",
+      "start": 157.04,
+      "duration": 7.88
+    },
+    {
+      "text": "which is designed to understand generate",
+      "start": 160.76,
+      "duration": 7.28
+    },
+    {
+      "text": "and respond to humanik",
+      "start": 164.92,
+      "duration": 5.56
+    },
+    {
+      "text": "text there are two key things here an",
+      "start": 168.04,
+      "duration": 4.76
+    },
+    {
+      "text": "llm is a neural network which is",
+      "start": 170.48,
+      "duration": 4.399
+    },
+    {
+      "text": "designed to understand generate and",
+      "start": 172.8,
+      "duration": 4.48
+    },
+    {
+      "text": "respond to human like text let me",
+      "start": 174.879,
+      "duration": 4.72
+    },
+    {
+      "text": "explain the two parts separately first",
+      "start": 177.28,
+      "duration": 4.92
+    },
+    {
+      "text": "new neural network so I'm assuming",
+      "start": 179.599,
+      "duration": 4.92
+    },
+    {
+      "text": "people who are coming to the series know",
+      "start": 182.2,
+      "duration": 4.64
+    },
+    {
+      "text": "a bit about neural networks if you don't",
+      "start": 184.519,
+      "duration": 4.761
+    },
+    {
+      "text": "it's totally fine I'll explain all those",
+      "start": 186.84,
+      "duration": 5.24
+    },
+    {
+      "text": "Basics as well but a neural network",
+      "start": 189.28,
+      "duration": 4.679
+    },
+    {
+      "text": "essentially looks like this we have",
+      "start": 192.08,
+      "duration": 5.159
+    },
+    {
+      "text": "input data which feeds into a layer of",
+      "start": 193.959,
+      "duration": 5.681
+    },
+    {
+      "text": "neurons and bunch of these layers are",
+      "start": 197.239,
+      "duration": 4.72
+    },
+    {
+      "text": "stacked together and we have the output",
+      "start": 199.64,
+      "duration": 4.72
+    },
+    {
+      "text": "layer the reason it's called a neural",
+      "start": 201.959,
+      "duration": 5.0
+    },
+    {
+      "text": "network it's because these neurons",
+      "start": 204.36,
+      "duration": 6.28
+    },
+    {
+      "text": "represent the circuitry in our brain",
+      "start": 206.959,
+      "duration": 6.401
+    },
+    {
+      "text": "uh or they do so in a very symbolic",
+      "start": 210.64,
+      "duration": 5.04
+    },
+    {
+      "text": "sense uh that's why this name deep",
+      "start": 213.36,
+      "duration": 5.32
+    },
+    {
+      "text": "neural network comes and deep neural",
+      "start": 215.68,
+      "duration": 4.72
+    },
+    {
+      "text": "networks are shown to have a huge number",
+      "start": 218.68,
+      "duration": 5.04
+    },
+    {
+      "text": "of applications in image detection text",
+      "start": 220.4,
+      "duration": 6.399
+    },
+    {
+      "text": "Generation Um self driving",
+      "start": 223.72,
+      "duration": 5.28
+    },
+    {
+      "text": "cars then let's say if you want to",
+      "start": 226.799,
+      "duration": 4.121
+    },
+    {
+      "text": "detect whether patient has brain tumor",
+      "start": 229.0,
+      "duration": 3.799
+    },
+    {
+      "text": "or not they have huge number of",
+      "start": 230.92,
+      "duration": 4.879
+    },
+    {
+      "text": "applications so llms are essentially",
+      "start": 232.799,
+      "duration": 5.841
+    },
+    {
+      "text": "just neural networks which are designed",
+      "start": 235.799,
+      "duration": 5.52
+    },
+    {
+      "text": "for very uh",
+      "start": 238.64,
+      "duration": 4.439
+    },
+    {
+      "text": "generic type of text related",
+      "start": 241.319,
+      "duration": 3.84
+    },
+    {
+      "text": "applications such as understanding",
+      "start": 243.079,
+      "duration": 4.121
+    },
+    {
+      "text": "generating and responding to humanik",
+      "start": 245.159,
+      "duration": 4.961
+    },
+    {
+      "text": "text what does it mean to understand",
+      "start": 247.2,
+      "duration": 6.119
+    },
+    {
+      "text": "generate and respond to humanik text so",
+      "start": 250.12,
+      "duration": 5.44
+    },
+    {
+      "text": "the simplest way to demonstrate what",
+      "start": 253.319,
+      "duration": 5.2
+    },
+    {
+      "text": "does that mean is taking you to chat",
+      "start": 255.56,
+      "duration": 5.959
+    },
+    {
+      "text": "GPT I'm sure all of you who are seeing",
+      "start": 258.519,
+      "duration": 5.521
+    },
+    {
+      "text": "this lecture have used chat GPT here you",
+      "start": 261.519,
+      "duration": 5.601
+    },
+    {
+      "text": "can see on the dropdown I'm using gp4",
+      "start": 264.04,
+      "duration": 7.04
+    },
+    {
+      "text": "you might be on gp40 or gp4 om mini so",
+      "start": 267.12,
+      "duration": 6.16
+    },
+    {
+      "text": "you can ask basically any question to",
+      "start": 271.08,
+      "duration": 3.04
+    },
+    {
+      "text": "chat",
+      "start": 273.28,
+      "duration": 4.28
+    },
+    {
+      "text": "gptc here there are some questions and",
+      "start": 274.12,
+      "duration": 5.079
+    },
+    {
+      "text": "uh or here there are some prompt so I'll",
+      "start": 277.56,
+      "duration": 3.359
+    },
+    {
+      "text": "click on this prompt and click on plan a",
+      "start": 279.199,
+      "duration": 4.921
+    },
+    {
+      "text": "relaxing day and you see can you help me",
+      "start": 280.919,
+      "duration": 5.321
+    },
+    {
+      "text": "to plan a relaxing day that focuses on",
+      "start": 284.12,
+      "duration": 4.88
+    },
+    {
+      "text": "activities for Rejuvenation to start can",
+      "start": 286.24,
+      "duration": 4.6
+    },
+    {
+      "text": "you ask me what my favorite forms of",
+      "start": 289.0,
+      "duration": 5.52
+    },
+    {
+      "text": "relaxation are and you see the chat GP",
+      "start": 290.84,
+      "duration": 6.359
+    },
+    {
+      "text": "responds like a human absolutely to help",
+      "start": 294.52,
+      "duration": 4.88
+    },
+    {
+      "text": "craft the perfect day of relaxation",
+      "start": 297.199,
+      "duration": 3.84
+    },
+    {
+      "text": "could do you share your favorite forms",
+      "start": 299.4,
+      "duration": 4.239
+    },
+    {
+      "text": "of relaxation for instance do you prefer",
+      "start": 301.039,
+      "duration": 5.041
+    },
+    {
+      "text": "spending time Outdoors engaging in",
+      "start": 303.639,
+      "duration": 5.241
+    },
+    {
+      "text": "activities like reading or yoga or",
+      "start": 306.08,
+      "duration": 4.679
+    },
+    {
+      "text": "perhaps trying creative Pursuits like",
+      "start": 308.88,
+      "duration": 4.24
+    },
+    {
+      "text": "painting or cooking so I'll write here",
+      "start": 310.759,
+      "duration": 4.401
+    },
+    {
+      "text": "reading a",
+      "start": 313.12,
+      "duration": 5.199
+    },
+    {
+      "text": "book let's see what chat GPT responds",
+      "start": 315.16,
+      "duration": 5.759
+    },
+    {
+      "text": "and then chat GPT says great reading can",
+      "start": 318.319,
+      "duration": 5.0
+    },
+    {
+      "text": "be a central part of a rejuvenating day",
+      "start": 320.919,
+      "duration": 4.201
+    },
+    {
+      "text": "here's a plan focused around your",
+      "start": 323.319,
+      "duration": 3.561
+    },
+    {
+      "text": "enjoyment and then it tells me to do",
+      "start": 325.12,
+      "duration": 3.96
+    },
+    {
+      "text": "morning meditation for 30 minutes",
+      "start": 326.88,
+      "duration": 4.12
+    },
+    {
+      "text": "healthy breakfast first for 45 minutes",
+      "start": 329.08,
+      "duration": 4.52
+    },
+    {
+      "text": "reading time for 2 hours nature walk for",
+      "start": 331.0,
+      "duration": 3.72
+    },
+    {
+      "text": "1",
+      "start": 333.6,
+      "duration": 3.879
+    },
+    {
+      "text": "hour uh so you can see it's almost like",
+      "start": 334.72,
+      "duration": 5.319
+    },
+    {
+      "text": "I'm talking with a human so that's the",
+      "start": 337.479,
+      "duration": 5.081
+    },
+    {
+      "text": "second part of the llm definition large",
+      "start": 340.039,
+      "duration": 5.401
+    },
+    {
+      "text": "language models understand generate and",
+      "start": 342.56,
+      "duration": 5.6
+    },
+    {
+      "text": "respond to humanik text and they also",
+      "start": 345.44,
+      "duration": 4.599
+    },
+    {
+      "text": "respond like",
+      "start": 348.16,
+      "duration": 4.96
+    },
+    {
+      "text": "humans so chat GPT the demonstration",
+      "start": 350.039,
+      "duration": 5.401
+    },
+    {
+      "text": "which I just showed you is an llm but",
+      "start": 353.12,
+      "duration": 4.44
+    },
+    {
+      "text": "what many people don't know about or",
+      "start": 355.44,
+      "duration": 4.64
+    },
+    {
+      "text": "they don't think about llms is that at",
+      "start": 357.56,
+      "duration": 5.16
+    },
+    {
+      "text": "the core of llm they are just neural",
+      "start": 360.08,
+      "duration": 6.239
+    },
+    {
+      "text": "networks which are designed to do these",
+      "start": 362.72,
+      "duration": 6.879
+    },
+    {
+      "text": "tasks so if anyone asks you what an llm",
+      "start": 366.319,
+      "duration": 5.32
+    },
+    {
+      "text": "is tell them that they are deep neural",
+      "start": 369.599,
+      "duration": 4.401
+    },
+    {
+      "text": "networks trained on massive amount of",
+      "start": 371.639,
+      "duration": 5.68
+    },
+    {
+      "text": "data which help to do specific tasks",
+      "start": 374.0,
+      "duration": 5.0
+    },
+    {
+      "text": "such as understanding generating and",
+      "start": 377.319,
+      "duration": 4.0
+    },
+    {
+      "text": "respond to human like text and in many",
+      "start": 379.0,
+      "duration": 5.36
+    },
+    {
+      "text": "cases they also respond like humans this",
+      "start": 381.319,
+      "duration": 5.201
+    },
+    {
+      "text": "is getting better and better as I making",
+      "start": 384.36,
+      "duration": 5.6
+    },
+    {
+      "text": "this lecture and llms are in fact",
+      "start": 386.52,
+      "duration": 5.72
+    },
+    {
+      "text": "sounding more and more like humans and",
+      "start": 389.96,
+      "duration": 4.84
+    },
+    {
+      "text": "that has led to huge problems maybe",
+      "start": 392.24,
+      "duration": 4.32
+    },
+    {
+      "text": "we'll create a separate lecture series",
+      "start": 394.8,
+      "duration": 2.76
+    },
+    {
+      "text": "on",
+      "start": 396.56,
+      "duration": 4.44
+    },
+    {
+      "text": "that so that's the first section which",
+      "start": 397.56,
+      "duration": 5.28
+    },
+    {
+      "text": "we dealt with today which is what is a",
+      "start": 401.0,
+      "duration": 5.039
+    },
+    {
+      "text": "large language model great the second",
+      "start": 402.84,
+      "duration": 5.16
+    },
+    {
+      "text": "question you might be thinking is why is",
+      "start": 406.039,
+      "duration": 4.801
+    },
+    {
+      "text": "it called a large language model why not",
+      "start": 408.0,
+      "duration": 5.72
+    },
+    {
+      "text": "just a language model after all it just",
+      "start": 410.84,
+      "duration": 5.079
+    },
+    {
+      "text": "a model dealing with language right why",
+      "start": 413.72,
+      "duration": 4.08
+    },
+    {
+      "text": "do we specifically have this one more",
+      "start": 415.919,
+      "duration": 5.12
+    },
+    {
+      "text": "large term here and the reason is",
+      "start": 417.8,
+      "duration": 6.16
+    },
+    {
+      "text": "because until llms came into the picture",
+      "start": 421.039,
+      "duration": 5.241
+    },
+    {
+      "text": "model sizes were not very big and when I",
+      "start": 423.96,
+      "duration": 4.4
+    },
+    {
+      "text": "mean model size I mean the number of",
+      "start": 426.28,
+      "duration": 6.16
+    },
+    {
+      "text": "parameters in the model but llms if you",
+      "start": 428.36,
+      "duration": 5.559
+    },
+    {
+      "text": "if you know about the number of",
+      "start": 432.44,
+      "duration": 3.199
+    },
+    {
+      "text": "parameters which they deal with you will",
+      "start": 433.919,
+      "duration": 5.201
+    },
+    {
+      "text": "be shocked llms typically have billions",
+      "start": 435.639,
+      "duration": 6.161
+    },
+    {
+      "text": "of parameters billion one billion it's a",
+      "start": 439.12,
+      "duration": 6.0
+    },
+    {
+      "text": "huge number of parameters and now there",
+      "start": 441.8,
+      "duration": 5.679
+    },
+    {
+      "text": "are even some L llms which are trillions",
+      "start": 445.12,
+      "duration": 5.12
+    },
+    {
+      "text": "of parameters we can't even think of",
+      "start": 447.479,
+      "duration": 5.4
+    },
+    {
+      "text": "those numbers but it's huge number of",
+      "start": 450.24,
+      "duration": 5.679
+    },
+    {
+      "text": "parameters so let me show you a visual",
+      "start": 452.879,
+      "duration": 4.841
+    },
+    {
+      "text": "here so this is a table which shows the",
+      "start": 455.919,
+      "duration": 4.72
+    },
+    {
+      "text": "number of parameters in GPT as you know",
+      "start": 457.72,
+      "duration": 6.84
+    },
+    {
+      "text": "G we are at GPT 4 right now so gpt3",
+      "start": 460.639,
+      "duration": 6.0
+    },
+    {
+      "text": "which was the earlier version of GPT you",
+      "start": 464.56,
+      "duration": 5.199
+    },
+    {
+      "text": "can see gpt3 small had 125 million",
+      "start": 466.639,
+      "duration": 6.321
+    },
+    {
+      "text": "parameters GP gpt3 medium had 350",
+      "start": 469.759,
+      "duration": 7.321
+    },
+    {
+      "text": "million gpt3 large at 760 million and if",
+      "start": 472.96,
+      "duration": 8.519
+    },
+    {
+      "text": "you see GPT 313b had 13 billion gpt3",
+      "start": 477.08,
+      "duration": 7.88
+    },
+    {
+      "text": "175b had 175 billion",
+      "start": 481.479,
+      "duration": 5.84
+    },
+    {
+      "text": "parameters so usually the second term",
+      "start": 484.96,
+      "duration": 4.32
+    },
+    {
+      "text": "here is the number of parameters in the",
+      "start": 487.319,
+      "duration": 5.521
+    },
+    {
+      "text": "model so here it's 175b which is 175",
+      "start": 489.28,
+      "duration": 6.68
+    },
+    {
+      "text": "billion parameters and GPT 4 has even",
+      "start": 492.84,
+      "duration": 5.6
+    },
+    {
+      "text": "more number of parameters that's why",
+      "start": 495.96,
+      "duration": 5.519
+    },
+    {
+      "text": "they are called large language models so",
+      "start": 498.44,
+      "duration": 5.36
+    },
+    {
+      "text": "here is another graph which shows the",
+      "start": 501.479,
+      "duration": 6.56
+    },
+    {
+      "text": "comparison between gpt1 gpt2 and gpt3 so",
+      "start": 503.8,
+      "duration": 7.44
+    },
+    {
+      "text": "as you go from GPT 1 to 2 to 3 the llms",
+      "start": 508.039,
+      "duration": 5.88
+    },
+    {
+      "text": "also become better and better and better",
+      "start": 511.24,
+      "duration": 4.52
+    },
+    {
+      "text": "but their number of parameters also",
+      "start": 513.919,
+      "duration": 4.521
+    },
+    {
+      "text": "increase tremendously if you see from",
+      "start": 515.76,
+      "duration": 6.44
+    },
+    {
+      "text": "gpt1 to gpt2 there is a factor of 100 so",
+      "start": 518.44,
+      "duration": 5.839
+    },
+    {
+      "text": "the parameters increase from 100 million",
+      "start": 522.2,
+      "duration": 4.199
+    },
+    {
+      "text": "to almost 1 billion so actually there is",
+      "start": 524.279,
+      "duration": 4.881
+    },
+    {
+      "text": "a factor of 10 here but from gpt2 to",
+      "start": 526.399,
+      "duration": 6.761
+    },
+    {
+      "text": "gpt3 there is a factor of 100 so gpt2",
+      "start": 529.16,
+      "duration": 7.32
+    },
+    {
+      "text": "had only 1.5 billion parameters but gpt3",
+      "start": 533.16,
+      "duration": 7.239
+    },
+    {
+      "text": "had 175 billion parameters",
+      "start": 536.48,
+      "duration": 5.0
+    },
+    {
+      "text": "you see there are some other",
+      "start": 540.399,
+      "duration": 3.321
+    },
+    {
+      "text": "terminologies also like gpt1 had 12",
+      "start": 541.48,
+      "duration": 6.799
+    },
+    {
+      "text": "decoders gpt2 had 48 and gpt3 had 96 if",
+      "start": 543.72,
+      "duration": 6.04
+    },
+    {
+      "text": "you don't know what this means it's",
+      "start": 548.279,
+      "duration": 3.521
+    },
+    {
+      "text": "totally fine we are going to cover that",
+      "start": 549.76,
+      "duration": 5.12
+    },
+    {
+      "text": "in this series token size take a look at",
+      "start": 551.8,
+      "duration": 6.64
+    },
+    {
+      "text": "token size gpt1 has a token size of 512",
+      "start": 554.88,
+      "duration": 7.16
+    },
+    {
+      "text": "gpt2 has 1024 gpt3 has",
+      "start": 558.44,
+      "duration": 6.04
+    },
+    {
+      "text": "2048 it's fine if you don't know what it",
+      "start": 562.04,
+      "duration": 4.4
+    },
+    {
+      "text": "means just you can see everything is",
+      "start": 564.48,
+      "duration": 3.599
+    },
+    {
+      "text": "generally",
+      "start": 566.44,
+      "duration": 3.88
+    },
+    {
+      "text": "increasing now here is a graph which",
+      "start": 568.079,
+      "duration": 5.281
+    },
+    {
+      "text": "shows the model size in artificial",
+      "start": 570.32,
+      "duration": 5.12
+    },
+    {
+      "text": "intelligence type of models over the",
+      "start": 573.36,
+      "duration": 4.52
+    },
+    {
+      "text": "period of years so this graph is plotted",
+      "start": 575.44,
+      "duration": 6.36
+    },
+    {
+      "text": "from 1950 to 2022 and it was published",
+      "start": 577.88,
+      "duration": 7.199
+    },
+    {
+      "text": "in nature so it is a reliable graph on",
+      "start": 581.8,
+      "duration": 5.12
+    },
+    {
+      "text": "the y- axis there are number of",
+      "start": 585.079,
+      "duration": 4.32
+    },
+    {
+      "text": "parameters so if you see in 1950 number",
+      "start": 586.92,
+      "duration": 6.159
+    },
+    {
+      "text": "of parameters was around just 10 to 100",
+      "start": 589.399,
+      "duration": 6.401
+    },
+    {
+      "text": "uh in a log scale so this Y axis is in",
+      "start": 593.079,
+      "duration": 6.121
+    },
+    {
+      "text": "log scale so 1950 to 1960 models barely",
+      "start": 595.8,
+      "duration": 6.8
+    },
+    {
+      "text": "had ,000 10,000 parameters then in 1980",
+      "start": 599.2,
+      "duration": 5.84
+    },
+    {
+      "text": "to 2000 model started having around",
+      "start": 602.6,
+      "duration": 5.96
+    },
+    {
+      "text": "100,000 parameters but it's only in 2020",
+      "start": 605.04,
+      "duration": 5.919
+    },
+    {
+      "text": "that we have reached 100 million 1",
+      "start": 608.56,
+      "duration": 4.56
+    },
+    {
+      "text": "billion and even almost close to 1",
+      "start": 610.959,
+      "duration": 4.801
+    },
+    {
+      "text": "trillion number of parameters now and",
+      "start": 613.12,
+      "duration": 5.92
+    },
+    {
+      "text": "you can see the uh orange symbol here so",
+      "start": 615.76,
+      "duration": 5.6
+    },
+    {
+      "text": "mostly these parameters are for llms",
+      "start": 619.04,
+      "duration": 4.52
+    },
+    {
+      "text": "which is for language tasks I'm just",
+      "start": 621.36,
+      "duration": 4.039
+    },
+    {
+      "text": "zooming in here to show you that the",
+      "start": 623.56,
+      "duration": 4.24
+    },
+    {
+      "text": "orange symbols here have the largest",
+      "start": 625.399,
+      "duration": 5.161
+    },
+    {
+      "text": "number of parameters",
+      "start": 627.8,
+      "duration": 5.76
+    },
+    {
+      "text": "I hope this has convinced you why these",
+      "start": 630.56,
+      "duration": 5.0
+    },
+    {
+      "text": "models are called large number of models",
+      "start": 633.56,
+      "duration": 3.959
+    },
+    {
+      "text": "we are living in an age where the number",
+      "start": 635.56,
+      "duration": 4.6
+    },
+    {
+      "text": "of parameters are unprecedented they are",
+      "start": 637.519,
+      "duration": 5.241
+    },
+    {
+      "text": "huge number that's why it's called as",
+      "start": 640.16,
+      "duration": 5.64
+    },
+    {
+      "text": "large language models I'm sure by the",
+      "start": 642.76,
+      "duration": 5.92
+    },
+    {
+      "text": "time this video is released and maybe",
+      "start": 645.8,
+      "duration": 4.4
+    },
+    {
+      "text": "one year after that you would have",
+      "start": 648.68,
+      "duration": 4.68
+    },
+    {
+      "text": "reached the parameter size of 1",
+      "start": 650.2,
+      "duration": 6.439
+    },
+    {
+      "text": "trillion now the reason that's the first",
+      "start": 653.36,
+      "duration": 5.96
+    },
+    {
+      "text": "part of the terminology large then why",
+      "start": 656.639,
+      "duration": 4.841
+    },
+    {
+      "text": "why are they called language models and",
+      "start": 659.32,
+      "duration": 3.959
+    },
+    {
+      "text": "that's pretty clear if you remember the",
+      "start": 661.48,
+      "duration": 3.96
+    },
+    {
+      "text": "example which I showed you over here",
+      "start": 663.279,
+      "duration": 4.201
+    },
+    {
+      "text": "these models only deal with language",
+      "start": 665.44,
+      "duration": 4.199
+    },
+    {
+      "text": "they do not deal with other modalities",
+      "start": 667.48,
+      "duration": 5.12
+    },
+    {
+      "text": "like image or video let's say they only",
+      "start": 669.639,
+      "duration": 5.241
+    },
+    {
+      "text": "deal with language llms only deal with",
+      "start": 672.6,
+      "duration": 5.239
+    },
+    {
+      "text": "language so these models do a wide range",
+      "start": 674.88,
+      "duration": 5.12
+    },
+    {
+      "text": "of natural language processing tasks so",
+      "start": 677.839,
+      "duration": 4.201
+    },
+    {
+      "text": "anything related to language such as",
+      "start": 680.0,
+      "duration": 5.12
+    },
+    {
+      "text": "question answering translation sentiment",
+      "start": 682.04,
+      "duration": 5.4
+    },
+    {
+      "text": "analysis and so many more tasks which",
+      "start": 685.12,
+      "duration": 3.76
+    },
+    {
+      "text": "all of you definitely might have",
+      "start": 687.44,
+      "duration": 3.12
+    },
+    {
+      "text": "explored with chat",
+      "start": 688.88,
+      "duration": 3.88
+    },
+    {
+      "text": "GPT that's why they are called language",
+      "start": 690.56,
+      "duration": 4.32
+    },
+    {
+      "text": "models because they generally do a wide",
+      "start": 692.76,
+      "duration": 5.0
+    },
+    {
+      "text": "range of tasks related to",
+      "start": 694.88,
+      "duration": 5.48
+    },
+    {
+      "text": "language so this is the meaning behind",
+      "start": 697.76,
+      "duration": 5.199
+    },
+    {
+      "text": "the terminology large and language",
+      "start": 700.36,
+      "duration": 5.24
+    },
+    {
+      "text": "models that covers the second aspect of",
+      "start": 702.959,
+      "duration": 4.961
+    },
+    {
+      "text": "today's lecture and now we come to the",
+      "start": 705.6,
+      "duration": 4.64
+    },
+    {
+      "text": "third aspect which is why have llms",
+      "start": 707.92,
+      "duration": 4.2
+    },
+    {
+      "text": "become so popular didn't we have the",
+      "start": 710.24,
+      "duration": 3.68
+    },
+    {
+      "text": "field of natural language processing",
+      "start": 712.12,
+      "duration": 4.56
+    },
+    {
+      "text": "before also and that's true natural",
+      "start": 713.92,
+      "duration": 4.919
+    },
+    {
+      "text": "language processing as a field has been",
+      "start": 716.68,
+      "duration": 4.08
+    },
+    {
+      "text": "existing much before",
+      "start": 718.839,
+      "duration": 5.041
+    },
+    {
+      "text": "llms uh NLP models have been existing",
+      "start": 720.76,
+      "duration": 7.8
+    },
+    {
+      "text": "much before llms but LLP models if you",
+      "start": 723.88,
+      "duration": 7.0
+    },
+    {
+      "text": "look at the models which came before",
+      "start": 728.56,
+      "duration": 4.76
+    },
+    {
+      "text": "llms they were designed for very",
+      "start": 730.88,
+      "duration": 5.16
+    },
+    {
+      "text": "specific tasks so for example there is",
+      "start": 733.32,
+      "duration": 5.319
+    },
+    {
+      "text": "one particular NLP model which might be",
+      "start": 736.04,
+      "duration": 5.159
+    },
+    {
+      "text": "designed for language translation there",
+      "start": 738.639,
+      "duration": 5.601
+    },
+    {
+      "text": "might be one specific NLP model which",
+      "start": 741.199,
+      "duration": 5.361
+    },
+    {
+      "text": "might be for sentiment analysis let's",
+      "start": 744.24,
+      "duration": 5.959
+    },
+    {
+      "text": "say llms on the other hand can do a wide",
+      "start": 746.56,
+      "duration": 6.639
+    },
+    {
+      "text": "range of NLP tasks so it turns out that",
+      "start": 750.199,
+      "duration": 6.32
+    },
+    {
+      "text": "if you train a GPT for text completion",
+      "start": 753.199,
+      "duration": 5.361
+    },
+    {
+      "text": "that same architecture works well for",
+      "start": 756.519,
+      "duration": 4.44
+    },
+    {
+      "text": "language translation also and it's",
+      "start": 758.56,
+      "duration": 5.399
+    },
+    {
+      "text": "pretty generic that way that's one",
+      "start": 760.959,
+      "duration": 5.24
+    },
+    {
+      "text": "difference between llms and earlier NLP",
+      "start": 763.959,
+      "duration": 4.721
+    },
+    {
+      "text": "models earlier NLP models were designed",
+      "start": 766.199,
+      "duration": 5.76
+    },
+    {
+      "text": "for specific tasks modern llms can do a",
+      "start": 768.68,
+      "duration": 6.279
+    },
+    {
+      "text": "wide range of NLP tasks the second",
+      "start": 771.959,
+      "duration": 5.521
+    },
+    {
+      "text": "difference is based on an application so",
+      "start": 774.959,
+      "duration": 5.401
+    },
+    {
+      "text": "earlier llm models could not",
+      "start": 777.48,
+      "duration": 5.719
+    },
+    {
+      "text": "um earlier llm models or earlier",
+      "start": 780.36,
+      "duration": 5.0
+    },
+    {
+      "text": "language models I should say could not",
+      "start": 783.199,
+      "duration": 4.281
+    },
+    {
+      "text": "write an email from Custom instructions",
+      "start": 785.36,
+      "duration": 4.32
+    },
+    {
+      "text": "it was very difficult for them to do",
+      "start": 787.48,
+      "duration": 4.88
+    },
+    {
+      "text": "that now if you think of modern llm such",
+      "start": 789.68,
+      "duration": 5.959
+    },
+    {
+      "text": "as chat GPT and this task is almost",
+      "start": 792.36,
+      "duration": 6.32
+    },
+    {
+      "text": "trivial for chat GPT so if I go to chat",
+      "start": 795.639,
+      "duration": 5.041
+    },
+    {
+      "text": "GPT right now and I",
+      "start": 798.68,
+      "duration": 6.2
+    },
+    {
+      "text": "say draft an email for",
+      "start": 800.68,
+      "duration": 4.2
+    },
+    {
+      "text": "me to send to a colleague or to send to",
+      "start": 805.24,
+      "duration": 6.959
+    },
+    {
+      "text": "a friend of mine to book movie tickets",
+      "start": 808.399,
+      "duration": 5.481
+    },
+    {
+      "text": "let's",
+      "start": 812.199,
+      "duration": 4.601
+    },
+    {
+      "text": "say and I'll just zoom in here and see",
+      "start": 813.88,
+      "duration": 5.68
+    },
+    {
+      "text": "chat GPT not only starts drafting the",
+      "start": 816.8,
+      "duration": 4.96
+    },
+    {
+      "text": "email but it also has inserted emojis",
+      "start": 819.56,
+      "duration": 4.76
+    },
+    {
+      "text": "and everything here it's a trivial task",
+      "start": 821.76,
+      "duration": 5.079
+    },
+    {
+      "text": "for chat GPT but you might be surprised",
+      "start": 824.32,
+      "duration": 5.759
+    },
+    {
+      "text": "to know that this trivial task was very",
+      "start": 826.839,
+      "duration": 6.36
+    },
+    {
+      "text": "hard to do for earlier NLP models and",
+      "start": 830.079,
+      "duration": 5.801
+    },
+    {
+      "text": "that's the big difference between L llm",
+      "start": 833.199,
+      "duration": 5.08
+    },
+    {
+      "text": "versus earlier NLP models they are broad",
+      "start": 835.88,
+      "duration": 4.72
+    },
+    {
+      "text": "they can do a wide range of generic",
+      "start": 838.279,
+      "duration": 4.641
+    },
+    {
+      "text": "tasks and second is their applications",
+      "start": 840.6,
+      "duration": 4.28
+    },
+    {
+      "text": "are endless much more than the earlier",
+      "start": 842.92,
+      "duration": 4.24
+    },
+    {
+      "text": "models and that's why we are even having",
+      "start": 844.88,
+      "duration": 4.199
+    },
+    {
+      "text": "this playlist in the first",
+      "start": 847.16,
+      "duration": 5.0
+    },
+    {
+      "text": "place so that's Point number three point",
+      "start": 849.079,
+      "duration": 5.76
+    },
+    {
+      "text": "number four is what you all must be",
+      "start": 852.16,
+      "duration": 4.96
+    },
+    {
+      "text": "thinking about that llms are so good",
+      "start": 854.839,
+      "duration": 4.92
+    },
+    {
+      "text": "they can do these amazing tasks they can",
+      "start": 857.12,
+      "duration": 5.2
+    },
+    {
+      "text": "almost behave like humans right but what",
+      "start": 859.759,
+      "duration": 5.601
+    },
+    {
+      "text": "makes llm so good what is the secret",
+      "start": 862.32,
+      "duration": 6.199
+    },
+    {
+      "text": "sauce typically there has to be a secret",
+      "start": 865.36,
+      "duration": 5.44
+    },
+    {
+      "text": "sauce right which makes llm so much",
+      "start": 868.519,
+      "duration": 5.88
+    },
+    {
+      "text": "better than NLP what's that magic bullet",
+      "start": 870.8,
+      "duration": 6.08
+    },
+    {
+      "text": "here and usually people say that there",
+      "start": 874.399,
+      "duration": 4.721
+    },
+    {
+      "text": "is no secret sauce to things things just",
+      "start": 876.88,
+      "duration": 4.519
+    },
+    {
+      "text": "gradually improve over a period of time",
+      "start": 879.12,
+      "duration": 4.04
+    },
+    {
+      "text": "but in this case there is a specific",
+      "start": 881.399,
+      "duration": 6.56
+    },
+    {
+      "text": "secret sauce and that is the Transformer",
+      "start": 883.16,
+      "duration": 7.32
+    },
+    {
+      "text": "architecture so you see here I've added",
+      "start": 887.959,
+      "duration": 6.361
+    },
+    {
+      "text": "the logo of secret sauce and for llms",
+      "start": 890.48,
+      "duration": 5.64
+    },
+    {
+      "text": "the secret sauce is Transformer",
+      "start": 894.32,
+      "duration": 3.879
+    },
+    {
+      "text": "architecture don't worry if you know",
+      "start": 896.12,
+      "duration": 3.88
+    },
+    {
+      "text": "what it what what it means what is",
+      "start": 898.199,
+      "duration": 3.801
+    },
+    {
+      "text": "transformer for all you know you might",
+      "start": 900.0,
+      "duration": 4.44
+    },
+    {
+      "text": "be thinking of the Transformers movie in",
+      "start": 902.0,
+      "duration": 4.399
+    },
+    {
+      "text": "which there are these cars which get",
+      "start": 904.44,
+      "duration": 4.839
+    },
+    {
+      "text": "converted into mechanical robots so you",
+      "start": 906.399,
+      "duration": 4.24
+    },
+    {
+      "text": "that might be your first thought when",
+      "start": 909.279,
+      "duration": 3.68
+    },
+    {
+      "text": "you hear about Transformers right of",
+      "start": 910.639,
+      "duration": 4.0
+    },
+    {
+      "text": "course people who know about this know",
+      "start": 912.959,
+      "duration": 3.521
+    },
+    {
+      "text": "exactly what I'm talking about here but",
+      "start": 914.639,
+      "duration": 4.44
+    },
+    {
+      "text": "for people who don't know uh this this",
+      "start": 916.48,
+      "duration": 5.0
+    },
+    {
+      "text": "is the only Transformer if this is the",
+      "start": 919.079,
+      "duration": 4.88
+    },
+    {
+      "text": "only Transformer you know this playlist",
+      "start": 921.48,
+      "duration": 5.64
+    },
+    {
+      "text": "is perfect for you because you will",
+      "start": 923.959,
+      "duration": 5.24
+    },
+    {
+      "text": "understand what what does Transformer",
+      "start": 927.12,
+      "duration": 4.68
+    },
+    {
+      "text": "mean and what it actually means is it",
+      "start": 929.199,
+      "duration": 4.56
+    },
+    {
+      "text": "summarized by this one schematic over",
+      "start": 931.8,
+      "duration": 4.76
+    },
+    {
+      "text": "here this is what a Transformer",
+      "start": 933.759,
+      "duration": 5.44
+    },
+    {
+      "text": "architecture looks like and you might be",
+      "start": 936.56,
+      "duration": 4.44
+    },
+    {
+      "text": "confused by all of these terminologies",
+      "start": 939.199,
+      "duration": 3.921
+    },
+    {
+      "text": "what is input embedding what's multi-",
+      "start": 941.0,
+      "duration": 4.68
+    },
+    {
+      "text": "attention head or what speed forward",
+      "start": 943.12,
+      "duration": 4.76
+    },
+    {
+      "text": "here what does ADD and nor mean here",
+      "start": 945.68,
+      "duration": 3.88
+    },
+    {
+      "text": "what's output embedding there are so",
+      "start": 947.88,
+      "duration": 3.72
+    },
+    {
+      "text": "many things which look confusing and",
+      "start": 949.56,
+      "duration": 4.6
+    },
+    {
+      "text": "it's fine but we are going to learn",
+      "start": 951.6,
+      "duration": 4.599
+    },
+    {
+      "text": "about this Secret Sauce in a lot of",
+      "start": 954.16,
+      "duration": 4.96
+    },
+    {
+      "text": "detail in this playlist there is one",
+      "start": 956.199,
+      "duration": 6.161
+    },
+    {
+      "text": "paper which was introduced in 2017 which",
+      "start": 959.12,
+      "duration": 5.76
+    },
+    {
+      "text": "really changed the game that paper is",
+      "start": 962.36,
+      "duration": 4.12
+    },
+    {
+      "text": "what I'm showing you on the screen right",
+      "start": 964.88,
+      "duration": 3.72
+    },
+    {
+      "text": "now it's called attention is all you",
+      "start": 966.48,
+      "duration": 6.44
+    },
+    {
+      "text": "need it was published by eight authors",
+      "start": 968.6,
+      "duration": 7.96
+    },
+    {
+      "text": "from Google brain and uh this introduced",
+      "start": 972.92,
+      "duration": 5.279
+    },
+    {
+      "text": "the architecture of Transformers so the",
+      "start": 976.56,
+      "duration": 3.24
+    },
+    {
+      "text": "schematic which I showed you on the",
+      "start": 978.199,
+      "duration": 3.32
+    },
+    {
+      "text": "Whiteboard is this schematic which they",
+      "start": 979.8,
+      "duration": 4.2
+    },
+    {
+      "text": "had in the paper can you guess how many",
+      "start": 981.519,
+      "duration": 5.041
+    },
+    {
+      "text": "citations this paper has",
+      "start": 984.0,
+      "duration": 6.079
+    },
+    {
+      "text": "today it has more than 100,000 citations",
+      "start": 986.56,
+      "duration": 6.44
+    },
+    {
+      "text": "in just a matter of 5 years so people",
+      "start": 990.079,
+      "duration": 5.0
+    },
+    {
+      "text": "say that research is boring and research",
+      "start": 993.0,
+      "duration": 4.959
+    },
+    {
+      "text": "does not have any external reward in",
+      "start": 995.079,
+      "duration": 5.12
+    },
+    {
+      "text": "this case it does if you are one of the",
+      "start": 997.959,
+      "duration": 4.161
+    },
+    {
+      "text": "few authors on this paper you have",
+      "start": 1000.199,
+      "duration": 4.401
+    },
+    {
+      "text": "100,000 citations in 5 years and you",
+      "start": 1002.12,
+      "duration": 4.199
+    },
+    {
+      "text": "completely revolutionize the field of",
+      "start": 1004.6,
+      "duration": 2.84
+    },
+    {
+      "text": "artificial",
+      "start": 1006.319,
+      "duration": 3.44
+    },
+    {
+      "text": "intelligence so this is that paper and",
+      "start": 1007.44,
+      "duration": 4.8
+    },
+    {
+      "text": "it's a 15-page paper but if you try to",
+      "start": 1009.759,
+      "duration": 5.44
+    },
+    {
+      "text": "read it it's very dense to understand",
+      "start": 1012.24,
+      "duration": 5.0
+    },
+    {
+      "text": "this paper really takes a lot of time",
+      "start": 1015.199,
+      "duration": 4.241
+    },
+    {
+      "text": "and it really takes a lot of effort",
+      "start": 1017.24,
+      "duration": 4.2
+    },
+    {
+      "text": "there are some YouTube videos to explain",
+      "start": 1019.44,
+      "duration": 4.639
+    },
+    {
+      "text": "this but I don't think any of them do",
+      "start": 1021.44,
+      "duration": 5.16
+    },
+    {
+      "text": "justice to really explaining everything",
+      "start": 1024.079,
+      "duration": 5.201
+    },
+    {
+      "text": "from scratch every single page of this",
+      "start": 1026.6,
+      "duration": 5.8
+    },
+    {
+      "text": "paper can be three to four videos so if",
+      "start": 1029.28,
+      "duration": 5.48
+    },
+    {
+      "text": "you think about it these 15 pages",
+      "start": 1032.4,
+      "duration": 5.279
+    },
+    {
+      "text": "contain huge amount of information and",
+      "start": 1034.76,
+      "duration": 5.159
+    },
+    {
+      "text": "we'll be devoting lectures to different",
+      "start": 1037.679,
+      "duration": 4.16
+    },
+    {
+      "text": "sections here such as positional",
+      "start": 1039.919,
+      "duration": 3.561
+    },
+    {
+      "text": "encoding what is this dot product",
+      "start": 1041.839,
+      "duration": 4.441
+    },
+    {
+      "text": "attention what is this attention formula",
+      "start": 1043.48,
+      "duration": 4.68
+    },
+    {
+      "text": "what is key query value what is",
+      "start": 1046.28,
+      "duration": 4.279
+    },
+    {
+      "text": "multi-head ention we'll be figuring all",
+      "start": 1048.16,
+      "duration": 5.56
+    },
+    {
+      "text": "of that out so don't worry at this stage",
+      "start": 1050.559,
+      "duration": 4.761
+    },
+    {
+      "text": "if you don't know what a Transformer",
+      "start": 1053.72,
+      "duration": 3.48
+    },
+    {
+      "text": "means even if you have just this image",
+      "start": 1055.32,
+      "duration": 3.2
+    },
+    {
+      "text": "in Mind of a",
+      "start": 1057.2,
+      "duration": 3.359
+    },
+    {
+      "text": "transformer it's awesome you have come",
+      "start": 1058.52,
+      "duration": 4.399
+    },
+    {
+      "text": "to the perfect",
+      "start": 1060.559,
+      "duration": 6.441
+    },
+    {
+      "text": "place okay so as I said do not worry we",
+      "start": 1062.919,
+      "duration": 6.241
+    },
+    {
+      "text": "will learn all about this Secret Sauce",
+      "start": 1067.0,
+      "duration": 3.6
+    },
+    {
+      "text": "which is the Transformers in the",
+      "start": 1069.16,
+      "duration": 4.32
+    },
+    {
+      "text": "subsequent lectures that covers the",
+      "start": 1070.6,
+      "duration": 5.6
+    },
+    {
+      "text": "fourth point of today's lecture and now",
+      "start": 1073.48,
+      "duration": 4.92
+    },
+    {
+      "text": "we come to the fifth point which is all",
+      "start": 1076.2,
+      "duration": 4.76
+    },
+    {
+      "text": "about terminologies right so there are",
+      "start": 1078.4,
+      "duration": 4.56
+    },
+    {
+      "text": "so many words people are throwing around",
+      "start": 1080.96,
+      "duration": 4.16
+    },
+    {
+      "text": "randomly these days right it feels it",
+      "start": 1082.96,
+      "duration": 3.88
+    },
+    {
+      "text": "just getting confusing more and more",
+      "start": 1085.12,
+      "duration": 4.52
+    },
+    {
+      "text": "confusing so people talk about llm",
+      "start": 1086.84,
+      "duration": 5.64
+    },
+    {
+      "text": "people talk about jna they talk about",
+      "start": 1089.64,
+      "duration": 3.84
+    },
+    {
+      "text": "deep",
+      "start": 1092.48,
+      "duration": 2.96
+    },
+    {
+      "text": "learning they talk about machine",
+      "start": 1093.48,
+      "duration": 4.28
+    },
+    {
+      "text": "learning and artificial intelligence is",
+      "start": 1095.44,
+      "duration": 4.92
+    },
+    {
+      "text": "one more term what are the similarities",
+      "start": 1097.76,
+      "duration": 4.32
+    },
+    {
+      "text": "what are the differences between all of",
+      "start": 1100.36,
+      "duration": 3.92
+    },
+    {
+      "text": "these terms so if you look at this",
+      "start": 1102.08,
+      "duration": 4.92
+    },
+    {
+      "text": "particular graph here or figure it kind",
+      "start": 1104.28,
+      "duration": 5.0
+    },
+    {
+      "text": "of sums up everything perfectly start",
+      "start": 1107.0,
+      "duration": 4.559
+    },
+    {
+      "text": "from the outermost sphere or the",
+      "start": 1109.28,
+      "duration": 4.519
+    },
+    {
+      "text": "broadest domain that is artificial",
+      "start": 1111.559,
+      "duration": 4.0
+    },
+    {
+      "text": "intelligence that is the biggest",
+      "start": 1113.799,
+      "duration": 4.721
+    },
+    {
+      "text": "umbrella under this big umbrella comes a",
+      "start": 1115.559,
+      "duration": 4.521
+    },
+    {
+      "text": "smaller umbrella which is machine",
+      "start": 1118.52,
+      "duration": 4.32
+    },
+    {
+      "text": "learning under this machine learning",
+      "start": 1120.08,
+      "duration": 5.12
+    },
+    {
+      "text": "comes yet another smaller umbr umbrella",
+      "start": 1122.84,
+      "duration": 4.76
+    },
+    {
+      "text": "which is called Deep learning and within",
+      "start": 1125.2,
+      "duration": 4.92
+    },
+    {
+      "text": "that the smallest umbrella that's the",
+      "start": 1127.6,
+      "duration": 4.88
+    },
+    {
+      "text": "large language models and this is what",
+      "start": 1130.12,
+      "duration": 4.6
+    },
+    {
+      "text": "we are going to make a playlist on or",
+      "start": 1132.48,
+      "duration": 4.36
+    },
+    {
+      "text": "this is the playlist which you are",
+      "start": 1134.72,
+      "duration": 4.839
+    },
+    {
+      "text": "watching right now so what is the",
+      "start": 1136.84,
+      "duration": 4.839
+    },
+    {
+      "text": "differences between these so first the",
+      "start": 1139.559,
+      "duration": 3.6
+    },
+    {
+      "text": "broadest umbrella is artificial",
+      "start": 1141.679,
+      "duration": 4.201
+    },
+    {
+      "text": "intelligence and this contains all the",
+      "start": 1143.159,
+      "duration": 3.64
+    },
+    {
+      "text": "other",
+      "start": 1145.88,
+      "duration": 3.799
+    },
+    {
+      "text": "umbrellas so any machine which is",
+      "start": 1146.799,
+      "duration": 5.961
+    },
+    {
+      "text": "remotely behaving like humans or it has",
+      "start": 1149.679,
+      "duration": 4.761
+    },
+    {
+      "text": "some sort of intelligence that comes",
+      "start": 1152.76,
+      "duration": 3.52
+    },
+    {
+      "text": "under the bucket of AI That's the",
+      "start": 1154.44,
+      "duration": 4.16
+    },
+    {
+      "text": "biggest bucket so you might be thinking",
+      "start": 1156.28,
+      "duration": 4.56
+    },
+    {
+      "text": "what's the difference between Ai and ml",
+      "start": 1158.6,
+      "duration": 5.24
+    },
+    {
+      "text": "right so look at this example this is",
+      "start": 1160.84,
+      "duration": 6.68
+    },
+    {
+      "text": "Lanza flight chat assistant and uh so it",
+      "start": 1163.84,
+      "duration": 6.48
+    },
+    {
+      "text": "says hi I'm Alisa I am your Lanza chat",
+      "start": 1167.52,
+      "duration": 4.84
+    },
+    {
+      "text": "assistant here is a selection of topics",
+      "start": 1170.32,
+      "duration": 4.56
+    },
+    {
+      "text": "I can help you with you can choose one",
+      "start": 1172.36,
+      "duration": 5.0
+    },
+    {
+      "text": "of the topics so then you say hi Alisa",
+      "start": 1174.88,
+      "duration": 4.6
+    },
+    {
+      "text": "then Alisa says hello then you can click",
+      "start": 1177.36,
+      "duration": 4.16
+    },
+    {
+      "text": "on any one of these you see it's a rule",
+      "start": 1179.48,
+      "duration": 4.84
+    },
+    {
+      "text": "based chatbot you click some options and",
+      "start": 1181.52,
+      "duration": 4.76
+    },
+    {
+      "text": "then Elisa is already programmed to",
+      "start": 1184.32,
+      "duration": 4.52
+    },
+    {
+      "text": "answer so I say that flight cancelled",
+      "start": 1186.28,
+      "duration": 4.72
+    },
+    {
+      "text": "check Alternatives and rebook so if I",
+      "start": 1188.84,
+      "duration": 4.44
+    },
+    {
+      "text": "click on this Ela is already program to",
+      "start": 1191.0,
+      "duration": 5.28
+    },
+    {
+      "text": "answer this is an example of AI because",
+      "start": 1193.28,
+      "duration": 5.72
+    },
+    {
+      "text": "it covers intelligence right Lanza chat",
+      "start": 1196.28,
+      "duration": 4.36
+    },
+    {
+      "text": "assistant can be thought of to be",
+      "start": 1199.0,
+      "duration": 4.4
+    },
+    {
+      "text": "intelligent but this is Rule based",
+      "start": 1200.64,
+      "duration": 5.159
+    },
+    {
+      "text": "intelligence it's not learning based on",
+      "start": 1203.4,
+      "duration": 4.8
+    },
+    {
+      "text": "your responses so let's say you respond",
+      "start": 1205.799,
+      "duration": 4.88
+    },
+    {
+      "text": "and your friend responds Elisa this chat",
+      "start": 1208.2,
+      "duration": 4.76
+    },
+    {
+      "text": "assistant will behave the same way it's",
+      "start": 1210.679,
+      "duration": 4.681
+    },
+    {
+      "text": "not learning based on what you are",
+      "start": 1212.96,
+      "duration": 5.48
+    },
+    {
+      "text": "giving it or your specific nature as a",
+      "start": 1215.36,
+      "duration": 5.28
+    },
+    {
+      "text": "user so that's why this is not an",
+      "start": 1218.44,
+      "duration": 4.4
+    },
+    {
+      "text": "example of machine learning it's an",
+      "start": 1220.64,
+      "duration": 5.039
+    },
+    {
+      "text": "example of AI but it's not an example of",
+      "start": 1222.84,
+      "duration": 6.44
+    },
+    {
+      "text": "ML and that's why AI comes under the",
+      "start": 1225.679,
+      "duration": 5.681
+    },
+    {
+      "text": "broadest or the biggest umbrella within",
+      "start": 1229.28,
+      "duration": 5.519
+    },
+    {
+      "text": "that comes ml if you look at ml this is",
+      "start": 1231.36,
+      "duration": 5.559
+    },
+    {
+      "text": "basically machines which learn they",
+      "start": 1234.799,
+      "duration": 3.76
+    },
+    {
+      "text": "adapt based on how the user is",
+      "start": 1236.919,
+      "duration": 4.281
+    },
+    {
+      "text": "interacting with them so you might be",
+      "start": 1238.559,
+      "duration": 4.36
+    },
+    {
+      "text": "thinking okay that's fine then what's",
+      "start": 1241.2,
+      "duration": 4.479
+    },
+    {
+      "text": "the difference between ML and DL why is",
+      "start": 1242.919,
+      "duration": 5.801
+    },
+    {
+      "text": "DL a subset of ml the difference is that",
+      "start": 1245.679,
+      "duration": 4.921
+    },
+    {
+      "text": "deep learning usually only involves",
+      "start": 1248.72,
+      "duration": 4.16
+    },
+    {
+      "text": "neural networks but machine learning",
+      "start": 1250.6,
+      "duration": 4.16
+    },
+    {
+      "text": "involves neural networks plus other",
+      "start": 1252.88,
+      "duration": 4.48
+    },
+    {
+      "text": "fields and one such field is decision",
+      "start": 1254.76,
+      "duration": 4.799
+    },
+    {
+      "text": "trees right let's say if you want to",
+      "start": 1257.36,
+      "duration": 4.439
+    },
+    {
+      "text": "predict heart disease so if you have",
+      "start": 1259.559,
+      "duration": 4.401
+    },
+    {
+      "text": "data from 303 patients and if you're",
+      "start": 1261.799,
+      "duration": 5.12
+    },
+    {
+      "text": "collecting things like age gender chest",
+      "start": 1263.96,
+      "duration": 6.52
+    },
+    {
+      "text": "pain cholesterol level uh ECG Etc you",
+      "start": 1266.919,
+      "duration": 5.161
+    },
+    {
+      "text": "want to predict whether the person has",
+      "start": 1270.48,
+      "duration": 3.64
+    },
+    {
+      "text": "heart disease or not and you build a",
+      "start": 1272.08,
+      "duration": 4.079
+    },
+    {
+      "text": "decision tree like",
+      "start": 1274.12,
+      "duration": 4.919
+    },
+    {
+      "text": "this now a decision tree like this does",
+      "start": 1276.159,
+      "duration": 5.361
+    },
+    {
+      "text": "not have neural networks at all this is",
+      "start": 1279.039,
+      "duration": 4.64
+    },
+    {
+      "text": "completely detached from neural networks",
+      "start": 1281.52,
+      "duration": 4.24
+    },
+    {
+      "text": "so this is not an example of deep",
+      "start": 1283.679,
+      "duration": 4.641
+    },
+    {
+      "text": "learning but it is an example of machine",
+      "start": 1285.76,
+      "duration": 3.68
+    },
+    {
+      "text": "Lear",
+      "start": 1288.32,
+      "duration": 3.68
+    },
+    {
+      "text": "learning a deep learning example would",
+      "start": 1289.44,
+      "duration": 4.0
+    },
+    {
+      "text": "be something which involves a neural",
+      "start": 1292.0,
+      "duration": 4.12
+    },
+    {
+      "text": "network so for example here we are uh",
+      "start": 1293.44,
+      "duration": 4.839
+    },
+    {
+      "text": "this is an image detection and here's a",
+      "start": 1296.12,
+      "duration": 4.12
+    },
+    {
+      "text": "convolutional neural network so we have",
+      "start": 1298.279,
+      "duration": 4.601
+    },
+    {
+      "text": "a coffee cup here and we are detecting",
+      "start": 1300.24,
+      "duration": 3.84
+    },
+    {
+      "text": "based on these",
+      "start": 1302.88,
+      "duration": 3.799
+    },
+    {
+      "text": "filters we are so there are filtering",
+      "start": 1304.08,
+      "duration": 4.28
+    },
+    {
+      "text": "layers in this convolutional neural",
+      "start": 1306.679,
+      "duration": 4.0
+    },
+    {
+      "text": "network and at the end of this filtering",
+      "start": 1308.36,
+      "duration": 4.36
+    },
+    {
+      "text": "layers we are detecting what this input",
+      "start": 1310.679,
+      "duration": 3.561
+    },
+    {
+      "text": "is whether it's a Lifeboat whether it's",
+      "start": 1312.72,
+      "duration": 4.559
+    },
+    {
+      "text": "a pizza so with maximum probability we",
+      "start": 1314.24,
+      "duration": 5.319
+    },
+    {
+      "text": "are saying it's an Express so so a",
+      "start": 1317.279,
+      "duration": 4.121
+    },
+    {
+      "text": "neural network is being used for this",
+      "start": 1319.559,
+      "duration": 4.401
+    },
+    {
+      "text": "task that's an example of deep",
+      "start": 1321.4,
+      "duration": 5.2
+    },
+    {
+      "text": "learning another example is let's say if",
+      "start": 1323.96,
+      "duration": 4.36
+    },
+    {
+      "text": "you want to predict handwritten digit",
+      "start": 1326.6,
+      "duration": 3.92
+    },
+    {
+      "text": "classification right so if you train a",
+      "start": 1328.32,
+      "duration": 4.959
+    },
+    {
+      "text": "neural network like this if you start",
+      "start": 1330.52,
+      "duration": 5.039
+    },
+    {
+      "text": "training so here you can see the neural",
+      "start": 1333.279,
+      "duration": 4.4
+    },
+    {
+      "text": "network is being trained and the problem",
+      "start": 1335.559,
+      "duration": 4.641
+    },
+    {
+      "text": "here is handwritten digit classification",
+      "start": 1337.679,
+      "duration": 5.281
+    },
+    {
+      "text": "so I have given it a bunch of digits uh",
+      "start": 1340.2,
+      "duration": 6.079
+    },
+    {
+      "text": "which actually look like this MN data it",
+      "start": 1342.96,
+      "duration": 5.12
+    },
+    {
+      "text": "looks like this I've given this neural",
+      "start": 1346.279,
+      "duration": 4.121
+    },
+    {
+      "text": "network bunch of digits to learn from",
+      "start": 1348.08,
+      "duration": 4.44
+    },
+    {
+      "text": "and the task of this neural network is",
+      "start": 1350.4,
+      "duration": 4.12
+    },
+    {
+      "text": "whenever I give it or whenever I write a",
+      "start": 1352.52,
+      "duration": 4.48
+    },
+    {
+      "text": "new digit it should identify whether",
+      "start": 1354.52,
+      "duration": 4.12
+    },
+    {
+      "text": "what digit is",
+      "start": 1357.0,
+      "duration": 4.44
+    },
+    {
+      "text": "it now if you see this particular",
+      "start": 1358.64,
+      "duration": 6.8
+    },
+    {
+      "text": "example this is actually an example of",
+      "start": 1361.44,
+      "duration": 5.8
+    },
+    {
+      "text": "neural network so here you can see the",
+      "start": 1365.44,
+      "duration": 5.479
+    },
+    {
+      "text": "neural network architecture we have the",
+      "start": 1367.24,
+      "duration": 7.08
+    },
+    {
+      "text": "input layer we have the hidden Layer Two",
+      "start": 1370.919,
+      "duration": 5.321
+    },
+    {
+      "text": "hidden layers and then we also have the",
+      "start": 1374.32,
+      "duration": 4.479
+    },
+    {
+      "text": "output layer over here this is an",
+      "start": 1376.24,
+      "duration": 3.88
+    },
+    {
+      "text": "example of deep",
+      "start": 1378.799,
+      "duration": 4.201
+    },
+    {
+      "text": "learning so now if you click on test and",
+      "start": 1380.12,
+      "duration": 5.439
+    },
+    {
+      "text": "if I select this let's say I select this",
+      "start": 1383.0,
+      "duration": 4.52
+    },
+    {
+      "text": "and click on predict you see the neural",
+      "start": 1385.559,
+      "duration": 3.921
+    },
+    {
+      "text": "network is correctly predicting eight so",
+      "start": 1387.52,
+      "duration": 3.68
+    },
+    {
+      "text": "it's understanding the digits let's say",
+      "start": 1389.48,
+      "duration": 3.36
+    },
+    {
+      "text": "I click on this and predict it's",
+      "start": 1391.2,
+      "duration": 3.88
+    },
+    {
+      "text": "correctly predicting seven this is an",
+      "start": 1392.84,
+      "duration": 3.839
+    },
+    {
+      "text": "example of deep",
+      "start": 1395.08,
+      "duration": 3.839
+    },
+    {
+      "text": "learning that's why deep learning is a",
+      "start": 1396.679,
+      "duration": 4.281
+    },
+    {
+      "text": "subset of machine learning machine",
+      "start": 1398.919,
+      "duration": 4.12
+    },
+    {
+      "text": "learning involves these kind of neural",
+      "start": 1400.96,
+      "duration": 4.76
+    },
+    {
+      "text": "network architectures plus it involves",
+      "start": 1403.039,
+      "duration": 4.201
+    },
+    {
+      "text": "things which are not neural networks",
+      "start": 1405.72,
+      "duration": 3.8
+    },
+    {
+      "text": "like decision trees",
+      "start": 1407.24,
+      "duration": 7.2
+    },
+    {
+      "text": "now within deep learning is llms why",
+      "start": 1409.52,
+      "duration": 7.0
+    },
+    {
+      "text": "because deep learning as we saw involves",
+      "start": 1414.44,
+      "duration": 5.479
+    },
+    {
+      "text": "images also but large like this involved",
+      "start": 1416.52,
+      "duration": 6.2
+    },
+    {
+      "text": "images even this project involved images",
+      "start": 1419.919,
+      "duration": 5.0
+    },
+    {
+      "text": "but large language models do not involve",
+      "start": 1422.72,
+      "duration": 4.76
+    },
+    {
+      "text": "images they only deal with text and",
+      "start": 1424.919,
+      "duration": 4.36
+    },
+    {
+      "text": "that's why they are a further subset of",
+      "start": 1427.48,
+      "duration": 4.16
+    },
+    {
+      "text": "deep learning this is the difference",
+      "start": 1429.279,
+      "duration": 5.88
+    },
+    {
+      "text": "between AI ml DL and llm so then you",
+      "start": 1431.64,
+      "duration": 5.84
+    },
+    {
+      "text": "might be thinking what is generative AI",
+      "start": 1435.159,
+      "duration": 4.321
+    },
+    {
+      "text": "generative AI you you can think of as a",
+      "start": 1437.48,
+      "duration": 4.0
+    },
+    {
+      "text": "mixture of large language models plus",
+      "start": 1439.48,
+      "duration": 5.0
+    },
+    {
+      "text": "deep learning why because generative AI",
+      "start": 1441.48,
+      "duration": 5.079
+    },
+    {
+      "text": "also deals with other modalities like",
+      "start": 1444.48,
+      "duration": 5.84
+    },
+    {
+      "text": "image sound video Etc it deals with all",
+      "start": 1446.559,
+      "duration": 5.041
+    },
+    {
+      "text": "of those",
+      "start": 1450.32,
+      "duration": 4.479
+    },
+    {
+      "text": "modalities so it is definitely you can",
+      "start": 1451.6,
+      "duration": 4.559
+    },
+    {
+      "text": "think of it as a mixture of large",
+      "start": 1454.799,
+      "duration": 4.12
+    },
+    {
+      "text": "language models plus deep learning so if",
+      "start": 1456.159,
+      "duration": 5.361
+    },
+    {
+      "text": "someone asks you what is generative AI",
+      "start": 1458.919,
+      "duration": 4.401
+    },
+    {
+      "text": "basically we are using deep neural",
+      "start": 1461.52,
+      "duration": 4.8
+    },
+    {
+      "text": "networks to create new content such as",
+      "start": 1463.32,
+      "duration": 6.44
+    },
+    {
+      "text": "text images various forms of media",
+      "start": 1466.32,
+      "duration": 6.239
+    },
+    {
+      "text": "whereas in llm you only deal with text",
+      "start": 1469.76,
+      "duration": 4.72
+    },
+    {
+      "text": "so generative AI can be thought of as a",
+      "start": 1472.559,
+      "duration": 3.921
+    },
+    {
+      "text": "mixture of llm and deep",
+      "start": 1474.48,
+      "duration": 4.319
+    },
+    {
+      "text": "learning I know these terms are",
+      "start": 1476.48,
+      "duration": 4.679
+    },
+    {
+      "text": "confusing but I hope these examples help",
+      "start": 1478.799,
+      "duration": 4.161
+    },
+    {
+      "text": "you understand what's the similarities",
+      "start": 1481.159,
+      "duration": 4.321
+    },
+    {
+      "text": "and differences between these terms as a",
+      "start": 1482.96,
+      "duration": 4.8
+    },
+    {
+      "text": "summary you can think of as AI to be the",
+      "start": 1485.48,
+      "duration": 4.72
+    },
+    {
+      "text": "broadest umbrella within that comes ml",
+      "start": 1487.76,
+      "duration": 4.36
+    },
+    {
+      "text": "within that comes DL and within that",
+      "start": 1490.2,
+      "duration": 3.32
+    },
+    {
+      "text": "comes",
+      "start": 1492.12,
+      "duration": 4.4
+    },
+    {
+      "text": "llms and AI is artificial intelligence",
+      "start": 1493.52,
+      "duration": 5.879
+    },
+    {
+      "text": "ml is machine learning is deep learning",
+      "start": 1496.52,
+      "duration": 5.399
+    },
+    {
+      "text": "and llm is large language models and if",
+      "start": 1499.399,
+      "duration": 4.841
+    },
+    {
+      "text": "you mix llm plus deep learning then we",
+      "start": 1501.919,
+      "duration": 4.721
+    },
+    {
+      "text": "have generative AI because in the field",
+      "start": 1504.24,
+      "duration": 4.439
+    },
+    {
+      "text": "of generative AI we don't just deal with",
+      "start": 1506.64,
+      "duration": 4.56
+    },
+    {
+      "text": "text but we deal with other modalities",
+      "start": 1508.679,
+      "duration": 5.36
+    },
+    {
+      "text": "of media like image like audio like",
+      "start": 1511.2,
+      "duration": 5.32
+    },
+    {
+      "text": "video",
+      "start": 1514.039,
+      "duration": 6.161
+    },
+    {
+      "text": "Etc so llms just represent a specific",
+      "start": 1516.52,
+      "duration": 5.96
+    },
+    {
+      "text": "application of deep learning techniques",
+      "start": 1520.2,
+      "duration": 4.56
+    },
+    {
+      "text": "which leverage their ability to process",
+      "start": 1522.48,
+      "duration": 4.28
+    },
+    {
+      "text": "and generate humanik text which we have",
+      "start": 1524.76,
+      "duration": 4.08
+    },
+    {
+      "text": "already seen they basically deal with",
+      "start": 1526.76,
+      "duration": 4.96
+    },
+    {
+      "text": "text so this is the similarities and",
+      "start": 1528.84,
+      "duration": 5.6
+    },
+    {
+      "text": "differences between AI ml DL llm and",
+      "start": 1531.72,
+      "duration": 4.04
+    },
+    {
+      "text": "generative",
+      "start": 1534.44,
+      "duration": 3.76
+    },
+    {
+      "text": "AI I hope you have understood this part",
+      "start": 1535.76,
+      "duration": 4.639
+    },
+    {
+      "text": "and you like these visuals if you have",
+      "start": 1538.2,
+      "duration": 4.04
+    },
+    {
+      "text": "any doubts until this part please write",
+      "start": 1540.399,
+      "duration": 4.601
+    },
+    {
+      "text": "it in the YouTube comments and we will",
+      "start": 1542.24,
+      "duration": 5.36
+    },
+    {
+      "text": "answer as quickly as possible and now we",
+      "start": 1545.0,
+      "duration": 4.32
+    },
+    {
+      "text": "come to the last part of this lecture",
+      "start": 1547.6,
+      "duration": 4.799
+    },
+    {
+      "text": "which is applications of llms and as I",
+      "start": 1549.32,
+      "duration": 5.12
+    },
+    {
+      "text": "speak the applications go on increasing",
+      "start": 1552.399,
+      "duration": 3.801
+    },
+    {
+      "text": "but overall they can be divided into",
+      "start": 1554.44,
+      "duration": 4.32
+    },
+    {
+      "text": "five main categories llm",
+      "start": 1556.2,
+      "duration": 4.52
+    },
+    {
+      "text": "as number one they can be used to create",
+      "start": 1558.76,
+      "duration": 7.24
+    },
+    {
+      "text": "new content of course so if I write here",
+      "start": 1560.72,
+      "duration": 9.959
+    },
+    {
+      "text": "write uh poem",
+      "start": 1566.0,
+      "duration": 7.679
+    },
+    {
+      "text": "about solar",
+      "start": 1570.679,
+      "duration": 7.12
+    },
+    {
+      "text": "system in the format of a detective",
+      "start": 1573.679,
+      "duration": 6.801
+    },
+    {
+      "text": "story maybe this content does not exist",
+      "start": 1577.799,
+      "duration": 5.561
+    },
+    {
+      "text": "anywhere right now but you can create",
+      "start": 1580.48,
+      "duration": 6.96
+    },
+    {
+      "text": "this content using uh llms so here you",
+      "start": 1583.36,
+      "duration": 6.36
+    },
+    {
+      "text": "can see there's a poem about solar",
+      "start": 1587.44,
+      "duration": 4.719
+    },
+    {
+      "text": "system in a detective story format in",
+      "start": 1589.72,
+      "duration": 4.559
+    },
+    {
+      "text": "the quiet sprawl of the Milky Way a",
+      "start": 1592.159,
+      "duration": 4.281
+    },
+    {
+      "text": "detective roamed the Stars by Night and",
+      "start": 1594.279,
+      "duration": 5.681
+    },
+    {
+      "text": "Day his name was Orion in Cosmic Affairs",
+      "start": 1596.44,
+      "duration": 5.76
+    },
+    {
+      "text": "where Mysteries burst the case on his",
+      "start": 1599.96,
+      "duration": 4.719
+    },
+    {
+      "text": "desk Dan quite bizarre yeah I won't read",
+      "start": 1602.2,
+      "duration": 4.44
+    },
+    {
+      "text": "the full poem but here you can see you",
+      "start": 1604.679,
+      "duration": 4.24
+    },
+    {
+      "text": "have created new content you can even",
+      "start": 1606.64,
+      "duration": 4.919
+    },
+    {
+      "text": "write books with llms generate media",
+      "start": 1608.919,
+      "duration": 4.441
+    },
+    {
+      "text": "articles with llms and people are",
+      "start": 1611.559,
+      "duration": 3.561
+    },
+    {
+      "text": "already doing these",
+      "start": 1613.36,
+      "duration": 5.48
+    },
+    {
+      "text": "things then you can use llms as chat",
+      "start": 1615.12,
+      "duration": 6.2
+    },
+    {
+      "text": "bots so you can actually interact with",
+      "start": 1618.84,
+      "duration": 4.36
+    },
+    {
+      "text": "them as virtual assistant so here you",
+      "start": 1621.32,
+      "duration": 3.839
+    },
+    {
+      "text": "see at the start the example which I",
+      "start": 1623.2,
+      "duration": 3.88
+    },
+    {
+      "text": "showed you it's like I'm chatting with",
+      "start": 1625.159,
+      "duration": 4.52
+    },
+    {
+      "text": "this llm right it asks me what's your",
+      "start": 1627.08,
+      "duration": 4.079
+    },
+    {
+      "text": "favorite form of relaxation I say",
+      "start": 1629.679,
+      "duration": 2.88
+    },
+    {
+      "text": "reading a book I can continue",
+      "start": 1631.159,
+      "duration": 3.801
+    },
+    {
+      "text": "conversations with it and not just for",
+      "start": 1632.559,
+      "duration": 6.36
+    },
+    {
+      "text": "me big companies Airlines uh then hotel",
+      "start": 1634.96,
+      "duration": 6.48
+    },
+    {
+      "text": "reservation desks they need chat Bots",
+      "start": 1638.919,
+      "duration": 4.36
+    },
+    {
+      "text": "right let's say you call a customer care",
+      "start": 1641.44,
+      "duration": 4.16
+    },
+    {
+      "text": "representative in 5 years it's highly",
+      "start": 1643.279,
+      "duration": 4.961
+    },
+    {
+      "text": "likely that all of those people are AI",
+      "start": 1645.6,
+      "duration": 5.24
+    },
+    {
+      "text": "AI chat Bots and how are they built they",
+      "start": 1648.24,
+      "duration": 4.799
+    },
+    {
+      "text": "are built through the knowledge of llms",
+      "start": 1650.84,
+      "duration": 4.079
+    },
+    {
+      "text": "in fact through this lecture or through",
+      "start": 1653.039,
+      "duration": 3.76
+    },
+    {
+      "text": "this playlist rather we will be building",
+      "start": 1654.919,
+      "duration": 4.12
+    },
+    {
+      "text": "our own llm so you will be fully",
+      "start": 1656.799,
+      "duration": 4.201
+    },
+    {
+      "text": "equipped to develop your own chatbot in",
+      "start": 1659.039,
+      "duration": 5.48
+    },
+    {
+      "text": "any field which you uh which you like so",
+      "start": 1661.0,
+      "duration": 5.64
+    },
+    {
+      "text": "chatbots is one of the huge and major",
+      "start": 1664.519,
+      "duration": 3.88
+    },
+    {
+      "text": "applications right now of large language",
+      "start": 1666.64,
+      "duration": 5.36
+    },
+    {
+      "text": "models Banks uh movie restaurant movies",
+      "start": 1668.399,
+      "duration": 5.481
+    },
+    {
+      "text": "resturants all of them need chat Bots",
+      "start": 1672.0,
+      "duration": 3.32
+    },
+    {
+      "text": "when you're booking shows when you are",
+      "start": 1673.88,
+      "duration": 3.48
+    },
+    {
+      "text": "dealing with the bank you want to know",
+      "start": 1675.32,
+      "duration": 4.599
+    },
+    {
+      "text": "how to open an account all of these are",
+      "start": 1677.36,
+      "duration": 4.36
+    },
+    {
+      "text": "going to be automated and are already",
+      "start": 1679.919,
+      "duration": 4.081
+    },
+    {
+      "text": "being automated through llms that's one",
+      "start": 1681.72,
+      "duration": 3.959
+    },
+    {
+      "text": "of the biggest applications and through",
+      "start": 1684.0,
+      "duration": 3.88
+    },
+    {
+      "text": "this playlist you will learn the skills",
+      "start": 1685.679,
+      "duration": 5.161
+    },
+    {
+      "text": "to develop your own chatbot then the",
+      "start": 1687.88,
+      "duration": 5.159
+    },
+    {
+      "text": "third application is machine translation",
+      "start": 1690.84,
+      "duration": 3.52
+    },
+    {
+      "text": "which means that we can of course",
+      "start": 1693.039,
+      "duration": 3.52
+    },
+    {
+      "text": "translate the text to any language right",
+      "start": 1694.36,
+      "duration": 6.6
+    },
+    {
+      "text": "so then I I say basically that translate",
+      "start": 1696.559,
+      "duration": 7.081
+    },
+    {
+      "text": "this poem to",
+      "start": 1700.96,
+      "duration": 2.68
+    },
+    {
+      "text": "French and uh here you can can see that",
+      "start": 1706.0,
+      "duration": 4.44
+    },
+    {
+      "text": "chat GPT is working on this translation",
+      "start": 1708.559,
+      "duration": 3.84
+    },
+    {
+      "text": "and immediately translates it to French",
+      "start": 1710.44,
+      "duration": 4.44
+    },
+    {
+      "text": "we don't even need Google translate now",
+      "start": 1712.399,
+      "duration": 5.0
+    },
+    {
+      "text": "I'm sure this translation is accurate",
+      "start": 1714.88,
+      "duration": 4.96
+    },
+    {
+      "text": "because it's it's amazing at this",
+      "start": 1717.399,
+      "duration": 4.64
+    },
+    {
+      "text": "translation tasks so you can very",
+      "start": 1719.84,
+      "duration": 4.4
+    },
+    {
+      "text": "quickly translate the",
+      "start": 1722.039,
+      "duration": 5.0
+    },
+    {
+      "text": "llms uh output into any language and it",
+      "start": 1724.24,
+      "duration": 4.4
+    },
+    {
+      "text": "does have some support for regional",
+      "start": 1727.039,
+      "duration": 4.921
+    },
+    {
+      "text": "languages not a very broad support but",
+      "start": 1728.64,
+      "duration": 6.159
+    },
+    {
+      "text": "it does support few Regional languages",
+      "start": 1731.96,
+      "duration": 5.319
+    },
+    {
+      "text": "in fact a lot of research is being done",
+      "start": 1734.799,
+      "duration": 5.441
+    },
+    {
+      "text": "to improve the llm outputs for regional",
+      "start": 1737.279,
+      "duration": 5.921
+    },
+    {
+      "text": "languages for regional languages so",
+      "start": 1740.24,
+      "duration": 5.0
+    },
+    {
+      "text": "that's Point number three point number",
+      "start": 1743.2,
+      "duration": 4.319
+    },
+    {
+      "text": "four which we saw already is new text",
+      "start": 1745.24,
+      "duration": 4.919
+    },
+    {
+      "text": "generation such as writing poems writing",
+      "start": 1747.519,
+      "duration": 5.28
+    },
+    {
+      "text": "books writing media articles news",
+      "start": 1750.159,
+      "duration": 5.721
+    },
+    {
+      "text": "articles it can basically create new",
+      "start": 1752.799,
+      "duration": 5.201
+    },
+    {
+      "text": "text for you which did not exist before",
+      "start": 1755.88,
+      "duration": 5.159
+    },
+    {
+      "text": "in literature and finally llms can also",
+      "start": 1758.0,
+      "duration": 5.399
+    },
+    {
+      "text": "be used for sentiment analysis you can",
+      "start": 1761.039,
+      "duration": 4.36
+    },
+    {
+      "text": "give a big bunch of paragraph and ask",
+      "start": 1763.399,
+      "duration": 5.441
+    },
+    {
+      "text": "the llm to identify whether what's the",
+      "start": 1765.399,
+      "duration": 6.12
+    },
+    {
+      "text": "sentiment here this might be useful for",
+      "start": 1768.84,
+      "duration": 4.4
+    },
+    {
+      "text": "hate speech detection let's say on",
+      "start": 1771.519,
+      "duration": 4.841
+    },
+    {
+      "text": "social media like Twitter Instagram Etc",
+      "start": 1773.24,
+      "duration": 5.24
+    },
+    {
+      "text": "so all of these five applications are",
+      "start": 1776.36,
+      "duration": 5.039
+    },
+    {
+      "text": "the pillars of llms and what they can do",
+      "start": 1778.48,
+      "duration": 4.559
+    },
+    {
+      "text": "there are several more applications",
+      "start": 1781.399,
+      "duration": 3.841
+    },
+    {
+      "text": "which I'm probably missing right now but",
+      "start": 1783.039,
+      "duration": 4.801
+    },
+    {
+      "text": "these five are the major ones to",
+      "start": 1785.24,
+      "duration": 4.24
+    },
+    {
+      "text": "illustrate these applications let me",
+      "start": 1787.84,
+      "duration": 3.079
+    },
+    {
+      "text": "just take you through a portal which we",
+      "start": 1789.48,
+      "duration": 3.079
+    },
+    {
+      "text": "have recently created for school",
+      "start": 1790.919,
+      "duration": 4.161
+    },
+    {
+      "text": "teachers so here you can see we have",
+      "start": 1792.559,
+      "duration": 4.96
+    },
+    {
+      "text": "created this portal by learning about",
+      "start": 1795.08,
+      "duration": 4.68
+    },
+    {
+      "text": "llm ourselves so here it's YouTube",
+      "start": 1797.519,
+      "duration": 5.441
+    },
+    {
+      "text": "generator McQ generator text summarizer",
+      "start": 1799.76,
+      "duration": 6.24
+    },
+    {
+      "text": "text rewriter worksheet generator you we",
+      "start": 1802.96,
+      "duration": 4.88
+    },
+    {
+      "text": "can do so many awesome things let me go",
+      "start": 1806.0,
+      "duration": 4.0
+    },
+    {
+      "text": "to the lesson plan right now and say",
+      "start": 1807.84,
+      "duration": 3.8
+    },
+    {
+      "text": "that I want to create a lesson plan on",
+      "start": 1810.0,
+      "duration": 4.0
+    },
+    {
+      "text": "the topic of gravity and I want to align",
+      "start": 1811.64,
+      "duration": 4.84
+    },
+    {
+      "text": "it with the cbsc curriculum of India and",
+      "start": 1814.0,
+      "duration": 5.12
+    },
+    {
+      "text": "let me click click on",
+      "start": 1816.48,
+      "duration": 5.28
+    },
+    {
+      "text": "generate uh so you'll see that the llm",
+      "start": 1819.12,
+      "duration": 5.48
+    },
+    {
+      "text": "is working on it a bit and it does take",
+      "start": 1821.76,
+      "duration": 4.6
+    },
+    {
+      "text": "some time but now you can see the lesson",
+      "start": 1824.6,
+      "duration": 3.88
+    },
+    {
+      "text": "plan is created for gravity where we",
+      "start": 1826.36,
+      "duration": 3.4
+    },
+    {
+      "text": "have the objective we have the",
+      "start": 1828.48,
+      "duration": 3.439
+    },
+    {
+      "text": "assessment key points the opening the",
+      "start": 1829.76,
+      "duration": 4.039
+    },
+    {
+      "text": "introduction to new material guided",
+      "start": 1831.919,
+      "duration": 4.76
+    },
+    {
+      "text": "practice independent practice Etc this",
+      "start": 1833.799,
+      "duration": 5.6
+    },
+    {
+      "text": "would save so much time for the teacher",
+      "start": 1836.679,
+      "duration": 4.961
+    },
+    {
+      "text": "and it's amazing this was not possible 5",
+      "start": 1839.399,
+      "duration": 5.201
+    },
+    {
+      "text": "years back but now with the llms we can",
+      "start": 1841.64,
+      "duration": 4.8
+    },
+    {
+      "text": "do all of these applications we can do",
+      "start": 1844.6,
+      "duration": 5.439
+    },
+    {
+      "text": "so many other cool things such as uh",
+      "start": 1846.44,
+      "duration": 5.8
+    },
+    {
+      "text": "text McQ generator let's say you are a",
+      "start": 1850.039,
+      "duration": 4.041
+    },
+    {
+      "text": "teacher and you you want to generate the",
+      "start": 1852.24,
+      "duration": 5.88
+    },
+    {
+      "text": "questions on let's say World War II",
+      "start": 1854.08,
+      "duration": 5.64
+    },
+    {
+      "text": "and",
+      "start": 1858.12,
+      "duration": 4.76
+    },
+    {
+      "text": "uh you want one hard one medium and one",
+      "start": 1859.72,
+      "duration": 5.36
+    },
+    {
+      "text": "easy question you click on generate and",
+      "start": 1862.88,
+      "duration": 5.48
+    },
+    {
+      "text": "you wait for the response of that",
+      "start": 1865.08,
+      "duration": 7.24
+    },
+    {
+      "text": "llm you see immediately within 5 Seconds",
+      "start": 1868.36,
+      "duration": 5.72
+    },
+    {
+      "text": "we have got question and answers for",
+      "start": 1872.32,
+      "duration": 3.8
+    },
+    {
+      "text": "World War II we have three questions we",
+      "start": 1874.08,
+      "duration": 3.479
+    },
+    {
+      "text": "have their correct answer and the",
+      "start": 1876.12,
+      "duration": 4.399
+    },
+    {
+      "text": "explanation we build this llm froms or",
+      "start": 1877.559,
+      "duration": 4.881
+    },
+    {
+      "text": "rather we build this llm application",
+      "start": 1880.519,
+      "duration": 4.241
+    },
+    {
+      "text": "from scratch and once you go through",
+      "start": 1882.44,
+      "duration": 3.719
+    },
+    {
+      "text": "this playlist we'll have several",
+      "start": 1884.76,
+      "duration": 3.0
+    },
+    {
+      "text": "lectures towards the end which will show",
+      "start": 1886.159,
+      "duration": 3.601
+    },
+    {
+      "text": "you you how you can also build such type",
+      "start": 1887.76,
+      "duration": 3.159
+    },
+    {
+      "text": "of",
+      "start": 1889.76,
+      "duration": 3.039
+    },
+    {
+      "text": "applications but here I want to",
+      "start": 1890.919,
+      "duration": 3.76
+    },
+    {
+      "text": "illustrate the point that if you have",
+      "start": 1892.799,
+      "duration": 3.961
+    },
+    {
+      "text": "knowledge about llms the sky is the",
+      "start": 1894.679,
+      "duration": 4.041
+    },
+    {
+      "text": "limit you can build wonderful",
+      "start": 1896.76,
+      "duration": 4.0
+    },
+    {
+      "text": "applications like this and what many",
+      "start": 1898.72,
+      "duration": 4.4
+    },
+    {
+      "text": "students do wrong is that they get so",
+      "start": 1900.76,
+      "duration": 4.08
+    },
+    {
+      "text": "fascinated by these applications that",
+      "start": 1903.12,
+      "duration": 4.08
+    },
+    {
+      "text": "they just download the code they run the",
+      "start": 1904.84,
+      "duration": 3.959
+    },
+    {
+      "text": "code they make some changes and they",
+      "start": 1907.2,
+      "duration": 3.0
+    },
+    {
+      "text": "write on their resume that they know",
+      "start": 1908.799,
+      "duration": 4.441
+    },
+    {
+      "text": "about llm that's not the right way the",
+      "start": 1910.2,
+      "duration": 5.439
+    },
+    {
+      "text": "right way is to understand the",
+      "start": 1913.24,
+      "duration": 5.12
+    },
+    {
+      "text": "foundations make your Basics clear",
+      "start": 1915.639,
+      "duration": 4.92
+    },
+    {
+      "text": "understand the nuts and bolts of llms",
+      "start": 1918.36,
+      "duration": 4.76
+    },
+    {
+      "text": "which is the purpose of this playlist so",
+      "start": 1920.559,
+      "duration": 5.641
+    },
+    {
+      "text": "this is uh this is section six which is",
+      "start": 1923.12,
+      "duration": 5.799
+    },
+    {
+      "text": "the application of llms and now we have",
+      "start": 1926.2,
+      "duration": 4.56
+    },
+    {
+      "text": "completed the six sections which we have",
+      "start": 1928.919,
+      "duration": 3.961
+    },
+    {
+      "text": "planned for today's",
+      "start": 1930.76,
+      "duration": 4.519
+    },
+    {
+      "text": "lecture at the end I want to leave you",
+      "start": 1932.88,
+      "duration": 5.159
+    },
+    {
+      "text": "with just one sentence and that is the",
+      "start": 1935.279,
+      "duration": 5.321
+    },
+    {
+      "text": "sky is the limit when it comes to llm",
+      "start": 1938.039,
+      "duration": 4.801
+    },
+    {
+      "text": "Applications please remember that the",
+      "start": 1940.6,
+      "duration": 3.76
+    },
+    {
+      "text": "applications which I just showed you",
+      "start": 1942.84,
+      "duration": 3.0
+    },
+    {
+      "text": "right now are just the tip of the",
+      "start": 1944.36,
+      "duration": 4.36
+    },
+    {
+      "text": "iceberg you can do so many things right",
+      "start": 1945.84,
+      "duration": 5.28
+    },
+    {
+      "text": "now if you learn about llms that's",
+      "start": 1948.72,
+      "duration": 4.16
+    },
+    {
+      "text": "what's so exciting about the time which",
+      "start": 1951.12,
+      "duration": 5.12
+    },
+    {
+      "text": "we live in currently uh the sky is the",
+      "start": 1952.88,
+      "duration": 5.2
+    },
+    {
+      "text": "limit for research applications for",
+      "start": 1956.24,
+      "duration": 4.24
+    },
+    {
+      "text": "industrial applications but what we",
+      "start": 1958.08,
+      "duration": 4.199
+    },
+    {
+      "text": "think is that students who will really",
+      "start": 1960.48,
+      "duration": 3.559
+    },
+    {
+      "text": "contribute and make an impact are the",
+      "start": 1962.279,
+      "duration": 3.321
+    },
+    {
+      "text": "ones who know the details of how to",
+      "start": 1964.039,
+      "duration": 4.201
+    },
+    {
+      "text": "write the Transformer code how key query",
+      "start": 1965.6,
+      "duration": 5.28
+    },
+    {
+      "text": "value Works what exactly is positional",
+      "start": 1968.24,
+      "duration": 5.84
+    },
+    {
+      "text": "encoding until you understand these",
+      "start": 1970.88,
+      "duration": 5.519
+    },
+    {
+      "text": "Concepts it becomes difficult your",
+      "start": 1974.08,
+      "duration": 4.28
+    },
+    {
+      "text": "knowledge will be superficial",
+      "start": 1976.399,
+      "duration": 4.4
+    },
+    {
+      "text": "and that's the whole purpose of this",
+      "start": 1978.36,
+      "duration": 5.24
+    },
+    {
+      "text": "playlist please comment in the YouTube",
+      "start": 1980.799,
+      "duration": 5.12
+    },
+    {
+      "text": "uh comment section if you liked the",
+      "start": 1983.6,
+      "duration": 5.0
+    },
+    {
+      "text": "style of this uh content description if",
+      "start": 1985.919,
+      "duration": 4.841
+    },
+    {
+      "text": "you like the this whiteboard approach",
+      "start": 1988.6,
+      "duration": 4.679
+    },
+    {
+      "text": "I'm basically trying to write everything",
+      "start": 1990.76,
+      "duration": 5.08
+    },
+    {
+      "text": "here and uh give a visual flavor and",
+      "start": 1993.279,
+      "duration": 4.201
+    },
+    {
+      "text": "visual intuition for how things are",
+      "start": 1995.84,
+      "duration": 3.959
+    },
+    {
+      "text": "working in subsequent sections we'll",
+      "start": 1997.48,
+      "duration": 4.679
+    },
+    {
+      "text": "definitely dive a bit deeper into coding",
+      "start": 1999.799,
+      "duration": 4.201
+    },
+    {
+      "text": "the next lesson as I mentioned here is",
+      "start": 2002.159,
+      "duration": 4.201
+    },
+    {
+      "text": "stages of building llms we'll have",
+      "start": 2004.0,
+      "duration": 4.48
+    },
+    {
+      "text": "couple of lectures about these Basics",
+      "start": 2006.36,
+      "duration": 3.919
+    },
+    {
+      "text": "and then we'll be diving into",
+      "start": 2008.48,
+      "duration": 4.559
+    },
+    {
+      "text": "coding so make sure you're understanding",
+      "start": 2010.279,
+      "duration": 4.721
+    },
+    {
+      "text": "make sure you make notes and ask",
+      "start": 2013.039,
+      "duration": 5.561
+    },
+    {
+      "text": "questions in the comments",
+      "start": 2015.0,
+      "duration": 3.6
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to the second lecture in the building large language models from scratch series the previous lecture was an introduction to the entire series and in that lecture I described about what we are planning to cover in this playlist and uh I mentioned about our end goal of learning the nuts and Bol of building a large language model in this series we are not just going to look at applications we are going to understand how things really work from a very very fundamental level so let's get started my name is Dr Raj dander and I graduated with a PhD from Massachusetts Institute of Technology in 2022 since two years uh I have been in India working on our vision to make AI accessible to all this playlist is a part of that Vision so let's get started with today's lecture today we are going to cover six major aspects first we are going to learn about what exactly is a large language model secondly we are going to learn about what does large mean in the large language model terminology third we are going to see what the difference between modern large large language models and earlier NLP models fourth we are going to see see what's the secret Source behind llms what really makes them so good fifth we are going to see the difference between these terminologies which you might have heard llm generative AI deep learning machine learning artificial intelligence it's getting so confusing right the number of terminologies just keep increasing day by day how do we know which terminology means what and then in the last section I'm going to discuss about the applications of llms and what all cool stuff we can build with llms so with this we'll get started with the part one or section one of today's lecture which is explaining what is a large language model in the first place now unless you have been living under a rock it might you would have definitely heard of llms open AI generative AI so you might have heard about the term large language model but you might not be kn knowing what it exactly is you might have even used chat GPT without knowing what an llm is at its simplest form an llm is just a neural network which is designed to understand generate and respond to humanik text there are two key things here an llm is a neural network which is designed to understand generate and respond to human like text let me explain the two parts separately first new neural network so I'm assuming people who are coming to the series know a bit about neural networks if you don't it's totally fine I'll explain all those Basics as well but a neural network essentially looks like this we have input data which feeds into a layer of neurons and bunch of these layers are stacked together and we have the output layer the reason it's called a neural network it's because these neurons represent the circuitry in our brain uh or they do so in a very symbolic sense uh that's why this name deep neural network comes and deep neural networks are shown to have a huge number of applications in image detection text Generation Um self driving cars then let's say if you want to detect whether patient has brain tumor or not they have huge number of applications so llms are essentially just neural networks which are designed for very uh generic type of text related applications such as understanding generating and responding to humanik text what does it mean to understand generate and respond to humanik text so the simplest way to demonstrate what does that mean is taking you to chat GPT I'm sure all of you who are seeing this lecture have used chat GPT here you can see on the dropdown I'm using gp4 you might be on gp40 or gp4 om mini so you can ask basically any question to chat gptc here there are some questions and uh or here there are some prompt so I'll click on this prompt and click on plan a relaxing day and you see can you help me to plan a relaxing day that focuses on activities for Rejuvenation to start can you ask me what my favorite forms of relaxation are and you see the chat GP responds like a human absolutely to help craft the perfect day of relaxation could do you share your favorite forms of relaxation for instance do you prefer spending time Outdoors engaging in activities like reading or yoga or perhaps trying creative Pursuits like painting or cooking so I'll write here reading a book let's see what chat GPT responds and then chat GPT says great reading can be a central part of a rejuvenating day here's a plan focused around your enjoyment and then it tells me to do morning meditation for 30 minutes healthy breakfast first for 45 minutes reading time for 2 hours nature walk for 1 hour uh so you can see it's almost like I'm talking with a human so that's the second part of the llm definition large language models understand generate and respond to humanik text and they also respond like humans so chat GPT the demonstration which I just showed you is an llm but what many people don't know about or they don't think about llms is that at the core of llm they are just neural networks which are designed to do these tasks so if anyone asks you what an llm is tell them that they are deep neural networks trained on massive amount of data which help to do specific tasks such as understanding generating and respond to human like text and in many cases they also respond like humans this is getting better and better as I making this lecture and llms are in fact sounding more and more like humans and that has led to huge problems maybe we'll create a separate lecture series on that so that's the first section which we dealt with today which is what is a large language model great the second question you might be thinking is why is it called a large language model why not just a language model after all it just a model dealing with language right why do we specifically have this one more large term here and the reason is because until llms came into the picture model sizes were not very big and when I mean model size I mean the number of parameters in the model but llms if you if you know about the number of parameters which they deal with you will be shocked llms typically have billions of parameters billion one billion it's a huge number of parameters and now there are even some L llms which are trillions of parameters we can't even think of those numbers but it's huge number of parameters so let me show you a visual here so this is a table which shows the number of parameters in GPT as you know G we are at GPT 4 right now so gpt3 which was the earlier version of GPT you can see gpt3 small had 125 million parameters GP gpt3 medium had 350 million gpt3 large at 760 million and if you see GPT 313b had 13 billion gpt3 175b had 175 billion parameters so usually the second term here is the number of parameters in the model so here it's 175b which is 175 billion parameters and GPT 4 has even more number of parameters that's why they are called large language models so here is another graph which shows the comparison between gpt1 gpt2 and gpt3 so as you go from GPT 1 to 2 to 3 the llms also become better and better and better but their number of parameters also increase tremendously if you see from gpt1 to gpt2 there is a factor of 100 so the parameters increase from 100 million to almost 1 billion so actually there is a factor of 10 here but from gpt2 to gpt3 there is a factor of 100 so gpt2 had only 1.5 billion parameters but gpt3 had 175 billion parameters you see there are some other terminologies also like gpt1 had 12 decoders gpt2 had 48 and gpt3 had 96 if you don't know what this means it's totally fine we are going to cover that in this series token size take a look at token size gpt1 has a token size of 512 gpt2 has 1024 gpt3 has 2048 it's fine if you don't know what it means just you can see everything is generally increasing now here is a graph which shows the model size in artificial intelligence type of models over the period of years so this graph is plotted from 1950 to 2022 and it was published in nature so it is a reliable graph on the y- axis there are number of parameters so if you see in 1950 number of parameters was around just 10 to 100 uh in a log scale so this Y axis is in log scale so 1950 to 1960 models barely had ,000 10,000 parameters then in 1980 to 2000 model started having around 100,000 parameters but it's only in 2020 that we have reached 100 million 1 billion and even almost close to 1 trillion number of parameters now and you can see the uh orange symbol here so mostly these parameters are for llms which is for language tasks I'm just zooming in here to show you that the orange symbols here have the largest number of parameters I hope this has convinced you why these models are called large number of models we are living in an age where the number of parameters are unprecedented they are huge number that's why it's called as large language models I'm sure by the time this video is released and maybe one year after that you would have reached the parameter size of 1 trillion now the reason that's the first part of the terminology large then why why are they called language models and that's pretty clear if you remember the example which I showed you over here these models only deal with language they do not deal with other modalities like image or video let's say they only deal with language llms only deal with language so these models do a wide range of natural language processing tasks so anything related to language such as question answering translation sentiment analysis and so many more tasks which all of you definitely might have explored with chat GPT that's why they are called language models because they generally do a wide range of tasks related to language so this is the meaning behind the terminology large and language models that covers the second aspect of today's lecture and now we come to the third aspect which is why have llms become so popular didn't we have the field of natural language processing before also and that's true natural language processing as a field has been existing much before llms uh NLP models have been existing much before llms but LLP models if you look at the models which came before llms they were designed for very specific tasks so for example there is one particular NLP model which might be designed for language translation there might be one specific NLP model which might be for sentiment analysis let's say llms on the other hand can do a wide range of NLP tasks so it turns out that if you train a GPT for text completion that same architecture works well for language translation also and it's pretty generic that way that's one difference between llms and earlier NLP models earlier NLP models were designed for specific tasks modern llms can do a wide range of NLP tasks the second difference is based on an application so earlier llm models could not um earlier llm models or earlier language models I should say could not write an email from Custom instructions it was very difficult for them to do that now if you think of modern llm such as chat GPT and this task is almost trivial for chat GPT so if I go to chat GPT right now and I say draft an email for me to send to a colleague or to send to a friend of mine to book movie tickets let's say and I'll just zoom in here and see chat GPT not only starts drafting the email but it also has inserted emojis and everything here it's a trivial task for chat GPT but you might be surprised to know that this trivial task was very hard to do for earlier NLP models and that's the big difference between L llm versus earlier NLP models they are broad they can do a wide range of generic tasks and second is their applications are endless much more than the earlier models and that's why we are even having this playlist in the first place so that's Point number three point number four is what you all must be thinking about that llms are so good they can do these amazing tasks they can almost behave like humans right but what makes llm so good what is the secret sauce typically there has to be a secret sauce right which makes llm so much better than NLP what's that magic bullet here and usually people say that there is no secret sauce to things things just gradually improve over a period of time but in this case there is a specific secret sauce and that is the Transformer architecture so you see here I've added the logo of secret sauce and for llms the secret sauce is Transformer architecture don't worry if you know what it what what it means what is transformer for all you know you might be thinking of the Transformers movie in which there are these cars which get converted into mechanical robots so you that might be your first thought when you hear about Transformers right of course people who know about this know exactly what I'm talking about here but for people who don't know uh this this is the only Transformer if this is the only Transformer you know this playlist is perfect for you because you will understand what what does Transformer mean and what it actually means is it summarized by this one schematic over here this is what a Transformer architecture looks like and you might be confused by all of these terminologies what is input embedding what's multi- attention head or what speed forward here what does ADD and nor mean here what's output embedding there are so many things which look confusing and it's fine but we are going to learn about this Secret Sauce in a lot of detail in this playlist there is one paper which was introduced in 2017 which really changed the game that paper is what I'm showing you on the screen right now it's called attention is all you need it was published by eight authors from Google brain and uh this introduced the architecture of Transformers so the schematic which I showed you on the Whiteboard is this schematic which they had in the paper can you guess how many citations this paper has today it has more than 100,000 citations in just a matter of 5 years so people say that research is boring and research does not have any external reward in this case it does if you are one of the few authors on this paper you have 100,000 citations in 5 years and you completely revolutionize the field of artificial intelligence so this is that paper and it's a 15-page paper but if you try to read it it's very dense to understand this paper really takes a lot of time and it really takes a lot of effort there are some YouTube videos to explain this but I don't think any of them do justice to really explaining everything from scratch every single page of this paper can be three to four videos so if you think about it these 15 pages contain huge amount of information and we'll be devoting lectures to different sections here such as positional encoding what is this dot product attention what is this attention formula what is key query value what is multi-head ention we'll be figuring all of that out so don't worry at this stage if you don't know what a Transformer means even if you have just this image in Mind of a transformer it's awesome you have come to the perfect place okay so as I said do not worry we will learn all about this Secret Sauce which is the Transformers in the subsequent lectures that covers the fourth point of today's lecture and now we come to the fifth point which is all about terminologies right so there are so many words people are throwing around randomly these days right it feels it just getting confusing more and more confusing so people talk about llm people talk about jna they talk about deep learning they talk about machine learning and artificial intelligence is one more term what are the similarities what are the differences between all of these terms so if you look at this particular graph here or figure it kind of sums up everything perfectly start from the outermost sphere or the broadest domain that is artificial intelligence that is the biggest umbrella under this big umbrella comes a smaller umbrella which is machine learning under this machine learning comes yet another smaller umbr umbrella which is called Deep learning and within that the smallest umbrella that's the large language models and this is what we are going to make a playlist on or this is the playlist which you are watching right now so what is the differences between these so first the broadest umbrella is artificial intelligence and this contains all the other umbrellas so any machine which is remotely behaving like humans or it has some sort of intelligence that comes under the bucket of AI That's the biggest bucket so you might be thinking what's the difference between Ai and ml right so look at this example this is Lanza flight chat assistant and uh so it says hi I'm Alisa I am your Lanza chat assistant here is a selection of topics I can help you with you can choose one of the topics so then you say hi Alisa then Alisa says hello then you can click on any one of these you see it's a rule based chatbot you click some options and then Elisa is already programmed to answer so I say that flight cancelled check Alternatives and rebook so if I click on this Ela is already program to answer this is an example of AI because it covers intelligence right Lanza chat assistant can be thought of to be intelligent but this is Rule based intelligence it's not learning based on your responses so let's say you respond and your friend responds Elisa this chat assistant will behave the same way it's not learning based on what you are giving it or your specific nature as a user so that's why this is not an example of machine learning it's an example of AI but it's not an example of ML and that's why AI comes under the broadest or the biggest umbrella within that comes ml if you look at ml this is basically machines which learn they adapt based on how the user is interacting with them so you might be thinking okay that's fine then what's the difference between ML and DL why is DL a subset of ml the difference is that deep learning usually only involves neural networks but machine learning involves neural networks plus other fields and one such field is decision trees right let's say if you want to predict heart disease so if you have data from 303 patients and if you're collecting things like age gender chest pain cholesterol level uh ECG Etc you want to predict whether the person has heart disease or not and you build a decision tree like this now a decision tree like this does not have neural networks at all this is completely detached from neural networks so this is not an example of deep learning but it is an example of machine Lear learning a deep learning example would be something which involves a neural network so for example here we are uh this is an image detection and here's a convolutional neural network so we have a coffee cup here and we are detecting based on these filters we are so there are filtering layers in this convolutional neural network and at the end of this filtering layers we are detecting what this input is whether it's a Lifeboat whether it's a pizza so with maximum probability we are saying it's an Express so so a neural network is being used for this task that's an example of deep learning another example is let's say if you want to predict handwritten digit classification right so if you train a neural network like this if you start training so here you can see the neural network is being trained and the problem here is handwritten digit classification so I have given it a bunch of digits uh which actually look like this MN data it looks like this I've given this neural network bunch of digits to learn from and the task of this neural network is whenever I give it or whenever I write a new digit it should identify whether what digit is it now if you see this particular example this is actually an example of neural network so here you can see the neural network architecture we have the input layer we have the hidden Layer Two hidden layers and then we also have the output layer over here this is an example of deep learning so now if you click on test and if I select this let's say I select this and click on predict you see the neural network is correctly predicting eight so it's understanding the digits let's say I click on this and predict it's correctly predicting seven this is an example of deep learning that's why deep learning is a subset of machine learning machine learning involves these kind of neural network architectures plus it involves things which are not neural networks like decision trees now within deep learning is llms why because deep learning as we saw involves images also but large like this involved images even this project involved images but large language models do not involve images they only deal with text and that's why they are a further subset of deep learning this is the difference between AI ml DL and llm so then you might be thinking what is generative AI generative AI you you can think of as a mixture of large language models plus deep learning why because generative AI also deals with other modalities like image sound video Etc it deals with all of those modalities so it is definitely you can think of it as a mixture of large language models plus deep learning so if someone asks you what is generative AI basically we are using deep neural networks to create new content such as text images various forms of media whereas in llm you only deal with text so generative AI can be thought of as a mixture of llm and deep learning I know these terms are confusing but I hope these examples help you understand what's the similarities and differences between these terms as a summary you can think of as AI to be the broadest umbrella within that comes ml within that comes DL and within that comes llms and AI is artificial intelligence ml is machine learning is deep learning and llm is large language models and if you mix llm plus deep learning then we have generative AI because in the field of generative AI we don't just deal with text but we deal with other modalities of media like image like audio like video Etc so llms just represent a specific application of deep learning techniques which leverage their ability to process and generate humanik text which we have already seen they basically deal with text so this is the similarities and differences between AI ml DL llm and generative AI I hope you have understood this part and you like these visuals if you have any doubts until this part please write it in the YouTube comments and we will answer as quickly as possible and now we come to the last part of this lecture which is applications of llms and as I speak the applications go on increasing but overall they can be divided into five main categories llm as number one they can be used to create new content of course so if I write here write uh poem about solar system in the format of a detective story maybe this content does not exist anywhere right now but you can create this content using uh llms so here you can see there's a poem about solar system in a detective story format in the quiet sprawl of the Milky Way a detective roamed the Stars by Night and Day his name was Orion in Cosmic Affairs where Mysteries burst the case on his desk Dan quite bizarre yeah I won't read the full poem but here you can see you have created new content you can even write books with llms generate media articles with llms and people are already doing these things then you can use llms as chat bots so you can actually interact with them as virtual assistant so here you see at the start the example which I showed you it's like I'm chatting with this llm right it asks me what's your favorite form of relaxation I say reading a book I can continue conversations with it and not just for me big companies Airlines uh then hotel reservation desks they need chat Bots right let's say you call a customer care representative in 5 years it's highly likely that all of those people are AI AI chat Bots and how are they built they are built through the knowledge of llms in fact through this lecture or through this playlist rather we will be building our own llm so you will be fully equipped to develop your own chatbot in any field which you uh which you like so chatbots is one of the huge and major applications right now of large language models Banks uh movie restaurant movies resturants all of them need chat Bots when you're booking shows when you are dealing with the bank you want to know how to open an account all of these are going to be automated and are already being automated through llms that's one of the biggest applications and through this playlist you will learn the skills to develop your own chatbot then the third application is machine translation which means that we can of course translate the text to any language right so then I I say basically that translate this poem to French and uh here you can can see that chat GPT is working on this translation and immediately translates it to French we don't even need Google translate now I'm sure this translation is accurate because it's it's amazing at this translation tasks so you can very quickly translate the llms uh output into any language and it does have some support for regional languages not a very broad support but it does support few Regional languages in fact a lot of research is being done to improve the llm outputs for regional languages for regional languages so that's Point number three point number four which we saw already is new text generation such as writing poems writing books writing media articles news articles it can basically create new text for you which did not exist before in literature and finally llms can also be used for sentiment analysis you can give a big bunch of paragraph and ask the llm to identify whether what's the sentiment here this might be useful for hate speech detection let's say on social media like Twitter Instagram Etc so all of these five applications are the pillars of llms and what they can do there are several more applications which I'm probably missing right now but these five are the major ones to illustrate these applications let me just take you through a portal which we have recently created for school teachers so here you can see we have created this portal by learning about llm ourselves so here it's YouTube generator McQ generator text summarizer text rewriter worksheet generator you we can do so many awesome things let me go to the lesson plan right now and say that I want to create a lesson plan on the topic of gravity and I want to align it with the cbsc curriculum of India and let me click click on generate uh so you'll see that the llm is working on it a bit and it does take some time but now you can see the lesson plan is created for gravity where we have the objective we have the assessment key points the opening the introduction to new material guided practice independent practice Etc this would save so much time for the teacher and it's amazing this was not possible 5 years back but now with the llms we can do all of these applications we can do so many other cool things such as uh text McQ generator let's say you are a teacher and you you want to generate the questions on let's say World War II and uh you want one hard one medium and one easy question you click on generate and you wait for the response of that llm you see immediately within 5 Seconds we have got question and answers for World War II we have three questions we have their correct answer and the explanation we build this llm froms or rather we build this llm application from scratch and once you go through this playlist we'll have several lectures towards the end which will show you you how you can also build such type of applications but here I want to illustrate the point that if you have knowledge about llms the sky is the limit you can build wonderful applications like this and what many students do wrong is that they get so fascinated by these applications that they just download the code they run the code they make some changes and they write on their resume that they know about llm that's not the right way the right way is to understand the foundations make your Basics clear understand the nuts and bolts of llms which is the purpose of this playlist so this is uh this is section six which is the application of llms and now we have completed the six sections which we have planned for today's lecture at the end I want to leave you with just one sentence and that is the sky is the limit when it comes to llm Applications please remember that the applications which I just showed you right now are just the tip of the iceberg you can do so many things right now if you learn about llms that's what's so exciting about the time which we live in currently uh the sky is the limit for research applications for industrial applications but what we think is that students who will really contribute and make an impact are the ones who know the details of how to write the Transformer code how key query value Works what exactly is positional encoding until you understand these Concepts it becomes difficult your knowledge will be superficial and that's the whole purpose of this playlist please comment in the YouTube uh comment section if you liked the style of this uh content description if you like the this whiteboard approach I'm basically trying to write everything here and uh give a visual flavor and visual intuition for how things are working in subsequent sections we'll definitely dive a bit deeper into coding the next lesson as I mentioned here is stages of building llms we'll have couple of lectures about these Basics and then we'll be diving into coding so make sure you're understanding make sure you make notes and ask questions in the comments"
+}

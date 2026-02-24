@@ -1,0 +1,3601 @@
+{
+  "video": {
+    "video_id": "d_PiwZe8UF4",
+    "title": "GELU Activation Function in the LLM Architecture",
+    "duration": 1677.0,
+    "index": 20
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.56
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.359,
+      "duration": 4.24
+    },
+    {
+      "text": "lecture in the built large language",
+      "start": 7.56,
+      "duration": 5.159
+    },
+    {
+      "text": "models from scratch Series in these set",
+      "start": 9.599,
+      "duration": 5.721
+    },
+    {
+      "text": "of lectures we have been learning about",
+      "start": 12.719,
+      "duration": 6.121
+    },
+    {
+      "text": "the llm architecture in a lot of detail",
+      "start": 15.32,
+      "duration": 5.6
+    },
+    {
+      "text": "if you want to learn about the llm",
+      "start": 18.84,
+      "duration": 4.4
+    },
+    {
+      "text": "architecture it is very important that",
+      "start": 20.92,
+      "duration": 4.279
+    },
+    {
+      "text": "you understand all of these building",
+      "start": 23.24,
+      "duration": 4.959
+    },
+    {
+      "text": "blocks from bottom to top in the",
+      "start": 25.199,
+      "duration": 4.801
+    },
+    {
+      "text": "previous lecture we covered about the G",
+      "start": 28.199,
+      "duration": 3.961
+    },
+    {
+      "text": "DPT backbone which is essentially a",
+      "start": 30.0,
+      "duration": 5.239
+    },
+    {
+      "text": "dummy code with the bird's eye view",
+      "start": 32.16,
+      "duration": 4.52
+    },
+    {
+      "text": "where you see all the different",
+      "start": 35.239,
+      "duration": 3.921
+    },
+    {
+      "text": "components together without coding any",
+      "start": 36.68,
+      "duration": 4.879
+    },
+    {
+      "text": "of them and since the last lecture we",
+      "start": 39.16,
+      "duration": 4.68
+    },
+    {
+      "text": "have started looking at each individual",
+      "start": 41.559,
+      "duration": 4.921
+    },
+    {
+      "text": "component and coding them out in python",
+      "start": 43.84,
+      "duration": 4.68
+    },
+    {
+      "text": "in the previous lecture we looked at",
+      "start": 46.48,
+      "duration": 4.04
+    },
+    {
+      "text": "this building block called layer",
+      "start": 48.52,
+      "duration": 4.76
+    },
+    {
+      "text": "normalization and today's lecture is",
+      "start": 50.52,
+      "duration": 4.679
+    },
+    {
+      "text": "going to be completely focused on the",
+      "start": 53.28,
+      "duration": 5.2
+    },
+    {
+      "text": "second building block which is the JLo",
+      "start": 55.199,
+      "duration": 5.121
+    },
+    {
+      "text": "activation function along along with",
+      "start": 58.48,
+      "duration": 4.239
+    },
+    {
+      "text": "this feed forward neural network so",
+      "start": 60.32,
+      "duration": 4.239
+    },
+    {
+      "text": "today actually we are going to cover two",
+      "start": 62.719,
+      "duration": 3.841
+    },
+    {
+      "text": "of these blocks which have been shown",
+      "start": 64.559,
+      "duration": 5.161
+    },
+    {
+      "text": "over here the J activation and the feed",
+      "start": 66.56,
+      "duration": 5.68
+    },
+    {
+      "text": "forward neural network in the next",
+      "start": 69.72,
+      "duration": 4.0
+    },
+    {
+      "text": "lecture we'll also be looking at",
+      "start": 72.24,
+      "duration": 3.879
+    },
+    {
+      "text": "shortcut connections and then all of",
+      "start": 73.72,
+      "duration": 4.439
+    },
+    {
+      "text": "these building blocks will come together",
+      "start": 76.119,
+      "duration": 4.36
+    },
+    {
+      "text": "to form the Transformer block which is",
+      "start": 78.159,
+      "duration": 4.401
+    },
+    {
+      "text": "the Beating Heart of the GPT",
+      "start": 80.479,
+      "duration": 4.721
+    },
+    {
+      "text": "architecture so let's continue along our",
+      "start": 82.56,
+      "duration": 4.919
+    },
+    {
+      "text": "journey and make incremental progress",
+      "start": 85.2,
+      "duration": 3.959
+    },
+    {
+      "text": "towards understanding the Transformer",
+      "start": 87.479,
+      "duration": 4.201
+    },
+    {
+      "text": "block as I mentioned the goal the",
+      "start": 89.159,
+      "duration": 5.161
+    },
+    {
+      "text": "objective of today's lecture is to",
+      "start": 91.68,
+      "duration": 4.52
+    },
+    {
+      "text": "understand the J activation along with",
+      "start": 94.32,
+      "duration": 4.6
+    },
+    {
+      "text": "the feed forward neural network so let's",
+      "start": 96.2,
+      "duration": 4.76
+    },
+    {
+      "text": "get started with today's lecture to give",
+      "start": 98.92,
+      "duration": 4.68
+    },
+    {
+      "text": "you an overview of what the Transformer",
+      "start": 100.96,
+      "duration": 5.36
+    },
+    {
+      "text": "block actually looks like here's the",
+      "start": 103.6,
+      "duration": 4.6
+    },
+    {
+      "text": "architecture of the Transformer block",
+      "start": 106.32,
+      "duration": 5.04
+    },
+    {
+      "text": "zooming into this Transformer so the",
+      "start": 108.2,
+      "duration": 5.0
+    },
+    {
+      "text": "Transformer block consists of many",
+      "start": 111.36,
+      "duration": 4.56
+    },
+    {
+      "text": "layers which are stacked together and",
+      "start": 113.2,
+      "duration": 4.279
+    },
+    {
+      "text": "that's why we have to learn about each",
+      "start": 115.92,
+      "duration": 4.199
+    },
+    {
+      "text": "of these layers separately the first is",
+      "start": 117.479,
+      "duration": 5.64
+    },
+    {
+      "text": "the layer normalization layer the input",
+      "start": 120.119,
+      "duration": 4.801
+    },
+    {
+      "text": "then is normalized and it's passed to",
+      "start": 123.119,
+      "duration": 4.28
+    },
+    {
+      "text": "the multi-ad attention we have a Dropout",
+      "start": 124.92,
+      "duration": 4.6
+    },
+    {
+      "text": "layer after that this plus sign",
+      "start": 127.399,
+      "duration": 3.64
+    },
+    {
+      "text": "indicates that there is a shortcut",
+      "start": 129.52,
+      "duration": 3.719
+    },
+    {
+      "text": "connection then we have another layer",
+      "start": 131.039,
+      "duration": 4.361
+    },
+    {
+      "text": "normalization layer we learned about",
+      "start": 133.239,
+      "duration": 3.761
+    },
+    {
+      "text": "layer normalization in the previous",
+      "start": 135.4,
+      "duration": 3.8
+    },
+    {
+      "text": "lecture the output of the second layer",
+      "start": 137.0,
+      "duration": 4.519
+    },
+    {
+      "text": "normalization passes into a feed forward",
+      "start": 139.2,
+      "duration": 4.039
+    },
+    {
+      "text": "neural network which is what we are",
+      "start": 141.519,
+      "duration": 3.961
+    },
+    {
+      "text": "going to learn about in today's lecture",
+      "start": 143.239,
+      "duration": 3.961
+    },
+    {
+      "text": "and when you put a microscope to this",
+      "start": 145.48,
+      "duration": 3.759
+    },
+    {
+      "text": "feed forward neural network and try to",
+      "start": 147.2,
+      "duration": 3.56
+    },
+    {
+      "text": "really understand understand what it",
+      "start": 149.239,
+      "duration": 4.121
+    },
+    {
+      "text": "consists of you'll see that it consists",
+      "start": 150.76,
+      "duration": 5.44
+    },
+    {
+      "text": "of linear layers which are common in any",
+      "start": 153.36,
+      "duration": 5.12
+    },
+    {
+      "text": "neural network but it consists of this",
+      "start": 156.2,
+      "duration": 4.119
+    },
+    {
+      "text": "jalu or guu",
+      "start": 158.48,
+      "duration": 5.24
+    },
+    {
+      "text": "activation which is you might be hearing",
+      "start": 160.319,
+      "duration": 5.161
+    },
+    {
+      "text": "about this for the first time even if",
+      "start": 163.72,
+      "duration": 3.439
+    },
+    {
+      "text": "you have use deep learning Frameworks",
+      "start": 165.48,
+      "duration": 5.64
+    },
+    {
+      "text": "people generally use reu T sigmoid Etc",
+      "start": 167.159,
+      "duration": 6.401
+    },
+    {
+      "text": "but this jalu activation or G activation",
+      "start": 171.12,
+      "duration": 5.36
+    },
+    {
+      "text": "is new to most of the people everything",
+      "start": 173.56,
+      "duration": 5.24
+    },
+    {
+      "text": "else in the speed forward neural network",
+      "start": 176.48,
+      "duration": 4.679
+    },
+    {
+      "text": "is same as traditional neural networks",
+      "start": 178.8,
+      "duration": 4.12
+    },
+    {
+      "text": "but this jalu activation is something",
+      "start": 181.159,
+      "duration": 3.281
+    },
+    {
+      "text": "which is a bit",
+      "start": 182.92,
+      "duration": 4.76
+    },
+    {
+      "text": "different so we'll be covering this part",
+      "start": 184.44,
+      "duration": 5.2
+    },
+    {
+      "text": "also in a lot of detail so I just wanted",
+      "start": 187.68,
+      "duration": 4.279
+    },
+    {
+      "text": "to show you this so that you you have",
+      "start": 189.64,
+      "duration": 4.36
+    },
+    {
+      "text": "some context about what why we are",
+      "start": 191.959,
+      "duration": 4.401
+    },
+    {
+      "text": "learning this lecture and after you",
+      "start": 194.0,
+      "duration": 3.68
+    },
+    {
+      "text": "understand the feed forward neural",
+      "start": 196.36,
+      "duration": 3.799
+    },
+    {
+      "text": "network and guu after today's lecture",
+      "start": 197.68,
+      "duration": 4.44
+    },
+    {
+      "text": "you'll be able to essentially understand",
+      "start": 200.159,
+      "duration": 3.64
+    },
+    {
+      "text": "most of these components over here",
+      "start": 202.12,
+      "duration": 3.44
+    },
+    {
+      "text": "except for the shortcut connection which",
+      "start": 203.799,
+      "duration": 4.481
+    },
+    {
+      "text": "we'll look at in the next lecture okay",
+      "start": 205.56,
+      "duration": 5.36
+    },
+    {
+      "text": "so let's begin so the goal of this",
+      "start": 208.28,
+      "duration": 5.44
+    },
+    {
+      "text": "lecture is to implement a small neural",
+      "start": 210.92,
+      "duration": 5.48
+    },
+    {
+      "text": "network subm module that is part of the",
+      "start": 213.72,
+      "duration": 5.2
+    },
+    {
+      "text": "llm Transformer block and when I say",
+      "start": 216.4,
+      "duration": 4.039
+    },
+    {
+      "text": "neural network subm module I'm",
+      "start": 218.92,
+      "duration": 3.16
+    },
+    {
+      "text": "especially referring to this feed",
+      "start": 220.439,
+      "duration": 4.401
+    },
+    {
+      "text": "forward block which has been mentioned",
+      "start": 222.08,
+      "duration": 5.64
+    },
+    {
+      "text": "uh here this this feed forward block I'm",
+      "start": 224.84,
+      "duration": 5.28
+    },
+    {
+      "text": "referring to this block we want to write",
+      "start": 227.72,
+      "duration": 7.599
+    },
+    {
+      "text": "a code to uh uh to integrate this block",
+      "start": 230.12,
+      "duration": 7.44
+    },
+    {
+      "text": "this feed forward neural network",
+      "start": 235.319,
+      "duration": 5.441
+    },
+    {
+      "text": "block okay so now let us first learn",
+      "start": 237.56,
+      "duration": 5.239
+    },
+    {
+      "text": "about the guu or the jalu activation",
+      "start": 240.76,
+      "duration": 3.92
+    },
+    {
+      "text": "function I'm going to call it jalu for",
+      "start": 242.799,
+      "duration": 4.64
+    },
+    {
+      "text": "the rest of this lecture uh but the way",
+      "start": 244.68,
+      "duration": 5.119
+    },
+    {
+      "text": "you call it does not really matter as",
+      "start": 247.439,
+      "duration": 5.041
+    },
+    {
+      "text": "long as you understand what the function",
+      "start": 249.799,
+      "duration": 5.36
+    },
+    {
+      "text": "is what does it represent and why don't",
+      "start": 252.48,
+      "duration": 4.479
+    },
+    {
+      "text": "we use the common activation functions",
+      "start": 255.159,
+      "duration": 5.04
+    },
+    {
+      "text": "like Ru so two activation functions",
+      "start": 256.959,
+      "duration": 4.84
+    },
+    {
+      "text": "which are very commonly implemented in",
+      "start": 260.199,
+      "duration": 3.881
+    },
+    {
+      "text": "large language models are the jalu and",
+      "start": 261.799,
+      "duration": 4.921
+    },
+    {
+      "text": "the Swig Loop in today's lecture we are",
+      "start": 264.08,
+      "duration": 4.64
+    },
+    {
+      "text": "going to specifically look at the",
+      "start": 266.72,
+      "duration": 4.56
+    },
+    {
+      "text": "JLo so before we look at that first",
+      "start": 268.72,
+      "duration": 4.08
+    },
+    {
+      "text": "let's understand about the reu",
+      "start": 271.28,
+      "duration": 3.8
+    },
+    {
+      "text": "activation function this is how the reu",
+      "start": 272.8,
+      "duration": 4.239
+    },
+    {
+      "text": "activation function actually looks like",
+      "start": 275.08,
+      "duration": 4.72
+    },
+    {
+      "text": "for X which is greater than zero The Rao",
+      "start": 277.039,
+      "duration": 4.841
+    },
+    {
+      "text": "activation function Returns the same",
+      "start": 279.8,
+      "duration": 4.8
+    },
+    {
+      "text": "value as the input but if x is less than",
+      "start": 281.88,
+      "duration": 5.08
+    },
+    {
+      "text": "zero The Rao activation function returns",
+      "start": 284.6,
+      "duration": 5.36
+    },
+    {
+      "text": "zero so if you plot The Rao activation",
+      "start": 286.96,
+      "duration": 4.679
+    },
+    {
+      "text": "function as a function of X you'll see",
+      "start": 289.96,
+      "duration": 3.36
+    },
+    {
+      "text": "that the curve looks something like this",
+      "start": 291.639,
+      "duration": 4.28
+    },
+    {
+      "text": "it's flat for negative values of X and",
+      "start": 293.32,
+      "duration": 5.319
+    },
+    {
+      "text": "then it's linear already you can start",
+      "start": 295.919,
+      "duration": 4.321
+    },
+    {
+      "text": "seeing some problems with this right",
+      "start": 298.639,
+      "duration": 4.641
+    },
+    {
+      "text": "it's not differentiable at x equal to0",
+      "start": 300.24,
+      "duration": 5.44
+    },
+    {
+      "text": "there is a sharp jump over here and for",
+      "start": 303.28,
+      "duration": 5.12
+    },
+    {
+      "text": "all the values of X less than 0 this is",
+      "start": 305.68,
+      "duration": 5.72
+    },
+    {
+      "text": "equal to zero so if you integrate this",
+      "start": 308.4,
+      "duration": 5.16
+    },
+    {
+      "text": "in neural networks it often leads to a",
+      "start": 311.4,
+      "duration": 5.04
+    },
+    {
+      "text": "dead neuron problem which means that if",
+      "start": 313.56,
+      "duration": 5.759
+    },
+    {
+      "text": "the output from one layer is negative",
+      "start": 316.44,
+      "duration": 4.879
+    },
+    {
+      "text": "and if Ru activation function is applied",
+      "start": 319.319,
+      "duration": 4.361
+    },
+    {
+      "text": "to it the output becomes zero and then",
+      "start": 321.319,
+      "duration": 6.401
+    },
+    {
+      "text": "it stays zero because uh because we",
+      "start": 323.68,
+      "duration": 7.32
+    },
+    {
+      "text": "cannot do any learning of after that so",
+      "start": 327.72,
+      "duration": 5.0
+    },
+    {
+      "text": "the neurons which are associated with",
+      "start": 331.0,
+      "duration": 4.0
+    },
+    {
+      "text": "that particular output they don't",
+      "start": 332.72,
+      "duration": 3.96
+    },
+    {
+      "text": "contribute anything to the learning",
+      "start": 335.0,
+      "duration": 4.039
+    },
+    {
+      "text": "process once the output of the neuron",
+      "start": 336.68,
+      "duration": 4.04
+    },
+    {
+      "text": "becomes negative and that's called as",
+      "start": 339.039,
+      "duration": 3.681
+    },
+    {
+      "text": "the dead neuron problem so learning",
+      "start": 340.72,
+      "duration": 4.52
+    },
+    {
+      "text": "essentially stagnates of course Ru has a",
+      "start": 342.72,
+      "duration": 4.319
+    },
+    {
+      "text": "huge number of other advantages this",
+      "start": 345.24,
+      "duration": 3.72
+    },
+    {
+      "text": "nonlinearity which is introduced over",
+      "start": 347.039,
+      "duration": 4.72
+    },
+    {
+      "text": "here makes neural networks expressive it",
+      "start": 348.96,
+      "duration": 5.32
+    },
+    {
+      "text": "gives the power to neural networks but",
+      "start": 351.759,
+      "duration": 4.16
+    },
+    {
+      "text": "the reason we we are looking at the",
+      "start": 354.28,
+      "duration": 4.08
+    },
+    {
+      "text": "disadvantages of reu is that",
+      "start": 355.919,
+      "duration": 4.361
+    },
+    {
+      "text": "understanding the disadvantages of Ru",
+      "start": 358.36,
+      "duration": 4.08
+    },
+    {
+      "text": "will open an opportunity for us to learn",
+      "start": 360.28,
+      "duration": 4.52
+    },
+    {
+      "text": "about the jalu activation function and",
+      "start": 362.44,
+      "duration": 4.96
+    },
+    {
+      "text": "why it is used in large language models",
+      "start": 364.8,
+      "duration": 4.839
+    },
+    {
+      "text": "so first let's start understanding about",
+      "start": 367.4,
+      "duration": 5.12
+    },
+    {
+      "text": "the mathematical representation of the",
+      "start": 369.639,
+      "duration": 5.081
+    },
+    {
+      "text": "uh JLo activation function so",
+      "start": 372.52,
+      "duration": 4.679
+    },
+    {
+      "text": "mathematically the J activation function",
+      "start": 374.72,
+      "duration": 5.96
+    },
+    {
+      "text": "is the product of X which is essentially",
+      "start": 377.199,
+      "duration": 6.081
+    },
+    {
+      "text": "just the identity variable so J of x",
+      "start": 380.68,
+      "duration": 6.04
+    },
+    {
+      "text": "equal to X into this 5 of X and",
+      "start": 383.28,
+      "duration": 5.72
+    },
+    {
+      "text": "essentially f of x is the cumulative",
+      "start": 386.72,
+      "duration": 4.12
+    },
+    {
+      "text": "distribution function of the standard",
+      "start": 389.0,
+      "duration": 3.28
+    },
+    {
+      "text": "goian",
+      "start": 390.84,
+      "duration": 4.04
+    },
+    {
+      "text": "distribution so I just have this opened",
+      "start": 392.28,
+      "duration": 6.16
+    },
+    {
+      "text": "door here so a standard goian uh",
+      "start": 394.88,
+      "duration": 5.36
+    },
+    {
+      "text": "cumulative distribution function looks",
+      "start": 398.44,
+      "duration": 4.64
+    },
+    {
+      "text": "like this as a function of X so the G is",
+      "start": 400.24,
+      "duration": 6.2
+    },
+    {
+      "text": "a product of X multiplied by this and",
+      "start": 403.08,
+      "duration": 5.959
+    },
+    {
+      "text": "then uh if you",
+      "start": 406.44,
+      "duration": 5.199
+    },
+    {
+      "text": "actually uh try to understand what is",
+      "start": 409.039,
+      "duration": 6.081
+    },
+    {
+      "text": "happening so let's look at this five of",
+      "start": 411.639,
+      "duration": 6.481
+    },
+    {
+      "text": "X for X greater than zero so if x is",
+      "start": 415.12,
+      "duration": 5.0
+    },
+    {
+      "text": "very high you see that it's almost equal",
+      "start": 418.12,
+      "duration": 4.68
+    },
+    {
+      "text": "to one so which means that for positive",
+      "start": 420.12,
+      "duration": 5.799
+    },
+    {
+      "text": "values of X we are slowly tending to one",
+      "start": 422.8,
+      "duration": 5.32
+    },
+    {
+      "text": "which means that the for very positive",
+      "start": 425.919,
+      "duration": 4.72
+    },
+    {
+      "text": "values of X the G of X will tend to X",
+      "start": 428.12,
+      "duration": 5.359
+    },
+    {
+      "text": "into one which is X so for very high",
+      "start": 430.639,
+      "duration": 4.721
+    },
+    {
+      "text": "values of X this will almost tend to the",
+      "start": 433.479,
+      "duration": 4.601
+    },
+    {
+      "text": "linear function which is quite similar",
+      "start": 435.36,
+      "duration": 5.559
+    },
+    {
+      "text": "to the positive branch of Ru but what",
+      "start": 438.08,
+      "duration": 4.92
+    },
+    {
+      "text": "happens to the negative values of this",
+      "start": 440.919,
+      "duration": 3.72
+    },
+    {
+      "text": "is pretty interesting the negative",
+      "start": 443.0,
+      "duration": 3.08
+    },
+    {
+      "text": "values here you can see that they are",
+      "start": 444.639,
+      "duration": 4.041
+    },
+    {
+      "text": "not equal to zero so X will be",
+      "start": 446.08,
+      "duration": 4.519
+    },
+    {
+      "text": "multiplied with these negative values",
+      "start": 448.68,
+      "duration": 3.919
+    },
+    {
+      "text": "and that's why for negative values of x",
+      "start": 450.599,
+      "duration": 4.961
+    },
+    {
+      "text": "g will not be zero like it is in The Rao",
+      "start": 452.599,
+      "duration": 4.201
+    },
+    {
+      "text": "activation",
+      "start": 455.56,
+      "duration": 4.0
+    },
+    {
+      "text": "function so now what we can do is that",
+      "start": 456.8,
+      "duration": 4.519
+    },
+    {
+      "text": "instead of using this complicated",
+      "start": 459.56,
+      "duration": 5.16
+    },
+    {
+      "text": "cumulative distribution function what uh",
+      "start": 461.319,
+      "duration": 6.28
+    },
+    {
+      "text": "people generally do is that they use an",
+      "start": 464.72,
+      "duration": 5.28
+    },
+    {
+      "text": "approximation for the JLo activation and",
+      "start": 467.599,
+      "duration": 4.04
+    },
+    {
+      "text": "the approximation which was actually",
+      "start": 470.0,
+      "duration": 4.24
+    },
+    {
+      "text": "used for training gpt2 looks something",
+      "start": 471.639,
+      "duration": 4.921
+    },
+    {
+      "text": "like this so here you can see that guu",
+      "start": 474.24,
+      "duration": 8.44
+    },
+    {
+      "text": "of X is equal to5 * x * 1 + tan hunk of",
+      "start": 476.56,
+      "duration": 10.68
+    },
+    {
+      "text": "2 byk into x + this cubic term no need",
+      "start": 482.68,
+      "duration": 6.519
+    },
+    {
+      "text": "to worry about this term but just know",
+      "start": 487.24,
+      "duration": 4.56
+    },
+    {
+      "text": "that instead of worrying about this 5 of",
+      "start": 489.199,
+      "duration": 4.481
+    },
+    {
+      "text": "X which is the cumulative distribution",
+      "start": 491.8,
+      "duration": 5.32
+    },
+    {
+      "text": "function and there is also goian",
+      "start": 493.68,
+      "duration": 5.28
+    },
+    {
+      "text": "involved and it's a bit difficult to",
+      "start": 497.12,
+      "duration": 4.039
+    },
+    {
+      "text": "compute f of x it's better to use",
+      "start": 498.96,
+      "duration": 4.6
+    },
+    {
+      "text": "numerical approximations right so when",
+      "start": 501.159,
+      "duration": 4.681
+    },
+    {
+      "text": "gpt2 was trained the J function which",
+      "start": 503.56,
+      "duration": 3.88
+    },
+    {
+      "text": "they actually used was was this",
+      "start": 505.84,
+      "duration": 3.319
+    },
+    {
+      "text": "approximation which is very close to the",
+      "start": 507.44,
+      "duration": 4.719
+    },
+    {
+      "text": "actual J function right now if you want",
+      "start": 509.159,
+      "duration": 5.481
+    },
+    {
+      "text": "to compare this with the ru function",
+      "start": 512.159,
+      "duration": 5.12
+    },
+    {
+      "text": "here I have shown the plots of the J",
+      "start": 514.64,
+      "duration": 4.519
+    },
+    {
+      "text": "activation function along with the Rao",
+      "start": 517.279,
+      "duration": 4.32
+    },
+    {
+      "text": "activation function I want you to pause",
+      "start": 519.159,
+      "duration": 4.32
+    },
+    {
+      "text": "the video for a while here and try to",
+      "start": 521.599,
+      "duration": 4.121
+    },
+    {
+      "text": "look at the similarities and differences",
+      "start": 523.479,
+      "duration": 4.8
+    },
+    {
+      "text": "between these",
+      "start": 525.72,
+      "duration": 5.36
+    },
+    {
+      "text": "two okay so the first thing which should",
+      "start": 528.279,
+      "duration": 4.961
+    },
+    {
+      "text": "immediately be clear to all of you is",
+      "start": 531.08,
+      "duration": 3.879
+    },
+    {
+      "text": "there are lot of differences for",
+      "start": 533.24,
+      "duration": 4.44
+    },
+    {
+      "text": "negative values of X so for X less than",
+      "start": 534.959,
+      "duration": 4.761
+    },
+    {
+      "text": "Z you can see that the Galu activ",
+      "start": 537.68,
+      "duration": 4.04
+    },
+    {
+      "text": "function is not really zero so if you",
+      "start": 539.72,
+      "duration": 3.88
+    },
+    {
+      "text": "zoom into this further you'll see that",
+      "start": 541.72,
+      "duration": 3.92
+    },
+    {
+      "text": "for most of the values of X it's not",
+      "start": 543.6,
+      "duration": 5.239
+    },
+    {
+      "text": "zero it tends to zero but it is not zero",
+      "start": 545.64,
+      "duration": 5.28
+    },
+    {
+      "text": "whereas The Rao activation function for",
+      "start": 548.839,
+      "duration": 4.521
+    },
+    {
+      "text": "X less than 0 was Zero",
+      "start": 550.92,
+      "duration": 4.56
+    },
+    {
+      "text": "throughout also if you look at the",
+      "start": 553.36,
+      "duration": 3.8
+    },
+    {
+      "text": "positive values of X you'll see that",
+      "start": 555.48,
+      "duration": 4.599
+    },
+    {
+      "text": "this is kind of not exactly linear here",
+      "start": 557.16,
+      "duration": 5.32
+    },
+    {
+      "text": "for short values of X but for large",
+      "start": 560.079,
+      "duration": 4.32
+    },
+    {
+      "text": "values of X it's fully",
+      "start": 562.48,
+      "duration": 4.64
+    },
+    {
+      "text": "linear uh which is exactly what's",
+      "start": 564.399,
+      "duration": 4.241
+    },
+    {
+      "text": "happening for The Rao activation",
+      "start": 567.12,
+      "duration": 3.68
+    },
+    {
+      "text": "function so although this positive side",
+      "start": 568.64,
+      "duration": 4.8
+    },
+    {
+      "text": "of the jilu looks like yal to X it's not",
+      "start": 570.8,
+      "duration": 5.479
+    },
+    {
+      "text": "exactly y equal to X there are some",
+      "start": 573.44,
+      "duration": 3.8
+    },
+    {
+      "text": "minor",
+      "start": 576.279,
+      "duration": 3.441
+    },
+    {
+      "text": "differences but you can say that for X",
+      "start": 577.24,
+      "duration": 4.719
+    },
+    {
+      "text": "greater than Z it's almost similar to",
+      "start": 579.72,
+      "duration": 4.64
+    },
+    {
+      "text": "the ru for X greater than 0 but for X",
+      "start": 581.959,
+      "duration": 4.161
+    },
+    {
+      "text": "less than 0 there are big differences",
+      "start": 584.36,
+      "duration": 3.479
+    },
+    {
+      "text": "which start to emerge which actually",
+      "start": 586.12,
+      "duration": 4.52
+    },
+    {
+      "text": "make Jou much better than the",
+      "start": 587.839,
+      "duration": 5.521
+    },
+    {
+      "text": "ru uh so what are the advantages of the",
+      "start": 590.64,
+      "duration": 5.28
+    },
+    {
+      "text": "Jou or the ru activation function well",
+      "start": 593.36,
+      "duration": 3.8
+    },
+    {
+      "text": "the first Advantage which you",
+      "start": 595.92,
+      "duration": 2.96
+    },
+    {
+      "text": "immediately see from this graph over",
+      "start": 597.16,
+      "duration": 4.359
+    },
+    {
+      "text": "here is you can see that J activation is",
+      "start": 598.88,
+      "duration": 4.639
+    },
+    {
+      "text": "smooth throughout right here there is a",
+      "start": 601.519,
+      "duration": 3.521
+    },
+    {
+      "text": "discontinuity in Ru there is a",
+      "start": 603.519,
+      "duration": 3.401
+    },
+    {
+      "text": "discontinuity at x equal to zero which",
+      "start": 605.04,
+      "duration": 4.52
+    },
+    {
+      "text": "makes it not differentiable J activation",
+      "start": 606.92,
+      "duration": 4.479
+    },
+    {
+      "text": "on the other hand is smooth throughout",
+      "start": 609.56,
+      "duration": 4.279
+    },
+    {
+      "text": "so it's differentiable across all X",
+      "start": 611.399,
+      "duration": 4.481
+    },
+    {
+      "text": "that's the first Advantage the second",
+      "start": 613.839,
+      "duration": 3.881
+    },
+    {
+      "text": "Advantage is that it's not zero for",
+      "start": 615.88,
+      "duration": 4.12
+    },
+    {
+      "text": "Negative X so that solves the dead",
+      "start": 617.72,
+      "duration": 5.0
+    },
+    {
+      "text": "neuron problem even if the output of a",
+      "start": 620.0,
+      "duration": 5.959
+    },
+    {
+      "text": "neuron after is negative even if it goes",
+      "start": 622.72,
+      "duration": 5.6
+    },
+    {
+      "text": "through J it will not become zero so the",
+      "start": 625.959,
+      "duration": 4.281
+    },
+    {
+      "text": "neuron won't become dead it will still",
+      "start": 628.32,
+      "duration": 3.639
+    },
+    {
+      "text": "keep on contributing to the learning",
+      "start": 630.24,
+      "duration": 3.719
+    },
+    {
+      "text": "process that's the second reason so",
+      "start": 631.959,
+      "duration": 4.281
+    },
+    {
+      "text": "first reason is differentiability second",
+      "start": 633.959,
+      "duration": 4.241
+    },
+    {
+      "text": "reason is it prevents the dead neuron",
+      "start": 636.24,
+      "duration": 4.36
+    },
+    {
+      "text": "problem and third reason is that it just",
+      "start": 638.2,
+      "duration": 5.319
+    },
+    {
+      "text": "seems to work better than Ru when we do",
+      "start": 640.6,
+      "duration": 4.16
+    },
+    {
+      "text": "experiments with",
+      "start": 643.519,
+      "duration": 3.88
+    },
+    {
+      "text": "llms so as always activation functions",
+      "start": 644.76,
+      "duration": 4.6
+    },
+    {
+      "text": "are hyperparameters right so we need to",
+      "start": 647.399,
+      "duration": 3.921
+    },
+    {
+      "text": "test out multiple activation functions",
+      "start": 649.36,
+      "duration": 4.36
+    },
+    {
+      "text": "to see which one performs better and we",
+      "start": 651.32,
+      "duration": 4.24
+    },
+    {
+      "text": "have generally seen that JLo performs",
+      "start": 653.72,
+      "duration": 3.4
+    },
+    {
+      "text": "much better in the context of large",
+      "start": 655.56,
+      "duration": 4.279
+    },
+    {
+      "text": "language models compared to Ray so now",
+      "start": 657.12,
+      "duration": 4.36
+    },
+    {
+      "text": "what I want to do is that first I want",
+      "start": 659.839,
+      "duration": 5.361
+    },
+    {
+      "text": "to go to code uh and I want to uh write",
+      "start": 661.48,
+      "duration": 6.08
+    },
+    {
+      "text": "a class for the JLo activation function",
+      "start": 665.2,
+      "duration": 4.36
+    },
+    {
+      "text": "write a create a class for the J which",
+      "start": 667.56,
+      "duration": 5.04
+    },
+    {
+      "text": "implements the uh forward pass which is",
+      "start": 669.56,
+      "duration": 6.0
+    },
+    {
+      "text": "that it essentially implements the this",
+      "start": 672.6,
+      "duration": 4.96
+    },
+    {
+      "text": "function which I showed over here so if",
+      "start": 675.56,
+      "duration": 3.399
+    },
+    {
+      "text": "you look at this",
+      "start": 677.56,
+      "duration": 4.519
+    },
+    {
+      "text": "function whenever J receives an input X",
+      "start": 678.959,
+      "duration": 5.481
+    },
+    {
+      "text": "it it transforms it into this through",
+      "start": 682.079,
+      "duration": 4.361
+    },
+    {
+      "text": "this function and then we get this",
+      "start": 684.44,
+      "duration": 3.959
+    },
+    {
+      "text": "output as shown in this JLo activation",
+      "start": 686.44,
+      "duration": 4.24
+    },
+    {
+      "text": "function so what I'm doing here is that",
+      "start": 688.399,
+      "duration": 5.041
+    },
+    {
+      "text": "I'm creating a class called J Loop and",
+      "start": 690.68,
+      "duration": 5.08
+    },
+    {
+      "text": "what I'm doing here is that I'm defining",
+      "start": 693.44,
+      "duration": 4.44
+    },
+    {
+      "text": "a forward method which takes in an input",
+      "start": 695.76,
+      "duration": 4.96
+    },
+    {
+      "text": "X and it returns this value it returns.",
+      "start": 697.88,
+      "duration": 6.6
+    },
+    {
+      "text": "5 into X into 1 + tan H square root of 2",
+      "start": 700.72,
+      "duration": 6.16
+    },
+    {
+      "text": "by pi into x +",
+      "start": 704.48,
+      "duration": 6.039
+    },
+    {
+      "text": "0.044 into x 3 this is exactly what has",
+      "start": 706.88,
+      "duration": 7.16
+    },
+    {
+      "text": "been um written over here in this black",
+      "start": 710.519,
+      "duration": 5.76
+    },
+    {
+      "text": "box over here the reason we are using",
+      "start": 714.04,
+      "duration": 3.84
+    },
+    {
+      "text": "this is because the same activation",
+      "start": 716.279,
+      "duration": 3.601
+    },
+    {
+      "text": "function was used for training G",
+      "start": 717.88,
+      "duration": 4.079
+    },
+    {
+      "text": "gpt2 and remember when we are",
+      "start": 719.88,
+      "duration": 3.959
+    },
+    {
+      "text": "constructing the llm architecture here",
+      "start": 721.959,
+      "duration": 4.161
+    },
+    {
+      "text": "we are mimicking the parameters used in",
+      "start": 723.839,
+      "duration": 4.361
+    },
+    {
+      "text": "the smallest model of",
+      "start": 726.12,
+      "duration": 4.719
+    },
+    {
+      "text": "gpt2 so now we have created a class for",
+      "start": 728.2,
+      "duration": 4.999
+    },
+    {
+      "text": "the Jou activation awesome so here I've",
+      "start": 730.839,
+      "duration": 4.36
+    },
+    {
+      "text": "written a simple plot function we just",
+      "start": 733.199,
+      "duration": 4.561
+    },
+    {
+      "text": "plots the JLo and the railu activation",
+      "start": 735.199,
+      "duration": 4.801
+    },
+    {
+      "text": "function and it Compares them side by",
+      "start": 737.76,
+      "duration": 4.04
+    },
+    {
+      "text": "side we already looked at these two",
+      "start": 740.0,
+      "duration": 3.6
+    },
+    {
+      "text": "plots on the Whiteboard and we saw the",
+      "start": 741.8,
+      "duration": 3.399
+    },
+    {
+      "text": "similarities and differences between",
+      "start": 743.6,
+      "duration": 3.88
+    },
+    {
+      "text": "them so here I have just summed up the",
+      "start": 745.199,
+      "duration": 4.601
+    },
+    {
+      "text": "points because of which the J activation",
+      "start": 747.48,
+      "duration": 5.12
+    },
+    {
+      "text": "function is used in llms so as we saw",
+      "start": 749.8,
+      "duration": 5.039
+    },
+    {
+      "text": "the smoothness of the JLo can lead to",
+      "start": 752.6,
+      "duration": 4.08
+    },
+    {
+      "text": "better optimization properties during",
+      "start": 754.839,
+      "duration": 5.081
+    },
+    {
+      "text": "training as it allows for more nuanced",
+      "start": 756.68,
+      "duration": 5.719
+    },
+    {
+      "text": "adjustments to the model parameters so",
+      "start": 759.92,
+      "duration": 4.8
+    },
+    {
+      "text": "it's fully differentiable railu has a",
+      "start": 762.399,
+      "duration": 4.601
+    },
+    {
+      "text": "sharp corner at zero which can sometimes",
+      "start": 764.72,
+      "duration": 4.64
+    },
+    {
+      "text": "make optimization harder especially in",
+      "start": 767.0,
+      "duration": 4.44
+    },
+    {
+      "text": "networks that are very",
+      "start": 769.36,
+      "duration": 4.719
+    },
+    {
+      "text": "deep um especially in networks that are",
+      "start": 771.44,
+      "duration": 5.959
+    },
+    {
+      "text": "very deep or have complex",
+      "start": 774.079,
+      "duration": 5.88
+    },
+    {
+      "text": "architectures unlike ra which output",
+      "start": 777.399,
+      "duration": 5.321
+    },
+    {
+      "text": "zero for any negative input J allows for",
+      "start": 779.959,
+      "duration": 5.32
+    },
+    {
+      "text": "small nonzero output values so it",
+      "start": 782.72,
+      "duration": 5.119
+    },
+    {
+      "text": "prevents the dead neuron problem so this",
+      "start": 785.279,
+      "duration": 4.401
+    },
+    {
+      "text": "means that during the training process",
+      "start": 787.839,
+      "duration": 4.0
+    },
+    {
+      "text": "neurons that receive negative input can",
+      "start": 789.68,
+      "duration": 4.44
+    },
+    {
+      "text": "still contribute to the learning process",
+      "start": 791.839,
+      "duration": 4.481
+    },
+    {
+      "text": "in reu neurons which receive negative",
+      "start": 794.12,
+      "duration": 4.56
+    },
+    {
+      "text": "input just get an output of zero so they",
+      "start": 796.32,
+      "duration": 4.0
+    },
+    {
+      "text": "become dead they don't contribute to the",
+      "start": 798.68,
+      "duration": 4.04
+    },
+    {
+      "text": "learning process this problem is avoided",
+      "start": 800.32,
+      "duration": 5.959
+    },
+    {
+      "text": "in Rao in Jou sorry Jou avoids this dead",
+      "start": 802.72,
+      "duration": 5.799
+    },
+    {
+      "text": "neuron problem and that's why it's used",
+      "start": 806.279,
+      "duration": 4.601
+    },
+    {
+      "text": "in the case of of large language models",
+      "start": 808.519,
+      "duration": 4.041
+    },
+    {
+      "text": "now what we are going to see next is",
+      "start": 810.88,
+      "duration": 3.519
+    },
+    {
+      "text": "that okay now that we understand about",
+      "start": 812.56,
+      "duration": 4.12
+    },
+    {
+      "text": "the Jou activation function we are going",
+      "start": 814.399,
+      "duration": 5.0
+    },
+    {
+      "text": "to actually look at the architecture of",
+      "start": 816.68,
+      "duration": 5.839
+    },
+    {
+      "text": "this uh feed forward neural network so",
+      "start": 819.399,
+      "duration": 4.921
+    },
+    {
+      "text": "you see when you zoom into the neural",
+      "start": 822.519,
+      "duration": 3.041
+    },
+    {
+      "text": "network you'll see that there is a",
+      "start": 824.32,
+      "duration": 3.4
+    },
+    {
+      "text": "linear layer here there is a JLo",
+      "start": 825.56,
+      "duration": 4.04
+    },
+    {
+      "text": "activation here and there is another",
+      "start": 827.72,
+      "duration": 4.08
+    },
+    {
+      "text": "linear layer here so up till now we",
+      "start": 829.6,
+      "duration": 4.479
+    },
+    {
+      "text": "understood about the J activation right",
+      "start": 831.8,
+      "duration": 4.12
+    },
+    {
+      "text": "but now I want to tell you a bit about",
+      "start": 834.079,
+      "duration": 3.56
+    },
+    {
+      "text": "what the linear layer actually looks",
+      "start": 835.92,
+      "duration": 3.24
+    },
+    {
+      "text": "like",
+      "start": 837.639,
+      "duration": 4.0
+    },
+    {
+      "text": "so let let's go to that part of the",
+      "start": 839.16,
+      "duration": 4.64
+    },
+    {
+      "text": "Whiteboard and let me show you how the",
+      "start": 841.639,
+      "duration": 5.0
+    },
+    {
+      "text": "linear layer looks like okay so this is",
+      "start": 843.8,
+      "duration": 4.52
+    },
+    {
+      "text": "how the feed forward neural network",
+      "start": 846.639,
+      "duration": 4.12
+    },
+    {
+      "text": "actually looks like uh don't worry if it",
+      "start": 848.32,
+      "duration": 4.28
+    },
+    {
+      "text": "looks a bit complicated it's actually",
+      "start": 850.759,
+      "duration": 4.161
+    },
+    {
+      "text": "quite simple so let's say we receive a",
+      "start": 852.6,
+      "duration": 4.799
+    },
+    {
+      "text": "token uh so let's say the feed forward",
+      "start": 854.92,
+      "duration": 5.32
+    },
+    {
+      "text": "neural network receives a token and the",
+      "start": 857.399,
+      "duration": 5.8
+    },
+    {
+      "text": "number of uh the dimensions of the token",
+      "start": 860.24,
+      "duration": 5.159
+    },
+    {
+      "text": "is equal to the embedding Dimension and",
+      "start": 863.199,
+      "duration": 4.601
+    },
+    {
+      "text": "for gpt2 the smallest size that is equal",
+      "start": 865.399,
+      "duration": 4.841
+    },
+    {
+      "text": "to 768 so let's say this is the",
+      "start": 867.8,
+      "duration": 4.08
+    },
+    {
+      "text": "embedding dimension of the token which",
+      "start": 870.24,
+      "duration": 3.44
+    },
+    {
+      "text": "means that every token is projected into",
+      "start": 871.88,
+      "duration": 5.399
+    },
+    {
+      "text": "a 7 768 dimensional space so as this",
+      "start": 873.68,
+      "duration": 5.519
+    },
+    {
+      "text": "token passes through the different",
+      "start": 877.279,
+      "duration": 3.92
+    },
+    {
+      "text": "layers of the Transformer block which we",
+      "start": 879.199,
+      "duration": 5.041
+    },
+    {
+      "text": "saw over here the good thing about this",
+      "start": 881.199,
+      "duration": 4.401
+    },
+    {
+      "text": "Transformer block is that the",
+      "start": 884.24,
+      "duration": 3.44
+    },
+    {
+      "text": "dimensionality of the the token is",
+      "start": 885.6,
+      "duration": 4.76
+    },
+    {
+      "text": "preserved so even if we pass from here",
+      "start": 887.68,
+      "duration": 4.92
+    },
+    {
+      "text": "to here to here to here and finally we",
+      "start": 890.36,
+      "duration": 5.24
+    },
+    {
+      "text": "go to the input of the feed forward the",
+      "start": 892.6,
+      "duration": 5.919
+    },
+    {
+      "text": "dimensionality of the token remains 768",
+      "start": 895.6,
+      "duration": 5.28
+    },
+    {
+      "text": "throughout this entire procedure and",
+      "start": 898.519,
+      "duration": 4.201
+    },
+    {
+      "text": "that's one of the big advantages of the",
+      "start": 900.88,
+      "duration": 4.36
+    },
+    {
+      "text": "way the Transformer block is constructed",
+      "start": 902.72,
+      "duration": 4.6
+    },
+    {
+      "text": "so keep this embedding dimension in mind",
+      "start": 905.24,
+      "duration": 3.76
+    },
+    {
+      "text": "as you try to understand the neural",
+      "start": 907.32,
+      "duration": 4.759
+    },
+    {
+      "text": "network architecture right so here we",
+      "start": 909.0,
+      "duration": 4.839
+    },
+    {
+      "text": "can see that these are the inputs to the",
+      "start": 912.079,
+      "duration": 4.241
+    },
+    {
+      "text": "neural network it's a 768 dimensional",
+      "start": 913.839,
+      "duration": 5.12
+    },
+    {
+      "text": "input vector and this is the first",
+      "start": 916.32,
+      "duration": 6.0
+    },
+    {
+      "text": "linear layer over here all of these",
+      "start": 918.959,
+      "duration": 5.0
+    },
+    {
+      "text": "weights which you can see connected to",
+      "start": 922.32,
+      "duration": 3.92
+    },
+    {
+      "text": "the neurons and then here you can see",
+      "start": 923.959,
+      "duration": 4.521
+    },
+    {
+      "text": "here is the second linear layer so you",
+      "start": 926.24,
+      "duration": 4.2
+    },
+    {
+      "text": "might be thinking what is the number of",
+      "start": 928.48,
+      "duration": 4.279
+    },
+    {
+      "text": "neurons which is used so the number of",
+      "start": 930.44,
+      "duration": 4.56
+    },
+    {
+      "text": "neurons which is used over here is four",
+      "start": 932.759,
+      "duration": 6.121
+    },
+    {
+      "text": "* the number of uh inputs here so the",
+      "start": 935.0,
+      "duration": 5.639
+    },
+    {
+      "text": "number of neurons here will be four",
+      "start": 938.88,
+      "duration": 4.48
+    },
+    {
+      "text": "multiplied",
+      "start": 940.639,
+      "duration": 2.721
+    },
+    {
+      "text": "by so let me write this so the number of",
+      "start": 944.16,
+      "duration": 5.76
+    },
+    {
+      "text": "neurons here will be 4 multiplied by",
+      "start": 947.279,
+      "duration": 7.081
+    },
+    {
+      "text": "768 so this will be um close to 3,00",
+      "start": 949.92,
+      "duration": 7.479
+    },
+    {
+      "text": "3,200 neurons over here so in the first",
+      "start": 954.36,
+      "duration": 4.919
+    },
+    {
+      "text": "layer what happens is that the inputs",
+      "start": 957.399,
+      "duration": 3.8
+    },
+    {
+      "text": "are projected into a larger dimensional",
+      "start": 959.279,
+      "duration": 4.04
+    },
+    {
+      "text": "space just so that we make the neural",
+      "start": 961.199,
+      "duration": 4.041
+    },
+    {
+      "text": "network more expressive and capture the",
+      "start": 963.319,
+      "duration": 4.08
+    },
+    {
+      "text": "properties between the inputs and in the",
+      "start": 965.24,
+      "duration": 4.079
+    },
+    {
+      "text": "second layer the inputs are compressed",
+      "start": 967.399,
+      "duration": 4.321
+    },
+    {
+      "text": "back to the original embedding size so",
+      "start": 969.319,
+      "duration": 4.2
+    },
+    {
+      "text": "the output which is received from this",
+      "start": 971.72,
+      "duration": 4.799
+    },
+    {
+      "text": "neural network has the same dimensions",
+      "start": 973.519,
+      "duration": 4.961
+    },
+    {
+      "text": "as the input it matches the original",
+      "start": 976.519,
+      "duration": 3.481
+    },
+    {
+      "text": "input Dimensions so the output",
+      "start": 978.48,
+      "duration": 4.0
+    },
+    {
+      "text": "Dimensions will also be equal to",
+      "start": 980.0,
+      "duration": 5.48
+    },
+    {
+      "text": "768 so the dimensionality of the input",
+      "start": 982.48,
+      "duration": 4.76
+    },
+    {
+      "text": "is preserved through this neural network",
+      "start": 985.48,
+      "duration": 4.839
+    },
+    {
+      "text": "as well the expansion so you can think",
+      "start": 987.24,
+      "duration": 4.92
+    },
+    {
+      "text": "of this neural network as an expansion",
+      "start": 990.319,
+      "duration": 4.921
+    },
+    {
+      "text": "contraction neural network and remember",
+      "start": 992.16,
+      "duration": 4.599
+    },
+    {
+      "text": "that expansion contraction neural",
+      "start": 995.24,
+      "duration": 3.68
+    },
+    {
+      "text": "networks are very powerful because they",
+      "start": 996.759,
+      "duration": 4.041
+    },
+    {
+      "text": "preserve the size of the input but at",
+      "start": 998.92,
+      "duration": 5.039
+    },
+    {
+      "text": "the same time uh they allow to explore a",
+      "start": 1000.8,
+      "duration": 5.279
+    },
+    {
+      "text": "re they allow for a richer exploration",
+      "start": 1003.959,
+      "duration": 4.401
+    },
+    {
+      "text": "space so what happens is that when we",
+      "start": 1006.079,
+      "duration": 5.0
+    },
+    {
+      "text": "expand this when we uh in the first",
+      "start": 1008.36,
+      "duration": 5.12
+    },
+    {
+      "text": "linear layer we do an expansion right",
+      "start": 1011.079,
+      "duration": 3.921
+    },
+    {
+      "text": "projecting into a dimension which is",
+      "start": 1013.48,
+      "duration": 4.08
+    },
+    {
+      "text": "four times larger we can capture more",
+      "start": 1015.0,
+      "duration": 5.199
+    },
+    {
+      "text": "properties between the inputs and that's",
+      "start": 1017.56,
+      "duration": 4.399
+    },
+    {
+      "text": "what essentially makes Transformers so",
+      "start": 1020.199,
+      "duration": 4.12
+    },
+    {
+      "text": "powerful due to layers like these if",
+      "start": 1021.959,
+      "duration": 4.08
+    },
+    {
+      "text": "this layer was not there probably we",
+      "start": 1024.319,
+      "duration": 3.72
+    },
+    {
+      "text": "would have missed out the capturing the",
+      "start": 1026.039,
+      "duration": 3.841
+    },
+    {
+      "text": "meaning between some sentences when we",
+      "start": 1028.039,
+      "duration": 4.4
+    },
+    {
+      "text": "predict the next word so that's why this",
+      "start": 1029.88,
+      "duration": 4.84
+    },
+    {
+      "text": "layer is very important so you can think",
+      "start": 1032.439,
+      "duration": 5.801
+    },
+    {
+      "text": "of the neural network essentially as uh",
+      "start": 1034.72,
+      "duration": 6.199
+    },
+    {
+      "text": "taking one token and then modifying each",
+      "start": 1038.24,
+      "duration": 5.799
+    },
+    {
+      "text": "dimension of this token place by place",
+      "start": 1040.919,
+      "duration": 5.241
+    },
+    {
+      "text": "because the input is 768 Dimension the",
+      "start": 1044.039,
+      "duration": 4.361
+    },
+    {
+      "text": "output is also 768 Dimension and we are",
+      "start": 1046.16,
+      "duration": 4.48
+    },
+    {
+      "text": "looking at one token at a time so this",
+      "start": 1048.4,
+      "duration": 3.76
+    },
+    {
+      "text": "is very different than the attention",
+      "start": 1050.64,
+      "duration": 3.2
+    },
+    {
+      "text": "mechanism right in the attention",
+      "start": 1052.16,
+      "duration": 3.6
+    },
+    {
+      "text": "mechanism we look at one token and we",
+      "start": 1053.84,
+      "duration": 3.64
+    },
+    {
+      "text": "look at the relationship of that token",
+      "start": 1055.76,
+      "duration": 4.36
+    },
+    {
+      "text": "with other tokens in the neural network",
+      "start": 1057.48,
+      "duration": 4.439
+    },
+    {
+      "text": "that's not in this feed forward neural",
+      "start": 1060.12,
+      "duration": 4.12
+    },
+    {
+      "text": "network we don't consider other tokens",
+      "start": 1061.919,
+      "duration": 4.76
+    },
+    {
+      "text": "at all we just look at one token and",
+      "start": 1064.24,
+      "duration": 4.6
+    },
+    {
+      "text": "then we pass the",
+      "start": 1066.679,
+      "duration": 5.521
+    },
+    {
+      "text": "input and then each dimension of the",
+      "start": 1068.84,
+      "duration": 6.56
+    },
+    {
+      "text": "input is modified and then we get the",
+      "start": 1072.2,
+      "duration": 5.359
+    },
+    {
+      "text": "output so that's the difference between",
+      "start": 1075.4,
+      "duration": 4.88
+    },
+    {
+      "text": "the feed forward neural network and the",
+      "start": 1077.559,
+      "duration": 4.521
+    },
+    {
+      "text": "essentially this multi-ad attention",
+      "start": 1080.28,
+      "duration": 5.639
+    },
+    {
+      "text": "module which we saw let me yeah so let",
+      "start": 1082.08,
+      "duration": 6.04
+    },
+    {
+      "text": "me zoom in",
+      "start": 1085.919,
+      "duration": 4.561
+    },
+    {
+      "text": "here yeah that's the difference between",
+      "start": 1088.12,
+      "duration": 4.6
+    },
+    {
+      "text": "the feed forward module this feed",
+      "start": 1090.48,
+      "duration": 4.52
+    },
+    {
+      "text": "forward module it only focuses on the",
+      "start": 1092.72,
+      "duration": 4.319
+    },
+    {
+      "text": "specific token and the multi-ad",
+      "start": 1095.0,
+      "duration": 3.88
+    },
+    {
+      "text": "attention which we saw earlier and",
+      "start": 1097.039,
+      "duration": 3.561
+    },
+    {
+      "text": "because that looks at the relationship",
+      "start": 1098.88,
+      "duration": 5.4
+    },
+    {
+      "text": "of one token with other tokens as",
+      "start": 1100.6,
+      "duration": 3.68
+    },
+    {
+      "text": "well uh awesome now what we can actually",
+      "start": 1104.32,
+      "duration": 5.56
+    },
+    {
+      "text": "do is that let us go to python code and",
+      "start": 1107.44,
+      "duration": 4.719
+    },
+    {
+      "text": "implement this speed forward neural",
+      "start": 1109.88,
+      "duration": 4.88
+    },
+    {
+      "text": "network U with the expansion and",
+      "start": 1112.159,
+      "duration": 5.0
+    },
+    {
+      "text": "contraction it's again shown over here",
+      "start": 1114.76,
+      "duration": 4.52
+    },
+    {
+      "text": "what we are going to consider in Python",
+      "start": 1117.159,
+      "duration": 3.721
+    },
+    {
+      "text": "so what we are going to do is that we",
+      "start": 1119.28,
+      "duration": 4.399
+    },
+    {
+      "text": "are going to look at an input which",
+      "start": 1120.88,
+      "duration": 5.84
+    },
+    {
+      "text": "essentially has three tokens and each",
+      "start": 1123.679,
+      "duration": 5.801
+    },
+    {
+      "text": "token has the size of",
+      "start": 1126.72,
+      "duration": 5.16
+    },
+    {
+      "text": "768 and that to we are going to look at",
+      "start": 1129.48,
+      "duration": 4.6
+    },
+    {
+      "text": "two such batches so in batch number one",
+      "start": 1131.88,
+      "duration": 4.56
+    },
+    {
+      "text": "we'll have three tokens in batch number",
+      "start": 1134.08,
+      "duration": 4.16
+    },
+    {
+      "text": "two we'll have three tokens and each",
+      "start": 1136.44,
+      "duration": 4.76
+    },
+    {
+      "text": "token we have a size of 768 now remember",
+      "start": 1138.24,
+      "duration": 4.76
+    },
+    {
+      "text": "what happens in the first linear layer",
+      "start": 1141.2,
+      "duration": 4.479
+    },
+    {
+      "text": "just look at one token at once uh the",
+      "start": 1143.0,
+      "duration": 5.76
+    },
+    {
+      "text": "768 is projected into a 3072 dimensional",
+      "start": 1145.679,
+      "duration": 5.48
+    },
+    {
+      "text": "space then we have the J activation",
+      "start": 1148.76,
+      "duration": 4.68
+    },
+    {
+      "text": "function after this linear layer so",
+      "start": 1151.159,
+      "duration": 4.041
+    },
+    {
+      "text": "after this first layer there is a JLo",
+      "start": 1153.44,
+      "duration": 3.84
+    },
+    {
+      "text": "activation function which we learned",
+      "start": 1155.2,
+      "duration": 4.599
+    },
+    {
+      "text": "about earlier remember the JLo",
+      "start": 1157.28,
+      "duration": 4.8
+    },
+    {
+      "text": "activation preserves the dimension so",
+      "start": 1159.799,
+      "duration": 4.921
+    },
+    {
+      "text": "the input to the JLo is 3072 Dimension",
+      "start": 1162.08,
+      "duration": 6.16
+    },
+    {
+      "text": "the output is 3072 now the final layer",
+      "start": 1164.72,
+      "duration": 5.68
+    },
+    {
+      "text": "compress so the input Dimension to the",
+      "start": 1168.24,
+      "duration": 4.799
+    },
+    {
+      "text": "final layer is 3072 and the output",
+      "start": 1170.4,
+      "duration": 5.12
+    },
+    {
+      "text": "Dimension is 768 so if you see the",
+      "start": 1173.039,
+      "duration": 4.64
+    },
+    {
+      "text": "output tensor Dimension it's exactly the",
+      "start": 1175.52,
+      "duration": 5.159
+    },
+    {
+      "text": "same as the input tensor two batches",
+      "start": 1177.679,
+      "duration": 6.201
+    },
+    {
+      "text": "three tokens in each batch and 768 the",
+      "start": 1180.679,
+      "duration": 6.281
+    },
+    {
+      "text": "embedding dimension of each token so I",
+      "start": 1183.88,
+      "duration": 4.84
+    },
+    {
+      "text": "hope you have understood the visual",
+      "start": 1186.96,
+      "duration": 3.24
+    },
+    {
+      "text": "nature of the neural network which we",
+      "start": 1188.72,
+      "duration": 3.52
+    },
+    {
+      "text": "are about to construct because if that's",
+      "start": 1190.2,
+      "duration": 3.719
+    },
+    {
+      "text": "the case you'll really understand what's",
+      "start": 1192.24,
+      "duration": 4.4
+    },
+    {
+      "text": "going on in the code very deeply so we",
+      "start": 1193.919,
+      "duration": 4.321
+    },
+    {
+      "text": "are going to construct this class which",
+      "start": 1196.64,
+      "duration": 4.64
+    },
+    {
+      "text": "is called feed forward and uh when an",
+      "start": 1198.24,
+      "duration": 4.72
+    },
+    {
+      "text": "instance of this class is created this",
+      "start": 1201.28,
+      "duration": 4.04
+    },
+    {
+      "text": "init Constructor is called by default",
+      "start": 1202.96,
+      "duration": 4.36
+    },
+    {
+      "text": "and what it does is that it creates this",
+      "start": 1205.32,
+      "duration": 4.92
+    },
+    {
+      "text": "self. layers which is basically nn.",
+      "start": 1207.32,
+      "duration": 5.0
+    },
+    {
+      "text": "sequential so if you are not aware of NN",
+      "start": 1210.24,
+      "duration": 6.439
+    },
+    {
+      "text": "do sequential uh you can it's a p torch",
+      "start": 1212.32,
+      "duration": 6.52
+    },
+    {
+      "text": "module basically for constructing or",
+      "start": 1216.679,
+      "duration": 4.761
+    },
+    {
+      "text": "chaining a neural network",
+      "start": 1218.84,
+      "duration": 4.959
+    },
+    {
+      "text": "together um so essentially you can",
+      "start": 1221.44,
+      "duration": 4.119
+    },
+    {
+      "text": "Define multiple layers and create a",
+      "start": 1223.799,
+      "duration": 3.521
+    },
+    {
+      "text": "neural network by adding these different",
+      "start": 1225.559,
+      "duration": 3.48
+    },
+    {
+      "text": "layers together that's why is called",
+      "start": 1227.32,
+      "duration": 4.16
+    },
+    {
+      "text": "sequential so here what we are doing is",
+      "start": 1229.039,
+      "duration": 5.961
+    },
+    {
+      "text": "that um first if you see we have a GPT",
+      "start": 1231.48,
+      "duration": 5.4
+    },
+    {
+      "text": "configuration and let me actually pull",
+      "start": 1235.0,
+      "duration": 3.84
+    },
+    {
+      "text": "that configuration here once more so",
+      "start": 1236.88,
+      "duration": 4.24
+    },
+    {
+      "text": "that you are aware of the configuration",
+      "start": 1238.84,
+      "duration": 4.24
+    },
+    {
+      "text": "which we are using yeah so this is the",
+      "start": 1241.12,
+      "duration": 3.96
+    },
+    {
+      "text": "GPT configuration which we are using and",
+      "start": 1243.08,
+      "duration": 4.56
+    },
+    {
+      "text": "I'm going to paste it over here so that",
+      "start": 1245.08,
+      "duration": 4.479
+    },
+    {
+      "text": "it's a",
+      "start": 1247.64,
+      "duration": 5.36
+    },
+    {
+      "text": "reference okay so yeah so here I'm going",
+      "start": 1249.559,
+      "duration": 6.0
+    },
+    {
+      "text": "to paste the GPT architect GPT",
+      "start": 1253.0,
+      "duration": 5.159
+    },
+    {
+      "text": "configuration which we are using now",
+      "start": 1255.559,
+      "duration": 5.281
+    },
+    {
+      "text": "let's look look at how the sequential uh",
+      "start": 1258.159,
+      "duration": 4.361
+    },
+    {
+      "text": "layer is constructed first we have a",
+      "start": 1260.84,
+      "duration": 3.4
+    },
+    {
+      "text": "linear layer which we saw on the white",
+      "start": 1262.52,
+      "duration": 4.44
+    },
+    {
+      "text": "board and the input dimension of this",
+      "start": 1264.24,
+      "duration": 4.559
+    },
+    {
+      "text": "linear layer is the number of embedding",
+      "start": 1266.96,
+      "duration": 4.88
+    },
+    {
+      "text": "Dimension which is 768 for GPT and the",
+      "start": 1268.799,
+      "duration": 4.841
+    },
+    {
+      "text": "output of this linear layer dimensions",
+      "start": 1271.84,
+      "duration": 4.52
+    },
+    {
+      "text": "are 4 into 768 because see the first",
+      "start": 1273.64,
+      "duration": 4.8
+    },
+    {
+      "text": "layer is the projection layer so it",
+      "start": 1276.36,
+      "duration": 3.6
+    },
+    {
+      "text": "takes in an input of the embedding",
+      "start": 1278.44,
+      "duration": 5.44
+    },
+    {
+      "text": "Dimension and the IT outputs 4 into 768",
+      "start": 1279.96,
+      "duration": 6.44
+    },
+    {
+      "text": "then we have a j activation function and",
+      "start": 1283.88,
+      "duration": 4.72
+    },
+    {
+      "text": "then we have the second layer the input",
+      "start": 1286.4,
+      "duration": 4.879
+    },
+    {
+      "text": "to the second layer is 4 into 768 and",
+      "start": 1288.6,
+      "duration": 5.199
+    },
+    {
+      "text": "the output of the second layer is",
+      "start": 1291.279,
+      "duration": 6.0
+    },
+    {
+      "text": "768 so the CFG embedding Dimension is",
+      "start": 1293.799,
+      "duration": 4.921
+    },
+    {
+      "text": "that this we are taking this",
+      "start": 1297.279,
+      "duration": 3.441
+    },
+    {
+      "text": "configuration and we are looking at the",
+      "start": 1298.72,
+      "duration": 3.92
+    },
+    {
+      "text": "embedding Dimension which is",
+      "start": 1300.72,
+      "duration": 4.68
+    },
+    {
+      "text": "768 um and if you print this out if you",
+      "start": 1302.64,
+      "duration": 5.6
+    },
+    {
+      "text": "print GPT config 124 million embedding",
+      "start": 1305.4,
+      "duration": 5.56
+    },
+    {
+      "text": "Dimension you'll see that it's 768 right",
+      "start": 1308.24,
+      "duration": 4.16
+    },
+    {
+      "text": "so this is the feed forward neural",
+      "start": 1310.96,
+      "duration": 3.079
+    },
+    {
+      "text": "network which is constructed it has",
+      "start": 1312.4,
+      "duration": 3.639
+    },
+    {
+      "text": "expansion so you can think of this as",
+      "start": 1314.039,
+      "duration": 4.201
+    },
+    {
+      "text": "expansion let me write a comment here",
+      "start": 1316.039,
+      "duration": 3.12
+    },
+    {
+      "text": "actually",
+      "start": 1318.24,
+      "duration": 2.24
+    },
+    {
+      "text": "this is",
+      "start": 1319.159,
+      "duration": 4.281
+    },
+    {
+      "text": "expansion uh then this is the",
+      "start": 1320.48,
+      "duration": 6.079
+    },
+    {
+      "text": "activation the J activation and then",
+      "start": 1323.44,
+      "duration": 5.68
+    },
+    {
+      "text": "finally we have the",
+      "start": 1326.559,
+      "duration": 4.921
+    },
+    {
+      "text": "contraction so it's a three-step process",
+      "start": 1329.12,
+      "duration": 4.32
+    },
+    {
+      "text": "expansion activation contraction and",
+      "start": 1331.48,
+      "duration": 3.52
+    },
+    {
+      "text": "this feed forward neural network is",
+      "start": 1333.44,
+      "duration": 3.92
+    },
+    {
+      "text": "constructed like this right and then we",
+      "start": 1335.0,
+      "duration": 4.2
+    },
+    {
+      "text": "have the forward method which just",
+      "start": 1337.36,
+      "duration": 2.88
+    },
+    {
+      "text": "Returns the",
+      "start": 1339.2,
+      "duration": 3.56
+    },
+    {
+      "text": "output uh from this layer so it will do",
+      "start": 1340.24,
+      "duration": 4.6
+    },
+    {
+      "text": "the expansion it will do the J it will",
+      "start": 1342.76,
+      "duration": 4.279
+    },
+    {
+      "text": "do the contraction and it will return",
+      "start": 1344.84,
+      "duration": 5.079
+    },
+    {
+      "text": "the output and remember that the output",
+      "start": 1347.039,
+      "duration": 4.801
+    },
+    {
+      "text": "has the same dimensional size as the",
+      "start": 1349.919,
+      "duration": 3.12
+    },
+    {
+      "text": "input",
+      "start": 1351.84,
+      "duration": 3.68
+    },
+    {
+      "text": "right so I have just written some text",
+      "start": 1353.039,
+      "duration": 4.401
+    },
+    {
+      "text": "over here as we can see in the preceding",
+      "start": 1355.52,
+      "duration": 4.32
+    },
+    {
+      "text": "code the feed forward module is a small",
+      "start": 1357.44,
+      "duration": 4.479
+    },
+    {
+      "text": "neural network consisting of two linear",
+      "start": 1359.84,
+      "duration": 4.6
+    },
+    {
+      "text": "layers and a JLo activation function",
+      "start": 1361.919,
+      "duration": 6.601
+    },
+    {
+      "text": "right uh in the 124 million parameter",
+      "start": 1364.44,
+      "duration": 6.8
+    },
+    {
+      "text": "gpt2 model GPT model it receives the",
+      "start": 1368.52,
+      "duration": 4.519
+    },
+    {
+      "text": "input batches with tokens that have an",
+      "start": 1371.24,
+      "duration": 5.0
+    },
+    {
+      "text": "embedding size of 768 as we saw earlier",
+      "start": 1373.039,
+      "duration": 6.081
+    },
+    {
+      "text": "now we can actually uh now we have",
+      "start": 1376.24,
+      "duration": 4.96
+    },
+    {
+      "text": "everything in shape now we can",
+      "start": 1379.12,
+      "duration": 4.28
+    },
+    {
+      "text": "actually create an instance of this",
+      "start": 1381.2,
+      "duration": 4.16
+    },
+    {
+      "text": "field forward class and remember we have",
+      "start": 1383.4,
+      "duration": 3.72
+    },
+    {
+      "text": "to pass in the configuration which we",
+      "start": 1385.36,
+      "duration": 4.0
+    },
+    {
+      "text": "have earlier constructed so that it can",
+      "start": 1387.12,
+      "duration": 4.799
+    },
+    {
+      "text": "extract the embedding Dimension right so",
+      "start": 1389.36,
+      "duration": 4.04
+    },
+    {
+      "text": "we create an instance of this feed",
+      "start": 1391.919,
+      "duration": 3.281
+    },
+    {
+      "text": "forward class and pass in the GPT",
+      "start": 1393.4,
+      "duration": 4.0
+    },
+    {
+      "text": "configuration which we are using one",
+      "start": 1395.2,
+      "duration": 4.28
+    },
+    {
+      "text": "more thing to mention is that this Jou",
+      "start": 1397.4,
+      "duration": 4.759
+    },
+    {
+      "text": "is basically the j class which we had",
+      "start": 1399.48,
+      "duration": 4.799
+    },
+    {
+      "text": "defined earlier at the start of this",
+      "start": 1402.159,
+      "duration": 4.841
+    },
+    {
+      "text": "lecture so that's available to the feed",
+      "start": 1404.279,
+      "duration": 6.0
+    },
+    {
+      "text": "forward uh feed forward class okay so",
+      "start": 1407.0,
+      "duration": 5.52
+    },
+    {
+      "text": "now I will define an input X so as we",
+      "start": 1410.279,
+      "duration": 4.201
+    },
+    {
+      "text": "saw on the Whiteboard X will have two",
+      "start": 1412.52,
+      "duration": 3.72
+    },
+    {
+      "text": "batches each batch will have three",
+      "start": 1414.48,
+      "duration": 3.6
+    },
+    {
+      "text": "tokens and the embedding dimension of",
+      "start": 1416.24,
+      "duration": 3.48
+    },
+    {
+      "text": "each token is going to be",
+      "start": 1418.08,
+      "duration": 6.16
+    },
+    {
+      "text": "768 that's the input now when I uh I",
+      "start": 1419.72,
+      "duration": 6.319
+    },
+    {
+      "text": "create an instance of the feed forward",
+      "start": 1424.24,
+      "duration": 4.28
+    },
+    {
+      "text": "class FFN and then pass the input to",
+      "start": 1426.039,
+      "duration": 4.921
+    },
+    {
+      "text": "this instance so what will happen when",
+      "start": 1428.52,
+      "duration": 4.68
+    },
+    {
+      "text": "the input goes through this instance it",
+      "start": 1430.96,
+      "duration": 6.0
+    },
+    {
+      "text": "will um the this init Constructor will",
+      "start": 1433.2,
+      "duration": 5.64
+    },
+    {
+      "text": "be called so self. layers will be",
+      "start": 1436.96,
+      "duration": 4.04
+    },
+    {
+      "text": "defined and the neural network will be",
+      "start": 1438.84,
+      "duration": 4.56
+    },
+    {
+      "text": "constructed with this architecture and",
+      "start": 1441.0,
+      "duration": 4.32
+    },
+    {
+      "text": "then the forward method will be called",
+      "start": 1443.4,
+      "duration": 3.68
+    },
+    {
+      "text": "when the forward method will be called",
+      "start": 1445.32,
+      "duration": 3.479
+    },
+    {
+      "text": "first the expansion will be applied on",
+      "start": 1447.08,
+      "duration": 3.719
+    },
+    {
+      "text": "the input then the activation will be",
+      "start": 1448.799,
+      "duration": 3.601
+    },
+    {
+      "text": "applied and then the contraction will be",
+      "start": 1450.799,
+      "duration": 4.12
+    },
+    {
+      "text": "applied and all along the size of the",
+      "start": 1452.4,
+      "duration": 4.519
+    },
+    {
+      "text": "input will be preserved so then the",
+      "start": 1454.919,
+      "duration": 4.24
+    },
+    {
+      "text": "output will have the same size as the",
+      "start": 1456.919,
+      "duration": 4.0
+    },
+    {
+      "text": "input and you can print out the output",
+      "start": 1459.159,
+      "duration": 4.841
+    },
+    {
+      "text": "shape which is 2x 3x 768 again it's the",
+      "start": 1460.919,
+      "duration": 4.801
+    },
+    {
+      "text": "same size of the input as we had seen on",
+      "start": 1464.0,
+      "duration": 4.919
+    },
+    {
+      "text": "the white board so the speed forward",
+      "start": 1465.72,
+      "duration": 5.6
+    },
+    {
+      "text": "module which we implemented in this in",
+      "start": 1468.919,
+      "duration": 4.561
+    },
+    {
+      "text": "this lecture plays a crucial role in",
+      "start": 1471.32,
+      "duration": 4.04
+    },
+    {
+      "text": "enhancing the model's ability to learn",
+      "start": 1473.48,
+      "duration": 3.72
+    },
+    {
+      "text": "from and generalize the",
+      "start": 1475.36,
+      "duration": 4.799
+    },
+    {
+      "text": "data why can it do that because although",
+      "start": 1477.2,
+      "duration": 4.76
+    },
+    {
+      "text": "the input and the output dimensions are",
+      "start": 1480.159,
+      "duration": 4.361
+    },
+    {
+      "text": "same it internally expands the embedding",
+      "start": 1481.96,
+      "duration": 4.319
+    },
+    {
+      "text": "Dimension into a higher dimensional",
+      "start": 1484.52,
+      "duration": 4.399
+    },
+    {
+      "text": "space through the first linear layer",
+      "start": 1486.279,
+      "duration": 5.041
+    },
+    {
+      "text": "this expansion is followed by a",
+      "start": 1488.919,
+      "duration": 4.681
+    },
+    {
+      "text": "nonlinear jalu activation and then a",
+      "start": 1491.32,
+      "duration": 4.479
+    },
+    {
+      "text": "contraction block back to the original",
+      "start": 1493.6,
+      "duration": 4.12
+    },
+    {
+      "text": "Dimension with the second linear",
+      "start": 1495.799,
+      "duration": 3.321
+    },
+    {
+      "text": "transformation",
+      "start": 1497.72,
+      "duration": 3.679
+    },
+    {
+      "text": "so such an expansion contraction design",
+      "start": 1499.12,
+      "duration": 4.2
+    },
+    {
+      "text": "allows for the exploration of a richer",
+      "start": 1501.399,
+      "duration": 4.081
+    },
+    {
+      "text": "representation space and thus it",
+      "start": 1503.32,
+      "duration": 4.04
+    },
+    {
+      "text": "enhances the models ability to learn",
+      "start": 1505.48,
+      "duration": 4.4
+    },
+    {
+      "text": "from and generalize the data always",
+      "start": 1507.36,
+      "duration": 4.48
+    },
+    {
+      "text": "remember that when you learn about these",
+      "start": 1509.88,
+      "duration": 4.0
+    },
+    {
+      "text": "neural network architectures first ask",
+      "start": 1511.84,
+      "duration": 3.719
+    },
+    {
+      "text": "the question why is it even there what",
+      "start": 1513.88,
+      "duration": 5.32
+    },
+    {
+      "text": "if I remove this um you'll see that if",
+      "start": 1515.559,
+      "duration": 5.36
+    },
+    {
+      "text": "you remove it the model's ability to",
+      "start": 1519.2,
+      "duration": 3.719
+    },
+    {
+      "text": "learn from data is hampered",
+      "start": 1520.919,
+      "duration": 4.64
+    },
+    {
+      "text": "significantly and remember that in gpt2",
+      "start": 1522.919,
+      "duration": 4.921
+    },
+    {
+      "text": "we have 12 Transformer blocks and each",
+      "start": 1525.559,
+      "duration": 4.12
+    },
+    {
+      "text": "Transformer block we have a feed forward",
+      "start": 1527.84,
+      "duration": 3.52
+    },
+    {
+      "text": "neural network like this so we'll have",
+      "start": 1529.679,
+      "duration": 4.0
+    },
+    {
+      "text": "12 neural network like this so 12",
+      "start": 1531.36,
+      "duration": 4.559
+    },
+    {
+      "text": "expansion contraction blocks now imagine",
+      "start": 1533.679,
+      "duration": 6.12
+    },
+    {
+      "text": "the exploration power which our model",
+      "start": 1535.919,
+      "duration": 6.601
+    },
+    {
+      "text": "has okay the second thing which I really",
+      "start": 1539.799,
+      "duration": 4.24
+    },
+    {
+      "text": "want to highlight here which I also",
+      "start": 1542.52,
+      "duration": 3.8
+    },
+    {
+      "text": "highlighted at the start is that there",
+      "start": 1544.039,
+      "duration": 4.081
+    },
+    {
+      "text": "is a uniformity in the input and the",
+      "start": 1546.32,
+      "duration": 3.68
+    },
+    {
+      "text": "output Dimensions when we look at the",
+      "start": 1548.12,
+      "duration": 4.48
+    },
+    {
+      "text": "gpt2 architecture this simplifies the",
+      "start": 1550.0,
+      "duration": 4.88
+    },
+    {
+      "text": "architecture by enabling the stacking of",
+      "start": 1552.6,
+      "duration": 5.04
+    },
+    {
+      "text": "multiple layers and this makes the model",
+      "start": 1554.88,
+      "duration": 4.399
+    },
+    {
+      "text": "much more",
+      "start": 1557.64,
+      "duration": 6.12
+    },
+    {
+      "text": "scalable so um let me explain this once",
+      "start": 1559.279,
+      "duration": 6.561
+    },
+    {
+      "text": "more yeah when we looked at this",
+      "start": 1563.76,
+      "duration": 4.399
+    },
+    {
+      "text": "Transformer block at every single layer",
+      "start": 1565.84,
+      "duration": 4.12
+    },
+    {
+      "text": "as I mentioned at every single layer",
+      "start": 1568.159,
+      "duration": 4.4
+    },
+    {
+      "text": "normalization multi-ad Dropout fade",
+      "start": 1569.96,
+      "duration": 4.719
+    },
+    {
+      "text": "forward neural network the dimension is",
+      "start": 1572.559,
+      "duration": 4.281
+    },
+    {
+      "text": "preserved throughout so that way we can",
+      "start": 1574.679,
+      "duration": 3.961
+    },
+    {
+      "text": "stack multiple layers together because",
+      "start": 1576.84,
+      "duration": 3.559
+    },
+    {
+      "text": "we don't have to worry about dimensional",
+      "start": 1578.64,
+      "duration": 3.759
+    },
+    {
+      "text": "mismatch that's one of the biggest",
+      "start": 1580.399,
+      "duration": 3.801
+    },
+    {
+      "text": "advantages of this Transformer Block",
+      "start": 1582.399,
+      "duration": 4.361
+    },
+    {
+      "text": "it's very flexible that way and we can",
+      "start": 1584.2,
+      "duration": 4.479
+    },
+    {
+      "text": "stack multiple layers on top of each",
+      "start": 1586.76,
+      "duration": 5.76
+    },
+    {
+      "text": "other and that makes the model much more",
+      "start": 1588.679,
+      "duration": 6.24
+    },
+    {
+      "text": "scalable okay so this actually brings us",
+      "start": 1592.52,
+      "duration": 3.879
+    },
+    {
+      "text": "to the end of this lecture where we",
+      "start": 1594.919,
+      "duration": 3.76
+    },
+    {
+      "text": "covered about the J activation function",
+      "start": 1596.399,
+      "duration": 4.121
+    },
+    {
+      "text": "and the feed forward neural network to",
+      "start": 1598.679,
+      "duration": 3.641
+    },
+    {
+      "text": "which the J activation function is",
+      "start": 1600.52,
+      "duration": 5.159
+    },
+    {
+      "text": "linked so now in this entire GPT",
+      "start": 1602.32,
+      "duration": 5.12
+    },
+    {
+      "text": "architecture we have now covered four",
+      "start": 1605.679,
+      "duration": 4.681
+    },
+    {
+      "text": "things we have covered the GPT backbone",
+      "start": 1607.44,
+      "duration": 4.599
+    },
+    {
+      "text": "we have covered layer normalization in",
+      "start": 1610.36,
+      "duration": 3.64
+    },
+    {
+      "text": "the previous lecture and in today's",
+      "start": 1612.039,
+      "duration": 3.841
+    },
+    {
+      "text": "lecture we covered the jalu activation",
+      "start": 1614.0,
+      "duration": 3.399
+    },
+    {
+      "text": "along with the feed forward neural",
+      "start": 1615.88,
+      "duration": 3.679
+    },
+    {
+      "text": "network in the next lecture we are going",
+      "start": 1617.399,
+      "duration": 4.28
+    },
+    {
+      "text": "to look at shortcut connections so",
+      "start": 1619.559,
+      "duration": 4.201
+    },
+    {
+      "text": "shortcut connections are these basically",
+      "start": 1621.679,
+      "duration": 4.72
+    },
+    {
+      "text": "these plus signs if you would have seen",
+      "start": 1623.76,
+      "duration": 4.6
+    },
+    {
+      "text": "if you zoom into this Transformer block",
+      "start": 1626.399,
+      "duration": 4.321
+    },
+    {
+      "text": "there are this plus signs here right",
+      "start": 1628.36,
+      "duration": 6.08
+    },
+    {
+      "text": "this plus this plus signs with an",
+      "start": 1630.72,
+      "duration": 6.48
+    },
+    {
+      "text": "arrow this plus sign here with an arrow",
+      "start": 1634.44,
+      "duration": 4.359
+    },
+    {
+      "text": "these are shortcut connections and you",
+      "start": 1637.2,
+      "duration": 3.28
+    },
+    {
+      "text": "might be wondering what they are what",
+      "start": 1638.799,
+      "duration": 3.961
+    },
+    {
+      "text": "they do we'll learn all about that in",
+      "start": 1640.48,
+      "duration": 5.0
+    },
+    {
+      "text": "the next lecture I hope you are",
+      "start": 1642.76,
+      "duration": 4.039
+    },
+    {
+      "text": "understanding everyone from this",
+      "start": 1645.48,
+      "duration": 4.16
+    },
+    {
+      "text": "lectures and please try to execute the",
+      "start": 1646.799,
+      "duration": 4.36
+    },
+    {
+      "text": "code which I'm sharing after every",
+      "start": 1649.64,
+      "duration": 4.12
+    },
+    {
+      "text": "single lecture that way the conceptual",
+      "start": 1651.159,
+      "duration": 4.601
+    },
+    {
+      "text": "understanding and the code understanding",
+      "start": 1653.76,
+      "duration": 4.08
+    },
+    {
+      "text": "will also develop much further I'm",
+      "start": 1655.76,
+      "duration": 3.76
+    },
+    {
+      "text": "deliberately splitting these lectures",
+      "start": 1657.84,
+      "duration": 4.319
+    },
+    {
+      "text": "into separate so that you understand and",
+      "start": 1659.52,
+      "duration": 5.159
+    },
+    {
+      "text": "discover about each model of the GPT",
+      "start": 1662.159,
+      "duration": 4.281
+    },
+    {
+      "text": "architecture on your own without",
+      "start": 1664.679,
+      "duration": 4.0
+    },
+    {
+      "text": "confusing you too much thank you so much",
+      "start": 1666.44,
+      "duration": 3.719
+    },
+    {
+      "text": "everyone and I look forward to seeing",
+      "start": 1668.679,
+      "duration": 5.201
+    },
+    {
+      "text": "you in the next lecture",
+      "start": 1670.159,
+      "duration": 3.721
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the built large language models from scratch Series in these set of lectures we have been learning about the llm architecture in a lot of detail if you want to learn about the llm architecture it is very important that you understand all of these building blocks from bottom to top in the previous lecture we covered about the G DPT backbone which is essentially a dummy code with the bird's eye view where you see all the different components together without coding any of them and since the last lecture we have started looking at each individual component and coding them out in python in the previous lecture we looked at this building block called layer normalization and today's lecture is going to be completely focused on the second building block which is the JLo activation function along along with this feed forward neural network so today actually we are going to cover two of these blocks which have been shown over here the J activation and the feed forward neural network in the next lecture we'll also be looking at shortcut connections and then all of these building blocks will come together to form the Transformer block which is the Beating Heart of the GPT architecture so let's continue along our journey and make incremental progress towards understanding the Transformer block as I mentioned the goal the objective of today's lecture is to understand the J activation along with the feed forward neural network so let's get started with today's lecture to give you an overview of what the Transformer block actually looks like here's the architecture of the Transformer block zooming into this Transformer so the Transformer block consists of many layers which are stacked together and that's why we have to learn about each of these layers separately the first is the layer normalization layer the input then is normalized and it's passed to the multi-ad attention we have a Dropout layer after that this plus sign indicates that there is a shortcut connection then we have another layer normalization layer we learned about layer normalization in the previous lecture the output of the second layer normalization passes into a feed forward neural network which is what we are going to learn about in today's lecture and when you put a microscope to this feed forward neural network and try to really understand understand what it consists of you'll see that it consists of linear layers which are common in any neural network but it consists of this jalu or guu activation which is you might be hearing about this for the first time even if you have use deep learning Frameworks people generally use reu T sigmoid Etc but this jalu activation or G activation is new to most of the people everything else in the speed forward neural network is same as traditional neural networks but this jalu activation is something which is a bit different so we'll be covering this part also in a lot of detail so I just wanted to show you this so that you you have some context about what why we are learning this lecture and after you understand the feed forward neural network and guu after today's lecture you'll be able to essentially understand most of these components over here except for the shortcut connection which we'll look at in the next lecture okay so let's begin so the goal of this lecture is to implement a small neural network subm module that is part of the llm Transformer block and when I say neural network subm module I'm especially referring to this feed forward block which has been mentioned uh here this this feed forward block I'm referring to this block we want to write a code to uh uh to integrate this block this feed forward neural network block okay so now let us first learn about the guu or the jalu activation function I'm going to call it jalu for the rest of this lecture uh but the way you call it does not really matter as long as you understand what the function is what does it represent and why don't we use the common activation functions like Ru so two activation functions which are very commonly implemented in large language models are the jalu and the Swig Loop in today's lecture we are going to specifically look at the JLo so before we look at that first let's understand about the reu activation function this is how the reu activation function actually looks like for X which is greater than zero The Rao activation function Returns the same value as the input but if x is less than zero The Rao activation function returns zero so if you plot The Rao activation function as a function of X you'll see that the curve looks something like this it's flat for negative values of X and then it's linear already you can start seeing some problems with this right it's not differentiable at x equal to0 there is a sharp jump over here and for all the values of X less than 0 this is equal to zero so if you integrate this in neural networks it often leads to a dead neuron problem which means that if the output from one layer is negative and if Ru activation function is applied to it the output becomes zero and then it stays zero because uh because we cannot do any learning of after that so the neurons which are associated with that particular output they don't contribute anything to the learning process once the output of the neuron becomes negative and that's called as the dead neuron problem so learning essentially stagnates of course Ru has a huge number of other advantages this nonlinearity which is introduced over here makes neural networks expressive it gives the power to neural networks but the reason we we are looking at the disadvantages of reu is that understanding the disadvantages of Ru will open an opportunity for us to learn about the jalu activation function and why it is used in large language models so first let's start understanding about the mathematical representation of the uh JLo activation function so mathematically the J activation function is the product of X which is essentially just the identity variable so J of x equal to X into this 5 of X and essentially f of x is the cumulative distribution function of the standard goian distribution so I just have this opened door here so a standard goian uh cumulative distribution function looks like this as a function of X so the G is a product of X multiplied by this and then uh if you actually uh try to understand what is happening so let's look at this five of X for X greater than zero so if x is very high you see that it's almost equal to one so which means that for positive values of X we are slowly tending to one which means that the for very positive values of X the G of X will tend to X into one which is X so for very high values of X this will almost tend to the linear function which is quite similar to the positive branch of Ru but what happens to the negative values of this is pretty interesting the negative values here you can see that they are not equal to zero so X will be multiplied with these negative values and that's why for negative values of x g will not be zero like it is in The Rao activation function so now what we can do is that instead of using this complicated cumulative distribution function what uh people generally do is that they use an approximation for the JLo activation and the approximation which was actually used for training gpt2 looks something like this so here you can see that guu of X is equal to5 * x * 1 + tan hunk of 2 byk into x + this cubic term no need to worry about this term but just know that instead of worrying about this 5 of X which is the cumulative distribution function and there is also goian involved and it's a bit difficult to compute f of x it's better to use numerical approximations right so when gpt2 was trained the J function which they actually used was was this approximation which is very close to the actual J function right now if you want to compare this with the ru function here I have shown the plots of the J activation function along with the Rao activation function I want you to pause the video for a while here and try to look at the similarities and differences between these two okay so the first thing which should immediately be clear to all of you is there are lot of differences for negative values of X so for X less than Z you can see that the Galu activ function is not really zero so if you zoom into this further you'll see that for most of the values of X it's not zero it tends to zero but it is not zero whereas The Rao activation function for X less than 0 was Zero throughout also if you look at the positive values of X you'll see that this is kind of not exactly linear here for short values of X but for large values of X it's fully linear uh which is exactly what's happening for The Rao activation function so although this positive side of the jilu looks like yal to X it's not exactly y equal to X there are some minor differences but you can say that for X greater than Z it's almost similar to the ru for X greater than 0 but for X less than 0 there are big differences which start to emerge which actually make Jou much better than the ru uh so what are the advantages of the Jou or the ru activation function well the first Advantage which you immediately see from this graph over here is you can see that J activation is smooth throughout right here there is a discontinuity in Ru there is a discontinuity at x equal to zero which makes it not differentiable J activation on the other hand is smooth throughout so it's differentiable across all X that's the first Advantage the second Advantage is that it's not zero for Negative X so that solves the dead neuron problem even if the output of a neuron after is negative even if it goes through J it will not become zero so the neuron won't become dead it will still keep on contributing to the learning process that's the second reason so first reason is differentiability second reason is it prevents the dead neuron problem and third reason is that it just seems to work better than Ru when we do experiments with llms so as always activation functions are hyperparameters right so we need to test out multiple activation functions to see which one performs better and we have generally seen that JLo performs much better in the context of large language models compared to Ray so now what I want to do is that first I want to go to code uh and I want to uh write a class for the JLo activation function write a create a class for the J which implements the uh forward pass which is that it essentially implements the this function which I showed over here so if you look at this function whenever J receives an input X it it transforms it into this through this function and then we get this output as shown in this JLo activation function so what I'm doing here is that I'm creating a class called J Loop and what I'm doing here is that I'm defining a forward method which takes in an input X and it returns this value it returns. 5 into X into 1 + tan H square root of 2 by pi into x + 0.044 into x 3 this is exactly what has been um written over here in this black box over here the reason we are using this is because the same activation function was used for training G gpt2 and remember when we are constructing the llm architecture here we are mimicking the parameters used in the smallest model of gpt2 so now we have created a class for the Jou activation awesome so here I've written a simple plot function we just plots the JLo and the railu activation function and it Compares them side by side we already looked at these two plots on the Whiteboard and we saw the similarities and differences between them so here I have just summed up the points because of which the J activation function is used in llms so as we saw the smoothness of the JLo can lead to better optimization properties during training as it allows for more nuanced adjustments to the model parameters so it's fully differentiable railu has a sharp corner at zero which can sometimes make optimization harder especially in networks that are very deep um especially in networks that are very deep or have complex architectures unlike ra which output zero for any negative input J allows for small nonzero output values so it prevents the dead neuron problem so this means that during the training process neurons that receive negative input can still contribute to the learning process in reu neurons which receive negative input just get an output of zero so they become dead they don't contribute to the learning process this problem is avoided in Rao in Jou sorry Jou avoids this dead neuron problem and that's why it's used in the case of of large language models now what we are going to see next is that okay now that we understand about the Jou activation function we are going to actually look at the architecture of this uh feed forward neural network so you see when you zoom into the neural network you'll see that there is a linear layer here there is a JLo activation here and there is another linear layer here so up till now we understood about the J activation right but now I want to tell you a bit about what the linear layer actually looks like so let let's go to that part of the Whiteboard and let me show you how the linear layer looks like okay so this is how the feed forward neural network actually looks like uh don't worry if it looks a bit complicated it's actually quite simple so let's say we receive a token uh so let's say the feed forward neural network receives a token and the number of uh the dimensions of the token is equal to the embedding Dimension and for gpt2 the smallest size that is equal to 768 so let's say this is the embedding dimension of the token which means that every token is projected into a 7 768 dimensional space so as this token passes through the different layers of the Transformer block which we saw over here the good thing about this Transformer block is that the dimensionality of the the token is preserved so even if we pass from here to here to here to here and finally we go to the input of the feed forward the dimensionality of the token remains 768 throughout this entire procedure and that's one of the big advantages of the way the Transformer block is constructed so keep this embedding dimension in mind as you try to understand the neural network architecture right so here we can see that these are the inputs to the neural network it's a 768 dimensional input vector and this is the first linear layer over here all of these weights which you can see connected to the neurons and then here you can see here is the second linear layer so you might be thinking what is the number of neurons which is used so the number of neurons which is used over here is four * the number of uh inputs here so the number of neurons here will be four multiplied by so let me write this so the number of neurons here will be 4 multiplied by 768 so this will be um close to 3,00 3,200 neurons over here so in the first layer what happens is that the inputs are projected into a larger dimensional space just so that we make the neural network more expressive and capture the properties between the inputs and in the second layer the inputs are compressed back to the original embedding size so the output which is received from this neural network has the same dimensions as the input it matches the original input Dimensions so the output Dimensions will also be equal to 768 so the dimensionality of the input is preserved through this neural network as well the expansion so you can think of this neural network as an expansion contraction neural network and remember that expansion contraction neural networks are very powerful because they preserve the size of the input but at the same time uh they allow to explore a re they allow for a richer exploration space so what happens is that when we expand this when we uh in the first linear layer we do an expansion right projecting into a dimension which is four times larger we can capture more properties between the inputs and that's what essentially makes Transformers so powerful due to layers like these if this layer was not there probably we would have missed out the capturing the meaning between some sentences when we predict the next word so that's why this layer is very important so you can think of the neural network essentially as uh taking one token and then modifying each dimension of this token place by place because the input is 768 Dimension the output is also 768 Dimension and we are looking at one token at a time so this is very different than the attention mechanism right in the attention mechanism we look at one token and we look at the relationship of that token with other tokens in the neural network that's not in this feed forward neural network we don't consider other tokens at all we just look at one token and then we pass the input and then each dimension of the input is modified and then we get the output so that's the difference between the feed forward neural network and the essentially this multi-ad attention module which we saw let me yeah so let me zoom in here yeah that's the difference between the feed forward module this feed forward module it only focuses on the specific token and the multi-ad attention which we saw earlier and because that looks at the relationship of one token with other tokens as well uh awesome now what we can actually do is that let us go to python code and implement this speed forward neural network U with the expansion and contraction it's again shown over here what we are going to consider in Python so what we are going to do is that we are going to look at an input which essentially has three tokens and each token has the size of 768 and that to we are going to look at two such batches so in batch number one we'll have three tokens in batch number two we'll have three tokens and each token we have a size of 768 now remember what happens in the first linear layer just look at one token at once uh the 768 is projected into a 3072 dimensional space then we have the J activation function after this linear layer so after this first layer there is a JLo activation function which we learned about earlier remember the JLo activation preserves the dimension so the input to the JLo is 3072 Dimension the output is 3072 now the final layer compress so the input Dimension to the final layer is 3072 and the output Dimension is 768 so if you see the output tensor Dimension it's exactly the same as the input tensor two batches three tokens in each batch and 768 the embedding dimension of each token so I hope you have understood the visual nature of the neural network which we are about to construct because if that's the case you'll really understand what's going on in the code very deeply so we are going to construct this class which is called feed forward and uh when an instance of this class is created this init Constructor is called by default and what it does is that it creates this self. layers which is basically nn. sequential so if you are not aware of NN do sequential uh you can it's a p torch module basically for constructing or chaining a neural network together um so essentially you can Define multiple layers and create a neural network by adding these different layers together that's why is called sequential so here what we are doing is that um first if you see we have a GPT configuration and let me actually pull that configuration here once more so that you are aware of the configuration which we are using yeah so this is the GPT configuration which we are using and I'm going to paste it over here so that it's a reference okay so yeah so here I'm going to paste the GPT architect GPT configuration which we are using now let's look look at how the sequential uh layer is constructed first we have a linear layer which we saw on the white board and the input dimension of this linear layer is the number of embedding Dimension which is 768 for GPT and the output of this linear layer dimensions are 4 into 768 because see the first layer is the projection layer so it takes in an input of the embedding Dimension and the IT outputs 4 into 768 then we have a j activation function and then we have the second layer the input to the second layer is 4 into 768 and the output of the second layer is 768 so the CFG embedding Dimension is that this we are taking this configuration and we are looking at the embedding Dimension which is 768 um and if you print this out if you print GPT config 124 million embedding Dimension you'll see that it's 768 right so this is the feed forward neural network which is constructed it has expansion so you can think of this as expansion let me write a comment here actually this is expansion uh then this is the activation the J activation and then finally we have the contraction so it's a three-step process expansion activation contraction and this feed forward neural network is constructed like this right and then we have the forward method which just Returns the output uh from this layer so it will do the expansion it will do the J it will do the contraction and it will return the output and remember that the output has the same dimensional size as the input right so I have just written some text over here as we can see in the preceding code the feed forward module is a small neural network consisting of two linear layers and a JLo activation function right uh in the 124 million parameter gpt2 model GPT model it receives the input batches with tokens that have an embedding size of 768 as we saw earlier now we can actually uh now we have everything in shape now we can actually create an instance of this field forward class and remember we have to pass in the configuration which we have earlier constructed so that it can extract the embedding Dimension right so we create an instance of this feed forward class and pass in the GPT configuration which we are using one more thing to mention is that this Jou is basically the j class which we had defined earlier at the start of this lecture so that's available to the feed forward uh feed forward class okay so now I will define an input X so as we saw on the Whiteboard X will have two batches each batch will have three tokens and the embedding dimension of each token is going to be 768 that's the input now when I uh I create an instance of the feed forward class FFN and then pass the input to this instance so what will happen when the input goes through this instance it will um the this init Constructor will be called so self. layers will be defined and the neural network will be constructed with this architecture and then the forward method will be called when the forward method will be called first the expansion will be applied on the input then the activation will be applied and then the contraction will be applied and all along the size of the input will be preserved so then the output will have the same size as the input and you can print out the output shape which is 2x 3x 768 again it's the same size of the input as we had seen on the white board so the speed forward module which we implemented in this in this lecture plays a crucial role in enhancing the model's ability to learn from and generalize the data why can it do that because although the input and the output dimensions are same it internally expands the embedding Dimension into a higher dimensional space through the first linear layer this expansion is followed by a nonlinear jalu activation and then a contraction block back to the original Dimension with the second linear transformation so such an expansion contraction design allows for the exploration of a richer representation space and thus it enhances the models ability to learn from and generalize the data always remember that when you learn about these neural network architectures first ask the question why is it even there what if I remove this um you'll see that if you remove it the model's ability to learn from data is hampered significantly and remember that in gpt2 we have 12 Transformer blocks and each Transformer block we have a feed forward neural network like this so we'll have 12 neural network like this so 12 expansion contraction blocks now imagine the exploration power which our model has okay the second thing which I really want to highlight here which I also highlighted at the start is that there is a uniformity in the input and the output Dimensions when we look at the gpt2 architecture this simplifies the architecture by enabling the stacking of multiple layers and this makes the model much more scalable so um let me explain this once more yeah when we looked at this Transformer block at every single layer as I mentioned at every single layer normalization multi-ad Dropout fade forward neural network the dimension is preserved throughout so that way we can stack multiple layers together because we don't have to worry about dimensional mismatch that's one of the biggest advantages of this Transformer Block it's very flexible that way and we can stack multiple layers on top of each other and that makes the model much more scalable okay so this actually brings us to the end of this lecture where we covered about the J activation function and the feed forward neural network to which the J activation function is linked so now in this entire GPT architecture we have now covered four things we have covered the GPT backbone we have covered layer normalization in the previous lecture and in today's lecture we covered the jalu activation along with the feed forward neural network in the next lecture we are going to look at shortcut connections so shortcut connections are these basically these plus signs if you would have seen if you zoom into this Transformer block there are this plus signs here right this plus this plus signs with an arrow this plus sign here with an arrow these are shortcut connections and you might be wondering what they are what they do we'll learn all about that in the next lecture I hope you are understanding everyone from this lectures and please try to execute the code which I'm sharing after every single lecture that way the conceptual understanding and the code understanding will also develop much further I'm deliberately splitting these lectures into separate so that you understand and discover about each model of the GPT architecture on your own without confusing you too much thank you so much everyone and I look forward to seeing you in the next lecture"
+}

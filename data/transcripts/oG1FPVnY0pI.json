@@ -1,0 +1,3376 @@
+{
+  "video": {
+    "video_id": "oG1FPVnY0pI",
+    "title": "Temperature Scaling in Large Language Models (LLMs)",
+    "duration": 1592.0,
+    "index": 28
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.12
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.359,
+      "duration": 4.761
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 8.12,
+      "duration": 5.599
+    },
+    {
+      "text": "models from scratch Series today we are",
+      "start": 10.12,
+      "duration": 5.76
+    },
+    {
+      "text": "going to learn about a very important",
+      "start": 13.719,
+      "duration": 4.64
+    },
+    {
+      "text": "concept and that concept is called",
+      "start": 15.88,
+      "duration": 4.159
+    },
+    {
+      "text": "temperature",
+      "start": 18.359,
+      "duration": 3.68
+    },
+    {
+      "text": "scaling we'll understand what",
+      "start": 20.039,
+      "duration": 4.32
+    },
+    {
+      "text": "temperature scaling is and why it is",
+      "start": 22.039,
+      "duration": 4.56
+    },
+    {
+      "text": "used in large language",
+      "start": 24.359,
+      "duration": 4.84
+    },
+    {
+      "text": "models first let me recap what all we",
+      "start": 26.599,
+      "duration": 4.881
+    },
+    {
+      "text": "have done in the previous lecture in the",
+      "start": 29.199,
+      "duration": 4.081
+    },
+    {
+      "text": "previous lecture we actually trained a",
+      "start": 31.48,
+      "duration": 4.28
+    },
+    {
+      "text": "large language model completely from",
+      "start": 33.28,
+      "duration": 5.119
+    },
+    {
+      "text": "scratch so here's the training process",
+      "start": 35.76,
+      "duration": 4.72
+    },
+    {
+      "text": "which we had defined and we ran the",
+      "start": 38.399,
+      "duration": 4.881
+    },
+    {
+      "text": "large language model for 10 EPO and we",
+      "start": 40.48,
+      "duration": 5.16
+    },
+    {
+      "text": "saw the next Words which were predicted",
+      "start": 43.28,
+      "duration": 5.52
+    },
+    {
+      "text": "so every effort moves was the input",
+      "start": 45.64,
+      "duration": 5.32
+    },
+    {
+      "text": "token which we had or the input sentence",
+      "start": 48.8,
+      "duration": 3.8
+    },
+    {
+      "text": "which we had given to the large language",
+      "start": 50.96,
+      "duration": 4.16
+    },
+    {
+      "text": "model and then we recorded the output",
+      "start": 52.6,
+      "duration": 4.639
+    },
+    {
+      "text": "tokens and then here you can see I",
+      "start": 55.12,
+      "duration": 4.32
+    },
+    {
+      "text": "printed out the output tokens you know",
+      "start": 57.239,
+      "duration": 4.96
+    },
+    {
+      "text": "was one of the XM he laid down across",
+      "start": 59.44,
+      "duration": 5.52
+    },
+    {
+      "text": "dash dash dash so there are 50 output",
+      "start": 62.199,
+      "duration": 5.121
+    },
+    {
+      "text": "tokens and as you can see the output",
+      "start": 64.96,
+      "duration": 4.199
+    },
+    {
+      "text": "tokens don't really make too much of",
+      "start": 67.32,
+      "duration": 4.479
+    },
+    {
+      "text": "sense right now and that's what we are",
+      "start": 69.159,
+      "duration": 5.041
+    },
+    {
+      "text": "aiming to do in today's lecture our",
+      "start": 71.799,
+      "duration": 4.64
+    },
+    {
+      "text": "whole goal in today's lecture is how to",
+      "start": 74.2,
+      "duration": 5.76
+    },
+    {
+      "text": "make sure that the randomness in the",
+      "start": 76.439,
+      "duration": 5.761
+    },
+    {
+      "text": "output tokens is",
+      "start": 79.96,
+      "duration": 5.199
+    },
+    {
+      "text": "reduced how to make sure that the output",
+      "start": 82.2,
+      "duration": 6.36
+    },
+    {
+      "text": "tokens eventually start making sense we",
+      "start": 85.159,
+      "duration": 5.881
+    },
+    {
+      "text": "will learn techniques to do this in",
+      "start": 88.56,
+      "duration": 4.96
+    },
+    {
+      "text": "today's lecture and one such technique",
+      "start": 91.04,
+      "duration": 4.24
+    },
+    {
+      "text": "is called as the technique of",
+      "start": 93.52,
+      "duration": 3.72
+    },
+    {
+      "text": "temperature",
+      "start": 95.28,
+      "duration": 4.0
+    },
+    {
+      "text": "scaling this is the technique which we",
+      "start": 97.24,
+      "duration": 4.559
+    },
+    {
+      "text": "are going to learn about today so let's",
+      "start": 99.28,
+      "duration": 4.6
+    },
+    {
+      "text": "get started with today's",
+      "start": 101.799,
+      "duration": 5.28
+    },
+    {
+      "text": "lecture Okay so until now what we have",
+      "start": 103.88,
+      "duration": 5.559
+    },
+    {
+      "text": "seen is that the generated token is",
+      "start": 107.079,
+      "duration": 5.0
+    },
+    {
+      "text": "selected corresponding to the largest",
+      "start": 109.439,
+      "duration": 5.081
+    },
+    {
+      "text": "probability score among all the tokens",
+      "start": 112.079,
+      "duration": 4.921
+    },
+    {
+      "text": "in the vocabulary what do I mean with",
+      "start": 114.52,
+      "duration": 4.44
+    },
+    {
+      "text": "mean by this so this is the process",
+      "start": 117.0,
+      "duration": 4.24
+    },
+    {
+      "text": "which we are following until now every",
+      "start": 118.96,
+      "duration": 5.64
+    },
+    {
+      "text": "effort moves that's my input which is",
+      "start": 121.24,
+      "duration": 5.839
+    },
+    {
+      "text": "fed to the GPT architecture and then I",
+      "start": 124.6,
+      "duration": 5.439
+    },
+    {
+      "text": "get a logic tensor which is ultimately",
+      "start": 127.079,
+      "duration": 4.961
+    },
+    {
+      "text": "passed through the soft Max and then I",
+      "start": 130.039,
+      "duration": 4.48
+    },
+    {
+      "text": "get a tensor of probabilities like this",
+      "start": 132.04,
+      "duration": 4.199
+    },
+    {
+      "text": "what we are doing until now to predict",
+      "start": 134.519,
+      "duration": 4.321
+    },
+    {
+      "text": "the next token is we are looking at that",
+      "start": 136.239,
+      "duration": 5.601
+    },
+    {
+      "text": "index or that token ID which has the",
+      "start": 138.84,
+      "duration": 5.399
+    },
+    {
+      "text": "maximum probability and then we decode",
+      "start": 141.84,
+      "duration": 5.039
+    },
+    {
+      "text": "that token ID which gives us the next",
+      "start": 144.239,
+      "duration": 6.401
+    },
+    {
+      "text": "token so for example when every is the",
+      "start": 146.879,
+      "duration": 7.44
+    },
+    {
+      "text": "input the token ID corresponding to this",
+      "start": 150.64,
+      "duration": 5.92
+    },
+    {
+      "text": "second index where probability is 6",
+      "start": 154.319,
+      "duration": 4.601
+    },
+    {
+      "text": "which is the highest that's the output",
+      "start": 156.56,
+      "duration": 5.24
+    },
+    {
+      "text": "and that token ID is one and so the next",
+      "start": 158.92,
+      "duration": 5.319
+    },
+    {
+      "text": "token is effort similarly when every",
+      "start": 161.8,
+      "duration": 4.2
+    },
+    {
+      "text": "effort moves is the input we look at",
+      "start": 164.239,
+      "duration": 4.481
+    },
+    {
+      "text": "this third row we trying we try to find",
+      "start": 166.0,
+      "duration": 5.04
+    },
+    {
+      "text": "that entry which has the highest value",
+      "start": 168.72,
+      "duration": 5.28
+    },
+    {
+      "text": "that entry is 34 the index number is",
+      "start": 171.04,
+      "duration": 5.08
+    },
+    {
+      "text": "five or the token ID is five and then we",
+      "start": 174.0,
+      "duration": 4.76
+    },
+    {
+      "text": "see that for token ID five the token",
+      "start": 176.12,
+      "duration": 4.72
+    },
+    {
+      "text": "which corresponds to that is is you so",
+      "start": 178.76,
+      "duration": 4.08
+    },
+    {
+      "text": "when every effort moves is the input U",
+      "start": 180.84,
+      "duration": 5.28
+    },
+    {
+      "text": "should be the output right so until now",
+      "start": 182.84,
+      "duration": 5.24
+    },
+    {
+      "text": "what we have seen is that the generated",
+      "start": 186.12,
+      "duration": 4.479
+    },
+    {
+      "text": "token is selected corresponding to the",
+      "start": 188.08,
+      "duration": 4.84
+    },
+    {
+      "text": "largest probability score among all the",
+      "start": 190.599,
+      "duration": 5.0
+    },
+    {
+      "text": "tokens in the vocabulary what this leads",
+      "start": 192.92,
+      "duration": 5.2
+    },
+    {
+      "text": "to is that this leads to a lot of",
+      "start": 195.599,
+      "duration": 4.801
+    },
+    {
+      "text": "Randomness and diversity in the",
+      "start": 198.12,
+      "duration": 5.759
+    },
+    {
+      "text": "generated text so since all of these are",
+      "start": 200.4,
+      "duration": 5.8
+    },
+    {
+      "text": "probability scores why are we choosing",
+      "start": 203.879,
+      "duration": 4.681
+    },
+    {
+      "text": "the next token in a deterministic manner",
+      "start": 206.2,
+      "duration": 5.2
+    },
+    {
+      "text": "like this what if we",
+      "start": 208.56,
+      "duration": 5.599
+    },
+    {
+      "text": "use what if we choose the next token in",
+      "start": 211.4,
+      "duration": 5.399
+    },
+    {
+      "text": "a probabilistic manner what if we sample",
+      "start": 214.159,
+      "duration": 5.401
+    },
+    {
+      "text": "the next token from a probability",
+      "start": 216.799,
+      "duration": 4.961
+    },
+    {
+      "text": "distribution this is exactly what is",
+      "start": 219.56,
+      "duration": 5.0
+    },
+    {
+      "text": "explored in the concept of temperature",
+      "start": 221.76,
+      "duration": 4.8
+    },
+    {
+      "text": "scaling there are actually two",
+      "start": 224.56,
+      "duration": 3.879
+    },
+    {
+      "text": "techniques which really help to control",
+      "start": 226.56,
+      "duration": 3.92
+    },
+    {
+      "text": "the randomness and the two techniques",
+      "start": 228.439,
+      "duration": 4.921
+    },
+    {
+      "text": "are used together with each other first",
+      "start": 230.48,
+      "duration": 5.44
+    },
+    {
+      "text": "is temperature scaling and the second is",
+      "start": 233.36,
+      "duration": 5.079
+    },
+    {
+      "text": "top case sampling this top case sampling",
+      "start": 235.92,
+      "duration": 4.08
+    },
+    {
+      "text": "Technique we are going to look at in the",
+      "start": 238.439,
+      "duration": 3.761
+    },
+    {
+      "text": "next lecture today we are going to focus",
+      "start": 240.0,
+      "duration": 6.4
+    },
+    {
+      "text": "on temperature scaling so the main uh",
+      "start": 242.2,
+      "duration": 6.84
+    },
+    {
+      "text": "main idea behind temperature scaling is",
+      "start": 246.4,
+      "duration": 5.24
+    },
+    {
+      "text": "that first what we do is that instead of",
+      "start": 249.04,
+      "duration": 5.6
+    },
+    {
+      "text": "taking the maximum probability and just",
+      "start": 251.64,
+      "duration": 4.8
+    },
+    {
+      "text": "looking at the index which corresponds",
+      "start": 254.64,
+      "duration": 4.64
+    },
+    {
+      "text": "to the ma maximum probability we replace",
+      "start": 256.44,
+      "duration": 5.4
+    },
+    {
+      "text": "this ARG Max with a probability",
+      "start": 259.28,
+      "duration": 5.28
+    },
+    {
+      "text": "distribution so for example here instead",
+      "start": 261.84,
+      "duration": 4.68
+    },
+    {
+      "text": "of just choosing this token with a",
+      "start": 264.56,
+      "duration": 5.24
+    },
+    {
+      "text": "maximum probability we will look at this",
+      "start": 266.52,
+      "duration": 5.36
+    },
+    {
+      "text": "probability scores and then based on",
+      "start": 269.8,
+      "duration": 4.52
+    },
+    {
+      "text": "this we'll sample from a probability",
+      "start": 271.88,
+      "duration": 4.56
+    },
+    {
+      "text": "distribution and that probability",
+      "start": 274.32,
+      "duration": 3.879
+    },
+    {
+      "text": "distribution turns out to be the",
+      "start": 276.44,
+      "duration": 4.44
+    },
+    {
+      "text": "multinomial probability distribution so",
+      "start": 278.199,
+      "duration": 6.481
+    },
+    {
+      "text": "the next token is then sampled according",
+      "start": 280.88,
+      "duration": 6.8
+    },
+    {
+      "text": "to the probability score we don't just",
+      "start": 284.68,
+      "duration": 5.079
+    },
+    {
+      "text": "blindly or we don't just choose the",
+      "start": 287.68,
+      "duration": 4.519
+    },
+    {
+      "text": "token ID with the highest probability",
+      "start": 289.759,
+      "duration": 5.681
+    },
+    {
+      "text": "value we sample the next token according",
+      "start": 292.199,
+      "duration": 5.241
+    },
+    {
+      "text": "to the probability score this",
+      "start": 295.44,
+      "duration": 3.64
+    },
+    {
+      "text": "distinction in terminology is very",
+      "start": 297.44,
+      "duration": 4.4
+    },
+    {
+      "text": "important are sampling the next token so",
+      "start": 299.08,
+      "duration": 5.52
+    },
+    {
+      "text": "it's not clear to us what the next token",
+      "start": 301.84,
+      "duration": 4.88
+    },
+    {
+      "text": "is going to be because we are sampling",
+      "start": 304.6,
+      "duration": 4.76
+    },
+    {
+      "text": "it so what the sampling mean to give you",
+      "start": 306.72,
+      "duration": 4.44
+    },
+    {
+      "text": "an example let's look at the goian",
+      "start": 309.36,
+      "duration": 4.8
+    },
+    {
+      "text": "distribution right and if I ask you to",
+      "start": 311.16,
+      "duration": 5.84
+    },
+    {
+      "text": "sample values from a goian distribution",
+      "start": 314.16,
+      "duration": 4.879
+    },
+    {
+      "text": "you I cannot tell you right now what the",
+      "start": 317.0,
+      "duration": 3.8
+    },
+    {
+      "text": "value will be because I'm sampling it",
+      "start": 319.039,
+      "duration": 4.0
+    },
+    {
+      "text": "from this distribution what I can tell",
+      "start": 320.8,
+      "duration": 4.119
+    },
+    {
+      "text": "you is that most of my samples will",
+      "start": 323.039,
+      "duration": 4.16
+    },
+    {
+      "text": "probably be close to the mean Point like",
+      "start": 324.919,
+      "duration": 4.881
+    },
+    {
+      "text": "here very few will probably be at the",
+      "start": 327.199,
+      "duration": 5.12
+    },
+    {
+      "text": "tail end of the goian distribution this",
+      "start": 329.8,
+      "duration": 4.44
+    },
+    {
+      "text": "is what sampling from a distribution",
+      "start": 332.319,
+      "duration": 4.281
+    },
+    {
+      "text": "means in this case we are sampling from",
+      "start": 334.24,
+      "duration": 4.88
+    },
+    {
+      "text": "this distribution which is multinomial",
+      "start": 336.6,
+      "duration": 4.92
+    },
+    {
+      "text": "distribution and if you go to",
+      "start": 339.12,
+      "duration": 4.359
+    },
+    {
+      "text": "Wikipedia you will see that the",
+      "start": 341.52,
+      "duration": 5.84
+    },
+    {
+      "text": "multinomial distribution essentially uh",
+      "start": 343.479,
+      "duration": 6.881
+    },
+    {
+      "text": "is for a number of different mutually",
+      "start": 347.36,
+      "duration": 6.959
+    },
+    {
+      "text": "exclusive outcomes so when we have K",
+      "start": 350.36,
+      "duration": 5.839
+    },
+    {
+      "text": "possible mutually exclusive outcomes",
+      "start": 354.319,
+      "duration": 3.921
+    },
+    {
+      "text": "with corresponding probabilities think",
+      "start": 356.199,
+      "duration": 4.12
+    },
+    {
+      "text": "of these as the next token here also we",
+      "start": 358.24,
+      "duration": 5.12
+    },
+    {
+      "text": "have the outcomes equal to the",
+      "start": 360.319,
+      "duration": 4.841
+    },
+    {
+      "text": "vocabulary size right K possible",
+      "start": 363.36,
+      "duration": 3.44
+    },
+    {
+      "text": "outcomes because anything can be the",
+      "start": 365.16,
+      "duration": 3.319
+    },
+    {
+      "text": "next token and all of them have a",
+      "start": 366.8,
+      "duration": 5.04
+    },
+    {
+      "text": "probability associated with them right",
+      "start": 368.479,
+      "duration": 5.72
+    },
+    {
+      "text": "uh and let's say we conduct thousand or",
+      "start": 371.84,
+      "duration": 4.88
+    },
+    {
+      "text": "n independent trials to predict the next",
+      "start": 374.199,
+      "duration": 5.28
+    },
+    {
+      "text": "token then we will have a probability",
+      "start": 376.72,
+      "duration": 4.84
+    },
+    {
+      "text": "distribution that is essentially called",
+      "start": 379.479,
+      "duration": 4.241
+    },
+    {
+      "text": "as the multinomial probability",
+      "start": 381.56,
+      "duration": 4.079
+    },
+    {
+      "text": "distribution and I'm going to explain",
+      "start": 383.72,
+      "duration": 3.64
+    },
+    {
+      "text": "that to you in just a moment so that",
+      "start": 385.639,
+      "duration": 4.041
+    },
+    {
+      "text": "it's going to be clear to you right now",
+      "start": 387.36,
+      "duration": 4.44
+    },
+    {
+      "text": "just know that we are going to sample",
+      "start": 389.68,
+      "duration": 3.88
+    },
+    {
+      "text": "the next token from this distribution",
+      "start": 391.8,
+      "duration": 4.119
+    },
+    {
+      "text": "which is called as multinomial",
+      "start": 393.56,
+      "duration": 4.16
+    },
+    {
+      "text": "distribution before coming to",
+      "start": 395.919,
+      "duration": 4.801
+    },
+    {
+      "text": "temperature let's actually go to code to",
+      "start": 397.72,
+      "duration": 4.759
+    },
+    {
+      "text": "understand until this point what we are",
+      "start": 400.72,
+      "duration": 4.96
+    },
+    {
+      "text": "going to do okay so the whole topic of",
+      "start": 402.479,
+      "duration": 5.0
+    },
+    {
+      "text": "today's lecture is decoding strategies",
+      "start": 405.68,
+      "duration": 3.4
+    },
+    {
+      "text": "to control",
+      "start": 407.479,
+      "duration": 4.16
+    },
+    {
+      "text": "Randomness let us first briefly revisit",
+      "start": 409.08,
+      "duration": 4.519
+    },
+    {
+      "text": "the generate text simple function which",
+      "start": 411.639,
+      "duration": 4.12
+    },
+    {
+      "text": "we have been using up till now and then",
+      "start": 413.599,
+      "duration": 3.6
+    },
+    {
+      "text": "we will cover techniques such as",
+      "start": 415.759,
+      "duration": 4.84
+    },
+    {
+      "text": "temperature scaling and top Cas sampling",
+      "start": 417.199,
+      "duration": 5.12
+    },
+    {
+      "text": "and here first what I'm doing is I'm",
+      "start": 420.599,
+      "duration": 3.681
+    },
+    {
+      "text": "switching the model to the CPU and I'm",
+      "start": 422.319,
+      "duration": 4.041
+    },
+    {
+      "text": "running it in the evaluation mode so",
+      "start": 424.28,
+      "duration": 4.599
+    },
+    {
+      "text": "here you can see that uh this is the GPT",
+      "start": 426.36,
+      "duration": 4.2
+    },
+    {
+      "text": "model which we are going to use we have",
+      "start": 428.879,
+      "duration": 3.121
+    },
+    {
+      "text": "the embedding layers then the",
+      "start": 430.56,
+      "duration": 4.56
+    },
+    {
+      "text": "Transformer block then the after coming",
+      "start": 432.0,
+      "duration": 6.28
+    },
+    {
+      "text": "out of the Transformer block we have",
+      "start": 435.12,
+      "duration": 5.479
+    },
+    {
+      "text": "uh let's see when I come out of the",
+      "start": 438.28,
+      "duration": 4.44
+    },
+    {
+      "text": "Transformer block",
+      "start": 440.599,
+      "duration": 5.081
+    },
+    {
+      "text": "here I have another normalization layer",
+      "start": 442.72,
+      "duration": 4.68
+    },
+    {
+      "text": "and then I have output head this is my",
+      "start": 445.68,
+      "duration": 3.959
+    },
+    {
+      "text": "architecture awesome now I just just",
+      "start": 447.4,
+      "duration": 3.84
+    },
+    {
+      "text": "want to show you currently we have this",
+      "start": 449.639,
+      "duration": 4.28
+    },
+    {
+      "text": "generate text simple it takes in the",
+      "start": 451.24,
+      "duration": 5.28
+    },
+    {
+      "text": "input token or the input sentence which",
+      "start": 453.919,
+      "duration": 4.4
+    },
+    {
+      "text": "we have it passes it through the",
+      "start": 456.52,
+      "duration": 3.76
+    },
+    {
+      "text": "architecture which I just showed you and",
+      "start": 458.319,
+      "duration": 4.681
+    },
+    {
+      "text": "then it predicts the next 25 tokens",
+      "start": 460.28,
+      "duration": 5.359
+    },
+    {
+      "text": "using the maximum probability so we are",
+      "start": 463.0,
+      "duration": 4.599
+    },
+    {
+      "text": "not currently doing the sampling as I",
+      "start": 465.639,
+      "duration": 4.24
+    },
+    {
+      "text": "mentioned and so here you can see when",
+      "start": 467.599,
+      "duration": 4.841
+    },
+    {
+      "text": "every effort moves you is the input this",
+      "start": 469.879,
+      "duration": 4.961
+    },
+    {
+      "text": "this is the output these are the 25",
+      "start": 472.44,
+      "duration": 5.039
+    },
+    {
+      "text": "tokens and the randomness here is pretty",
+      "start": 474.84,
+      "duration": 5.759
+    },
+    {
+      "text": "high right so previous ly inside the",
+      "start": 477.479,
+      "duration": 5.321
+    },
+    {
+      "text": "generate text simple function we always",
+      "start": 480.599,
+      "duration": 3.88
+    },
+    {
+      "text": "sample the token with the highest",
+      "start": 482.8,
+      "duration": 4.04
+    },
+    {
+      "text": "probability as the next token using tor.",
+      "start": 484.479,
+      "duration": 5.801
+    },
+    {
+      "text": "argmax right this is called as greedy",
+      "start": 486.84,
+      "duration": 6.16
+    },
+    {
+      "text": "decoding now to generate text with more",
+      "start": 490.28,
+      "duration": 5.24
+    },
+    {
+      "text": "variety what we are going to do is that",
+      "start": 493.0,
+      "duration": 4.36
+    },
+    {
+      "text": "we are going to replace the argmax with",
+      "start": 495.52,
+      "duration": 3.679
+    },
+    {
+      "text": "a function that samples from a",
+      "start": 497.36,
+      "duration": 4.559
+    },
+    {
+      "text": "probability distribution that's the main",
+      "start": 499.199,
+      "duration": 4.641
+    },
+    {
+      "text": "thing which we are going to do and to",
+      "start": 501.919,
+      "duration": 3.84
+    },
+    {
+      "text": "illustrate this probabilistic sampling",
+      "start": 503.84,
+      "duration": 4.479
+    },
+    {
+      "text": "with a concrete example let us actually",
+      "start": 505.759,
+      "duration": 4.72
+    },
+    {
+      "text": "first take a very small vocabulary size",
+      "start": 508.319,
+      "duration": 4.2
+    },
+    {
+      "text": "and let us demonstrate here what's going",
+      "start": 510.479,
+      "duration": 4.601
+    },
+    {
+      "text": "on so let's say my vocabulary size only",
+      "start": 512.519,
+      "duration": 5.041
+    },
+    {
+      "text": "consists of the tokens which are closer",
+      "start": 515.08,
+      "duration": 6.04
+    },
+    {
+      "text": "every effort forward inches moves Piza",
+      "start": 517.56,
+      "duration": 7.44
+    },
+    {
+      "text": "towards and you so these are the eight",
+      "start": 521.12,
+      "duration": 5.719
+    },
+    {
+      "text": "uh these are the nine tokens in my",
+      "start": 525.0,
+      "duration": 4.04
+    },
+    {
+      "text": "vocabulary and each has a token ID from",
+      "start": 526.839,
+      "duration": 4.961
+    },
+    {
+      "text": "0 to 8 I also maintain an inverse",
+      "start": 529.04,
+      "duration": 5.12
+    },
+    {
+      "text": "vocabulary dictionary which gives me the",
+      "start": 531.8,
+      "duration": 4.44
+    },
+    {
+      "text": "token ID and then it decodes it back to",
+      "start": 534.16,
+      "duration": 6.239
+    },
+    {
+      "text": "the Token awesome now uh let's say the",
+      "start": 536.24,
+      "duration": 7.32
+    },
+    {
+      "text": "input to this input to my large language",
+      "start": 540.399,
+      "duration": 5.241
+    },
+    {
+      "text": "model and remember the model is this",
+      "start": 543.56,
+      "duration": 5.719
+    },
+    {
+      "text": "let's say the input to this model is uh",
+      "start": 545.64,
+      "duration": 6.72
+    },
+    {
+      "text": "every effort moves you what this input",
+      "start": 549.279,
+      "duration": 4.881
+    },
+    {
+      "text": "will do when pass through the model is",
+      "start": 552.36,
+      "duration": 4.76
+    },
+    {
+      "text": "that we'll get the output logit sensor",
+      "start": 554.16,
+      "duration": 5.72
+    },
+    {
+      "text": "and uh the output logit sensor will have",
+      "start": 557.12,
+      "duration": 5.839
+    },
+    {
+      "text": "uh the number of columns which is equal",
+      "start": 559.88,
+      "duration": 4.959
+    },
+    {
+      "text": "to the vocabulary size so the number of",
+      "start": 562.959,
+      "duration": 5.241
+    },
+    {
+      "text": "columns here in the output logic sensor",
+      "start": 564.839,
+      "duration": 5.281
+    },
+    {
+      "text": "will be nine right",
+      "start": 568.2,
+      "duration": 4.759
+    },
+    {
+      "text": "now what we do here is that we then pass",
+      "start": 570.12,
+      "duration": 4.92
+    },
+    {
+      "text": "this through soft Max so that this is",
+      "start": 572.959,
+      "duration": 4.801
+    },
+    {
+      "text": "converted into probabilities right and",
+      "start": 575.04,
+      "duration": 4.919
+    },
+    {
+      "text": "so when you pass this into a soft Max",
+      "start": 577.76,
+      "duration": 3.88
+    },
+    {
+      "text": "you can print out the probabilities and",
+      "start": 579.959,
+      "duration": 3.241
+    },
+    {
+      "text": "you'll see that the probabilities look",
+      "start": 581.64,
+      "duration": 4.72
+    },
+    {
+      "text": "like this now all of these add up to one",
+      "start": 583.2,
+      "duration": 5.36
+    },
+    {
+      "text": "so earlier what we used to do is that we",
+      "start": 586.36,
+      "duration": 4.68
+    },
+    {
+      "text": "just looked at these probabilities and",
+      "start": 588.56,
+      "duration": 4.6
+    },
+    {
+      "text": "we said that the next token ID is going",
+      "start": 591.04,
+      "duration": 4.72
+    },
+    {
+      "text": "to be that token ID with the maximum",
+      "start": 593.16,
+      "duration": 4.76
+    },
+    {
+      "text": "probability so let's see and that",
+      "start": 595.76,
+      "duration": 5.4
+    },
+    {
+      "text": "maximum probability is 5721 and this is",
+      "start": 597.92,
+      "duration": 6.24
+    },
+    {
+      "text": "column number 0 1 2 and 3 this is column",
+      "start": 601.16,
+      "duration": 5.04
+    },
+    {
+      "text": "number three so the next token ID is",
+      "start": 604.16,
+      "duration": 4.44
+    },
+    {
+      "text": "equal to three which we have printed and",
+      "start": 606.2,
+      "duration": 4.639
+    },
+    {
+      "text": "then using the inverse vocabulary we'll",
+      "start": 608.6,
+      "duration": 4.76
+    },
+    {
+      "text": "print the next token and that is forward",
+      "start": 610.839,
+      "duration": 4.68
+    },
+    {
+      "text": "so then the next token will be every",
+      "start": 613.36,
+      "duration": 4.039
+    },
+    {
+      "text": "effort moves you and then forward will",
+      "start": 615.519,
+      "duration": 3.32
+    },
+    {
+      "text": "be my predicted",
+      "start": 617.399,
+      "duration": 3.721
+    },
+    {
+      "text": "token here is where we are going to make",
+      "start": 618.839,
+      "duration": 4.081
+    },
+    {
+      "text": "the change to implement a probabilistic",
+      "start": 621.12,
+      "duration": 4.6
+    },
+    {
+      "text": "sampling process we can now replace the",
+      "start": 622.92,
+      "duration": 5.359
+    },
+    {
+      "text": "ARG Max with the multinomial function in",
+      "start": 625.72,
+      "duration": 4.6
+    },
+    {
+      "text": "P torch so here here you can see we are",
+      "start": 628.279,
+      "duration": 4.281
+    },
+    {
+      "text": "replacing the AR Max with a multinomial",
+      "start": 630.32,
+      "duration": 4.88
+    },
+    {
+      "text": "function here and this multinomial",
+      "start": 632.56,
+      "duration": 6.16
+    },
+    {
+      "text": "function is uh applied to this probas",
+      "start": 635.2,
+      "duration": 7.199
+    },
+    {
+      "text": "which is the probabilities uh uh which",
+      "start": 638.72,
+      "duration": 6.32
+    },
+    {
+      "text": "is the tensor of probabilities this is",
+      "start": 642.399,
+      "duration": 4.721
+    },
+    {
+      "text": "where the multinomial function is",
+      "start": 645.04,
+      "duration": 4.56
+    },
+    {
+      "text": "applied and then what we can do is that",
+      "start": 647.12,
+      "duration": 5.6
+    },
+    {
+      "text": "we can get the next token ID based on",
+      "start": 649.6,
+      "duration": 4.96
+    },
+    {
+      "text": "what we sample from this probability",
+      "start": 652.72,
+      "duration": 3.84
+    },
+    {
+      "text": "distribution and then we predict the",
+      "start": 654.56,
+      "duration": 4.76
+    },
+    {
+      "text": "token corresponding to the next token ID",
+      "start": 656.56,
+      "duration": 4.36
+    },
+    {
+      "text": "here you can see that this is just equal",
+      "start": 659.32,
+      "duration": 3.639
+    },
+    {
+      "text": "to forward right so what really happened",
+      "start": 660.92,
+      "duration": 4.32
+    },
+    {
+      "text": "it's the same as the previous one there",
+      "start": 662.959,
+      "duration": 4.201
+    },
+    {
+      "text": "is no change so you might be thinking",
+      "start": 665.24,
+      "duration": 3.92
+    },
+    {
+      "text": "why did we do this",
+      "start": 667.16,
+      "duration": 4.2
+    },
+    {
+      "text": "multinomial so what happens is that the",
+      "start": 669.16,
+      "duration": 4.4
+    },
+    {
+      "text": "multinomial function samples the next",
+      "start": 671.36,
+      "duration": 4.36
+    },
+    {
+      "text": "token proportional to its probability",
+      "start": 673.56,
+      "duration": 5.079
+    },
+    {
+      "text": "score this is the important thing here",
+      "start": 675.72,
+      "duration": 5.48
+    },
+    {
+      "text": "so let's say currently we did only one",
+      "start": 678.639,
+      "duration": 4.841
+    },
+    {
+      "text": "trial here right in that one trial what",
+      "start": 681.2,
+      "duration": 4.12
+    },
+    {
+      "text": "the multinomial function did is that it",
+      "start": 683.48,
+      "duration": 3.52
+    },
+    {
+      "text": "looked at all these probabilities and",
+      "start": 685.32,
+      "duration": 4.079
+    },
+    {
+      "text": "then it will sample from this so there",
+      "start": 687.0,
+      "duration": 4.44
+    },
+    {
+      "text": "is a high chance that it will choose",
+      "start": 689.399,
+      "duration": 4.44
+    },
+    {
+      "text": "forward and that's why it chose forward",
+      "start": 691.44,
+      "duration": 4.16
+    },
+    {
+      "text": "we'll really see the difference when we",
+      "start": 693.839,
+      "duration": 4.601
+    },
+    {
+      "text": "do more number of Trials so see in this",
+      "start": 695.6,
+      "duration": 5.44
+    },
+    {
+      "text": "definition there is n independent trials",
+      "start": 698.44,
+      "duration": 4.639
+    },
+    {
+      "text": "which need to be performed right that is",
+      "start": 701.04,
+      "duration": 5.16
+    },
+    {
+      "text": "what we are going to do right now so the",
+      "start": 703.079,
+      "duration": 5.121
+    },
+    {
+      "text": "multinomial function samples the next",
+      "start": 706.2,
+      "duration": 3.84
+    },
+    {
+      "text": "token proportional to its probability",
+      "start": 708.2,
+      "duration": 4.52
+    },
+    {
+      "text": "score in other words forward is still",
+      "start": 710.04,
+      "duration": 5.599
+    },
+    {
+      "text": "like still the most likely token so we",
+      "start": 712.72,
+      "duration": 4.88
+    },
+    {
+      "text": "are not changing the most likely token",
+      "start": 715.639,
+      "duration": 3.601
+    },
+    {
+      "text": "it Still Remains the most likely token",
+      "start": 717.6,
+      "duration": 3.56
+    },
+    {
+      "text": "token but we will also select other",
+      "start": 719.24,
+      "duration": 3.159
+    },
+    {
+      "text": "tokens",
+      "start": 721.16,
+      "duration": 3.679
+    },
+    {
+      "text": "sometimes so forward is still the most",
+      "start": 722.399,
+      "duration": 4.281
+    },
+    {
+      "text": "likely token and will be selected by the",
+      "start": 724.839,
+      "duration": 3.881
+    },
+    {
+      "text": "multinomial most of the time but not all",
+      "start": 726.68,
+      "duration": 4.8
+    },
+    {
+      "text": "the time so to illustrate this we will",
+      "start": 728.72,
+      "duration": 4.72
+    },
+    {
+      "text": "repeat this process this sampling",
+      "start": 731.48,
+      "duration": 5.12
+    },
+    {
+      "text": "thousand times so to simp the",
+      "start": 733.44,
+      "duration": 5.56
+    },
+    {
+      "text": "multinomial function is very intuitive",
+      "start": 736.6,
+      "duration": 4.72
+    },
+    {
+      "text": "so when you do thousand trials in each",
+      "start": 739.0,
+      "duration": 5.399
+    },
+    {
+      "text": "trial it will try to choose",
+      "start": 741.32,
+      "duration": 5.56
+    },
+    {
+      "text": "that token which has the highest",
+      "start": 744.399,
+      "duration": 4.24
+    },
+    {
+      "text": "probability so now it's a bit of a",
+      "start": 746.88,
+      "duration": 4.04
+    },
+    {
+      "text": "random proc right it's not deterministic",
+      "start": 748.639,
+      "duration": 3.841
+    },
+    {
+      "text": "sometimes the multinomial function might",
+      "start": 750.92,
+      "duration": 4.719
+    },
+    {
+      "text": "even choose Piza although it will be",
+      "start": 752.48,
+      "duration": 6.039
+    },
+    {
+      "text": "very very rare uh sometimes it might",
+      "start": 755.639,
+      "duration": 4.56
+    },
+    {
+      "text": "choose but most of the times it will",
+      "start": 758.519,
+      "duration": 5.801
+    },
+    {
+      "text": "choose uh uh forward only so let's try",
+      "start": 760.199,
+      "duration": 6.601
+    },
+    {
+      "text": "to do this now so what we are doing is",
+      "start": 764.32,
+      "duration": 4.24
+    },
+    {
+      "text": "that we are running the same procedure",
+      "start": 766.8,
+      "duration": 4.0
+    },
+    {
+      "text": "now uh we are applying the multinomial",
+      "start": 768.56,
+      "duration": 5.24
+    },
+    {
+      "text": "function to this probas tensor and then",
+      "start": 770.8,
+      "duration": 4.96
+    },
+    {
+      "text": "uh we are going",
+      "start": 773.8,
+      "duration": 5.44
+    },
+    {
+      "text": "to uh take the",
+      "start": 775.76,
+      "duration": 5.84
+    },
+    {
+      "text": "sample which is we are going to take the",
+      "start": 779.24,
+      "duration": 4.24
+    },
+    {
+      "text": "token ID which is sampled in that",
+      "start": 781.6,
+      "duration": 3.52
+    },
+    {
+      "text": "particular iteration and then we are",
+      "start": 783.48,
+      "duration": 3.88
+    },
+    {
+      "text": "going to print out that what we are also",
+      "start": 785.12,
+      "duration": 3.76
+    },
+    {
+      "text": "doing is that in these thousand",
+      "start": 787.36,
+      "duration": 3.76
+    },
+    {
+      "text": "iterations I'm going to print out how",
+      "start": 788.88,
+      "duration": 4.48
+    },
+    {
+      "text": "many times each token is chosen so",
+      "start": 791.12,
+      "duration": 4.719
+    },
+    {
+      "text": "that's this frequency we print print out",
+      "start": 793.36,
+      "duration": 4.32
+    },
+    {
+      "text": "how many times every single token is",
+      "start": 795.839,
+      "duration": 3.601
+    },
+    {
+      "text": "chosen when you are doing this thousand",
+      "start": 797.68,
+      "duration": 4.599
+    },
+    {
+      "text": "iterations so here are the results so",
+      "start": 799.44,
+      "duration": 5.12
+    },
+    {
+      "text": "when you do this number of iterations",
+      "start": 802.279,
+      "duration": 5.56
+    },
+    {
+      "text": "these many times you will see that uh",
+      "start": 804.56,
+      "duration": 5.12
+    },
+    {
+      "text": "you'll see that the word for forward is",
+      "start": 807.839,
+      "duration": 3.761
+    },
+    {
+      "text": "sampled most number of times it's",
+      "start": 809.68,
+      "duration": 4.599
+    },
+    {
+      "text": "sampled 582 times out of the Thousand",
+      "start": 811.6,
+      "duration": 5.64
+    },
+    {
+      "text": "but other tokens such as closer inches",
+      "start": 814.279,
+      "duration": 6.281
+    },
+    {
+      "text": "and toward so closer inches and toward",
+      "start": 817.24,
+      "duration": 5.599
+    },
+    {
+      "text": "they are also sampled some of the time",
+      "start": 820.56,
+      "duration": 5.36
+    },
+    {
+      "text": "so in fact closer is sampled 73 times",
+      "start": 822.839,
+      "duration": 5.081
+    },
+    {
+      "text": "inches is sampled two times and towards",
+      "start": 825.92,
+      "duration": 5.919
+    },
+    {
+      "text": "is sampled 343 times this means that",
+      "start": 827.92,
+      "duration": 5.839
+    },
+    {
+      "text": "since we replace the AR Max function",
+      "start": 831.839,
+      "duration": 4.401
+    },
+    {
+      "text": "with the multinomial function the llm",
+      "start": 833.759,
+      "duration": 4.241
+    },
+    {
+      "text": "would sometime generate text such as",
+      "start": 836.24,
+      "duration": 3.599
+    },
+    {
+      "text": "every effort moves you toward every",
+      "start": 838.0,
+      "duration": 4.32
+    },
+    {
+      "text": "effort moves you inches and every effort",
+      "start": 839.839,
+      "duration": 4.44
+    },
+    {
+      "text": "moves you closer instead of every time",
+      "start": 842.32,
+      "duration": 4.079
+    },
+    {
+      "text": "generating every effort moves you",
+      "start": 844.279,
+      "duration": 6.0
+    },
+    {
+      "text": "forward so now integration of this",
+      "start": 846.399,
+      "duration": 6.36
+    },
+    {
+      "text": "multinomial function has made sure that",
+      "start": 850.279,
+      "duration": 4.68
+    },
+    {
+      "text": "we are not sampling the same token each",
+      "start": 852.759,
+      "duration": 5.44
+    },
+    {
+      "text": "time sometime we are also giving",
+      "start": 854.959,
+      "duration": 5.8
+    },
+    {
+      "text": "more uh we are giving more chance for",
+      "start": 858.199,
+      "duration": 4.88
+    },
+    {
+      "text": "other tokens to be the next token and",
+      "start": 860.759,
+      "duration": 4.64
+    },
+    {
+      "text": "that's what improves the creativity of",
+      "start": 863.079,
+      "duration": 4.2
+    },
+    {
+      "text": "the large language model it leads to",
+      "start": 865.399,
+      "duration": 5.0
+    },
+    {
+      "text": "more uh exploration it leads to more",
+      "start": 867.279,
+      "duration": 6.321
+    },
+    {
+      "text": "creativity and sometimes it can also",
+      "start": 870.399,
+      "duration": 5.56
+    },
+    {
+      "text": "lead to better outputs instead of just",
+      "start": 873.6,
+      "duration": 4.239
+    },
+    {
+      "text": "sampling a deterministic prediction",
+      "start": 875.959,
+      "duration": 3.281
+    },
+    {
+      "text": "every single",
+      "start": 877.839,
+      "duration": 4.081
+    },
+    {
+      "text": "time so you might be thinking that okay",
+      "start": 879.24,
+      "duration": 4.56
+    },
+    {
+      "text": "this looks fine but why is this method",
+      "start": 881.92,
+      "duration": 4.08
+    },
+    {
+      "text": "called as temperature scaling where does",
+      "start": 883.8,
+      "duration": 3.839
+    },
+    {
+      "text": "temperature come into the picture and",
+      "start": 886.0,
+      "duration": 3.839
+    },
+    {
+      "text": "why is it called temperature so",
+      "start": 887.639,
+      "duration": 4.801
+    },
+    {
+      "text": "basically you see this logic tensor over",
+      "start": 889.839,
+      "duration": 5.24
+    },
+    {
+      "text": "here right before we apply the soft Max",
+      "start": 892.44,
+      "duration": 6.759
+    },
+    {
+      "text": "there is a Logics tensor what what what",
+      "start": 895.079,
+      "duration": 5.801
+    },
+    {
+      "text": "is meant by temperature is that",
+      "start": 899.199,
+      "duration": 3.721
+    },
+    {
+      "text": "temperature is basically just a fancy",
+      "start": 900.88,
+      "duration": 5.48
+    },
+    {
+      "text": "term for dividing the Logics tensor by a",
+      "start": 902.92,
+      "duration": 5.96
+    },
+    {
+      "text": "number which is greater than zero so the",
+      "start": 906.36,
+      "duration": 3.839
+    },
+    {
+      "text": "only thing which is done when we",
+      "start": 908.88,
+      "duration": 3.0
+    },
+    {
+      "text": "introduce temperature is that we have",
+      "start": 910.199,
+      "duration": 3.921
+    },
+    {
+      "text": "this thing called scale Logics and all",
+      "start": 911.88,
+      "duration": 3.84
+    },
+    {
+      "text": "the logic values which we have are",
+      "start": 914.12,
+      "duration": 3.2
+    },
+    {
+      "text": "divided by another number which is",
+      "start": 915.72,
+      "duration": 4.359
+    },
+    {
+      "text": "called as the temperature value so what",
+      "start": 917.32,
+      "duration": 4.92
+    },
+    {
+      "text": "this does is that so see when you divide",
+      "start": 920.079,
+      "duration": 3.921
+    },
+    {
+      "text": "it by the temperature value you get the",
+      "start": 922.24,
+      "duration": 4.44
+    },
+    {
+      "text": "scale logic then you apply soft Max and",
+      "start": 924.0,
+      "duration": 4.56
+    },
+    {
+      "text": "then you get the tensor of probabilities",
+      "start": 926.68,
+      "duration": 2.92
+    },
+    {
+      "text": "every",
+      "start": 928.56,
+      "duration": 3.399
+    },
+    {
+      "text": "the rest of the process stays the same",
+      "start": 929.6,
+      "duration": 4.08
+    },
+    {
+      "text": "but what this introduction of this",
+      "start": 931.959,
+      "duration": 3.641
+    },
+    {
+      "text": "temperature does is that it changes the",
+      "start": 933.68,
+      "duration": 3.56
+    },
+    {
+      "text": "distribution a bit it changes the",
+      "start": 935.6,
+      "duration": 3.28
+    },
+    {
+      "text": "distribution of",
+      "start": 937.24,
+      "duration": 4.24
+    },
+    {
+      "text": "probabilities so for example let's see",
+      "start": 938.88,
+      "duration": 4.439
+    },
+    {
+      "text": "what this dividing by this temperature",
+      "start": 941.48,
+      "duration": 2.919
+    },
+    {
+      "text": "does through",
+      "start": 943.319,
+      "duration": 3.96
+    },
+    {
+      "text": "code um so we can further control the",
+      "start": 944.399,
+      "duration": 5.24
+    },
+    {
+      "text": "distribution and selection process via a",
+      "start": 947.279,
+      "duration": 4.8
+    },
+    {
+      "text": "concept called temperature scaling where",
+      "start": 949.639,
+      "duration": 4.361
+    },
+    {
+      "text": "temperature scaling is just a fancy",
+      "start": 952.079,
+      "duration": 3.961
+    },
+    {
+      "text": "description for dividing the logits by a",
+      "start": 954.0,
+      "duration": 4.68
+    },
+    {
+      "text": "number greater than zero now we'll see",
+      "start": 956.04,
+      "duration": 4.359
+    },
+    {
+      "text": "two things we'll see temperature is",
+      "start": 958.68,
+      "duration": 3.2
+    },
+    {
+      "text": "greater than one what happens when",
+      "start": 960.399,
+      "duration": 2.8
+    },
+    {
+      "text": "temperature is greater than one and",
+      "start": 961.88,
+      "duration": 2.759
+    },
+    {
+      "text": "we'll see what happens when temperature",
+      "start": 963.199,
+      "duration": 4.44
+    },
+    {
+      "text": "is smaller than one okay so here what",
+      "start": 964.639,
+      "duration": 5.601
+    },
+    {
+      "text": "I'm doing is that I'm scaling the Logics",
+      "start": 967.639,
+      "duration": 4.161
+    },
+    {
+      "text": "with dividing by temperature and then",
+      "start": 970.24,
+      "duration": 4.56
+    },
+    {
+      "text": "I'll apply the soft Max exactly like",
+      "start": 971.8,
+      "duration": 6.24
+    },
+    {
+      "text": "what we had done over here and then uh",
+      "start": 974.8,
+      "duration": 6.08
+    },
+    {
+      "text": "even before applying the multinomial",
+      "start": 978.04,
+      "duration": 5.88
+    },
+    {
+      "text": "distribution uh then we'll get the",
+      "start": 980.88,
+      "duration": 4.92
+    },
+    {
+      "text": "scaled probab we'll get the scaled",
+      "start": 983.92,
+      "duration": 4.08
+    },
+    {
+      "text": "probabilities as applying soft Max with",
+      "start": 985.8,
+      "duration": 4.32
+    },
+    {
+      "text": "temperature first I just want to show",
+      "start": 988.0,
+      "duration": 3.72
+    },
+    {
+      "text": "you without even going to the",
+      "start": 990.12,
+      "duration": 3.56
+    },
+    {
+      "text": "multinomial function what happens when",
+      "start": 991.72,
+      "duration": 4.239
+    },
+    {
+      "text": "you scale the logits with temperature",
+      "start": 993.68,
+      "duration": 3.959
+    },
+    {
+      "text": "and what happens as the result when you",
+      "start": 995.959,
+      "duration": 4.601
+    },
+    {
+      "text": "apply soft Max so look at this plot",
+      "start": 997.639,
+      "duration": 4.68
+    },
+    {
+      "text": "first I want you to see the plot with",
+      "start": 1000.56,
+      "duration": 3.16
+    },
+    {
+      "text": "temperature equal to one which are the",
+      "start": 1002.319,
+      "duration": 3.96
+    },
+    {
+      "text": "blue so when you see the blue you will",
+      "start": 1003.72,
+      "duration": 5.119
+    },
+    {
+      "text": "see that the probability for forward is",
+      "start": 1006.279,
+      "duration": 5.081
+    },
+    {
+      "text": "around 0.5 probability for closer is",
+      "start": 1008.839,
+      "duration": 4.321
+    },
+    {
+      "text": "around 0.1 and probability for towards",
+      "start": 1011.36,
+      "duration": 4.279
+    },
+    {
+      "text": "is around3 this is exactly what we saw",
+      "start": 1013.16,
+      "duration": 5.96
+    },
+    {
+      "text": "in this case right uh so probability for",
+      "start": 1015.639,
+      "duration": 6.801
+    },
+    {
+      "text": "forward is 05",
+      "start": 1019.12,
+      "duration": 6.48
+    },
+    {
+      "text": "probability uh for towards so",
+      "start": 1022.44,
+      "duration": 6.32
+    },
+    {
+      "text": "probability for towards is35 and",
+      "start": 1025.6,
+      "duration": 6.839
+    },
+    {
+      "text": "probability um for there is one more",
+      "start": 1028.76,
+      "duration": 5.799
+    },
+    {
+      "text": "probability for closer so probability",
+      "start": 1032.439,
+      "duration": 6.281
+    },
+    {
+      "text": "for closer is 0.06 right so the blue the",
+      "start": 1034.559,
+      "duration": 6.201
+    },
+    {
+      "text": "blue line there is when we have not",
+      "start": 1038.72,
+      "duration": 3.56
+    },
+    {
+      "text": "changed anything when temperature is",
+      "start": 1040.76,
+      "duration": 3.799
+    },
+    {
+      "text": "equal to 1 now let's see what happens",
+      "start": 1042.28,
+      "duration": 4.96
+    },
+    {
+      "text": "when temperature is small so when you",
+      "start": 1044.559,
+      "duration": 5.401
+    },
+    {
+      "text": "actually when you take these value when",
+      "start": 1047.24,
+      "duration": 4.84
+    },
+    {
+      "text": "you take these logits and you divide",
+      "start": 1049.96,
+      "duration": 4.76
+    },
+    {
+      "text": "each of them by 0.1 and then you take",
+      "start": 1052.08,
+      "duration": 4.839
+    },
+    {
+      "text": "the soft Max then you will get",
+      "start": 1054.72,
+      "duration": 4.12
+    },
+    {
+      "text": "probabilities which look something like",
+      "start": 1056.919,
+      "duration": 3.921
+    },
+    {
+      "text": "this in the orange you'll see there is a",
+      "start": 1058.84,
+      "duration": 4.64
+    },
+    {
+      "text": "sharper probability for forward now and",
+      "start": 1060.84,
+      "duration": 4.32
+    },
+    {
+      "text": "almost all the other probabilities have",
+      "start": 1063.48,
+      "duration": 4.16
+    },
+    {
+      "text": "been shifted to zero and we can test",
+      "start": 1065.16,
+      "duration": 4.48
+    },
+    {
+      "text": "this out a bit in the code right now so",
+      "start": 1067.64,
+      "duration": 4.12
+    },
+    {
+      "text": "what I'm going to do is that I'm going",
+      "start": 1069.64,
+      "duration": 3.96
+    },
+    {
+      "text": "to say that",
+      "start": 1071.76,
+      "duration": 4.44
+    },
+    {
+      "text": "uh uh next",
+      "start": 1073.6,
+      "duration": 8.12
+    },
+    {
+      "text": "logits next token to logits is equal to",
+      "start": 1076.2,
+      "duration": 8.24
+    },
+    {
+      "text": "next token logits or let's say next",
+      "start": 1081.72,
+      "duration": 4.439
+    },
+    {
+      "text": "token logits 2 is equal to next token",
+      "start": 1084.44,
+      "duration": 3.32
+    },
+    {
+      "text": "logits divided by",
+      "start": 1086.159,
+      "duration": 3.64
+    },
+    {
+      "text": "0.1",
+      "start": 1087.76,
+      "duration": 4.919
+    },
+    {
+      "text": "right okay so now I have a next to on",
+      "start": 1089.799,
+      "duration": 5.441
+    },
+    {
+      "text": "logits 2 where every logit is divided by",
+      "start": 1092.679,
+      "duration": 5.081
+    },
+    {
+      "text": "0.1 and here what I will do is that I",
+      "start": 1095.24,
+      "duration": 5.2
+    },
+    {
+      "text": "will print out I'll print out the",
+      "start": 1097.76,
+      "duration": 5.08
+    },
+    {
+      "text": "probabilities which correspond to",
+      "start": 1100.44,
+      "duration": 5.2
+    },
+    {
+      "text": "the uh when you apply the soft Max so",
+      "start": 1102.84,
+      "duration": 4.959
+    },
+    {
+      "text": "now I'll just do this and print out the",
+      "start": 1105.64,
+      "duration": 4.8
+    },
+    {
+      "text": "probabilities",
+      "start": 1107.799,
+      "duration": 4.281
+    },
+    {
+      "text": "so here you see what happened when we",
+      "start": 1110.44,
+      "duration": 3.68
+    },
+    {
+      "text": "divided by 0.1 and then you applied the",
+      "start": 1112.08,
+      "duration": 4.76
+    },
+    {
+      "text": "soft Max almost all the probabilities",
+      "start": 1114.12,
+      "duration": 4.32
+    },
+    {
+      "text": "all other probabilities are brought down",
+      "start": 1116.84,
+      "duration": 3.76
+    },
+    {
+      "text": "to zero but there is a sharper",
+      "start": 1118.44,
+      "duration": 4.0
+    },
+    {
+      "text": "probability very high probability now",
+      "start": 1120.6,
+      "duration": 4.28
+    },
+    {
+      "text": "for forward this is in contrast to these",
+      "start": 1122.44,
+      "duration": 4.2
+    },
+    {
+      "text": "probabilities right where even here this",
+      "start": 1124.88,
+      "duration": 4.52
+    },
+    {
+      "text": "value had a significant amount which was",
+      "start": 1126.64,
+      "duration": 5.44
+    },
+    {
+      "text": "toward uh I think that was toward yeah",
+      "start": 1129.4,
+      "duration": 4.519
+    },
+    {
+      "text": "this value also had a significant amount",
+      "start": 1132.08,
+      "duration": 3.92
+    },
+    {
+      "text": "that was for closer but now all these",
+      "start": 1133.919,
+      "duration": 4.041
+    },
+    {
+      "text": "values are turned to zero the only value",
+      "start": 1136.0,
+      "duration": 4.12
+    },
+    {
+      "text": "which matters the most most is uh",
+      "start": 1137.96,
+      "duration": 4.68
+    },
+    {
+      "text": "forward so that's the first conclusion",
+      "start": 1140.12,
+      "duration": 4.88
+    },
+    {
+      "text": "when temperature value is very low then",
+      "start": 1142.64,
+      "duration": 4.56
+    },
+    {
+      "text": "there is a peak in the probability",
+      "start": 1145.0,
+      "duration": 4.32
+    },
+    {
+      "text": "distribution which means that it becom",
+      "start": 1147.2,
+      "duration": 4.92
+    },
+    {
+      "text": "sharper for specific values now let me",
+      "start": 1149.32,
+      "duration": 5.92
+    },
+    {
+      "text": "try this that let me divide by",
+      "start": 1152.12,
+      "duration": 6.36
+    },
+    {
+      "text": "five or as shown in the graph uh yeah",
+      "start": 1155.24,
+      "duration": 4.64
+    },
+    {
+      "text": "temperature equal to five and here",
+      "start": 1158.48,
+      "duration": 4.28
+    },
+    {
+      "text": "you'll see the probability becomes a bit",
+      "start": 1159.88,
+      "duration": 5.24
+    },
+    {
+      "text": "flatter which means that there is kind",
+      "start": 1162.76,
+      "duration": 5.12
+    },
+    {
+      "text": "of high values for all the tokens so",
+      "start": 1165.12,
+      "duration": 4.559
+    },
+    {
+      "text": "let's see what is happening here when",
+      "start": 1167.88,
+      "duration": 5.12
+    },
+    {
+      "text": "the when I divide by five so next token",
+      "start": 1169.679,
+      "duration": 6.161
+    },
+    {
+      "text": "logits three I'm dividing the next token",
+      "start": 1173.0,
+      "duration": 5.159
+    },
+    {
+      "text": "logits by five and then what I'll do is",
+      "start": 1175.84,
+      "duration": 5.0
+    },
+    {
+      "text": "that I'll print out",
+      "start": 1178.159,
+      "duration": 5.76
+    },
+    {
+      "text": "the probabilities for next token logits",
+      "start": 1180.84,
+      "duration": 5.68
+    },
+    {
+      "text": "3 and let me print it out in a separate",
+      "start": 1183.919,
+      "duration": 4.361
+    },
+    {
+      "text": "cell actually so that it might be",
+      "start": 1186.52,
+      "duration": 3.88
+    },
+    {
+      "text": "cleaner so I have a separate cell where",
+      "start": 1188.28,
+      "duration": 4.08
+    },
+    {
+      "text": "I will print",
+      "start": 1190.4,
+      "duration": 5.72
+    },
+    {
+      "text": "out where I'll print out the",
+      "start": 1192.36,
+      "duration": 6.439
+    },
+    {
+      "text": "probabilities for",
+      "start": 1196.12,
+      "duration": 4.32
+    },
+    {
+      "text": "this tensor where I've divided the",
+      "start": 1198.799,
+      "duration": 4.321
+    },
+    {
+      "text": "logits by five and then I run it so now",
+      "start": 1200.44,
+      "duration": 5.239
+    },
+    {
+      "text": "you see this is my probability tensor",
+      "start": 1203.12,
+      "duration": 4.0
+    },
+    {
+      "text": "and you can see that it has just become",
+      "start": 1205.679,
+      "duration": 3.88
+    },
+    {
+      "text": "a bit flattened and a bit more uniform",
+      "start": 1207.12,
+      "duration": 4.16
+    },
+    {
+      "text": "now for every token we have certain",
+      "start": 1209.559,
+      "duration": 4.281
+    },
+    {
+      "text": "values of course the value for forward",
+      "start": 1211.28,
+      "duration": 4.399
+    },
+    {
+      "text": "is still the highest but there are other",
+      "start": 1213.84,
+      "duration": 3.76
+    },
+    {
+      "text": "values such as toward which has now",
+      "start": 1215.679,
+      "duration": 4.88
+    },
+    {
+      "text": "become very close to forward even the",
+      "start": 1217.6,
+      "duration": 5.0
+    },
+    {
+      "text": "probability value for closer has become",
+      "start": 1220.559,
+      "duration": 5.36
+    },
+    {
+      "text": "very similar to forward now so if the",
+      "start": 1222.6,
+      "duration": 6.079
+    },
+    {
+      "text": "temperature value is very high it means",
+      "start": 1225.919,
+      "duration": 4.921
+    },
+    {
+      "text": "means that the probability distribution",
+      "start": 1228.679,
+      "duration": 4.801
+    },
+    {
+      "text": "kind of flattens out a bit and then",
+      "start": 1230.84,
+      "duration": 5.319
+    },
+    {
+      "text": "every token kind of has uniform",
+      "start": 1233.48,
+      "duration": 4.88
+    },
+    {
+      "text": "probability as being the next token can",
+      "start": 1236.159,
+      "duration": 3.961
+    },
+    {
+      "text": "you think about what this would mean for",
+      "start": 1238.36,
+      "duration": 3.679
+    },
+    {
+      "text": "generating the next word or generating",
+      "start": 1240.12,
+      "duration": 4.08
+    },
+    {
+      "text": "the next",
+      "start": 1242.039,
+      "duration": 4.961
+    },
+    {
+      "text": "token this means that there is a lot of",
+      "start": 1244.2,
+      "duration": 4.76
+    },
+    {
+      "text": "variability now in our output token",
+      "start": 1247.0,
+      "duration": 3.28
+    },
+    {
+      "text": "which is also sometimes called",
+      "start": 1248.96,
+      "duration": 3.28
+    },
+    {
+      "text": "creativity but in some cases the",
+      "start": 1250.28,
+      "duration": 4.48
+    },
+    {
+      "text": "creativity can be too high because now",
+      "start": 1252.24,
+      "duration": 4.08
+    },
+    {
+      "text": "you'll see that there is certain output",
+      "start": 1254.76,
+      "duration": 3.84
+    },
+    {
+      "text": "for pizza also which means that every",
+      "start": 1256.32,
+      "duration": 5.04
+    },
+    {
+      "text": "every effort moves you Piza our LM is",
+      "start": 1258.6,
+      "duration": 4.8
+    },
+    {
+      "text": "also predicting this as an output so",
+      "start": 1261.36,
+      "duration": 3.84
+    },
+    {
+      "text": "ideally we don't want the temperature",
+      "start": 1263.4,
+      "duration": 3.84
+    },
+    {
+      "text": "value too high and we don't want the",
+      "start": 1265.2,
+      "duration": 3.8
+    },
+    {
+      "text": "temperature value too low also if the",
+      "start": 1267.24,
+      "duration": 3.88
+    },
+    {
+      "text": "temperature value is too low then there",
+      "start": 1269.0,
+      "duration": 4.6
+    },
+    {
+      "text": "is only one token which is predicted we",
+      "start": 1271.12,
+      "duration": 4.439
+    },
+    {
+      "text": "need to place emphasis on other tokens",
+      "start": 1273.6,
+      "duration": 4.48
+    },
+    {
+      "text": "also which might be making sense so as",
+      "start": 1275.559,
+      "duration": 4.48
+    },
+    {
+      "text": "we saw applying very small temperatur",
+      "start": 1278.08,
+      "duration": 4.479
+    },
+    {
+      "text": "such as01 will result in sharper",
+      "start": 1280.039,
+      "duration": 4.88
+    },
+    {
+      "text": "distributions such that later when we",
+      "start": 1282.559,
+      "duration": 4.281
+    },
+    {
+      "text": "apply the multinomial function it will",
+      "start": 1284.919,
+      "duration": 3.841
+    },
+    {
+      "text": "select the most likely token which is",
+      "start": 1286.84,
+      "duration": 5.6
+    },
+    {
+      "text": "forward now um please keep in mind that",
+      "start": 1288.76,
+      "duration": 5.2
+    },
+    {
+      "text": "after this we are going to apply",
+      "start": 1292.44,
+      "duration": 3.96
+    },
+    {
+      "text": "multinomial so multinomial sampling is",
+      "start": 1293.96,
+      "duration": 5.24
+    },
+    {
+      "text": "going to happen after the soft Max so if",
+      "start": 1296.4,
+      "duration": 4.399
+    },
+    {
+      "text": "the probability distribution looks",
+      "start": 1299.2,
+      "duration": 3.359
+    },
+    {
+      "text": "something like in the orange the",
+      "start": 1300.799,
+      "duration": 3.961
+    },
+    {
+      "text": "multinomial will always sample this",
+      "start": 1302.559,
+      "duration": 4.641
+    },
+    {
+      "text": "because the probability remember",
+      "start": 1304.76,
+      "duration": 4.279
+    },
+    {
+      "text": "multinomial samples according to the",
+      "start": 1307.2,
+      "duration": 2.959
+    },
+    {
+      "text": "probabilities right so if the",
+      "start": 1309.039,
+      "duration": 2.161
+    },
+    {
+      "text": "probability is",
+      "start": 1310.159,
+      "duration": 5.12
+    },
+    {
+      "text": "991 it will always sample this so that's",
+      "start": 1311.2,
+      "duration": 6.92
+    },
+    {
+      "text": "why when the temperature values are",
+      "start": 1315.279,
+      "duration": 5.52
+    },
+    {
+      "text": "small such as 0.1 it results in sharper",
+      "start": 1318.12,
+      "duration": 5.0
+    },
+    {
+      "text": "distributions and the multinomial",
+      "start": 1320.799,
+      "duration": 4.081
+    },
+    {
+      "text": "function then selects the most likely",
+      "start": 1323.12,
+      "duration": 4.32
+    },
+    {
+      "text": "token year forward Almost 100% of the",
+      "start": 1324.88,
+      "duration": 4.6
+    },
+    {
+      "text": "time and then we approach the behavior",
+      "start": 1327.44,
+      "duration": 4.28
+    },
+    {
+      "text": "of the argmax function so when the",
+      "start": 1329.48,
+      "duration": 4.04
+    },
+    {
+      "text": "temperature values are low it's almost",
+      "start": 1331.72,
+      "duration": 4.12
+    },
+    {
+      "text": "like going back to the earlier approach",
+      "start": 1333.52,
+      "duration": 4.6
+    },
+    {
+      "text": "where we selected the token ID with the",
+      "start": 1335.84,
+      "duration": 5.439
+    },
+    {
+      "text": "highest probability score now if you",
+      "start": 1338.12,
+      "duration": 4.6
+    },
+    {
+      "text": "look at the higher temperature if",
+      "start": 1341.279,
+      "duration": 3.76
+    },
+    {
+      "text": "temperature value is equal to 5 this",
+      "start": 1342.72,
+      "duration": 4.0
+    },
+    {
+      "text": "actually results in a more uniform",
+      "start": 1345.039,
+      "duration": 3.481
+    },
+    {
+      "text": "distribution where other tokens are also",
+      "start": 1346.72,
+      "duration": 3.4
+    },
+    {
+      "text": "selected more often such as what is",
+      "start": 1348.52,
+      "duration": 4.279
+    },
+    {
+      "text": "shown in the green color here this can",
+      "start": 1350.12,
+      "duration": 4.919
+    },
+    {
+      "text": "add more variety to the generated texts",
+      "start": 1352.799,
+      "duration": 4.521
+    },
+    {
+      "text": "but also it leads to non sensical text",
+      "start": 1355.039,
+      "duration": 6.081
+    },
+    {
+      "text": "so for example uh Pizza is now 4%",
+      "start": 1357.32,
+      "duration": 6.32
+    },
+    {
+      "text": "probability so we will get every effort",
+      "start": 1361.12,
+      "duration": 4.84
+    },
+    {
+      "text": "moves you Pizza about 4% of the time if",
+      "start": 1363.64,
+      "duration": 4.159
+    },
+    {
+      "text": "you use temperature equal to five that's",
+      "start": 1365.96,
+      "duration": 4.04
+    },
+    {
+      "text": "not good so ideally there needs to be a",
+      "start": 1367.799,
+      "duration": 4.841
+    },
+    {
+      "text": "good balance in the temperature which we",
+      "start": 1370.0,
+      "duration": 5.159
+    },
+    {
+      "text": "used there is a very nice graph which",
+      "start": 1372.64,
+      "duration": 4.159
+    },
+    {
+      "text": "actually shows why this has the name",
+      "start": 1375.159,
+      "duration": 3.961
+    },
+    {
+      "text": "temperature so here you see if the",
+      "start": 1376.799,
+      "duration": 4.24
+    },
+    {
+      "text": "temperature becomes high as is shown on",
+      "start": 1379.12,
+      "duration": 3.2
+    },
+    {
+      "text": "the right side we saw that the",
+      "start": 1381.039,
+      "duration": 3.481
+    },
+    {
+      "text": "distribution becomes more uniform right",
+      "start": 1382.32,
+      "duration": 4.479
+    },
+    {
+      "text": "every token has some probability whereas",
+      "start": 1384.52,
+      "duration": 3.88
+    },
+    {
+      "text": "for low temperature we have something on",
+      "start": 1386.799,
+      "duration": 3.12
+    },
+    {
+      "text": "the right something on the left here",
+      "start": 1388.4,
+      "duration": 3.2
+    },
+    {
+      "text": "where we have sharper distributions only",
+      "start": 1389.919,
+      "duration": 4.36
+    },
+    {
+      "text": "one token makes sense so low temperature",
+      "start": 1391.6,
+      "duration": 5.199
+    },
+    {
+      "text": "can be corresponding to low entropy",
+      "start": 1394.279,
+      "duration": 5.041
+    },
+    {
+      "text": "whereas when you do increase the",
+      "start": 1396.799,
+      "duration": 4.441
+    },
+    {
+      "text": "temperature things generally be become",
+      "start": 1399.32,
+      "duration": 3.88
+    },
+    {
+      "text": "more unstable Things become more chaotic",
+      "start": 1401.24,
+      "duration": 4.08
+    },
+    {
+      "text": "become more creative that's why every",
+      "start": 1403.2,
+      "duration": 4.359
+    },
+    {
+      "text": "token has certain probability here of",
+      "start": 1405.32,
+      "duration": 3.719
+    },
+    {
+      "text": "being the next token",
+      "start": 1407.559,
+      "duration": 3.36
+    },
+    {
+      "text": "so that's why it's called as temperature",
+      "start": 1409.039,
+      "duration": 4.441
+    },
+    {
+      "text": "because increasing the temperature makes",
+      "start": 1410.919,
+      "duration": 5.561
+    },
+    {
+      "text": "makes uh makes sure that all tokens have",
+      "start": 1413.48,
+      "duration": 6.84
+    },
+    {
+      "text": "certain value which makes it a",
+      "start": 1416.48,
+      "duration": 7.52
+    },
+    {
+      "text": "bit uh unstable I would say or rather I",
+      "start": 1420.32,
+      "duration": 5.359
+    },
+    {
+      "text": "would call it a bit more creative a bit",
+      "start": 1424.0,
+      "duration": 3.799
+    },
+    {
+      "text": "more randomized it's almost like the",
+      "start": 1425.679,
+      "duration": 5.441
+    },
+    {
+      "text": "temp entropy has increased so that's why",
+      "start": 1427.799,
+      "duration": 5.841
+    },
+    {
+      "text": "conceptually it's called as temperature",
+      "start": 1431.12,
+      "duration": 4.32
+    },
+    {
+      "text": "because increase in temperature leads to",
+      "start": 1433.64,
+      "duration": 4.919
+    },
+    {
+      "text": "a more flattened diffused distribution",
+      "start": 1435.44,
+      "duration": 5.44
+    },
+    {
+      "text": "whereas lowering the temperature means",
+      "start": 1438.559,
+      "duration": 5.0
+    },
+    {
+      "text": "lower entropy so only one token value",
+      "start": 1440.88,
+      "duration": 5.159
+    },
+    {
+      "text": "would make more sense now here is a",
+      "start": 1443.559,
+      "duration": 3.881
+    },
+    {
+      "text": "graphic which actually shows what",
+      "start": 1446.039,
+      "duration": 2.88
+    },
+    {
+      "text": "happens as you increase the temperature",
+      "start": 1447.44,
+      "duration": 3.28
+    },
+    {
+      "text": "to very very high values if temperature",
+      "start": 1448.919,
+      "duration": 4.64
+    },
+    {
+      "text": "becomes very high almost every next",
+      "start": 1450.72,
+      "duration": 4.8
+    },
+    {
+      "text": "token will have equal probability if the",
+      "start": 1453.559,
+      "duration": 3.441
+    },
+    {
+      "text": "temperature becomes very low we have",
+      "start": 1455.52,
+      "duration": 4.32
+    },
+    {
+      "text": "sharper distributions as we have seen",
+      "start": 1457.0,
+      "duration": 5.52
+    },
+    {
+      "text": "before awesome so this brings us to the",
+      "start": 1459.84,
+      "duration": 4.4
+    },
+    {
+      "text": "end of the lecture where we covered",
+      "start": 1462.52,
+      "duration": 3.96
+    },
+    {
+      "text": "about temperature scaling and how",
+      "start": 1464.24,
+      "duration": 4.319
+    },
+    {
+      "text": "temperature scaling can be actually used",
+      "start": 1466.48,
+      "duration": 4.48
+    },
+    {
+      "text": "to predict the next token in a",
+      "start": 1468.559,
+      "duration": 4.161
+    },
+    {
+      "text": "probabilistic sense so instead of just",
+      "start": 1470.96,
+      "duration": 3.52
+    },
+    {
+      "text": "choosing the next token according to the",
+      "start": 1472.72,
+      "duration": 4.24
+    },
+    {
+      "text": "maximum value we will use a multi",
+      "start": 1474.48,
+      "duration": 4.84
+    },
+    {
+      "text": "multinomial probability distribution to",
+      "start": 1476.96,
+      "duration": 5.199
+    },
+    {
+      "text": "sample the next token that's the keyword",
+      "start": 1479.32,
+      "duration": 4.839
+    },
+    {
+      "text": "so first you take the logit so the",
+      "start": 1482.159,
+      "duration": 3.961
+    },
+    {
+      "text": "procedure is like this first you take",
+      "start": 1484.159,
+      "duration": 6.161
+    },
+    {
+      "text": "the logits U then you scale it you scale",
+      "start": 1486.12,
+      "duration": 6.24
+    },
+    {
+      "text": "the logits with the",
+      "start": 1490.32,
+      "duration": 4.68
+    },
+    {
+      "text": "temperature uh and then what you do is",
+      "start": 1492.36,
+      "duration": 4.679
+    },
+    {
+      "text": "then you apply the soft",
+      "start": 1495.0,
+      "duration": 4.679
+    },
+    {
+      "text": "Max and then you get a tensor of",
+      "start": 1497.039,
+      "duration": 4.841
+    },
+    {
+      "text": "probabilities and then you sample using",
+      "start": 1499.679,
+      "duration": 5.041
+    },
+    {
+      "text": "the multinomial",
+      "start": 1501.88,
+      "duration": 2.84
+    },
+    {
+      "text": "distribution this is the sequential",
+      "start": 1504.84,
+      "duration": 4.36
+    },
+    {
+      "text": "workflow for application of temperature",
+      "start": 1506.96,
+      "duration": 3.88
+    },
+    {
+      "text": "and we later saw that the reason it's",
+      "start": 1509.2,
+      "duration": 3.68
+    },
+    {
+      "text": "called temperature is because as the",
+      "start": 1510.84,
+      "duration": 3.68
+    },
+    {
+      "text": "temperature becomes high it's like the",
+      "start": 1512.88,
+      "duration": 3.919
+    },
+    {
+      "text": "entropy increases every next token has",
+      "start": 1514.52,
+      "duration": 5.12
+    },
+    {
+      "text": "some probability of being the next token",
+      "start": 1516.799,
+      "duration": 4.521
+    },
+    {
+      "text": "uh whereas if the temperature is very",
+      "start": 1519.64,
+      "duration": 3.96
+    },
+    {
+      "text": "low the entropy is very low it's like",
+      "start": 1521.32,
+      "duration": 4.56
+    },
+    {
+      "text": "everything is concentrated to one single",
+      "start": 1523.6,
+      "duration": 4.079
+    },
+    {
+      "text": "token and we have a sharper probability",
+      "start": 1525.88,
+      "duration": 3.6
+    },
+    {
+      "text": "distribution",
+      "start": 1527.679,
+      "duration": 4.161
+    },
+    {
+      "text": "so small token means that the llm output",
+      "start": 1529.48,
+      "duration": 3.919
+    },
+    {
+      "text": "does not have any creativity it will",
+      "start": 1531.84,
+      "duration": 3.319
+    },
+    {
+      "text": "always give the same thing as an output",
+      "start": 1533.399,
+      "duration": 3.28
+    },
+    {
+      "text": "but large token means that it's a",
+      "start": 1535.159,
+      "duration": 4.161
+    },
+    {
+      "text": "flatten distribution more variety but",
+      "start": 1536.679,
+      "duration": 5.161
+    },
+    {
+      "text": "also it has scope for more nonsense so",
+      "start": 1539.32,
+      "duration": 4.28
+    },
+    {
+      "text": "you need to be careful when choosing the",
+      "start": 1541.84,
+      "duration": 2.76
+    },
+    {
+      "text": "temperature",
+      "start": 1543.6,
+      "duration": 3.88
+    },
+    {
+      "text": "value uh in the next lecture we'll study",
+      "start": 1544.6,
+      "duration": 5.48
+    },
+    {
+      "text": "another technique for",
+      "start": 1547.48,
+      "duration": 7.76
+    },
+    {
+      "text": "uh reducing the randomization for while",
+      "start": 1550.08,
+      "duration": 9.4
+    },
+    {
+      "text": "decoding the tokens or reducing the",
+      "start": 1555.24,
+      "duration": 6.84
+    },
+    {
+      "text": "um reducing the randomization when",
+      "start": 1559.48,
+      "duration": 4.16
+    },
+    {
+      "text": "predicting the next",
+      "start": 1562.08,
+      "duration": 4.56
+    },
+    {
+      "text": "token and that strategy is called as",
+      "start": 1563.64,
+      "duration": 6.639
+    },
+    {
+      "text": "topk sampling so usually topk sampling",
+      "start": 1566.64,
+      "duration": 6.32
+    },
+    {
+      "text": "is used along with temperature scaling",
+      "start": 1570.279,
+      "duration": 4.52
+    },
+    {
+      "text": "and so we'll also see how top SK",
+      "start": 1572.96,
+      "duration": 3.52
+    },
+    {
+      "text": "sampling integrates with what we learned",
+      "start": 1574.799,
+      "duration": 3.6
+    },
+    {
+      "text": "today which is temperature scaling",
+      "start": 1576.48,
+      "duration": 4.04
+    },
+    {
+      "text": "thanks a lot everyone uh this was a",
+      "start": 1578.399,
+      "duration": 3.921
+    },
+    {
+      "text": "short lecture but I hope you understood",
+      "start": 1580.52,
+      "duration": 3.92
+    },
+    {
+      "text": "the concept of temperature scaling",
+      "start": 1582.32,
+      "duration": 3.52
+    },
+    {
+      "text": "thanks a lot and I'll see you in the",
+      "start": 1584.44,
+      "duration": 4.64
+    },
+    {
+      "text": "next lecture",
+      "start": 1585.84,
+      "duration": 3.24
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the build large language models from scratch Series today we are going to learn about a very important concept and that concept is called temperature scaling we'll understand what temperature scaling is and why it is used in large language models first let me recap what all we have done in the previous lecture in the previous lecture we actually trained a large language model completely from scratch so here's the training process which we had defined and we ran the large language model for 10 EPO and we saw the next Words which were predicted so every effort moves was the input token which we had or the input sentence which we had given to the large language model and then we recorded the output tokens and then here you can see I printed out the output tokens you know was one of the XM he laid down across dash dash dash so there are 50 output tokens and as you can see the output tokens don't really make too much of sense right now and that's what we are aiming to do in today's lecture our whole goal in today's lecture is how to make sure that the randomness in the output tokens is reduced how to make sure that the output tokens eventually start making sense we will learn techniques to do this in today's lecture and one such technique is called as the technique of temperature scaling this is the technique which we are going to learn about today so let's get started with today's lecture Okay so until now what we have seen is that the generated token is selected corresponding to the largest probability score among all the tokens in the vocabulary what do I mean with mean by this so this is the process which we are following until now every effort moves that's my input which is fed to the GPT architecture and then I get a logic tensor which is ultimately passed through the soft Max and then I get a tensor of probabilities like this what we are doing until now to predict the next token is we are looking at that index or that token ID which has the maximum probability and then we decode that token ID which gives us the next token so for example when every is the input the token ID corresponding to this second index where probability is 6 which is the highest that's the output and that token ID is one and so the next token is effort similarly when every effort moves is the input we look at this third row we trying we try to find that entry which has the highest value that entry is 34 the index number is five or the token ID is five and then we see that for token ID five the token which corresponds to that is is you so when every effort moves is the input U should be the output right so until now what we have seen is that the generated token is selected corresponding to the largest probability score among all the tokens in the vocabulary what this leads to is that this leads to a lot of Randomness and diversity in the generated text so since all of these are probability scores why are we choosing the next token in a deterministic manner like this what if we use what if we choose the next token in a probabilistic manner what if we sample the next token from a probability distribution this is exactly what is explored in the concept of temperature scaling there are actually two techniques which really help to control the randomness and the two techniques are used together with each other first is temperature scaling and the second is top case sampling this top case sampling Technique we are going to look at in the next lecture today we are going to focus on temperature scaling so the main uh main idea behind temperature scaling is that first what we do is that instead of taking the maximum probability and just looking at the index which corresponds to the ma maximum probability we replace this ARG Max with a probability distribution so for example here instead of just choosing this token with a maximum probability we will look at this probability scores and then based on this we'll sample from a probability distribution and that probability distribution turns out to be the multinomial probability distribution so the next token is then sampled according to the probability score we don't just blindly or we don't just choose the token ID with the highest probability value we sample the next token according to the probability score this distinction in terminology is very important are sampling the next token so it's not clear to us what the next token is going to be because we are sampling it so what the sampling mean to give you an example let's look at the goian distribution right and if I ask you to sample values from a goian distribution you I cannot tell you right now what the value will be because I'm sampling it from this distribution what I can tell you is that most of my samples will probably be close to the mean Point like here very few will probably be at the tail end of the goian distribution this is what sampling from a distribution means in this case we are sampling from this distribution which is multinomial distribution and if you go to Wikipedia you will see that the multinomial distribution essentially uh is for a number of different mutually exclusive outcomes so when we have K possible mutually exclusive outcomes with corresponding probabilities think of these as the next token here also we have the outcomes equal to the vocabulary size right K possible outcomes because anything can be the next token and all of them have a probability associated with them right uh and let's say we conduct thousand or n independent trials to predict the next token then we will have a probability distribution that is essentially called as the multinomial probability distribution and I'm going to explain that to you in just a moment so that it's going to be clear to you right now just know that we are going to sample the next token from this distribution which is called as multinomial distribution before coming to temperature let's actually go to code to understand until this point what we are going to do okay so the whole topic of today's lecture is decoding strategies to control Randomness let us first briefly revisit the generate text simple function which we have been using up till now and then we will cover techniques such as temperature scaling and top Cas sampling and here first what I'm doing is I'm switching the model to the CPU and I'm running it in the evaluation mode so here you can see that uh this is the GPT model which we are going to use we have the embedding layers then the Transformer block then the after coming out of the Transformer block we have uh let's see when I come out of the Transformer block here I have another normalization layer and then I have output head this is my architecture awesome now I just just want to show you currently we have this generate text simple it takes in the input token or the input sentence which we have it passes it through the architecture which I just showed you and then it predicts the next 25 tokens using the maximum probability so we are not currently doing the sampling as I mentioned and so here you can see when every effort moves you is the input this this is the output these are the 25 tokens and the randomness here is pretty high right so previous ly inside the generate text simple function we always sample the token with the highest probability as the next token using tor. argmax right this is called as greedy decoding now to generate text with more variety what we are going to do is that we are going to replace the argmax with a function that samples from a probability distribution that's the main thing which we are going to do and to illustrate this probabilistic sampling with a concrete example let us actually first take a very small vocabulary size and let us demonstrate here what's going on so let's say my vocabulary size only consists of the tokens which are closer every effort forward inches moves Piza towards and you so these are the eight uh these are the nine tokens in my vocabulary and each has a token ID from 0 to 8 I also maintain an inverse vocabulary dictionary which gives me the token ID and then it decodes it back to the Token awesome now uh let's say the input to this input to my large language model and remember the model is this let's say the input to this model is uh every effort moves you what this input will do when pass through the model is that we'll get the output logit sensor and uh the output logit sensor will have uh the number of columns which is equal to the vocabulary size so the number of columns here in the output logic sensor will be nine right now what we do here is that we then pass this through soft Max so that this is converted into probabilities right and so when you pass this into a soft Max you can print out the probabilities and you'll see that the probabilities look like this now all of these add up to one so earlier what we used to do is that we just looked at these probabilities and we said that the next token ID is going to be that token ID with the maximum probability so let's see and that maximum probability is 5721 and this is column number 0 1 2 and 3 this is column number three so the next token ID is equal to three which we have printed and then using the inverse vocabulary we'll print the next token and that is forward so then the next token will be every effort moves you and then forward will be my predicted token here is where we are going to make the change to implement a probabilistic sampling process we can now replace the ARG Max with the multinomial function in P torch so here here you can see we are replacing the AR Max with a multinomial function here and this multinomial function is uh applied to this probas which is the probabilities uh uh which is the tensor of probabilities this is where the multinomial function is applied and then what we can do is that we can get the next token ID based on what we sample from this probability distribution and then we predict the token corresponding to the next token ID here you can see that this is just equal to forward right so what really happened it's the same as the previous one there is no change so you might be thinking why did we do this multinomial so what happens is that the multinomial function samples the next token proportional to its probability score this is the important thing here so let's say currently we did only one trial here right in that one trial what the multinomial function did is that it looked at all these probabilities and then it will sample from this so there is a high chance that it will choose forward and that's why it chose forward we'll really see the difference when we do more number of Trials so see in this definition there is n independent trials which need to be performed right that is what we are going to do right now so the multinomial function samples the next token proportional to its probability score in other words forward is still like still the most likely token so we are not changing the most likely token it Still Remains the most likely token token but we will also select other tokens sometimes so forward is still the most likely token and will be selected by the multinomial most of the time but not all the time so to illustrate this we will repeat this process this sampling thousand times so to simp the multinomial function is very intuitive so when you do thousand trials in each trial it will try to choose that token which has the highest probability so now it's a bit of a random proc right it's not deterministic sometimes the multinomial function might even choose Piza although it will be very very rare uh sometimes it might choose but most of the times it will choose uh uh forward only so let's try to do this now so what we are doing is that we are running the same procedure now uh we are applying the multinomial function to this probas tensor and then uh we are going to uh take the sample which is we are going to take the token ID which is sampled in that particular iteration and then we are going to print out that what we are also doing is that in these thousand iterations I'm going to print out how many times each token is chosen so that's this frequency we print print out how many times every single token is chosen when you are doing this thousand iterations so here are the results so when you do this number of iterations these many times you will see that uh you'll see that the word for forward is sampled most number of times it's sampled 582 times out of the Thousand but other tokens such as closer inches and toward so closer inches and toward they are also sampled some of the time so in fact closer is sampled 73 times inches is sampled two times and towards is sampled 343 times this means that since we replace the AR Max function with the multinomial function the llm would sometime generate text such as every effort moves you toward every effort moves you inches and every effort moves you closer instead of every time generating every effort moves you forward so now integration of this multinomial function has made sure that we are not sampling the same token each time sometime we are also giving more uh we are giving more chance for other tokens to be the next token and that's what improves the creativity of the large language model it leads to more uh exploration it leads to more creativity and sometimes it can also lead to better outputs instead of just sampling a deterministic prediction every single time so you might be thinking that okay this looks fine but why is this method called as temperature scaling where does temperature come into the picture and why is it called temperature so basically you see this logic tensor over here right before we apply the soft Max there is a Logics tensor what what what is meant by temperature is that temperature is basically just a fancy term for dividing the Logics tensor by a number which is greater than zero so the only thing which is done when we introduce temperature is that we have this thing called scale Logics and all the logic values which we have are divided by another number which is called as the temperature value so what this does is that so see when you divide it by the temperature value you get the scale logic then you apply soft Max and then you get the tensor of probabilities every the rest of the process stays the same but what this introduction of this temperature does is that it changes the distribution a bit it changes the distribution of probabilities so for example let's see what this dividing by this temperature does through code um so we can further control the distribution and selection process via a concept called temperature scaling where temperature scaling is just a fancy description for dividing the logits by a number greater than zero now we'll see two things we'll see temperature is greater than one what happens when temperature is greater than one and we'll see what happens when temperature is smaller than one okay so here what I'm doing is that I'm scaling the Logics with dividing by temperature and then I'll apply the soft Max exactly like what we had done over here and then uh even before applying the multinomial distribution uh then we'll get the scaled probab we'll get the scaled probabilities as applying soft Max with temperature first I just want to show you without even going to the multinomial function what happens when you scale the logits with temperature and what happens as the result when you apply soft Max so look at this plot first I want you to see the plot with temperature equal to one which are the blue so when you see the blue you will see that the probability for forward is around 0.5 probability for closer is around 0.1 and probability for towards is around3 this is exactly what we saw in this case right uh so probability for forward is 05 probability uh for towards so probability for towards is35 and probability um for there is one more probability for closer so probability for closer is 0.06 right so the blue the blue line there is when we have not changed anything when temperature is equal to 1 now let's see what happens when temperature is small so when you actually when you take these value when you take these logits and you divide each of them by 0.1 and then you take the soft Max then you will get probabilities which look something like this in the orange you'll see there is a sharper probability for forward now and almost all the other probabilities have been shifted to zero and we can test this out a bit in the code right now so what I'm going to do is that I'm going to say that uh uh next logits next token to logits is equal to next token logits or let's say next token logits 2 is equal to next token logits divided by 0.1 right okay so now I have a next to on logits 2 where every logit is divided by 0.1 and here what I will do is that I will print out I'll print out the probabilities which correspond to the uh when you apply the soft Max so now I'll just do this and print out the probabilities so here you see what happened when we divided by 0.1 and then you applied the soft Max almost all the probabilities all other probabilities are brought down to zero but there is a sharper probability very high probability now for forward this is in contrast to these probabilities right where even here this value had a significant amount which was toward uh I think that was toward yeah this value also had a significant amount that was for closer but now all these values are turned to zero the only value which matters the most most is uh forward so that's the first conclusion when temperature value is very low then there is a peak in the probability distribution which means that it becom sharper for specific values now let me try this that let me divide by five or as shown in the graph uh yeah temperature equal to five and here you'll see the probability becomes a bit flatter which means that there is kind of high values for all the tokens so let's see what is happening here when the when I divide by five so next token logits three I'm dividing the next token logits by five and then what I'll do is that I'll print out the probabilities for next token logits 3 and let me print it out in a separate cell actually so that it might be cleaner so I have a separate cell where I will print out where I'll print out the probabilities for this tensor where I've divided the logits by five and then I run it so now you see this is my probability tensor and you can see that it has just become a bit flattened and a bit more uniform now for every token we have certain values of course the value for forward is still the highest but there are other values such as toward which has now become very close to forward even the probability value for closer has become very similar to forward now so if the temperature value is very high it means means that the probability distribution kind of flattens out a bit and then every token kind of has uniform probability as being the next token can you think about what this would mean for generating the next word or generating the next token this means that there is a lot of variability now in our output token which is also sometimes called creativity but in some cases the creativity can be too high because now you'll see that there is certain output for pizza also which means that every every effort moves you Piza our LM is also predicting this as an output so ideally we don't want the temperature value too high and we don't want the temperature value too low also if the temperature value is too low then there is only one token which is predicted we need to place emphasis on other tokens also which might be making sense so as we saw applying very small temperatur such as01 will result in sharper distributions such that later when we apply the multinomial function it will select the most likely token which is forward now um please keep in mind that after this we are going to apply multinomial so multinomial sampling is going to happen after the soft Max so if the probability distribution looks something like in the orange the multinomial will always sample this because the probability remember multinomial samples according to the probabilities right so if the probability is 991 it will always sample this so that's why when the temperature values are small such as 0.1 it results in sharper distributions and the multinomial function then selects the most likely token year forward Almost 100% of the time and then we approach the behavior of the argmax function so when the temperature values are low it's almost like going back to the earlier approach where we selected the token ID with the highest probability score now if you look at the higher temperature if temperature value is equal to 5 this actually results in a more uniform distribution where other tokens are also selected more often such as what is shown in the green color here this can add more variety to the generated texts but also it leads to non sensical text so for example uh Pizza is now 4% probability so we will get every effort moves you Pizza about 4% of the time if you use temperature equal to five that's not good so ideally there needs to be a good balance in the temperature which we used there is a very nice graph which actually shows why this has the name temperature so here you see if the temperature becomes high as is shown on the right side we saw that the distribution becomes more uniform right every token has some probability whereas for low temperature we have something on the right something on the left here where we have sharper distributions only one token makes sense so low temperature can be corresponding to low entropy whereas when you do increase the temperature things generally be become more unstable Things become more chaotic become more creative that's why every token has certain probability here of being the next token so that's why it's called as temperature because increasing the temperature makes makes uh makes sure that all tokens have certain value which makes it a bit uh unstable I would say or rather I would call it a bit more creative a bit more randomized it's almost like the temp entropy has increased so that's why conceptually it's called as temperature because increase in temperature leads to a more flattened diffused distribution whereas lowering the temperature means lower entropy so only one token value would make more sense now here is a graphic which actually shows what happens as you increase the temperature to very very high values if temperature becomes very high almost every next token will have equal probability if the temperature becomes very low we have sharper distributions as we have seen before awesome so this brings us to the end of the lecture where we covered about temperature scaling and how temperature scaling can be actually used to predict the next token in a probabilistic sense so instead of just choosing the next token according to the maximum value we will use a multi multinomial probability distribution to sample the next token that's the keyword so first you take the logit so the procedure is like this first you take the logits U then you scale it you scale the logits with the temperature uh and then what you do is then you apply the soft Max and then you get a tensor of probabilities and then you sample using the multinomial distribution this is the sequential workflow for application of temperature and we later saw that the reason it's called temperature is because as the temperature becomes high it's like the entropy increases every next token has some probability of being the next token uh whereas if the temperature is very low the entropy is very low it's like everything is concentrated to one single token and we have a sharper probability distribution so small token means that the llm output does not have any creativity it will always give the same thing as an output but large token means that it's a flatten distribution more variety but also it has scope for more nonsense so you need to be careful when choosing the temperature value uh in the next lecture we'll study another technique for uh reducing the randomization for while decoding the tokens or reducing the um reducing the randomization when predicting the next token and that strategy is called as topk sampling so usually topk sampling is used along with temperature scaling and so we'll also see how top SK sampling integrates with what we learned today which is temperature scaling thanks a lot everyone uh this was a short lecture but I hope you understood the concept of temperature scaling thanks a lot and I'll see you in the next lecture"
+}

@@ -1,0 +1,3821 @@
+{
+  "video": {
+    "video_id": "f6zqClXOh7Y",
+    "title": "Dataloaders in LLM Classification Finetuning | Python Coding | Hands on LLM project",
+    "duration": 1863.0,
+    "index": 33
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.839
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.12,
+      "duration": 4.96
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 7.839,
+      "duration": 5.121
+    },
+    {
+      "text": "scratch Series in the last lecture we",
+      "start": 10.08,
+      "duration": 6.08
+    },
+    {
+      "text": "started learning about fine tuning about",
+      "start": 12.96,
+      "duration": 6.2
+    },
+    {
+      "text": "large language models fine tuning and we",
+      "start": 16.16,
+      "duration": 5.44
+    },
+    {
+      "text": "saw that fine tuning essentially is",
+      "start": 19.16,
+      "duration": 4.879
+    },
+    {
+      "text": "adapting a pre-trained",
+      "start": 21.6,
+      "duration": 6.12
+    },
+    {
+      "text": "model to a specific task by training the",
+      "start": 24.039,
+      "duration": 7.08
+    },
+    {
+      "text": "model on additional data and then we saw",
+      "start": 27.72,
+      "duration": 5.08
+    },
+    {
+      "text": "that there are essentially two types of",
+      "start": 31.119,
+      "duration": 3.721
+    },
+    {
+      "text": "fine tuning the first type is",
+      "start": 32.8,
+      "duration": 4.32
+    },
+    {
+      "text": "instruction fine tuning and the second",
+      "start": 34.84,
+      "duration": 4.28
+    },
+    {
+      "text": "type is classification fine",
+      "start": 37.12,
+      "duration": 4.439
+    },
+    {
+      "text": "tuning we went a step further in the",
+      "start": 39.12,
+      "duration": 4.599
+    },
+    {
+      "text": "previous lecture and we started working",
+      "start": 41.559,
+      "duration": 5.0
+    },
+    {
+      "text": "on a Hands-On project which was based on",
+      "start": 43.719,
+      "duration": 4.601
+    },
+    {
+      "text": "classification fine",
+      "start": 46.559,
+      "duration": 4.561
+    },
+    {
+      "text": "tuning the problem which we considered",
+      "start": 48.32,
+      "duration": 6.919
+    },
+    {
+      "text": "was that of email classification and uh",
+      "start": 51.12,
+      "duration": 6.36
+    },
+    {
+      "text": "the whole goal in this problem was for",
+      "start": 55.239,
+      "duration": 5.241
+    },
+    {
+      "text": "us to use a large language model for a",
+      "start": 57.48,
+      "duration": 5.8
+    },
+    {
+      "text": "specific task and that task was to look",
+      "start": 60.48,
+      "duration": 3.759
+    },
+    {
+      "text": "at",
+      "start": 63.28,
+      "duration": 3.879
+    },
+    {
+      "text": "emails and to classify them into either",
+      "start": 64.239,
+      "duration": 5.801
+    },
+    {
+      "text": "of the two categories either spam or not",
+      "start": 67.159,
+      "duration": 4.041
+    },
+    {
+      "text": "a",
+      "start": 70.04,
+      "duration": 4.399
+    },
+    {
+      "text": "Spam right so in the last lecture what",
+      "start": 71.2,
+      "duration": 6.16
+    },
+    {
+      "text": "we did was we looked at the first two",
+      "start": 74.439,
+      "duration": 4.881
+    },
+    {
+      "text": "steps which I've mentioned in stage one",
+      "start": 77.36,
+      "duration": 4.399
+    },
+    {
+      "text": "over here we downloaded the email data",
+      "start": 79.32,
+      "duration": 5.119
+    },
+    {
+      "text": "set and we pre-processed the data set so",
+      "start": 81.759,
+      "duration": 4.801
+    },
+    {
+      "text": "let me quickly revise what all we",
+      "start": 84.439,
+      "duration": 4.68
+    },
+    {
+      "text": "implemented in the previous lecture so",
+      "start": 86.56,
+      "duration": 5.08
+    },
+    {
+      "text": "here's the email data set which we",
+      "start": 89.119,
+      "duration": 4.64
+    },
+    {
+      "text": "collected from the UC arvine machine",
+      "start": 91.64,
+      "duration": 5.04
+    },
+    {
+      "text": "learning repository it had a data of",
+      "start": 93.759,
+      "duration": 3.881
+    },
+    {
+      "text": "around",
+      "start": 96.68,
+      "duration": 5.28
+    },
+    {
+      "text": "747 spam emails and more than 3,000 not",
+      "start": 97.64,
+      "duration": 7.839
+    },
+    {
+      "text": "spam emails not spam is also called ham",
+      "start": 101.96,
+      "duration": 5.04
+    },
+    {
+      "text": "over here so it's basically a",
+      "start": 105.479,
+      "duration": 3.761
+    },
+    {
+      "text": "classification between ham and",
+      "start": 107.0,
+      "duration": 4.84
+    },
+    {
+      "text": "spam what we did then in the code was",
+      "start": 109.24,
+      "duration": 4.879
+    },
+    {
+      "text": "that we downloaded this data set so here",
+      "start": 111.84,
+      "duration": 4.08
+    },
+    {
+      "text": "you can see that we had a function for",
+      "start": 114.119,
+      "duration": 4.32
+    },
+    {
+      "text": "downloading and unzipping the data set",
+      "start": 115.92,
+      "duration": 4.479
+    },
+    {
+      "text": "and we took a look at the form of the",
+      "start": 118.439,
+      "duration": 6.121
+    },
+    {
+      "text": "data set so we saw that every U every",
+      "start": 120.399,
+      "duration": 6.481
+    },
+    {
+      "text": "point or every entry in the data was",
+      "start": 124.56,
+      "duration": 4.559
+    },
+    {
+      "text": "essentially a text and then there was a",
+      "start": 126.88,
+      "duration": 5.04
+    },
+    {
+      "text": "label ham which means no spam and spam",
+      "start": 129.119,
+      "duration": 6.241
+    },
+    {
+      "text": "right and then we saw that there were",
+      "start": 131.92,
+      "duration": 6.44
+    },
+    {
+      "text": "4825 entries for no spam and there were",
+      "start": 135.36,
+      "duration": 6.32
+    },
+    {
+      "text": "only 747 entries for a spam what we did",
+      "start": 138.36,
+      "duration": 5.68
+    },
+    {
+      "text": "next was that we balanced the data set",
+      "start": 141.68,
+      "duration": 5.48
+    },
+    {
+      "text": "we randomly sampled 747 entries from no",
+      "start": 144.04,
+      "duration": 6.04
+    },
+    {
+      "text": "spam so that the entries of both spam as",
+      "start": 147.16,
+      "duration": 5.12
+    },
+    {
+      "text": "well as no spam is equal to",
+      "start": 150.08,
+      "duration": 4.56
+    },
+    {
+      "text": "747 then what we did was instead of",
+      "start": 152.28,
+      "duration": 4.88
+    },
+    {
+      "text": "having spam and ham as labels we encoded",
+      "start": 154.64,
+      "duration": 5.48
+    },
+    {
+      "text": "them so ham was encoded to zero and spam",
+      "start": 157.16,
+      "duration": 5.999
+    },
+    {
+      "text": "is encoded to one finally we took the",
+      "start": 160.12,
+      "duration": 5.16
+    },
+    {
+      "text": "entire data set and we split it into",
+      "start": 163.159,
+      "duration": 4.921
+    },
+    {
+      "text": "training testing and validation we used",
+      "start": 165.28,
+      "duration": 6.4
+    },
+    {
+      "text": "70% of the data for training 10% of the",
+      "start": 168.08,
+      "duration": 5.96
+    },
+    {
+      "text": "data for validation and the remaining",
+      "start": 171.68,
+      "duration": 5.16
+    },
+    {
+      "text": "20% of the data for",
+      "start": 174.04,
+      "duration": 6.04
+    },
+    {
+      "text": "testing and U we converted our dat data",
+      "start": 176.84,
+      "duration": 6.399
+    },
+    {
+      "text": "frames into CSV files so at this stage",
+      "start": 180.08,
+      "duration": 5.12
+    },
+    {
+      "text": "where we are in right now we have the",
+      "start": 183.239,
+      "duration": 4.0
+    },
+    {
+      "text": "CSV files for the training data the",
+      "start": 185.2,
+      "duration": 4.44
+    },
+    {
+      "text": "validation data and the testing",
+      "start": 187.239,
+      "duration": 4.961
+    },
+    {
+      "text": "data eventually what we need to do is",
+      "start": 189.64,
+      "duration": 4.239
+    },
+    {
+      "text": "that we need to use a large language",
+      "start": 192.2,
+      "duration": 3.44
+    },
+    {
+      "text": "model architecture something like what",
+      "start": 193.879,
+      "duration": 4.28
+    },
+    {
+      "text": "I've defined over here what will feed",
+      "start": 195.64,
+      "duration": 5.08
+    },
+    {
+      "text": "into this architecture is",
+      "start": 198.159,
+      "duration": 6.601
+    },
+    {
+      "text": "the input text and what we will aim to",
+      "start": 200.72,
+      "duration": 6.4
+    },
+    {
+      "text": "get out of this is whether it's a",
+      "start": 204.76,
+      "duration": 6.08
+    },
+    {
+      "text": "Spam so whether it's a Spam or",
+      "start": 207.12,
+      "duration": 5.479
+    },
+    {
+      "text": "it's not a",
+      "start": 210.84,
+      "duration": 4.399
+    },
+    {
+      "text": "Spam however to reach this model stage",
+      "start": 212.599,
+      "duration": 4.521
+    },
+    {
+      "text": "there is still one more step which needs",
+      "start": 215.239,
+      "duration": 3.761
+    },
+    {
+      "text": "to be done and that is the main purpose",
+      "start": 217.12,
+      "duration": 4.16
+    },
+    {
+      "text": "of today's lecture in today's lecture we",
+      "start": 219.0,
+      "duration": 4.599
+    },
+    {
+      "text": "are going to learn about creating data",
+      "start": 221.28,
+      "duration": 5.8
+    },
+    {
+      "text": "loaders so if you remember we have",
+      "start": 223.599,
+      "duration": 5.681
+    },
+    {
+      "text": "learned about data loaders earlier when",
+      "start": 227.08,
+      "duration": 5.359
+    },
+    {
+      "text": "we looked at llm pre-processing and we",
+      "start": 229.28,
+      "duration": 5.48
+    },
+    {
+      "text": "saw that input Target pairs in a large",
+      "start": 232.439,
+      "duration": 4.8
+    },
+    {
+      "text": "language model needed to be fed through",
+      "start": 234.76,
+      "duration": 4.6
+    },
+    {
+      "text": "a data loader it just better to manage",
+      "start": 237.239,
+      "duration": 3.2
+    },
+    {
+      "text": "the data",
+      "start": 239.36,
+      "duration": 2.84
+    },
+    {
+      "text": "and at that time we had utilized the",
+      "start": 240.439,
+      "duration": 3.8
+    },
+    {
+      "text": "data set",
+      "start": 242.2,
+      "duration": 6.16
+    },
+    {
+      "text": "and data set and data loader in pytorch",
+      "start": 244.239,
+      "duration": 6.36
+    },
+    {
+      "text": "so if you type data set and data loaders",
+      "start": 248.36,
+      "duration": 4.719
+    },
+    {
+      "text": "in pytorch you will see that pytorch",
+      "start": 250.599,
+      "duration": 7.48
+    },
+    {
+      "text": "provides t.s. datal loader do. u.d. dat",
+      "start": 253.079,
+      "duration": 8.041
+    },
+    {
+      "text": "set that allows us to use our own data",
+      "start": 258.079,
+      "duration": 6.321
+    },
+    {
+      "text": "set uh to essentially we can get easy",
+      "start": 261.12,
+      "duration": 5.44
+    },
+    {
+      "text": "access to samples we can easily run",
+      "start": 264.4,
+      "duration": 5.4
+    },
+    {
+      "text": "batches on our data we can even do",
+      "start": 266.56,
+      "duration": 5.199
+    },
+    {
+      "text": "parallel processing so it's highly",
+      "start": 269.8,
+      "duration": 3.92
+    },
+    {
+      "text": "recommended to use data sets and data",
+      "start": 271.759,
+      "duration": 4.081
+    },
+    {
+      "text": "loaders I'll explain to you what these",
+      "start": 273.72,
+      "duration": 4.759
+    },
+    {
+      "text": "mean exactly um and that's the main",
+      "start": 275.84,
+      "duration": 4.52
+    },
+    {
+      "text": "purpose of today's lecture essentially",
+      "start": 278.479,
+      "duration": 3.961
+    },
+    {
+      "text": "you can think of today's lecture as okay",
+      "start": 280.36,
+      "duration": 4.36
+    },
+    {
+      "text": "we have got the data set how do we",
+      "start": 282.44,
+      "duration": 5.64
+    },
+    {
+      "text": "bucket them into input Target pairs so",
+      "start": 284.72,
+      "duration": 5.08
+    },
+    {
+      "text": "that we manage the data quite",
+      "start": 288.08,
+      "duration": 5.679
+    },
+    {
+      "text": "effectively right okay so let's see uh",
+      "start": 289.8,
+      "duration": 6.08
+    },
+    {
+      "text": "ultimately we at the end of the lecture",
+      "start": 293.759,
+      "duration": 4.28
+    },
+    {
+      "text": "we want to get to a stage like this",
+      "start": 295.88,
+      "duration": 6.64
+    },
+    {
+      "text": "where let's say an email is given we",
+      "start": 298.039,
+      "duration": 7.081
+    },
+    {
+      "text": "want to convert this email into tokens",
+      "start": 302.52,
+      "duration": 4.64
+    },
+    {
+      "text": "and we want every single image to be",
+      "start": 305.12,
+      "duration": 4.2
+    },
+    {
+      "text": "converted into the same number of tokens",
+      "start": 307.16,
+      "duration": 4.68
+    },
+    {
+      "text": "so that one so this is one full batch",
+      "start": 309.32,
+      "duration": 4.56
+    },
+    {
+      "text": "you can see that this batch consists of",
+      "start": 311.84,
+      "duration": 5.12
+    },
+    {
+      "text": "eight emails and all the emails have a",
+      "start": 313.88,
+      "duration": 8.36
+    },
+    {
+      "text": "length of 120 tokens this will be my",
+      "start": 316.96,
+      "duration": 8.32
+    },
+    {
+      "text": "input and corresponding to each input",
+      "start": 322.24,
+      "duration": 5.28
+    },
+    {
+      "text": "email that is either zero or one so",
+      "start": 325.28,
+      "duration": 4.08
+    },
+    {
+      "text": "here's my input tensor over here and",
+      "start": 327.52,
+      "duration": 4.72
+    },
+    {
+      "text": "this is is my target tensor over here",
+      "start": 329.36,
+      "duration": 5.24
+    },
+    {
+      "text": "the reason I'm creating data loaders and",
+      "start": 332.24,
+      "duration": 4.16
+    },
+    {
+      "text": "the reason we are using this data set",
+      "start": 334.6,
+      "duration": 3.64
+    },
+    {
+      "text": "and data loaders is ultimately we want",
+      "start": 336.4,
+      "duration": 4.239
+    },
+    {
+      "text": "to take our data set and convert it into",
+      "start": 338.24,
+      "duration": 4.88
+    },
+    {
+      "text": "input Target batches like these so this",
+      "start": 340.639,
+      "duration": 4.361
+    },
+    {
+      "text": "is just one batch we'll have multiple",
+      "start": 343.12,
+      "duration": 5.32
+    },
+    {
+      "text": "batches since we have 747 samples so",
+      "start": 345.0,
+      "duration": 5.479
+    },
+    {
+      "text": "this is a batch of only eight",
+      "start": 348.44,
+      "duration": 4.12
+    },
+    {
+      "text": "samples so this is where we want to",
+      "start": 350.479,
+      "duration": 4.521
+    },
+    {
+      "text": "reach at the end of the lecture uh but",
+      "start": 352.56,
+      "duration": 4.24
+    },
+    {
+      "text": "at the start of the lecture we are at",
+      "start": 355.0,
+      "duration": 5.8
+    },
+    {
+      "text": "this point where we have uh text",
+      "start": 356.8,
+      "duration": 5.959
+    },
+    {
+      "text": "um and here I have provided a snippet of",
+      "start": 360.8,
+      "duration": 4.8
+    },
+    {
+      "text": "what each email looks like and we have",
+      "start": 362.759,
+      "duration": 4.84
+    },
+    {
+      "text": "labels as zero or one this is where we",
+      "start": 365.6,
+      "duration": 4.84
+    },
+    {
+      "text": "are right now but here if you see we",
+      "start": 367.599,
+      "duration": 5.521
+    },
+    {
+      "text": "want every text email to be of the same",
+      "start": 370.44,
+      "duration": 5.56
+    },
+    {
+      "text": "token length right however if you look",
+      "start": 373.12,
+      "duration": 5.56
+    },
+    {
+      "text": "at the email length the email length is",
+      "start": 376.0,
+      "duration": 4.84
+    },
+    {
+      "text": "not the same one email might be longer",
+      "start": 378.68,
+      "duration": 4.56
+    },
+    {
+      "text": "one email might be shorter how do we",
+      "start": 380.84,
+      "duration": 5.44
+    },
+    {
+      "text": "make sure that all the email or all the",
+      "start": 383.24,
+      "duration": 4.92
+    },
+    {
+      "text": "text messages rather are of the same",
+      "start": 386.28,
+      "duration": 4.359
+    },
+    {
+      "text": "length so the first problem is that in",
+      "start": 388.16,
+      "duration": 4.439
+    },
+    {
+      "text": "our data set the text messages are of",
+      "start": 390.639,
+      "duration": 4.481
+    },
+    {
+      "text": "varying length but we want to create a",
+      "start": 392.599,
+      "duration": 4.04
+    },
+    {
+      "text": "batch like this right and when we are",
+      "start": 395.12,
+      "duration": 4.199
+    },
+    {
+      "text": "dealing with batches every every row",
+      "start": 396.639,
+      "duration": 4.161
+    },
+    {
+      "text": "here should have the same number of",
+      "start": 399.319,
+      "duration": 3.921
+    },
+    {
+      "text": "columns so we need to somehow make sure",
+      "start": 400.8,
+      "duration": 4.28
+    },
+    {
+      "text": "that every text message has the same",
+      "start": 403.24,
+      "duration": 4.48
+    },
+    {
+      "text": "length and there are two options to do",
+      "start": 405.08,
+      "duration": 5.6
+    },
+    {
+      "text": "this first what we do is that you check",
+      "start": 407.72,
+      "duration": 5.24
+    },
+    {
+      "text": "all the emails and then you find that",
+      "start": 410.68,
+      "duration": 4.079
+    },
+    {
+      "text": "email which has the shortest length so",
+      "start": 412.96,
+      "duration": 4.359
+    },
+    {
+      "text": "let's say let's say there are five",
+      "start": 414.759,
+      "duration": 5.84
+    },
+    {
+      "text": "emails right now and who lengths I've",
+      "start": 417.319,
+      "duration": 6.081
+    },
+    {
+      "text": "given to be representative by these",
+      "start": 420.599,
+      "duration": 4.961
+    },
+    {
+      "text": "sizes there are five emails the first",
+      "start": 423.4,
+      "duration": 3.56
+    },
+    {
+      "text": "option is that you just look at the",
+      "start": 425.56,
+      "duration": 3.039
+    },
+    {
+      "text": "shortest length which is this and you",
+      "start": 426.96,
+      "duration": 4.28
+    },
+    {
+      "text": "truncate all other emails to",
+      "start": 428.599,
+      "duration": 5.72
+    },
+    {
+      "text": "this and you get rid of the remaining",
+      "start": 431.24,
+      "duration": 5.88
+    },
+    {
+      "text": "part in all these other images so then",
+      "start": 434.319,
+      "duration": 4.641
+    },
+    {
+      "text": "the size of all the emails will be the",
+      "start": 437.12,
+      "duration": 3.84
+    },
+    {
+      "text": "same or the text messages and then we",
+      "start": 438.96,
+      "duration": 4.359
+    },
+    {
+      "text": "can group them in a batch can you think",
+      "start": 440.96,
+      "duration": 4.16
+    },
+    {
+      "text": "of what the disadvantage would be of",
+      "start": 443.319,
+      "duration": 3.961
+    },
+    {
+      "text": "this particular",
+      "start": 445.12,
+      "duration": 4.44
+    },
+    {
+      "text": "approach the disadvantage would be that",
+      "start": 447.28,
+      "duration": 4.56
+    },
+    {
+      "text": "that will lose all of this information",
+      "start": 449.56,
+      "duration": 4.96
+    },
+    {
+      "text": "which is present otherwise in the longer",
+      "start": 451.84,
+      "duration": 6.0
+    },
+    {
+      "text": "text so if the data set consists of",
+      "start": 454.52,
+      "duration": 5.959
+    },
+    {
+      "text": "emails which are much longer than this",
+      "start": 457.84,
+      "duration": 5.16
+    },
+    {
+      "text": "shorter shortest email then we'll lose",
+      "start": 460.479,
+      "duration": 4.68
+    },
+    {
+      "text": "all of that data so this is not a",
+      "start": 463.0,
+      "duration": 4.879
+    },
+    {
+      "text": "recommended approach so what can we do",
+      "start": 465.159,
+      "duration": 4.801
+    },
+    {
+      "text": "as an alternative approach well the",
+      "start": 467.879,
+      "duration": 4.401
+    },
+    {
+      "text": "alternative approach is as follows what",
+      "start": 469.96,
+      "duration": 5.88
+    },
+    {
+      "text": "if we use the longest so what if we use",
+      "start": 472.28,
+      "duration": 7.319
+    },
+    {
+      "text": "the first let me rub this so that um all",
+      "start": 475.84,
+      "duration": 6.039
+    },
+    {
+      "text": "of us are on the same page okay so I've",
+      "start": 479.599,
+      "duration": 5.28
+    },
+    {
+      "text": "rubb this now so what if we use the",
+      "start": 481.879,
+      "duration": 6.16
+    },
+    {
+      "text": "longest email uh let's say this is the",
+      "start": 484.879,
+      "duration": 5.76
+    },
+    {
+      "text": "longest email and then for all the other",
+      "start": 488.039,
+      "duration": 6.241
+    },
+    {
+      "text": "emails we pad them with certain tokens",
+      "start": 490.639,
+      "duration": 5.28
+    },
+    {
+      "text": "we pad them which means we add",
+      "start": 494.28,
+      "duration": 4.08
+    },
+    {
+      "text": "additional tokens till they reach the",
+      "start": 495.919,
+      "duration": 4.0
+    },
+    {
+      "text": "longest",
+      "start": 498.36,
+      "duration": 3.839
+    },
+    {
+      "text": "email so this is what we are actually",
+      "start": 499.919,
+      "duration": 3.96
+    },
+    {
+      "text": "going to do because this will make sure",
+      "start": 502.199,
+      "duration": 3.44
+    },
+    {
+      "text": "that we don't lose out on any",
+      "start": 503.879,
+      "duration": 3.921
+    },
+    {
+      "text": "information so your question would be",
+      "start": 505.639,
+      "duration": 4.12
+    },
+    {
+      "text": "what are we going to pad them with we",
+      "start": 507.8,
+      "duration": 3.64
+    },
+    {
+      "text": "are going to pad them with a token which",
+      "start": 509.759,
+      "duration": 5.08
+    },
+    {
+      "text": "is called as the end of text",
+      "start": 511.44,
+      "duration": 3.399
+    },
+    {
+      "text": "token I'll talk about this in a moment",
+      "start": 516.039,
+      "duration": 5.8
+    },
+    {
+      "text": "uh but first let me illustrate what does",
+      "start": 519.32,
+      "duration": 5.48
+    },
+    {
+      "text": "it mean by we are going to pad all the",
+      "start": 521.839,
+      "duration": 5.201
+    },
+    {
+      "text": "messages to match the length of the",
+      "start": 524.8,
+      "duration": 4.36
+    },
+    {
+      "text": "longest message so the way this looks",
+      "start": 527.04,
+      "duration": 4.28
+    },
+    {
+      "text": "like is that let's say we have a first",
+      "start": 529.16,
+      "duration": 5.76
+    },
+    {
+      "text": "text message we tokenize it first right",
+      "start": 531.32,
+      "duration": 5.32
+    },
+    {
+      "text": "and the way to",
+      "start": 534.92,
+      "duration": 4.599
+    },
+    {
+      "text": "tokenize Any Given sentence is basically",
+      "start": 536.64,
+      "duration": 4.28
+    },
+    {
+      "text": "we are going to use the bite pair",
+      "start": 539.519,
+      "duration": 3.841
+    },
+    {
+      "text": "encoder so if you have followed the",
+      "start": 540.92,
+      "duration": 4.56
+    },
+    {
+      "text": "previous lectures there is this Library",
+      "start": 543.36,
+      "duration": 4.64
+    },
+    {
+      "text": "called tick token and tick token is a",
+      "start": 545.48,
+      "duration": 5.359
+    },
+    {
+      "text": "tokenizer library which open AI uses",
+      "start": 548.0,
+      "duration": 4.72
+    },
+    {
+      "text": "what this tick token does is that you",
+      "start": 550.839,
+      "duration": 3.921
+    },
+    {
+      "text": "give it any sentence it converts it into",
+      "start": 552.72,
+      "duration": 5.359
+    },
+    {
+      "text": "a bunch of token IDs now it's a bite",
+      "start": 554.76,
+      "duration": 5.199
+    },
+    {
+      "text": "pair encoder which means every word is",
+      "start": 558.079,
+      "duration": 4.2
+    },
+    {
+      "text": "not equal to one token let's say if you",
+      "start": 559.959,
+      "duration": 4.721
+    },
+    {
+      "text": "have given the word hello word this will",
+      "start": 562.279,
+      "duration": 5.24
+    },
+    {
+      "text": "not just be two tokens simply or three",
+      "start": 564.68,
+      "duration": 5.0
+    },
+    {
+      "text": "tokens because of the space bar bite",
+      "start": 567.519,
+      "duration": 4.601
+    },
+    {
+      "text": "pair encoder is a subword tokenizer so",
+      "start": 569.68,
+      "duration": 6.36
+    },
+    {
+      "text": "it's a bit more complex than that and uh",
+      "start": 572.12,
+      "duration": 6.839
+    },
+    {
+      "text": "based on this tokenizer um every",
+      "start": 576.04,
+      "duration": 4.72
+    },
+    {
+      "text": "sentence will be converted into a bunch",
+      "start": 578.959,
+      "duration": 4.401
+    },
+    {
+      "text": "of tokens so the first step is that we",
+      "start": 580.76,
+      "duration": 4.4
+    },
+    {
+      "text": "are going to take input messages and we",
+      "start": 583.36,
+      "duration": 4.479
+    },
+    {
+      "text": "are going to tokenize them uh using the",
+      "start": 585.16,
+      "duration": 5.64
+    },
+    {
+      "text": "bite pair encoder tokenizer which is the",
+      "start": 587.839,
+      "duration": 5.881
+    },
+    {
+      "text": "one which also GPT models use so every",
+      "start": 590.8,
+      "duration": 4.84
+    },
+    {
+      "text": "text is going to be converted into token",
+      "start": 593.72,
+      "duration": 4.44
+    },
+    {
+      "text": "IDs like this now of course some text",
+      "start": 595.64,
+      "duration": 4.4
+    },
+    {
+      "text": "would be longer some would be shorter so",
+      "start": 598.16,
+      "duration": 4.52
+    },
+    {
+      "text": "the number of token IDs won't match what",
+      "start": 600.04,
+      "duration": 4.28
+    },
+    {
+      "text": "we are then going to do is that let's",
+      "start": 602.68,
+      "duration": 4.56
+    },
+    {
+      "text": "say I have only three text messages in",
+      "start": 604.32,
+      "duration": 4.8
+    },
+    {
+      "text": "the data set this looks to be the",
+      "start": 607.24,
+      "duration": 4.4
+    },
+    {
+      "text": "longest right so what I'll do is that",
+      "start": 609.12,
+      "duration": 4.6
+    },
+    {
+      "text": "for the other ones I'm going to pad this",
+      "start": 611.64,
+      "duration": 5.0
+    },
+    {
+      "text": "with a token called f token named",
+      "start": 613.72,
+      "duration": 4.52
+    },
+    {
+      "text": "50256",
+      "start": 616.64,
+      "duration": 5.199
+    },
+    {
+      "text": "until uh the length of all the token IDs",
+      "start": 618.24,
+      "duration": 6.12
+    },
+    {
+      "text": "is the same now what is this",
+      "start": 621.839,
+      "duration": 6.641
+    },
+    {
+      "text": "50256 let me uh show you what this 50256",
+      "start": 624.36,
+      "duration": 7.0
+    },
+    {
+      "text": "is so here's what I'm showing you on the",
+      "start": 628.48,
+      "duration": 4.88
+    },
+    {
+      "text": "screen right now is the vocabulary which",
+      "start": 631.36,
+      "duration": 4.479
+    },
+    {
+      "text": "is used by gpt2 what is meant by",
+      "start": 633.36,
+      "duration": 4.4
+    },
+    {
+      "text": "vocabulary is that there are tokens and",
+      "start": 635.839,
+      "duration": 4.8
+    },
+    {
+      "text": "every token has an Associated token ID",
+      "start": 637.76,
+      "duration": 5.16
+    },
+    {
+      "text": "right so now if you scroll down to the",
+      "start": 640.639,
+      "duration": 5.081
+    },
+    {
+      "text": "end of this you'll see that the",
+      "start": 642.92,
+      "duration": 5.599
+    },
+    {
+      "text": "vocabulary size which gpt2 uses is",
+      "start": 645.72,
+      "duration": 4.359
+    },
+    {
+      "text": "essentially",
+      "start": 648.519,
+      "duration": 5.76
+    },
+    {
+      "text": "uh 50257 so it starts with 0 the token",
+      "start": 650.079,
+      "duration": 6.521
+    },
+    {
+      "text": "ID and if you look at the last entry in",
+      "start": 654.279,
+      "duration": 4.8
+    },
+    {
+      "text": "this vocabulary it's this end of text",
+      "start": 656.6,
+      "duration": 4.239
+    },
+    {
+      "text": "and and the token ID corresponding to",
+      "start": 659.079,
+      "duration": 3.56
+    },
+    {
+      "text": "this end of text is",
+      "start": 660.839,
+      "duration": 4.24
+    },
+    {
+      "text": "50256 this signifies that we have",
+      "start": 662.639,
+      "duration": 5.601
+    },
+    {
+      "text": "reached the end of a document and or end",
+      "start": 665.079,
+      "duration": 4.76
+    },
+    {
+      "text": "of a sentence and then we are starting",
+      "start": 668.24,
+      "duration": 4.2
+    },
+    {
+      "text": "the next sentence so typically this end",
+      "start": 669.839,
+      "duration": 5.721
+    },
+    {
+      "text": "of text token is used by while training",
+      "start": 672.44,
+      "duration": 5.24
+    },
+    {
+      "text": "GPT to distinguish between separate",
+      "start": 675.56,
+      "duration": 4.519
+    },
+    {
+      "text": "document sources and what this",
+      "start": 677.68,
+      "duration": 4.279
+    },
+    {
+      "text": "vocabulary means is that essentially if",
+      "start": 680.079,
+      "duration": 5.081
+    },
+    {
+      "text": "you are given any text right um it's",
+      "start": 681.959,
+      "duration": 6.0
+    },
+    {
+      "text": "first the text is essentially converted",
+      "start": 685.16,
+      "duration": 4.679
+    },
+    {
+      "text": "into a bunch of tokens",
+      "start": 687.959,
+      "duration": 4.32
+    },
+    {
+      "text": "and then those tokens are assigned token",
+      "start": 689.839,
+      "duration": 5.12
+    },
+    {
+      "text": "IDs based on this vocabulary or based on",
+      "start": 692.279,
+      "duration": 5.481
+    },
+    {
+      "text": "this dictionary so it's kind of the you",
+      "start": 694.959,
+      "duration": 5.961
+    },
+    {
+      "text": "can think of it like a dictionary Oxford",
+      "start": 697.76,
+      "duration": 4.879
+    },
+    {
+      "text": "dictionary right you have words and you",
+      "start": 700.92,
+      "duration": 3.68
+    },
+    {
+      "text": "have their meanings similarly here you",
+      "start": 702.639,
+      "duration": 3.481
+    },
+    {
+      "text": "have words and there is a token ID",
+      "start": 704.6,
+      "duration": 3.84
+    },
+    {
+      "text": "associated with each word so remember",
+      "start": 706.12,
+      "duration": 4.88
+    },
+    {
+      "text": "this 50256 that's essentially the end of",
+      "start": 708.44,
+      "duration": 4.68
+    },
+    {
+      "text": "text what we are going to do here is",
+      "start": 711.0,
+      "duration": 5.2
+    },
+    {
+      "text": "that all the text messages which have a",
+      "start": 713.12,
+      "duration": 5.6
+    },
+    {
+      "text": "lesser number of token IDs we are going",
+      "start": 716.2,
+      "duration": 4.759
+    },
+    {
+      "text": "to append them with this end of text as",
+      "start": 718.72,
+      "duration": 3.96
+    },
+    {
+      "text": "the padding token",
+      "start": 720.959,
+      "duration": 4.401
+    },
+    {
+      "text": "50256 ideally we can use any token as",
+      "start": 722.68,
+      "duration": 4.68
+    },
+    {
+      "text": "the padding token but the thing is the",
+      "start": 725.36,
+      "duration": 5.36
+    },
+    {
+      "text": "end of text just is makes symbolic sense",
+      "start": 727.36,
+      "duration": 5.56
+    },
+    {
+      "text": "right because it signifies that there",
+      "start": 730.72,
+      "duration": 5.919
+    },
+    {
+      "text": "are no additional letters over here so",
+      "start": 732.92,
+      "duration": 5.719
+    },
+    {
+      "text": "when the model will encounter end of",
+      "start": 736.639,
+      "duration": 3.841
+    },
+    {
+      "text": "text it will not get confused by any",
+      "start": 738.639,
+      "duration": 4.64
+    },
+    {
+      "text": "random word so that way that's why we",
+      "start": 740.48,
+      "duration": 5.159
+    },
+    {
+      "text": "have used",
+      "start": 743.279,
+      "duration": 2.36
+    },
+    {
+      "text": "50256 okay so overall the workflow which",
+      "start": 745.92,
+      "duration": 5.24
+    },
+    {
+      "text": "we are going to follow is going to look",
+      "start": 749.399,
+      "duration": 4.641
+    },
+    {
+      "text": "like this we have the we have the input",
+      "start": 751.16,
+      "duration": 5.4
+    },
+    {
+      "text": "text which is the CSV files in the code",
+      "start": 754.04,
+      "duration": 4.919
+    },
+    {
+      "text": "right now we have the train validation",
+      "start": 756.56,
+      "duration": 4.68
+    },
+    {
+      "text": "and test input text we are going to use",
+      "start": 758.959,
+      "duration": 4.281
+    },
+    {
+      "text": "a tokenizer and we are going to convert",
+      "start": 761.24,
+      "duration": 3.92
+    },
+    {
+      "text": "this input text into a bunch of token",
+      "start": 763.24,
+      "duration": 4.279
+    },
+    {
+      "text": "IDs then what we are going to do is that",
+      "start": 765.16,
+      "duration": 4.359
+    },
+    {
+      "text": "we are going to look for that sentence",
+      "start": 767.519,
+      "duration": 4.0
+    },
+    {
+      "text": "or that email in our data set which is",
+      "start": 769.519,
+      "duration": 4.161
+    },
+    {
+      "text": "the longest email and then we are going",
+      "start": 771.519,
+      "duration": 4.161
+    },
+    {
+      "text": "to make sure that all the text messages",
+      "start": 773.68,
+      "duration": 4.959
+    },
+    {
+      "text": "have that same length by padding them",
+      "start": 775.68,
+      "duration": 5.8
+    },
+    {
+      "text": "with this uh end of text token of",
+      "start": 778.639,
+      "duration": 5.481
+    },
+    {
+      "text": "50256 now let me take you through code",
+      "start": 781.48,
+      "duration": 6.24
+    },
+    {
+      "text": "and show you how this is exactly",
+      "start": 784.12,
+      "duration": 7.2
+    },
+    {
+      "text": "implemented okay so",
+      "start": 787.72,
+      "duration": 5.28
+    },
+    {
+      "text": "uh",
+      "start": 791.32,
+      "duration": 4.48
+    },
+    {
+      "text": "yeah so as we have seen earlier we first",
+      "start": 793.0,
+      "duration": 5.279
+    },
+    {
+      "text": "need to implement a pytorch data set",
+      "start": 795.8,
+      "duration": 5.2
+    },
+    {
+      "text": "which specifies exactly how the data is",
+      "start": 798.279,
+      "duration": 4.521
+    },
+    {
+      "text": "loaded and processed before we can",
+      "start": 801.0,
+      "duration": 4.12
+    },
+    {
+      "text": "instantiate the data loader so there are",
+      "start": 802.8,
+      "duration": 4.76
+    },
+    {
+      "text": "two things here there is a data set and",
+      "start": 805.12,
+      "duration": 5.32
+    },
+    {
+      "text": "data loader data data set specifies the",
+      "start": 807.56,
+      "duration": 4.36
+    },
+    {
+      "text": "how how the data is supposed to be",
+      "start": 810.44,
+      "duration": 3.36
+    },
+    {
+      "text": "loaded what are the input and Target",
+      "start": 811.92,
+      "duration": 5.0
+    },
+    {
+      "text": "Pairs and data loader essentially then",
+      "start": 813.8,
+      "duration": 4.92
+    },
+    {
+      "text": "we can instantiate the data loader but",
+      "start": 816.92,
+      "duration": 3.96
+    },
+    {
+      "text": "first the data set needs to be defined",
+      "start": 818.72,
+      "duration": 3.559
+    },
+    {
+      "text": "so that's why initially what we are",
+      "start": 820.88,
+      "duration": 2.88
+    },
+    {
+      "text": "going to do is we are going to define",
+      "start": 822.279,
+      "duration": 4.761
+    },
+    {
+      "text": "the spam data set class what this class",
+      "start": 823.76,
+      "duration": 5.319
+    },
+    {
+      "text": "is going to do is that first of all it's",
+      "start": 827.04,
+      "duration": 3.84
+    },
+    {
+      "text": "going to identify the longest sequence",
+      "start": 829.079,
+      "duration": 4.081
+    },
+    {
+      "text": "in the training data set why do we need",
+      "start": 830.88,
+      "duration": 3.759
+    },
+    {
+      "text": "the longest sequence because we are",
+      "start": 833.16,
+      "duration": 3.08
+    },
+    {
+      "text": "going to make sure that all the",
+      "start": 834.639,
+      "duration": 3.44
+    },
+    {
+      "text": "sequences are of the same length as the",
+      "start": 836.24,
+      "duration": 4.32
+    },
+    {
+      "text": "longest sequence second what it does is",
+      "start": 838.079,
+      "duration": 4.56
+    },
+    {
+      "text": "that it takes every text message and",
+      "start": 840.56,
+      "duration": 4.639
+    },
+    {
+      "text": "then it converts it into token IDs and",
+      "start": 842.639,
+      "duration": 4.44
+    },
+    {
+      "text": "finally the most important thing it does",
+      "start": 845.199,
+      "duration": 4.0
+    },
+    {
+      "text": "is that it ensures that all the other",
+      "start": 847.079,
+      "duration": 4.44
+    },
+    {
+      "text": "sequences are padded with a padding",
+      "start": 849.199,
+      "duration": 4.521
+    },
+    {
+      "text": "token to match the length of the longest",
+      "start": 851.519,
+      "duration": 4.841
+    },
+    {
+      "text": "sequence essentially this spam data set",
+      "start": 853.72,
+      "duration": 4.28
+    },
+    {
+      "text": "class is going to perform all of the",
+      "start": 856.36,
+      "duration": 4.279
+    },
+    {
+      "text": "three steps which we described over",
+      "start": 858.0,
+      "duration": 5.199
+    },
+    {
+      "text": "here so let's get right into it and",
+      "start": 860.639,
+      "duration": 4.721
+    },
+    {
+      "text": "start understanding the class when you",
+      "start": 863.199,
+      "duration": 4.041
+    },
+    {
+      "text": "create an instance of the spam data set",
+      "start": 865.36,
+      "duration": 3.96
+    },
+    {
+      "text": "class you will need to specify some",
+      "start": 867.24,
+      "duration": 3.64
+    },
+    {
+      "text": "things so first you have to specify the",
+      "start": 869.32,
+      "duration": 4.079
+    },
+    {
+      "text": "CSV file so imagine that we have given",
+      "start": 870.88,
+      "duration": 6.68
+    },
+    {
+      "text": "the training data CSV file right and uh",
+      "start": 873.399,
+      "duration": 5.841
+    },
+    {
+      "text": "second you have to specify what is the",
+      "start": 877.56,
+      "duration": 3.639
+    },
+    {
+      "text": "tokenizer which you're using we are",
+      "start": 879.24,
+      "duration": 4.24
+    },
+    {
+      "text": "going to use this tick token Library a",
+      "start": 881.199,
+      "duration": 6.32
+    },
+    {
+      "text": "bite pair encoder tokenizer to convert",
+      "start": 883.48,
+      "duration": 6.64
+    },
+    {
+      "text": "the um to convert essentially the",
+      "start": 887.519,
+      "duration": 5.0
+    },
+    {
+      "text": "sentence into a bunch of tokens and then",
+      "start": 890.12,
+      "duration": 4.04
+    },
+    {
+      "text": "those tokens will be converted into",
+      "start": 892.519,
+      "duration": 3.841
+    },
+    {
+      "text": "token",
+      "start": 894.16,
+      "duration": 4.56
+    },
+    {
+      "text": "IDs right then we have to specify the",
+      "start": 896.36,
+      "duration": 4.479
+    },
+    {
+      "text": "max ma length so this max length is",
+      "start": 898.72,
+      "duration": 5.119
+    },
+    {
+      "text": "basically if you look at the output",
+      "start": 900.839,
+      "duration": 5.521
+    },
+    {
+      "text": "batch which we saw the max length will",
+      "start": 903.839,
+      "duration": 7.481
+    },
+    {
+      "text": "be the maximum um length of the email in",
+      "start": 906.36,
+      "duration": 6.76
+    },
+    {
+      "text": "the entire data set so we are going to",
+      "start": 911.32,
+      "duration": 3.4
+    },
+    {
+      "text": "look at that email which is the longest",
+      "start": 913.12,
+      "duration": 3.68
+    },
+    {
+      "text": "length but here what we have given is",
+      "start": 914.72,
+      "duration": 3.6
+    },
+    {
+      "text": "that we have even given a provision for",
+      "start": 916.8,
+      "duration": 3.24
+    },
+    {
+      "text": "the user to externally Define the",
+      "start": 918.32,
+      "duration": 4.36
+    },
+    {
+      "text": "maximum length that is also",
+      "start": 920.04,
+      "duration": 5.599
+    },
+    {
+      "text": "possible um now the pad token ID is",
+      "start": 922.68,
+      "duration": 5.88
+    },
+    {
+      "text": "50256 this means that all the emails",
+      "start": 925.639,
+      "duration": 4.64
+    },
+    {
+      "text": "which have length shorter than the",
+      "start": 928.56,
+      "duration": 3.44
+    },
+    {
+      "text": "maximum length we are going to pad them",
+      "start": 930.279,
+      "duration": 2.92
+    },
+    {
+      "text": "with",
+      "start": 932.0,
+      "duration": 4.0
+    },
+    {
+      "text": "50256 so the first step as we have seen",
+      "start": 933.199,
+      "duration": 4.56
+    },
+    {
+      "text": "on the Whiteboard over here first step",
+      "start": 936.0,
+      "duration": 4.079
+    },
+    {
+      "text": "is this tokenization right so what we",
+      "start": 937.759,
+      "duration": 4.041
+    },
+    {
+      "text": "are going to do is that we are going to",
+      "start": 940.079,
+      "duration": 3.921
+    },
+    {
+      "text": "take the tokenizer and this will be the",
+      "start": 941.8,
+      "duration": 4.039
+    },
+    {
+      "text": "bite pair encoder",
+      "start": 944.0,
+      "duration": 4.6
+    },
+    {
+      "text": "tokenizer uh we are going",
+      "start": 945.839,
+      "duration": 6.92
+    },
+    {
+      "text": "to take the text which is the text file",
+      "start": 948.6,
+      "duration": 6.359
+    },
+    {
+      "text": "um and then what we are going to do is",
+      "start": 952.759,
+      "duration": 3.76
+    },
+    {
+      "text": "that we are going to take every single",
+      "start": 954.959,
+      "duration": 2.8
+    },
+    {
+      "text": "sentence and then we are going to",
+      "start": 956.519,
+      "duration": 2.961
+    },
+    {
+      "text": "convert that sentence into a bunch of",
+      "start": 957.759,
+      "duration": 4.921
+    },
+    {
+      "text": "token IDs so tokenizer encod takes",
+      "start": 959.48,
+      "duration": 5.12
+    },
+    {
+      "text": "sentences converts it into tokens and",
+      "start": 962.68,
+      "duration": 3.719
+    },
+    {
+      "text": "then using the vocabulary converts those",
+      "start": 964.6,
+      "duration": 5.2
+    },
+    {
+      "text": "tokens into token IDs so this data is",
+      "start": 966.399,
+      "duration": 6.44
+    },
+    {
+      "text": "pd. read CSV so let's say we have passed",
+      "start": 969.8,
+      "duration": 6.479
+    },
+    {
+      "text": "this CSV file first we'll store the data",
+      "start": 972.839,
+      "duration": 6.281
+    },
+    {
+      "text": "of the P of the CSV file into this data",
+      "start": 976.279,
+      "duration": 4.881
+    },
+    {
+      "text": "object and then what we'll do is that",
+      "start": 979.12,
+      "duration": 4.639
+    },
+    {
+      "text": "we'll look at every single email or text",
+      "start": 981.16,
+      "duration": 4.44
+    },
+    {
+      "text": "message in this data and convert it into",
+      "start": 983.759,
+      "duration": 4.44
+    },
+    {
+      "text": "a bunch of token IDs to get a sense of",
+      "start": 985.6,
+      "duration": 4.479
+    },
+    {
+      "text": "the visual representation of this take a",
+      "start": 988.199,
+      "duration": 4.481
+    },
+    {
+      "text": "look here so at this first step what we",
+      "start": 990.079,
+      "duration": 5.12
+    },
+    {
+      "text": "are doing is that we taking every single",
+      "start": 992.68,
+      "duration": 4.2
+    },
+    {
+      "text": "text message and converting it into a",
+      "start": 995.199,
+      "duration": 5.56
+    },
+    {
+      "text": "bunch of token IDs right now if the user",
+      "start": 996.88,
+      "duration": 6.36
+    },
+    {
+      "text": "has not specified a maximum length here",
+      "start": 1000.759,
+      "duration": 4.121
+    },
+    {
+      "text": "what we'll first do is we'll find the",
+      "start": 1003.24,
+      "duration": 4.0
+    },
+    {
+      "text": "maximum length of the text message in",
+      "start": 1004.88,
+      "duration": 4.519
+    },
+    {
+      "text": "the entire data set and that will be",
+      "start": 1007.24,
+      "duration": 4.159
+    },
+    {
+      "text": "found through this longest encoded",
+      "start": 1009.399,
+      "duration": 4.56
+    },
+    {
+      "text": "length token longest encoded length",
+      "start": 1011.399,
+      "duration": 4.8
+    },
+    {
+      "text": "function and if you scroll down below",
+      "start": 1013.959,
+      "duration": 4.24
+    },
+    {
+      "text": "you'll see the longest encoded length",
+      "start": 1016.199,
+      "duration": 4.241
+    },
+    {
+      "text": "what it does is that it just finds the",
+      "start": 1018.199,
+      "duration": 4.681
+    },
+    {
+      "text": "length of all of the text messages and",
+      "start": 1020.44,
+      "duration": 6.599
+    },
+    {
+      "text": "then it Returns the maximum length uh",
+      "start": 1022.88,
+      "duration": 7.679
+    },
+    {
+      "text": "among all the text messages so now max",
+      "start": 1027.039,
+      "duration": 5.561
+    },
+    {
+      "text": "length variable contains the longest",
+      "start": 1030.559,
+      "duration": 5.161
+    },
+    {
+      "text": "email length right this is if the user",
+      "start": 1032.6,
+      "duration": 5.04
+    },
+    {
+      "text": "does not specify the max length if the",
+      "start": 1035.72,
+      "duration": 4.119
+    },
+    {
+      "text": "user has specified the max length then",
+      "start": 1037.64,
+      "duration": 3.88
+    },
+    {
+      "text": "the max length will be equal to whatever",
+      "start": 1039.839,
+      "duration": 5.641
+    },
+    {
+      "text": "the user has specified awesome now if",
+      "start": 1041.52,
+      "duration": 6.12
+    },
+    {
+      "text": "there are some sequences in the data set",
+      "start": 1045.48,
+      "duration": 3.72
+    },
+    {
+      "text": "which are longer than the max maximum",
+      "start": 1047.64,
+      "duration": 3.64
+    },
+    {
+      "text": "length this might happen if the user has",
+      "start": 1049.2,
+      "duration": 4.16
+    },
+    {
+      "text": "specified the max length and there are",
+      "start": 1051.28,
+      "duration": 3.759
+    },
+    {
+      "text": "some sequences which are longer than the",
+      "start": 1053.36,
+      "duration": 4.52
+    },
+    {
+      "text": "maximum length we'll have to truncate",
+      "start": 1055.039,
+      "duration": 6.041
+    },
+    {
+      "text": "those text messages so that their length",
+      "start": 1057.88,
+      "duration": 6.039
+    },
+    {
+      "text": "equals the maximum length if the maximum",
+      "start": 1061.08,
+      "duration": 4.839
+    },
+    {
+      "text": "length is selected from the data itself",
+      "start": 1063.919,
+      "duration": 3.681
+    },
+    {
+      "text": "this problem will not",
+      "start": 1065.919,
+      "duration": 5.481
+    },
+    {
+      "text": "arise uh right now this is the next part",
+      "start": 1067.6,
+      "duration": 5.68
+    },
+    {
+      "text": "which is the most important what we do",
+      "start": 1071.4,
+      "duration": 4.24
+    },
+    {
+      "text": "is that for all",
+      "start": 1073.28,
+      "duration": 6.2
+    },
+    {
+      "text": "the text messages we are going to",
+      "start": 1075.64,
+      "duration": 6.919
+    },
+    {
+      "text": "append the token IDs this pad token ID",
+      "start": 1079.48,
+      "duration": 6.079
+    },
+    {
+      "text": "which is 50256 we are going to append it",
+      "start": 1082.559,
+      "duration": 4.641
+    },
+    {
+      "text": "and how many such token idies we are",
+      "start": 1085.559,
+      "duration": 3.681
+    },
+    {
+      "text": "going to append we are going to append",
+      "start": 1087.2,
+      "duration": 4.28
+    },
+    {
+      "text": "how many our token IDs which are needed",
+      "start": 1089.24,
+      "duration": 5.4
+    },
+    {
+      "text": "to get that text message to the maximum",
+      "start": 1091.48,
+      "duration": 6.0
+    },
+    {
+      "text": "length so that is essentially shown in",
+      "start": 1094.64,
+      "duration": 4.279
+    },
+    {
+      "text": "this step we are going to append the",
+      "start": 1097.48,
+      "duration": 5.36
+    },
+    {
+      "text": "token IDs append the 50257 token ID to",
+      "start": 1098.919,
+      "duration": 5.601
+    },
+    {
+      "text": "all the text messages so that all of",
+      "start": 1102.84,
+      "duration": 3.92
+    },
+    {
+      "text": "them have the same size and what is that",
+      "start": 1104.52,
+      "duration": 6.24
+    },
+    {
+      "text": "size that size is max length",
+      "start": 1106.76,
+      "duration": 4.0
+    },
+    {
+      "text": "great and then finally this function is",
+      "start": 1111.32,
+      "duration": 4.16
+    },
+    {
+      "text": "the most important what this function",
+      "start": 1113.799,
+      "duration": 5.0
+    },
+    {
+      "text": "will do is that it will uh create two",
+      "start": 1115.48,
+      "duration": 5.079
+    },
+    {
+      "text": "such tensors it will create a tensor",
+      "start": 1118.799,
+      "duration": 3.921
+    },
+    {
+      "text": "name encoded and it will create a tensor",
+      "start": 1120.559,
+      "duration": 5.521
+    },
+    {
+      "text": "named label the tensor named encoded",
+      "start": 1122.72,
+      "duration": 5.959
+    },
+    {
+      "text": "basically uh will will make sure that",
+      "start": 1126.08,
+      "duration": 5.2
+    },
+    {
+      "text": "every text message has",
+      "start": 1128.679,
+      "duration": 6.48
+    },
+    {
+      "text": "uh has this kind of a encoding in terms",
+      "start": 1131.28,
+      "duration": 5.639
+    },
+    {
+      "text": "of token IDs like this what I've shown",
+      "start": 1135.159,
+      "duration": 3.241
+    },
+    {
+      "text": "on the screen right now so let me just",
+      "start": 1136.919,
+      "duration": 4.441
+    },
+    {
+      "text": "re name this a bit so this Matrix which",
+      "start": 1138.4,
+      "duration": 5.399
+    },
+    {
+      "text": "you seeing on the screen right",
+      "start": 1141.36,
+      "duration": 5.84
+    },
+    {
+      "text": "now and let me Mark it this this Matrix",
+      "start": 1143.799,
+      "duration": 6.481
+    },
+    {
+      "text": "here that is the encoding Matrix or the",
+      "start": 1147.2,
+      "duration": 5.44
+    },
+    {
+      "text": "encoded uh let me check the name here",
+      "start": 1150.28,
+      "duration": 4.24
+    },
+    {
+      "text": "the name is encoded so this is the",
+      "start": 1152.64,
+      "duration": 4.64
+    },
+    {
+      "text": "encoded Matrix or tensor I should call",
+      "start": 1154.52,
+      "duration": 4.8
+    },
+    {
+      "text": "it and this Matrix which I'm or this",
+      "start": 1157.28,
+      "duration": 3.72
+    },
+    {
+      "text": "tensor which I'm highlighting right now",
+      "start": 1159.32,
+      "duration": 4.76
+    },
+    {
+      "text": "that's the label so what this data set",
+      "start": 1161.0,
+      "duration": 4.72
+    },
+    {
+      "text": "will do is that the main function it",
+      "start": 1164.08,
+      "duration": 4.44
+    },
+    {
+      "text": "will is the get item function and when",
+      "start": 1165.72,
+      "duration": 4.76
+    },
+    {
+      "text": "you you call get item it will convert",
+      "start": 1168.52,
+      "duration": 4.0
+    },
+    {
+      "text": "the data set into two tensors the",
+      "start": 1170.48,
+      "duration": 4.4
+    },
+    {
+      "text": "encoded tensor and the labeled tensor",
+      "start": 1172.52,
+      "duration": 4.159
+    },
+    {
+      "text": "the encoded will make sure that every",
+      "start": 1174.88,
+      "duration": 4.039
+    },
+    {
+      "text": "sentence in the data set is converted",
+      "start": 1176.679,
+      "duration": 4.721
+    },
+    {
+      "text": "into a bunch of token IDs and all of the",
+      "start": 1178.919,
+      "duration": 4.481
+    },
+    {
+      "text": "sentences have equal length so that they",
+      "start": 1181.4,
+      "duration": 4.0
+    },
+    {
+      "text": "can be batched together and then the",
+      "start": 1183.4,
+      "duration": 5.519
+    },
+    {
+      "text": "label s tensor will just have zeros or",
+      "start": 1185.4,
+      "duration": 7.48
+    },
+    {
+      "text": "ones right so this is essentially uh",
+      "start": 1188.919,
+      "duration": 6.561
+    },
+    {
+      "text": "what we are doing in the spam data set",
+      "start": 1192.88,
+      "duration": 6.679
+    },
+    {
+      "text": "class okay now uh I have just written",
+      "start": 1195.48,
+      "duration": 6.439
+    },
+    {
+      "text": "here what the spam data set class does",
+      "start": 1199.559,
+      "duration": 5.081
+    },
+    {
+      "text": "the spam data set class loads the data",
+      "start": 1201.919,
+      "duration": 4.88
+    },
+    {
+      "text": "from the CSV files which we have created",
+      "start": 1204.64,
+      "duration": 4.8
+    },
+    {
+      "text": "earlier tokenizes the text using the",
+      "start": 1206.799,
+      "duration": 5.841
+    },
+    {
+      "text": "gpt2 tokenizer from tick token and then",
+      "start": 1209.44,
+      "duration": 5.04
+    },
+    {
+      "text": "allows us to pad or truncate the",
+      "start": 1212.64,
+      "duration": 4.88
+    },
+    {
+      "text": "sequences to uniform length defined by",
+      "start": 1214.48,
+      "duration": 4.64
+    },
+    {
+      "text": "either the longest sequence or",
+      "start": 1217.52,
+      "duration": 3.48
+    },
+    {
+      "text": "predefined maximum length if the user",
+      "start": 1219.12,
+      "duration": 4.48
+    },
+    {
+      "text": "defines their own maximum length what we",
+      "start": 1221.0,
+      "duration": 4.36
+    },
+    {
+      "text": "can now do is we can create an instance",
+      "start": 1223.6,
+      "duration": 3.64
+    },
+    {
+      "text": "of the spam data set class using the",
+      "start": 1225.36,
+      "duration": 3.92
+    },
+    {
+      "text": "train. CSV file",
+      "start": 1227.24,
+      "duration": 4.64
+    },
+    {
+      "text": "uh which we obtained in the previous",
+      "start": 1229.28,
+      "duration": 4.96
+    },
+    {
+      "text": "lecture and here you can see I do not",
+      "start": 1231.88,
+      "duration": 4.2
+    },
+    {
+      "text": "set the maximum length so the maximum",
+      "start": 1234.24,
+      "duration": 3.559
+    },
+    {
+      "text": "length is computed from the data set",
+      "start": 1236.08,
+      "duration": 3.68
+    },
+    {
+      "text": "itself and when you print the maximum",
+      "start": 1237.799,
+      "duration": 4.201
+    },
+    {
+      "text": "length you can see that it's 120 that",
+      "start": 1239.76,
+      "duration": 4.88
+    },
+    {
+      "text": "makes sense uh since the longest",
+      "start": 1242.0,
+      "duration": 4.36
+    },
+    {
+      "text": "sequence in our data set contains no",
+      "start": 1244.64,
+      "duration": 4.2
+    },
+    {
+      "text": "more than 120 tokens it seems like a",
+      "start": 1246.36,
+      "duration": 5.12
+    },
+    {
+      "text": "common length for text messages so one",
+      "start": 1248.84,
+      "duration": 5.079
+    },
+    {
+      "text": "sentence is around 15 to 20 tokens let's",
+      "start": 1251.48,
+      "duration": 3.96
+    },
+    {
+      "text": "say so six",
+      "start": 1253.919,
+      "duration": 3.801
+    },
+    {
+      "text": "sentences uh then that's the maximum",
+      "start": 1255.44,
+      "duration": 4.76
+    },
+    {
+      "text": "length so it's worth noting that the",
+      "start": 1257.72,
+      "duration": 5.199
+    },
+    {
+      "text": "model can handle sequences of up to 1024",
+      "start": 1260.2,
+      "duration": 4.8
+    },
+    {
+      "text": "tokens because the context length of",
+      "start": 1262.919,
+      "duration": 4.281
+    },
+    {
+      "text": "gpt2 which we have defined as the model",
+      "start": 1265.0,
+      "duration": 3.08
+    },
+    {
+      "text": "here is",
+      "start": 1267.2,
+      "duration": 4.8
+    },
+    {
+      "text": "1024 right so you can pass max length",
+      "start": 1268.08,
+      "duration": 7.16
+    },
+    {
+      "text": "Max up to a maximum value of 1024 over",
+      "start": 1272.0,
+      "duration": 5.799
+    },
+    {
+      "text": "here when you call this",
+      "start": 1275.24,
+      "duration": 5.16
+    },
+    {
+      "text": "function um now what we are going to do",
+      "start": 1277.799,
+      "duration": 5.48
+    },
+    {
+      "text": "is that we are also going to uh pad the",
+      "start": 1280.4,
+      "duration": 4.92
+    },
+    {
+      "text": "validation and test data sets to match",
+      "start": 1283.279,
+      "duration": 4.041
+    },
+    {
+      "text": "the length of the longest training",
+      "start": 1285.32,
+      "duration": 4.56
+    },
+    {
+      "text": "sequence it it is important to note that",
+      "start": 1287.32,
+      "duration": 4.239
+    },
+    {
+      "text": "any validation and test samples",
+      "start": 1289.88,
+      "duration": 3.12
+    },
+    {
+      "text": "exceeding the length of the longest",
+      "start": 1291.559,
+      "duration": 3.961
+    },
+    {
+      "text": "training examples are truncated so now",
+      "start": 1293.0,
+      "duration": 4.08
+    },
+    {
+      "text": "what we are going to do is that when we",
+      "start": 1295.52,
+      "duration": 3.6
+    },
+    {
+      "text": "create an instance of the spam data set",
+      "start": 1297.08,
+      "duration": 4.04
+    },
+    {
+      "text": "class for the validation and the test",
+      "start": 1299.12,
+      "duration": 4.64
+    },
+    {
+      "text": "data set we pass in the maximum length",
+      "start": 1301.12,
+      "duration": 4.919
+    },
+    {
+      "text": "and that maximum length will be equal to",
+      "start": 1303.76,
+      "duration": 4.6
+    },
+    {
+      "text": "120 which is the maximum length in the",
+      "start": 1306.039,
+      "duration": 5.12
+    },
+    {
+      "text": "training data set so we will encounter",
+      "start": 1308.36,
+      "duration": 5.04
+    },
+    {
+      "text": "this Loop where maximum length has been",
+      "start": 1311.159,
+      "duration": 5.041
+    },
+    {
+      "text": "defined so there might be some sequences",
+      "start": 1313.4,
+      "duration": 4.68
+    },
+    {
+      "text": "in the tra testing and validation set",
+      "start": 1316.2,
+      "duration": 3.359
+    },
+    {
+      "text": "which are last lger than the maximum",
+      "start": 1318.08,
+      "duration": 3.4
+    },
+    {
+      "text": "length so we will need to truncate those",
+      "start": 1319.559,
+      "duration": 4.641
+    },
+    {
+      "text": "sequences that's what I've written over",
+      "start": 1321.48,
+      "duration": 6.079
+    },
+    {
+      "text": "here however one thing to not is that",
+      "start": 1324.2,
+      "duration": 5.16
+    },
+    {
+      "text": "you can even set the maximum length",
+      "start": 1327.559,
+      "duration": 3.441
+    },
+    {
+      "text": "equal to none here there is no such",
+      "start": 1329.36,
+      "duration": 3.28
+    },
+    {
+      "text": "requirement that the maximum length",
+      "start": 1331.0,
+      "duration": 3.559
+    },
+    {
+      "text": "which you set here has to be equal to",
+      "start": 1332.64,
+      "duration": 3.8
+    },
+    {
+      "text": "the maximum length in the training data",
+      "start": 1334.559,
+      "duration": 4.72
+    },
+    {
+      "text": "set uh you can try out by setting this",
+      "start": 1336.44,
+      "duration": 4.92
+    },
+    {
+      "text": "to none as",
+      "start": 1339.279,
+      "duration": 5.681
+    },
+    {
+      "text": "well okay now uh so here you can see",
+      "start": 1341.36,
+      "duration": 5.16
+    },
+    {
+      "text": "that you can create instances of the",
+      "start": 1344.96,
+      "duration": 3.719
+    },
+    {
+      "text": "validation data set and the testing data",
+      "start": 1346.52,
+      "duration": 4.96
+    },
+    {
+      "text": "set as well and then you can print out",
+      "start": 1348.679,
+      "duration": 5.161
+    },
+    {
+      "text": "the maximum length but right now if you",
+      "start": 1351.48,
+      "duration": 3.92
+    },
+    {
+      "text": "print out the maximum length it will",
+      "start": 1353.84,
+      "duration": 4.12
+    },
+    {
+      "text": "just be equal to 120 because we have",
+      "start": 1355.4,
+      "duration": 4.759
+    },
+    {
+      "text": "passed in that so if you print out the",
+      "start": 1357.96,
+      "duration": 5.12
+    },
+    {
+      "text": "maximum length you can see that it's 120",
+      "start": 1360.159,
+      "duration": 5.561
+    },
+    {
+      "text": "because we passed in this parameter as a",
+      "start": 1363.08,
+      "duration": 6.68
+    },
+    {
+      "text": "user defined and this was already",
+      "start": 1365.72,
+      "duration": 4.04
+    },
+    {
+      "text": "120 all right now the data set has been",
+      "start": 1369.96,
+      "duration": 5.68
+    },
+    {
+      "text": "defined right now the data set will",
+      "start": 1373.279,
+      "duration": 5.201
+    },
+    {
+      "text": "serve as an input to the data loader so",
+      "start": 1375.64,
+      "duration": 4.88
+    },
+    {
+      "text": "so remember there are two things here",
+      "start": 1378.48,
+      "duration": 4.799
+    },
+    {
+      "text": "first uh we have to implement a data set",
+      "start": 1380.52,
+      "duration": 5.2
+    },
+    {
+      "text": "and the data set will then be served as",
+      "start": 1383.279,
+      "duration": 5.241
+    },
+    {
+      "text": "an input to the data loader so now what",
+      "start": 1385.72,
+      "duration": 4.4
+    },
+    {
+      "text": "we are going to do next is that we are",
+      "start": 1388.52,
+      "duration": 4.2
+    },
+    {
+      "text": "going to use the data set as the input",
+      "start": 1390.12,
+      "duration": 4.12
+    },
+    {
+      "text": "and then we will instantiate data",
+      "start": 1392.72,
+      "duration": 6.16
+    },
+    {
+      "text": "loaders right uh okay so in when we",
+      "start": 1394.24,
+      "duration": 6.96
+    },
+    {
+      "text": "create or when we pass the data set as",
+      "start": 1398.88,
+      "duration": 4.48
+    },
+    {
+      "text": "an input to the data loader remember",
+      "start": 1401.2,
+      "duration": 4.479
+    },
+    {
+      "text": "that we can set the batch size and we",
+      "start": 1403.36,
+      "duration": 3.96
+    },
+    {
+      "text": "can also set the number of workers",
+      "start": 1405.679,
+      "duration": 3.401
+    },
+    {
+      "text": "that's for parallel processing",
+      "start": 1407.32,
+      "duration": 3.4
+    },
+    {
+      "text": "so here what we are doing is that we are",
+      "start": 1409.08,
+      "duration": 3.839
+    },
+    {
+      "text": "setting the batch size equal to 8 and we",
+      "start": 1410.72,
+      "duration": 3.8
+    },
+    {
+      "text": "are setting the number of workers equal",
+      "start": 1412.919,
+      "duration": 4.161
+    },
+    {
+      "text": "to zero setting number of workers equal",
+      "start": 1414.52,
+      "duration": 3.92
+    },
+    {
+      "text": "to zero is just for the sake of",
+      "start": 1417.08,
+      "duration": 3.199
+    },
+    {
+      "text": "Simplicity we don't want any parallel",
+      "start": 1418.44,
+      "duration": 5.239
+    },
+    {
+      "text": "processing here drop last equal to True",
+      "start": 1420.279,
+      "duration": 5.88
+    },
+    {
+      "text": "means that if the last batch has a",
+      "start": 1423.679,
+      "duration": 7.441
+    },
+    {
+      "text": "smaller data we just drop it uh great so",
+      "start": 1426.159,
+      "duration": 7.801
+    },
+    {
+      "text": "now here you can see train loader you",
+      "start": 1431.12,
+      "duration": 4.96
+    },
+    {
+      "text": "create an instance of the data loader",
+      "start": 1433.96,
+      "duration": 4.8
+    },
+    {
+      "text": "and then you pass in the train data set",
+      "start": 1436.08,
+      "duration": 4.68
+    },
+    {
+      "text": "as the input you similarly you can",
+      "start": 1438.76,
+      "duration": 3.68
+    },
+    {
+      "text": "create the validation loader and the",
+      "start": 1440.76,
+      "duration": 4.48
+    },
+    {
+      "text": "test loader as well so now this test",
+      "start": 1442.44,
+      "duration": 4.479
+    },
+    {
+      "text": "loader validation loader and trade",
+      "start": 1445.24,
+      "duration": 3.48
+    },
+    {
+      "text": "loader when you run this part they'll be",
+      "start": 1446.919,
+      "duration": 4.321
+    },
+    {
+      "text": "initialized and then you can use these",
+      "start": 1448.72,
+      "duration": 5.28
+    },
+    {
+      "text": "loaders to essentially create entire",
+      "start": 1451.24,
+      "duration": 4.439
+    },
+    {
+      "text": "data sets in this format what I'm",
+      "start": 1454.0,
+      "duration": 3.679
+    },
+    {
+      "text": "showing to you on the screen right now",
+      "start": 1455.679,
+      "duration": 4.281
+    },
+    {
+      "text": "so for example when you run the training",
+      "start": 1457.679,
+      "duration": 4.401
+    },
+    {
+      "text": "data loader and you can extract batches",
+      "start": 1459.96,
+      "duration": 4.44
+    },
+    {
+      "text": "from it now you can extract the first",
+      "start": 1462.08,
+      "duration": 4.839
+    },
+    {
+      "text": "batch and then it will give you the uh",
+      "start": 1464.4,
+      "duration": 5.2
+    },
+    {
+      "text": "encoded and the you can extract the",
+      "start": 1466.919,
+      "duration": 4.24
+    },
+    {
+      "text": "second batch you can extract the eighth",
+      "start": 1469.6,
+      "duration": 4.48
+    },
+    {
+      "text": "batch in a very easy manner so after you",
+      "start": 1471.159,
+      "duration": 5.041
+    },
+    {
+      "text": "run this what we can now do is that we",
+      "start": 1474.08,
+      "duration": 4.12
+    },
+    {
+      "text": "can run a test to make sure that the",
+      "start": 1476.2,
+      "duration": 4.079
+    },
+    {
+      "text": "data loaders are working and indeed",
+      "start": 1478.2,
+      "duration": 4.88
+    },
+    {
+      "text": "returning batches of the expected size",
+      "start": 1480.279,
+      "duration": 4.601
+    },
+    {
+      "text": "so here what I'm doing is that I'm",
+      "start": 1483.08,
+      "duration": 3.8
+    },
+    {
+      "text": "iterating through the training data",
+      "start": 1484.88,
+      "duration": 4.72
+    },
+    {
+      "text": "loader uh right till the end and then",
+      "start": 1486.88,
+      "duration": 4.519
+    },
+    {
+      "text": "then I'm going to print the input badge",
+      "start": 1489.6,
+      "duration": 4.64
+    },
+    {
+      "text": "Dimension and the label batch Dimension",
+      "start": 1491.399,
+      "duration": 4.961
+    },
+    {
+      "text": "so if you uh iterate through the",
+      "start": 1494.24,
+      "duration": 3.88
+    },
+    {
+      "text": "training loader till the end you'll see",
+      "start": 1496.36,
+      "duration": 3.559
+    },
+    {
+      "text": "that the input badge Dimension has the",
+      "start": 1498.12,
+      "duration": 4.72
+    },
+    {
+      "text": "size of 8 by 120 can you think what this",
+      "start": 1499.919,
+      "duration": 5.48
+    },
+    {
+      "text": "means and the label badge Dimensions has",
+      "start": 1502.84,
+      "duration": 5.0
+    },
+    {
+      "text": "torch dot size 8 can you try to think",
+      "start": 1505.399,
+      "duration": 4.241
+    },
+    {
+      "text": "what this means you can pause the video",
+      "start": 1507.84,
+      "duration": 3.52
+    },
+    {
+      "text": "here for a",
+      "start": 1509.64,
+      "duration": 4.72
+    },
+    {
+      "text": "moment so these input B Dimension means",
+      "start": 1511.36,
+      "duration": 4.76
+    },
+    {
+      "text": "that since the batch size was eight",
+      "start": 1514.36,
+      "duration": 4.799
+    },
+    {
+      "text": "every input batch has eight rows and 120",
+      "start": 1516.12,
+      "duration": 5.88
+    },
+    {
+      "text": "columns because the maximum token ID",
+      "start": 1519.159,
+      "duration": 5.52
+    },
+    {
+      "text": "length was 120 so this is exactly what",
+      "start": 1522.0,
+      "duration": 4.36
+    },
+    {
+      "text": "I've shown you over here right on the",
+      "start": 1524.679,
+      "duration": 4.761
+    },
+    {
+      "text": "screen what you're seeing right now",
+      "start": 1526.36,
+      "duration": 6.199
+    },
+    {
+      "text": "uh on the screen what you're seeing is",
+      "start": 1529.44,
+      "duration": 4.599
+    },
+    {
+      "text": "if you look",
+      "start": 1532.559,
+      "duration": 5.6
+    },
+    {
+      "text": "at yeah if you look at this first answer",
+      "start": 1534.039,
+      "duration": 5.561
+    },
+    {
+      "text": "this right here what I'm showing with",
+      "start": 1538.159,
+      "duration": 3.64
+    },
+    {
+      "text": "the arrow right now that that's the",
+      "start": 1539.6,
+      "duration": 3.24
+    },
+    {
+      "text": "input",
+      "start": 1541.799,
+      "duration": 3.281
+    },
+    {
+      "text": "badge and if you look at this input",
+      "start": 1542.84,
+      "duration": 4.199
+    },
+    {
+      "text": "batch you'll see that it has eight rows",
+      "start": 1545.08,
+      "duration": 4.56
+    },
+    {
+      "text": "and it has 120 columns so that's why the",
+      "start": 1547.039,
+      "duration": 5.601
+    },
+    {
+      "text": "size here is 8 by",
+      "start": 1549.64,
+      "duration": 6.68
+    },
+    {
+      "text": "120 okay similarly you can look at the",
+      "start": 1552.64,
+      "duration": 6.72
+    },
+    {
+      "text": "labels label sensor and here you can see",
+      "start": 1556.32,
+      "duration": 5.52
+    },
+    {
+      "text": "that it just has eight rows over here",
+      "start": 1559.36,
+      "duration": 5.0
+    },
+    {
+      "text": "and it can either have zeros or ones so",
+      "start": 1561.84,
+      "duration": 6.12
+    },
+    {
+      "text": "that's why the size here is 8 and this",
+      "start": 1564.36,
+      "duration": 5.52
+    },
+    {
+      "text": "what I'm showing here is just one batch",
+      "start": 1567.96,
+      "duration": 4.92
+    },
+    {
+      "text": "remember that there are",
+      "start": 1569.88,
+      "duration": 6.96
+    },
+    {
+      "text": "747 uh examples corresponding to spam",
+      "start": 1572.88,
+      "duration": 7.64
+    },
+    {
+      "text": "and 747 examples corresponding to no",
+      "start": 1576.84,
+      "duration": 6.319
+    },
+    {
+      "text": "spam so if you add these both together",
+      "start": 1580.52,
+      "duration": 4.68
+    },
+    {
+      "text": "you'll get that the total number of data",
+      "start": 1583.159,
+      "duration": 5.161
+    },
+    {
+      "text": "which we have is 1494 right out of that",
+      "start": 1585.2,
+      "duration": 4.8
+    },
+    {
+      "text": "the training data is",
+      "start": 1588.32,
+      "duration": 4.32
+    },
+    {
+      "text": "70% right so we will have batches",
+      "start": 1590.0,
+      "duration": 6.279
+    },
+    {
+      "text": "corresponding to that so 70% of 1494",
+      "start": 1592.64,
+      "duration": 7.24
+    },
+    {
+      "text": "let's see so 7",
+      "start": 1596.279,
+      "duration": 5.28
+    },
+    {
+      "text": "into",
+      "start": 1599.88,
+      "duration": 4.76
+    },
+    {
+      "text": "1494 uh that's 1045 and I think we have",
+      "start": 1601.559,
+      "duration": 4.521
+    },
+    {
+      "text": "printed this",
+      "start": 1604.64,
+      "duration": 3.32
+    },
+    {
+      "text": "above",
+      "start": 1606.08,
+      "duration": 5.76
+    },
+    {
+      "text": "uh yeah 1045 so the training data set",
+      "start": 1607.96,
+      "duration": 7.48
+    },
+    {
+      "text": "overall has 1045 samples right so the",
+      "start": 1611.84,
+      "duration": 7.319
+    },
+    {
+      "text": "training data set overall has uh",
+      "start": 1615.44,
+      "duration": 6.52
+    },
+    {
+      "text": "training data set overall has",
+      "start": 1619.159,
+      "duration": 6.081
+    },
+    {
+      "text": "1045 samples in the training data set",
+      "start": 1621.96,
+      "duration": 4.36
+    },
+    {
+      "text": "and",
+      "start": 1625.24,
+      "duration": 5.559
+    },
+    {
+      "text": "now if each batch has eight such samples",
+      "start": 1626.32,
+      "duration": 5.8
+    },
+    {
+      "text": "the batch size is eight right which",
+      "start": 1630.799,
+      "duration": 3.961
+    },
+    {
+      "text": "means each batch will have eight samples",
+      "start": 1632.12,
+      "duration": 4.96
+    },
+    {
+      "text": "if each batch has eight samples eight",
+      "start": 1634.76,
+      "duration": 4.2
+    },
+    {
+      "text": "samples in each batch how many batches",
+      "start": 1637.08,
+      "duration": 3.719
+    },
+    {
+      "text": "do you think will be in the training",
+      "start": 1638.96,
+      "duration": 4.199
+    },
+    {
+      "text": "data",
+      "start": 1640.799,
+      "duration": 2.36
+    },
+    {
+      "text": "set so then the number of batches will",
+      "start": 1644.44,
+      "duration": 5.719
+    },
+    {
+      "text": "be",
+      "start": 1647.159,
+      "duration": 3.0
+    },
+    {
+      "text": "number of batches will be 1045 divided",
+      "start": 1650.279,
+      "duration": 5.801
+    },
+    {
+      "text": "by 8 which is approximately 130",
+      "start": 1652.88,
+      "duration": 5.56
+    },
+    {
+      "text": "batches and we can actually test this",
+      "start": 1656.08,
+      "duration": 3.92
+    },
+    {
+      "text": "what I've done at the end of this code",
+      "start": 1658.44,
+      "duration": 4.32
+    },
+    {
+      "text": "is that I have printed the length of the",
+      "start": 1660.0,
+      "duration": 4.48
+    },
+    {
+      "text": "training loader which will give me the",
+      "start": 1662.76,
+      "duration": 3.279
+    },
+    {
+      "text": "number of training batches and here we",
+      "start": 1664.48,
+      "duration": 3.16
+    },
+    {
+      "text": "can see that we have 130 training",
+      "start": 1666.039,
+      "duration": 3.921
+    },
+    {
+      "text": "batches and that exactly fits our",
+      "start": 1667.64,
+      "duration": 3.84
+    },
+    {
+      "text": "intuition which you have written on the",
+      "start": 1669.96,
+      "duration": 3.92
+    },
+    {
+      "text": "Whiteboard similarly what you can do is",
+      "start": 1671.48,
+      "duration": 4.559
+    },
+    {
+      "text": "that you can print out the length of the",
+      "start": 1673.88,
+      "duration": 3.88
+    },
+    {
+      "text": "validation loader the length of the test",
+      "start": 1676.039,
+      "duration": 3.841
+    },
+    {
+      "text": "loader as well and you'll see that there",
+      "start": 1677.76,
+      "duration": 4.68
+    },
+    {
+      "text": "are 19 validation batches and 38 test",
+      "start": 1679.88,
+      "duration": 6.48
+    },
+    {
+      "text": "batches remember that we have 20% of the",
+      "start": 1682.44,
+      "duration": 6.4
+    },
+    {
+      "text": "data as test and 10% of the data as",
+      "start": 1686.36,
+      "duration": 4.64
+    },
+    {
+      "text": "validation that's why the number of test",
+      "start": 1688.84,
+      "duration": 4.079
+    },
+    {
+      "text": "batches are exactly two times that of",
+      "start": 1691.0,
+      "duration": 3.799
+    },
+    {
+      "text": "the number of validation",
+      "start": 1692.919,
+      "duration": 4.12
+    },
+    {
+      "text": "batches and why does the length of the",
+      "start": 1694.799,
+      "duration": 3.961
+    },
+    {
+      "text": "training loader give you the number of",
+      "start": 1697.039,
+      "duration": 4.36
+    },
+    {
+      "text": "batches because if you print out one",
+      "start": 1698.76,
+      "duration": 5.44
+    },
+    {
+      "text": "batch that has eight eight samples right",
+      "start": 1701.399,
+      "duration": 5.64
+    },
+    {
+      "text": "so actually the training loader this is",
+      "start": 1704.2,
+      "duration": 4.359
+    },
+    {
+      "text": "just one batch so the the training",
+      "start": 1707.039,
+      "duration": 3.401
+    },
+    {
+      "text": "loader Dimensions will",
+      "start": 1708.559,
+      "duration": 4.681
+    },
+    {
+      "text": "be so one batch of the training loader",
+      "start": 1710.44,
+      "duration": 6.959
+    },
+    {
+      "text": "has the dimension of uh 88 rows and 120",
+      "start": 1713.24,
+      "duration": 6.64
+    },
+    {
+      "text": "column right and there are 130 such",
+      "start": 1717.399,
+      "duration": 4.481
+    },
+    {
+      "text": "batches so if you print out the",
+      "start": 1719.88,
+      "duration": 3.679
+    },
+    {
+      "text": "dimension of the entire training loader",
+      "start": 1721.88,
+      "duration": 4.24
+    },
+    {
+      "text": "it will be 130 by 8X 120 it will be a",
+      "start": 1723.559,
+      "duration": 3.96
+    },
+    {
+      "text": "threedimensional",
+      "start": 1726.12,
+      "duration": 5.24
+    },
+    {
+      "text": "tensor similarly for the testing loader",
+      "start": 1727.519,
+      "duration": 5.721
+    },
+    {
+      "text": "the dimensions would",
+      "start": 1731.36,
+      "duration": 7.24
+    },
+    {
+      "text": "be uh 38 38 8 120",
+      "start": 1733.24,
+      "duration": 7.36
+    },
+    {
+      "text": "and for the validation the dimensions",
+      "start": 1738.6,
+      "duration": 4.799
+    },
+    {
+      "text": "would be 19820 the dimensions of the",
+      "start": 1740.6,
+      "duration": 5.24
+    },
+    {
+      "text": "validation",
+      "start": 1743.399,
+      "duration": 2.441
+    },
+    {
+      "text": "loader right so now until this part this",
+      "start": 1745.96,
+      "duration": 5.599
+    },
+    {
+      "text": "concludes the data preparation steps",
+      "start": 1749.2,
+      "duration": 3.88
+    },
+    {
+      "text": "which means that now we have got these",
+      "start": 1751.559,
+      "duration": 3.0
+    },
+    {
+      "text": "data loaders we have got the training",
+      "start": 1753.08,
+      "duration": 3.68
+    },
+    {
+      "text": "loader validation loader and test loader",
+      "start": 1754.559,
+      "duration": 4.441
+    },
+    {
+      "text": "through these data loaders we can easily",
+      "start": 1756.76,
+      "duration": 5.2
+    },
+    {
+      "text": "extract the batches the input batch and",
+      "start": 1759.0,
+      "duration": 5.799
+    },
+    {
+      "text": "the label batch which we need at any",
+      "start": 1761.96,
+      "duration": 4.76
+    },
+    {
+      "text": "time and that just better so now we have",
+      "start": 1764.799,
+      "duration": 4.401
+    },
+    {
+      "text": "created input and Target pairs remember",
+      "start": 1766.72,
+      "duration": 4.6
+    },
+    {
+      "text": "when we trained the llm the target pair",
+      "start": 1769.2,
+      "duration": 5.28
+    },
+    {
+      "text": "here was also a token ID",
+      "start": 1771.32,
+      "duration": 5.64
+    },
+    {
+      "text": "representation it was just shifted from",
+      "start": 1774.48,
+      "duration": 4.679
+    },
+    {
+      "text": "the input to the right by one so the",
+      "start": 1776.96,
+      "duration": 4.16
+    },
+    {
+      "text": "difference here is that the target pair",
+      "start": 1779.159,
+      "duration": 3.721
+    },
+    {
+      "text": "here are zero and ones they are not",
+      "start": 1781.12,
+      "duration": 3.08
+    },
+    {
+      "text": "token",
+      "start": 1782.88,
+      "duration": 4.919
+    },
+    {
+      "text": "IDs awesome so until now we have looked",
+      "start": 1784.2,
+      "duration": 7.04
+    },
+    {
+      "text": "at this entire First Column is now over",
+      "start": 1787.799,
+      "duration": 4.841
+    },
+    {
+      "text": "in the previous lecture we saw",
+      "start": 1791.24,
+      "duration": 2.679
+    },
+    {
+      "text": "downloading the data set and",
+      "start": 1792.64,
+      "duration": 3.12
+    },
+    {
+      "text": "pre-processing the data set in today's",
+      "start": 1793.919,
+      "duration": 3.401
+    },
+    {
+      "text": "lecture we saw how to create data",
+      "start": 1795.76,
+      "duration": 3.919
+    },
+    {
+      "text": "loaders for the training data set the",
+      "start": 1797.32,
+      "duration": 4.52
+    },
+    {
+      "text": "validation data set and the testing data",
+      "start": 1799.679,
+      "duration": 4.641
+    },
+    {
+      "text": "set in the next lectures we are going to",
+      "start": 1801.84,
+      "duration": 4.64
+    },
+    {
+      "text": "start looking at the stage two which is",
+      "start": 1804.32,
+      "duration": 4.4
+    },
+    {
+      "text": "we are going to initialize the llm model",
+      "start": 1806.48,
+      "duration": 3.679
+    },
+    {
+      "text": "we are going to load the pre-train",
+      "start": 1808.72,
+      "duration": 3.12
+    },
+    {
+      "text": "weights we are going to modify the model",
+      "start": 1810.159,
+      "duration": 4.281
+    },
+    {
+      "text": "for fine tuning and then finally in the",
+      "start": 1811.84,
+      "duration": 4.64
+    },
+    {
+      "text": "subsequent lectures we'll evaluate the F",
+      "start": 1814.44,
+      "duration": 5.079
+    },
+    {
+      "text": "tune model so we have done the hard work",
+      "start": 1816.48,
+      "duration": 5.6
+    },
+    {
+      "text": "of data pre-processing data cleaning and",
+      "start": 1819.519,
+      "duration": 4.76
+    },
+    {
+      "text": "using data sets and data loaders which",
+      "start": 1822.08,
+      "duration": 4.04
+    },
+    {
+      "text": "is usually so important before we",
+      "start": 1824.279,
+      "duration": 3.4
+    },
+    {
+      "text": "directly jump to the model training",
+      "start": 1826.12,
+      "duration": 3.039
+    },
+    {
+      "text": "itself",
+      "start": 1827.679,
+      "duration": 3.761
+    },
+    {
+      "text": "so I hope you all are liking these",
+      "start": 1829.159,
+      "duration": 4.88
+    },
+    {
+      "text": "lectures I usually try to maintain an",
+      "start": 1831.44,
+      "duration": 5.64
+    },
+    {
+      "text": "approach of whiteboard plus coding since",
+      "start": 1834.039,
+      "duration": 5.601
+    },
+    {
+      "text": "my aim is to train ml Engineers who are",
+      "start": 1837.08,
+      "duration": 6.36
+    },
+    {
+      "text": "not just good at using chat GPD uh but I",
+      "start": 1839.64,
+      "duration": 5.56
+    },
+    {
+      "text": "want every one of you who are following",
+      "start": 1843.44,
+      "duration": 3.32
+    },
+    {
+      "text": "these lectures to have very strong",
+      "start": 1845.2,
+      "duration": 3.24
+    },
+    {
+      "text": "fundamental and theoretical",
+      "start": 1846.76,
+      "duration": 3.48
+    },
+    {
+      "text": "understanding because that's what's",
+      "start": 1848.44,
+      "duration": 3.52
+    },
+    {
+      "text": "lacking in today's",
+      "start": 1850.24,
+      "duration": 4.279
+    },
+    {
+      "text": "Engineers thanks a lot everyone and I",
+      "start": 1851.96,
+      "duration": 4.199
+    },
+    {
+      "text": "look forward to seeing you in the next",
+      "start": 1854.519,
+      "duration": 4.64
+    },
+    {
+      "text": "lecture",
+      "start": 1856.159,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series in the last lecture we started learning about fine tuning about large language models fine tuning and we saw that fine tuning essentially is adapting a pre-trained model to a specific task by training the model on additional data and then we saw that there are essentially two types of fine tuning the first type is instruction fine tuning and the second type is classification fine tuning we went a step further in the previous lecture and we started working on a Hands-On project which was based on classification fine tuning the problem which we considered was that of email classification and uh the whole goal in this problem was for us to use a large language model for a specific task and that task was to look at emails and to classify them into either of the two categories either spam or not a Spam right so in the last lecture what we did was we looked at the first two steps which I've mentioned in stage one over here we downloaded the email data set and we pre-processed the data set so let me quickly revise what all we implemented in the previous lecture so here's the email data set which we collected from the UC arvine machine learning repository it had a data of around 747 spam emails and more than 3,000 not spam emails not spam is also called ham over here so it's basically a classification between ham and spam what we did then in the code was that we downloaded this data set so here you can see that we had a function for downloading and unzipping the data set and we took a look at the form of the data set so we saw that every U every point or every entry in the data was essentially a text and then there was a label ham which means no spam and spam right and then we saw that there were 4825 entries for no spam and there were only 747 entries for a spam what we did next was that we balanced the data set we randomly sampled 747 entries from no spam so that the entries of both spam as well as no spam is equal to 747 then what we did was instead of having spam and ham as labels we encoded them so ham was encoded to zero and spam is encoded to one finally we took the entire data set and we split it into training testing and validation we used 70% of the data for training 10% of the data for validation and the remaining 20% of the data for testing and U we converted our dat data frames into CSV files so at this stage where we are in right now we have the CSV files for the training data the validation data and the testing data eventually what we need to do is that we need to use a large language model architecture something like what I've defined over here what will feed into this architecture is the input text and what we will aim to get out of this is whether it's a Spam so whether it's a Spam or it's not a Spam however to reach this model stage there is still one more step which needs to be done and that is the main purpose of today's lecture in today's lecture we are going to learn about creating data loaders so if you remember we have learned about data loaders earlier when we looked at llm pre-processing and we saw that input Target pairs in a large language model needed to be fed through a data loader it just better to manage the data and at that time we had utilized the data set and data set and data loader in pytorch so if you type data set and data loaders in pytorch you will see that pytorch provides t.s. datal loader do. u.d. dat set that allows us to use our own data set uh to essentially we can get easy access to samples we can easily run batches on our data we can even do parallel processing so it's highly recommended to use data sets and data loaders I'll explain to you what these mean exactly um and that's the main purpose of today's lecture essentially you can think of today's lecture as okay we have got the data set how do we bucket them into input Target pairs so that we manage the data quite effectively right okay so let's see uh ultimately we at the end of the lecture we want to get to a stage like this where let's say an email is given we want to convert this email into tokens and we want every single image to be converted into the same number of tokens so that one so this is one full batch you can see that this batch consists of eight emails and all the emails have a length of 120 tokens this will be my input and corresponding to each input email that is either zero or one so here's my input tensor over here and this is is my target tensor over here the reason I'm creating data loaders and the reason we are using this data set and data loaders is ultimately we want to take our data set and convert it into input Target batches like these so this is just one batch we'll have multiple batches since we have 747 samples so this is a batch of only eight samples so this is where we want to reach at the end of the lecture uh but at the start of the lecture we are at this point where we have uh text um and here I have provided a snippet of what each email looks like and we have labels as zero or one this is where we are right now but here if you see we want every text email to be of the same token length right however if you look at the email length the email length is not the same one email might be longer one email might be shorter how do we make sure that all the email or all the text messages rather are of the same length so the first problem is that in our data set the text messages are of varying length but we want to create a batch like this right and when we are dealing with batches every every row here should have the same number of columns so we need to somehow make sure that every text message has the same length and there are two options to do this first what we do is that you check all the emails and then you find that email which has the shortest length so let's say let's say there are five emails right now and who lengths I've given to be representative by these sizes there are five emails the first option is that you just look at the shortest length which is this and you truncate all other emails to this and you get rid of the remaining part in all these other images so then the size of all the emails will be the same or the text messages and then we can group them in a batch can you think of what the disadvantage would be of this particular approach the disadvantage would be that that will lose all of this information which is present otherwise in the longer text so if the data set consists of emails which are much longer than this shorter shortest email then we'll lose all of that data so this is not a recommended approach so what can we do as an alternative approach well the alternative approach is as follows what if we use the longest so what if we use the first let me rub this so that um all of us are on the same page okay so I've rubb this now so what if we use the longest email uh let's say this is the longest email and then for all the other emails we pad them with certain tokens we pad them which means we add additional tokens till they reach the longest email so this is what we are actually going to do because this will make sure that we don't lose out on any information so your question would be what are we going to pad them with we are going to pad them with a token which is called as the end of text token I'll talk about this in a moment uh but first let me illustrate what does it mean by we are going to pad all the messages to match the length of the longest message so the way this looks like is that let's say we have a first text message we tokenize it first right and the way to tokenize Any Given sentence is basically we are going to use the bite pair encoder so if you have followed the previous lectures there is this Library called tick token and tick token is a tokenizer library which open AI uses what this tick token does is that you give it any sentence it converts it into a bunch of token IDs now it's a bite pair encoder which means every word is not equal to one token let's say if you have given the word hello word this will not just be two tokens simply or three tokens because of the space bar bite pair encoder is a subword tokenizer so it's a bit more complex than that and uh based on this tokenizer um every sentence will be converted into a bunch of tokens so the first step is that we are going to take input messages and we are going to tokenize them uh using the bite pair encoder tokenizer which is the one which also GPT models use so every text is going to be converted into token IDs like this now of course some text would be longer some would be shorter so the number of token IDs won't match what we are then going to do is that let's say I have only three text messages in the data set this looks to be the longest right so what I'll do is that for the other ones I'm going to pad this with a token called f token named 50256 until uh the length of all the token IDs is the same now what is this 50256 let me uh show you what this 50256 is so here's what I'm showing you on the screen right now is the vocabulary which is used by gpt2 what is meant by vocabulary is that there are tokens and every token has an Associated token ID right so now if you scroll down to the end of this you'll see that the vocabulary size which gpt2 uses is essentially uh 50257 so it starts with 0 the token ID and if you look at the last entry in this vocabulary it's this end of text and and the token ID corresponding to this end of text is 50256 this signifies that we have reached the end of a document and or end of a sentence and then we are starting the next sentence so typically this end of text token is used by while training GPT to distinguish between separate document sources and what this vocabulary means is that essentially if you are given any text right um it's first the text is essentially converted into a bunch of tokens and then those tokens are assigned token IDs based on this vocabulary or based on this dictionary so it's kind of the you can think of it like a dictionary Oxford dictionary right you have words and you have their meanings similarly here you have words and there is a token ID associated with each word so remember this 50256 that's essentially the end of text what we are going to do here is that all the text messages which have a lesser number of token IDs we are going to append them with this end of text as the padding token 50256 ideally we can use any token as the padding token but the thing is the end of text just is makes symbolic sense right because it signifies that there are no additional letters over here so when the model will encounter end of text it will not get confused by any random word so that way that's why we have used 50256 okay so overall the workflow which we are going to follow is going to look like this we have the we have the input text which is the CSV files in the code right now we have the train validation and test input text we are going to use a tokenizer and we are going to convert this input text into a bunch of token IDs then what we are going to do is that we are going to look for that sentence or that email in our data set which is the longest email and then we are going to make sure that all the text messages have that same length by padding them with this uh end of text token of 50256 now let me take you through code and show you how this is exactly implemented okay so uh yeah so as we have seen earlier we first need to implement a pytorch data set which specifies exactly how the data is loaded and processed before we can instantiate the data loader so there are two things here there is a data set and data loader data data set specifies the how how the data is supposed to be loaded what are the input and Target Pairs and data loader essentially then we can instantiate the data loader but first the data set needs to be defined so that's why initially what we are going to do is we are going to define the spam data set class what this class is going to do is that first of all it's going to identify the longest sequence in the training data set why do we need the longest sequence because we are going to make sure that all the sequences are of the same length as the longest sequence second what it does is that it takes every text message and then it converts it into token IDs and finally the most important thing it does is that it ensures that all the other sequences are padded with a padding token to match the length of the longest sequence essentially this spam data set class is going to perform all of the three steps which we described over here so let's get right into it and start understanding the class when you create an instance of the spam data set class you will need to specify some things so first you have to specify the CSV file so imagine that we have given the training data CSV file right and uh second you have to specify what is the tokenizer which you're using we are going to use this tick token Library a bite pair encoder tokenizer to convert the um to convert essentially the sentence into a bunch of tokens and then those tokens will be converted into token IDs right then we have to specify the max ma length so this max length is basically if you look at the output batch which we saw the max length will be the maximum um length of the email in the entire data set so we are going to look at that email which is the longest length but here what we have given is that we have even given a provision for the user to externally Define the maximum length that is also possible um now the pad token ID is 50256 this means that all the emails which have length shorter than the maximum length we are going to pad them with 50256 so the first step as we have seen on the Whiteboard over here first step is this tokenization right so what we are going to do is that we are going to take the tokenizer and this will be the bite pair encoder tokenizer uh we are going to take the text which is the text file um and then what we are going to do is that we are going to take every single sentence and then we are going to convert that sentence into a bunch of token IDs so tokenizer encod takes sentences converts it into tokens and then using the vocabulary converts those tokens into token IDs so this data is pd. read CSV so let's say we have passed this CSV file first we'll store the data of the P of the CSV file into this data object and then what we'll do is that we'll look at every single email or text message in this data and convert it into a bunch of token IDs to get a sense of the visual representation of this take a look here so at this first step what we are doing is that we taking every single text message and converting it into a bunch of token IDs right now if the user has not specified a maximum length here what we'll first do is we'll find the maximum length of the text message in the entire data set and that will be found through this longest encoded length token longest encoded length function and if you scroll down below you'll see the longest encoded length what it does is that it just finds the length of all of the text messages and then it Returns the maximum length uh among all the text messages so now max length variable contains the longest email length right this is if the user does not specify the max length if the user has specified the max length then the max length will be equal to whatever the user has specified awesome now if there are some sequences in the data set which are longer than the max maximum length this might happen if the user has specified the max length and there are some sequences which are longer than the maximum length we'll have to truncate those text messages so that their length equals the maximum length if the maximum length is selected from the data itself this problem will not arise uh right now this is the next part which is the most important what we do is that for all the text messages we are going to append the token IDs this pad token ID which is 50256 we are going to append it and how many such token idies we are going to append we are going to append how many our token IDs which are needed to get that text message to the maximum length so that is essentially shown in this step we are going to append the token IDs append the 50257 token ID to all the text messages so that all of them have the same size and what is that size that size is max length great and then finally this function is the most important what this function will do is that it will uh create two such tensors it will create a tensor name encoded and it will create a tensor named label the tensor named encoded basically uh will will make sure that every text message has uh has this kind of a encoding in terms of token IDs like this what I've shown on the screen right now so let me just re name this a bit so this Matrix which you seeing on the screen right now and let me Mark it this this Matrix here that is the encoding Matrix or the encoded uh let me check the name here the name is encoded so this is the encoded Matrix or tensor I should call it and this Matrix which I'm or this tensor which I'm highlighting right now that's the label so what this data set will do is that the main function it will is the get item function and when you you call get item it will convert the data set into two tensors the encoded tensor and the labeled tensor the encoded will make sure that every sentence in the data set is converted into a bunch of token IDs and all of the sentences have equal length so that they can be batched together and then the label s tensor will just have zeros or ones right so this is essentially uh what we are doing in the spam data set class okay now uh I have just written here what the spam data set class does the spam data set class loads the data from the CSV files which we have created earlier tokenizes the text using the gpt2 tokenizer from tick token and then allows us to pad or truncate the sequences to uniform length defined by either the longest sequence or predefined maximum length if the user defines their own maximum length what we can now do is we can create an instance of the spam data set class using the train. CSV file uh which we obtained in the previous lecture and here you can see I do not set the maximum length so the maximum length is computed from the data set itself and when you print the maximum length you can see that it's 120 that makes sense uh since the longest sequence in our data set contains no more than 120 tokens it seems like a common length for text messages so one sentence is around 15 to 20 tokens let's say so six sentences uh then that's the maximum length so it's worth noting that the model can handle sequences of up to 1024 tokens because the context length of gpt2 which we have defined as the model here is 1024 right so you can pass max length Max up to a maximum value of 1024 over here when you call this function um now what we are going to do is that we are also going to uh pad the validation and test data sets to match the length of the longest training sequence it it is important to note that any validation and test samples exceeding the length of the longest training examples are truncated so now what we are going to do is that when we create an instance of the spam data set class for the validation and the test data set we pass in the maximum length and that maximum length will be equal to 120 which is the maximum length in the training data set so we will encounter this Loop where maximum length has been defined so there might be some sequences in the tra testing and validation set which are last lger than the maximum length so we will need to truncate those sequences that's what I've written over here however one thing to not is that you can even set the maximum length equal to none here there is no such requirement that the maximum length which you set here has to be equal to the maximum length in the training data set uh you can try out by setting this to none as well okay now uh so here you can see that you can create instances of the validation data set and the testing data set as well and then you can print out the maximum length but right now if you print out the maximum length it will just be equal to 120 because we have passed in that so if you print out the maximum length you can see that it's 120 because we passed in this parameter as a user defined and this was already 120 all right now the data set has been defined right now the data set will serve as an input to the data loader so so remember there are two things here first uh we have to implement a data set and the data set will then be served as an input to the data loader so now what we are going to do next is that we are going to use the data set as the input and then we will instantiate data loaders right uh okay so in when we create or when we pass the data set as an input to the data loader remember that we can set the batch size and we can also set the number of workers that's for parallel processing so here what we are doing is that we are setting the batch size equal to 8 and we are setting the number of workers equal to zero setting number of workers equal to zero is just for the sake of Simplicity we don't want any parallel processing here drop last equal to True means that if the last batch has a smaller data we just drop it uh great so now here you can see train loader you create an instance of the data loader and then you pass in the train data set as the input you similarly you can create the validation loader and the test loader as well so now this test loader validation loader and trade loader when you run this part they'll be initialized and then you can use these loaders to essentially create entire data sets in this format what I'm showing to you on the screen right now so for example when you run the training data loader and you can extract batches from it now you can extract the first batch and then it will give you the uh encoded and the you can extract the second batch you can extract the eighth batch in a very easy manner so after you run this what we can now do is that we can run a test to make sure that the data loaders are working and indeed returning batches of the expected size so here what I'm doing is that I'm iterating through the training data loader uh right till the end and then then I'm going to print the input badge Dimension and the label batch Dimension so if you uh iterate through the training loader till the end you'll see that the input badge Dimension has the size of 8 by 120 can you think what this means and the label badge Dimensions has torch dot size 8 can you try to think what this means you can pause the video here for a moment so these input B Dimension means that since the batch size was eight every input batch has eight rows and 120 columns because the maximum token ID length was 120 so this is exactly what I've shown you over here right on the screen what you're seeing right now uh on the screen what you're seeing is if you look at yeah if you look at this first answer this right here what I'm showing with the arrow right now that that's the input badge and if you look at this input batch you'll see that it has eight rows and it has 120 columns so that's why the size here is 8 by 120 okay similarly you can look at the labels label sensor and here you can see that it just has eight rows over here and it can either have zeros or ones so that's why the size here is 8 and this what I'm showing here is just one batch remember that there are 747 uh examples corresponding to spam and 747 examples corresponding to no spam so if you add these both together you'll get that the total number of data which we have is 1494 right out of that the training data is 70% right so we will have batches corresponding to that so 70% of 1494 let's see so 7 into 1494 uh that's 1045 and I think we have printed this above uh yeah 1045 so the training data set overall has 1045 samples right so the training data set overall has uh training data set overall has 1045 samples in the training data set and now if each batch has eight such samples the batch size is eight right which means each batch will have eight samples if each batch has eight samples eight samples in each batch how many batches do you think will be in the training data set so then the number of batches will be number of batches will be 1045 divided by 8 which is approximately 130 batches and we can actually test this what I've done at the end of this code is that I have printed the length of the training loader which will give me the number of training batches and here we can see that we have 130 training batches and that exactly fits our intuition which you have written on the Whiteboard similarly what you can do is that you can print out the length of the validation loader the length of the test loader as well and you'll see that there are 19 validation batches and 38 test batches remember that we have 20% of the data as test and 10% of the data as validation that's why the number of test batches are exactly two times that of the number of validation batches and why does the length of the training loader give you the number of batches because if you print out one batch that has eight eight samples right so actually the training loader this is just one batch so the the training loader Dimensions will be so one batch of the training loader has the dimension of uh 88 rows and 120 column right and there are 130 such batches so if you print out the dimension of the entire training loader it will be 130 by 8X 120 it will be a threedimensional tensor similarly for the testing loader the dimensions would be uh 38 38 8 120 and for the validation the dimensions would be 19820 the dimensions of the validation loader right so now until this part this concludes the data preparation steps which means that now we have got these data loaders we have got the training loader validation loader and test loader through these data loaders we can easily extract the batches the input batch and the label batch which we need at any time and that just better so now we have created input and Target pairs remember when we trained the llm the target pair here was also a token ID representation it was just shifted from the input to the right by one so the difference here is that the target pair here are zero and ones they are not token IDs awesome so until now we have looked at this entire First Column is now over in the previous lecture we saw downloading the data set and pre-processing the data set in today's lecture we saw how to create data loaders for the training data set the validation data set and the testing data set in the next lectures we are going to start looking at the stage two which is we are going to initialize the llm model we are going to load the pre-train weights we are going to modify the model for fine tuning and then finally in the subsequent lectures we'll evaluate the F tune model so we have done the hard work of data pre-processing data cleaning and using data sets and data loaders which is usually so important before we directly jump to the model training itself so I hope you all are liking these lectures I usually try to maintain an approach of whiteboard plus coding since my aim is to train ml Engineers who are not just good at using chat GPD uh but I want every one of you who are following these lectures to have very strong fundamental and theoretical understanding because that's what's lacking in today's Engineers thanks a lot everyone and I look forward to seeing you in the next lecture"
+}

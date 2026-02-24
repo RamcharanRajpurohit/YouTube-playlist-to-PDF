@@ -1,0 +1,5341 @@
+{
+  "video": {
+    "video_id": "F1Sm7z2R96w",
+    "title": "Coding GPT-2 to predict the next token",
+    "duration": 2459.0,
+    "index": 24
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.879
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.12,
+      "duration": 5.12
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 7.879,
+      "duration": 5.8
+    },
+    {
+      "text": "scratch Series today is the last lecture",
+      "start": 10.24,
+      "duration": 6.56
+    },
+    {
+      "text": "in the GPT architecture module which we",
+      "start": 13.679,
+      "duration": 5.201
+    },
+    {
+      "text": "have been covering and in today's",
+      "start": 16.8,
+      "duration": 4.28
+    },
+    {
+      "text": "lecture what we are going to do is that",
+      "start": 18.88,
+      "duration": 4.239
+    },
+    {
+      "text": "we are going to generate text from the",
+      "start": 21.08,
+      "duration": 3.48
+    },
+    {
+      "text": "output",
+      "start": 23.119,
+      "duration": 4.121
+    },
+    {
+      "text": "tensor which we have reached at in the",
+      "start": 24.56,
+      "duration": 6.28
+    },
+    {
+      "text": "last lecture so first let me give you a",
+      "start": 27.24,
+      "duration": 6.4
+    },
+    {
+      "text": "review of how an llm generates text",
+      "start": 30.84,
+      "duration": 4.719
+    },
+    {
+      "text": "because this figure right here is what",
+      "start": 33.64,
+      "duration": 3.72
+    },
+    {
+      "text": "will guide us throughout this entire",
+      "start": 35.559,
+      "duration": 4.16
+    },
+    {
+      "text": "lecture and then I'll quickly take you",
+      "start": 37.36,
+      "duration": 4.92
+    },
+    {
+      "text": "through the recap of what all we have",
+      "start": 39.719,
+      "duration": 4.881
+    },
+    {
+      "text": "completed so far and what's the main",
+      "start": 42.28,
+      "duration": 5.119
+    },
+    {
+      "text": "objective of today's lecture so let's",
+      "start": 44.6,
+      "duration": 4.119
+    },
+    {
+      "text": "get started",
+      "start": 47.399,
+      "duration": 3.8
+    },
+    {
+      "text": "everyone what a large language model",
+      "start": 48.719,
+      "duration": 5.441
+    },
+    {
+      "text": "does is essentially the following it",
+      "start": 51.199,
+      "duration": 6.121
+    },
+    {
+      "text": "generates tokens given a certain",
+      "start": 54.16,
+      "duration": 6.0
+    },
+    {
+      "text": "sequence of input tokens it generates",
+      "start": 57.32,
+      "duration": 4.399
+    },
+    {
+      "text": "the output",
+      "start": 60.16,
+      "duration": 4.48
+    },
+    {
+      "text": "token and uh to generate the output",
+      "start": 61.719,
+      "duration": 6.08
+    },
+    {
+      "text": "token the model is given a context size",
+      "start": 64.64,
+      "duration": 4.96
+    },
+    {
+      "text": "that's the maximum number of tokens",
+      "start": 67.799,
+      "duration": 3.36
+    },
+    {
+      "text": "which the model looks at before",
+      "start": 69.6,
+      "duration": 3.92
+    },
+    {
+      "text": "predicting the next",
+      "start": 71.159,
+      "duration": 5.6
+    },
+    {
+      "text": "token so uh let's say when we are",
+      "start": 73.52,
+      "duration": 5.639
+    },
+    {
+      "text": "looking at the first iteration this is",
+      "start": 76.759,
+      "duration": 5.641
+    },
+    {
+      "text": "the input tokens hello I am and the",
+      "start": 79.159,
+      "duration": 6.481
+    },
+    {
+      "text": "model has to predict the next",
+      "start": 82.4,
+      "duration": 6.28
+    },
+    {
+      "text": "token and then the next token is",
+      "start": 85.64,
+      "duration": 5.04
+    },
+    {
+      "text": "actually appended",
+      "start": 88.68,
+      "duration": 4.04
+    },
+    {
+      "text": "to the input tokens so in the second",
+      "start": 90.68,
+      "duration": 5.52
+    },
+    {
+      "text": "iterations now the inputs are hello I am",
+      "start": 92.72,
+      "duration": 5.92
+    },
+    {
+      "text": "a uh so the token which has been",
+      "start": 96.2,
+      "duration": 4.879
+    },
+    {
+      "text": "generated in the previous round is",
+      "start": 98.64,
+      "duration": 5.479
+    },
+    {
+      "text": "appended to the input for the next",
+      "start": 101.079,
+      "duration": 5.161
+    },
+    {
+      "text": "iteration and in the next iteration the",
+      "start": 104.119,
+      "duration": 5.161
+    },
+    {
+      "text": "input tokens are hello I am a and then",
+      "start": 106.24,
+      "duration": 5.559
+    },
+    {
+      "text": "the output is",
+      "start": 109.28,
+      "duration": 5.96
+    },
+    {
+      "text": "model great then in the third iteration",
+      "start": 111.799,
+      "duration": 6.041
+    },
+    {
+      "text": "we have hello I am a model which are the",
+      "start": 115.24,
+      "duration": 5.44
+    },
+    {
+      "text": "input tokens and then the output tokens",
+      "start": 117.84,
+      "duration": 4.199
+    },
+    {
+      "text": "are",
+      "start": 120.68,
+      "duration": 4.119
+    },
+    {
+      "text": "ready similarly we continue doing",
+      "start": 122.039,
+      "duration": 4.76
+    },
+    {
+      "text": "iterations until there is a specific",
+      "start": 124.799,
+      "duration": 4.121
+    },
+    {
+      "text": "number of Max maximum number of new",
+      "start": 126.799,
+      "duration": 4.921
+    },
+    {
+      "text": "tokens which can be generated so let's",
+      "start": 128.92,
+      "duration": 4.64
+    },
+    {
+      "text": "say we have reached the six iteration",
+      "start": 131.72,
+      "duration": 4.48
+    },
+    {
+      "text": "and hello I am ready to help so the new",
+      "start": 133.56,
+      "duration": 4.28
+    },
+    {
+      "text": "tokens which have been generated are",
+      "start": 136.2,
+      "duration": 5.119
+    },
+    {
+      "text": "model ready to and help and Dot so five",
+      "start": 137.84,
+      "duration": 6.64
+    },
+    {
+      "text": "new tokens so if the maximum number of",
+      "start": 141.319,
+      "duration": 5.681
+    },
+    {
+      "text": "new tokens is five then the output from",
+      "start": 144.48,
+      "duration": 4.72
+    },
+    {
+      "text": "the model is hello I am a model ready to",
+      "start": 147.0,
+      "duration": 4.12
+    },
+    {
+      "text": "help",
+      "start": 149.2,
+      "duration": 4.319
+    },
+    {
+      "text": "this is the main uh mechanism through",
+      "start": 151.12,
+      "duration": 4.839
+    },
+    {
+      "text": "which the next token is generated from a",
+      "start": 153.519,
+      "duration": 4.761
+    },
+    {
+      "text": "given list of tokens what's very",
+      "start": 155.959,
+      "duration": 4.241
+    },
+    {
+      "text": "important in this process is also the",
+      "start": 158.28,
+      "duration": 4.319
+    },
+    {
+      "text": "context size that's the maximum number",
+      "start": 160.2,
+      "duration": 4.8
+    },
+    {
+      "text": "of previous tokens the llm is going to",
+      "start": 162.599,
+      "duration": 4.881
+    },
+    {
+      "text": "look at before predicting the next token",
+      "start": 165.0,
+      "duration": 5.04
+    },
+    {
+      "text": "in gpt2 architecture the context size",
+      "start": 167.48,
+      "duration": 4.119
+    },
+    {
+      "text": "was",
+      "start": 170.04,
+      "duration": 4.24
+    },
+    {
+      "text": "1,24 so just keep this in mind keep this",
+      "start": 171.599,
+      "duration": 4.56
+    },
+    {
+      "text": "iterative procedure in mind where the",
+      "start": 174.28,
+      "duration": 3.679
+    },
+    {
+      "text": "output from the earlier iteration is",
+      "start": 176.159,
+      "duration": 4.761
+    },
+    {
+      "text": "appended to the next iteration and the",
+      "start": 177.959,
+      "duration": 5.081
+    },
+    {
+      "text": "next word is predicted and this keeps on",
+      "start": 180.92,
+      "duration": 3.8
+    },
+    {
+      "text": "happening until we have reached the",
+      "start": 183.04,
+      "duration": 4.479
+    },
+    {
+      "text": "maximum number of new tokens this is the",
+      "start": 184.72,
+      "duration": 4.4
+    },
+    {
+      "text": "exact mechanism which we are going to",
+      "start": 187.519,
+      "duration": 3.161
+    },
+    {
+      "text": "implement in today's",
+      "start": 189.12,
+      "duration": 3.96
+    },
+    {
+      "text": "lecture first let's recap what all we",
+      "start": 190.68,
+      "duration": 4.52
+    },
+    {
+      "text": "have learned so far in this series we",
+      "start": 193.08,
+      "duration": 4.68
+    },
+    {
+      "text": "started out with getting an input such",
+      "start": 195.2,
+      "duration": 4.48
+    },
+    {
+      "text": "as every effort moves you that's the",
+      "start": 197.76,
+      "duration": 4.0
+    },
+    {
+      "text": "input sentence we converted it into",
+      "start": 199.68,
+      "duration": 4.72
+    },
+    {
+      "text": "token IDs we converted it into input",
+      "start": 201.76,
+      "duration": 4.88
+    },
+    {
+      "text": "embeddings sorry we converted it into",
+      "start": 204.4,
+      "duration": 4.479
+    },
+    {
+      "text": "token embeddings we added positional",
+      "start": 206.64,
+      "duration": 3.799
+    },
+    {
+      "text": "embeddings to this token embeddings",
+      "start": 208.879,
+      "duration": 3.64
+    },
+    {
+      "text": "which led to input embeddings then we",
+      "start": 210.439,
+      "duration": 4.36
+    },
+    {
+      "text": "added a Dropout layer the output from",
+      "start": 212.519,
+      "duration": 4.321
+    },
+    {
+      "text": "this Dropout layer was passed into the",
+      "start": 214.799,
+      "duration": 4.481
+    },
+    {
+      "text": "Transformer block the Transformer block",
+      "start": 216.84,
+      "duration": 4.0
+    },
+    {
+      "text": "which is shown in blue color is where",
+      "start": 219.28,
+      "duration": 3.64
+    },
+    {
+      "text": "all the magic really happens and the",
+      "start": 220.84,
+      "duration": 4.039
+    },
+    {
+      "text": "core engine of the Transformer block is",
+      "start": 222.92,
+      "duration": 4.519
+    },
+    {
+      "text": "multi-head attention before the multi-ad",
+      "start": 224.879,
+      "duration": 4.881
+    },
+    {
+      "text": "attention there is a normalization layer",
+      "start": 227.439,
+      "duration": 3.921
+    },
+    {
+      "text": "after the multi-ad attention we have a",
+      "start": 229.76,
+      "duration": 4.08
+    },
+    {
+      "text": "Dropout and a shortcut connection then",
+      "start": 231.36,
+      "duration": 4.0
+    },
+    {
+      "text": "after the shortcut connection we have",
+      "start": 233.84,
+      "duration": 3.8
+    },
+    {
+      "text": "another layer of normalization we have a",
+      "start": 235.36,
+      "duration": 4.439
+    },
+    {
+      "text": "feed forward neural network we have",
+      "start": 237.64,
+      "duration": 4.159
+    },
+    {
+      "text": "another Dropout layer then we have one",
+      "start": 239.799,
+      "duration": 4.16
+    },
+    {
+      "text": "more shortcut connection over here and",
+      "start": 241.799,
+      "duration": 5.0
+    },
+    {
+      "text": "then we get the output from the",
+      "start": 243.959,
+      "duration": 5.761
+    },
+    {
+      "text": "Transformer after the output is obtained",
+      "start": 246.799,
+      "duration": 5.041
+    },
+    {
+      "text": "from the Transformer we have one more",
+      "start": 249.72,
+      "duration": 4.56
+    },
+    {
+      "text": "layer normalization layer and then we",
+      "start": 251.84,
+      "duration": 4.44
+    },
+    {
+      "text": "have a final neural network which is",
+      "start": 254.28,
+      "duration": 3.76
+    },
+    {
+      "text": "also called as the output head which",
+      "start": 256.28,
+      "duration": 3.359
+    },
+    {
+      "text": "gives us this output",
+      "start": 258.04,
+      "duration": 3.919
+    },
+    {
+      "text": "tensor all of this has been covered in",
+      "start": 259.639,
+      "duration": 4.12
+    },
+    {
+      "text": "the previous two lectures where we coded",
+      "start": 261.959,
+      "duration": 3.841
+    },
+    {
+      "text": "out the entire Transformer block and in",
+      "start": 263.759,
+      "duration": 3.88
+    },
+    {
+      "text": "the last lecture we coded out the entire",
+      "start": 265.8,
+      "duration": 4.119
+    },
+    {
+      "text": "GPT model so if you have not seen seen",
+      "start": 267.639,
+      "duration": 4.361
+    },
+    {
+      "text": "the previous lectures I highly recommend",
+      "start": 269.919,
+      "duration": 3.801
+    },
+    {
+      "text": "you to do that so that you can follow",
+      "start": 272.0,
+      "duration": 5.44
+    },
+    {
+      "text": "along in this lecture as well so uh let",
+      "start": 273.72,
+      "duration": 6.16
+    },
+    {
+      "text": "us see the exact flow which we have",
+      "start": 277.44,
+      "duration": 4.4
+    },
+    {
+      "text": "implemented so far and what we need to",
+      "start": 279.88,
+      "duration": 4.64
+    },
+    {
+      "text": "do next so the output or the main goal",
+      "start": 281.84,
+      "duration": 4.359
+    },
+    {
+      "text": "of the today's lecture is that look at",
+      "start": 284.52,
+      "duration": 3.399
+    },
+    {
+      "text": "this output tensor which we have",
+      "start": 286.199,
+      "duration": 4.28
+    },
+    {
+      "text": "obtained this output tensor looks pretty",
+      "start": 287.919,
+      "duration": 4.521
+    },
+    {
+      "text": "big right so your question would be how",
+      "start": 290.479,
+      "duration": 4.16
+    },
+    {
+      "text": "do I go from this output tensor to",
+      "start": 292.44,
+      "duration": 4.08
+    },
+    {
+      "text": "prediction of the next word which I have",
+      "start": 294.639,
+      "duration": 4.241
+    },
+    {
+      "text": "shown in this visual representation in",
+      "start": 296.52,
+      "duration": 4.56
+    },
+    {
+      "text": "today's lecture first we are going to",
+      "start": 298.88,
+      "duration": 4.159
+    },
+    {
+      "text": "understand that on a whiteboard and then",
+      "start": 301.08,
+      "duration": 5.08
+    },
+    {
+      "text": "we are going to go to code to predict",
+      "start": 303.039,
+      "duration": 5.0
+    },
+    {
+      "text": "the next word so at the end of today's",
+      "start": 306.16,
+      "duration": 3.72
+    },
+    {
+      "text": "lecture we will actually take an input",
+      "start": 308.039,
+      "duration": 4.281
+    },
+    {
+      "text": "and get words as the next",
+      "start": 309.88,
+      "duration": 4.68
+    },
+    {
+      "text": "predictions okay so here's the entire",
+      "start": 312.32,
+      "duration": 4.159
+    },
+    {
+      "text": "pipeline which we saw remember the",
+      "start": 314.56,
+      "duration": 3.359
+    },
+    {
+      "text": "format in which we have received the",
+      "start": 316.479,
+      "duration": 4.121
+    },
+    {
+      "text": "input batches uh here there were two",
+      "start": 317.919,
+      "duration": 4.881
+    },
+    {
+      "text": "batches and each batch has certain",
+      "start": 320.6,
+      "duration": 3.84
+    },
+    {
+      "text": "number of tokens so in this case each",
+      "start": 322.8,
+      "duration": 4.16
+    },
+    {
+      "text": "batch had four tokens we focused on the",
+      "start": 324.44,
+      "duration": 4.52
+    },
+    {
+      "text": "first batch which has four tokens and",
+      "start": 326.96,
+      "duration": 5.4
+    },
+    {
+      "text": "that's every moves you we converted",
+      "start": 328.96,
+      "duration": 6.239
+    },
+    {
+      "text": "every token ID there are four token IDs",
+      "start": 332.36,
+      "duration": 4.32
+    },
+    {
+      "text": "here 6",
+      "start": 335.199,
+      "duration": 7.241
+    },
+    {
+      "text": "6109 3626 610 and 345 we converted every",
+      "start": 336.68,
+      "duration": 8.6
+    },
+    {
+      "text": "token ID into a token embedding so the",
+      "start": 342.44,
+      "duration": 6.36
+    },
+    {
+      "text": "embedding size was 768 over here and",
+      "start": 345.28,
+      "duration": 5.56
+    },
+    {
+      "text": "then what we did was we added positional",
+      "start": 348.8,
+      "duration": 4.0
+    },
+    {
+      "text": "embedding to these token embeddings",
+      "start": 350.84,
+      "duration": 4.079
+    },
+    {
+      "text": "since the context size is four over here",
+      "start": 352.8,
+      "duration": 4.08
+    },
+    {
+      "text": "we have four positions and there is a",
+      "start": 354.919,
+      "duration": 4.041
+    },
+    {
+      "text": "768 dimensional embedding for the",
+      "start": 356.88,
+      "duration": 3.36
+    },
+    {
+      "text": "positional",
+      "start": 358.96,
+      "duration": 2.16
+    },
+    {
+      "text": "uh",
+      "start": 360.24,
+      "duration": 3.88
+    },
+    {
+      "text": "embedding so we add the token embedding",
+      "start": 361.12,
+      "duration": 4.519
+    },
+    {
+      "text": "to the positional embedding and that",
+      "start": 364.12,
+      "duration": 3.84
+    },
+    {
+      "text": "gives us the input embedding for every",
+      "start": 365.639,
+      "duration": 5.321
+    },
+    {
+      "text": "token for every effort moves and U so we",
+      "start": 367.96,
+      "duration": 4.72
+    },
+    {
+      "text": "have these four input embeddings for",
+      "start": 370.96,
+      "duration": 4.48
+    },
+    {
+      "text": "these four tokens then what we do is we",
+      "start": 372.68,
+      "duration": 4.519
+    },
+    {
+      "text": "pass these input embeddings through a",
+      "start": 375.44,
+      "duration": 4.12
+    },
+    {
+      "text": "Dropout layer which randomly turns off",
+      "start": 377.199,
+      "duration": 4.921
+    },
+    {
+      "text": "certain elements to zero this output",
+      "start": 379.56,
+      "duration": 4.039
+    },
+    {
+      "text": "which I'm highlighting in the yellow",
+      "start": 382.12,
+      "duration": 3.44
+    },
+    {
+      "text": "color right now that is passed as an",
+      "start": 383.599,
+      "duration": 4.401
+    },
+    {
+      "text": "input to the Transformer this is where",
+      "start": 385.56,
+      "duration": 4.079
+    },
+    {
+      "text": "all the magic happens in the trans",
+      "start": 388.0,
+      "duration": 2.8
+    },
+    {
+      "text": "former we first start with a",
+      "start": 389.639,
+      "duration": 3.84
+    },
+    {
+      "text": "normalization layer which makes sure",
+      "start": 390.8,
+      "duration": 4.72
+    },
+    {
+      "text": "that the mean and variance across so",
+      "start": 393.479,
+      "duration": 4.081
+    },
+    {
+      "text": "mean is zero across every row and the",
+      "start": 395.52,
+      "duration": 4.799
+    },
+    {
+      "text": "variance is one across every single row",
+      "start": 397.56,
+      "duration": 4.6
+    },
+    {
+      "text": "then we apply the multi-head attention",
+      "start": 400.319,
+      "duration": 3.681
+    },
+    {
+      "text": "which converts these embedding vectors",
+      "start": 402.16,
+      "duration": 4.4
+    },
+    {
+      "text": "into context vectors which carry richer",
+      "start": 404.0,
+      "duration": 4.56
+    },
+    {
+      "text": "meaning they also carry meaning about",
+      "start": 406.56,
+      "duration": 4.039
+    },
+    {
+      "text": "how the particular token attends to all",
+      "start": 408.56,
+      "duration": 5.44
+    },
+    {
+      "text": "the other tokens uh or how one token",
+      "start": 410.599,
+      "duration": 5.121
+    },
+    {
+      "text": "relates to all the other tokens in the",
+      "start": 414.0,
+      "duration": 5.08
+    },
+    {
+      "text": "sentence this mask multi-ad attention is",
+      "start": 415.72,
+      "duration": 5.12
+    },
+    {
+      "text": "the key evolution in the llm",
+      "start": 419.08,
+      "duration": 5.16
+    },
+    {
+      "text": "architecture and that's why modern GPT",
+      "start": 420.84,
+      "duration": 5.639
+    },
+    {
+      "text": "architecture such as the GPT 4 which we",
+      "start": 424.24,
+      "duration": 4.0
+    },
+    {
+      "text": "all have been using perform so",
+      "start": 426.479,
+      "duration": 4.081
+    },
+    {
+      "text": "brilliantly if multi-ad attention was",
+      "start": 428.24,
+      "duration": 4.399
+    },
+    {
+      "text": "not there the llm outputs would not be",
+      "start": 430.56,
+      "duration": 5.4
+    },
+    {
+      "text": "so coherent and so meaningful after this",
+      "start": 432.639,
+      "duration": 6.56
+    },
+    {
+      "text": "we have a Dropout layer then we have a",
+      "start": 435.96,
+      "duration": 5.959
+    },
+    {
+      "text": "shortcut connection followed by a layer",
+      "start": 439.199,
+      "duration": 5.201
+    },
+    {
+      "text": "normalization followed by a feed forward",
+      "start": 441.919,
+      "duration": 3.921
+    },
+    {
+      "text": "neural",
+      "start": 444.4,
+      "duration": 3.88
+    },
+    {
+      "text": "network followed by another Dropout",
+      "start": 445.84,
+      "duration": 4.0
+    },
+    {
+      "text": "layer followed by a short shortcut",
+      "start": 448.28,
+      "duration": 3.199
+    },
+    {
+      "text": "connection and then we get the",
+      "start": 449.84,
+      "duration": 4.199
+    },
+    {
+      "text": "Transformer block output remember here",
+      "start": 451.479,
+      "duration": 4.84
+    },
+    {
+      "text": "the dimensions up till this stage are",
+      "start": 454.039,
+      "duration": 4.521
+    },
+    {
+      "text": "exactly preserved so we still have four",
+      "start": 456.319,
+      "duration": 4.28
+    },
+    {
+      "text": "tokens here and every token is still an",
+      "start": 458.56,
+      "duration": 3.479
+    },
+    {
+      "text": "embedding size of",
+      "start": 460.599,
+      "duration": 4.0
+    },
+    {
+      "text": "768 but now the embeddings are much more",
+      "start": 462.039,
+      "duration": 5.16
+    },
+    {
+      "text": "richer because they also contain uh",
+      "start": 464.599,
+      "duration": 4.56
+    },
+    {
+      "text": "context about how one token relates to",
+      "start": 467.199,
+      "duration": 4.921
+    },
+    {
+      "text": "other tokens then we have after coming",
+      "start": 469.159,
+      "duration": 6.44
+    },
+    {
+      "text": "out of the Transformer we have a layer",
+      "start": 472.12,
+      "duration": 5.96
+    },
+    {
+      "text": "normalization and then we have the final",
+      "start": 475.599,
+      "duration": 4.72
+    },
+    {
+      "text": "output layer which is this fin neural",
+      "start": 478.08,
+      "duration": 5.679
+    },
+    {
+      "text": "network now after this stage is where",
+      "start": 480.319,
+      "duration": 6.0
+    },
+    {
+      "text": "today's lecture begins so first I want",
+      "start": 483.759,
+      "duration": 4.361
+    },
+    {
+      "text": "you to look at the output which we have",
+      "start": 486.319,
+      "duration": 4.16
+    },
+    {
+      "text": "received when we come out of the entire",
+      "start": 488.12,
+      "duration": 5.359
+    },
+    {
+      "text": "GPT model so the number of rows are",
+      "start": 490.479,
+      "duration": 5.16
+    },
+    {
+      "text": "still the same we have four rows every",
+      "start": 493.479,
+      "duration": 4.521
+    },
+    {
+      "text": "effort is the second row moves is the",
+      "start": 495.639,
+      "duration": 5.321
+    },
+    {
+      "text": "third row and U is the fourth row but",
+      "start": 498.0,
+      "duration": 4.96
+    },
+    {
+      "text": "the number of columns are now",
+      "start": 500.96,
+      "duration": 5.28
+    },
+    {
+      "text": "50257 which is the vocabulary size and",
+      "start": 502.96,
+      "duration": 5.639
+    },
+    {
+      "text": "uh why do we have those many number of",
+      "start": 506.24,
+      "duration": 5.04
+    },
+    {
+      "text": "columns the the reason is because every",
+      "start": 508.599,
+      "duration": 5.0
+    },
+    {
+      "text": "effort moves you these are four tokens",
+      "start": 511.28,
+      "duration": 4.639
+    },
+    {
+      "text": "right which is also the context size",
+      "start": 513.599,
+      "duration": 4.201
+    },
+    {
+      "text": "when the context size is equal to four",
+      "start": 515.919,
+      "duration": 4.201
+    },
+    {
+      "text": "there are actually Four input output",
+      "start": 517.8,
+      "duration": 4.599
+    },
+    {
+      "text": "prediction tasks which are happening",
+      "start": 520.12,
+      "duration": 4.159
+    },
+    {
+      "text": "there is not just one input output",
+      "start": 522.399,
+      "duration": 3.681
+    },
+    {
+      "text": "prediction task so you might be thinking",
+      "start": 524.279,
+      "duration": 3.441
+    },
+    {
+      "text": "how come there are four input output",
+      "start": 526.08,
+      "duration": 3.72
+    },
+    {
+      "text": "prediction task well the first",
+      "start": 527.72,
+      "duration": 4.08
+    },
+    {
+      "text": "prediction task is when every is an",
+      "start": 529.8,
+      "duration": 4.039
+    },
+    {
+      "text": "input you have to predict what's the",
+      "start": 531.8,
+      "duration": 4.08
+    },
+    {
+      "text": "output and that should be effort right",
+      "start": 533.839,
+      "duration": 4.68
+    },
+    {
+      "text": "so you look at these output Logics so",
+      "start": 535.88,
+      "duration": 4.959
+    },
+    {
+      "text": "these are called logics you look at the",
+      "start": 538.519,
+      "duration": 5.681
+    },
+    {
+      "text": "50257 output logits for every and then",
+      "start": 540.839,
+      "duration": 5.041
+    },
+    {
+      "text": "you find that index which has the",
+      "start": 544.2,
+      "duration": 4.04
+    },
+    {
+      "text": "highest value so let's say this index",
+      "start": 545.88,
+      "duration": 5.36
+    },
+    {
+      "text": "has the highest value right remember",
+      "start": 548.24,
+      "duration": 5.12
+    },
+    {
+      "text": "this index also correspond to",
+      "start": 551.24,
+      "duration": 6.159
+    },
+    {
+      "text": "probabilities so this index will give us",
+      "start": 553.36,
+      "duration": 7.159
+    },
+    {
+      "text": "which word in the entire vocabulary",
+      "start": 557.399,
+      "duration": 5.44
+    },
+    {
+      "text": "should come after every and then",
+      "start": 560.519,
+      "duration": 4.961
+    },
+    {
+      "text": "hopefully this token ID here or this",
+      "start": 562.839,
+      "duration": 4.881
+    },
+    {
+      "text": "index corresponds to effort so then if",
+      "start": 565.48,
+      "duration": 4.24
+    },
+    {
+      "text": "when every is the input effort is the",
+      "start": 567.72,
+      "duration": 4.76
+    },
+    {
+      "text": "output similarly when every effort is",
+      "start": 569.72,
+      "duration": 6.64
+    },
+    {
+      "text": "the input we look at the row for effort",
+      "start": 572.48,
+      "duration": 5.96
+    },
+    {
+      "text": "and we try to look at that index which",
+      "start": 576.36,
+      "duration": 3.919
+    },
+    {
+      "text": "has the maximum value let's say this is",
+      "start": 578.44,
+      "duration": 4.6
+    },
+    {
+      "text": "that Index this is that token ID then we",
+      "start": 580.279,
+      "duration": 4.441
+    },
+    {
+      "text": "go to our vocabulary and look for the",
+      "start": 583.04,
+      "duration": 4.039
+    },
+    {
+      "text": "word which corresponds to this token ID",
+      "start": 584.72,
+      "duration": 4.92
+    },
+    {
+      "text": "and that will be moves after all the",
+      "start": 587.079,
+      "duration": 4.44
+    },
+    {
+      "text": "weights and parameters have been",
+      "start": 589.64,
+      "duration": 4.72
+    },
+    {
+      "text": "optimized when every effort moves is the",
+      "start": 591.519,
+      "duration": 5.401
+    },
+    {
+      "text": "input then we look at again the row",
+      "start": 594.36,
+      "duration": 4.76
+    },
+    {
+      "text": "corresponding to moves and we try to",
+      "start": 596.92,
+      "duration": 5.12
+    },
+    {
+      "text": "look at that token ID or that index",
+      "start": 599.12,
+      "duration": 6.52
+    },
+    {
+      "text": "which gives us the maximum value and",
+      "start": 602.04,
+      "duration": 5.72
+    },
+    {
+      "text": "then we look at the vocabulary and we",
+      "start": 605.64,
+      "duration": 4.199
+    },
+    {
+      "text": "try to find out what that ID corresponds",
+      "start": 607.76,
+      "duration": 4.72
+    },
+    {
+      "text": "to and that will be you only after these",
+      "start": 609.839,
+      "duration": 5.12
+    },
+    {
+      "text": "three prediction tasks are done then we",
+      "start": 612.48,
+      "duration": 4.2
+    },
+    {
+      "text": "come to the fourth prediction task which",
+      "start": 614.959,
+      "duration": 4.32
+    },
+    {
+      "text": "is the main prediction task when the",
+      "start": 616.68,
+      "duration": 4.76
+    },
+    {
+      "text": "input is every effort moves you you have",
+      "start": 619.279,
+      "duration": 4.161
+    },
+    {
+      "text": "to predict the output right so you look",
+      "start": 621.44,
+      "duration": 4.839
+    },
+    {
+      "text": "at the fourth row which is the final row",
+      "start": 623.44,
+      "duration": 5.32
+    },
+    {
+      "text": "and you try to find that ID which gives",
+      "start": 626.279,
+      "duration": 5.321
+    },
+    {
+      "text": "you the maximum value and then you find",
+      "start": 628.76,
+      "duration": 5.04
+    },
+    {
+      "text": "the word corresponding to that and that",
+      "start": 631.6,
+      "duration": 4.2
+    },
+    {
+      "text": "word will hopefully be forward so then",
+      "start": 633.8,
+      "duration": 3.8
+    },
+    {
+      "text": "the next word which will be predicted by",
+      "start": 635.8,
+      "duration": 4.0
+    },
+    {
+      "text": "this LM is every effort knows you",
+      "start": 637.6,
+      "duration": 5.44
+    },
+    {
+      "text": "forward and remember the size of the",
+      "start": 639.8,
+      "duration": 5.32
+    },
+    {
+      "text": "output over here since we have only one",
+      "start": 643.04,
+      "duration": 3.84
+    },
+    {
+      "text": "batch over here the number of rows in",
+      "start": 645.12,
+      "duration": 3.959
+    },
+    {
+      "text": "the output are equal to four and the",
+      "start": 646.88,
+      "duration": 3.759
+    },
+    {
+      "text": "number of columns are equal to the",
+      "start": 649.079,
+      "duration": 3.801
+    },
+    {
+      "text": "vocabulary size which is",
+      "start": 650.639,
+      "duration": 4.64
+    },
+    {
+      "text": "50257 uh when the number of batches are",
+      "start": 652.88,
+      "duration": 4.68
+    },
+    {
+      "text": "equal to two the output tensor size will",
+      "start": 655.279,
+      "duration": 4.881
+    },
+    {
+      "text": "be 2 into 4 into",
+      "start": 657.56,
+      "duration": 4.839
+    },
+    {
+      "text": "50257 what we have to do is that from",
+      "start": 660.16,
+      "duration": 4.32
+    },
+    {
+      "text": "this tensor we have to extract that word",
+      "start": 662.399,
+      "duration": 4.721
+    },
+    {
+      "text": "which comes after every effort moves you",
+      "start": 664.48,
+      "duration": 5.68
+    },
+    {
+      "text": "so let's see how the first step is to",
+      "start": 667.12,
+      "duration": 5.719
+    },
+    {
+      "text": "take a look at this output tensor and",
+      "start": 670.16,
+      "duration": 4.119
+    },
+    {
+      "text": "make sense of it that we have four",
+      "start": 672.839,
+      "duration": 4.12
+    },
+    {
+      "text": "tokens and the number of columns is",
+      "start": 674.279,
+      "duration": 5.0
+    },
+    {
+      "text": "equal to the vocabulary size awesome as",
+      "start": 676.959,
+      "duration": 4.281
+    },
+    {
+      "text": "I told you every row corresponds to",
+      "start": 679.279,
+      "duration": 3.56
+    },
+    {
+      "text": "something specific so the first row",
+      "start": 681.24,
+      "duration": 3.279
+    },
+    {
+      "text": "corresponds to what token should come",
+      "start": 682.839,
+      "duration": 3.921
+    },
+    {
+      "text": "after every the second row corresponds",
+      "start": 684.519,
+      "duration": 4.12
+    },
+    {
+      "text": "to what token should come after every",
+      "start": 686.76,
+      "duration": 4.24
+    },
+    {
+      "text": "effort the third row corresponds to what",
+      "start": 688.639,
+      "duration": 4.0
+    },
+    {
+      "text": "token should come after every effort",
+      "start": 691.0,
+      "duration": 3.8
+    },
+    {
+      "text": "moves you and only the fourth row",
+      "start": 692.639,
+      "duration": 3.921
+    },
+    {
+      "text": "corresponds to what token should come",
+      "start": 694.8,
+      "duration": 4.92
+    },
+    {
+      "text": "after every effort moves you so we are",
+      "start": 696.56,
+      "duration": 5.399
+    },
+    {
+      "text": "going to extract the last Vector from",
+      "start": 699.72,
+      "duration": 4.919
+    },
+    {
+      "text": "this tensor that's step number two so we",
+      "start": 701.959,
+      "duration": 4.241
+    },
+    {
+      "text": "will look at the vector which is",
+      "start": 704.639,
+      "duration": 5.521
+    },
+    {
+      "text": "corresponding to um U which I'm marking",
+      "start": 706.2,
+      "duration": 7.12
+    },
+    {
+      "text": "right now and we'll extract this Vector",
+      "start": 710.16,
+      "duration": 5.04
+    },
+    {
+      "text": "after this Vector is extracted this is",
+      "start": 713.32,
+      "duration": 4.319
+    },
+    {
+      "text": "called as the logits vector we look at",
+      "start": 715.2,
+      "duration": 4.439
+    },
+    {
+      "text": "the logits which are present and you'll",
+      "start": 717.639,
+      "duration": 3.801
+    },
+    {
+      "text": "see that these logits don't add up to",
+      "start": 719.639,
+      "duration": 3.601
+    },
+    {
+      "text": "one which means that the logits",
+      "start": 721.44,
+      "duration": 3.56
+    },
+    {
+      "text": "currently don't represent the",
+      "start": 723.24,
+      "duration": 4.0
+    },
+    {
+      "text": "probabilities then what we do from Step",
+      "start": 725.0,
+      "duration": 3.839
+    },
+    {
+      "text": "number two to step number three is that",
+      "start": 727.24,
+      "duration": 4.32
+    },
+    {
+      "text": "we are going to apply soft Max so we are",
+      "start": 728.839,
+      "duration": 5.36
+    },
+    {
+      "text": "going to apply soft Max function here so",
+      "start": 731.56,
+      "duration": 3.88
+    },
+    {
+      "text": "that we are going to convert these",
+      "start": 734.199,
+      "duration": 3.961
+    },
+    {
+      "text": "logits into a set of probabilities so",
+      "start": 735.44,
+      "duration": 4.959
+    },
+    {
+      "text": "now when you look at the last Vector for",
+      "start": 738.16,
+      "duration": 4.2
+    },
+    {
+      "text": "you you'll see that all of the values",
+      "start": 740.399,
+      "duration": 3.921
+    },
+    {
+      "text": "add up to one so this gives us",
+      "start": 742.36,
+      "duration": 3.56
+    },
+    {
+      "text": "probabilities that the probability of",
+      "start": 744.32,
+      "duration": 3.759
+    },
+    {
+      "text": "the next token being the first element",
+      "start": 745.92,
+      "duration": 5.039
+    },
+    {
+      "text": "in the vocabulary is let say 0.1% the",
+      "start": 748.079,
+      "duration": 6.401
+    },
+    {
+      "text": "probability of the uh second token being",
+      "start": 750.959,
+      "duration": 6.24
+    },
+    {
+      "text": "the uh the probability of the next word",
+      "start": 754.48,
+      "duration": 5.479
+    },
+    {
+      "text": "being the second token is let's say uh",
+      "start": 757.199,
+      "duration": 5.601
+    },
+    {
+      "text": "02 Etc so you can do this for all the",
+      "start": 759.959,
+      "duration": 4.841
+    },
+    {
+      "text": "tokens and then you in the next step",
+      "start": 762.8,
+      "duration": 4.44
+    },
+    {
+      "text": "which is Step number four you identify",
+      "start": 764.8,
+      "duration": 4.64
+    },
+    {
+      "text": "the index position or token ID of the",
+      "start": 767.24,
+      "duration": 5.48
+    },
+    {
+      "text": "largest value so you find the index",
+      "start": 769.44,
+      "duration": 4.68
+    },
+    {
+      "text": "which corresponds to the largest",
+      "start": 772.72,
+      "duration": 3.96
+    },
+    {
+      "text": "probability so here clearly it looks",
+      "start": 774.12,
+      "duration": 3.36
+    },
+    {
+      "text": "like",
+      "start": 776.68,
+      "duration": 3.399
+    },
+    {
+      "text": "02 uh is the probability which seems to",
+      "start": 777.48,
+      "duration": 5.039
+    },
+    {
+      "text": "be the largest and then I find the index",
+      "start": 780.079,
+      "duration": 5.041
+    },
+    {
+      "text": "for this particular element and it turns",
+      "start": 782.519,
+      "duration": 4.0
+    },
+    {
+      "text": "out that in this case let's say the",
+      "start": 785.12,
+      "duration": 4.6
+    },
+    {
+      "text": "token ID is equal to 57 which means that",
+      "start": 786.519,
+      "duration": 4.921
+    },
+    {
+      "text": "the highest probability for the next",
+      "start": 789.72,
+      "duration": 4.76
+    },
+    {
+      "text": "word after every effort moves you is the",
+      "start": 791.44,
+      "duration": 4.959
+    },
+    {
+      "text": "word or the token with the token ID",
+      "start": 794.48,
+      "duration": 4.64
+    },
+    {
+      "text": "equal to 57 and then all we do is that",
+      "start": 796.399,
+      "duration": 5.641
+    },
+    {
+      "text": "we go to we go to our vocabulary and we",
+      "start": 799.12,
+      "duration": 4.719
+    },
+    {
+      "text": "decode the word which corresponds to the",
+      "start": 802.04,
+      "duration": 4.359
+    },
+    {
+      "text": "Token ID of 57 and we hope that it's",
+      "start": 803.839,
+      "duration": 4.921
+    },
+    {
+      "text": "equal to forward up till now we have not",
+      "start": 806.399,
+      "duration": 5.12
+    },
+    {
+      "text": "trained the llm architecture so the next",
+      "start": 808.76,
+      "duration": 4.56
+    },
+    {
+      "text": "word will not be what we expect because",
+      "start": 811.519,
+      "duration": 3.361
+    },
+    {
+      "text": "the training has not been done at all it",
+      "start": 813.32,
+      "duration": 3.759
+    },
+    {
+      "text": "will be a random word but after all the",
+      "start": 814.88,
+      "duration": 4.16
+    },
+    {
+      "text": "training is done which will be the",
+      "start": 817.079,
+      "duration": 4.481
+    },
+    {
+      "text": "subject of our next module the next word",
+      "start": 819.04,
+      "duration": 5.08
+    },
+    {
+      "text": "should be what we actually expect so",
+      "start": 821.56,
+      "duration": 4.24
+    },
+    {
+      "text": "this is the exact procedure which we are",
+      "start": 824.12,
+      "duration": 3.92
+    },
+    {
+      "text": "going to follow and remember there's one",
+      "start": 825.8,
+      "duration": 5.159
+    },
+    {
+      "text": "last step after this token ID is",
+      "start": 828.04,
+      "duration": 4.64
+    },
+    {
+      "text": "obtained we'll have to append this token",
+      "start": 830.959,
+      "duration": 4.0
+    },
+    {
+      "text": "ID to the previous inputs for the next",
+      "start": 832.68,
+      "duration": 5.24
+    },
+    {
+      "text": "round why this step number five exist is",
+      "start": 834.959,
+      "duration": 4.641
+    },
+    {
+      "text": "I hope you remember this diagram which",
+      "start": 837.92,
+      "duration": 3.88
+    },
+    {
+      "text": "we saw at the start of this lecture the",
+      "start": 839.6,
+      "duration": 4.239
+    },
+    {
+      "text": "step number five exists because after",
+      "start": 841.8,
+      "duration": 4.0
+    },
+    {
+      "text": "you predict the next token after you",
+      "start": 843.839,
+      "duration": 4.481
+    },
+    {
+      "text": "predict the Next Generation token the",
+      "start": 845.8,
+      "duration": 4.159
+    },
+    {
+      "text": "task does not stop here we have to",
+      "start": 848.32,
+      "duration": 3.519
+    },
+    {
+      "text": "append this token to the input in the",
+      "start": 849.959,
+      "duration": 3.921
+    },
+    {
+      "text": "second iteration and then we have to",
+      "start": 851.839,
+      "duration": 3.961
+    },
+    {
+      "text": "repeat this process until we reach the",
+      "start": 853.88,
+      "duration": 3.68
+    },
+    {
+      "text": "last iteration which corresponds to the",
+      "start": 855.8,
+      "duration": 4.959
+    },
+    {
+      "text": "maximum number of new tokens okay so I",
+      "start": 857.56,
+      "duration": 5.199
+    },
+    {
+      "text": "hope you have understood the process",
+      "start": 860.759,
+      "duration": 4.481
+    },
+    {
+      "text": "I've just uh written a section where I",
+      "start": 862.759,
+      "duration": 4.681
+    },
+    {
+      "text": "explain this process again so that you",
+      "start": 865.24,
+      "duration": 5.0
+    },
+    {
+      "text": "can revise and reinforce your Concepts",
+      "start": 867.44,
+      "duration": 4.519
+    },
+    {
+      "text": "so in the previous section we have seen",
+      "start": 870.24,
+      "duration": 4.24
+    },
+    {
+      "text": "that the GPT model out outputs the",
+      "start": 871.959,
+      "duration": 5.361
+    },
+    {
+      "text": "tensors with this shape batch size",
+      "start": 874.48,
+      "duration": 5.599
+    },
+    {
+      "text": "number of tokens and the vocabulary size",
+      "start": 877.32,
+      "duration": 5.56
+    },
+    {
+      "text": "remember this is exactly what we saw",
+      "start": 880.079,
+      "duration": 5.76
+    },
+    {
+      "text": "over here uh the shape is equal to the",
+      "start": 882.88,
+      "duration": 4.6
+    },
+    {
+      "text": "batch size multiplied by number of",
+      "start": 885.839,
+      "duration": 4.841
+    },
+    {
+      "text": "tokens multiplied by the vocabulary size",
+      "start": 887.48,
+      "duration": 8.08
+    },
+    {
+      "text": "okay so uh this is the output tensor and",
+      "start": 890.68,
+      "duration": 7.12
+    },
+    {
+      "text": "now the question is that how do we go",
+      "start": 895.56,
+      "duration": 4.48
+    },
+    {
+      "text": "from this output tensor to the generated",
+      "start": 897.8,
+      "duration": 4.44
+    },
+    {
+      "text": "text and as I explained to you in the",
+      "start": 900.04,
+      "duration": 4.44
+    },
+    {
+      "text": "visual map there will be different steps",
+      "start": 902.24,
+      "duration": 4.039
+    },
+    {
+      "text": "so first what we'll do is that we'll get",
+      "start": 904.48,
+      "duration": 4.2
+    },
+    {
+      "text": "this output tensor and then what we'll",
+      "start": 906.279,
+      "duration": 4.321
+    },
+    {
+      "text": "do is that we'll extract the last row",
+      "start": 908.68,
+      "duration": 5.399
+    },
+    {
+      "text": "from this output tensor after extracting",
+      "start": 910.6,
+      "duration": 5.76
+    },
+    {
+      "text": "the last row these are the Logics we'll",
+      "start": 914.079,
+      "duration": 4.161
+    },
+    {
+      "text": "convert it into a set of probabilities",
+      "start": 916.36,
+      "duration": 3.88
+    },
+    {
+      "text": "by applying the soft Max and we'll",
+      "start": 918.24,
+      "duration": 4.12
+    },
+    {
+      "text": "extract that token ID with the highest",
+      "start": 920.24,
+      "duration": 4.399
+    },
+    {
+      "text": "probability and then we'll find the word",
+      "start": 922.36,
+      "duration": 3.88
+    },
+    {
+      "text": "which cor or find the token which",
+      "start": 924.639,
+      "duration": 3.721
+    },
+    {
+      "text": "corresponds to that token ID and then",
+      "start": 926.24,
+      "duration": 5.519
+    },
+    {
+      "text": "we'll append that token to the previous",
+      "start": 928.36,
+      "duration": 5.039
+    },
+    {
+      "text": "inputs and then we'll do the next round",
+      "start": 931.759,
+      "duration": 4.76
+    },
+    {
+      "text": "of iterations this is exactly what we'll",
+      "start": 933.399,
+      "duration": 4.081
+    },
+    {
+      "text": "be",
+      "start": 936.519,
+      "duration": 3.8
+    },
+    {
+      "text": "doing so basically we'll take the index",
+      "start": 937.48,
+      "duration": 4.68
+    },
+    {
+      "text": "of the highest value we'll get the token",
+      "start": 940.319,
+      "duration": 4.121
+    },
+    {
+      "text": "ID we'll decode it back to text that",
+      "start": 942.16,
+      "duration": 4.159
+    },
+    {
+      "text": "produces the next token and will append",
+      "start": 944.44,
+      "duration": 3.759
+    },
+    {
+      "text": "to the previous input so I've written",
+      "start": 946.319,
+      "duration": 3.721
+    },
+    {
+      "text": "the same thing here so that you can you",
+      "start": 948.199,
+      "duration": 4.961
+    },
+    {
+      "text": "know reinforce and uh master your",
+      "start": 950.04,
+      "duration": 5.239
+    },
+    {
+      "text": "understanding of these Concepts so this",
+      "start": 953.16,
+      "duration": 4.64
+    },
+    {
+      "text": "stepbystep process enables the model to",
+      "start": 955.279,
+      "duration": 4.92
+    },
+    {
+      "text": "generate text sequence ially building",
+      "start": 957.8,
+      "duration": 5.08
+    },
+    {
+      "text": "coherent phrases from the initial input",
+      "start": 960.199,
+      "duration": 6.041
+    },
+    {
+      "text": "context so as I showed to you over here",
+      "start": 962.88,
+      "duration": 5.24
+    },
+    {
+      "text": "we are going to over here we are going",
+      "start": 966.24,
+      "duration": 3.719
+    },
+    {
+      "text": "to repeat this process over multiple",
+      "start": 968.12,
+      "duration": 4.639
+    },
+    {
+      "text": "iterations right and that's also what",
+      "start": 969.959,
+      "duration": 6.12
+    },
+    {
+      "text": "I've written over here yeah in practice",
+      "start": 972.759,
+      "duration": 5.0
+    },
+    {
+      "text": "what we do is that we repeat this",
+      "start": 976.079,
+      "duration": 4.601
+    },
+    {
+      "text": "process or multiple iterations until we",
+      "start": 977.759,
+      "duration": 4.801
+    },
+    {
+      "text": "reach a user specified number of",
+      "start": 980.68,
+      "duration": 4.36
+    },
+    {
+      "text": "generated tokens so we have to specify",
+      "start": 982.56,
+      "duration": 4.8
+    },
+    {
+      "text": "how many new tokens you need and only",
+      "start": 985.04,
+      "duration": 4.08
+    },
+    {
+      "text": "when we reach that reach that me many",
+      "start": 987.36,
+      "duration": 4.08
+    },
+    {
+      "text": "number of new tokens we stop so the",
+      "start": 989.12,
+      "duration": 4.279
+    },
+    {
+      "text": "figure below illustrates the process of",
+      "start": 991.44,
+      "duration": 4.199
+    },
+    {
+      "text": "generating one token ID at a time so",
+      "start": 993.399,
+      "duration": 4.481
+    },
+    {
+      "text": "let's zoom into this figure further so",
+      "start": 995.639,
+      "duration": 4.12
+    },
+    {
+      "text": "let's say the initial input tokens which",
+      "start": 997.88,
+      "duration": 4.0
+    },
+    {
+      "text": "are provided as the input to the llm are",
+      "start": 999.759,
+      "duration": 5.2
+    },
+    {
+      "text": "hello I am with these token IDs what the",
+      "start": 1001.88,
+      "duration": 5.24
+    },
+    {
+      "text": "llm will do in iteration number one is",
+      "start": 1004.959,
+      "duration": 4.12
+    },
+    {
+      "text": "that it will predict the next token ID",
+      "start": 1007.12,
+      "duration": 4.199
+    },
+    {
+      "text": "using the procedure we saw before and",
+      "start": 1009.079,
+      "duration": 4.44
+    },
+    {
+      "text": "let's say the token ID is 257 which",
+      "start": 1011.319,
+      "duration": 5.281
+    },
+    {
+      "text": "corresponds to the Token o this token is",
+      "start": 1013.519,
+      "duration": 5.081
+    },
+    {
+      "text": "then appended in the second iteration so",
+      "start": 1016.6,
+      "duration": 3.679
+    },
+    {
+      "text": "now we are we have come to the second",
+      "start": 1018.6,
+      "duration": 4.96
+    },
+    {
+      "text": "iteration the inputs are hello I am a",
+      "start": 1020.279,
+      "duration": 5.321
+    },
+    {
+      "text": "and then we make the output which is the",
+      "start": 1023.56,
+      "duration": 5.879
+    },
+    {
+      "text": "next uh given given these inputs what is",
+      "start": 1025.6,
+      "duration": 6.079
+    },
+    {
+      "text": "the next token which comes out and then",
+      "start": 1029.439,
+      "duration": 4.52
+    },
+    {
+      "text": "the token word which or the actual token",
+      "start": 1031.679,
+      "duration": 4.481
+    },
+    {
+      "text": "is model and then this token is now",
+      "start": 1033.959,
+      "duration": 4.0
+    },
+    {
+      "text": "appended to the input of the previous",
+      "start": 1036.16,
+      "duration": 4.12
+    },
+    {
+      "text": "iteration now we are at iteration number",
+      "start": 1037.959,
+      "duration": 4.281
+    },
+    {
+      "text": "three similarly we get an output at",
+      "start": 1040.28,
+      "duration": 4.279
+    },
+    {
+      "text": "iteration number three and this proceed",
+      "start": 1042.24,
+      "duration": 5.16
+    },
+    {
+      "text": "proceeds till the end why do we do only",
+      "start": 1044.559,
+      "duration": 5.12
+    },
+    {
+      "text": "six tokens because there is a provision",
+      "start": 1047.4,
+      "duration": 4.88
+    },
+    {
+      "text": "for Max new tokens and that has been set",
+      "start": 1049.679,
+      "duration": 4.721
+    },
+    {
+      "text": "to six that's why we only do six",
+      "start": 1052.28,
+      "duration": 4.04
+    },
+    {
+      "text": "iterations remember the number of",
+      "start": 1054.4,
+      "duration": 4.08
+    },
+    {
+      "text": "iterations which we do will be",
+      "start": 1056.32,
+      "duration": 4.28
+    },
+    {
+      "text": "determined by the maximum number of new",
+      "start": 1058.48,
+      "duration": 4.64
+    },
+    {
+      "text": "tokens which have been",
+      "start": 1060.6,
+      "duration": 5.199
+    },
+    {
+      "text": "specified so then when the input is",
+      "start": 1063.12,
+      "duration": 5.679
+    },
+    {
+      "text": "hello I am since the maximum number of",
+      "start": 1065.799,
+      "duration": 5.601
+    },
+    {
+      "text": "new tokens is six the output will be",
+      "start": 1068.799,
+      "duration": 7.161
+    },
+    {
+      "text": "hello I am a model ready to help dot",
+      "start": 1071.4,
+      "duration": 7.32
+    },
+    {
+      "text": "this this is the output which the GPT",
+      "start": 1075.96,
+      "duration": 4.959
+    },
+    {
+      "text": "has has generated that's why generative",
+      "start": 1078.72,
+      "duration": 4.56
+    },
+    {
+      "text": "AI we have generated something like this",
+      "start": 1080.919,
+      "duration": 4.081
+    },
+    {
+      "text": "completely from scratch",
+      "start": 1083.28,
+      "duration": 4.8
+    },
+    {
+      "text": "now that was not present as an input or",
+      "start": 1085.0,
+      "duration": 5.4
+    },
+    {
+      "text": "a training data this is generated as a",
+      "start": 1088.08,
+      "duration": 5.56
+    },
+    {
+      "text": "new text um and this is the process",
+      "start": 1090.4,
+      "duration": 5.56
+    },
+    {
+      "text": "underneath all of it so now when you use",
+      "start": 1093.64,
+      "duration": 5.159
+    },
+    {
+      "text": "GPT today or tomorrow or any time uh",
+      "start": 1095.96,
+      "duration": 4.68
+    },
+    {
+      "text": "hopefully this lecture Series has kind",
+      "start": 1098.799,
+      "duration": 4.401
+    },
+    {
+      "text": "of shined a torch to this black box for",
+      "start": 1100.64,
+      "duration": 4.08
+    },
+    {
+      "text": "all the other students who don't know",
+      "start": 1103.2,
+      "duration": 3.599
+    },
+    {
+      "text": "how this next work next word prediction",
+      "start": 1104.72,
+      "duration": 5.04
+    },
+    {
+      "text": "task Works GPT operates like a black box",
+      "start": 1106.799,
+      "duration": 4.76
+    },
+    {
+      "text": "but not for all of you who have been",
+      "start": 1109.76,
+      "duration": 4.159
+    },
+    {
+      "text": "watching this video series because I'm",
+      "start": 1111.559,
+      "duration": 4.201
+    },
+    {
+      "text": "trying trying to deconstruct how the",
+      "start": 1113.919,
+      "duration": 4.24
+    },
+    {
+      "text": "next word is actually predicted given",
+      "start": 1115.76,
+      "duration": 3.96
+    },
+    {
+      "text": "the input",
+      "start": 1118.159,
+      "duration": 6.321
+    },
+    {
+      "text": "tokens awesome so uh in iteration number",
+      "start": 1119.72,
+      "duration": 7.199
+    },
+    {
+      "text": "one the model is provided with tokens",
+      "start": 1124.48,
+      "duration": 5.199
+    },
+    {
+      "text": "corresponding to hello I am and then it",
+      "start": 1126.919,
+      "duration": 5.561
+    },
+    {
+      "text": "predicts the next token with ID 257",
+      "start": 1129.679,
+      "duration": 5.36
+    },
+    {
+      "text": "great and then that is again appended to",
+      "start": 1132.48,
+      "duration": 5.52
+    },
+    {
+      "text": "the input and this process is repeated",
+      "start": 1135.039,
+      "duration": 5.0
+    },
+    {
+      "text": "till the model produ produces the",
+      "start": 1138.0,
+      "duration": 4.2
+    },
+    {
+      "text": "complete sentence hello I am a model",
+      "start": 1140.039,
+      "duration": 5.041
+    },
+    {
+      "text": "ready to help after six iterations why",
+      "start": 1142.2,
+      "duration": 4.839
+    },
+    {
+      "text": "only six iterations because the maximum",
+      "start": 1145.08,
+      "duration": 5.32
+    },
+    {
+      "text": "number of new tokens was set to six okay",
+      "start": 1147.039,
+      "duration": 5.161
+    },
+    {
+      "text": "so I hope everyone has followed with me",
+      "start": 1150.4,
+      "duration": 5.08
+    },
+    {
+      "text": "until this part and I want you to recap",
+      "start": 1152.2,
+      "duration": 6.28
+    },
+    {
+      "text": "these steps the step number one is to",
+      "start": 1155.48,
+      "duration": 5.52
+    },
+    {
+      "text": "look at the output tensor step number",
+      "start": 1158.48,
+      "duration": 4.96
+    },
+    {
+      "text": "two is to extract the last Vector step",
+      "start": 1161.0,
+      "duration": 4.4
+    },
+    {
+      "text": "number three is to convert logits into",
+      "start": 1163.44,
+      "duration": 4.08
+    },
+    {
+      "text": "probabilities step number four is to",
+      "start": 1165.4,
+      "duration": 3.68
+    },
+    {
+      "text": "identify the index position position of",
+      "start": 1167.52,
+      "duration": 3.76
+    },
+    {
+      "text": "the largest value and step number five",
+      "start": 1169.08,
+      "duration": 4.16
+    },
+    {
+      "text": "is to append token ID to the previous",
+      "start": 1171.28,
+      "duration": 3.84
+    },
+    {
+      "text": "inputs and we are going to keep on doing",
+      "start": 1173.24,
+      "duration": 4.36
+    },
+    {
+      "text": "this until maximum number of new tokens",
+      "start": 1175.12,
+      "duration": 5.439
+    },
+    {
+      "text": "has been reached this is the exact same",
+      "start": 1177.6,
+      "duration": 4.439
+    },
+    {
+      "text": "thing which we are going to implement in",
+      "start": 1180.559,
+      "duration": 4.24
+    },
+    {
+      "text": "code right now so the next part of this",
+      "start": 1182.039,
+      "duration": 6.081
+    },
+    {
+      "text": "lecture is diving into code so uh let's",
+      "start": 1184.799,
+      "duration": 5.721
+    },
+    {
+      "text": "jump into code right",
+      "start": 1188.12,
+      "duration": 5.439
+    },
+    {
+      "text": "now okay so here what we are going to do",
+      "start": 1190.52,
+      "duration": 4.72
+    },
+    {
+      "text": "is we are going to generate text from",
+      "start": 1193.559,
+      "duration": 4.201
+    },
+    {
+      "text": "output tokens and uh we are going to",
+      "start": 1195.24,
+      "duration": 4.28
+    },
+    {
+      "text": "implement the same process what we had",
+      "start": 1197.76,
+      "duration": 5.279
+    },
+    {
+      "text": "seen in the uh on the Whiteboard",
+      "start": 1199.52,
+      "duration": 6.279
+    },
+    {
+      "text": "okay great so the first thing what we",
+      "start": 1203.039,
+      "duration": 6.841
+    },
+    {
+      "text": "need is that uh we need the",
+      "start": 1205.799,
+      "duration": 6.601
+    },
+    {
+      "text": "inputs uh we need the inputs to be",
+      "start": 1209.88,
+      "duration": 4.64
+    },
+    {
+      "text": "provided and the inputs are usually",
+      "start": 1212.4,
+      "duration": 5.12
+    },
+    {
+      "text": "provided in the format which looks like",
+      "start": 1214.52,
+      "duration": 6.279
+    },
+    {
+      "text": "this um yeah this is the input batch so",
+      "start": 1217.52,
+      "duration": 5.159
+    },
+    {
+      "text": "in the input what we'll be doing is that",
+      "start": 1220.799,
+      "duration": 3.561
+    },
+    {
+      "text": "let's say this is a batch with two",
+      "start": 1222.679,
+      "duration": 4.921
+    },
+    {
+      "text": "inputs the first uh batch has four",
+      "start": 1224.36,
+      "duration": 5.04
+    },
+    {
+      "text": "tokens and the second batch has four",
+      "start": 1227.6,
+      "duration": 4.28
+    },
+    {
+      "text": "tokens so the inputs will be provided",
+      "start": 1229.4,
+      "duration": 5.32
+    },
+    {
+      "text": "like this and that's called as the idx",
+      "start": 1231.88,
+      "duration": 4.96
+    },
+    {
+      "text": "so the shape of idx is batch which are",
+      "start": 1234.72,
+      "duration": 5.439
+    },
+    {
+      "text": "the number of uh batches which we have",
+      "start": 1236.84,
+      "duration": 5.36
+    },
+    {
+      "text": "uh and that's the number of rows and the",
+      "start": 1240.159,
+      "duration": 4.4
+    },
+    {
+      "text": "number of columns is equal to uh end",
+      "start": 1242.2,
+      "duration": 5.56
+    },
+    {
+      "text": "tokens so so that you visualize what the",
+      "start": 1244.559,
+      "duration": 5.201
+    },
+    {
+      "text": "inputs will look like I'll just copy",
+      "start": 1247.76,
+      "duration": 3.68
+    },
+    {
+      "text": "paste the inputs which I showed to you",
+      "start": 1249.76,
+      "duration": 4.32
+    },
+    {
+      "text": "before so I'll just copy paste this over",
+      "start": 1251.44,
+      "duration": 4.56
+    },
+    {
+      "text": "here so that this is a visual reference",
+      "start": 1254.08,
+      "duration": 6.479
+    },
+    {
+      "text": "for you so this is the",
+      "start": 1256.0,
+      "duration": 5.72
+    },
+    {
+      "text": "this is the",
+      "start": 1260.559,
+      "duration": 3.921
+    },
+    {
+      "text": "input this is the format of the input",
+      "start": 1261.72,
+      "duration": 5.0
+    },
+    {
+      "text": "batch which is passed into this generate",
+      "start": 1264.48,
+      "duration": 4.64
+    },
+    {
+      "text": "text simple so we are defining a",
+      "start": 1266.72,
+      "duration": 5.16
+    },
+    {
+      "text": "function which is generate text simple",
+      "start": 1269.12,
+      "duration": 5.2
+    },
+    {
+      "text": "and what it will do is that it will",
+      "start": 1271.88,
+      "duration": 6.32
+    },
+    {
+      "text": "take model and what is model model has",
+      "start": 1274.32,
+      "duration": 7.0
+    },
+    {
+      "text": "been defined before model is actually",
+      "start": 1278.2,
+      "duration": 6.8
+    },
+    {
+      "text": "let me go back yeah model is an instance",
+      "start": 1281.32,
+      "duration": 6.76
+    },
+    {
+      "text": "of the GPT model class so see this is",
+      "start": 1285.0,
+      "duration": 5.12
+    },
+    {
+      "text": "the GP model class which we had coded in",
+      "start": 1288.08,
+      "duration": 4.199
+    },
+    {
+      "text": "the last lecture which takes the inputs",
+      "start": 1290.12,
+      "duration": 5.08
+    },
+    {
+      "text": "and then outputs the logits",
+      "start": 1292.279,
+      "duration": 6.201
+    },
+    {
+      "text": "tensor um so that's the second input to",
+      "start": 1295.2,
+      "duration": 4.479
+    },
+    {
+      "text": "the function which we are going to",
+      "start": 1298.48,
+      "duration": 3.559
+    },
+    {
+      "text": "Define today and that function is",
+      "start": 1299.679,
+      "duration": 4.321
+    },
+    {
+      "text": "generate text simple so model sorry",
+      "start": 1302.039,
+      "duration": 3.921
+    },
+    {
+      "text": "model is the first input so we have to",
+      "start": 1304.0,
+      "duration": 3.919
+    },
+    {
+      "text": "pass in an instance of the GPT model",
+      "start": 1305.96,
+      "duration": 4.319
+    },
+    {
+      "text": "class we have to pass in the inputs and",
+      "start": 1307.919,
+      "duration": 4.081
+    },
+    {
+      "text": "remember I told you about the maximum",
+      "start": 1310.279,
+      "duration": 3.52
+    },
+    {
+      "text": "number of new tokens so we have to pass",
+      "start": 1312.0,
+      "duration": 3.96
+    },
+    {
+      "text": "in that as an argument and we also have",
+      "start": 1313.799,
+      "duration": 5.201
+    },
+    {
+      "text": "to pass in the context size because the",
+      "start": 1315.96,
+      "duration": 5.079
+    },
+    {
+      "text": "context size specifies how many words we",
+      "start": 1319.0,
+      "duration": 3.84
+    },
+    {
+      "text": "have to look at before predicting the",
+      "start": 1321.039,
+      "duration": 4.52
+    },
+    {
+      "text": "next World great now let's start the",
+      "start": 1322.84,
+      "duration": 4.64
+    },
+    {
+      "text": "coding the first thing what we have to",
+      "start": 1325.559,
+      "duration": 4.761
+    },
+    {
+      "text": "do is that we have to make sure that the",
+      "start": 1327.48,
+      "duration": 4.52
+    },
+    {
+      "text": "number of tokens which the llm is",
+      "start": 1330.32,
+      "duration": 3.32
+    },
+    {
+      "text": "looking at at any given point is",
+      "start": 1332.0,
+      "duration": 4.159
+    },
+    {
+      "text": "determined by the context size so let me",
+      "start": 1333.64,
+      "duration": 5.519
+    },
+    {
+      "text": "show you what that actually means um",
+      "start": 1336.159,
+      "duration": 5.4
+    },
+    {
+      "text": "here I'm just taking a random example to",
+      "start": 1339.159,
+      "duration": 4.601
+    },
+    {
+      "text": "demonstrate this to you so take a look",
+      "start": 1341.559,
+      "duration": 4.441
+    },
+    {
+      "text": "at this example over here let's say",
+      "start": 1343.76,
+      "duration": 4.399
+    },
+    {
+      "text": "these are the inputs uh let's say these",
+      "start": 1346.0,
+      "duration": 3.44
+    },
+    {
+      "text": "are the",
+      "start": 1348.159,
+      "duration": 3.041
+    },
+    {
+      "text": "um this is the input tensor which is",
+      "start": 1349.44,
+      "duration": 4.04
+    },
+    {
+      "text": "given to the llm and here you will see",
+      "start": 1351.2,
+      "duration": 4.68
+    },
+    {
+      "text": "that this input tensor actually has two",
+      "start": 1353.48,
+      "duration": 4.439
+    },
+    {
+      "text": "rows which means there are two batches",
+      "start": 1355.88,
+      "duration": 4.24
+    },
+    {
+      "text": "but I want you to look at so two rows",
+      "start": 1357.919,
+      "duration": 3.521
+    },
+    {
+      "text": "because there are two batches but look",
+      "start": 1360.12,
+      "duration": 3.679
+    },
+    {
+      "text": "at the number of tokens so number of",
+      "start": 1361.44,
+      "duration": 5.04
+    },
+    {
+      "text": "tokens here are actually equal to eight",
+      "start": 1363.799,
+      "duration": 5.48
+    },
+    {
+      "text": "so there are eight tokens here now what",
+      "start": 1366.48,
+      "duration": 5.76
+    },
+    {
+      "text": "if the context size is equal to five so",
+      "start": 1369.279,
+      "duration": 5.041
+    },
+    {
+      "text": "if the context size is equal to five we",
+      "start": 1372.24,
+      "duration": 3.64
+    },
+    {
+      "text": "cannot look at eight tokens before",
+      "start": 1374.32,
+      "duration": 3.239
+    },
+    {
+      "text": "predicting the next word we only can",
+      "start": 1375.88,
+      "duration": 3.399
+    },
+    {
+      "text": "look at five tokens",
+      "start": 1377.559,
+      "duration": 4.201
+    },
+    {
+      "text": "so this command which is it takes in the",
+      "start": 1379.279,
+      "duration": 4.601
+    },
+    {
+      "text": "input and then it only looks at the",
+      "start": 1381.76,
+      "duration": 3.799
+    },
+    {
+      "text": "number of elements specific to the",
+      "start": 1383.88,
+      "duration": 4.44
+    },
+    {
+      "text": "context size so in the code we are going",
+      "start": 1385.559,
+      "duration": 4.641
+    },
+    {
+      "text": "to write this Command right now so what",
+      "start": 1388.32,
+      "duration": 3.28
+    },
+    {
+      "text": "this command will do is that it will",
+      "start": 1390.2,
+      "duration": 3.839
+    },
+    {
+      "text": "look at the input if the input token",
+      "start": 1391.6,
+      "duration": 4.12
+    },
+    {
+      "text": "size which is the number of columns is",
+      "start": 1394.039,
+      "duration": 4.52
+    },
+    {
+      "text": "equal to the context size then it's fine",
+      "start": 1395.72,
+      "duration": 4.559
+    },
+    {
+      "text": "but if it's not it will take the last",
+      "start": 1398.559,
+      "duration": 3.641
+    },
+    {
+      "text": "Elements which are equal to the context",
+      "start": 1400.279,
+      "duration": 4.4
+    },
+    {
+      "text": "size so now the context size is equal to",
+      "start": 1402.2,
+      "duration": 4.32
+    },
+    {
+      "text": "five so it will look at the last five",
+      "start": 1404.679,
+      "duration": 4.201
+    },
+    {
+      "text": "tokens as an input from the first batch",
+      "start": 1406.52,
+      "duration": 4.159
+    },
+    {
+      "text": "and it will look at the last five tokens",
+      "start": 1408.88,
+      "duration": 3.919
+    },
+    {
+      "text": "as an input from the second badge this",
+      "start": 1410.679,
+      "duration": 4.48
+    },
+    {
+      "text": "is what this idx colon minus context",
+      "start": 1412.799,
+      "duration": 4.441
+    },
+    {
+      "text": "size colon is going to do it will",
+      "start": 1415.159,
+      "duration": 4.12
+    },
+    {
+      "text": "restrict the input so that we only look",
+      "start": 1417.24,
+      "duration": 4.28
+    },
+    {
+      "text": "at the number of tokens equal to context",
+      "start": 1419.279,
+      "duration": 4.88
+    },
+    {
+      "text": "size so that's the first uh command",
+      "start": 1421.52,
+      "duration": 5.56
+    },
+    {
+      "text": "which we have written that's idx c n d",
+      "start": 1424.159,
+      "duration": 5.601
+    },
+    {
+      "text": "which is condition idx",
+      "start": 1427.08,
+      "duration": 4.88
+    },
+    {
+      "text": "condition great now what we are going to",
+      "start": 1429.76,
+      "duration": 4.799
+    },
+    {
+      "text": "do is that we are going to pass this",
+      "start": 1431.96,
+      "duration": 4.92
+    },
+    {
+      "text": "input to the model so the model is the",
+      "start": 1434.559,
+      "duration": 4.6
+    },
+    {
+      "text": "GPT class this is where all all the main",
+      "start": 1436.88,
+      "duration": 4.52
+    },
+    {
+      "text": "functions are happening what this model",
+      "start": 1439.159,
+      "duration": 4.481
+    },
+    {
+      "text": "will do is that it will take the input",
+      "start": 1441.4,
+      "duration": 4.519
+    },
+    {
+      "text": "and then it will pass the input through",
+      "start": 1443.64,
+      "duration": 4.08
+    },
+    {
+      "text": "token embeddings positional embeddings",
+      "start": 1445.919,
+      "duration": 4.441
+    },
+    {
+      "text": "Dropout layer Transformer blocks another",
+      "start": 1447.72,
+      "duration": 4.68
+    },
+    {
+      "text": "normalization layer and the final output",
+      "start": 1450.36,
+      "duration": 4.04
+    },
+    {
+      "text": "layer and it will return this logic",
+      "start": 1452.4,
+      "duration": 4.48
+    },
+    {
+      "text": "tensor and remember that this logic",
+      "start": 1454.4,
+      "duration": 4.399
+    },
+    {
+      "text": "sensor which is which is received what",
+      "start": 1456.88,
+      "duration": 4.24
+    },
+    {
+      "text": "are the dimensions for it the dimensions",
+      "start": 1458.799,
+      "duration": 5.921
+    },
+    {
+      "text": "are batch comma number of tokens comma",
+      "start": 1461.12,
+      "duration": 6.0
+    },
+    {
+      "text": "the vocabulary size this is the",
+      "start": 1464.72,
+      "duration": 4.839
+    },
+    {
+      "text": "dimensions of this logic sensor and then",
+      "start": 1467.12,
+      "duration": 4.0
+    },
+    {
+      "text": "what we have to now do is that we have",
+      "start": 1469.559,
+      "duration": 3.561
+    },
+    {
+      "text": "to extract the last row from this logic",
+      "start": 1471.12,
+      "duration": 4.84
+    },
+    {
+      "text": "tensor remember what we did um on the",
+      "start": 1473.12,
+      "duration": 5.279
+    },
+    {
+      "text": "white Bard when we looked at the logic",
+      "start": 1475.96,
+      "duration": 5.04
+    },
+    {
+      "text": "tensor which was this tensor that is in",
+      "start": 1478.399,
+      "duration": 4.841
+    },
+    {
+      "text": "Step One in Step number two what we have",
+      "start": 1481.0,
+      "duration": 3.799
+    },
+    {
+      "text": "to do is that we have to extract the",
+      "start": 1483.24,
+      "duration": 4.159
+    },
+    {
+      "text": "last Vector from this logit tensor so",
+      "start": 1484.799,
+      "duration": 3.961
+    },
+    {
+      "text": "now what we are going to do in the",
+      "start": 1487.399,
+      "duration": 2.721
+    },
+    {
+      "text": "second step is that let's say if the",
+      "start": 1488.76,
+      "duration": 3.6
+    },
+    {
+      "text": "logit tensor looks something like this",
+      "start": 1490.12,
+      "duration": 4.08
+    },
+    {
+      "text": "so if I have two batches this is my",
+      "start": 1492.36,
+      "duration": 5.64
+    },
+    {
+      "text": "first batch and this is my second batch",
+      "start": 1494.2,
+      "duration": 7.28
+    },
+    {
+      "text": "and then then in each batch I have four",
+      "start": 1498.0,
+      "duration": 5.919
+    },
+    {
+      "text": "tokens and then here I'm taking a vector",
+      "start": 1501.48,
+      "duration": 5.12
+    },
+    {
+      "text": "embedding Dimension equal to five so",
+      "start": 1503.919,
+      "duration": 4.281
+    },
+    {
+      "text": "what we have to do is that from each of",
+      "start": 1506.6,
+      "duration": 3.64
+    },
+    {
+      "text": "these batches we have to take the last",
+      "start": 1508.2,
+      "duration": 3.92
+    },
+    {
+      "text": "we have to take the last row so from the",
+      "start": 1510.24,
+      "duration": 4.2
+    },
+    {
+      "text": "first batch we have to take the last row",
+      "start": 1512.12,
+      "duration": 3.72
+    },
+    {
+      "text": "from the second batch we have to take",
+      "start": 1514.44,
+      "duration": 3.92
+    },
+    {
+      "text": "the last row and the way this will",
+      "start": 1515.84,
+      "duration": 4.04
+    },
+    {
+      "text": "happen is through this command Logics",
+      "start": 1518.36,
+      "duration": 4.199
+    },
+    {
+      "text": "colon minus one and colon so what this",
+      "start": 1519.88,
+      "duration": 5.08
+    },
+    {
+      "text": "first colon is that which means you do",
+      "start": 1522.559,
+      "duration": 4.881
+    },
+    {
+      "text": "nothing to the batch argument but the",
+      "start": 1524.96,
+      "duration": 5.36
+    },
+    {
+      "text": "second is minus one which means that you",
+      "start": 1527.44,
+      "duration": 5.479
+    },
+    {
+      "text": "look at the first batch and then you",
+      "start": 1530.32,
+      "duration": 4.68
+    },
+    {
+      "text": "look at the last you take the last row",
+      "start": 1532.919,
+      "duration": 3.601
+    },
+    {
+      "text": "you look at the second batch and you",
+      "start": 1535.0,
+      "duration": 3.159
+    },
+    {
+      "text": "just take the last row this is what we",
+      "start": 1536.52,
+      "duration": 3.44
+    },
+    {
+      "text": "are going to do so now we are going to",
+      "start": 1538.159,
+      "duration": 3.52
+    },
+    {
+      "text": "apply this function which will just take",
+      "start": 1539.96,
+      "duration": 3.599
+    },
+    {
+      "text": "the last row out of every batch in the",
+      "start": 1541.679,
+      "duration": 5.161
+    },
+    {
+      "text": "logic stenor so logits colon minus one",
+      "start": 1543.559,
+      "duration": 6.281
+    },
+    {
+      "text": "colon is going to result in this where",
+      "start": 1546.84,
+      "duration": 6.28
+    },
+    {
+      "text": "we just take the we just take this",
+      "start": 1549.84,
+      "duration": 5.8
+    },
+    {
+      "text": "Row from the first batch and we take the",
+      "start": 1553.12,
+      "duration": 4.279
+    },
+    {
+      "text": "last row from the second batch and we",
+      "start": 1555.64,
+      "duration": 3.84
+    },
+    {
+      "text": "just uh stack them",
+      "start": 1557.399,
+      "duration": 4.841
+    },
+    {
+      "text": "together so this is the second command",
+      "start": 1559.48,
+      "duration": 4.679
+    },
+    {
+      "text": "here where we only focused on the last",
+      "start": 1562.24,
+      "duration": 5.24
+    },
+    {
+      "text": "time step or the last row okay and now",
+      "start": 1564.159,
+      "duration": 5.681
+    },
+    {
+      "text": "when we execute this command the",
+      "start": 1567.48,
+      "duration": 4.199
+    },
+    {
+      "text": "dimensions become the batch which are",
+      "start": 1569.84,
+      "duration": 3.959
+    },
+    {
+      "text": "the number of rows and the vocabulary",
+      "start": 1571.679,
+      "duration": 4.761
+    },
+    {
+      "text": "size so one thing which I would like to",
+      "start": 1573.799,
+      "duration": 4.561
+    },
+    {
+      "text": "clarify here is that",
+      "start": 1576.44,
+      "duration": 4.479
+    },
+    {
+      "text": "here I mentioned this five as the",
+      "start": 1578.36,
+      "duration": 4.36
+    },
+    {
+      "text": "embedding Dimension right but this is",
+      "start": 1580.919,
+      "duration": 3.48
+    },
+    {
+      "text": "actually the vocabulary size the number",
+      "start": 1582.72,
+      "duration": 3.28
+    },
+    {
+      "text": "of columns here are equal to the",
+      "start": 1584.399,
+      "duration": 5.681
+    },
+    {
+      "text": "vocabulary size and",
+      "start": 1586.0,
+      "duration": 6.36
+    },
+    {
+      "text": "what this what this function this is",
+      "start": 1590.08,
+      "duration": 3.839
+    },
+    {
+      "text": "equal to the vocabulary size and what",
+      "start": 1592.36,
+      "duration": 4.319
+    },
+    {
+      "text": "this function does is that it just takes",
+      "start": 1593.919,
+      "duration": 5.401
+    },
+    {
+      "text": "the last row so when we get this final",
+      "start": 1596.679,
+      "duration": 4.36
+    },
+    {
+      "text": "output the number of rows are still",
+      "start": 1599.32,
+      "duration": 3.52
+    },
+    {
+      "text": "equal to the number of batches and the",
+      "start": 1601.039,
+      "duration": 3.801
+    },
+    {
+      "text": "number of columns are equal to the",
+      "start": 1602.84,
+      "duration": 4.0
+    },
+    {
+      "text": "vocabulary size we get rid of the second",
+      "start": 1604.84,
+      "duration": 3.48
+    },
+    {
+      "text": "dimension which was equal to the number",
+      "start": 1606.84,
+      "duration": 2.16
+    },
+    {
+      "text": "of",
+      "start": 1608.32,
+      "duration": 4.239
+    },
+    {
+      "text": "tokens all right so now we have this uh",
+      "start": 1609.0,
+      "duration": 5.36
+    },
+    {
+      "text": "these two we have the rows which",
+      "start": 1612.559,
+      "duration": 3.12
+    },
+    {
+      "text": "correspond to",
+      "start": 1614.36,
+      "duration": 5.16
+    },
+    {
+      "text": "the last row in every batch and the next",
+      "start": 1615.679,
+      "duration": 6.441
+    },
+    {
+      "text": "step is applying soft Max and converting",
+      "start": 1619.52,
+      "duration": 5.159
+    },
+    {
+      "text": "these Logics into a set of probabilities",
+      "start": 1622.12,
+      "duration": 4.12
+    },
+    {
+      "text": "this is exactly what we are going to do",
+      "start": 1624.679,
+      "duration": 4.161
+    },
+    {
+      "text": "we are going to apply soft Max and",
+      "start": 1626.24,
+      "duration": 5.24
+    },
+    {
+      "text": "dimension equal to minus one uh which",
+      "start": 1628.84,
+      "duration": 4.64
+    },
+    {
+      "text": "will ensure that for every row which we",
+      "start": 1631.48,
+      "duration": 3.88
+    },
+    {
+      "text": "have extracted soft Max will be applied",
+      "start": 1633.48,
+      "duration": 3.96
+    },
+    {
+      "text": "Along The Columns of those rows so when",
+      "start": 1635.36,
+      "duration": 4.52
+    },
+    {
+      "text": "we look at each of the tokens so let's",
+      "start": 1637.44,
+      "duration": 4.76
+    },
+    {
+      "text": "say you when we look at this batch so",
+      "start": 1639.88,
+      "duration": 5.44
+    },
+    {
+      "text": "when you look at each batch um when when",
+      "start": 1642.2,
+      "duration": 4.839
+    },
+    {
+      "text": "you sum up the probabilities for each",
+      "start": 1645.32,
+      "duration": 3.719
+    },
+    {
+      "text": "batch they will sum up to one",
+      "start": 1647.039,
+      "duration": 4.88
+    },
+    {
+      "text": "so remember that now that the size here",
+      "start": 1649.039,
+      "duration": 5.161
+    },
+    {
+      "text": "is just batch size number of rows and",
+      "start": 1651.919,
+      "duration": 3.601
+    },
+    {
+      "text": "number of columns equal to the",
+      "start": 1654.2,
+      "duration": 4.44
+    },
+    {
+      "text": "vocabulary size so now all of these will",
+      "start": 1655.52,
+      "duration": 6.84
+    },
+    {
+      "text": "be transformed into values such as these",
+      "start": 1658.64,
+      "duration": 5.399
+    },
+    {
+      "text": "and if you add up these values so for",
+      "start": 1662.36,
+      "duration": 3.36
+    },
+    {
+      "text": "the first batch you'll just add up these",
+      "start": 1664.039,
+      "duration": 3.601
+    },
+    {
+      "text": "values and that will sum up to one for",
+      "start": 1665.72,
+      "duration": 3.6
+    },
+    {
+      "text": "the second batch you'll add up these",
+      "start": 1667.64,
+      "duration": 3.399
+    },
+    {
+      "text": "values and that will sum up to one",
+      "start": 1669.32,
+      "duration": 3.479
+    },
+    {
+      "text": "remember the goal is to predict a new",
+      "start": 1671.039,
+      "duration": 4.48
+    },
+    {
+      "text": "token for every batch we have",
+      "start": 1672.799,
+      "duration": 5.081
+    },
+    {
+      "text": "inputed so this is the next step and",
+      "start": 1675.519,
+      "duration": 4.081
+    },
+    {
+      "text": "then the final step is we are going to",
+      "start": 1677.88,
+      "duration": 3.84
+    },
+    {
+      "text": "look at that index with the highest",
+      "start": 1679.6,
+      "duration": 5.319
+    },
+    {
+      "text": "probability value and uh this is exactly",
+      "start": 1681.72,
+      "duration": 5.72
+    },
+    {
+      "text": "the step which we had mentioned here",
+      "start": 1684.919,
+      "duration": 5.681
+    },
+    {
+      "text": "also yeah so after converting the Logics",
+      "start": 1687.44,
+      "duration": 5.599
+    },
+    {
+      "text": "into probabilities we look at that index",
+      "start": 1690.6,
+      "duration": 4.72
+    },
+    {
+      "text": "which has the highest value so this is",
+      "start": 1693.039,
+      "duration": 3.88
+    },
+    {
+      "text": "exactly what we are doing in this step",
+      "start": 1695.32,
+      "duration": 3.44
+    },
+    {
+      "text": "we look at that index with the highest",
+      "start": 1696.919,
+      "duration": 4.6
+    },
+    {
+      "text": "value uh that token ID and then in the",
+      "start": 1698.76,
+      "duration": 5.6
+    },
+    {
+      "text": "last step we append that token ID idx",
+      "start": 1701.519,
+      "duration": 5.601
+    },
+    {
+      "text": "next to the initial uh token IDs which",
+      "start": 1704.36,
+      "duration": 4.6
+    },
+    {
+      "text": "were stored in idx",
+      "start": 1707.12,
+      "duration": 3.919
+    },
+    {
+      "text": "so in this last step we do the appending",
+      "start": 1708.96,
+      "duration": 4.12
+    },
+    {
+      "text": "part which has been mentioned over",
+      "start": 1711.039,
+      "duration": 4.88
+    },
+    {
+      "text": "here so look at step number five over",
+      "start": 1713.08,
+      "duration": 4.959
+    },
+    {
+      "text": "here you have to append the token ID",
+      "start": 1715.919,
+      "duration": 4.161
+    },
+    {
+      "text": "generated to the previous inputs for the",
+      "start": 1718.039,
+      "duration": 4.961
+    },
+    {
+      "text": "next round and this is what is shown in",
+      "start": 1720.08,
+      "duration": 5.719
+    },
+    {
+      "text": "this torch. cat which is concatenation",
+      "start": 1723.0,
+      "duration": 6.279
+    },
+    {
+      "text": "and idx next is the input is the ID",
+      "start": 1725.799,
+      "duration": 4.801
+    },
+    {
+      "text": "which corresponds to the highest",
+      "start": 1729.279,
+      "duration": 3.481
+    },
+    {
+      "text": "probability and that is appended to the",
+      "start": 1730.6,
+      "duration": 4.52
+    },
+    {
+      "text": "current Uh current",
+      "start": 1732.76,
+      "duration": 5.72
+    },
+    {
+      "text": "indices and we you see we are in a Loop",
+      "start": 1735.12,
+      "duration": 5.159
+    },
+    {
+      "text": "here so the number of times we are going",
+      "start": 1738.48,
+      "duration": 4.96
+    },
+    {
+      "text": "to do this appending operation is by the",
+      "start": 1740.279,
+      "duration": 5.0
+    },
+    {
+      "text": "time we reach the maximum number of new",
+      "start": 1743.44,
+      "duration": 3.079
+    },
+    {
+      "text": "tokens these are the number of",
+      "start": 1745.279,
+      "duration": 3.601
+    },
+    {
+      "text": "iterations remember on the Whiteboard",
+      "start": 1746.519,
+      "duration": 3.361
+    },
+    {
+      "text": "what we",
+      "start": 1748.88,
+      "duration": 3.6
+    },
+    {
+      "text": "saw uh on the Whiteboard we had clearly",
+      "start": 1749.88,
+      "duration": 5.2
+    },
+    {
+      "text": "seen that uh the number of iterations",
+      "start": 1752.48,
+      "duration": 4.319
+    },
+    {
+      "text": "over here the number of iterations which",
+      "start": 1755.08,
+      "duration": 4.04
+    },
+    {
+      "text": "were six iterations over here are equal",
+      "start": 1756.799,
+      "duration": 4.681
+    },
+    {
+      "text": "to the number of Maximum maximum number",
+      "start": 1759.12,
+      "duration": 3.24
+    },
+    {
+      "text": "of new",
+      "start": 1761.48,
+      "duration": 3.319
+    },
+    {
+      "text": "tokens so that's what's been written in",
+      "start": 1762.36,
+      "duration": 3.88
+    },
+    {
+      "text": "the code we are doing the number of",
+      "start": 1764.799,
+      "duration": 3.401
+    },
+    {
+      "text": "iterations equal to the maximum number",
+      "start": 1766.24,
+      "duration": 3.799
+    },
+    {
+      "text": "of new tokens and then we are going to",
+      "start": 1768.2,
+      "duration": 3.92
+    },
+    {
+      "text": "keep on adding these new tokens to the",
+      "start": 1770.039,
+      "duration": 3.52
+    },
+    {
+      "text": "input",
+      "start": 1772.12,
+      "duration": 4.159
+    },
+    {
+      "text": "tokens and that's it this is how we are",
+      "start": 1773.559,
+      "duration": 4.921
+    },
+    {
+      "text": "going to predict the new tokens",
+      "start": 1776.279,
+      "duration": 3.841
+    },
+    {
+      "text": "corresponding to the next words and",
+      "start": 1778.48,
+      "duration": 3.16
+    },
+    {
+      "text": "that's exactly what's happening in the",
+      "start": 1780.12,
+      "duration": 4.679
+    },
+    {
+      "text": "GPT model this is how you go from all of",
+      "start": 1781.64,
+      "duration": 5.44
+    },
+    {
+      "text": "the complicated GPT model architecture",
+      "start": 1784.799,
+      "duration": 5.281
+    },
+    {
+      "text": "to predicting the next World I have just",
+      "start": 1787.08,
+      "duration": 5.199
+    },
+    {
+      "text": "written some text over here in the",
+      "start": 1790.08,
+      "duration": 4.24
+    },
+    {
+      "text": "preceding code the generate Tex simple",
+      "start": 1792.279,
+      "duration": 3.961
+    },
+    {
+      "text": "function we use a soft Max to convert",
+      "start": 1794.32,
+      "duration": 3.839
+    },
+    {
+      "text": "the Logics into probability distrib R",
+      "start": 1796.24,
+      "duration": 4.2
+    },
+    {
+      "text": "bution from which we identify the",
+      "start": 1798.159,
+      "duration": 5.4
+    },
+    {
+      "text": "position with the highest value uh now",
+      "start": 1800.44,
+      "duration": 4.839
+    },
+    {
+      "text": "you might think that since we are only",
+      "start": 1803.559,
+      "duration": 3.321
+    },
+    {
+      "text": "looking at the index with the highest",
+      "start": 1805.279,
+      "duration": 4.201
+    },
+    {
+      "text": "value and soft Max is monotonic why do",
+      "start": 1806.88,
+      "duration": 4.84
+    },
+    {
+      "text": "we need the soft Max why can't we just",
+      "start": 1809.48,
+      "duration": 4.6
+    },
+    {
+      "text": "find the index from the logits that",
+      "start": 1811.72,
+      "duration": 4.679
+    },
+    {
+      "text": "index which gives the highest value soft",
+      "start": 1814.08,
+      "duration": 4.56
+    },
+    {
+      "text": "Max is monotonic so that index is going",
+      "start": 1816.399,
+      "duration": 4.321
+    },
+    {
+      "text": "to remain same whether we apply soft Max",
+      "start": 1818.64,
+      "duration": 2.84
+    },
+    {
+      "text": "or",
+      "start": 1820.72,
+      "duration": 3.799
+    },
+    {
+      "text": "not um so in practice the soft Max step",
+      "start": 1821.48,
+      "duration": 4.76
+    },
+    {
+      "text": "is redundant which means it's not really",
+      "start": 1824.519,
+      "duration": 3.601
+    },
+    {
+      "text": "needed to find the position with the",
+      "start": 1826.24,
+      "duration": 4.96
+    },
+    {
+      "text": "highest uh highest score because the",
+      "start": 1828.12,
+      "duration": 4.32
+    },
+    {
+      "text": "position with the highest score in the",
+      "start": 1831.2,
+      "duration": 4.12
+    },
+    {
+      "text": "softmax output is the same position in",
+      "start": 1832.44,
+      "duration": 4.079
+    },
+    {
+      "text": "the logic",
+      "start": 1835.32,
+      "duration": 3.599
+    },
+    {
+      "text": "sensor so in other words we could apply",
+      "start": 1836.519,
+      "duration": 4.52
+    },
+    {
+      "text": "the torch. AR Max here we have applied",
+      "start": 1838.919,
+      "duration": 4.521
+    },
+    {
+      "text": "it to the soft Max torch. AR Max we have",
+      "start": 1841.039,
+      "duration": 5.24
+    },
+    {
+      "text": "applied to soft Max generated output",
+      "start": 1843.44,
+      "duration": 4.479
+    },
+    {
+      "text": "right we could have applied this to the",
+      "start": 1846.279,
+      "duration": 3.681
+    },
+    {
+      "text": "logic sensor directly and get identical",
+      "start": 1847.919,
+      "duration": 4.281
+    },
+    {
+      "text": "results so here I could have just",
+      "start": 1849.96,
+      "duration": 4.0
+    },
+    {
+      "text": "replace this with",
+      "start": 1852.2,
+      "duration": 4.0
+    },
+    {
+      "text": "logits and the results would have been",
+      "start": 1853.96,
+      "duration": 4.319
+    },
+    {
+      "text": "the same so then your question would be",
+      "start": 1856.2,
+      "duration": 3.88
+    },
+    {
+      "text": "then why are we using the softmax in the",
+      "start": 1858.279,
+      "duration": 2.801
+    },
+    {
+      "text": "first",
+      "start": 1860.08,
+      "duration": 5.199
+    },
+    {
+      "text": "place uh what the importance of softmax",
+      "start": 1861.08,
+      "duration": 5.319
+    },
+    {
+      "text": "is",
+      "start": 1865.279,
+      "duration": 3.601
+    },
+    {
+      "text": "that we wanted to show you the full",
+      "start": 1866.399,
+      "duration": 4.12
+    },
+    {
+      "text": "process of transforming Logics to",
+      "start": 1868.88,
+      "duration": 3.56
+    },
+    {
+      "text": "probabilities which can give additional",
+      "start": 1870.519,
+      "duration": 3.76
+    },
+    {
+      "text": "intuition the probabilities give us some",
+      "start": 1872.44,
+      "duration": 3.479
+    },
+    {
+      "text": "intuition of how much percentage",
+      "start": 1874.279,
+      "duration": 4.4
+    },
+    {
+      "text": "contribution does each token have in the",
+      "start": 1875.919,
+      "duration": 5.801
+    },
+    {
+      "text": "next word prediction task and this will",
+      "start": 1878.679,
+      "duration": 5.761
+    },
+    {
+      "text": "also help us because uh in the next",
+      "start": 1881.72,
+      "duration": 5.48
+    },
+    {
+      "text": "module where we'll do the GP training we",
+      "start": 1884.44,
+      "duration": 4.4
+    },
+    {
+      "text": "will introduce additional sampling",
+      "start": 1887.2,
+      "duration": 3.56
+    },
+    {
+      "text": "techniques where we will modify the",
+      "start": 1888.84,
+      "duration": 3.959
+    },
+    {
+      "text": "softmax output such that the model does",
+      "start": 1890.76,
+      "duration": 4.639
+    },
+    {
+      "text": "not always select the most likely token",
+      "start": 1892.799,
+      "duration": 4.6
+    },
+    {
+      "text": "and will introduce some variability and",
+      "start": 1895.399,
+      "duration": 4.201
+    },
+    {
+      "text": "creativity in the generated text this is",
+      "start": 1897.399,
+      "duration": 4.88
+    },
+    {
+      "text": "the important part the model does not",
+      "start": 1899.6,
+      "duration": 4.24
+    },
+    {
+      "text": "always take",
+      "start": 1902.279,
+      "duration": 4.52
+    },
+    {
+      "text": "the U output with the maximum",
+      "start": 1903.84,
+      "duration": 4.959
+    },
+    {
+      "text": "probability to make sure that the",
+      "start": 1906.799,
+      "duration": 4.161
+    },
+    {
+      "text": "generated text has some variability some",
+      "start": 1908.799,
+      "duration": 4.201
+    },
+    {
+      "text": "creativity we will explore some other",
+      "start": 1910.96,
+      "duration": 3.8
+    },
+    {
+      "text": "options where the softmax select some",
+      "start": 1913.0,
+      "duration": 4.159
+    },
+    {
+      "text": "other tokens and for that definitely we",
+      "start": 1914.76,
+      "duration": 4.08
+    },
+    {
+      "text": "need to apply the soft Max because we",
+      "start": 1917.159,
+      "duration": 3.601
+    },
+    {
+      "text": "need the outputs to be in some format of",
+      "start": 1918.84,
+      "duration": 4.16
+    },
+    {
+      "text": "probabilities so although soft Max was",
+      "start": 1920.76,
+      "duration": 4.12
+    },
+    {
+      "text": "not needed in the current code it will",
+      "start": 1923.0,
+      "duration": 3.799
+    },
+    {
+      "text": "be useful later when we look at things",
+      "start": 1924.88,
+      "duration": 4.0
+    },
+    {
+      "text": "such as temperature variability in",
+      "start": 1926.799,
+      "duration": 4.72
+    },
+    {
+      "text": "selecting the outputs Etc don't worry",
+      "start": 1928.88,
+      "duration": 4.759
+    },
+    {
+      "text": "about these terminologies right now I'll",
+      "start": 1931.519,
+      "duration": 3.801
+    },
+    {
+      "text": "cover that in detail when we come to the",
+      "start": 1933.639,
+      "duration": 2.481
+    },
+    {
+      "text": "next",
+      "start": 1935.32,
+      "duration": 3.0
+    },
+    {
+      "text": "module now what we can do is that we",
+      "start": 1936.12,
+      "duration": 3.96
+    },
+    {
+      "text": "have written this whole function right",
+      "start": 1938.32,
+      "duration": 4.839
+    },
+    {
+      "text": "why don't we test it on some sample text",
+      "start": 1940.08,
+      "duration": 5.28
+    },
+    {
+      "text": "so let me take the model input as hello",
+      "start": 1943.159,
+      "duration": 5.601
+    },
+    {
+      "text": "I am um these this is is my model input",
+      "start": 1945.36,
+      "duration": 5.039
+    },
+    {
+      "text": "and the reason I'm taking this input is",
+      "start": 1948.76,
+      "duration": 3.159
+    },
+    {
+      "text": "that this is the same input which I have",
+      "start": 1950.399,
+      "duration": 3.921
+    },
+    {
+      "text": "used on the mirror whiteboard over here",
+      "start": 1951.919,
+      "duration": 6.201
+    },
+    {
+      "text": "so I take this model input and uh then",
+      "start": 1954.32,
+      "duration": 5.319
+    },
+    {
+      "text": "what I'll first do is that I'll first",
+      "start": 1958.12,
+      "duration": 4.799
+    },
+    {
+      "text": "encode it into token IDs so I first use",
+      "start": 1959.639,
+      "duration": 5.241
+    },
+    {
+      "text": "my encoder to encode this model input",
+      "start": 1962.919,
+      "duration": 4.48
+    },
+    {
+      "text": "and convert it into a tensor so remember",
+      "start": 1964.88,
+      "duration": 4.399
+    },
+    {
+      "text": "the shape of the input should be batch",
+      "start": 1967.399,
+      "duration": 3.681
+    },
+    {
+      "text": "size here I have only one batch and the",
+      "start": 1969.279,
+      "duration": 3.441
+    },
+    {
+      "text": "number of tokens so it should be a",
+      "start": 1971.08,
+      "duration": 3.719
+    },
+    {
+      "text": "tensor and it should be a tensor of",
+      "start": 1972.72,
+      "duration": 4.839
+    },
+    {
+      "text": "token IDs so I have my encoder which has",
+      "start": 1974.799,
+      "duration": 4.6
+    },
+    {
+      "text": "been defined through tick token so if",
+      "start": 1977.559,
+      "duration": 4.12
+    },
+    {
+      "text": "you have been following these lectures",
+      "start": 1979.399,
+      "duration": 3.721
+    },
+    {
+      "text": "you will know that we have been",
+      "start": 1981.679,
+      "duration": 3.521
+    },
+    {
+      "text": "generating our encodings through tick",
+      "start": 1983.12,
+      "duration": 4.559
+    },
+    {
+      "text": "token which is the tokenizer used for",
+      "start": 1985.2,
+      "duration": 5.12
+    },
+    {
+      "text": "open AI models it's a bite pair encoder",
+      "start": 1987.679,
+      "duration": 4.641
+    },
+    {
+      "text": "so we are using that to encode this",
+      "start": 1990.32,
+      "duration": 3.719
+    },
+    {
+      "text": "sentence and now I have generated my",
+      "start": 1992.32,
+      "duration": 4.359
+    },
+    {
+      "text": "input sample now what we'll do is that",
+      "start": 1994.039,
+      "duration": 4.64
+    },
+    {
+      "text": "before passing in the model we'll first",
+      "start": 1996.679,
+      "duration": 4.12
+    },
+    {
+      "text": "put the model in evaluation mode this",
+      "start": 1998.679,
+      "duration": 3.48
+    },
+    {
+      "text": "bypasses some layers such as",
+      "start": 2000.799,
+      "duration": 3.641
+    },
+    {
+      "text": "normalization layer Dropout layer",
+      "start": 2002.159,
+      "duration": 3.76
+    },
+    {
+      "text": "because we are not training the model",
+      "start": 2004.44,
+      "duration": 3.359
+    },
+    {
+      "text": "here we are just evaluating so it just",
+      "start": 2005.919,
+      "duration": 3.36
+    },
+    {
+      "text": "just makes the model a bit more",
+      "start": 2007.799,
+      "duration": 3.641
+    },
+    {
+      "text": "efficient and then we will just call",
+      "start": 2009.279,
+      "duration": 4.081
+    },
+    {
+      "text": "this generate text sample",
+      "start": 2011.44,
+      "duration": 4.199
+    },
+    {
+      "text": "function we'll call this generate text",
+      "start": 2013.36,
+      "duration": 4.88
+    },
+    {
+      "text": "sample function and we'll put model",
+      "start": 2015.639,
+      "duration": 4.841
+    },
+    {
+      "text": "equal to model we have already defined",
+      "start": 2018.24,
+      "duration": 4.48
+    },
+    {
+      "text": "the model before and let me again take",
+      "start": 2020.48,
+      "duration": 5.039
+    },
+    {
+      "text": "this over here so that you you have full",
+      "start": 2022.72,
+      "duration": 5.079
+    },
+    {
+      "text": "grasp and the GPT model configuration",
+      "start": 2025.519,
+      "duration": 4.0
+    },
+    {
+      "text": "which we are using has been defined over",
+      "start": 2027.799,
+      "duration": 3.521
+    },
+    {
+      "text": "here this is the configuration we are",
+      "start": 2029.519,
+      "duration": 3.76
+    },
+    {
+      "text": "using a vocabulary size of",
+      "start": 2031.32,
+      "duration": 5.68
+    },
+    {
+      "text": "50257 context length of 1024 768",
+      "start": 2033.279,
+      "duration": 5.561
+    },
+    {
+      "text": "embedding dimension",
+      "start": 2037.0,
+      "duration": 4.2
+    },
+    {
+      "text": "12 attention heads 12 Transformer blocks",
+      "start": 2038.84,
+      "duration": 4.079
+    },
+    {
+      "text": "and dropout rate of",
+      "start": 2041.2,
+      "duration": 4.839
+    },
+    {
+      "text": "0.1 so this is the model which has been",
+      "start": 2042.919,
+      "duration": 5.881
+    },
+    {
+      "text": "defined um because that's needed to be",
+      "start": 2046.039,
+      "duration": 5.12
+    },
+    {
+      "text": "passed into our function so I'm just",
+      "start": 2048.8,
+      "duration": 3.96
+    },
+    {
+      "text": "writing it over here for your reference",
+      "start": 2051.159,
+      "duration": 4.041
+    },
+    {
+      "text": "I'll code it out I'll comment it out I",
+      "start": 2052.76,
+      "duration": 4.2
+    },
+    {
+      "text": "will share the code so that you can run",
+      "start": 2055.2,
+      "duration": 5.159
+    },
+    {
+      "text": "it on your own laptop okay so then we'll",
+      "start": 2056.96,
+      "duration": 5.32
+    },
+    {
+      "text": "run this generate text simple function",
+      "start": 2060.359,
+      "duration": 3.76
+    },
+    {
+      "text": "we'll pass in the model we'll pass in",
+      "start": 2062.28,
+      "duration": 3.92
+    },
+    {
+      "text": "the inputs this these are my inputs",
+      "start": 2064.119,
+      "duration": 4.04
+    },
+    {
+      "text": "right now remember the input is the",
+      "start": 2066.2,
+      "duration": 3.959
+    },
+    {
+      "text": "second argument over here then we have",
+      "start": 2068.159,
+      "duration": 4.161
+    },
+    {
+      "text": "to pass Max new tokens and context size",
+      "start": 2070.159,
+      "duration": 4.52
+    },
+    {
+      "text": "so let me pass in that so my Max new",
+      "start": 2072.32,
+      "duration": 4.559
+    },
+    {
+      "text": "tokens is six and the context size which",
+      "start": 2074.679,
+      "duration": 4.24
+    },
+    {
+      "text": "I'm I'm passing is GPT configuration",
+      "start": 2076.879,
+      "duration": 3.401
+    },
+    {
+      "text": "context length which is",
+      "start": 2078.919,
+      "duration": 3.92
+    },
+    {
+      "text": "1024 and then I'll just print out the",
+      "start": 2080.28,
+      "duration": 6.24
+    },
+    {
+      "text": "output so I have six new tokens right",
+      "start": 2082.839,
+      "duration": 7.361
+    },
+    {
+      "text": "and the input was these tokens 1 5496 11",
+      "start": 2086.52,
+      "duration": 7.92
+    },
+    {
+      "text": "314 and 716 so now these are the inputs",
+      "start": 2090.2,
+      "duration": 5.76
+    },
+    {
+      "text": "and if you look at the output tensor",
+      "start": 2094.44,
+      "duration": 3.36
+    },
+    {
+      "text": "you'll see that six new tokens have been",
+      "start": 2095.96,
+      "duration": 8.76
+    },
+    {
+      "text": "appended over here 27018 2486 474 843",
+      "start": 2097.8,
+      "duration": 9.52
+    },
+    {
+      "text": "30961 42 3 48",
+      "start": 2104.72,
+      "duration": 5.2
+    },
+    {
+      "text": "7267 these are the six new tokens which",
+      "start": 2107.32,
+      "duration": 5.68
+    },
+    {
+      "text": "have been appended uh through because of",
+      "start": 2109.92,
+      "duration": 5.0
+    },
+    {
+      "text": "our generate text simple function so",
+      "start": 2113.0,
+      "duration": 3.72
+    },
+    {
+      "text": "these are the next Words which our GPT",
+      "start": 2114.92,
+      "duration": 4.48
+    },
+    {
+      "text": "model has predicted and here you can see",
+      "start": 2116.72,
+      "duration": 4.68
+    },
+    {
+      "text": "that the output length is 10 why 10",
+      "start": 2119.4,
+      "duration": 3.959
+    },
+    {
+      "text": "because four were the number of input",
+      "start": 2121.4,
+      "duration": 4.12
+    },
+    {
+      "text": "tokens and Max new tokens were six so",
+      "start": 2123.359,
+      "duration": 4.48
+    },
+    {
+      "text": "six additional words or tokens have been",
+      "start": 2125.52,
+      "duration": 4.599
+    },
+    {
+      "text": "generated now we can use the decode",
+      "start": 2127.839,
+      "duration": 4.481
+    },
+    {
+      "text": "method and based on our vocabulary and",
+      "start": 2130.119,
+      "duration": 4.401
+    },
+    {
+      "text": "the bite pair encoder which we have used",
+      "start": 2132.32,
+      "duration": 4.519
+    },
+    {
+      "text": "we can convert these new tokens back",
+      "start": 2134.52,
+      "duration": 5.28
+    },
+    {
+      "text": "into text so it seems that the next text",
+      "start": 2136.839,
+      "duration": 5.881
+    },
+    {
+      "text": "is now some random text and the next",
+      "start": 2139.8,
+      "duration": 4.84
+    },
+    {
+      "text": "text is not as great as what I had",
+      "start": 2142.72,
+      "duration": 5.28
+    },
+    {
+      "text": "written on the Whiteboard over here uh",
+      "start": 2144.64,
+      "duration": 5.88
+    },
+    {
+      "text": "on the Whiteboard the next text was",
+      "start": 2148.0,
+      "duration": 4.92
+    },
+    {
+      "text": "hello I am model ready to help but here",
+      "start": 2150.52,
+      "duration": 4.16
+    },
+    {
+      "text": "the next text is something completely",
+      "start": 2152.92,
+      "duration": 3.919
+    },
+    {
+      "text": "random right now why is this completely",
+      "start": 2154.68,
+      "duration": 4.12
+    },
+    {
+      "text": "random the reason this text is",
+      "start": 2156.839,
+      "duration": 3.641
+    },
+    {
+      "text": "completely random is that because we",
+      "start": 2158.8,
+      "duration": 3.96
+    },
+    {
+      "text": "have not trained the model yet the model",
+      "start": 2160.48,
+      "duration": 4.639
+    },
+    {
+      "text": "has 124 million parameters and all of",
+      "start": 2162.76,
+      "duration": 4.16
+    },
+    {
+      "text": "those parameters are completely random",
+      "start": 2165.119,
+      "duration": 4.321
+    },
+    {
+      "text": "right now those are not trained now it's",
+      "start": 2166.92,
+      "duration": 4.56
+    },
+    {
+      "text": "just a matter of training the whole GPT",
+      "start": 2169.44,
+      "duration": 3.8
+    },
+    {
+      "text": "architecture has been set up completely",
+      "start": 2171.48,
+      "duration": 3.44
+    },
+    {
+      "text": "we have implemented the full GPT",
+      "start": 2173.24,
+      "duration": 4.24
+    },
+    {
+      "text": "architecture and initialized a GPT model",
+      "start": 2174.92,
+      "duration": 4.679
+    },
+    {
+      "text": "instance but with random weights we need",
+      "start": 2177.48,
+      "duration": 4.839
+    },
+    {
+      "text": "to train these 124 million parameters",
+      "start": 2179.599,
+      "duration": 4.561
+    },
+    {
+      "text": "and for that we have the whole NY module",
+      "start": 2182.319,
+      "duration": 5.641
+    },
+    {
+      "text": "dedicated which are a uh next maybe six",
+      "start": 2184.16,
+      "duration": 6.04
+    },
+    {
+      "text": "seven number of lectures or even more",
+      "start": 2187.96,
+      "duration": 4.159
+    },
+    {
+      "text": "but for now if you have reached this",
+      "start": 2190.2,
+      "duration": 3.879
+    },
+    {
+      "text": "stage just be happy and proud that you",
+      "start": 2192.119,
+      "duration": 5.281
+    },
+    {
+      "text": "have run a 124 million gpt2 architecture",
+      "start": 2194.079,
+      "duration": 5.76
+    },
+    {
+      "text": "model completely on your laptop you have",
+      "start": 2197.4,
+      "duration": 4.36
+    },
+    {
+      "text": "taken an input and you have predicted",
+      "start": 2199.839,
+      "duration": 4.641
+    },
+    {
+      "text": "the outputs and uh this is the first",
+      "start": 2201.76,
+      "duration": 4.52
+    },
+    {
+      "text": "step towards understanding how GPT",
+      "start": 2204.48,
+      "duration": 4.48
+    },
+    {
+      "text": "really works when you go to chat GPT and",
+      "start": 2206.28,
+      "duration": 4.559
+    },
+    {
+      "text": "when you type hello I am let me let's",
+      "start": 2208.96,
+      "duration": 4.32
+    },
+    {
+      "text": "actually do that so I'm going to chat",
+      "start": 2210.839,
+      "duration": 5.201
+    },
+    {
+      "text": "GPT right",
+      "start": 2213.28,
+      "duration": 2.76
+    },
+    {
+      "text": "now and let me type hello I am and let",
+      "start": 2216.079,
+      "duration": 8.321
+    },
+    {
+      "text": "me say complete this sentence I'm",
+      "start": 2221.24,
+      "duration": 5.079
+    },
+    {
+      "text": "providing no context here and does not",
+      "start": 2224.4,
+      "duration": 4.12
+    },
+    {
+      "text": "make too much too much sense but here",
+      "start": 2226.319,
+      "duration": 4.401
+    },
+    {
+      "text": "you can see that based on the past",
+      "start": 2228.52,
+      "duration": 3.72
+    },
+    {
+      "text": "interactions which I've had with chat",
+      "start": 2230.72,
+      "duration": 4.119
+    },
+    {
+      "text": "GPT it it results in some output which",
+      "start": 2232.24,
+      "duration": 5.04
+    },
+    {
+      "text": "is at least quite coherent it's much",
+      "start": 2234.839,
+      "duration": 4.641
+    },
+    {
+      "text": "better than the output which we have",
+      "start": 2237.28,
+      "duration": 4.44
+    },
+    {
+      "text": "received over here right but that's fine",
+      "start": 2239.48,
+      "duration": 4.24
+    },
+    {
+      "text": "we have not implemented the training but",
+      "start": 2241.72,
+      "duration": 3.68
+    },
+    {
+      "text": "we have essentially implemented all the",
+      "start": 2243.72,
+      "duration": 4.32
+    },
+    {
+      "text": "nuts the bolts and the building block",
+      "start": 2245.4,
+      "duration": 4.88
+    },
+    {
+      "text": "for building out this entire GPT",
+      "start": 2248.04,
+      "duration": 4.36
+    },
+    {
+      "text": "architecture on our own completely from",
+      "start": 2250.28,
+      "duration": 4.6
+    },
+    {
+      "text": "scratch we have not used any library",
+      "start": 2252.4,
+      "duration": 4.36
+    },
+    {
+      "text": "from Lang chain or anything we have",
+      "start": 2254.88,
+      "duration": 4.08
+    },
+    {
+      "text": "defined this GPT architecture fully from",
+      "start": 2256.76,
+      "duration": 4.28
+    },
+    {
+      "text": "scratch we have learned about all the",
+      "start": 2258.96,
+      "duration": 3.8
+    },
+    {
+      "text": "sub modules involved in the GPT",
+      "start": 2261.04,
+      "duration": 3.44
+    },
+    {
+      "text": "architecture we have coded all these sub",
+      "start": 2262.76,
+      "duration": 3.559
+    },
+    {
+      "text": "modules and ultimately now we have",
+      "start": 2264.48,
+      "duration": 3.92
+    },
+    {
+      "text": "reached a stage where given an input we",
+      "start": 2266.319,
+      "duration": 3.481
+    },
+    {
+      "text": "can predict an",
+      "start": 2268.4,
+      "duration": 3.56
+    },
+    {
+      "text": "output so let us go back to the",
+      "start": 2269.8,
+      "duration": 3.92
+    },
+    {
+      "text": "schematic which we started this lecture",
+      "start": 2271.96,
+      "duration": 3.32
+    },
+    {
+      "text": "with and let's see whether we have",
+      "start": 2273.72,
+      "duration": 3.96
+    },
+    {
+      "text": "implemented everything which we we",
+      "start": 2275.28,
+      "duration": 5.0
+    },
+    {
+      "text": "actually wanted to implement uh yeah",
+      "start": 2277.68,
+      "duration": 4.159
+    },
+    {
+      "text": "this is that schematic I was talking",
+      "start": 2280.28,
+      "duration": 3.88
+    },
+    {
+      "text": "about so we have I think had six to",
+      "start": 2281.839,
+      "duration": 4.321
+    },
+    {
+      "text": "seven lectures in this GPT architecture",
+      "start": 2284.16,
+      "duration": 4.28
+    },
+    {
+      "text": "module and in these lectures we have",
+      "start": 2286.16,
+      "duration": 4.199
+    },
+    {
+      "text": "implemented every single thing which has",
+      "start": 2288.44,
+      "duration": 4.12
+    },
+    {
+      "text": "been mentioned in this schematic all the",
+      "start": 2290.359,
+      "duration": 3.76
+    },
+    {
+      "text": "things we have been mentioned all the",
+      "start": 2292.56,
+      "duration": 3.36
+    },
+    {
+      "text": "things have been covered so when you are",
+      "start": 2294.119,
+      "duration": 3.72
+    },
+    {
+      "text": "given an input which is a text such as",
+      "start": 2295.92,
+      "duration": 4.72
+    },
+    {
+      "text": "every effort moves you now we are we are",
+      "start": 2297.839,
+      "duration": 5.161
+    },
+    {
+      "text": "ready to predict the next words we have",
+      "start": 2300.64,
+      "duration": 4.719
+    },
+    {
+      "text": "reached the stage where we had an input",
+      "start": 2303.0,
+      "duration": 4.079
+    },
+    {
+      "text": "and we have implemented the whole GPT",
+      "start": 2305.359,
+      "duration": 3.801
+    },
+    {
+      "text": "architect piure to produce the output",
+      "start": 2307.079,
+      "duration": 3.721
+    },
+    {
+      "text": "it's just that the training has not been",
+      "start": 2309.16,
+      "duration": 3.08
+    },
+    {
+      "text": "done yet but it's fine we'll come",
+      "start": 2310.8,
+      "duration": 5.08
+    },
+    {
+      "text": "sequentially to that part in fact we",
+      "start": 2312.24,
+      "duration": 6.32
+    },
+    {
+      "text": "have learned this whole thing in U this",
+      "start": 2315.88,
+      "duration": 5.12
+    },
+    {
+      "text": "module we first started with the GPT",
+      "start": 2318.56,
+      "duration": 4.759
+    },
+    {
+      "text": "backbone where the code was not",
+      "start": 2321.0,
+      "duration": 4.96
+    },
+    {
+      "text": "implemented but we had a dummy GPT class",
+      "start": 2323.319,
+      "duration": 4.481
+    },
+    {
+      "text": "then we implemented layer normalization",
+      "start": 2325.96,
+      "duration": 3.8
+    },
+    {
+      "text": "J activation feed forward Network",
+      "start": 2327.8,
+      "duration": 4.279
+    },
+    {
+      "text": "shortcut connection we coded out the",
+      "start": 2329.76,
+      "duration": 4.92
+    },
+    {
+      "text": "entire Transformer block after that and",
+      "start": 2332.079,
+      "duration": 4.361
+    },
+    {
+      "text": "in today's lecture we coded out the",
+      "start": 2334.68,
+      "duration": 3.96
+    },
+    {
+      "text": "entire GPT architecture and we also got",
+      "start": 2336.44,
+      "duration": 4.76
+    },
+    {
+      "text": "the final the next words given a set of",
+      "start": 2338.64,
+      "duration": 4.52
+    },
+    {
+      "text": "input tokens so these were a",
+      "start": 2341.2,
+      "duration": 3.76
+    },
+    {
+      "text": "comprehensive set of lectures but if you",
+      "start": 2343.16,
+      "duration": 3.32
+    },
+    {
+      "text": "have reached the end you should be proud",
+      "start": 2344.96,
+      "duration": 4.0
+    },
+    {
+      "text": "of yourself and I just want",
+      "start": 2346.48,
+      "duration": 6.68
+    },
+    {
+      "text": "to write that",
+      "start": 2348.96,
+      "duration": 6.24
+    },
+    {
+      "text": "you",
+      "start": 2353.16,
+      "duration": 6.76
+    },
+    {
+      "text": "um you did it that is what I I want to",
+      "start": 2355.2,
+      "duration": 6.72
+    },
+    {
+      "text": "write just to keep you",
+      "start": 2359.92,
+      "duration": 4.32
+    },
+    {
+      "text": "motivated uh to keep on following the",
+      "start": 2361.92,
+      "duration": 4.0
+    },
+    {
+      "text": "next lectures which are coming because",
+      "start": 2364.24,
+      "duration": 3.16
+    },
+    {
+      "text": "if you have reached this stage you have",
+      "start": 2365.92,
+      "duration": 3.96
+    },
+    {
+      "text": "already reached much farther than 95% of",
+      "start": 2367.4,
+      "duration": 4.88
+    },
+    {
+      "text": "students so it's amazing many other",
+      "start": 2369.88,
+      "duration": 5.16
+    },
+    {
+      "text": "students might just be using GPT but you",
+      "start": 2372.28,
+      "duration": 4.799
+    },
+    {
+      "text": "are one of the few students who have now",
+      "start": 2375.04,
+      "duration": 4.559
+    },
+    {
+      "text": "coded out a gpt2 architecture on your",
+      "start": 2377.079,
+      "duration": 4.881
+    },
+    {
+      "text": "own on your local machine which which is",
+      "start": 2379.599,
+      "duration": 4.161
+    },
+    {
+      "text": "predicting the next word which is",
+      "start": 2381.96,
+      "duration": 3.879
+    },
+    {
+      "text": "predicting the next token and I find",
+      "start": 2383.76,
+      "duration": 3.599
+    },
+    {
+      "text": "that incredibly satisfying and",
+      "start": 2385.839,
+      "duration": 3.841
+    },
+    {
+      "text": "motivating in the next set of lectures",
+      "start": 2387.359,
+      "duration": 3.72
+    },
+    {
+      "text": "what we are going to do is that we are",
+      "start": 2389.68,
+      "duration": 4.159
+    },
+    {
+      "text": "going to do the training for the 124",
+      "start": 2391.079,
+      "duration": 5.681
+    },
+    {
+      "text": "million parameters in the gpt2 model and",
+      "start": 2393.839,
+      "duration": 4.121
+    },
+    {
+      "text": "then the",
+      "start": 2396.76,
+      "duration": 3.16
+    },
+    {
+      "text": "output which is generated will start",
+      "start": 2397.96,
+      "duration": 4.0
+    },
+    {
+      "text": "getting much better and it will be",
+      "start": 2399.92,
+      "duration": 4.0
+    },
+    {
+      "text": "better and better and better so the",
+      "start": 2401.96,
+      "duration": 4.0
+    },
+    {
+      "text": "whole goal of the next set of lectures",
+      "start": 2403.92,
+      "duration": 4.399
+    },
+    {
+      "text": "is to make this set of outputs better",
+      "start": 2405.96,
+      "duration": 4.04
+    },
+    {
+      "text": "but now since the architecture is in",
+      "start": 2408.319,
+      "duration": 6.441
+    },
+    {
+      "text": "place uh doing the next part um will be",
+      "start": 2410.0,
+      "duration": 7.28
+    },
+    {
+      "text": "a bit easier because we can directly",
+      "start": 2414.76,
+      "duration": 4.319
+    },
+    {
+      "text": "work from the architecture which we have",
+      "start": 2417.28,
+      "duration": 3.839
+    },
+    {
+      "text": "built thank you so much everyone I hope",
+      "start": 2419.079,
+      "duration": 3.961
+    },
+    {
+      "text": "you are enjoying these lectures I say",
+      "start": 2421.119,
+      "duration": 3.561
+    },
+    {
+      "text": "this at the end of every lecture but I",
+      "start": 2423.04,
+      "duration": 5.6
+    },
+    {
+      "text": "deliberately try to keep a mix of uh",
+      "start": 2424.68,
+      "duration": 5.84
+    },
+    {
+      "text": "very detailed whiteboard notes such as",
+      "start": 2428.64,
+      "duration": 4.28
+    },
+    {
+      "text": "this plus the coding because I feel that",
+      "start": 2430.52,
+      "duration": 4.76
+    },
+    {
+      "text": "students to really Master large language",
+      "start": 2432.92,
+      "duration": 4.199
+    },
+    {
+      "text": "models you need an understanding of",
+      "start": 2435.28,
+      "duration": 4.16
+    },
+    {
+      "text": "theory intuition as well as detailed",
+      "start": 2437.119,
+      "duration": 4.401
+    },
+    {
+      "text": "code I'll be sharing the entire code",
+      "start": 2439.44,
+      "duration": 3.879
+    },
+    {
+      "text": "file with you and I encourage you to",
+      "start": 2441.52,
+      "duration": 3.72
+    },
+    {
+      "text": "play with this code ask doubts on",
+      "start": 2443.319,
+      "duration": 5.081
+    },
+    {
+      "text": "YouTube um and we'll try to clarify as",
+      "start": 2445.24,
+      "duration": 5.119
+    },
+    {
+      "text": "much as possible thanks a lot everyone I",
+      "start": 2448.4,
+      "duration": 3.48
+    },
+    {
+      "text": "look forward to seeing you in the next",
+      "start": 2450.359,
+      "duration": 4.521
+    },
+    {
+      "text": "video",
+      "start": 2451.88,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series today is the last lecture in the GPT architecture module which we have been covering and in today's lecture what we are going to do is that we are going to generate text from the output tensor which we have reached at in the last lecture so first let me give you a review of how an llm generates text because this figure right here is what will guide us throughout this entire lecture and then I'll quickly take you through the recap of what all we have completed so far and what's the main objective of today's lecture so let's get started everyone what a large language model does is essentially the following it generates tokens given a certain sequence of input tokens it generates the output token and uh to generate the output token the model is given a context size that's the maximum number of tokens which the model looks at before predicting the next token so uh let's say when we are looking at the first iteration this is the input tokens hello I am and the model has to predict the next token and then the next token is actually appended to the input tokens so in the second iterations now the inputs are hello I am a uh so the token which has been generated in the previous round is appended to the input for the next iteration and in the next iteration the input tokens are hello I am a and then the output is model great then in the third iteration we have hello I am a model which are the input tokens and then the output tokens are ready similarly we continue doing iterations until there is a specific number of Max maximum number of new tokens which can be generated so let's say we have reached the six iteration and hello I am ready to help so the new tokens which have been generated are model ready to and help and Dot so five new tokens so if the maximum number of new tokens is five then the output from the model is hello I am a model ready to help this is the main uh mechanism through which the next token is generated from a given list of tokens what's very important in this process is also the context size that's the maximum number of previous tokens the llm is going to look at before predicting the next token in gpt2 architecture the context size was 1,24 so just keep this in mind keep this iterative procedure in mind where the output from the earlier iteration is appended to the next iteration and the next word is predicted and this keeps on happening until we have reached the maximum number of new tokens this is the exact mechanism which we are going to implement in today's lecture first let's recap what all we have learned so far in this series we started out with getting an input such as every effort moves you that's the input sentence we converted it into token IDs we converted it into input embeddings sorry we converted it into token embeddings we added positional embeddings to this token embeddings which led to input embeddings then we added a Dropout layer the output from this Dropout layer was passed into the Transformer block the Transformer block which is shown in blue color is where all the magic really happens and the core engine of the Transformer block is multi-head attention before the multi-ad attention there is a normalization layer after the multi-ad attention we have a Dropout and a shortcut connection then after the shortcut connection we have another layer of normalization we have a feed forward neural network we have another Dropout layer then we have one more shortcut connection over here and then we get the output from the Transformer after the output is obtained from the Transformer we have one more layer normalization layer and then we have a final neural network which is also called as the output head which gives us this output tensor all of this has been covered in the previous two lectures where we coded out the entire Transformer block and in the last lecture we coded out the entire GPT model so if you have not seen seen the previous lectures I highly recommend you to do that so that you can follow along in this lecture as well so uh let us see the exact flow which we have implemented so far and what we need to do next so the output or the main goal of the today's lecture is that look at this output tensor which we have obtained this output tensor looks pretty big right so your question would be how do I go from this output tensor to prediction of the next word which I have shown in this visual representation in today's lecture first we are going to understand that on a whiteboard and then we are going to go to code to predict the next word so at the end of today's lecture we will actually take an input and get words as the next predictions okay so here's the entire pipeline which we saw remember the format in which we have received the input batches uh here there were two batches and each batch has certain number of tokens so in this case each batch had four tokens we focused on the first batch which has four tokens and that's every moves you we converted every token ID there are four token IDs here 6 6109 3626 610 and 345 we converted every token ID into a token embedding so the embedding size was 768 over here and then what we did was we added positional embedding to these token embeddings since the context size is four over here we have four positions and there is a 768 dimensional embedding for the positional uh embedding so we add the token embedding to the positional embedding and that gives us the input embedding for every token for every effort moves and U so we have these four input embeddings for these four tokens then what we do is we pass these input embeddings through a Dropout layer which randomly turns off certain elements to zero this output which I'm highlighting in the yellow color right now that is passed as an input to the Transformer this is where all the magic happens in the trans former we first start with a normalization layer which makes sure that the mean and variance across so mean is zero across every row and the variance is one across every single row then we apply the multi-head attention which converts these embedding vectors into context vectors which carry richer meaning they also carry meaning about how the particular token attends to all the other tokens uh or how one token relates to all the other tokens in the sentence this mask multi-ad attention is the key evolution in the llm architecture and that's why modern GPT architecture such as the GPT 4 which we all have been using perform so brilliantly if multi-ad attention was not there the llm outputs would not be so coherent and so meaningful after this we have a Dropout layer then we have a shortcut connection followed by a layer normalization followed by a feed forward neural network followed by another Dropout layer followed by a short shortcut connection and then we get the Transformer block output remember here the dimensions up till this stage are exactly preserved so we still have four tokens here and every token is still an embedding size of 768 but now the embeddings are much more richer because they also contain uh context about how one token relates to other tokens then we have after coming out of the Transformer we have a layer normalization and then we have the final output layer which is this fin neural network now after this stage is where today's lecture begins so first I want you to look at the output which we have received when we come out of the entire GPT model so the number of rows are still the same we have four rows every effort is the second row moves is the third row and U is the fourth row but the number of columns are now 50257 which is the vocabulary size and uh why do we have those many number of columns the the reason is because every effort moves you these are four tokens right which is also the context size when the context size is equal to four there are actually Four input output prediction tasks which are happening there is not just one input output prediction task so you might be thinking how come there are four input output prediction task well the first prediction task is when every is an input you have to predict what's the output and that should be effort right so you look at these output Logics so these are called logics you look at the 50257 output logits for every and then you find that index which has the highest value so let's say this index has the highest value right remember this index also correspond to probabilities so this index will give us which word in the entire vocabulary should come after every and then hopefully this token ID here or this index corresponds to effort so then if when every is the input effort is the output similarly when every effort is the input we look at the row for effort and we try to look at that index which has the maximum value let's say this is that Index this is that token ID then we go to our vocabulary and look for the word which corresponds to this token ID and that will be moves after all the weights and parameters have been optimized when every effort moves is the input then we look at again the row corresponding to moves and we try to look at that token ID or that index which gives us the maximum value and then we look at the vocabulary and we try to find out what that ID corresponds to and that will be you only after these three prediction tasks are done then we come to the fourth prediction task which is the main prediction task when the input is every effort moves you you have to predict the output right so you look at the fourth row which is the final row and you try to find that ID which gives you the maximum value and then you find the word corresponding to that and that word will hopefully be forward so then the next word which will be predicted by this LM is every effort knows you forward and remember the size of the output over here since we have only one batch over here the number of rows in the output are equal to four and the number of columns are equal to the vocabulary size which is 50257 uh when the number of batches are equal to two the output tensor size will be 2 into 4 into 50257 what we have to do is that from this tensor we have to extract that word which comes after every effort moves you so let's see how the first step is to take a look at this output tensor and make sense of it that we have four tokens and the number of columns is equal to the vocabulary size awesome as I told you every row corresponds to something specific so the first row corresponds to what token should come after every the second row corresponds to what token should come after every effort the third row corresponds to what token should come after every effort moves you and only the fourth row corresponds to what token should come after every effort moves you so we are going to extract the last Vector from this tensor that's step number two so we will look at the vector which is corresponding to um U which I'm marking right now and we'll extract this Vector after this Vector is extracted this is called as the logits vector we look at the logits which are present and you'll see that these logits don't add up to one which means that the logits currently don't represent the probabilities then what we do from Step number two to step number three is that we are going to apply soft Max so we are going to apply soft Max function here so that we are going to convert these logits into a set of probabilities so now when you look at the last Vector for you you'll see that all of the values add up to one so this gives us probabilities that the probability of the next token being the first element in the vocabulary is let say 0.1% the probability of the uh second token being the uh the probability of the next word being the second token is let's say uh 02 Etc so you can do this for all the tokens and then you in the next step which is Step number four you identify the index position or token ID of the largest value so you find the index which corresponds to the largest probability so here clearly it looks like 02 uh is the probability which seems to be the largest and then I find the index for this particular element and it turns out that in this case let's say the token ID is equal to 57 which means that the highest probability for the next word after every effort moves you is the word or the token with the token ID equal to 57 and then all we do is that we go to we go to our vocabulary and we decode the word which corresponds to the Token ID of 57 and we hope that it's equal to forward up till now we have not trained the llm architecture so the next word will not be what we expect because the training has not been done at all it will be a random word but after all the training is done which will be the subject of our next module the next word should be what we actually expect so this is the exact procedure which we are going to follow and remember there's one last step after this token ID is obtained we'll have to append this token ID to the previous inputs for the next round why this step number five exist is I hope you remember this diagram which we saw at the start of this lecture the step number five exists because after you predict the next token after you predict the Next Generation token the task does not stop here we have to append this token to the input in the second iteration and then we have to repeat this process until we reach the last iteration which corresponds to the maximum number of new tokens okay so I hope you have understood the process I've just uh written a section where I explain this process again so that you can revise and reinforce your Concepts so in the previous section we have seen that the GPT model out outputs the tensors with this shape batch size number of tokens and the vocabulary size remember this is exactly what we saw over here uh the shape is equal to the batch size multiplied by number of tokens multiplied by the vocabulary size okay so uh this is the output tensor and now the question is that how do we go from this output tensor to the generated text and as I explained to you in the visual map there will be different steps so first what we'll do is that we'll get this output tensor and then what we'll do is that we'll extract the last row from this output tensor after extracting the last row these are the Logics we'll convert it into a set of probabilities by applying the soft Max and we'll extract that token ID with the highest probability and then we'll find the word which cor or find the token which corresponds to that token ID and then we'll append that token to the previous inputs and then we'll do the next round of iterations this is exactly what we'll be doing so basically we'll take the index of the highest value we'll get the token ID we'll decode it back to text that produces the next token and will append to the previous input so I've written the same thing here so that you can you know reinforce and uh master your understanding of these Concepts so this stepbystep process enables the model to generate text sequence ially building coherent phrases from the initial input context so as I showed to you over here we are going to over here we are going to repeat this process over multiple iterations right and that's also what I've written over here yeah in practice what we do is that we repeat this process or multiple iterations until we reach a user specified number of generated tokens so we have to specify how many new tokens you need and only when we reach that reach that me many number of new tokens we stop so the figure below illustrates the process of generating one token ID at a time so let's zoom into this figure further so let's say the initial input tokens which are provided as the input to the llm are hello I am with these token IDs what the llm will do in iteration number one is that it will predict the next token ID using the procedure we saw before and let's say the token ID is 257 which corresponds to the Token o this token is then appended in the second iteration so now we are we have come to the second iteration the inputs are hello I am a and then we make the output which is the next uh given given these inputs what is the next token which comes out and then the token word which or the actual token is model and then this token is now appended to the input of the previous iteration now we are at iteration number three similarly we get an output at iteration number three and this proceed proceeds till the end why do we do only six tokens because there is a provision for Max new tokens and that has been set to six that's why we only do six iterations remember the number of iterations which we do will be determined by the maximum number of new tokens which have been specified so then when the input is hello I am since the maximum number of new tokens is six the output will be hello I am a model ready to help dot this this is the output which the GPT has has generated that's why generative AI we have generated something like this completely from scratch now that was not present as an input or a training data this is generated as a new text um and this is the process underneath all of it so now when you use GPT today or tomorrow or any time uh hopefully this lecture Series has kind of shined a torch to this black box for all the other students who don't know how this next work next word prediction task Works GPT operates like a black box but not for all of you who have been watching this video series because I'm trying trying to deconstruct how the next word is actually predicted given the input tokens awesome so uh in iteration number one the model is provided with tokens corresponding to hello I am and then it predicts the next token with ID 257 great and then that is again appended to the input and this process is repeated till the model produ produces the complete sentence hello I am a model ready to help after six iterations why only six iterations because the maximum number of new tokens was set to six okay so I hope everyone has followed with me until this part and I want you to recap these steps the step number one is to look at the output tensor step number two is to extract the last Vector step number three is to convert logits into probabilities step number four is to identify the index position position of the largest value and step number five is to append token ID to the previous inputs and we are going to keep on doing this until maximum number of new tokens has been reached this is the exact same thing which we are going to implement in code right now so the next part of this lecture is diving into code so uh let's jump into code right now okay so here what we are going to do is we are going to generate text from output tokens and uh we are going to implement the same process what we had seen in the uh on the Whiteboard okay great so the first thing what we need is that uh we need the inputs uh we need the inputs to be provided and the inputs are usually provided in the format which looks like this um yeah this is the input batch so in the input what we'll be doing is that let's say this is a batch with two inputs the first uh batch has four tokens and the second batch has four tokens so the inputs will be provided like this and that's called as the idx so the shape of idx is batch which are the number of uh batches which we have uh and that's the number of rows and the number of columns is equal to uh end tokens so so that you visualize what the inputs will look like I'll just copy paste the inputs which I showed to you before so I'll just copy paste this over here so that this is a visual reference for you so this is the this is the input this is the format of the input batch which is passed into this generate text simple so we are defining a function which is generate text simple and what it will do is that it will take model and what is model model has been defined before model is actually let me go back yeah model is an instance of the GPT model class so see this is the GP model class which we had coded in the last lecture which takes the inputs and then outputs the logits tensor um so that's the second input to the function which we are going to Define today and that function is generate text simple so model sorry model is the first input so we have to pass in an instance of the GPT model class we have to pass in the inputs and remember I told you about the maximum number of new tokens so we have to pass in that as an argument and we also have to pass in the context size because the context size specifies how many words we have to look at before predicting the next World great now let's start the coding the first thing what we have to do is that we have to make sure that the number of tokens which the llm is looking at at any given point is determined by the context size so let me show you what that actually means um here I'm just taking a random example to demonstrate this to you so take a look at this example over here let's say these are the inputs uh let's say these are the um this is the input tensor which is given to the llm and here you will see that this input tensor actually has two rows which means there are two batches but I want you to look at so two rows because there are two batches but look at the number of tokens so number of tokens here are actually equal to eight so there are eight tokens here now what if the context size is equal to five so if the context size is equal to five we cannot look at eight tokens before predicting the next word we only can look at five tokens so this command which is it takes in the input and then it only looks at the number of elements specific to the context size so in the code we are going to write this Command right now so what this command will do is that it will look at the input if the input token size which is the number of columns is equal to the context size then it's fine but if it's not it will take the last Elements which are equal to the context size so now the context size is equal to five so it will look at the last five tokens as an input from the first batch and it will look at the last five tokens as an input from the second badge this is what this idx colon minus context size colon is going to do it will restrict the input so that we only look at the number of tokens equal to context size so that's the first uh command which we have written that's idx c n d which is condition idx condition great now what we are going to do is that we are going to pass this input to the model so the model is the GPT class this is where all all the main functions are happening what this model will do is that it will take the input and then it will pass the input through token embeddings positional embeddings Dropout layer Transformer blocks another normalization layer and the final output layer and it will return this logic tensor and remember that this logic sensor which is which is received what are the dimensions for it the dimensions are batch comma number of tokens comma the vocabulary size this is the dimensions of this logic sensor and then what we have to now do is that we have to extract the last row from this logic tensor remember what we did um on the white Bard when we looked at the logic tensor which was this tensor that is in Step One in Step number two what we have to do is that we have to extract the last Vector from this logit tensor so now what we are going to do in the second step is that let's say if the logit tensor looks something like this so if I have two batches this is my first batch and this is my second batch and then then in each batch I have four tokens and then here I'm taking a vector embedding Dimension equal to five so what we have to do is that from each of these batches we have to take the last we have to take the last row so from the first batch we have to take the last row from the second batch we have to take the last row and the way this will happen is through this command Logics colon minus one and colon so what this first colon is that which means you do nothing to the batch argument but the second is minus one which means that you look at the first batch and then you look at the last you take the last row you look at the second batch and you just take the last row this is what we are going to do so now we are going to apply this function which will just take the last row out of every batch in the logic stenor so logits colon minus one colon is going to result in this where we just take the we just take this Row from the first batch and we take the last row from the second batch and we just uh stack them together so this is the second command here where we only focused on the last time step or the last row okay and now when we execute this command the dimensions become the batch which are the number of rows and the vocabulary size so one thing which I would like to clarify here is that here I mentioned this five as the embedding Dimension right but this is actually the vocabulary size the number of columns here are equal to the vocabulary size and what this what this function this is equal to the vocabulary size and what this function does is that it just takes the last row so when we get this final output the number of rows are still equal to the number of batches and the number of columns are equal to the vocabulary size we get rid of the second dimension which was equal to the number of tokens all right so now we have this uh these two we have the rows which correspond to the last row in every batch and the next step is applying soft Max and converting these Logics into a set of probabilities this is exactly what we are going to do we are going to apply soft Max and dimension equal to minus one uh which will ensure that for every row which we have extracted soft Max will be applied Along The Columns of those rows so when we look at each of the tokens so let's say you when we look at this batch so when you look at each batch um when when you sum up the probabilities for each batch they will sum up to one so remember that now that the size here is just batch size number of rows and number of columns equal to the vocabulary size so now all of these will be transformed into values such as these and if you add up these values so for the first batch you'll just add up these values and that will sum up to one for the second batch you'll add up these values and that will sum up to one remember the goal is to predict a new token for every batch we have inputed so this is the next step and then the final step is we are going to look at that index with the highest probability value and uh this is exactly the step which we had mentioned here also yeah so after converting the Logics into probabilities we look at that index which has the highest value so this is exactly what we are doing in this step we look at that index with the highest value uh that token ID and then in the last step we append that token ID idx next to the initial uh token IDs which were stored in idx so in this last step we do the appending part which has been mentioned over here so look at step number five over here you have to append the token ID generated to the previous inputs for the next round and this is what is shown in this torch. cat which is concatenation and idx next is the input is the ID which corresponds to the highest probability and that is appended to the current Uh current indices and we you see we are in a Loop here so the number of times we are going to do this appending operation is by the time we reach the maximum number of new tokens these are the number of iterations remember on the Whiteboard what we saw uh on the Whiteboard we had clearly seen that uh the number of iterations over here the number of iterations which were six iterations over here are equal to the number of Maximum maximum number of new tokens so that's what's been written in the code we are doing the number of iterations equal to the maximum number of new tokens and then we are going to keep on adding these new tokens to the input tokens and that's it this is how we are going to predict the new tokens corresponding to the next words and that's exactly what's happening in the GPT model this is how you go from all of the complicated GPT model architecture to predicting the next World I have just written some text over here in the preceding code the generate Tex simple function we use a soft Max to convert the Logics into probability distrib R bution from which we identify the position with the highest value uh now you might think that since we are only looking at the index with the highest value and soft Max is monotonic why do we need the soft Max why can't we just find the index from the logits that index which gives the highest value soft Max is monotonic so that index is going to remain same whether we apply soft Max or not um so in practice the soft Max step is redundant which means it's not really needed to find the position with the highest uh highest score because the position with the highest score in the softmax output is the same position in the logic sensor so in other words we could apply the torch. AR Max here we have applied it to the soft Max torch. AR Max we have applied to soft Max generated output right we could have applied this to the logic sensor directly and get identical results so here I could have just replace this with logits and the results would have been the same so then your question would be then why are we using the softmax in the first place uh what the importance of softmax is that we wanted to show you the full process of transforming Logics to probabilities which can give additional intuition the probabilities give us some intuition of how much percentage contribution does each token have in the next word prediction task and this will also help us because uh in the next module where we'll do the GP training we will introduce additional sampling techniques where we will modify the softmax output such that the model does not always select the most likely token and will introduce some variability and creativity in the generated text this is the important part the model does not always take the U output with the maximum probability to make sure that the generated text has some variability some creativity we will explore some other options where the softmax select some other tokens and for that definitely we need to apply the soft Max because we need the outputs to be in some format of probabilities so although soft Max was not needed in the current code it will be useful later when we look at things such as temperature variability in selecting the outputs Etc don't worry about these terminologies right now I'll cover that in detail when we come to the next module now what we can do is that we have written this whole function right why don't we test it on some sample text so let me take the model input as hello I am um these this is is my model input and the reason I'm taking this input is that this is the same input which I have used on the mirror whiteboard over here so I take this model input and uh then what I'll first do is that I'll first encode it into token IDs so I first use my encoder to encode this model input and convert it into a tensor so remember the shape of the input should be batch size here I have only one batch and the number of tokens so it should be a tensor and it should be a tensor of token IDs so I have my encoder which has been defined through tick token so if you have been following these lectures you will know that we have been generating our encodings through tick token which is the tokenizer used for open AI models it's a bite pair encoder so we are using that to encode this sentence and now I have generated my input sample now what we'll do is that before passing in the model we'll first put the model in evaluation mode this bypasses some layers such as normalization layer Dropout layer because we are not training the model here we are just evaluating so it just just makes the model a bit more efficient and then we will just call this generate text sample function we'll call this generate text sample function and we'll put model equal to model we have already defined the model before and let me again take this over here so that you you have full grasp and the GPT model configuration which we are using has been defined over here this is the configuration we are using a vocabulary size of 50257 context length of 1024 768 embedding dimension 12 attention heads 12 Transformer blocks and dropout rate of 0.1 so this is the model which has been defined um because that's needed to be passed into our function so I'm just writing it over here for your reference I'll code it out I'll comment it out I will share the code so that you can run it on your own laptop okay so then we'll run this generate text simple function we'll pass in the model we'll pass in the inputs this these are my inputs right now remember the input is the second argument over here then we have to pass Max new tokens and context size so let me pass in that so my Max new tokens is six and the context size which I'm I'm passing is GPT configuration context length which is 1024 and then I'll just print out the output so I have six new tokens right and the input was these tokens 1 5496 11 314 and 716 so now these are the inputs and if you look at the output tensor you'll see that six new tokens have been appended over here 27018 2486 474 843 30961 42 3 48 7267 these are the six new tokens which have been appended uh through because of our generate text simple function so these are the next Words which our GPT model has predicted and here you can see that the output length is 10 why 10 because four were the number of input tokens and Max new tokens were six so six additional words or tokens have been generated now we can use the decode method and based on our vocabulary and the bite pair encoder which we have used we can convert these new tokens back into text so it seems that the next text is now some random text and the next text is not as great as what I had written on the Whiteboard over here uh on the Whiteboard the next text was hello I am model ready to help but here the next text is something completely random right now why is this completely random the reason this text is completely random is that because we have not trained the model yet the model has 124 million parameters and all of those parameters are completely random right now those are not trained now it's just a matter of training the whole GPT architecture has been set up completely we have implemented the full GPT architecture and initialized a GPT model instance but with random weights we need to train these 124 million parameters and for that we have the whole NY module dedicated which are a uh next maybe six seven number of lectures or even more but for now if you have reached this stage just be happy and proud that you have run a 124 million gpt2 architecture model completely on your laptop you have taken an input and you have predicted the outputs and uh this is the first step towards understanding how GPT really works when you go to chat GPT and when you type hello I am let me let's actually do that so I'm going to chat GPT right now and let me type hello I am and let me say complete this sentence I'm providing no context here and does not make too much too much sense but here you can see that based on the past interactions which I've had with chat GPT it it results in some output which is at least quite coherent it's much better than the output which we have received over here right but that's fine we have not implemented the training but we have essentially implemented all the nuts the bolts and the building block for building out this entire GPT architecture on our own completely from scratch we have not used any library from Lang chain or anything we have defined this GPT architecture fully from scratch we have learned about all the sub modules involved in the GPT architecture we have coded all these sub modules and ultimately now we have reached a stage where given an input we can predict an output so let us go back to the schematic which we started this lecture with and let's see whether we have implemented everything which we we actually wanted to implement uh yeah this is that schematic I was talking about so we have I think had six to seven lectures in this GPT architecture module and in these lectures we have implemented every single thing which has been mentioned in this schematic all the things we have been mentioned all the things have been covered so when you are given an input which is a text such as every effort moves you now we are we are ready to predict the next words we have reached the stage where we had an input and we have implemented the whole GPT architect piure to produce the output it's just that the training has not been done yet but it's fine we'll come sequentially to that part in fact we have learned this whole thing in U this module we first started with the GPT backbone where the code was not implemented but we had a dummy GPT class then we implemented layer normalization J activation feed forward Network shortcut connection we coded out the entire Transformer block after that and in today's lecture we coded out the entire GPT architecture and we also got the final the next words given a set of input tokens so these were a comprehensive set of lectures but if you have reached the end you should be proud of yourself and I just want to write that you um you did it that is what I I want to write just to keep you motivated uh to keep on following the next lectures which are coming because if you have reached this stage you have already reached much farther than 95% of students so it's amazing many other students might just be using GPT but you are one of the few students who have now coded out a gpt2 architecture on your own on your local machine which which is predicting the next word which is predicting the next token and I find that incredibly satisfying and motivating in the next set of lectures what we are going to do is that we are going to do the training for the 124 million parameters in the gpt2 model and then the output which is generated will start getting much better and it will be better and better and better so the whole goal of the next set of lectures is to make this set of outputs better but now since the architecture is in place uh doing the next part um will be a bit easier because we can directly work from the architecture which we have built thank you so much everyone I hope you are enjoying these lectures I say this at the end of every lecture but I deliberately try to keep a mix of uh very detailed whiteboard notes such as this plus the coding because I feel that students to really Master large language models you need an understanding of theory intuition as well as detailed code I'll be sharing the entire code file with you and I encourage you to play with this code ask doubts on YouTube um and we'll try to clarify as much as possible thanks a lot everyone I look forward to seeing you in the next video"
+}

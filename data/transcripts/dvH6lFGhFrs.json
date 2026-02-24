@@ -1,0 +1,5756 @@
+{
+  "video": {
+    "video_id": "dvH6lFGhFrs",
+    "title": "Coding the entire LLM Transformer Block",
+    "duration": 2706.0,
+    "index": 22
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.759
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.12,
+      "duration": 5.08
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 7.759,
+      "duration": 5.8
+    },
+    {
+      "text": "scratch Series today we are going to",
+      "start": 10.2,
+      "duration": 6.44
+    },
+    {
+      "text": "finally code out the entire Transformer",
+      "start": 13.559,
+      "duration": 5.921
+    },
+    {
+      "text": "block for the previous 3 to four",
+      "start": 16.64,
+      "duration": 4.68
+    },
+    {
+      "text": "lectures we have been laying the",
+      "start": 19.48,
+      "duration": 5.16
+    },
+    {
+      "text": "groundwork for this lecture let me first",
+      "start": 21.32,
+      "duration": 5.199
+    },
+    {
+      "text": "recap what all we have covered in the",
+      "start": 24.64,
+      "duration": 3.28
+    },
+    {
+      "text": "previous three",
+      "start": 26.519,
+      "duration": 3.92
+    },
+    {
+      "text": "lectures when we started this series of",
+      "start": 27.92,
+      "duration": 5.68
+    },
+    {
+      "text": "GPT architecture we first covered layer",
+      "start": 30.439,
+      "duration": 5.361
+    },
+    {
+      "text": "normalization and why we need layer",
+      "start": 33.6,
+      "duration": 4.72
+    },
+    {
+      "text": "normalization we coded out a class for",
+      "start": 35.8,
+      "duration": 3.52
+    },
+    {
+      "text": "the layer",
+      "start": 38.32,
+      "duration": 3.719
+    },
+    {
+      "text": "normalization then we looked at feed",
+      "start": 39.32,
+      "duration": 5.239
+    },
+    {
+      "text": "forward neural network with the jalu",
+      "start": 42.039,
+      "duration": 4.68
+    },
+    {
+      "text": "activation and then we looked at",
+      "start": 44.559,
+      "duration": 4.441
+    },
+    {
+      "text": "shortcut connections why we need them",
+      "start": 46.719,
+      "duration": 4.52
+    },
+    {
+      "text": "and we coded out all of these components",
+      "start": 49.0,
+      "duration": 5.6
+    },
+    {
+      "text": "together today is that lecture when all",
+      "start": 51.239,
+      "duration": 5.48
+    },
+    {
+      "text": "these four components the layer",
+      "start": 54.6,
+      "duration": 4.84
+    },
+    {
+      "text": "normalization J activation feed forward",
+      "start": 56.719,
+      "duration": 5.401
+    },
+    {
+      "text": "neural Network and shortcut connections",
+      "start": 59.44,
+      "duration": 5.6
+    },
+    {
+      "text": "are all going to come together into what",
+      "start": 62.12,
+      "duration": 5.999
+    },
+    {
+      "text": "is called as the Transformer block",
+      "start": 65.04,
+      "duration": 5.2
+    },
+    {
+      "text": "Transformers are the beating heart or",
+      "start": 68.119,
+      "duration": 5.721
+    },
+    {
+      "text": "the engine behind large language models",
+      "start": 70.24,
+      "duration": 5.72
+    },
+    {
+      "text": "and today you are going to see how we",
+      "start": 73.84,
+      "duration": 4.919
+    },
+    {
+      "text": "code out the entire Transformer block so",
+      "start": 75.96,
+      "duration": 5.44
+    },
+    {
+      "text": "let's get started with today's",
+      "start": 78.759,
+      "duration": 5.561
+    },
+    {
+      "text": "lecture first I want to show you a",
+      "start": 81.4,
+      "duration": 5.359
+    },
+    {
+      "text": "bird's eye view of where the Transformer",
+      "start": 84.32,
+      "duration": 5.96
+    },
+    {
+      "text": "block exactly fits in the whole llm St",
+      "start": 86.759,
+      "duration": 6.241
+    },
+    {
+      "text": "stack um as we have seen in the previous",
+      "start": 90.28,
+      "duration": 5.44
+    },
+    {
+      "text": "lectures first you get the input",
+      "start": 93.0,
+      "duration": 4.6
+    },
+    {
+      "text": "sentence that is",
+      "start": 95.72,
+      "duration": 4.719
+    },
+    {
+      "text": "tokenized then that is converted into",
+      "start": 97.6,
+      "duration": 4.839
+    },
+    {
+      "text": "Vector embeddings we add positional",
+      "start": 100.439,
+      "duration": 4.841
+    },
+    {
+      "text": "embeddings on that um then a Dropout",
+      "start": 102.439,
+      "duration": 4.801
+    },
+    {
+      "text": "layer is applied and then we finally",
+      "start": 105.28,
+      "duration": 4.479
+    },
+    {
+      "text": "enter the Transformer block itself",
+      "start": 107.24,
+      "duration": 4.6
+    },
+    {
+      "text": "within the Transformer block we I'm",
+      "start": 109.759,
+      "duration": 3.761
+    },
+    {
+      "text": "showing the Transformer Block in blue",
+      "start": 111.84,
+      "duration": 4.52
+    },
+    {
+      "text": "color right now we have several layers",
+      "start": 113.52,
+      "duration": 4.599
+    },
+    {
+      "text": "we have a layer normalization followed",
+      "start": 116.36,
+      "duration": 4.32
+    },
+    {
+      "text": "by mask multi-ad attention followed by",
+      "start": 118.119,
+      "duration": 4.68
+    },
+    {
+      "text": "Dropout then we have this shortcut",
+      "start": 120.68,
+      "duration": 4.119
+    },
+    {
+      "text": "connection over here then we have",
+      "start": 122.799,
+      "duration": 4.36
+    },
+    {
+      "text": "another layer normalization layer a feed",
+      "start": 124.799,
+      "duration": 4.08
+    },
+    {
+      "text": "forward neural network with Jou",
+      "start": 127.159,
+      "duration": 4.561
+    },
+    {
+      "text": "activation another layer of Dropout and",
+      "start": 128.879,
+      "duration": 5.841
+    },
+    {
+      "text": "then a shortcut connection when we move",
+      "start": 131.72,
+      "duration": 5.28
+    },
+    {
+      "text": "out of the Transformer block there are",
+      "start": 134.72,
+      "duration": 4.92
+    },
+    {
+      "text": "several steps which are called",
+      "start": 137.0,
+      "duration": 5.48
+    },
+    {
+      "text": "post-processing output steps and then",
+      "start": 139.64,
+      "duration": 6.04
+    },
+    {
+      "text": "finally we get the output tensor and",
+      "start": 142.48,
+      "duration": 5.119
+    },
+    {
+      "text": "this tensor is used to predict the next",
+      "start": 145.68,
+      "duration": 4.279
+    },
+    {
+      "text": "word in the input sequence so if the",
+      "start": 147.599,
+      "duration": 4.801
+    },
+    {
+      "text": "input sequence is every effort moves you",
+      "start": 149.959,
+      "duration": 5.801
+    },
+    {
+      "text": "and if the next word is forward when the",
+      "start": 152.4,
+      "duration": 5.76
+    },
+    {
+      "text": "output processing is completed the next",
+      "start": 155.76,
+      "duration": 5.24
+    },
+    {
+      "text": "word is predicted here today we are",
+      "start": 158.16,
+      "duration": 4.84
+    },
+    {
+      "text": "going to code this blue structure which",
+      "start": 161.0,
+      "duration": 3.72
+    },
+    {
+      "text": "I have shown over here then that is the",
+      "start": 163.0,
+      "duration": 3.64
+    },
+    {
+      "text": "Transformer",
+      "start": 164.72,
+      "duration": 5.56
+    },
+    {
+      "text": "block so uh as I've have discussed",
+      "start": 166.64,
+      "duration": 5.679
+    },
+    {
+      "text": "earlier Transformer block is the",
+      "start": 170.28,
+      "duration": 5.08
+    },
+    {
+      "text": "fundamental building block of GPT and",
+      "start": 172.319,
+      "duration": 5.92
+    },
+    {
+      "text": "other llm architectures as well so",
+      "start": 175.36,
+      "duration": 5.44
+    },
+    {
+      "text": "please pay careful attention to today's",
+      "start": 178.239,
+      "duration": 4.72
+    },
+    {
+      "text": "lecture one thing which I would like to",
+      "start": 180.8,
+      "duration": 4.64
+    },
+    {
+      "text": "mention here is that and which also I've",
+      "start": 182.959,
+      "duration": 4.681
+    },
+    {
+      "text": "shown here so you must be looking at",
+      "start": 185.44,
+      "duration": 4.159
+    },
+    {
+      "text": "this 12 here and must be thinking what",
+      "start": 187.64,
+      "duration": 5.679
+    },
+    {
+      "text": "is this 12 so in the gpt2 architecture",
+      "start": 189.599,
+      "duration": 5.36
+    },
+    {
+      "text": "the Transformer block was actually",
+      "start": 193.319,
+      "duration": 5.56
+    },
+    {
+      "text": "repeated 12 times in this series of G uh",
+      "start": 194.959,
+      "duration": 5.721
+    },
+    {
+      "text": "in this series of llm architecture",
+      "start": 198.879,
+      "duration": 4.201
+    },
+    {
+      "text": "lectures we are looking at gpt2 the",
+      "start": 200.68,
+      "duration": 4.839
+    },
+    {
+      "text": "smallest version which has 124 million",
+      "start": 203.08,
+      "duration": 4.84
+    },
+    {
+      "text": "parameters in that version the",
+      "start": 205.519,
+      "duration": 4.321
+    },
+    {
+      "text": "Transformer block is actually repeated",
+      "start": 207.92,
+      "duration": 4.519
+    },
+    {
+      "text": "12 times so the code which we are going",
+      "start": 209.84,
+      "duration": 4.64
+    },
+    {
+      "text": "to see right now is actually replicated",
+      "start": 212.439,
+      "duration": 5.36
+    },
+    {
+      "text": "12 times in the final GPT",
+      "start": 214.48,
+      "duration": 6.959
+    },
+    {
+      "text": "architecture and uh as I told you the",
+      "start": 217.799,
+      "duration": 5.72
+    },
+    {
+      "text": "Transformer block has several components",
+      "start": 221.439,
+      "duration": 4.241
+    },
+    {
+      "text": "which we have looked at before the layer",
+      "start": 223.519,
+      "duration": 4.44
+    },
+    {
+      "text": "normalization let me just Mark with a",
+      "start": 225.68,
+      "duration": 4.68
+    },
+    {
+      "text": "tick here layer normalization mask",
+      "start": 227.959,
+      "duration": 5.081
+    },
+    {
+      "text": "multi-head attention Dropout the feed",
+      "start": 230.36,
+      "duration": 5.159
+    },
+    {
+      "text": "forward neural network and the shortcut",
+      "start": 233.04,
+      "duration": 4.64
+    },
+    {
+      "text": "connections so I have just mentioned",
+      "start": 235.519,
+      "duration": 4.92
+    },
+    {
+      "text": "here what are these five components",
+      "start": 237.68,
+      "duration": 5.24
+    },
+    {
+      "text": "the first is the mask multi-ad attention",
+      "start": 240.439,
+      "duration": 4.681
+    },
+    {
+      "text": "the second is the layer normalization",
+      "start": 242.92,
+      "duration": 5.039
+    },
+    {
+      "text": "third is the Dropout fourth is the feed",
+      "start": 245.12,
+      "duration": 5.319
+    },
+    {
+      "text": "forward neural network and fifth is the",
+      "start": 247.959,
+      "duration": 5.441
+    },
+    {
+      "text": "jalu activation function now what I'm",
+      "start": 250.439,
+      "duration": 5.44
+    },
+    {
+      "text": "going to do is before we jump into code",
+      "start": 253.4,
+      "duration": 5.6
+    },
+    {
+      "text": "I'm going to give you a quick recap of",
+      "start": 255.879,
+      "duration": 5.441
+    },
+    {
+      "text": "these five subcomponents so that your",
+      "start": 259.0,
+      "duration": 4.16
+    },
+    {
+      "text": "memory is refreshed about what all we",
+      "start": 261.32,
+      "duration": 4.0
+    },
+    {
+      "text": "have learned so far and so that your",
+      "start": 263.16,
+      "duration": 4.08
+    },
+    {
+      "text": "intuition is developed in a strong",
+      "start": 265.32,
+      "duration": 4.159
+    },
+    {
+      "text": "manner before we are going to move to",
+      "start": 267.24,
+      "duration": 4.88
+    },
+    {
+      "text": "the code first I want to start with",
+      "start": 269.479,
+      "duration": 4.56
+    },
+    {
+      "text": "multi-head attention in case you have",
+      "start": 272.12,
+      "duration": 4.079
+    },
+    {
+      "text": "forgotten it we had very comprehensive",
+      "start": 274.039,
+      "duration": 4.16
+    },
+    {
+      "text": "series of four lectures on the attention",
+      "start": 276.199,
+      "duration": 4.121
+    },
+    {
+      "text": "mechanism what happens in multihead",
+      "start": 278.199,
+      "duration": 4.201
+    },
+    {
+      "text": "attention is that we look at the input",
+      "start": 280.32,
+      "duration": 4.12
+    },
+    {
+      "text": "let's say the input input is labeled as",
+      "start": 282.4,
+      "duration": 3.28
+    },
+    {
+      "text": "the Matrix",
+      "start": 284.44,
+      "duration": 4.599
+    },
+    {
+      "text": "X then we multiply the input with",
+      "start": 285.68,
+      "duration": 6.84
+    },
+    {
+      "text": "trainable queries Matrix trainable Keys",
+      "start": 289.039,
+      "duration": 6.281
+    },
+    {
+      "text": "Matrix and the trainable values Matrix",
+      "start": 292.52,
+      "duration": 4.679
+    },
+    {
+      "text": "and in the case of multi-head attention",
+      "start": 295.32,
+      "duration": 4.0
+    },
+    {
+      "text": "we have multiple copies so we have",
+      "start": 297.199,
+      "duration": 4.241
+    },
+    {
+      "text": "multiple MP trainable queries Matrix",
+      "start": 299.32,
+      "duration": 4.599
+    },
+    {
+      "text": "multiple trainable Keys Matrix and",
+      "start": 301.44,
+      "duration": 5.479
+    },
+    {
+      "text": "multiple trainable values Matrix so the",
+      "start": 303.919,
+      "duration": 5.041
+    },
+    {
+      "text": "inputs are multiplied by these weight",
+      "start": 306.919,
+      "duration": 4.361
+    },
+    {
+      "text": "matrices and then we get the queries",
+      "start": 308.96,
+      "duration": 5.959
+    },
+    {
+      "text": "Matrix we get the keys Matrix and we get",
+      "start": 311.28,
+      "duration": 6.68
+    },
+    {
+      "text": "the values Matrix right and again in the",
+      "start": 314.919,
+      "duration": 5.041
+    },
+    {
+      "text": "case of multi-head attention we get",
+      "start": 317.96,
+      "duration": 3.72
+    },
+    {
+      "text": "multiple copies of this so here I'm",
+      "start": 319.96,
+      "duration": 3.359
+    },
+    {
+      "text": "seeing I'm seeing I'm showing two",
+      "start": 321.68,
+      "duration": 4.0
+    },
+    {
+      "text": "attention heads so there are two queries",
+      "start": 323.319,
+      "duration": 5.0
+    },
+    {
+      "text": "Matrix there are two keys Matrix and two",
+      "start": 325.68,
+      "duration": 5.16
+    },
+    {
+      "text": "values Matrix what happens next is",
+      "start": 328.319,
+      "duration": 3.641
+    },
+    {
+      "text": "something very",
+      "start": 330.84,
+      "duration": 3.6
+    },
+    {
+      "text": "interesting we will take the dot product",
+      "start": 331.96,
+      "duration": 4.76
+    },
+    {
+      "text": "between the queries and the keys that",
+      "start": 334.44,
+      "duration": 4.8
+    },
+    {
+      "text": "gives us our attention scores the",
+      "start": 336.72,
+      "duration": 4.68
+    },
+    {
+      "text": "attention scores are normalized to give",
+      "start": 339.24,
+      "duration": 3.76
+    },
+    {
+      "text": "us the attention weights which have been",
+      "start": 341.4,
+      "duration": 3.88
+    },
+    {
+      "text": "shown over here and then the attention",
+      "start": 343.0,
+      "duration": 4.639
+    },
+    {
+      "text": "weights are multiplied with the",
+      "start": 345.28,
+      "duration": 5.4
+    },
+    {
+      "text": "values uh Matrix and then we get a set",
+      "start": 347.639,
+      "duration": 5.4
+    },
+    {
+      "text": "of context vectors the whole aim of",
+      "start": 350.68,
+      "duration": 4.4
+    },
+    {
+      "text": "multi-ad attention or any attention",
+      "start": 353.039,
+      "duration": 3.761
+    },
+    {
+      "text": "mechanism is to convert embedding",
+      "start": 355.08,
+      "duration": 4.16
+    },
+    {
+      "text": "vectors into context vectors what are",
+      "start": 356.8,
+      "duration": 4.56
+    },
+    {
+      "text": "context X vectors the simplest way to",
+      "start": 359.24,
+      "duration": 3.679
+    },
+    {
+      "text": "think about them is that they are a",
+      "start": 361.36,
+      "duration": 3.559
+    },
+    {
+      "text": "richer representation than the embedding",
+      "start": 362.919,
+      "duration": 4.321
+    },
+    {
+      "text": "Vector embedding Vector consists of",
+      "start": 364.919,
+      "duration": 4.361
+    },
+    {
+      "text": "semantic meaning of a particular word",
+      "start": 367.24,
+      "duration": 4.48
+    },
+    {
+      "text": "right it contains no information about",
+      "start": 369.28,
+      "duration": 4.52
+    },
+    {
+      "text": "how that word relates to other words in",
+      "start": 371.72,
+      "duration": 5.199
+    },
+    {
+      "text": "a sentence context Vector goes beyond",
+      "start": 373.8,
+      "duration": 6.839
+    },
+    {
+      "text": "embedding embedding it not only captures",
+      "start": 376.919,
+      "duration": 5.601
+    },
+    {
+      "text": "the semantic meaning of the particular",
+      "start": 380.639,
+      "duration": 4.361
+    },
+    {
+      "text": "word but it also captures the",
+      "start": 382.52,
+      "duration": 5.28
+    },
+    {
+      "text": "relationship of how that word relates to",
+      "start": 385.0,
+      "duration": 5.36
+    },
+    {
+      "text": "the other tokens in the sentence or how",
+      "start": 387.8,
+      "duration": 5.04
+    },
+    {
+      "text": "that word attends to other tokens in the",
+      "start": 390.36,
+      "duration": 4.04
+    },
+    {
+      "text": "sentence that's why it's called",
+      "start": 392.84,
+      "duration": 4.28
+    },
+    {
+      "text": "attention mechanism and the whole goal",
+      "start": 394.4,
+      "duration": 4.359
+    },
+    {
+      "text": "of this multi-ad attention is to get",
+      "start": 397.12,
+      "duration": 4.4
+    },
+    {
+      "text": "context vectors so for every attention",
+      "start": 398.759,
+      "duration": 4.641
+    },
+    {
+      "text": "head there is a SE separate context",
+      "start": 401.52,
+      "duration": 4.04
+    },
+    {
+      "text": "Vector Matrix which is generated and",
+      "start": 403.4,
+      "duration": 4.72
+    },
+    {
+      "text": "ultimately you merge the context Vector",
+      "start": 405.56,
+      "duration": 4.639
+    },
+    {
+      "text": "matrices from different attention heads",
+      "start": 408.12,
+      "duration": 3.359
+    },
+    {
+      "text": "and you get this",
+      "start": 410.199,
+      "duration": 3.72
+    },
+    {
+      "text": "combined uh context Vector",
+      "start": 411.479,
+      "duration": 5.201
+    },
+    {
+      "text": "Matrix and then this is the context",
+      "start": 413.919,
+      "duration": 5.641
+    },
+    {
+      "text": "Vector Matrix which is the output of the",
+      "start": 416.68,
+      "duration": 4.919
+    },
+    {
+      "text": "multihead attention so whenever you see",
+      "start": 419.56,
+      "duration": 3.88
+    },
+    {
+      "text": "the multi-head attention layer over here",
+      "start": 421.599,
+      "duration": 4.241
+    },
+    {
+      "text": "this mask multi-ad attention you have",
+      "start": 423.44,
+      "duration": 4.479
+    },
+    {
+      "text": "Vector embeddings as inputs and then you",
+      "start": 425.84,
+      "duration": 5.919
+    },
+    {
+      "text": "have context uh you have context vectors",
+      "start": 427.919,
+      "duration": 5.161
+    },
+    {
+      "text": "which are the outputs coming from",
+      "start": 431.759,
+      "duration": 3.601
+    },
+    {
+      "text": "multi-ad attention if you want to revise",
+      "start": 433.08,
+      "duration": 4.239
+    },
+    {
+      "text": "some of these Concepts please go to",
+      "start": 435.36,
+      "duration": 3.959
+    },
+    {
+      "text": "those lectures which we covered on the",
+      "start": 437.319,
+      "duration": 3.081
+    },
+    {
+      "text": "attention",
+      "start": 439.319,
+      "duration": 4.44
+    },
+    {
+      "text": "mechanism and uh then so the multi head",
+      "start": 440.4,
+      "duration": 4.919
+    },
+    {
+      "text": "attention was a part of our attention",
+      "start": 443.759,
+      "duration": 4.12
+    },
+    {
+      "text": "mechanism series but if you look at the",
+      "start": 445.319,
+      "duration": 4.44
+    },
+    {
+      "text": "other four components we have have been",
+      "start": 447.879,
+      "duration": 4.04
+    },
+    {
+      "text": "covering this in the last three lectures",
+      "start": 449.759,
+      "duration": 4.601
+    },
+    {
+      "text": "itself so let us look at each of these",
+      "start": 451.919,
+      "duration": 4.441
+    },
+    {
+      "text": "components separately and quickly revise",
+      "start": 454.36,
+      "duration": 4.839
+    },
+    {
+      "text": "what they do these components also form",
+      "start": 456.36,
+      "duration": 5.839
+    },
+    {
+      "text": "part of the Transformer block the first",
+      "start": 459.199,
+      "duration": 5.72
+    },
+    {
+      "text": "major component is layer normalization",
+      "start": 462.199,
+      "duration": 5.84
+    },
+    {
+      "text": "so this component does the function of",
+      "start": 464.919,
+      "duration": 5.441
+    },
+    {
+      "text": "normalizing the layer outputs so let's",
+      "start": 468.039,
+      "duration": 4.961
+    },
+    {
+      "text": "say these are the outputs uh from any",
+      "start": 470.36,
+      "duration": 4.44
+    },
+    {
+      "text": "layer it can be a Dropout layer it can",
+      "start": 473.0,
+      "duration": 3.68
+    },
+    {
+      "text": "be the multi-ad attention layer let's",
+      "start": 474.8,
+      "duration": 4.32
+    },
+    {
+      "text": "say these are the outputs from any layer",
+      "start": 476.68,
+      "duration": 4.359
+    },
+    {
+      "text": "without normalization they will let's",
+      "start": 479.12,
+      "duration": 3.72
+    },
+    {
+      "text": "say have some random mean and some",
+      "start": 481.039,
+      "duration": 2.84
+    },
+    {
+      "text": "random",
+      "start": 482.84,
+      "duration": 3.0
+    },
+    {
+      "text": "variance after applying layer",
+      "start": 483.879,
+      "duration": 4.081
+    },
+    {
+      "text": "normalization the values of these",
+      "start": 485.84,
+      "duration": 4.319
+    },
+    {
+      "text": "outputs will be changed so that the mean",
+      "start": 487.96,
+      "duration": 4.32
+    },
+    {
+      "text": "will be zero and so that the variance",
+      "start": 490.159,
+      "duration": 3.04
+    },
+    {
+      "text": "will be",
+      "start": 492.28,
+      "duration": 4.28
+    },
+    {
+      "text": "one why is this needed because it solves",
+      "start": 493.199,
+      "duration": 5.68
+    },
+    {
+      "text": "two issues for us first it leads to a",
+      "start": 496.56,
+      "duration": 4.759
+    },
+    {
+      "text": "bit of a stability in",
+      "start": 498.879,
+      "duration": 5.521
+    },
+    {
+      "text": "the during the back propagation it",
+      "start": 501.319,
+      "duration": 4.88
+    },
+    {
+      "text": "ensures that the values are not too",
+      "start": 504.4,
+      "duration": 3.639
+    },
+    {
+      "text": "large so that the gradient does not",
+      "start": 506.199,
+      "duration": 3.881
+    },
+    {
+      "text": "explode or the gradient does not vanish",
+      "start": 508.039,
+      "duration": 4.401
+    },
+    {
+      "text": "during back propagation the second is",
+      "start": 510.08,
+      "duration": 4.48
+    },
+    {
+      "text": "that it solves the problem of internal",
+      "start": 512.44,
+      "duration": 4.88
+    },
+    {
+      "text": "coari shift which means that during the",
+      "start": 514.56,
+      "duration": 4.76
+    },
+    {
+      "text": "training process the inputs which are",
+      "start": 517.32,
+      "duration": 4.12
+    },
+    {
+      "text": "received to a certain layer may have",
+      "start": 519.32,
+      "duration": 3.88
+    },
+    {
+      "text": "different distributions or different",
+      "start": 521.44,
+      "duration": 4.839
+    },
+    {
+      "text": "iteration that's a big issue because",
+      "start": 523.2,
+      "duration": 5.079
+    },
+    {
+      "text": "that holds the training it becomes very",
+      "start": 526.279,
+      "duration": 4.321
+    },
+    {
+      "text": "difficult to update the weights and then",
+      "start": 528.279,
+      "duration": 3.961
+    },
+    {
+      "text": "the training takes a long time for",
+      "start": 530.6,
+      "duration": 4.16
+    },
+    {
+      "text": "convergence layer normalization solves",
+      "start": 532.24,
+      "duration": 4.88
+    },
+    {
+      "text": "this issue and if you look closely at",
+      "start": 534.76,
+      "duration": 3.8
+    },
+    {
+      "text": "the Transformer block you'll see",
+      "start": 537.12,
+      "duration": 3.0
+    },
+    {
+      "text": "multiple places where layer",
+      "start": 538.56,
+      "duration": 4.76
+    },
+    {
+      "text": "normalization happens or is implemented",
+      "start": 540.12,
+      "duration": 6.44
+    },
+    {
+      "text": "it is implemented before the multi-ad",
+      "start": 543.32,
+      "duration": 5.48
+    },
+    {
+      "text": "tension and it is also implemented",
+      "start": 546.56,
+      "duration": 4.64
+    },
+    {
+      "text": "before the feed forward neural network",
+      "start": 548.8,
+      "duration": 4.32
+    },
+    {
+      "text": "so it's actually implemented two times",
+      "start": 551.2,
+      "duration": 4.6
+    },
+    {
+      "text": "within the Transformer",
+      "start": 553.12,
+      "duration": 5.12
+    },
+    {
+      "text": "block uh just as a note the layer",
+      "start": 555.8,
+      "duration": 4.08
+    },
+    {
+      "text": "normalization is also actually",
+      "start": 558.24,
+      "duration": 4.599
+    },
+    {
+      "text": "implemented after the Transformer block",
+      "start": 559.88,
+      "duration": 4.72
+    },
+    {
+      "text": "um but we are not going to look at that",
+      "start": 562.839,
+      "duration": 4.68
+    },
+    {
+      "text": "right now the second component are",
+      "start": 564.6,
+      "duration": 5.28
+    },
+    {
+      "text": "Dropout again a dropout layer can be",
+      "start": 567.519,
+      "duration": 4.801
+    },
+    {
+      "text": "applied after any layer and what Dropout",
+      "start": 569.88,
+      "duration": 5.0
+    },
+    {
+      "text": "does is that it looks at the layer",
+      "start": 572.32,
+      "duration": 5.72
+    },
+    {
+      "text": "outputs and then it randomly turns off",
+      "start": 574.88,
+      "duration": 6.0
+    },
+    {
+      "text": "some of the outputs so if you see on the",
+      "start": 578.04,
+      "duration": 5.08
+    },
+    {
+      "text": "right hand side on the left hand side we",
+      "start": 580.88,
+      "duration": 3.72
+    },
+    {
+      "text": "are showing a neural network before",
+      "start": 583.12,
+      "duration": 4.2
+    },
+    {
+      "text": "Dropout so these are the units or the",
+      "start": 584.6,
+      "duration": 4.88
+    },
+    {
+      "text": "layer outputs of the preceding layer",
+      "start": 587.32,
+      "duration": 4.6
+    },
+    {
+      "text": "after passing through Dropout some",
+      "start": 589.48,
+      "duration": 5.12
+    },
+    {
+      "text": "neurons here or some inputs are randomly",
+      "start": 591.92,
+      "duration": 5.599
+    },
+    {
+      "text": "turned off why are they randomly turned",
+      "start": 594.6,
+      "duration": 5.44
+    },
+    {
+      "text": "off because it improves generalization",
+      "start": 597.519,
+      "duration": 5.601
+    },
+    {
+      "text": "during training some neurons get lazy",
+      "start": 600.04,
+      "duration": 5.08
+    },
+    {
+      "text": "they get so lazy that they don't update",
+      "start": 603.12,
+      "duration": 4.04
+    },
+    {
+      "text": "themselves at all they depend on other",
+      "start": 605.12,
+      "duration": 5.32
+    },
+    {
+      "text": "neurons uh and during testing that's a",
+      "start": 607.16,
+      "duration": 5.0
+    },
+    {
+      "text": "big problem because these lazy neurons",
+      "start": 610.44,
+      "duration": 3.92
+    },
+    {
+      "text": "are not learning anything once we",
+      "start": 612.16,
+      "duration": 4.64
+    },
+    {
+      "text": "Implement Dropout a lazy neuron will see",
+      "start": 614.36,
+      "duration": 4.08
+    },
+    {
+      "text": "that the other neurons which are doing",
+      "start": 616.8,
+      "duration": 3.2
+    },
+    {
+      "text": "all the work they're not there in that",
+      "start": 618.44,
+      "duration": 3.92
+    },
+    {
+      "text": "iteration so the lazy neuron has no",
+      "start": 620.0,
+      "duration": 4.399
+    },
+    {
+      "text": "choice but to learn and update its",
+      "start": 622.36,
+      "duration": 4.96
+    },
+    {
+      "text": "weights so that's the reason Dropout",
+      "start": 624.399,
+      "duration": 5.201
+    },
+    {
+      "text": "helps generalization it prevents",
+      "start": 627.32,
+      "duration": 5.28
+    },
+    {
+      "text": "overfitting that's the second component",
+      "start": 629.6,
+      "duration": 4.84
+    },
+    {
+      "text": "the third component which we looked at",
+      "start": 632.6,
+      "duration": 4.32
+    },
+    {
+      "text": "is this feed forward neural network and",
+      "start": 634.44,
+      "duration": 5.28
+    },
+    {
+      "text": "that had the J activation function the",
+      "start": 636.92,
+      "duration": 4.24
+    },
+    {
+      "text": "construction of this speed forward",
+      "start": 639.72,
+      "duration": 3.6
+    },
+    {
+      "text": "neural network is pretty interesting we",
+      "start": 641.16,
+      "duration": 4.64
+    },
+    {
+      "text": "preserve the dimension of the inputs so",
+      "start": 643.32,
+      "duration": 4.519
+    },
+    {
+      "text": "let's say the input to the neural",
+      "start": 645.8,
+      "duration": 4.4
+    },
+    {
+      "text": "network is like this and when you think",
+      "start": 647.839,
+      "duration": 5.921
+    },
+    {
+      "text": "of an input always think of a token with",
+      "start": 650.2,
+      "duration": 7.4
+    },
+    {
+      "text": "an embedding Dimension so in gpt2 the",
+      "start": 653.76,
+      "duration": 6.16
+    },
+    {
+      "text": "embedding Dimension was 760",
+      "start": 657.6,
+      "duration": 4.52
+    },
+    {
+      "text": "so if you have a word let's say the word",
+      "start": 659.92,
+      "duration": 4.96
+    },
+    {
+      "text": "is forward or step that word will be",
+      "start": 662.12,
+      "duration": 5.159
+    },
+    {
+      "text": "converted into an embedding of 768",
+      "start": 664.88,
+      "duration": 4.519
+    },
+    {
+      "text": "Dimension let's say that is the input",
+      "start": 667.279,
+      "duration": 4.161
+    },
+    {
+      "text": "which is passed to this neural network",
+      "start": 669.399,
+      "duration": 4.481
+    },
+    {
+      "text": "first we have a layer of expansion which",
+      "start": 671.44,
+      "duration": 4.639
+    },
+    {
+      "text": "means that there is a hidden layer of",
+      "start": 673.88,
+      "duration": 4.84
+    },
+    {
+      "text": "neurons and uh the number of neurons",
+      "start": 676.079,
+      "duration": 4.641
+    },
+    {
+      "text": "here is four times larger than the",
+      "start": 678.72,
+      "duration": 4.04
+    },
+    {
+      "text": "embedding Dimension so the number of",
+      "start": 680.72,
+      "duration": 5.2
+    },
+    {
+      "text": "neurons will be 4 * 768 so the first",
+      "start": 682.76,
+      "duration": 5.639
+    },
+    {
+      "text": "layer expands which means that we are",
+      "start": 685.92,
+      "duration": 6.159
+    },
+    {
+      "text": "going from 7 68 Dimension to 4 into 768",
+      "start": 688.399,
+      "duration": 5.801
+    },
+    {
+      "text": "Dimension and then there is a second",
+      "start": 692.079,
+      "duration": 4.041
+    },
+    {
+      "text": "layer which is the compression layer",
+      "start": 694.2,
+      "duration": 3.72
+    },
+    {
+      "text": "where we again come back to the exact",
+      "start": 696.12,
+      "duration": 4.839
+    },
+    {
+      "text": "same Dimension which we started with so",
+      "start": 697.92,
+      "duration": 4.64
+    },
+    {
+      "text": "the input dimension of this neural",
+      "start": 700.959,
+      "duration": 3.481
+    },
+    {
+      "text": "network and the output dimension of this",
+      "start": 702.56,
+      "duration": 5.279
+    },
+    {
+      "text": "neural network is exactly the same uh",
+      "start": 704.44,
+      "duration": 5.04
+    },
+    {
+      "text": "then you might be thinking why is this",
+      "start": 707.839,
+      "duration": 3.56
+    },
+    {
+      "text": "expansion and contraction done in this",
+      "start": 709.48,
+      "duration": 4.039
+    },
+    {
+      "text": "in the first place the expansion and",
+      "start": 711.399,
+      "duration": 3.641
+    },
+    {
+      "text": "contraction is done so that we can",
+      "start": 713.519,
+      "duration": 4.361
+    },
+    {
+      "text": "explore a richer space of parameters",
+      "start": 715.04,
+      "duration": 4.64
+    },
+    {
+      "text": "what this expansion does is that that it",
+      "start": 717.88,
+      "duration": 4.16
+    },
+    {
+      "text": "takes the inputs into a much higher four",
+      "start": 719.68,
+      "duration": 4.8
+    },
+    {
+      "text": "times higher Dimension space and there",
+      "start": 722.04,
+      "duration": 4.599
+    },
+    {
+      "text": "we can uncover much better relationships",
+      "start": 724.48,
+      "duration": 3.919
+    },
+    {
+      "text": "between parameters and it generally",
+      "start": 726.639,
+      "duration": 4.841
+    },
+    {
+      "text": "helps llms learn better and why do we",
+      "start": 728.399,
+      "duration": 5.361
+    },
+    {
+      "text": "compress it back to the same output same",
+      "start": 731.48,
+      "duration": 4.32
+    },
+    {
+      "text": "Dimension because we want the input and",
+      "start": 733.76,
+      "duration": 4.48
+    },
+    {
+      "text": "the output Dimensions to be same that",
+      "start": 735.8,
+      "duration": 4.399
+    },
+    {
+      "text": "helps scalability that way you can stack",
+      "start": 738.24,
+      "duration": 3.8
+    },
+    {
+      "text": "multiple neural networks like these",
+      "start": 740.199,
+      "duration": 3.401
+    },
+    {
+      "text": "together without worrying about",
+      "start": 742.04,
+      "duration": 2.88
+    },
+    {
+      "text": "Dimension",
+      "start": 743.6,
+      "duration": 4.56
+    },
+    {
+      "text": "changing now after this layer of neurons",
+      "start": 744.92,
+      "duration": 5.4
+    },
+    {
+      "text": "every neuron has to have an activation",
+      "start": 748.16,
+      "duration": 5.08
+    },
+    {
+      "text": "function right uh and that activation",
+      "start": 750.32,
+      "duration": 4.56
+    },
+    {
+      "text": "function which is used in this case is",
+      "start": 753.24,
+      "duration": 4.44
+    },
+    {
+      "text": "the JLo activation function generally",
+      "start": 754.88,
+      "duration": 5.6
+    },
+    {
+      "text": "everyone is familiar with Ru but J is a",
+      "start": 757.68,
+      "duration": 5.48
+    },
+    {
+      "text": "slight variation J is not equal to zero",
+      "start": 760.48,
+      "duration": 5.56
+    },
+    {
+      "text": "for X is less than zero that is one",
+      "start": 763.16,
+      "duration": 4.88
+    },
+    {
+      "text": "change and the second change is that Jou",
+      "start": 766.04,
+      "duration": 4.799
+    },
+    {
+      "text": "is differentiable at x equal to Z it's",
+      "start": 768.04,
+      "duration": 5.32
+    },
+    {
+      "text": "fully smooth and likee Ru Ru is not",
+      "start": 770.839,
+      "duration": 6.601
+    },
+    {
+      "text": "differentiable at x equal to0 so for X",
+      "start": 773.36,
+      "duration": 6.24
+    },
+    {
+      "text": "greater than 0",
+      "start": 777.44,
+      "duration": 4.68
+    },
+    {
+      "text": "J generally approximates Ru which means",
+      "start": 779.6,
+      "duration": 5.239
+    },
+    {
+      "text": "y equal to X it's not exactly equal to X",
+      "start": 782.12,
+      "duration": 6.159
+    },
+    {
+      "text": "but it reaches that so jalu generally",
+      "start": 784.839,
+      "duration": 5.281
+    },
+    {
+      "text": "solves the dead neuron problem which",
+      "start": 788.279,
+      "duration": 4.56
+    },
+    {
+      "text": "means that if the output of a neuron is",
+      "start": 790.12,
+      "duration": 5.519
+    },
+    {
+      "text": "negative and it passes through a Ru uh",
+      "start": 792.839,
+      "duration": 5.601
+    },
+    {
+      "text": "it will just be zero but when it passes",
+      "start": 795.639,
+      "duration": 5.76
+    },
+    {
+      "text": "through Jou it won't be zero and that's",
+      "start": 798.44,
+      "duration": 5.16
+    },
+    {
+      "text": "when the neuron will continue learning",
+      "start": 801.399,
+      "duration": 4.8
+    },
+    {
+      "text": "in Ru what happens is that if the input",
+      "start": 803.6,
+      "duration": 4.679
+    },
+    {
+      "text": "to a neuron is if the output of a neuron",
+      "start": 806.199,
+      "duration": 3.681
+    },
+    {
+      "text": "is negative and if if it passes through",
+      "start": 808.279,
+      "duration": 4.56
+    },
+    {
+      "text": "reu the output is zero and then it the",
+      "start": 809.88,
+      "duration": 4.8
+    },
+    {
+      "text": "neuron becomes dead it cannot learn",
+      "start": 812.839,
+      "duration": 3.721
+    },
+    {
+      "text": "anything after that point and learning",
+      "start": 814.68,
+      "duration": 4.8
+    },
+    {
+      "text": "stagnates that issue is solved by J and",
+      "start": 816.56,
+      "duration": 5.079
+    },
+    {
+      "text": "it generally turns out in experiments",
+      "start": 819.48,
+      "duration": 4.44
+    },
+    {
+      "text": "with llms that the Jou activation does",
+      "start": 821.639,
+      "duration": 5.081
+    },
+    {
+      "text": "much much better than Ru so that's why",
+      "start": 823.92,
+      "duration": 4.68
+    },
+    {
+      "text": "the activation function which is used",
+      "start": 826.72,
+      "duration": 4.919
+    },
+    {
+      "text": "after this layer of neurons is the Jou",
+      "start": 828.6,
+      "duration": 4.239
+    },
+    {
+      "text": "activation",
+      "start": 831.639,
+      "duration": 4.12
+    },
+    {
+      "text": "function and the last component which we",
+      "start": 832.839,
+      "duration": 6.721
+    },
+    {
+      "text": "looked at um when we look at the",
+      "start": 835.759,
+      "duration": 6.241
+    },
+    {
+      "text": "Transformer block components is shortcut",
+      "start": 839.56,
+      "duration": 4.839
+    },
+    {
+      "text": "connections so what happens in shortcut",
+      "start": 842.0,
+      "duration": 4.279
+    },
+    {
+      "text": "connections is that the output of one",
+      "start": 844.399,
+      "duration": 4.521
+    },
+    {
+      "text": "layer so here if you see the output of",
+      "start": 846.279,
+      "duration": 4.961
+    },
+    {
+      "text": "one layer is added with the output of",
+      "start": 848.92,
+      "duration": 4.4
+    },
+    {
+      "text": "the previous layer see here there is one",
+      "start": 851.24,
+      "duration": 4.519
+    },
+    {
+      "text": "more path which has been created",
+      "start": 853.32,
+      "duration": 4.56
+    },
+    {
+      "text": "similarly here you will see the output",
+      "start": 855.759,
+      "duration": 4.561
+    },
+    {
+      "text": "of this layer the output of this layer",
+      "start": 857.88,
+      "duration": 4.16
+    },
+    {
+      "text": "is added with the output of the previous",
+      "start": 860.32,
+      "duration": 4.68
+    },
+    {
+      "text": "layer and then we create this path the",
+      "start": 862.04,
+      "duration": 4.919
+    },
+    {
+      "text": "reason shortcut connections are",
+      "start": 865.0,
+      "duration": 3.6
+    },
+    {
+      "text": "implemented is that it solves the",
+      "start": 866.959,
+      "duration": 3.721
+    },
+    {
+      "text": "vanishing gradient problem so on the",
+      "start": 868.6,
+      "duration": 4.599
+    },
+    {
+      "text": "left hand side if you see the gradients",
+      "start": 870.68,
+      "duration": 5.2
+    },
+    {
+      "text": "the outermost layer has a gradient of",
+      "start": 873.199,
+      "duration": 5.241
+    },
+    {
+      "text": "0.5 but as you back propagate and you",
+      "start": 875.88,
+      "duration": 4.84
+    },
+    {
+      "text": "reach layer four layer three layer 2 and",
+      "start": 878.44,
+      "duration": 4.72
+    },
+    {
+      "text": "layer 1 you'll see that the gradient has",
+      "start": 880.72,
+      "duration": 4.799
+    },
+    {
+      "text": "reduced to a very small value as we back",
+      "start": 883.16,
+      "duration": 4.44
+    },
+    {
+      "text": "propagate to the first layer this is the",
+      "start": 885.519,
+      "duration": 4.721
+    },
+    {
+      "text": "vanishing gradient problem and then if",
+      "start": 887.6,
+      "duration": 4.28
+    },
+    {
+      "text": "the gradients become very small the",
+      "start": 890.24,
+      "duration": 4.24
+    },
+    {
+      "text": "learning stops and that's not good for",
+      "start": 891.88,
+      "duration": 5.199
+    },
+    {
+      "text": "training the llm whereas if we implement",
+      "start": 894.48,
+      "duration": 4.68
+    },
+    {
+      "text": "this shortcut connection it gives",
+      "start": 897.079,
+      "duration": 4.521
+    },
+    {
+      "text": "another route for the gradient to flow",
+      "start": 899.16,
+      "duration": 5.44
+    },
+    {
+      "text": "it makes gradient flow much more stable",
+      "start": 901.6,
+      "duration": 4.799
+    },
+    {
+      "text": "and that's why the vanishing gradient",
+      "start": 904.6,
+      "duration": 3.84
+    },
+    {
+      "text": "problem is solved so if you see layer",
+      "start": 906.399,
+      "duration": 5.24
+    },
+    {
+      "text": "five gradient magnitud magnitude is",
+      "start": 908.44,
+      "duration": 6.6
+    },
+    {
+      "text": "1.32 and layer three layer 2 and layer 1",
+      "start": 911.639,
+      "duration": 6.401
+    },
+    {
+      "text": "all have magnitudes around 0 2 and3 so",
+      "start": 915.04,
+      "duration": 4.96
+    },
+    {
+      "text": "the gradient has not become vanishingly",
+      "start": 918.04,
+      "duration": 3.88
+    },
+    {
+      "text": "small we have solved the vanishing",
+      "start": 920.0,
+      "duration": 4.079
+    },
+    {
+      "text": "gradient problem in fact the gradient",
+      "start": 921.92,
+      "duration": 4.12
+    },
+    {
+      "text": "magnitude looks to be pretty stable over",
+      "start": 924.079,
+      "duration": 4.401
+    },
+    {
+      "text": "here that's why shortcut connections are",
+      "start": 926.04,
+      "duration": 3.799
+    },
+    {
+      "text": "such an important part of the",
+      "start": 928.48,
+      "duration": 4.479
+    },
+    {
+      "text": "Transformer block so now let's zoom out",
+      "start": 929.839,
+      "duration": 5.041
+    },
+    {
+      "text": "and take a look at these five components",
+      "start": 932.959,
+      "duration": 3.56
+    },
+    {
+      "text": "together we learned about layer",
+      "start": 934.88,
+      "duration": 4.16
+    },
+    {
+      "text": "normalization we learned about Dropout",
+      "start": 936.519,
+      "duration": 4.201
+    },
+    {
+      "text": "we learned about feed forward neural",
+      "start": 939.04,
+      "duration": 3.279
+    },
+    {
+      "text": "network we learned about how it is",
+      "start": 940.72,
+      "duration": 4.0
+    },
+    {
+      "text": "linked with Jou and finally we learned",
+      "start": 942.319,
+      "duration": 5.401
+    },
+    {
+      "text": "about shortcut connections now all of",
+      "start": 944.72,
+      "duration": 5.559
+    },
+    {
+      "text": "this have to be stacked together when we",
+      "start": 947.72,
+      "duration": 4.4
+    },
+    {
+      "text": "create the Transformer block and we'll",
+      "start": 950.279,
+      "duration": 4.521
+    },
+    {
+      "text": "follow the specific order as which is",
+      "start": 952.12,
+      "duration": 4.44
+    },
+    {
+      "text": "mentioned in the",
+      "start": 954.8,
+      "duration": 4.36
+    },
+    {
+      "text": "schematic what is this order exactly",
+      "start": 956.56,
+      "duration": 4.199
+    },
+    {
+      "text": "first we'll start with the layer",
+      "start": 959.16,
+      "duration": 3.76
+    },
+    {
+      "text": "normalization then we will stack the",
+      "start": 960.759,
+      "duration": 4.401
+    },
+    {
+      "text": "multi-ad attention on top of it let me",
+      "start": 962.92,
+      "duration": 3.76
+    },
+    {
+      "text": "show with the different",
+      "start": 965.16,
+      "duration": 4.799
+    },
+    {
+      "text": "color uh then we will add the Dropout",
+      "start": 966.68,
+      "duration": 5.639
+    },
+    {
+      "text": "layer this plus with this Arrow this",
+      "start": 969.959,
+      "duration": 3.88
+    },
+    {
+      "text": "thing here this is the shortcut",
+      "start": 972.319,
+      "duration": 3.64
+    },
+    {
+      "text": "connection right then we'll add the",
+      "start": 973.839,
+      "duration": 4.081
+    },
+    {
+      "text": "layer normalization two then we'll add",
+      "start": 975.959,
+      "duration": 3.841
+    },
+    {
+      "text": "the feed forward neural network with J",
+      "start": 977.92,
+      "duration": 3.719
+    },
+    {
+      "text": "activation then we'll add another",
+      "start": 979.8,
+      "duration": 3.599
+    },
+    {
+      "text": "Dropout and then we'll add another",
+      "start": 981.639,
+      "duration": 4.241
+    },
+    {
+      "text": "shortcut connection this is exactly what",
+      "start": 983.399,
+      "duration": 4.401
+    },
+    {
+      "text": "we'll be doing in code",
+      "start": 985.88,
+      "duration": 4.6
+    },
+    {
+      "text": "now uh before going to code I just want",
+      "start": 987.8,
+      "duration": 5.68
+    },
+    {
+      "text": "to explain some conceptual details so",
+      "start": 990.48,
+      "duration": 5.08
+    },
+    {
+      "text": "when a Transformer block processes an",
+      "start": 993.48,
+      "duration": 4.44
+    },
+    {
+      "text": "input sequence each element is",
+      "start": 995.56,
+      "duration": 5.04
+    },
+    {
+      "text": "represented by a fixed size Vector let's",
+      "start": 997.92,
+      "duration": 4.96
+    },
+    {
+      "text": "say the size is the embedding dimension",
+      "start": 1000.6,
+      "duration": 5.0
+    },
+    {
+      "text": "for each element one point which is",
+      "start": 1002.88,
+      "duration": 5.0
+    },
+    {
+      "text": "extremely important to note is that the",
+      "start": 1005.6,
+      "duration": 4.679
+    },
+    {
+      "text": "operations within the Transformer block",
+      "start": 1007.88,
+      "duration": 4.24
+    },
+    {
+      "text": "such as the multi-head attention and the",
+      "start": 1010.279,
+      "duration": 4.04
+    },
+    {
+      "text": "feed forward layers you remember the",
+      "start": 1012.12,
+      "duration": 5.68
+    },
+    {
+      "text": "expansion contraction layer are designed",
+      "start": 1014.319,
+      "duration": 6.08
+    },
+    {
+      "text": "to transform the input vectors such that",
+      "start": 1017.8,
+      "duration": 5.2
+    },
+    {
+      "text": "the dimensionality is preserved that's",
+      "start": 1020.399,
+      "duration": 5.001
+    },
+    {
+      "text": "extremely important to note so when you",
+      "start": 1023.0,
+      "duration": 4.64
+    },
+    {
+      "text": "look at this Transformer block and when",
+      "start": 1025.4,
+      "duration": 4.2
+    },
+    {
+      "text": "you look at an input which is coming",
+      "start": 1027.64,
+      "duration": 4.279
+    },
+    {
+      "text": "into the Transformer and if you look at",
+      "start": 1029.6,
+      "duration": 4.12
+    },
+    {
+      "text": "the output which is going out of the",
+      "start": 1031.919,
+      "duration": 5.481
+    },
+    {
+      "text": "Transformer the outputs have the same",
+      "start": 1033.72,
+      "duration": 6.839
+    },
+    {
+      "text": "exact same form and the dimension as the",
+      "start": 1037.4,
+      "duration": 5.6
+    },
+    {
+      "text": "input this is an extremely important",
+      "start": 1040.559,
+      "duration": 3.76
+    },
+    {
+      "text": "point which I want to bring to your",
+      "start": 1043.0,
+      "duration": 3.559
+    },
+    {
+      "text": "attention that's why it becomes so easy",
+      "start": 1044.319,
+      "duration": 4.24
+    },
+    {
+      "text": "to stack multiple Transformer blocks",
+      "start": 1046.559,
+      "duration": 4.401
+    },
+    {
+      "text": "together we saw that gpt2 has 12",
+      "start": 1048.559,
+      "duration": 4.401
+    },
+    {
+      "text": "Transformer blocks right the reason it",
+      "start": 1050.96,
+      "duration": 4.0
+    },
+    {
+      "text": "becomes so easy to stack them together",
+      "start": 1052.96,
+      "duration": 4.32
+    },
+    {
+      "text": "is that Transformer blocks preserve the",
+      "start": 1054.96,
+      "duration": 4.64
+    },
+    {
+      "text": "dimensionality the dimensionality of the",
+      "start": 1057.28,
+      "duration": 4.8
+    },
+    {
+      "text": "input the dimensionality of the input to",
+      "start": 1059.6,
+      "duration": 4.4
+    },
+    {
+      "text": "the Transformer is the same as that of",
+      "start": 1062.08,
+      "duration": 4.36
+    },
+    {
+      "text": "the output from the Transformer so if",
+      "start": 1064.0,
+      "duration": 5.76
+    },
+    {
+      "text": "you look at the input every input is",
+      "start": 1066.44,
+      "duration": 5.68
+    },
+    {
+      "text": "basically tokens and the token is",
+      "start": 1069.76,
+      "duration": 5.159
+    },
+    {
+      "text": "converted into these embedding uh",
+      "start": 1072.12,
+      "duration": 4.72
+    },
+    {
+      "text": "embedding vectors right that's the input",
+      "start": 1074.919,
+      "duration": 5.081
+    },
+    {
+      "text": "let's say to the Transformer",
+      "start": 1076.84,
+      "duration": 6.12
+    },
+    {
+      "text": "um now if you see the output the output",
+      "start": 1080.0,
+      "duration": 5.76
+    },
+    {
+      "text": "has exactly the same size so every token",
+      "start": 1082.96,
+      "duration": 4.68
+    },
+    {
+      "text": "will have a corresponding output and it",
+      "start": 1085.76,
+      "duration": 4.36
+    },
+    {
+      "text": "will have exactly the same Dimension as",
+      "start": 1087.64,
+      "duration": 4.88
+    },
+    {
+      "text": "what was there in the",
+      "start": 1090.12,
+      "duration": 6.48
+    },
+    {
+      "text": "input uh many students don't U register",
+      "start": 1092.52,
+      "duration": 5.92
+    },
+    {
+      "text": "this importance of the Transformer that",
+      "start": 1096.6,
+      "duration": 4.04
+    },
+    {
+      "text": "the dimensionality is preserved but it's",
+      "start": 1098.44,
+      "duration": 4.0
+    },
+    {
+      "text": "one of the most important features of",
+      "start": 1100.64,
+      "duration": 3.48
+    },
+    {
+      "text": "the way the Transformer block has been",
+      "start": 1102.44,
+      "duration": 3.88
+    },
+    {
+      "text": "created we could have easily created the",
+      "start": 1104.12,
+      "duration": 3.799
+    },
+    {
+      "text": "Transformer block so that the output",
+      "start": 1106.32,
+      "duration": 2.96
+    },
+    {
+      "text": "Dimension is different",
+      "start": 1107.919,
+      "duration": 3.161
+    },
+    {
+      "text": "but that would not help us scale the",
+      "start": 1109.28,
+      "duration": 4.08
+    },
+    {
+      "text": "Transformer blocks now we can just tack",
+      "start": 1111.08,
+      "duration": 3.839
+    },
+    {
+      "text": "different Transformer blocks together",
+      "start": 1113.36,
+      "duration": 3.76
+    },
+    {
+      "text": "without worrying about",
+      "start": 1114.919,
+      "duration": 5.321
+    },
+    {
+      "text": "Dimensions just uh for revision the self",
+      "start": 1117.12,
+      "duration": 5.24
+    },
+    {
+      "text": "attention block is different than the",
+      "start": 1120.24,
+      "duration": 4.6
+    },
+    {
+      "text": "feed forward block the self attention",
+      "start": 1122.36,
+      "duration": 4.439
+    },
+    {
+      "text": "block analyzes the relationship between",
+      "start": 1124.84,
+      "duration": 4.04
+    },
+    {
+      "text": "input elements so it analyzes the",
+      "start": 1126.799,
+      "duration": 3.561
+    },
+    {
+      "text": "relationship between how one input",
+      "start": 1128.88,
+      "duration": 3.36
+    },
+    {
+      "text": "element is related to other input",
+      "start": 1130.36,
+      "duration": 4.24
+    },
+    {
+      "text": "elements and it assigns an attention",
+      "start": 1132.24,
+      "duration": 4.72
+    },
+    {
+      "text": "score right but the feed forward neural",
+      "start": 1134.6,
+      "duration": 4.959
+    },
+    {
+      "text": "network just just looks at each",
+      "start": 1136.96,
+      "duration": 4.88
+    },
+    {
+      "text": "element separately so when you looked at",
+      "start": 1139.559,
+      "duration": 4.081
+    },
+    {
+      "text": "the neural network",
+      "start": 1141.84,
+      "duration": 4.319
+    },
+    {
+      "text": "here let me take you to the yeah so this",
+      "start": 1143.64,
+      "duration": 4.519
+    },
+    {
+      "text": "is the neural network component right",
+      "start": 1146.159,
+      "duration": 4.0
+    },
+    {
+      "text": "and we are looking at one input token at",
+      "start": 1148.159,
+      "duration": 4.161
+    },
+    {
+      "text": "a time one input token with 768",
+      "start": 1150.159,
+      "duration": 4.961
+    },
+    {
+      "text": "dimensions and the output is also 768",
+      "start": 1152.32,
+      "duration": 4.2
+    },
+    {
+      "text": "Dimensions which means we are only",
+      "start": 1155.12,
+      "duration": 3.64
+    },
+    {
+      "text": "looking at one input at a time and not",
+      "start": 1156.52,
+      "duration": 4.399
+    },
+    {
+      "text": "its relation with the other inputs",
+      "start": 1158.76,
+      "duration": 3.48
+    },
+    {
+      "text": "that's one difference between the",
+      "start": 1160.919,
+      "duration": 3.201
+    },
+    {
+      "text": "multi-ad attention mechanism and the",
+      "start": 1162.24,
+      "duration": 4.28
+    },
+    {
+      "text": "feed forward neural",
+      "start": 1164.12,
+      "duration": 6.039
+    },
+    {
+      "text": "network okay so now uh if you all have",
+      "start": 1166.52,
+      "duration": 6.08
+    },
+    {
+      "text": "understood the theory and the intuition",
+      "start": 1170.159,
+      "duration": 4.801
+    },
+    {
+      "text": "behind the Transformer block now it's",
+      "start": 1172.6,
+      "duration": 4.72
+    },
+    {
+      "text": "time to jump into code so I'll be taking",
+      "start": 1174.96,
+      "duration": 4.32
+    },
+    {
+      "text": "you to python code right now and let's",
+      "start": 1177.32,
+      "duration": 3.88
+    },
+    {
+      "text": "code out the different aspects of the",
+      "start": 1179.28,
+      "duration": 5.759
+    },
+    {
+      "text": "Transformer block together so here as",
+      "start": 1181.2,
+      "duration": 7.719
+    },
+    {
+      "text": "you can see yeah so GPT architecture",
+      "start": 1185.039,
+      "duration": 6.241
+    },
+    {
+      "text": "part five coding attention and linear",
+      "start": 1188.919,
+      "duration": 5.161
+    },
+    {
+      "text": "layers in a Transformer block before we",
+      "start": 1191.28,
+      "duration": 4.879
+    },
+    {
+      "text": "proceed I just want to discuss a bit",
+      "start": 1194.08,
+      "duration": 3.56
+    },
+    {
+      "text": "about the configuration which we are",
+      "start": 1196.159,
+      "duration": 3.52
+    },
+    {
+      "text": "going to use here we are going to use",
+      "start": 1197.64,
+      "duration": 4.6
+    },
+    {
+      "text": "the configuration which was used in gpt2",
+      "start": 1199.679,
+      "duration": 4.601
+    },
+    {
+      "text": "the smallest size where they had 124",
+      "start": 1202.24,
+      "duration": 4.16
+    },
+    {
+      "text": "million parameters so here the",
+      "start": 1204.28,
+      "duration": 3.84
+    },
+    {
+      "text": "vocabulary size was",
+      "start": 1206.4,
+      "duration": 4.759
+    },
+    {
+      "text": "50257 the context length was 1024",
+      "start": 1208.12,
+      "duration": 4.64
+    },
+    {
+      "text": "remember the context length is the",
+      "start": 1211.159,
+      "duration": 4.041
+    },
+    {
+      "text": "maximum number of input tokens which are",
+      "start": 1212.76,
+      "duration": 4.52
+    },
+    {
+      "text": "allowed to predict the next",
+      "start": 1215.2,
+      "duration": 4.719
+    },
+    {
+      "text": "token this is needed when we uh",
+      "start": 1217.28,
+      "duration": 4.96
+    },
+    {
+      "text": "represent the positional embeddings then",
+      "start": 1219.919,
+      "duration": 4.0
+    },
+    {
+      "text": "we have the embedding Dimension so",
+      "start": 1222.24,
+      "duration": 4.559
+    },
+    {
+      "text": "remember every token is converted into",
+      "start": 1223.919,
+      "duration": 5.481
+    },
+    {
+      "text": "uh Vector embedding the dimension is 68",
+      "start": 1226.799,
+      "duration": 4.88
+    },
+    {
+      "text": "here n heads is the number of attention",
+      "start": 1229.4,
+      "duration": 5.6
+    },
+    {
+      "text": "heads that's 12 n layers is 12 that is",
+      "start": 1231.679,
+      "duration": 5.561
+    },
+    {
+      "text": "actually the number of Transformers so",
+      "start": 1235.0,
+      "duration": 3.96
+    },
+    {
+      "text": "remember the number of attention heads",
+      "start": 1237.24,
+      "duration": 3.24
+    },
+    {
+      "text": "and the number of Transformers are",
+      "start": 1238.96,
+      "duration": 3.8
+    },
+    {
+      "text": "different within each Transformer there",
+      "start": 1240.48,
+      "duration": 4.76
+    },
+    {
+      "text": "is a multi-ad attention block that can",
+      "start": 1242.76,
+      "duration": 4.56
+    },
+    {
+      "text": "have multiple attention",
+      "start": 1245.24,
+      "duration": 4.76
+    },
+    {
+      "text": "heads and then when we have the Dropout",
+      "start": 1247.32,
+      "duration": 4.92
+    },
+    {
+      "text": "layer we just have the dropout rate so",
+      "start": 1250.0,
+      "duration": 4.919
+    },
+    {
+      "text": "this specifies that on an average 10% of",
+      "start": 1252.24,
+      "duration": 5.76
+    },
+    {
+      "text": "the neurons or the elements of the layer",
+      "start": 1254.919,
+      "duration": 5.721
+    },
+    {
+      "text": "will be set to to zero that's why it's 0",
+      "start": 1258.0,
+      "duration": 4.799
+    },
+    {
+      "text": "one right now and then the query key",
+      "start": 1260.64,
+      "duration": 4.32
+    },
+    {
+      "text": "value bias is set to false because we",
+      "start": 1262.799,
+      "duration": 4.521
+    },
+    {
+      "text": "don't need this bias term right now we",
+      "start": 1264.96,
+      "duration": 4.839
+    },
+    {
+      "text": "are going to initialize the weights of",
+      "start": 1267.32,
+      "duration": 4.839
+    },
+    {
+      "text": "the query key and value Matrix randomly",
+      "start": 1269.799,
+      "duration": 4.36
+    },
+    {
+      "text": "without the bias",
+      "start": 1272.159,
+      "duration": 5.081
+    },
+    {
+      "text": "C okay before going to the Transformer",
+      "start": 1274.159,
+      "duration": 5.52
+    },
+    {
+      "text": "block we need to revise what all we have",
+      "start": 1277.24,
+      "duration": 5.36
+    },
+    {
+      "text": "coded for the other blocks before so we",
+      "start": 1279.679,
+      "duration": 5.401
+    },
+    {
+      "text": "saw the layer normalization right and we",
+      "start": 1282.6,
+      "duration": 4.04
+    },
+    {
+      "text": "had defined a class for the layer",
+      "start": 1285.08,
+      "duration": 3.839
+    },
+    {
+      "text": "normalization before what this class",
+      "start": 1286.64,
+      "duration": 4.72
+    },
+    {
+      "text": "does is that it simply takes an input it",
+      "start": 1288.919,
+      "duration": 4.88
+    },
+    {
+      "text": "subtracts the mean from the input and it",
+      "start": 1291.36,
+      "duration": 5.0
+    },
+    {
+      "text": "divides by the square root of variance",
+      "start": 1293.799,
+      "duration": 4.601
+    },
+    {
+      "text": "that make sure that the elements are",
+      "start": 1296.36,
+      "duration": 4.0
+    },
+    {
+      "text": "normalized to keep their mean equal to",
+      "start": 1298.4,
+      "duration": 4.36
+    },
+    {
+      "text": "zero and standard deviation or variance",
+      "start": 1300.36,
+      "duration": 5.24
+    },
+    {
+      "text": "equal to 1 remember in the denominator",
+      "start": 1302.76,
+      "duration": 4.76
+    },
+    {
+      "text": "we also add a very small value to",
+      "start": 1305.6,
+      "duration": 4.28
+    },
+    {
+      "text": "prevent division by zero you may be",
+      "start": 1307.52,
+      "duration": 4.6
+    },
+    {
+      "text": "wondering what the scale and shift is",
+      "start": 1309.88,
+      "duration": 4.0
+    },
+    {
+      "text": "these are trainable parameters which are",
+      "start": 1312.12,
+      "duration": 4.679
+    },
+    {
+      "text": "added so you can think of them",
+      "start": 1313.88,
+      "duration": 5.56
+    },
+    {
+      "text": "as uh parameters which are learned",
+      "start": 1316.799,
+      "duration": 4.961
+    },
+    {
+      "text": "during the training process so this is",
+      "start": 1319.44,
+      "duration": 4.56
+    },
+    {
+      "text": "the layer normalization here the",
+      "start": 1321.76,
+      "duration": 4.88
+    },
+    {
+      "text": "embedding Dimension is the input and the",
+      "start": 1324.0,
+      "duration": 4.44
+    },
+    {
+      "text": "normalization is performed along the",
+      "start": 1326.64,
+      "duration": 4.32
+    },
+    {
+      "text": "embedding Dimension so let's say every",
+      "start": 1328.44,
+      "duration": 5.56
+    },
+    {
+      "text": "step moves you forward right every is a",
+      "start": 1330.96,
+      "duration": 4.959
+    },
+    {
+      "text": "token so actually let me go to the",
+      "start": 1334.0,
+      "duration": 3.84
+    },
+    {
+      "text": "Whiteboard to show you how the",
+      "start": 1335.919,
+      "duration": 4.481
+    },
+    {
+      "text": "normalization is actually",
+      "start": 1337.84,
+      "duration": 4.839
+    },
+    {
+      "text": "done just so that you get a visual",
+      "start": 1340.4,
+      "duration": 5.96
+    },
+    {
+      "text": "representation yeah so now uh if you",
+      "start": 1342.679,
+      "duration": 6.721
+    },
+    {
+      "text": "see um let's look at the these tokens",
+      "start": 1346.36,
+      "duration": 4.559
+    },
+    {
+      "text": "and every token let's say has an",
+      "start": 1349.4,
+      "duration": 3.44
+    },
+    {
+      "text": "embedding Dimension here of",
+      "start": 1350.919,
+      "duration": 4.841
+    },
+    {
+      "text": "768 in normalization what is done is",
+      "start": 1352.84,
+      "duration": 5.8
+    },
+    {
+      "text": "that we look at individual rows and then",
+      "start": 1355.76,
+      "duration": 5.48
+    },
+    {
+      "text": "we normalize across the columns so we",
+      "start": 1358.64,
+      "duration": 4.8
+    },
+    {
+      "text": "make sure that let's say the mean is",
+      "start": 1361.24,
+      "duration": 4.36
+    },
+    {
+      "text": "zero and the standard deviation is one",
+      "start": 1363.44,
+      "duration": 4.76
+    },
+    {
+      "text": "now these values can be the output from",
+      "start": 1365.6,
+      "duration": 4.92
+    },
+    {
+      "text": "any layers so let's say there is a layer",
+      "start": 1368.2,
+      "duration": 4.68
+    },
+    {
+      "text": "normalization here right so what this",
+      "start": 1370.52,
+      "duration": 4.12
+    },
+    {
+      "text": "does is that it receives inputs from",
+      "start": 1372.88,
+      "duration": 4.159
+    },
+    {
+      "text": "here and the input will have the",
+      "start": 1374.64,
+      "duration": 4.399
+    },
+    {
+      "text": "dimension of 768",
+      "start": 1377.039,
+      "duration": 4.161
+    },
+    {
+      "text": "because the dimension is preserved so",
+      "start": 1379.039,
+      "duration": 5.561
+    },
+    {
+      "text": "we'll take the mean along the 768",
+      "start": 1381.2,
+      "duration": 4.88
+    },
+    {
+      "text": "Dimension we'll make sure the",
+      "start": 1384.6,
+      "duration": 3.28
+    },
+    {
+      "text": "normalization is such that the mean",
+      "start": 1386.08,
+      "duration": 3.68
+    },
+    {
+      "text": "along the columns which is the embedding",
+      "start": 1387.88,
+      "duration": 3.96
+    },
+    {
+      "text": "Dimension is zero and the standard",
+      "start": 1389.76,
+      "duration": 4.44
+    },
+    {
+      "text": "deviation is one that that will be the",
+      "start": 1391.84,
+      "duration": 4.68
+    },
+    {
+      "text": "output from the layer normalization so",
+      "start": 1394.2,
+      "duration": 4.68
+    },
+    {
+      "text": "the size will be the same as the input",
+      "start": 1396.52,
+      "duration": 4.44
+    },
+    {
+      "text": "but just what will change is that every",
+      "start": 1398.88,
+      "duration": 4.84
+    },
+    {
+      "text": "row will have mean of zero and standard",
+      "start": 1400.96,
+      "duration": 4.079
+    },
+    {
+      "text": "deviation of",
+      "start": 1403.72,
+      "duration": 4.04
+    },
+    {
+      "text": "one then we have the J activation",
+      "start": 1405.039,
+      "duration": 5.481
+    },
+    {
+      "text": "function and as we saw it's defined by",
+      "start": 1407.76,
+      "duration": 5.88
+    },
+    {
+      "text": "this approximation which is used in gpt2",
+      "start": 1410.52,
+      "duration": 5.24
+    },
+    {
+      "text": "once we use this approximation the JLo",
+      "start": 1413.64,
+      "duration": 5.159
+    },
+    {
+      "text": "starts looking like what we had",
+      "start": 1415.76,
+      "duration": 6.72
+    },
+    {
+      "text": "seen um in the building block so if I",
+      "start": 1418.799,
+      "duration": 7.76
+    },
+    {
+      "text": "just go to that particular graph so when",
+      "start": 1422.48,
+      "duration": 6.079
+    },
+    {
+      "text": "I zoom in over here see this is the JLo",
+      "start": 1426.559,
+      "duration": 3.6
+    },
+    {
+      "text": "activation function and how it looks",
+      "start": 1428.559,
+      "duration": 4.881
+    },
+    {
+      "text": "like the approximation used when gpt2",
+      "start": 1430.159,
+      "duration": 6.681
+    },
+    {
+      "text": "model was developed was this kind of an",
+      "start": 1433.44,
+      "duration": 6.2
+    },
+    {
+      "text": "approximation and uh actually in one of",
+      "start": 1436.84,
+      "duration": 5.52
+    },
+    {
+      "text": "the previous lectures we saw the",
+      "start": 1439.64,
+      "duration": 4.8
+    },
+    {
+      "text": "function which was actually used so let",
+      "start": 1442.36,
+      "duration": 5.52
+    },
+    {
+      "text": "me scroll up towards that to show you",
+      "start": 1444.44,
+      "duration": 7.0
+    },
+    {
+      "text": "that function yeah I think it is over",
+      "start": 1447.88,
+      "duration": 7.44
+    },
+    {
+      "text": "here so if you see this this function",
+      "start": 1451.44,
+      "duration": 5.479
+    },
+    {
+      "text": "this is the function approximation which",
+      "start": 1455.32,
+      "duration": 3.599
+    },
+    {
+      "text": "was actually used by researchers for",
+      "start": 1456.919,
+      "duration": 5.161
+    },
+    {
+      "text": "training uh gpt2 this is the J",
+      "start": 1458.919,
+      "duration": 5.281
+    },
+    {
+      "text": "activation function approximation this",
+      "start": 1462.08,
+      "duration": 4.36
+    },
+    {
+      "text": "is exactly what we have written over",
+      "start": 1464.2,
+      "duration": 5.0
+    },
+    {
+      "text": "here and then we have the forward neural",
+      "start": 1466.44,
+      "duration": 6.2
+    },
+    {
+      "text": "network which takes in the input um",
+      "start": 1469.2,
+      "duration": 5.24
+    },
+    {
+      "text": "which has the dimensions embedding",
+      "start": 1472.64,
+      "duration": 5.0
+    },
+    {
+      "text": "Dimension it expands it to four times",
+      "start": 1474.44,
+      "duration": 5.359
+    },
+    {
+      "text": "the embedding Dimension then we have the",
+      "start": 1477.64,
+      "duration": 3.84
+    },
+    {
+      "text": "J activation and then we have the",
+      "start": 1479.799,
+      "duration": 4.321
+    },
+    {
+      "text": "contraction layer so it takes the input",
+      "start": 1481.48,
+      "duration": 4.079
+    },
+    {
+      "text": "which is four times the embedding",
+      "start": 1484.12,
+      "duration": 3.12
+    },
+    {
+      "text": "Dimension and brings it back to the",
+      "start": 1485.559,
+      "duration": 4.281
+    },
+    {
+      "text": "original embedding Dimension so here you",
+      "start": 1487.24,
+      "duration": 4.319
+    },
+    {
+      "text": "can see that the feed forward neural",
+      "start": 1489.84,
+      "duration": 4.199
+    },
+    {
+      "text": "network consists of an expansion and",
+      "start": 1491.559,
+      "duration": 5.401
+    },
+    {
+      "text": "activation and a",
+      "start": 1494.039,
+      "duration": 5.52
+    },
+    {
+      "text": "contraction uh this is exactly what we",
+      "start": 1496.96,
+      "duration": 4.599
+    },
+    {
+      "text": "have seen on the white board over here",
+      "start": 1499.559,
+      "duration": 4.12
+    },
+    {
+      "text": "so let me just go to that portion of the",
+      "start": 1501.559,
+      "duration": 4.281
+    },
+    {
+      "text": "Whiteboard where we saw the feed forward",
+      "start": 1503.679,
+      "duration": 4.841
+    },
+    {
+      "text": "neural network just to REM just to give",
+      "start": 1505.84,
+      "duration": 4.36
+    },
+    {
+      "text": "you a",
+      "start": 1508.52,
+      "duration": 4.2
+    },
+    {
+      "text": "refresher um so here",
+      "start": 1510.2,
+      "duration": 5.8
+    },
+    {
+      "text": "is yeah so this is that expansion",
+      "start": 1512.72,
+      "duration": 5.12
+    },
+    {
+      "text": "contraction neural network which we have",
+      "start": 1516.0,
+      "duration": 4.32
+    },
+    {
+      "text": "just coded out in Python so the input is",
+      "start": 1517.84,
+      "duration": 4.76
+    },
+    {
+      "text": "expanded to four times the dimension",
+      "start": 1520.32,
+      "duration": 4.479
+    },
+    {
+      "text": "size then we have the J activation",
+      "start": 1522.6,
+      "duration": 3.88
+    },
+    {
+      "text": "function and then we have the",
+      "start": 1524.799,
+      "duration": 6.0
+    },
+    {
+      "text": "contraction to the original embedding",
+      "start": 1526.48,
+      "duration": 6.96
+    },
+    {
+      "text": "size okay so now we have coded out",
+      "start": 1530.799,
+      "duration": 4.24
+    },
+    {
+      "text": "different classes so we have a layer",
+      "start": 1533.44,
+      "duration": 3.44
+    },
+    {
+      "text": "normalization class we have a j",
+      "start": 1535.039,
+      "duration": 3.52
+    },
+    {
+      "text": "activation class and we have a feed",
+      "start": 1536.88,
+      "duration": 4.279
+    },
+    {
+      "text": "forward neural network class now we are",
+      "start": 1538.559,
+      "duration": 4.441
+    },
+    {
+      "text": "ready to code the entire Transformer",
+      "start": 1541.159,
+      "duration": 4.201
+    },
+    {
+      "text": "block using these building blocks which",
+      "start": 1543.0,
+      "duration": 4.039
+    },
+    {
+      "text": "we learned about",
+      "start": 1545.36,
+      "duration": 5.199
+    },
+    {
+      "text": "before okay so this is the class for the",
+      "start": 1547.039,
+      "duration": 7.281
+    },
+    {
+      "text": "Transformer block first let me go to the",
+      "start": 1550.559,
+      "duration": 5.921
+    },
+    {
+      "text": "forward method and tell you a bit about",
+      "start": 1554.32,
+      "duration": 5.64
+    },
+    {
+      "text": "what we are doing here to understand",
+      "start": 1556.48,
+      "duration": 6.28
+    },
+    {
+      "text": "this this sequence you just need to keep",
+      "start": 1559.96,
+      "duration": 5.719
+    },
+    {
+      "text": "in mind this sequence which we have in",
+      "start": 1562.76,
+      "duration": 3.96
+    },
+    {
+      "text": "this",
+      "start": 1565.679,
+      "duration": 4.561
+    },
+    {
+      "text": "figure so let me take you to that figure",
+      "start": 1566.72,
+      "duration": 5.4
+    },
+    {
+      "text": "right now",
+      "start": 1570.24,
+      "duration": 5.12
+    },
+    {
+      "text": "yeah this sequence right over",
+      "start": 1572.12,
+      "duration": 5.799
+    },
+    {
+      "text": "here I'll just rub everything which is",
+      "start": 1575.36,
+      "duration": 4.24
+    },
+    {
+      "text": "there on the screen so that you get a",
+      "start": 1577.919,
+      "duration": 4.081
+    },
+    {
+      "text": "better look at this sequence there are",
+      "start": 1579.6,
+      "duration": 5.079
+    },
+    {
+      "text": "two many colors and too many symbols on",
+      "start": 1582.0,
+      "duration": 5.76
+    },
+    {
+      "text": "the screen right now so I'm just getting",
+      "start": 1584.679,
+      "duration": 5.561
+    },
+    {
+      "text": "rid of",
+      "start": 1587.76,
+      "duration": 2.48
+    },
+    {
+      "text": "I'm just getting rid of all of",
+      "start": 1592.44,
+      "duration": 5.359
+    },
+    {
+      "text": "these okay so I hope you are able to see",
+      "start": 1594.399,
+      "duration": 5.64
+    },
+    {
+      "text": "the sequence now so this is the exact",
+      "start": 1597.799,
+      "duration": 3.641
+    },
+    {
+      "text": "same sequence which we are going to",
+      "start": 1600.039,
+      "duration": 3.841
+    },
+    {
+      "text": "follow uh and keep this in mind right",
+      "start": 1601.44,
+      "duration": 4.64
+    },
+    {
+      "text": "now it's fine you can even take a look",
+      "start": 1603.88,
+      "duration": 4.399
+    },
+    {
+      "text": "at this whiteboard later and revise when",
+      "start": 1606.08,
+      "duration": 4.92
+    },
+    {
+      "text": "the video is when you look at the video",
+      "start": 1608.279,
+      "duration": 4.681
+    },
+    {
+      "text": "so first we have the layer normalization",
+      "start": 1611.0,
+      "duration": 3.559
+    },
+    {
+      "text": "followed by attention followed by",
+      "start": 1612.96,
+      "duration": 4.16
+    },
+    {
+      "text": "Dropout followed by shortcut layer so",
+      "start": 1614.559,
+      "duration": 5.12
+    },
+    {
+      "text": "let's see these four steps initially so",
+      "start": 1617.12,
+      "duration": 4.32
+    },
+    {
+      "text": "see we have a layer normalization",
+      "start": 1619.679,
+      "duration": 3.681
+    },
+    {
+      "text": "followed by the attention followed by",
+      "start": 1621.44,
+      "duration": 5.28
+    },
+    {
+      "text": "the uh Dropout followed by the shortcut",
+      "start": 1623.36,
+      "duration": 6.439
+    },
+    {
+      "text": "Okay so until this point we have reached",
+      "start": 1626.72,
+      "duration": 4.319
+    },
+    {
+      "text": "this",
+      "start": 1629.799,
+      "duration": 3.801
+    },
+    {
+      "text": "stage this stage and then we have the",
+      "start": 1631.039,
+      "duration": 5.081
+    },
+    {
+      "text": "next steps which is another layer",
+      "start": 1633.6,
+      "duration": 6.48
+    },
+    {
+      "text": "normalization uh so another layer",
+      "start": 1636.12,
+      "duration": 3.96
+    },
+    {
+      "text": "normalization yeah in the next four",
+      "start": 1640.919,
+      "duration": 3.48
+    },
+    {
+      "text": "steps we have another layer",
+      "start": 1642.88,
+      "duration": 4.159
+    },
+    {
+      "text": "normalization then feed forward Network",
+      "start": 1644.399,
+      "duration": 5.76
+    },
+    {
+      "text": "then Dropout and short cut so four steps",
+      "start": 1647.039,
+      "duration": 5.0
+    },
+    {
+      "text": "and here you can see another layer",
+      "start": 1650.159,
+      "duration": 4.961
+    },
+    {
+      "text": "normalization feed forward uh feed",
+      "start": 1652.039,
+      "duration": 5.201
+    },
+    {
+      "text": "forward neural network then drop out and",
+      "start": 1655.12,
+      "duration": 2.799
+    },
+    {
+      "text": "then",
+      "start": 1657.24,
+      "duration": 3.0
+    },
+    {
+      "text": "shortcut so this is what is happening in",
+      "start": 1657.919,
+      "duration": 4.081
+    },
+    {
+      "text": "the forward method if you understand the",
+      "start": 1660.24,
+      "duration": 2.96
+    },
+    {
+      "text": "diagram which was shown on the",
+      "start": 1662.0,
+      "duration": 3.44
+    },
+    {
+      "text": "Whiteboard this is pretty simple but",
+      "start": 1663.2,
+      "duration": 4.52
+    },
+    {
+      "text": "let's see when we create an instance of",
+      "start": 1665.44,
+      "duration": 4.16
+    },
+    {
+      "text": "this Transformer block class what are",
+      "start": 1667.72,
+      "duration": 3.92
+    },
+    {
+      "text": "the different objects which are created",
+      "start": 1669.6,
+      "duration": 5.04
+    },
+    {
+      "text": "so at is the multi-head attention object",
+      "start": 1671.64,
+      "duration": 4.6
+    },
+    {
+      "text": "this is an instance of the multi-head",
+      "start": 1674.64,
+      "duration": 3.96
+    },
+    {
+      "text": "attention class which we had defined in",
+      "start": 1676.24,
+      "duration": 3.799
+    },
+    {
+      "text": "one of the previous",
+      "start": 1678.6,
+      "duration": 3.84
+    },
+    {
+      "text": "lectures what this class does is that it",
+      "start": 1680.039,
+      "duration": 4.24
+    },
+    {
+      "text": "takes the embedding vectors and converts",
+      "start": 1682.44,
+      "duration": 5.32
+    },
+    {
+      "text": "them into context vectors and uh the",
+      "start": 1684.279,
+      "duration": 4.841
+    },
+    {
+      "text": "input Dimension is the embedding",
+      "start": 1687.76,
+      "duration": 3.159
+    },
+    {
+      "text": "Dimension the output is the same as the",
+      "start": 1689.12,
+      "duration": 4.12
+    },
+    {
+      "text": "embedding Dimension we have to specify",
+      "start": 1690.919,
+      "duration": 4.401
+    },
+    {
+      "text": "context length over here which is",
+      "start": 1693.24,
+      "duration": 4.76
+    },
+    {
+      "text": "1024 let's revise this again context",
+      "start": 1695.32,
+      "duration": 4.719
+    },
+    {
+      "text": "length is",
+      "start": 1698.0,
+      "duration": 4.96
+    },
+    {
+      "text": "1024 and",
+      "start": 1700.039,
+      "duration": 5.281
+    },
+    {
+      "text": "uh yeah then number of heads is the",
+      "start": 1702.96,
+      "duration": 3.88
+    },
+    {
+      "text": "number of attention heads which is I",
+      "start": 1705.32,
+      "duration": 3.599
+    },
+    {
+      "text": "think 12 over here Dropout is the",
+      "start": 1706.84,
+      "duration": 4.0
+    },
+    {
+      "text": "dropout rate 10% which we have used",
+      "start": 1708.919,
+      "duration": 4.36
+    },
+    {
+      "text": "before and this query key value bias is",
+      "start": 1710.84,
+      "duration": 4.6
+    },
+    {
+      "text": "set to false if you want to revise",
+      "start": 1713.279,
+      "duration": 4.601
+    },
+    {
+      "text": "multi-ad attention please go to one of",
+      "start": 1715.44,
+      "duration": 3.839
+    },
+    {
+      "text": "the previous lectures where we have",
+      "start": 1717.88,
+      "duration": 5.48
+    },
+    {
+      "text": "covered this so whenever this uh at",
+      "start": 1719.279,
+      "duration": 6.361
+    },
+    {
+      "text": "atten uh an instance of this multi-ad",
+      "start": 1723.36,
+      "duration": 4.48
+    },
+    {
+      "text": "attention class is created it takes in",
+      "start": 1725.64,
+      "duration": 5.039
+    },
+    {
+      "text": "the input embedding and converts it into",
+      "start": 1727.84,
+      "duration": 4.16
+    },
+    {
+      "text": "context",
+      "start": 1730.679,
+      "duration": 4.24
+    },
+    {
+      "text": "vectors the size here is batch size",
+      "start": 1732.0,
+      "duration": 5.48
+    },
+    {
+      "text": "number of tokens and embedding size so",
+      "start": 1734.919,
+      "duration": 4.401
+    },
+    {
+      "text": "if the number of tokens are let's say",
+      "start": 1737.48,
+      "duration": 4.48
+    },
+    {
+      "text": "four or five here there will be four and",
+      "start": 1739.32,
+      "duration": 4.079
+    },
+    {
+      "text": "each will have the embedding size which",
+      "start": 1741.96,
+      "duration": 3.719
+    },
+    {
+      "text": "is let's say 768 in our case that's the",
+      "start": 1743.399,
+      "duration": 4.601
+    },
+    {
+      "text": "embedding Dimension and the batch size",
+      "start": 1745.679,
+      "duration": 5.641
+    },
+    {
+      "text": "can be uh any batch size which we have",
+      "start": 1748.0,
+      "duration": 6.12
+    },
+    {
+      "text": "defined so this is the at object which",
+      "start": 1751.32,
+      "duration": 4.8
+    },
+    {
+      "text": "is the multi an instance of the multi-ad",
+      "start": 1754.12,
+      "duration": 3.919
+    },
+    {
+      "text": "attention class then we have another",
+      "start": 1756.12,
+      "duration": 3.799
+    },
+    {
+      "text": "object called FF which is an instance of",
+      "start": 1758.039,
+      "duration": 4.201
+    },
+    {
+      "text": "the feed forward class and we saw that",
+      "start": 1759.919,
+      "duration": 4.401
+    },
+    {
+      "text": "feed forward class over here we just",
+      "start": 1762.24,
+      "duration": 4.48
+    },
+    {
+      "text": "have to specify the configuration here",
+      "start": 1764.32,
+      "duration": 4.599
+    },
+    {
+      "text": "so that from the configur we can get the",
+      "start": 1766.72,
+      "duration": 4.76
+    },
+    {
+      "text": "embedding dimmension and this class what",
+      "start": 1768.919,
+      "duration": 5.801
+    },
+    {
+      "text": "it does is that it creates uh these",
+      "start": 1771.48,
+      "duration": 5.96
+    },
+    {
+      "text": "layers um and with the J activation",
+      "start": 1774.72,
+      "duration": 6.319
+    },
+    {
+      "text": "function and initialize the weights",
+      "start": 1777.44,
+      "duration": 7.68
+    },
+    {
+      "text": "randomly so this is the um FF object",
+      "start": 1781.039,
+      "duration": 5.76
+    },
+    {
+      "text": "which is an instance of the feed forward",
+      "start": 1785.12,
+      "duration": 4.679
+    },
+    {
+      "text": "class so wherever FF is used here we the",
+      "start": 1786.799,
+      "duration": 5.321
+    },
+    {
+      "text": "input is passed in and it goes through",
+      "start": 1789.799,
+      "duration": 4.561
+    },
+    {
+      "text": "the expansion the J and the contraction",
+      "start": 1792.12,
+      "duration": 4.439
+    },
+    {
+      "text": "and the output is the same dimensions as",
+      "start": 1794.36,
+      "duration": 4.0
+    },
+    {
+      "text": "the input",
+      "start": 1796.559,
+      "duration": 5.441
+    },
+    {
+      "text": "then we have Norm one and Norm two so",
+      "start": 1798.36,
+      "duration": 5.439
+    },
+    {
+      "text": "Norm one is the first normalization",
+      "start": 1802.0,
+      "duration": 3.88
+    },
+    {
+      "text": "layer and Norm two is the second",
+      "start": 1803.799,
+      "duration": 4.401
+    },
+    {
+      "text": "normalization layer so you see the first",
+      "start": 1805.88,
+      "duration": 4.2
+    },
+    {
+      "text": "normalization layer we are using before",
+      "start": 1808.2,
+      "duration": 3.88
+    },
+    {
+      "text": "the multi-ad attention the second",
+      "start": 1810.08,
+      "duration": 4.199
+    },
+    {
+      "text": "normalization layer we are using before",
+      "start": 1812.08,
+      "duration": 4.4
+    },
+    {
+      "text": "the feed forward neural network that's",
+      "start": 1814.279,
+      "duration": 4.0
+    },
+    {
+      "text": "why sometimes these are also called",
+      "start": 1816.48,
+      "duration": 4.6
+    },
+    {
+      "text": "pre-normalization layers why pre because",
+      "start": 1818.279,
+      "duration": 4.321
+    },
+    {
+      "text": "they are used before the multi-ad",
+      "start": 1821.08,
+      "duration": 3.36
+    },
+    {
+      "text": "attention and before the feed forward",
+      "start": 1822.6,
+      "duration": 4.439
+    },
+    {
+      "text": "neural network and the last object is",
+      "start": 1824.44,
+      "duration": 5.44
+    },
+    {
+      "text": "the drop shortcut which is basically a",
+      "start": 1827.039,
+      "duration": 5.681
+    },
+    {
+      "text": "Dropout uh which is basically an a",
+      "start": 1829.88,
+      "duration": 6.679
+    },
+    {
+      "text": "Dropout layer so nn. Dropout is already",
+      "start": 1832.72,
+      "duration": 6.319
+    },
+    {
+      "text": "predefined from pytorch so you can",
+      "start": 1836.559,
+      "duration": 6.12
+    },
+    {
+      "text": "actually search Dropout pytorch and it",
+      "start": 1839.039,
+      "duration": 5.76
+    },
+    {
+      "text": "will take you to this documentation I'll",
+      "start": 1842.679,
+      "duration": 3.88
+    },
+    {
+      "text": "also share the link to this in the",
+      "start": 1844.799,
+      "duration": 4.801
+    },
+    {
+      "text": "YouTube description",
+      "start": 1846.559,
+      "duration": 3.041
+    },
+    {
+      "text": "section okay so now when you look at the",
+      "start": 1849.84,
+      "duration": 4.92
+    },
+    {
+      "text": "forward method I have explained to you",
+      "start": 1852.919,
+      "duration": 5.081
+    },
+    {
+      "text": "the norm one uh which is the object Norm",
+      "start": 1854.76,
+      "duration": 5.519
+    },
+    {
+      "text": "normalization first normalization layer",
+      "start": 1858.0,
+      "duration": 5.159
+    },
+    {
+      "text": "object then at drop shortcut shortcut",
+      "start": 1860.279,
+      "duration": 4.961
+    },
+    {
+      "text": "which is the Dropout layer we do not",
+      "start": 1863.159,
+      "duration": 3.961
+    },
+    {
+      "text": "need to create a separate class for the",
+      "start": 1865.24,
+      "duration": 4.12
+    },
+    {
+      "text": "shortcut connection because what we do",
+      "start": 1867.12,
+      "duration": 5.12
+    },
+    {
+      "text": "is that we just add the output of this",
+      "start": 1869.36,
+      "duration": 5.6
+    },
+    {
+      "text": "back to the original input so when you",
+      "start": 1872.24,
+      "duration": 5.36
+    },
+    {
+      "text": "look at the shortcut mechanism look at",
+      "start": 1874.96,
+      "duration": 4.719
+    },
+    {
+      "text": "where the arrows are there so if you",
+      "start": 1877.6,
+      "duration": 4.0
+    },
+    {
+      "text": "look at this",
+      "start": 1879.679,
+      "duration": 4.321
+    },
+    {
+      "text": "Arrow if you look at this Arrow over",
+      "start": 1881.6,
+      "duration": 4.48
+    },
+    {
+      "text": "here what we are doing is we are adding",
+      "start": 1884.0,
+      "duration": 4.559
+    },
+    {
+      "text": "the this input over here",
+      "start": 1886.08,
+      "duration": 4.839
+    },
+    {
+      "text": "uh this input over here to the output",
+      "start": 1888.559,
+      "duration": 5.561
+    },
+    {
+      "text": "from the Dropout right so the output",
+      "start": 1890.919,
+      "duration": 6.681
+    },
+    {
+      "text": "from the Dropout is added to this input",
+      "start": 1894.12,
+      "duration": 5.2
+    },
+    {
+      "text": "which is over here let me actually mark",
+      "start": 1897.6,
+      "duration": 3.319
+    },
+    {
+      "text": "this with yellow so that you can get a",
+      "start": 1899.32,
+      "duration": 4.0
+    },
+    {
+      "text": "clear understanding so the input is",
+      "start": 1900.919,
+      "duration": 4.48
+    },
+    {
+      "text": "being marked with an yellow star here",
+      "start": 1903.32,
+      "duration": 3.76
+    },
+    {
+      "text": "and the output from the Dropout is",
+      "start": 1905.399,
+      "duration": 3.801
+    },
+    {
+      "text": "marked with another yellow star and we",
+      "start": 1907.08,
+      "duration": 3.839
+    },
+    {
+      "text": "are adding these two yellow stars",
+      "start": 1909.2,
+      "duration": 3.839
+    },
+    {
+      "text": "together that's what this first shortcut",
+      "start": 1910.919,
+      "duration": 5.12
+    },
+    {
+      "text": "connections ISS so what we are doing is",
+      "start": 1913.039,
+      "duration": 6.681
+    },
+    {
+      "text": "that um shortcut is initially in",
+      "start": 1916.039,
+      "duration": 6.321
+    },
+    {
+      "text": "initialized to X which is the input and",
+      "start": 1919.72,
+      "duration": 5.12
+    },
+    {
+      "text": "then X gets modified to the output of",
+      "start": 1922.36,
+      "duration": 4.4
+    },
+    {
+      "text": "the Dropout so we are essentially adding",
+      "start": 1924.84,
+      "duration": 4.36
+    },
+    {
+      "text": "the Dropout output to the input which is",
+      "start": 1926.76,
+      "duration": 5.0
+    },
+    {
+      "text": "exactly what we saw on the white board",
+      "start": 1929.2,
+      "duration": 4.959
+    },
+    {
+      "text": "in the second shortcut layer let's see",
+      "start": 1931.76,
+      "duration": 4.68
+    },
+    {
+      "text": "what happens in the second shortcut",
+      "start": 1934.159,
+      "duration": 4.4
+    },
+    {
+      "text": "Connection in the second shortcut",
+      "start": 1936.44,
+      "duration": 3.88
+    },
+    {
+      "text": "connection what is actually happening is",
+      "start": 1938.559,
+      "duration": 4.641
+    },
+    {
+      "text": "that uh here you see there is an input",
+      "start": 1940.32,
+      "duration": 5.079
+    },
+    {
+      "text": "to the second normalization layer and",
+      "start": 1943.2,
+      "duration": 3.599
+    },
+    {
+      "text": "there's an output from the second",
+      "start": 1945.399,
+      "duration": 4.561
+    },
+    {
+      "text": "dropout so we are adding the input to",
+      "start": 1946.799,
+      "duration": 5.281
+    },
+    {
+      "text": "the second normalization layer with the",
+      "start": 1949.96,
+      "duration": 4.559
+    },
+    {
+      "text": "output from the second Dropout and you",
+      "start": 1952.08,
+      "duration": 4.76
+    },
+    {
+      "text": "will see in the code what we are doing",
+      "start": 1954.519,
+      "duration": 4.841
+    },
+    {
+      "text": "so shortcut equal to X where X right now",
+      "start": 1956.84,
+      "duration": 4.4
+    },
+    {
+      "text": "is the input to the second normalization",
+      "start": 1959.36,
+      "duration": 5.159
+    },
+    {
+      "text": "layer and uh when we reach this step X",
+      "start": 1961.24,
+      "duration": 5.799
+    },
+    {
+      "text": "is equal to the output so here we are",
+      "start": 1964.519,
+      "duration": 5.0
+    },
+    {
+      "text": "actually adding the output to the input",
+      "start": 1967.039,
+      "duration": 4.52
+    },
+    {
+      "text": "of the second normalization layer which",
+      "start": 1969.519,
+      "duration": 3.921
+    },
+    {
+      "text": "is exactly what we saw on the",
+      "start": 1971.559,
+      "duration": 4.521
+    },
+    {
+      "text": "Whiteboard so after all these operations",
+      "start": 1973.44,
+      "duration": 4.64
+    },
+    {
+      "text": "are performed in the forward method the",
+      "start": 1976.08,
+      "duration": 4.12
+    },
+    {
+      "text": "Transformer block Returns the modified",
+      "start": 1978.08,
+      "duration": 4.0
+    },
+    {
+      "text": "input which is the same dimensions as",
+      "start": 1980.2,
+      "duration": 4.88
+    },
+    {
+      "text": "the input Vector remember that if",
+      "start": 1982.08,
+      "duration": 7.16
+    },
+    {
+      "text": "you keep in mind or visualize this Blue",
+      "start": 1985.08,
+      "duration": 5.839
+    },
+    {
+      "text": "Block which I'm showing on the screen",
+      "start": 1989.24,
+      "duration": 4.159
+    },
+    {
+      "text": "right now you will easily understand",
+      "start": 1990.919,
+      "duration": 4.12
+    },
+    {
+      "text": "what is happening in the code because in",
+      "start": 1993.399,
+      "duration": 3.081
+    },
+    {
+      "text": "the code we have just followed a",
+      "start": 1995.039,
+      "duration": 3.76
+    },
+    {
+      "text": "sequential workflow of all of these",
+      "start": 1996.48,
+      "duration": 4.199
+    },
+    {
+      "text": "different modules",
+      "start": 1998.799,
+      "duration": 4.24
+    },
+    {
+      "text": "together okay so the Transformer block",
+      "start": 2000.679,
+      "duration": 5.0
+    },
+    {
+      "text": "is as simple as this once we have",
+      "start": 2003.039,
+      "duration": 4.76
+    },
+    {
+      "text": "understood about the previous modules we",
+      "start": 2005.679,
+      "duration": 3.761
+    },
+    {
+      "text": "just stack them together to build the",
+      "start": 2007.799,
+      "duration": 4.041
+    },
+    {
+      "text": "Transformer block now I think hopefully",
+      "start": 2009.44,
+      "duration": 3.8
+    },
+    {
+      "text": "you would have understood why I have",
+      "start": 2011.84,
+      "duration": 4.04
+    },
+    {
+      "text": "spent so many lectures on the feed",
+      "start": 2013.24,
+      "duration": 4.2
+    },
+    {
+      "text": "forward neural network we had one full",
+      "start": 2015.88,
+      "duration": 2.96
+    },
+    {
+      "text": "lecture on the feed forward neural",
+      "start": 2017.44,
+      "duration": 3.599
+    },
+    {
+      "text": "network and and Jou we had one full",
+      "start": 2018.84,
+      "duration": 4.439
+    },
+    {
+      "text": "lecture on layer normalization and we",
+      "start": 2021.039,
+      "duration": 3.801
+    },
+    {
+      "text": "had one full lecture on shortcut",
+      "start": 2023.279,
+      "duration": 4.0
+    },
+    {
+      "text": "connections as well the reason I spent",
+      "start": 2024.84,
+      "duration": 3.92
+    },
+    {
+      "text": "so much time separately on those",
+      "start": 2027.279,
+      "duration": 4.081
+    },
+    {
+      "text": "lectures is that all of those different",
+      "start": 2028.76,
+      "duration": 4.48
+    },
+    {
+      "text": "aspects come together beautifully when",
+      "start": 2031.36,
+      "duration": 3.6
+    },
+    {
+      "text": "you try to code out the Transformer",
+      "start": 2033.24,
+      "duration": 3.24
+    },
+    {
+      "text": "block from",
+      "start": 2034.96,
+      "duration": 4.28
+    },
+    {
+      "text": "scratch okay so here I have just written",
+      "start": 2036.48,
+      "duration": 4.439
+    },
+    {
+      "text": "an explanation of what we have done in",
+      "start": 2039.24,
+      "duration": 4.6
+    },
+    {
+      "text": "the code so the given code defines a",
+      "start": 2040.919,
+      "duration": 5.521
+    },
+    {
+      "text": "Transformer block class in py torch that",
+      "start": 2043.84,
+      "duration": 4.079
+    },
+    {
+      "text": "includes a multi-head attention",
+      "start": 2046.44,
+      "duration": 3.479
+    },
+    {
+      "text": "mechanism and a feed forward neural",
+      "start": 2047.919,
+      "duration": 3.841
+    },
+    {
+      "text": "network so this is the multi-head",
+      "start": 2049.919,
+      "duration": 3.72
+    },
+    {
+      "text": "attention mechanism and this is the feed",
+      "start": 2051.76,
+      "duration": 4.079
+    },
+    {
+      "text": "forward neural network layer",
+      "start": 2053.639,
+      "duration": 4.28
+    },
+    {
+      "text": "normalization is applied before each of",
+      "start": 2055.839,
+      "duration": 4.8
+    },
+    {
+      "text": "these two components so before the",
+      "start": 2057.919,
+      "duration": 4.881
+    },
+    {
+      "text": "multi-ad attention mechanism and once",
+      "start": 2060.639,
+      "duration": 3.881
+    },
+    {
+      "text": "which is before the feed forward neural",
+      "start": 2062.8,
+      "duration": 3.48
+    },
+    {
+      "text": "network that's why it's called as",
+      "start": 2064.52,
+      "duration": 3.879
+    },
+    {
+      "text": "pre-layer Norm",
+      "start": 2066.28,
+      "duration": 4.079
+    },
+    {
+      "text": "older architecture such as the original",
+      "start": 2068.399,
+      "duration": 3.881
+    },
+    {
+      "text": "Transformer model applied layer",
+      "start": 2070.359,
+      "duration": 3.921
+    },
+    {
+      "text": "normalization after the self attention",
+      "start": 2072.28,
+      "duration": 4.2
+    },
+    {
+      "text": "and feed forward neural network that was",
+      "start": 2074.28,
+      "duration": 5.92
+    },
+    {
+      "text": "called as post layer Norm post layer",
+      "start": 2076.48,
+      "duration": 6.639
+    },
+    {
+      "text": "Norm so researchers later discovered",
+      "start": 2080.2,
+      "duration": 5.24
+    },
+    {
+      "text": "that post layer layer Norm sometimes",
+      "start": 2083.119,
+      "duration": 4.8
+    },
+    {
+      "text": "leads to worse or many times leads to",
+      "start": 2085.44,
+      "duration": 4.6
+    },
+    {
+      "text": "worse training Dynamics that's why",
+      "start": 2087.919,
+      "duration": 4.44
+    },
+    {
+      "text": "nowadays pre-layer Norm is",
+      "start": 2090.04,
+      "duration": 5.039
+    },
+    {
+      "text": "used so we also implement the forward",
+      "start": 2092.359,
+      "duration": 4.56
+    },
+    {
+      "text": "path where each component is followed by",
+      "start": 2095.079,
+      "duration": 3.841
+    },
+    {
+      "text": "shortcut connection that adds the input",
+      "start": 2096.919,
+      "duration": 4.761
+    },
+    {
+      "text": "of the block to its output so here you",
+      "start": 2098.92,
+      "duration": 4.72
+    },
+    {
+      "text": "see this shortcut connection adds the",
+      "start": 2101.68,
+      "duration": 4.52
+    },
+    {
+      "text": "input of this whole block to the output",
+      "start": 2103.64,
+      "duration": 4.92
+    },
+    {
+      "text": "this shortcut connection over here adds",
+      "start": 2106.2,
+      "duration": 5.68
+    },
+    {
+      "text": "the input of this whole block to the",
+      "start": 2108.56,
+      "duration": 6.16
+    },
+    {
+      "text": "output now what we can do is that we can",
+      "start": 2111.88,
+      "duration": 5.4
+    },
+    {
+      "text": "initiate a Transformer block object and",
+      "start": 2114.72,
+      "duration": 4.56
+    },
+    {
+      "text": "let's feed it some data and let's see",
+      "start": 2117.28,
+      "duration": 4.04
+    },
+    {
+      "text": "what's the output so here what I'm",
+      "start": 2119.28,
+      "duration": 4.079
+    },
+    {
+      "text": "defining is that I'm defining X which is",
+      "start": 2121.32,
+      "duration": 5.0
+    },
+    {
+      "text": "my input it has two batches each batch",
+      "start": 2123.359,
+      "duration": 4.921
+    },
+    {
+      "text": "has four tokens and the embedding",
+      "start": 2126.32,
+      "duration": 5.0
+    },
+    {
+      "text": "dimension of each token is 768 now I'm",
+      "start": 2128.28,
+      "duration": 4.28
+    },
+    {
+      "text": "passing this this through the",
+      "start": 2131.32,
+      "duration": 3.68
+    },
+    {
+      "text": "Transformer model let's first visualize",
+      "start": 2132.56,
+      "duration": 4.039
+    },
+    {
+      "text": "what will happen once this x passes",
+      "start": 2135.0,
+      "duration": 3.64
+    },
+    {
+      "text": "through this Transformer model or",
+      "start": 2136.599,
+      "duration": 4.441
+    },
+    {
+      "text": "Transformer class rather when X first",
+      "start": 2138.64,
+      "duration": 4.84
+    },
+    {
+      "text": "passes through the Transformer class uh",
+      "start": 2141.04,
+      "duration": 4.799
+    },
+    {
+      "text": "normalization layer is applied so now",
+      "start": 2143.48,
+      "duration": 5.32
+    },
+    {
+      "text": "try to visualize this try to visualize",
+      "start": 2145.839,
+      "duration": 6.041
+    },
+    {
+      "text": "every token as a row of 768",
+      "start": 2148.8,
+      "duration": 6.44
+    },
+    {
+      "text": "columns so every row is normalized which",
+      "start": 2151.88,
+      "duration": 5.239
+    },
+    {
+      "text": "means that the mean of every row and the",
+      "start": 2155.24,
+      "duration": 3.56
+    },
+    {
+      "text": "standard deviation of every row will be",
+      "start": 2157.119,
+      "duration": 3.921
+    },
+    {
+      "text": "one that will be done for all the four",
+      "start": 2158.8,
+      "duration": 4.4
+    },
+    {
+      "text": "tokens of one batch and then the same",
+      "start": 2161.04,
+      "duration": 3.64
+    },
+    {
+      "text": "thing will be done for all the four",
+      "start": 2163.2,
+      "duration": 4.04
+    },
+    {
+      "text": "tokens of the second batch so then the",
+      "start": 2164.68,
+      "duration": 5.04
+    },
+    {
+      "text": "normalization layer is applied to X and",
+      "start": 2167.24,
+      "duration": 4.48
+    },
+    {
+      "text": "then all of the four tokens of one batch",
+      "start": 2169.72,
+      "duration": 5.879
+    },
+    {
+      "text": "will be transformed so that the mean of",
+      "start": 2171.72,
+      "duration": 6.04
+    },
+    {
+      "text": "every row and the standard deviation or",
+      "start": 2175.599,
+      "duration": 4.121
+    },
+    {
+      "text": "the variance of every row will be equal",
+      "start": 2177.76,
+      "duration": 4.76
+    },
+    {
+      "text": "to one mean will be zero sorry the mean",
+      "start": 2179.72,
+      "duration": 4.72
+    },
+    {
+      "text": "of every row will be zero and the",
+      "start": 2182.52,
+      "duration": 4.64
+    },
+    {
+      "text": "standard deviation will be equal to one",
+      "start": 2184.44,
+      "duration": 4.879
+    },
+    {
+      "text": "after that that we pass every token of",
+      "start": 2187.16,
+      "duration": 5.04
+    },
+    {
+      "text": "both the batches to the self attention",
+      "start": 2189.319,
+      "duration": 4.8
+    },
+    {
+      "text": "mechanism or the multi-head attention",
+      "start": 2192.2,
+      "duration": 4.68
+    },
+    {
+      "text": "rather and the output of this is that",
+      "start": 2194.119,
+      "duration": 5.2
+    },
+    {
+      "text": "every token embedding Dimension is",
+      "start": 2196.88,
+      "duration": 4.439
+    },
+    {
+      "text": "converted into a context Vector of the",
+      "start": 2199.319,
+      "duration": 3.881
+    },
+    {
+      "text": "same size so if you look at the first",
+      "start": 2201.319,
+      "duration": 4.121
+    },
+    {
+      "text": "token of the first batch that has 768",
+      "start": 2203.2,
+      "duration": 4.68
+    },
+    {
+      "text": "dimensions that's a embedding Vector",
+      "start": 2205.44,
+      "duration": 4.2
+    },
+    {
+      "text": "which does not encode the attention of",
+      "start": 2207.88,
+      "duration": 3.959
+    },
+    {
+      "text": "how that should relate to the other",
+      "start": 2209.64,
+      "duration": 5.719
+    },
+    {
+      "text": "input vectors when we implement this the",
+      "start": 2211.839,
+      "duration": 7.24
+    },
+    {
+      "text": "resultant is the embedding Vector which",
+      "start": 2215.359,
+      "duration": 5.641
+    },
+    {
+      "text": "essentially has four tokens and each",
+      "start": 2219.079,
+      "duration": 4.721
+    },
+    {
+      "text": "token has 768 Dimensions but now the",
+      "start": 2221.0,
+      "duration": 5.359
+    },
+    {
+      "text": "resultant will be context vectors main",
+      "start": 2223.8,
+      "duration": 4.88
+    },
+    {
+      "text": "aim after this attention mechanism or",
+      "start": 2226.359,
+      "duration": 4.041
+    },
+    {
+      "text": "after this attention block is to convert",
+      "start": 2228.68,
+      "duration": 3.36
+    },
+    {
+      "text": "the embedding vectors into context",
+      "start": 2230.4,
+      "duration": 4.199
+    },
+    {
+      "text": "vectors of the same size then we apply a",
+      "start": 2232.04,
+      "duration": 5.039
+    },
+    {
+      "text": "Dropout layer which randomly drops off",
+      "start": 2234.599,
+      "duration": 6.961
+    },
+    {
+      "text": "some U uh some parameter values to zero",
+      "start": 2237.079,
+      "duration": 7.0
+    },
+    {
+      "text": "and then we add a shortcut layer this is",
+      "start": 2241.56,
+      "duration": 4.68
+    },
+    {
+      "text": "the first block you can see in the",
+      "start": 2244.079,
+      "duration": 4.52
+    },
+    {
+      "text": "second block the output of the previous",
+      "start": 2246.24,
+      "duration": 3.96
+    },
+    {
+      "text": "block passes through a second",
+      "start": 2248.599,
+      "duration": 3.801
+    },
+    {
+      "text": "normalization layer then through a feed",
+      "start": 2250.2,
+      "duration": 4.159
+    },
+    {
+      "text": "forward neural network where the",
+      "start": 2252.4,
+      "duration": 4.32
+    },
+    {
+      "text": "dimensions are preserved so after coming",
+      "start": 2254.359,
+      "duration": 4.161
+    },
+    {
+      "text": "out from the feed forward neural network",
+      "start": 2256.72,
+      "duration": 3.52
+    },
+    {
+      "text": "the dimensions would again",
+      "start": 2258.52,
+      "duration": 6.04
+    },
+    {
+      "text": "be uh two batches multiplied by four",
+      "start": 2260.24,
+      "duration": 6.8
+    },
+    {
+      "text": "tokens multiplied by 768 which is the",
+      "start": 2264.56,
+      "duration": 4.16
+    },
+    {
+      "text": "dimension of each",
+      "start": 2267.04,
+      "duration": 4.12
+    },
+    {
+      "text": "token and then we again have a Dropout",
+      "start": 2268.72,
+      "duration": 4.92
+    },
+    {
+      "text": "layer and then we again add the shortcut",
+      "start": 2271.16,
+      "duration": 4.0
+    },
+    {
+      "text": "mechanism to prevent the vanishing",
+      "start": 2273.64,
+      "duration": 4.24
+    },
+    {
+      "text": "gradient so when we return the X we",
+      "start": 2275.16,
+      "duration": 6.36
+    },
+    {
+      "text": "expect the output to be 2x 4X 768 which",
+      "start": 2277.88,
+      "duration": 6.12
+    },
+    {
+      "text": "is the same size as the input now let's",
+      "start": 2281.52,
+      "duration": 5.2
+    },
+    {
+      "text": "check whether that's the case so this is",
+      "start": 2284.0,
+      "duration": 4.76
+    },
+    {
+      "text": "my X and now I'm creating an instance of",
+      "start": 2286.72,
+      "duration": 3.84
+    },
+    {
+      "text": "the Transformer block but remember I",
+      "start": 2288.76,
+      "duration": 4.16
+    },
+    {
+      "text": "need to pass in this configuration so",
+      "start": 2290.56,
+      "duration": 3.559
+    },
+    {
+      "text": "when I create when you create an",
+      "start": 2292.92,
+      "duration": 2.72
+    },
+    {
+      "text": "instance of the Transformer block you",
+      "start": 2294.119,
+      "duration": 3.761
+    },
+    {
+      "text": "have to pass in the configuration and",
+      "start": 2295.64,
+      "duration": 3.92
+    },
+    {
+      "text": "remember again this is the configuration",
+      "start": 2297.88,
+      "duration": 3.719
+    },
+    {
+      "text": "which I'm using over here which defines",
+      "start": 2299.56,
+      "duration": 3.84
+    },
+    {
+      "text": "the context length embedding Dimension",
+      "start": 2301.599,
+      "duration": 3.321
+    },
+    {
+      "text": "number of attention heads number of",
+      "start": 2303.4,
+      "duration": 6.0
+    },
+    {
+      "text": "Transformer blocks and the dropout rate",
+      "start": 2304.92,
+      "duration": 6.0
+    },
+    {
+      "text": "okay so now we pass in this",
+      "start": 2309.4,
+      "duration": 3.36
+    },
+    {
+      "text": "configuration and then we just print out",
+      "start": 2310.92,
+      "duration": 2.64
+    },
+    {
+      "text": "the",
+      "start": 2312.76,
+      "duration": 4.44
+    },
+    {
+      "text": "output um and the input shape is 2x 4X",
+      "start": 2313.56,
+      "duration": 6.12
+    },
+    {
+      "text": "768 and you'll see that the output shape",
+      "start": 2317.2,
+      "duration": 5.96
+    },
+    {
+      "text": "is exactly the same 2x 4X 768 what I",
+      "start": 2319.68,
+      "duration": 5.84
+    },
+    {
+      "text": "really encourage all of you to do is uh",
+      "start": 2323.16,
+      "duration": 4.36
+    },
+    {
+      "text": "when you watch this lecture try to",
+      "start": 2325.52,
+      "duration": 4.64
+    },
+    {
+      "text": "understand the dimensions try to write",
+      "start": 2327.52,
+      "duration": 5.72
+    },
+    {
+      "text": "down the 2x 4X 768 on the Whiteboard",
+      "start": 2330.16,
+      "duration": 5.76
+    },
+    {
+      "text": "apply the layer normalization try to see",
+      "start": 2333.24,
+      "duration": 4.839
+    },
+    {
+      "text": "how the dimensions work out",
+      "start": 2335.92,
+      "duration": 3.76
+    },
+    {
+      "text": "through all of these different building",
+      "start": 2338.079,
+      "duration": 3.361
+    },
+    {
+      "text": "blocks and try to see that when you",
+      "start": 2339.68,
+      "duration": 3.56
+    },
+    {
+      "text": "reach the end the dimension is exactly",
+      "start": 2341.44,
+      "duration": 5.32
+    },
+    {
+      "text": "preserved which is 2x 4X",
+      "start": 2343.24,
+      "duration": 3.52
+    },
+    {
+      "text": "768 okay so I have just added some notes",
+      "start": 2346.8,
+      "duration": 5.16
+    },
+    {
+      "text": "here so that we can conclude this",
+      "start": 2350.079,
+      "duration": 4.201
+    },
+    {
+      "text": "lecture so as we can see from the code",
+      "start": 2351.96,
+      "duration": 4.44
+    },
+    {
+      "text": "output the Transformer block maintains",
+      "start": 2354.28,
+      "duration": 3.28
+    },
+    {
+      "text": "the input",
+      "start": 2356.4,
+      "duration": 3.04
+    },
+    {
+      "text": "Dimensions indicating that the",
+      "start": 2357.56,
+      "duration": 4.16
+    },
+    {
+      "text": "Transformer architecture processes",
+      "start": 2359.44,
+      "duration": 4.52
+    },
+    {
+      "text": "sequences of data without altering their",
+      "start": 2361.72,
+      "duration": 4.28
+    },
+    {
+      "text": "shape throughout the network this is",
+      "start": 2363.96,
+      "duration": 4.359
+    },
+    {
+      "text": "very important the Transformer block",
+      "start": 2366.0,
+      "duration": 4.319
+    },
+    {
+      "text": "processes the data without altering the",
+      "start": 2368.319,
+      "duration": 3.441
+    },
+    {
+      "text": "shape of the",
+      "start": 2370.319,
+      "duration": 3.8
+    },
+    {
+      "text": "data the preservation of shape",
+      "start": 2371.76,
+      "duration": 3.8
+    },
+    {
+      "text": "throughout the Transformer block",
+      "start": 2374.119,
+      "duration": 4.041
+    },
+    {
+      "text": "architecture is not incidental but it is",
+      "start": 2375.56,
+      "duration": 4.4
+    },
+    {
+      "text": "a crucial aspect of the design of",
+      "start": 2378.16,
+      "duration": 4.439
+    },
+    {
+      "text": "Transformer block itself this design",
+      "start": 2379.96,
+      "duration": 4.8
+    },
+    {
+      "text": "enables its effective application across",
+      "start": 2382.599,
+      "duration": 4.0
+    },
+    {
+      "text": "a wide range of sequence to sequence",
+      "start": 2384.76,
+      "duration": 4.72
+    },
+    {
+      "text": "tasks where each output Vector directly",
+      "start": 2386.599,
+      "duration": 4.401
+    },
+    {
+      "text": "corresponds to an input Vector",
+      "start": 2389.48,
+      "duration": 3.72
+    },
+    {
+      "text": "maintaining a on toone",
+      "start": 2391.0,
+      "duration": 4.24
+    },
+    {
+      "text": "relationship however the output is a",
+      "start": 2393.2,
+      "duration": 4.28
+    },
+    {
+      "text": "context Vector that encapsulates in",
+      "start": 2395.24,
+      "duration": 3.839
+    },
+    {
+      "text": "information from the entire input",
+      "start": 2397.48,
+      "duration": 3.76
+    },
+    {
+      "text": "sequence remember that the output",
+      "start": 2399.079,
+      "duration": 4.201
+    },
+    {
+      "text": "contains so much information it's very",
+      "start": 2401.24,
+      "duration": 4.839
+    },
+    {
+      "text": "rich output Vector because it contains",
+      "start": 2403.28,
+      "duration": 5.52
+    },
+    {
+      "text": "information about how the uh in the",
+      "start": 2406.079,
+      "duration": 4.801
+    },
+    {
+      "text": "input sequence how every token relates",
+      "start": 2408.8,
+      "duration": 3.6
+    },
+    {
+      "text": "to the other tokens of the input",
+      "start": 2410.88,
+      "duration": 3.4
+    },
+    {
+      "text": "sequence that's the whole idea of the",
+      "start": 2412.4,
+      "duration": 3.4
+    },
+    {
+      "text": "attention mechanism which we looked",
+      "start": 2414.28,
+      "duration": 3.28
+    },
+    {
+      "text": "about before or which you understood",
+      "start": 2415.8,
+      "duration": 4.279
+    },
+    {
+      "text": "before so the GPT architecture is the",
+      "start": 2417.56,
+      "duration": 4.2
+    },
+    {
+      "text": "broad level within that there is a",
+      "start": 2420.079,
+      "duration": 3.52
+    },
+    {
+      "text": "Transformer model within that there is a",
+      "start": 2421.76,
+      "duration": 4.559
+    },
+    {
+      "text": "attention mechanism so these three",
+      "start": 2423.599,
+      "duration": 5.321
+    },
+    {
+      "text": "things power each other other it starts",
+      "start": 2426.319,
+      "duration": 4.8
+    },
+    {
+      "text": "from the attention mechanism which is a",
+      "start": 2428.92,
+      "duration": 4.56
+    },
+    {
+      "text": "key component of the Transformer block",
+      "start": 2431.119,
+      "duration": 4.361
+    },
+    {
+      "text": "the and the Transformer block is the key",
+      "start": 2433.48,
+      "duration": 4.4
+    },
+    {
+      "text": "component of the whole GPT",
+      "start": 2435.48,
+      "duration": 5.119
+    },
+    {
+      "text": "architecture so finally this means that",
+      "start": 2437.88,
+      "duration": 4.239
+    },
+    {
+      "text": "while the physical dimensions of the",
+      "start": 2440.599,
+      "duration": 3.561
+    },
+    {
+      "text": "sequence length and feature size remain",
+      "start": 2442.119,
+      "duration": 3.48
+    },
+    {
+      "text": "unchanged as it passes through the",
+      "start": 2444.16,
+      "duration": 3.679
+    },
+    {
+      "text": "Transformer block the content of each",
+      "start": 2445.599,
+      "duration": 5.24
+    },
+    {
+      "text": "output Vector is reint is re-encoded to",
+      "start": 2447.839,
+      "duration": 5.081
+    },
+    {
+      "text": "integrate contextual information from",
+      "start": 2450.839,
+      "duration": 4.681
+    },
+    {
+      "text": "across the entire input sequence so this",
+      "start": 2452.92,
+      "duration": 4.48
+    },
+    {
+      "text": "is just saying that although the input",
+      "start": 2455.52,
+      "duration": 3.839
+    },
+    {
+      "text": "and the output dimensions are the same",
+      "start": 2457.4,
+      "duration": 3.6
+    },
+    {
+      "text": "the output contains a lot more",
+      "start": 2459.359,
+      "duration": 3.561
+    },
+    {
+      "text": "information since it also contains",
+      "start": 2461.0,
+      "duration": 4.4
+    },
+    {
+      "text": "information about how each token relates",
+      "start": 2462.92,
+      "duration": 5.32
+    },
+    {
+      "text": "to the other tokens in the",
+      "start": 2465.4,
+      "duration": 5.16
+    },
+    {
+      "text": "input that actually brings us to the end",
+      "start": 2468.24,
+      "duration": 4.56
+    },
+    {
+      "text": "of this lecture I just want to show you",
+      "start": 2470.56,
+      "duration": 4.44
+    },
+    {
+      "text": "one thing as we are about to",
+      "start": 2472.8,
+      "duration": 4.08
+    },
+    {
+      "text": "conclude",
+      "start": 2475.0,
+      "duration": 6.839
+    },
+    {
+      "text": "um I want to show you um how what all we",
+      "start": 2476.88,
+      "duration": 6.76
+    },
+    {
+      "text": "have learned so far relates to each",
+      "start": 2481.839,
+      "duration": 4.721
+    },
+    {
+      "text": "other so when we looked at the GPT",
+      "start": 2483.64,
+      "duration": 6.28
+    },
+    {
+      "text": "architecture we saw that there are four",
+      "start": 2486.56,
+      "duration": 5.16
+    },
+    {
+      "text": "things which are important the layer",
+      "start": 2489.92,
+      "duration": 5.399
+    },
+    {
+      "text": "normalization the J",
+      "start": 2491.72,
+      "duration": 3.599
+    },
+    {
+      "text": "activation uh let me draw that",
+      "start": 2496.4,
+      "duration": 4.52
+    },
+    {
+      "text": "again the layer",
+      "start": 2498.92,
+      "duration": 5.32
+    },
+    {
+      "text": "normalization which is here the J",
+      "start": 2500.92,
+      "duration": 5.84
+    },
+    {
+      "text": "activation which is here the feed",
+      "start": 2504.24,
+      "duration": 4.32
+    },
+    {
+      "text": "forward neural",
+      "start": 2506.76,
+      "duration": 4.2
+    },
+    {
+      "text": "network the feed forward neural network",
+      "start": 2508.56,
+      "duration": 4.84
+    },
+    {
+      "text": "component and finally the shortcut",
+      "start": 2510.96,
+      "duration": 4.92
+    },
+    {
+      "text": "connections and we also saw today how",
+      "start": 2513.4,
+      "duration": 4.0
+    },
+    {
+      "text": "all of these four come together together",
+      "start": 2515.88,
+      "duration": 3.959
+    },
+    {
+      "text": "to build the entire Transformer block",
+      "start": 2517.4,
+      "duration": 4.84
+    },
+    {
+      "text": "and we coded out this Transformer block",
+      "start": 2519.839,
+      "duration": 5.0
+    },
+    {
+      "text": "together now in the next lecture what we",
+      "start": 2522.24,
+      "duration": 4.72
+    },
+    {
+      "text": "are going to see is that how the",
+      "start": 2524.839,
+      "duration": 3.401
+    },
+    {
+      "text": "Transformer",
+      "start": 2526.96,
+      "duration": 4.84
+    },
+    {
+      "text": "block uh leads to the entire GPT GPT",
+      "start": 2528.24,
+      "duration": 6.44
+    },
+    {
+      "text": "architecture so remember what I said",
+      "start": 2531.8,
+      "duration": 5.08
+    },
+    {
+      "text": "earlier it all starts from this",
+      "start": 2534.68,
+      "duration": 3.84
+    },
+    {
+      "text": "attention which is the mass multi-ad",
+      "start": 2536.88,
+      "duration": 4.0
+    },
+    {
+      "text": "attention that forms the core of the",
+      "start": 2538.52,
+      "duration": 4.76
+    },
+    {
+      "text": "Transformer block now that we have coded",
+      "start": 2540.88,
+      "duration": 4.4
+    },
+    {
+      "text": "the Transformer block our task is not",
+      "start": 2543.28,
+      "duration": 4.279
+    },
+    {
+      "text": "over because remember that after the",
+      "start": 2545.28,
+      "duration": 3.96
+    },
+    {
+      "text": "Transformer block there are lot of",
+      "start": 2547.559,
+      "duration": 4.201
+    },
+    {
+      "text": "pre-processing steps and then finally we",
+      "start": 2549.24,
+      "duration": 4.599
+    },
+    {
+      "text": "have to use the output Vector in order",
+      "start": 2551.76,
+      "duration": 5.4
+    },
+    {
+      "text": "to predict the next next token and we",
+      "start": 2553.839,
+      "duration": 5.72
+    },
+    {
+      "text": "still have to see how that is done so",
+      "start": 2557.16,
+      "duration": 4.28
+    },
+    {
+      "text": "the last step is still remaining and the",
+      "start": 2559.559,
+      "duration": 3.28
+    },
+    {
+      "text": "last step is",
+      "start": 2561.44,
+      "duration": 5.919
+    },
+    {
+      "text": "the final GPT architecture but try to",
+      "start": 2562.839,
+      "duration": 6.201
+    },
+    {
+      "text": "understand this sequence here it all",
+      "start": 2567.359,
+      "duration": 6.041
+    },
+    {
+      "text": "starts from the attention block then so",
+      "start": 2569.04,
+      "duration": 6.559
+    },
+    {
+      "text": "it all starts here the magic starts here",
+      "start": 2573.4,
+      "duration": 4.24
+    },
+    {
+      "text": "at the attention block",
+      "start": 2575.599,
+      "duration": 3.801
+    },
+    {
+      "text": "then that forms the core of the",
+      "start": 2577.64,
+      "duration": 3.84
+    },
+    {
+      "text": "Transformer",
+      "start": 2579.4,
+      "duration": 5.24
+    },
+    {
+      "text": "block which I'm marking over here and",
+      "start": 2581.48,
+      "duration": 5.359
+    },
+    {
+      "text": "the Transformer block essentially forms",
+      "start": 2584.64,
+      "duration": 6.84
+    },
+    {
+      "text": "the core of the entire GPT",
+      "start": 2586.839,
+      "duration": 4.641
+    },
+    {
+      "text": "architecture I hope you have got this",
+      "start": 2592.319,
+      "duration": 4.161
+    },
+    {
+      "text": "sequence in mind so that's why for us it",
+      "start": 2594.28,
+      "duration": 4.0
+    },
+    {
+      "text": "was very important to first spend a lot",
+      "start": 2596.48,
+      "duration": 3.96
+    },
+    {
+      "text": "of time understanding attention we have",
+      "start": 2598.28,
+      "duration": 4.24
+    },
+    {
+      "text": "covered five to six lectures on that",
+      "start": 2600.44,
+      "duration": 3.919
+    },
+    {
+      "text": "then it was very important to spend a",
+      "start": 2602.52,
+      "duration": 3.76
+    },
+    {
+      "text": "lot of time on every single component of",
+      "start": 2604.359,
+      "duration": 4.24
+    },
+    {
+      "text": "this Transformer Block in the next",
+      "start": 2606.28,
+      "duration": 5.039
+    },
+    {
+      "text": "lecture we are finally going to see uh",
+      "start": 2608.599,
+      "duration": 5.601
+    },
+    {
+      "text": "how the Transformer block leads or fits",
+      "start": 2611.319,
+      "duration": 5.841
+    },
+    {
+      "text": "in the entire GPT architecture or rather",
+      "start": 2614.2,
+      "duration": 4.56
+    },
+    {
+      "text": "put in other words how can we",
+      "start": 2617.16,
+      "duration": 4.199
+    },
+    {
+      "text": "pre-process the or postprocess the",
+      "start": 2618.76,
+      "duration": 4.76
+    },
+    {
+      "text": "output from the Transformer block so",
+      "start": 2621.359,
+      "duration": 3.801
+    },
+    {
+      "text": "that we can predict the next word",
+      "start": 2623.52,
+      "duration": 4.16
+    },
+    {
+      "text": "remember the whole goal of GPT style",
+      "start": 2625.16,
+      "duration": 5.64
+    },
+    {
+      "text": "models is that given an input given an",
+      "start": 2627.68,
+      "duration": 4.6
+    },
+    {
+      "text": "input let's say the input is every",
+      "start": 2630.8,
+      "duration": 3.44
+    },
+    {
+      "text": "effort moves you how to predict the next",
+      "start": 2632.28,
+      "duration": 4.16
+    },
+    {
+      "text": "word up till now we have just seen that",
+      "start": 2634.24,
+      "duration": 4.24
+    },
+    {
+      "text": "the Transformer block retains the input",
+      "start": 2636.44,
+      "duration": 4.879
+    },
+    {
+      "text": "shape right the Transformer block output",
+      "start": 2638.48,
+      "duration": 4.92
+    },
+    {
+      "text": "but how is this converted to next word",
+      "start": 2641.319,
+      "duration": 4.0
+    },
+    {
+      "text": "prediction that's what we are going to",
+      "start": 2643.4,
+      "duration": 4.0
+    },
+    {
+      "text": "see in the next",
+      "start": 2645.319,
+      "duration": 4.8
+    },
+    {
+      "text": "lecture okay so now with the Transformer",
+      "start": 2647.4,
+      "duration": 4.959
+    },
+    {
+      "text": "block implemented we have all the",
+      "start": 2650.119,
+      "duration": 4.44
+    },
+    {
+      "text": "ammunition or building blocks needed to",
+      "start": 2652.359,
+      "duration": 5.2
+    },
+    {
+      "text": "implement the entire GPT architecture",
+      "start": 2654.559,
+      "duration": 4.921
+    },
+    {
+      "text": "and here you can see the next lecture",
+      "start": 2657.559,
+      "duration": 3.76
+    },
+    {
+      "text": "which I've already planned is coding the",
+      "start": 2659.48,
+      "duration": 4.639
+    },
+    {
+      "text": "entire GPT",
+      "start": 2661.319,
+      "duration": 2.8
+    },
+    {
+      "text": "model so I hope everyone you are liking",
+      "start": 2664.28,
+      "duration": 4.279
+    },
+    {
+      "text": "this style of lectures where I first",
+      "start": 2666.8,
+      "duration": 3.48
+    },
+    {
+      "text": "cover intuition plus theory on the",
+      "start": 2668.559,
+      "duration": 3.481
+    },
+    {
+      "text": "Whiteboard and then I take you to the",
+      "start": 2670.28,
+      "duration": 5.16
+    },
+    {
+      "text": "code please follow with me and then try",
+      "start": 2672.04,
+      "duration": 6.039
+    },
+    {
+      "text": "to implement the code on your own try to",
+      "start": 2675.44,
+      "duration": 5.44
+    },
+    {
+      "text": "write things on the Whiteboard Because",
+      "start": 2678.079,
+      "duration": 4.641
+    },
+    {
+      "text": "unless you understand the nuts and bolts",
+      "start": 2680.88,
+      "duration": 4.16
+    },
+    {
+      "text": "of how large language model works it",
+      "start": 2682.72,
+      "duration": 3.92
+    },
+    {
+      "text": "will be very difficult to invent",
+      "start": 2685.04,
+      "duration": 3.16
+    },
+    {
+      "text": "something new in this field it will be",
+      "start": 2686.64,
+      "duration": 3.4
+    },
+    {
+      "text": "very difficult to truly be a researcher",
+      "start": 2688.2,
+      "duration": 4.76
+    },
+    {
+      "text": "or engineer and such kind of fundamental",
+      "start": 2690.04,
+      "duration": 4.68
+    },
+    {
+      "text": "understanding will help you as you",
+      "start": 2692.96,
+      "duration": 4.08
+    },
+    {
+      "text": "transition in your career as well thanks",
+      "start": 2694.72,
+      "duration": 3.76
+    },
+    {
+      "text": "thanks everyone and I look forward to",
+      "start": 2697.04,
+      "duration": 5.48
+    },
+    {
+      "text": "seeing you in the next lecture",
+      "start": 2698.48,
+      "duration": 4.04
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series today we are going to finally code out the entire Transformer block for the previous 3 to four lectures we have been laying the groundwork for this lecture let me first recap what all we have covered in the previous three lectures when we started this series of GPT architecture we first covered layer normalization and why we need layer normalization we coded out a class for the layer normalization then we looked at feed forward neural network with the jalu activation and then we looked at shortcut connections why we need them and we coded out all of these components together today is that lecture when all these four components the layer normalization J activation feed forward neural Network and shortcut connections are all going to come together into what is called as the Transformer block Transformers are the beating heart or the engine behind large language models and today you are going to see how we code out the entire Transformer block so let's get started with today's lecture first I want to show you a bird's eye view of where the Transformer block exactly fits in the whole llm St stack um as we have seen in the previous lectures first you get the input sentence that is tokenized then that is converted into Vector embeddings we add positional embeddings on that um then a Dropout layer is applied and then we finally enter the Transformer block itself within the Transformer block we I'm showing the Transformer Block in blue color right now we have several layers we have a layer normalization followed by mask multi-ad attention followed by Dropout then we have this shortcut connection over here then we have another layer normalization layer a feed forward neural network with Jou activation another layer of Dropout and then a shortcut connection when we move out of the Transformer block there are several steps which are called post-processing output steps and then finally we get the output tensor and this tensor is used to predict the next word in the input sequence so if the input sequence is every effort moves you and if the next word is forward when the output processing is completed the next word is predicted here today we are going to code this blue structure which I have shown over here then that is the Transformer block so uh as I've have discussed earlier Transformer block is the fundamental building block of GPT and other llm architectures as well so please pay careful attention to today's lecture one thing which I would like to mention here is that and which also I've shown here so you must be looking at this 12 here and must be thinking what is this 12 so in the gpt2 architecture the Transformer block was actually repeated 12 times in this series of G uh in this series of llm architecture lectures we are looking at gpt2 the smallest version which has 124 million parameters in that version the Transformer block is actually repeated 12 times so the code which we are going to see right now is actually replicated 12 times in the final GPT architecture and uh as I told you the Transformer block has several components which we have looked at before the layer normalization let me just Mark with a tick here layer normalization mask multi-head attention Dropout the feed forward neural network and the shortcut connections so I have just mentioned here what are these five components the first is the mask multi-ad attention the second is the layer normalization third is the Dropout fourth is the feed forward neural network and fifth is the jalu activation function now what I'm going to do is before we jump into code I'm going to give you a quick recap of these five subcomponents so that your memory is refreshed about what all we have learned so far and so that your intuition is developed in a strong manner before we are going to move to the code first I want to start with multi-head attention in case you have forgotten it we had very comprehensive series of four lectures on the attention mechanism what happens in multihead attention is that we look at the input let's say the input input is labeled as the Matrix X then we multiply the input with trainable queries Matrix trainable Keys Matrix and the trainable values Matrix and in the case of multi-head attention we have multiple copies so we have multiple MP trainable queries Matrix multiple trainable Keys Matrix and multiple trainable values Matrix so the inputs are multiplied by these weight matrices and then we get the queries Matrix we get the keys Matrix and we get the values Matrix right and again in the case of multi-head attention we get multiple copies of this so here I'm seeing I'm seeing I'm showing two attention heads so there are two queries Matrix there are two keys Matrix and two values Matrix what happens next is something very interesting we will take the dot product between the queries and the keys that gives us our attention scores the attention scores are normalized to give us the attention weights which have been shown over here and then the attention weights are multiplied with the values uh Matrix and then we get a set of context vectors the whole aim of multi-ad attention or any attention mechanism is to convert embedding vectors into context vectors what are context X vectors the simplest way to think about them is that they are a richer representation than the embedding Vector embedding Vector consists of semantic meaning of a particular word right it contains no information about how that word relates to other words in a sentence context Vector goes beyond embedding embedding it not only captures the semantic meaning of the particular word but it also captures the relationship of how that word relates to the other tokens in the sentence or how that word attends to other tokens in the sentence that's why it's called attention mechanism and the whole goal of this multi-ad attention is to get context vectors so for every attention head there is a SE separate context Vector Matrix which is generated and ultimately you merge the context Vector matrices from different attention heads and you get this combined uh context Vector Matrix and then this is the context Vector Matrix which is the output of the multihead attention so whenever you see the multi-head attention layer over here this mask multi-ad attention you have Vector embeddings as inputs and then you have context uh you have context vectors which are the outputs coming from multi-ad attention if you want to revise some of these Concepts please go to those lectures which we covered on the attention mechanism and uh then so the multi head attention was a part of our attention mechanism series but if you look at the other four components we have have been covering this in the last three lectures itself so let us look at each of these components separately and quickly revise what they do these components also form part of the Transformer block the first major component is layer normalization so this component does the function of normalizing the layer outputs so let's say these are the outputs uh from any layer it can be a Dropout layer it can be the multi-ad attention layer let's say these are the outputs from any layer without normalization they will let's say have some random mean and some random variance after applying layer normalization the values of these outputs will be changed so that the mean will be zero and so that the variance will be one why is this needed because it solves two issues for us first it leads to a bit of a stability in the during the back propagation it ensures that the values are not too large so that the gradient does not explode or the gradient does not vanish during back propagation the second is that it solves the problem of internal coari shift which means that during the training process the inputs which are received to a certain layer may have different distributions or different iteration that's a big issue because that holds the training it becomes very difficult to update the weights and then the training takes a long time for convergence layer normalization solves this issue and if you look closely at the Transformer block you'll see multiple places where layer normalization happens or is implemented it is implemented before the multi-ad tension and it is also implemented before the feed forward neural network so it's actually implemented two times within the Transformer block uh just as a note the layer normalization is also actually implemented after the Transformer block um but we are not going to look at that right now the second component are Dropout again a dropout layer can be applied after any layer and what Dropout does is that it looks at the layer outputs and then it randomly turns off some of the outputs so if you see on the right hand side on the left hand side we are showing a neural network before Dropout so these are the units or the layer outputs of the preceding layer after passing through Dropout some neurons here or some inputs are randomly turned off why are they randomly turned off because it improves generalization during training some neurons get lazy they get so lazy that they don't update themselves at all they depend on other neurons uh and during testing that's a big problem because these lazy neurons are not learning anything once we Implement Dropout a lazy neuron will see that the other neurons which are doing all the work they're not there in that iteration so the lazy neuron has no choice but to learn and update its weights so that's the reason Dropout helps generalization it prevents overfitting that's the second component the third component which we looked at is this feed forward neural network and that had the J activation function the construction of this speed forward neural network is pretty interesting we preserve the dimension of the inputs so let's say the input to the neural network is like this and when you think of an input always think of a token with an embedding Dimension so in gpt2 the embedding Dimension was 760 so if you have a word let's say the word is forward or step that word will be converted into an embedding of 768 Dimension let's say that is the input which is passed to this neural network first we have a layer of expansion which means that there is a hidden layer of neurons and uh the number of neurons here is four times larger than the embedding Dimension so the number of neurons will be 4 * 768 so the first layer expands which means that we are going from 7 68 Dimension to 4 into 768 Dimension and then there is a second layer which is the compression layer where we again come back to the exact same Dimension which we started with so the input dimension of this neural network and the output dimension of this neural network is exactly the same uh then you might be thinking why is this expansion and contraction done in this in the first place the expansion and contraction is done so that we can explore a richer space of parameters what this expansion does is that that it takes the inputs into a much higher four times higher Dimension space and there we can uncover much better relationships between parameters and it generally helps llms learn better and why do we compress it back to the same output same Dimension because we want the input and the output Dimensions to be same that helps scalability that way you can stack multiple neural networks like these together without worrying about Dimension changing now after this layer of neurons every neuron has to have an activation function right uh and that activation function which is used in this case is the JLo activation function generally everyone is familiar with Ru but J is a slight variation J is not equal to zero for X is less than zero that is one change and the second change is that Jou is differentiable at x equal to Z it's fully smooth and likee Ru Ru is not differentiable at x equal to0 so for X greater than 0 J generally approximates Ru which means y equal to X it's not exactly equal to X but it reaches that so jalu generally solves the dead neuron problem which means that if the output of a neuron is negative and it passes through a Ru uh it will just be zero but when it passes through Jou it won't be zero and that's when the neuron will continue learning in Ru what happens is that if the input to a neuron is if the output of a neuron is negative and if if it passes through reu the output is zero and then it the neuron becomes dead it cannot learn anything after that point and learning stagnates that issue is solved by J and it generally turns out in experiments with llms that the Jou activation does much much better than Ru so that's why the activation function which is used after this layer of neurons is the Jou activation function and the last component which we looked at um when we look at the Transformer block components is shortcut connections so what happens in shortcut connections is that the output of one layer so here if you see the output of one layer is added with the output of the previous layer see here there is one more path which has been created similarly here you will see the output of this layer the output of this layer is added with the output of the previous layer and then we create this path the reason shortcut connections are implemented is that it solves the vanishing gradient problem so on the left hand side if you see the gradients the outermost layer has a gradient of 0.5 but as you back propagate and you reach layer four layer three layer 2 and layer 1 you'll see that the gradient has reduced to a very small value as we back propagate to the first layer this is the vanishing gradient problem and then if the gradients become very small the learning stops and that's not good for training the llm whereas if we implement this shortcut connection it gives another route for the gradient to flow it makes gradient flow much more stable and that's why the vanishing gradient problem is solved so if you see layer five gradient magnitud magnitude is 1.32 and layer three layer 2 and layer 1 all have magnitudes around 0 2 and3 so the gradient has not become vanishingly small we have solved the vanishing gradient problem in fact the gradient magnitude looks to be pretty stable over here that's why shortcut connections are such an important part of the Transformer block so now let's zoom out and take a look at these five components together we learned about layer normalization we learned about Dropout we learned about feed forward neural network we learned about how it is linked with Jou and finally we learned about shortcut connections now all of this have to be stacked together when we create the Transformer block and we'll follow the specific order as which is mentioned in the schematic what is this order exactly first we'll start with the layer normalization then we will stack the multi-ad attention on top of it let me show with the different color uh then we will add the Dropout layer this plus with this Arrow this thing here this is the shortcut connection right then we'll add the layer normalization two then we'll add the feed forward neural network with J activation then we'll add another Dropout and then we'll add another shortcut connection this is exactly what we'll be doing in code now uh before going to code I just want to explain some conceptual details so when a Transformer block processes an input sequence each element is represented by a fixed size Vector let's say the size is the embedding dimension for each element one point which is extremely important to note is that the operations within the Transformer block such as the multi-head attention and the feed forward layers you remember the expansion contraction layer are designed to transform the input vectors such that the dimensionality is preserved that's extremely important to note so when you look at this Transformer block and when you look at an input which is coming into the Transformer and if you look at the output which is going out of the Transformer the outputs have the same exact same form and the dimension as the input this is an extremely important point which I want to bring to your attention that's why it becomes so easy to stack multiple Transformer blocks together we saw that gpt2 has 12 Transformer blocks right the reason it becomes so easy to stack them together is that Transformer blocks preserve the dimensionality the dimensionality of the input the dimensionality of the input to the Transformer is the same as that of the output from the Transformer so if you look at the input every input is basically tokens and the token is converted into these embedding uh embedding vectors right that's the input let's say to the Transformer um now if you see the output the output has exactly the same size so every token will have a corresponding output and it will have exactly the same Dimension as what was there in the input uh many students don't U register this importance of the Transformer that the dimensionality is preserved but it's one of the most important features of the way the Transformer block has been created we could have easily created the Transformer block so that the output Dimension is different but that would not help us scale the Transformer blocks now we can just tack different Transformer blocks together without worrying about Dimensions just uh for revision the self attention block is different than the feed forward block the self attention block analyzes the relationship between input elements so it analyzes the relationship between how one input element is related to other input elements and it assigns an attention score right but the feed forward neural network just just looks at each element separately so when you looked at the neural network here let me take you to the yeah so this is the neural network component right and we are looking at one input token at a time one input token with 768 dimensions and the output is also 768 Dimensions which means we are only looking at one input at a time and not its relation with the other inputs that's one difference between the multi-ad attention mechanism and the feed forward neural network okay so now uh if you all have understood the theory and the intuition behind the Transformer block now it's time to jump into code so I'll be taking you to python code right now and let's code out the different aspects of the Transformer block together so here as you can see yeah so GPT architecture part five coding attention and linear layers in a Transformer block before we proceed I just want to discuss a bit about the configuration which we are going to use here we are going to use the configuration which was used in gpt2 the smallest size where they had 124 million parameters so here the vocabulary size was 50257 the context length was 1024 remember the context length is the maximum number of input tokens which are allowed to predict the next token this is needed when we uh represent the positional embeddings then we have the embedding Dimension so remember every token is converted into uh Vector embedding the dimension is 68 here n heads is the number of attention heads that's 12 n layers is 12 that is actually the number of Transformers so remember the number of attention heads and the number of Transformers are different within each Transformer there is a multi-ad attention block that can have multiple attention heads and then when we have the Dropout layer we just have the dropout rate so this specifies that on an average 10% of the neurons or the elements of the layer will be set to to zero that's why it's 0 one right now and then the query key value bias is set to false because we don't need this bias term right now we are going to initialize the weights of the query key and value Matrix randomly without the bias C okay before going to the Transformer block we need to revise what all we have coded for the other blocks before so we saw the layer normalization right and we had defined a class for the layer normalization before what this class does is that it simply takes an input it subtracts the mean from the input and it divides by the square root of variance that make sure that the elements are normalized to keep their mean equal to zero and standard deviation or variance equal to 1 remember in the denominator we also add a very small value to prevent division by zero you may be wondering what the scale and shift is these are trainable parameters which are added so you can think of them as uh parameters which are learned during the training process so this is the layer normalization here the embedding Dimension is the input and the normalization is performed along the embedding Dimension so let's say every step moves you forward right every is a token so actually let me go to the Whiteboard to show you how the normalization is actually done just so that you get a visual representation yeah so now uh if you see um let's look at the these tokens and every token let's say has an embedding Dimension here of 768 in normalization what is done is that we look at individual rows and then we normalize across the columns so we make sure that let's say the mean is zero and the standard deviation is one now these values can be the output from any layers so let's say there is a layer normalization here right so what this does is that it receives inputs from here and the input will have the dimension of 768 because the dimension is preserved so we'll take the mean along the 768 Dimension we'll make sure the normalization is such that the mean along the columns which is the embedding Dimension is zero and the standard deviation is one that that will be the output from the layer normalization so the size will be the same as the input but just what will change is that every row will have mean of zero and standard deviation of one then we have the J activation function and as we saw it's defined by this approximation which is used in gpt2 once we use this approximation the JLo starts looking like what we had seen um in the building block so if I just go to that particular graph so when I zoom in over here see this is the JLo activation function and how it looks like the approximation used when gpt2 model was developed was this kind of an approximation and uh actually in one of the previous lectures we saw the function which was actually used so let me scroll up towards that to show you that function yeah I think it is over here so if you see this this function this is the function approximation which was actually used by researchers for training uh gpt2 this is the J activation function approximation this is exactly what we have written over here and then we have the forward neural network which takes in the input um which has the dimensions embedding Dimension it expands it to four times the embedding Dimension then we have the J activation and then we have the contraction layer so it takes the input which is four times the embedding Dimension and brings it back to the original embedding Dimension so here you can see that the feed forward neural network consists of an expansion and activation and a contraction uh this is exactly what we have seen on the white board over here so let me just go to that portion of the Whiteboard where we saw the feed forward neural network just to REM just to give you a refresher um so here is yeah so this is that expansion contraction neural network which we have just coded out in Python so the input is expanded to four times the dimension size then we have the J activation function and then we have the contraction to the original embedding size okay so now we have coded out different classes so we have a layer normalization class we have a j activation class and we have a feed forward neural network class now we are ready to code the entire Transformer block using these building blocks which we learned about before okay so this is the class for the Transformer block first let me go to the forward method and tell you a bit about what we are doing here to understand this this sequence you just need to keep in mind this sequence which we have in this figure so let me take you to that figure right now yeah this sequence right over here I'll just rub everything which is there on the screen so that you get a better look at this sequence there are two many colors and too many symbols on the screen right now so I'm just getting rid of I'm just getting rid of all of these okay so I hope you are able to see the sequence now so this is the exact same sequence which we are going to follow uh and keep this in mind right now it's fine you can even take a look at this whiteboard later and revise when the video is when you look at the video so first we have the layer normalization followed by attention followed by Dropout followed by shortcut layer so let's see these four steps initially so see we have a layer normalization followed by the attention followed by the uh Dropout followed by the shortcut Okay so until this point we have reached this stage this stage and then we have the next steps which is another layer normalization uh so another layer normalization yeah in the next four steps we have another layer normalization then feed forward Network then Dropout and short cut so four steps and here you can see another layer normalization feed forward uh feed forward neural network then drop out and then shortcut so this is what is happening in the forward method if you understand the diagram which was shown on the Whiteboard this is pretty simple but let's see when we create an instance of this Transformer block class what are the different objects which are created so at is the multi-head attention object this is an instance of the multi-head attention class which we had defined in one of the previous lectures what this class does is that it takes the embedding vectors and converts them into context vectors and uh the input Dimension is the embedding Dimension the output is the same as the embedding Dimension we have to specify context length over here which is 1024 let's revise this again context length is 1024 and uh yeah then number of heads is the number of attention heads which is I think 12 over here Dropout is the dropout rate 10% which we have used before and this query key value bias is set to false if you want to revise multi-ad attention please go to one of the previous lectures where we have covered this so whenever this uh at atten uh an instance of this multi-ad attention class is created it takes in the input embedding and converts it into context vectors the size here is batch size number of tokens and embedding size so if the number of tokens are let's say four or five here there will be four and each will have the embedding size which is let's say 768 in our case that's the embedding Dimension and the batch size can be uh any batch size which we have defined so this is the at object which is the multi an instance of the multi-ad attention class then we have another object called FF which is an instance of the feed forward class and we saw that feed forward class over here we just have to specify the configuration here so that from the configur we can get the embedding dimmension and this class what it does is that it creates uh these layers um and with the J activation function and initialize the weights randomly so this is the um FF object which is an instance of the feed forward class so wherever FF is used here we the input is passed in and it goes through the expansion the J and the contraction and the output is the same dimensions as the input then we have Norm one and Norm two so Norm one is the first normalization layer and Norm two is the second normalization layer so you see the first normalization layer we are using before the multi-ad attention the second normalization layer we are using before the feed forward neural network that's why sometimes these are also called pre-normalization layers why pre because they are used before the multi-ad attention and before the feed forward neural network and the last object is the drop shortcut which is basically a Dropout uh which is basically an a Dropout layer so nn. Dropout is already predefined from pytorch so you can actually search Dropout pytorch and it will take you to this documentation I'll also share the link to this in the YouTube description section okay so now when you look at the forward method I have explained to you the norm one uh which is the object Norm normalization first normalization layer object then at drop shortcut shortcut which is the Dropout layer we do not need to create a separate class for the shortcut connection because what we do is that we just add the output of this back to the original input so when you look at the shortcut mechanism look at where the arrows are there so if you look at this Arrow if you look at this Arrow over here what we are doing is we are adding the this input over here uh this input over here to the output from the Dropout right so the output from the Dropout is added to this input which is over here let me actually mark this with yellow so that you can get a clear understanding so the input is being marked with an yellow star here and the output from the Dropout is marked with another yellow star and we are adding these two yellow stars together that's what this first shortcut connections ISS so what we are doing is that um shortcut is initially in initialized to X which is the input and then X gets modified to the output of the Dropout so we are essentially adding the Dropout output to the input which is exactly what we saw on the white board in the second shortcut layer let's see what happens in the second shortcut Connection in the second shortcut connection what is actually happening is that uh here you see there is an input to the second normalization layer and there's an output from the second dropout so we are adding the input to the second normalization layer with the output from the second Dropout and you will see in the code what we are doing so shortcut equal to X where X right now is the input to the second normalization layer and uh when we reach this step X is equal to the output so here we are actually adding the output to the input of the second normalization layer which is exactly what we saw on the Whiteboard so after all these operations are performed in the forward method the Transformer block Returns the modified input which is the same dimensions as the input Vector remember that if you keep in mind or visualize this Blue Block which I'm showing on the screen right now you will easily understand what is happening in the code because in the code we have just followed a sequential workflow of all of these different modules together okay so the Transformer block is as simple as this once we have understood about the previous modules we just stack them together to build the Transformer block now I think hopefully you would have understood why I have spent so many lectures on the feed forward neural network we had one full lecture on the feed forward neural network and and Jou we had one full lecture on layer normalization and we had one full lecture on shortcut connections as well the reason I spent so much time separately on those lectures is that all of those different aspects come together beautifully when you try to code out the Transformer block from scratch okay so here I have just written an explanation of what we have done in the code so the given code defines a Transformer block class in py torch that includes a multi-head attention mechanism and a feed forward neural network so this is the multi-head attention mechanism and this is the feed forward neural network layer normalization is applied before each of these two components so before the multi-ad attention mechanism and once which is before the feed forward neural network that's why it's called as pre-layer Norm older architecture such as the original Transformer model applied layer normalization after the self attention and feed forward neural network that was called as post layer Norm post layer Norm so researchers later discovered that post layer layer Norm sometimes leads to worse or many times leads to worse training Dynamics that's why nowadays pre-layer Norm is used so we also implement the forward path where each component is followed by shortcut connection that adds the input of the block to its output so here you see this shortcut connection adds the input of this whole block to the output this shortcut connection over here adds the input of this whole block to the output now what we can do is that we can initiate a Transformer block object and let's feed it some data and let's see what's the output so here what I'm defining is that I'm defining X which is my input it has two batches each batch has four tokens and the embedding dimension of each token is 768 now I'm passing this this through the Transformer model let's first visualize what will happen once this x passes through this Transformer model or Transformer class rather when X first passes through the Transformer class uh normalization layer is applied so now try to visualize this try to visualize every token as a row of 768 columns so every row is normalized which means that the mean of every row and the standard deviation of every row will be one that will be done for all the four tokens of one batch and then the same thing will be done for all the four tokens of the second batch so then the normalization layer is applied to X and then all of the four tokens of one batch will be transformed so that the mean of every row and the standard deviation or the variance of every row will be equal to one mean will be zero sorry the mean of every row will be zero and the standard deviation will be equal to one after that that we pass every token of both the batches to the self attention mechanism or the multi-head attention rather and the output of this is that every token embedding Dimension is converted into a context Vector of the same size so if you look at the first token of the first batch that has 768 dimensions that's a embedding Vector which does not encode the attention of how that should relate to the other input vectors when we implement this the resultant is the embedding Vector which essentially has four tokens and each token has 768 Dimensions but now the resultant will be context vectors main aim after this attention mechanism or after this attention block is to convert the embedding vectors into context vectors of the same size then we apply a Dropout layer which randomly drops off some U uh some parameter values to zero and then we add a shortcut layer this is the first block you can see in the second block the output of the previous block passes through a second normalization layer then through a feed forward neural network where the dimensions are preserved so after coming out from the feed forward neural network the dimensions would again be uh two batches multiplied by four tokens multiplied by 768 which is the dimension of each token and then we again have a Dropout layer and then we again add the shortcut mechanism to prevent the vanishing gradient so when we return the X we expect the output to be 2x 4X 768 which is the same size as the input now let's check whether that's the case so this is my X and now I'm creating an instance of the Transformer block but remember I need to pass in this configuration so when I create when you create an instance of the Transformer block you have to pass in the configuration and remember again this is the configuration which I'm using over here which defines the context length embedding Dimension number of attention heads number of Transformer blocks and the dropout rate okay so now we pass in this configuration and then we just print out the output um and the input shape is 2x 4X 768 and you'll see that the output shape is exactly the same 2x 4X 768 what I really encourage all of you to do is uh when you watch this lecture try to understand the dimensions try to write down the 2x 4X 768 on the Whiteboard apply the layer normalization try to see how the dimensions work out through all of these different building blocks and try to see that when you reach the end the dimension is exactly preserved which is 2x 4X 768 okay so I have just added some notes here so that we can conclude this lecture so as we can see from the code output the Transformer block maintains the input Dimensions indicating that the Transformer architecture processes sequences of data without altering their shape throughout the network this is very important the Transformer block processes the data without altering the shape of the data the preservation of shape throughout the Transformer block architecture is not incidental but it is a crucial aspect of the design of Transformer block itself this design enables its effective application across a wide range of sequence to sequence tasks where each output Vector directly corresponds to an input Vector maintaining a on toone relationship however the output is a context Vector that encapsulates in information from the entire input sequence remember that the output contains so much information it's very rich output Vector because it contains information about how the uh in the input sequence how every token relates to the other tokens of the input sequence that's the whole idea of the attention mechanism which we looked about before or which you understood before so the GPT architecture is the broad level within that there is a Transformer model within that there is a attention mechanism so these three things power each other other it starts from the attention mechanism which is a key component of the Transformer block the and the Transformer block is the key component of the whole GPT architecture so finally this means that while the physical dimensions of the sequence length and feature size remain unchanged as it passes through the Transformer block the content of each output Vector is reint is re-encoded to integrate contextual information from across the entire input sequence so this is just saying that although the input and the output dimensions are the same the output contains a lot more information since it also contains information about how each token relates to the other tokens in the input that actually brings us to the end of this lecture I just want to show you one thing as we are about to conclude um I want to show you um how what all we have learned so far relates to each other so when we looked at the GPT architecture we saw that there are four things which are important the layer normalization the J activation uh let me draw that again the layer normalization which is here the J activation which is here the feed forward neural network the feed forward neural network component and finally the shortcut connections and we also saw today how all of these four come together together to build the entire Transformer block and we coded out this Transformer block together now in the next lecture what we are going to see is that how the Transformer block uh leads to the entire GPT GPT architecture so remember what I said earlier it all starts from this attention which is the mass multi-ad attention that forms the core of the Transformer block now that we have coded the Transformer block our task is not over because remember that after the Transformer block there are lot of pre-processing steps and then finally we have to use the output Vector in order to predict the next next token and we still have to see how that is done so the last step is still remaining and the last step is the final GPT architecture but try to understand this sequence here it all starts from the attention block then so it all starts here the magic starts here at the attention block then that forms the core of the Transformer block which I'm marking over here and the Transformer block essentially forms the core of the entire GPT architecture I hope you have got this sequence in mind so that's why for us it was very important to first spend a lot of time understanding attention we have covered five to six lectures on that then it was very important to spend a lot of time on every single component of this Transformer Block in the next lecture we are finally going to see uh how the Transformer block leads or fits in the entire GPT architecture or rather put in other words how can we pre-process the or postprocess the output from the Transformer block so that we can predict the next word remember the whole goal of GPT style models is that given an input given an input let's say the input is every effort moves you how to predict the next word up till now we have just seen that the Transformer block retains the input shape right the Transformer block output but how is this converted to next word prediction that's what we are going to see in the next lecture okay so now with the Transformer block implemented we have all the ammunition or building blocks needed to implement the entire GPT architecture and here you can see the next lecture which I've already planned is coding the entire GPT model so I hope everyone you are liking this style of lectures where I first cover intuition plus theory on the Whiteboard and then I take you to the code please follow with me and then try to implement the code on your own try to write things on the Whiteboard Because unless you understand the nuts and bolts of how large language model works it will be very difficult to invent something new in this field it will be very difficult to truly be a researcher or engineer and such kind of fundamental understanding will help you as you transition in your career as well thanks thanks everyone and I look forward to seeing you in the next lecture"
+}

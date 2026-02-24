@@ -1,0 +1,3326 @@
+{
+  "video": {
+    "video_id": "-bsa3fCNGg4",
+    "title": "Lecture 3: Pretraining LLMs vs Finetuning LLMs",
+    "duration": 1692.0,
+    "index": 2
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 1.47,
+      "duration": 7.81
+    },
+    {
+      "text": "hello everyone welcome to the third",
+      "start": 6.6,
+      "duration": 5.28
+    },
+    {
+      "text": "lecture in the building large language",
+      "start": 9.28,
+      "duration": 7.12
+    },
+    {
+      "text": "models llms from scratch Series today we",
+      "start": 11.88,
+      "duration": 7.2
+    },
+    {
+      "text": "are going to cover the topic which is",
+      "start": 16.4,
+      "duration": 5.639
+    },
+    {
+      "text": "titled stages of building large language",
+      "start": 19.08,
+      "duration": 6.039
+    },
+    {
+      "text": "models in this lecture I'm going to call",
+      "start": 22.039,
+      "duration": 6.48
+    },
+    {
+      "text": "large language models as llms henceforth",
+      "start": 25.119,
+      "duration": 6.041
+    },
+    {
+      "text": "so whenever I use the term l m you can",
+      "start": 28.519,
+      "duration": 4.72
+    },
+    {
+      "text": "think of the terminology as large",
+      "start": 31.16,
+      "duration": 4.719
+    },
+    {
+      "text": "language models so let's get started",
+      "start": 33.239,
+      "duration": 5.0
+    },
+    {
+      "text": "with today's lecture in the previous",
+      "start": 35.879,
+      "duration": 4.561
+    },
+    {
+      "text": "lectures we have covered a couple of",
+      "start": 38.239,
+      "duration": 4.601
+    },
+    {
+      "text": "important things in the last lecture we",
+      "start": 40.44,
+      "duration": 5.0
+    },
+    {
+      "text": "looked at the basics of large language",
+      "start": 42.84,
+      "duration": 5.92
+    },
+    {
+      "text": "models where the terminology llm is",
+      "start": 45.44,
+      "duration": 6.56
+    },
+    {
+      "text": "actually derived from then llm sources",
+      "start": 48.76,
+      "duration": 4.76
+    },
+    {
+      "text": "earlier NLP",
+      "start": 52.0,
+      "duration": 4.239
+    },
+    {
+      "text": "models we also saw that what's the",
+      "start": 53.52,
+      "duration": 5.199
+    },
+    {
+      "text": "secret Source behind large language",
+      "start": 56.239,
+      "duration": 6.32
+    },
+    {
+      "text": "models what really makes llm so good",
+      "start": 58.719,
+      "duration": 6.521
+    },
+    {
+      "text": "then we looked at the difference between",
+      "start": 62.559,
+      "duration": 5.88
+    },
+    {
+      "text": "terminologies what is llm what is Gen AI",
+      "start": 65.24,
+      "duration": 4.8
+    },
+    {
+      "text": "deep learning machine learning",
+      "start": 68.439,
+      "duration": 3.961
+    },
+    {
+      "text": "artificial intelligence what are the",
+      "start": 70.04,
+      "duration": 4.64
+    },
+    {
+      "text": "similarities and differences between all",
+      "start": 72.4,
+      "duration": 3.84
+    },
+    {
+      "text": "of these",
+      "start": 74.68,
+      "duration": 4.36
+    },
+    {
+      "text": "terms and then finally we also took a",
+      "start": 76.24,
+      "duration": 4.8
+    },
+    {
+      "text": "look at some applications of large",
+      "start": 79.04,
+      "duration": 2.96
+    },
+    {
+      "text": "language",
+      "start": 81.04,
+      "duration": 3.28
+    },
+    {
+      "text": "models if you have not gone through the",
+      "start": 82.0,
+      "duration": 3.88
+    },
+    {
+      "text": "previous lecture I would highly",
+      "start": 84.32,
+      "duration": 3.52
+    },
+    {
+      "text": "encourage you to quickly go through that",
+      "start": 85.88,
+      "duration": 4.64
+    },
+    {
+      "text": "lecture before watching the current one",
+      "start": 87.84,
+      "duration": 5.959
+    },
+    {
+      "text": "since the flow of the lectures has been",
+      "start": 90.52,
+      "duration": 5.8
+    },
+    {
+      "text": "organized in a very specific manner if",
+      "start": 93.799,
+      "duration": 4.28
+    },
+    {
+      "text": "you are watching this lecture as the",
+      "start": 96.32,
+      "duration": 4.479
+    },
+    {
+      "text": "first one in this series welcome to this",
+      "start": 98.079,
+      "duration": 6.801
+    },
+    {
+      "text": "series so now in the stages of building",
+      "start": 100.799,
+      "duration": 6.561
+    },
+    {
+      "text": "llms there are basically two stages",
+      "start": 104.88,
+      "duration": 4.68
+    },
+    {
+      "text": "which we are going to look at creating",
+      "start": 107.36,
+      "duration": 5.0
+    },
+    {
+      "text": "an llm involves the first stage which is",
+      "start": 109.56,
+      "duration": 3.96
+    },
+    {
+      "text": "called as",
+      "start": 112.36,
+      "duration": 3.759
+    },
+    {
+      "text": "pre-training and second stage which is",
+      "start": 113.52,
+      "duration": 4.0
+    },
+    {
+      "text": "called as fine",
+      "start": 116.119,
+      "duration": 3.801
+    },
+    {
+      "text": "tuning in this series we are going to",
+      "start": 117.52,
+      "duration": 4.919
+    },
+    {
+      "text": "build our own llm from scratch right so",
+      "start": 119.92,
+      "duration": 4.28
+    },
+    {
+      "text": "we are going to be looking at both of",
+      "start": 122.439,
+      "duration": 4.841
+    },
+    {
+      "text": "these stages for this you need to First",
+      "start": 124.2,
+      "duration": 5.759
+    },
+    {
+      "text": "understand what exactly is pre-training",
+      "start": 127.28,
+      "duration": 4.92
+    },
+    {
+      "text": "and you also have to understand what",
+      "start": 129.959,
+      "duration": 4.881
+    },
+    {
+      "text": "exactly is finetuning so let us",
+      "start": 132.2,
+      "duration": 5.64
+    },
+    {
+      "text": "initially look at pre-training first",
+      "start": 134.84,
+      "duration": 5.24
+    },
+    {
+      "text": "basically pre-training just means",
+      "start": 137.84,
+      "duration": 6.56
+    },
+    {
+      "text": "training on a large and diverse data set",
+      "start": 140.08,
+      "duration": 6.12
+    },
+    {
+      "text": "what does this mean so we have all",
+      "start": 144.4,
+      "duration": 3.88
+    },
+    {
+      "text": "interacted with chat GPT right let me",
+      "start": 146.2,
+      "duration": 4.92
+    },
+    {
+      "text": "show you an interaction right now",
+      "start": 148.28,
+      "duration": 6.92
+    },
+    {
+      "text": "uh let me open my chat GPT prompt and",
+      "start": 151.12,
+      "duration": 5.64
+    },
+    {
+      "text": "let me interact with",
+      "start": 155.2,
+      "duration": 4.2
+    },
+    {
+      "text": "it okay so let me",
+      "start": 156.76,
+      "duration": 5.52
+    },
+    {
+      "text": "ask uh here itself quiz me on ancient",
+      "start": 159.4,
+      "duration": 4.88
+    },
+    {
+      "text": "civilizations can you test my knowledge",
+      "start": 162.28,
+      "duration": 4.2
+    },
+    {
+      "text": "on ancient civilizations right I'm",
+      "start": 164.28,
+      "duration": 3.84
+    },
+    {
+      "text": "interacting with this large language",
+      "start": 166.48,
+      "duration": 4.119
+    },
+    {
+      "text": "model here now",
+      "start": 168.12,
+      "duration": 4.88
+    },
+    {
+      "text": "pre-training basically answers the",
+      "start": 170.599,
+      "duration": 5.0
+    },
+    {
+      "text": "question how can this llm interact so",
+      "start": 173.0,
+      "duration": 5.44
+    },
+    {
+      "text": "effectively with me how is it able to",
+      "start": 175.599,
+      "duration": 4.961
+    },
+    {
+      "text": "answer all of my questions how is it",
+      "start": 178.44,
+      "duration": 4.84
+    },
+    {
+      "text": "able to understand what I'm speaking as",
+      "start": 180.56,
+      "duration": 5.319
+    },
+    {
+      "text": "a human and how is it able to respond so",
+      "start": 183.28,
+      "duration": 5.56
+    },
+    {
+      "text": "accurately and so correctly and the way",
+      "start": 185.879,
+      "duration": 5.241
+    },
+    {
+      "text": "llms do that is because they are trained",
+      "start": 188.84,
+      "duration": 5.24
+    },
+    {
+      "text": "on a huge and diverse set of",
+      "start": 191.12,
+      "duration": 7.199
+    },
+    {
+      "text": "data so gpt3 which was the precursor or",
+      "start": 194.08,
+      "duration": 6.6
+    },
+    {
+      "text": "which came before gp4 which is right now",
+      "start": 198.319,
+      "duration": 7.28
+    },
+    {
+      "text": "the latest llm by open AI gpt3 had 175",
+      "start": 200.68,
+      "duration": 8.0
+    },
+    {
+      "text": "billion parameters and it was trained on",
+      "start": 205.599,
+      "duration": 6.681
+    },
+    {
+      "text": "a huge amount or huge Corpus of data so",
+      "start": 208.68,
+      "duration": 5.479
+    },
+    {
+      "text": "let me just show you that data this is",
+      "start": 212.28,
+      "duration": 4.36
+    },
+    {
+      "text": "the original paper on gpt3 which I'm",
+      "start": 214.159,
+      "duration": 4.241
+    },
+    {
+      "text": "showing on the screen right now I'm sure",
+      "start": 216.64,
+      "duration": 4.159
+    },
+    {
+      "text": "it has a huge number of citations but I",
+      "start": 218.4,
+      "duration": 4.88
+    },
+    {
+      "text": "just want to show you the places from",
+      "start": 220.799,
+      "duration": 5.401
+    },
+    {
+      "text": "where they got their data so look at the",
+      "start": 223.28,
+      "duration": 5.64
+    },
+    {
+      "text": "amount of data which was used for now",
+      "start": 226.2,
+      "duration": 5.039
+    },
+    {
+      "text": "you can think of one token as equal to",
+      "start": 228.92,
+      "duration": 5.599
+    },
+    {
+      "text": "one word there is a bit of detailing",
+      "start": 231.239,
+      "duration": 6.041
+    },
+    {
+      "text": "here but that's not the scope of today's",
+      "start": 234.519,
+      "duration": 4.56
+    },
+    {
+      "text": "lecture so for the purposes of this",
+      "start": 237.28,
+      "duration": 3.599
+    },
+    {
+      "text": "lecture just think of one token to be",
+      "start": 239.079,
+      "duration": 3.601
+    },
+    {
+      "text": "equal to one word",
+      "start": 240.879,
+      "duration": 5.681
+    },
+    {
+      "text": "approximately so when gpt3 was trained",
+      "start": 242.68,
+      "duration": 7.279
+    },
+    {
+      "text": "they took 60% of data from common crawl",
+      "start": 246.56,
+      "duration": 5.64
+    },
+    {
+      "text": "common crawl is basically let me show",
+      "start": 249.959,
+      "duration": 4.041
+    },
+    {
+      "text": "you what common crawl is so if you type",
+      "start": 252.2,
+      "duration": 4.36
+    },
+    {
+      "text": "common crawl on Google you'll be taken",
+      "start": 254.0,
+      "duration": 4.359
+    },
+    {
+      "text": "through this which is basically a huge",
+      "start": 256.56,
+      "duration": 4.359
+    },
+    {
+      "text": "and open repository of all the data on",
+      "start": 258.359,
+      "duration": 6.001
+    },
+    {
+      "text": "the internet so they took 410 billion",
+      "start": 260.919,
+      "duration": 6.401
+    },
+    {
+      "text": "words from this data set imagine this",
+      "start": 264.36,
+      "duration": 5.96
+    },
+    {
+      "text": "let's say one word is uh let's say one",
+      "start": 267.32,
+      "duration": 5.719
+    },
+    {
+      "text": "sentence is 10 words this means 41",
+      "start": 270.32,
+      "duration": 4.8
+    },
+    {
+      "text": "billion sentences were taken from the",
+      "start": 273.039,
+      "duration": 6.401
+    },
+    {
+      "text": "common craw 20 billion words or around 1",
+      "start": 275.12,
+      "duration": 6.48
+    },
+    {
+      "text": "to two billion sentences were taken from",
+      "start": 279.44,
+      "duration": 5.64
+    },
+    {
+      "text": "web text 2 so if you search web text 2",
+      "start": 281.6,
+      "duration": 6.599
+    },
+    {
+      "text": "here you will see this is a corpus of a",
+      "start": 285.08,
+      "duration": 7.04
+    },
+    {
+      "text": "huge amount of data which consists of uh",
+      "start": 288.199,
+      "duration": 7.44
+    },
+    {
+      "text": "Reddit submissions let's say then blog",
+      "start": 292.12,
+      "duration": 6.519
+    },
+    {
+      "text": "post stack Overflow articles codes all",
+      "start": 295.639,
+      "duration": 5.0
+    },
+    {
+      "text": "of these data was in incorporated as the",
+      "start": 298.639,
+      "duration": 5.0
+    },
+    {
+      "text": "data set not just that they also show",
+      "start": 300.639,
+      "duration": 5.921
+    },
+    {
+      "text": "you the data which they got from books",
+      "start": 303.639,
+      "duration": 5.961
+    },
+    {
+      "text": "so from a large number of books they got",
+      "start": 306.56,
+      "duration": 5.32
+    },
+    {
+      "text": "around 12 billion plus 55 billion which",
+      "start": 309.6,
+      "duration": 7.719
+    },
+    {
+      "text": "is 67 billion words from books and from",
+      "start": 311.88,
+      "duration": 9.0
+    },
+    {
+      "text": "Wikipedia gpt3 got 3 billion words as",
+      "start": 317.319,
+      "duration": 7.241
+    },
+    {
+      "text": "training data from Wikipedia so overall",
+      "start": 320.88,
+      "duration": 6.72
+    },
+    {
+      "text": "gpt3 was trained on 300 billion tokens",
+      "start": 324.56,
+      "duration": 6.079
+    },
+    {
+      "text": "or approximately 300 billion world",
+      "start": 327.6,
+      "duration": 5.599
+    },
+    {
+      "text": "and you can think of it as when kids are",
+      "start": 330.639,
+      "duration": 4.28
+    },
+    {
+      "text": "growing up their parents teach them",
+      "start": 333.199,
+      "duration": 3.641
+    },
+    {
+      "text": "about stuff right and then they remember",
+      "start": 334.919,
+      "duration": 5.241
+    },
+    {
+      "text": "that stuff the reason llms like what I",
+      "start": 336.84,
+      "duration": 7.0
+    },
+    {
+      "text": "showed you here perform here right now",
+      "start": 340.16,
+      "duration": 6.159
+    },
+    {
+      "text": "perform so well is because they're",
+      "start": 343.84,
+      "duration": 4.96
+    },
+    {
+      "text": "trained on a huge amount of",
+      "start": 346.319,
+      "duration": 5.921
+    },
+    {
+      "text": "data so initially when large language",
+      "start": 348.8,
+      "duration": 6.16
+    },
+    {
+      "text": "models were actually trained on this",
+      "start": 352.24,
+      "duration": 6.88
+    },
+    {
+      "text": "data uh they were trained for the task",
+      "start": 354.96,
+      "duration": 5.44
+    },
+    {
+      "text": "which is called called as word",
+      "start": 359.12,
+      "duration": 4.96
+    },
+    {
+      "text": "completion which means you are given a",
+      "start": 360.4,
+      "duration": 7.16
+    },
+    {
+      "text": "set of words let's say you are given uh",
+      "start": 364.08,
+      "duration": 5.44
+    },
+    {
+      "text": "this",
+      "start": 367.56,
+      "duration": 3.55
+    },
+    {
+      "text": "sentence the",
+      "start": 369.52,
+      "duration": 4.679
+    },
+    {
+      "text": "[Music]",
+      "start": 371.11,
+      "duration": 3.089
+    },
+    {
+      "text": "lion is in",
+      "start": 374.28,
+      "duration": 9.479
+    },
+    {
+      "text": "the dash so this next word is not known",
+      "start": 378.28,
+      "duration": 8.72
+    },
+    {
+      "text": "and chat GPT then predicts or llms then",
+      "start": 383.759,
+      "duration": 5.88
+    },
+    {
+      "text": "predict this word as let's say forest",
+      "start": 387.0,
+      "duration": 5.68
+    },
+    {
+      "text": "llms were trained on this type of a task",
+      "start": 389.639,
+      "duration": 5.361
+    },
+    {
+      "text": "initially with such a huge amount of",
+      "start": 392.68,
+      "duration": 5.28
+    },
+    {
+      "text": "data what really surprised people was",
+      "start": 395.0,
+      "duration": 6.24
+    },
+    {
+      "text": "that even if you train the llm for this",
+      "start": 397.96,
+      "duration": 6.4
+    },
+    {
+      "text": "simple task it turns out that it can do",
+      "start": 401.24,
+      "duration": 6.48
+    },
+    {
+      "text": "a wide range of other tasks as well so",
+      "start": 404.36,
+      "duration": 7.48
+    },
+    {
+      "text": "for example when openai released a paper",
+      "start": 407.72,
+      "duration": 5.319
+    },
+    {
+      "text": "in",
+      "start": 411.84,
+      "duration": 3.84
+    },
+    {
+      "text": "2018 related to pre-training which we",
+      "start": 413.039,
+      "duration": 4.521
+    },
+    {
+      "text": "are which is what we are discussing",
+      "start": 415.68,
+      "duration": 3.919
+    },
+    {
+      "text": "right now here is what they have written",
+      "start": 417.56,
+      "duration": 4.079
+    },
+    {
+      "text": "WR so I'm showing you this blog post",
+      "start": 419.599,
+      "duration": 5.28
+    },
+    {
+      "text": "from open Ai and they have written this",
+      "start": 421.639,
+      "duration": 5.201
+    },
+    {
+      "text": "sentence please look at this sentence",
+      "start": 424.879,
+      "duration": 5.641
+    },
+    {
+      "text": "carefully we also noticed that we can",
+      "start": 426.84,
+      "duration": 6.919
+    },
+    {
+      "text": "use the underlying language model to",
+      "start": 430.52,
+      "duration": 5.92
+    },
+    {
+      "text": "begin to perform tasks without even",
+      "start": 433.759,
+      "duration": 4.481
+    },
+    {
+      "text": "training on",
+      "start": 436.44,
+      "duration": 5.159
+    },
+    {
+      "text": "them for example Performance on tasks",
+      "start": 438.24,
+      "duration": 5.04
+    },
+    {
+      "text": "like picking the right answer to a",
+      "start": 441.599,
+      "duration": 3.481
+    },
+    {
+      "text": "multiple choice question steadily",
+      "start": 443.28,
+      "duration": 4.08
+    },
+    {
+      "text": "increases as the underlying language",
+      "start": 445.08,
+      "duration": 5.559
+    },
+    {
+      "text": "model improves this means that even",
+      "start": 447.36,
+      "duration": 5.119
+    },
+    {
+      "text": "though you just train the llm for",
+      "start": 450.639,
+      "duration": 4.641
+    },
+    {
+      "text": "predicting the next word like how how I",
+      "start": 452.479,
+      "duration": 4.84
+    },
+    {
+      "text": "mentioned to you before it turned out",
+      "start": 455.28,
+      "duration": 4.359
+    },
+    {
+      "text": "that the llm can also do variety of",
+      "start": 457.319,
+      "duration": 4.961
+    },
+    {
+      "text": "other things such as translation such as",
+      "start": 459.639,
+      "duration": 5.041
+    },
+    {
+      "text": "answering multiple choice question such",
+      "start": 462.28,
+      "duration": 5.16
+    },
+    {
+      "text": "as summarizing a text then sentiment",
+      "start": 464.68,
+      "duration": 3.919
+    },
+    {
+      "text": "detection",
+      "start": 467.44,
+      "duration": 3.56
+    },
+    {
+      "text": "Etc in fact it can do all of these",
+      "start": 468.599,
+      "duration": 4.56
+    },
+    {
+      "text": "analysis sentiment analysis linguistic",
+      "start": 471.0,
+      "duration": 5.12
+    },
+    {
+      "text": "acceptability question answering and we",
+      "start": 473.159,
+      "duration": 5.121
+    },
+    {
+      "text": "did not specifically train the llm on",
+      "start": 476.12,
+      "duration": 6.16
+    },
+    {
+      "text": "any of these tasks still just even if it",
+      "start": 478.28,
+      "duration": 5.84
+    },
+    {
+      "text": "is trained for predicting the next word",
+      "start": 482.28,
+      "duration": 4.599
+    },
+    {
+      "text": "it could do all of these tasks so well",
+      "start": 484.12,
+      "duration": 5.039
+    },
+    {
+      "text": "and that's why llms have become so much",
+      "start": 486.879,
+      "duration": 4.921
+    },
+    {
+      "text": "popular than natural language processing",
+      "start": 489.159,
+      "duration": 4.961
+    },
+    {
+      "text": "because in NLP let's say you want to",
+      "start": 491.8,
+      "duration": 4.44
+    },
+    {
+      "text": "make a language translator you need to",
+      "start": 494.12,
+      "duration": 4.12
+    },
+    {
+      "text": "train it separately let's say you want",
+      "start": 496.24,
+      "duration": 5.48
+    },
+    {
+      "text": "to make a quiz answer chatbot you need",
+      "start": 498.24,
+      "duration": 5.72
+    },
+    {
+      "text": "to train it separately let's say you",
+      "start": 501.72,
+      "duration": 5.479
+    },
+    {
+      "text": "want to make uh an AI which detects",
+      "start": 503.96,
+      "duration": 5.76
+    },
+    {
+      "text": "emotion from the text you have to train",
+      "start": 507.199,
+      "duration": 4.921
+    },
+    {
+      "text": "a separate NLP model but with",
+      "start": 509.72,
+      "duration": 4.999
+    },
+    {
+      "text": "pre-training llms you get one model",
+      "start": 512.12,
+      "duration": 4.56
+    },
+    {
+      "text": "which can do all of these tasks on its",
+      "start": 514.719,
+      "duration": 4.0
+    },
+    {
+      "text": "own without ever being trained for these",
+      "start": 516.68,
+      "duration": 4.88
+    },
+    {
+      "text": "tasks so when I'm interacting with GPT",
+      "start": 518.719,
+      "duration": 4.161
+    },
+    {
+      "text": "right now and when let's say I'm",
+      "start": 521.56,
+      "duration": 4.32
+    },
+    {
+      "text": "answering asking the question uh",
+      "start": 522.88,
+      "duration": 6.92
+    },
+    {
+      "text": "generate four mcqs for",
+      "start": 525.88,
+      "duration": 8.72
+    },
+    {
+      "text": "me in the topic of Egyptian",
+      "start": 529.8,
+      "duration": 4.8
+    },
+    {
+      "text": "civilization it will generate those mcqs",
+      "start": 536.16,
+      "duration": 5.96
+    },
+    {
+      "text": "for me right and it was specifically not",
+      "start": 538.92,
+      "duration": 4.96
+    },
+    {
+      "text": "really trained for generating these",
+      "start": 542.12,
+      "duration": 4.2
+    },
+    {
+      "text": "questions but the pre-training was so",
+      "start": 543.88,
+      "duration": 4.56
+    },
+    {
+      "text": "good and it was done for such a huge",
+      "start": 546.32,
+      "duration": 5.44
+    },
+    {
+      "text": "amount of data that it is good enough to",
+      "start": 548.44,
+      "duration": 7.16
+    },
+    {
+      "text": "perform other tasks as well for example",
+      "start": 551.76,
+      "duration": 5.8
+    },
+    {
+      "text": "here's a app or dashboard which we",
+      "start": 555.6,
+      "duration": 4.2
+    },
+    {
+      "text": "ourselves have created at our company if",
+      "start": 557.56,
+      "duration": 4.56
+    },
+    {
+      "text": "you want to generate let's say McQ",
+      "start": 559.8,
+      "duration": 4.56
+    },
+    {
+      "text": "questions and you can give C certain",
+      "start": 562.12,
+      "duration": 4.24
+    },
+    {
+      "text": "things like I want one hard question one",
+      "start": 564.36,
+      "duration": 4.8
+    },
+    {
+      "text": "medium question one easy question and",
+      "start": 566.36,
+      "duration": 4.64
+    },
+    {
+      "text": "the total number of questions I want is",
+      "start": 569.16,
+      "duration": 4.359
+    },
+    {
+      "text": "three and the grade level is five and",
+      "start": 571.0,
+      "duration": 4.56
+    },
+    {
+      "text": "the topic I want let's say is",
+      "start": 573.519,
+      "duration": 4.081
+    },
+    {
+      "text": "photosynthesis maybe I can put grade",
+      "start": 575.56,
+      "duration": 5.519
+    },
+    {
+      "text": "level to 7th and then I click on",
+      "start": 577.6,
+      "duration": 6.52
+    },
+    {
+      "text": "generate you'll see that this is an llm",
+      "start": 581.079,
+      "duration": 4.88
+    },
+    {
+      "text": "which generates this McQ question which",
+      "start": 584.12,
+      "duration": 5.12
+    },
+    {
+      "text": "is one hard one medium and one easy so",
+      "start": 585.959,
+      "duration": 6.041
+    },
+    {
+      "text": "we are making an API call to gp4 for",
+      "start": 589.24,
+      "duration": 4.68
+    },
+    {
+      "text": "this which was not specifically trained",
+      "start": 592.0,
+      "duration": 4.24
+    },
+    {
+      "text": "for this McQ generation but it does a",
+      "start": 593.92,
+      "duration": 4.64
+    },
+    {
+      "text": "wonderful job of this so that's",
+      "start": 596.24,
+      "duration": 4.2
+    },
+    {
+      "text": "essentially what pre-training is",
+      "start": 598.56,
+      "duration": 4.48
+    },
+    {
+      "text": "pre-training means training an llm on a",
+      "start": 600.44,
+      "duration": 5.56
+    },
+    {
+      "text": "huge amount of data so that it can do a",
+      "start": 603.04,
+      "duration": 6.12
+    },
+    {
+      "text": "wide range of tasks that's it so then",
+      "start": 606.0,
+      "duration": 5.079
+    },
+    {
+      "text": "you must be thinking that what's this",
+      "start": 609.16,
+      "duration": 4.96
+    },
+    {
+      "text": "second thing called fine tuning because",
+      "start": 611.079,
+      "duration": 5.44
+    },
+    {
+      "text": "you can get all of your work done just",
+      "start": 614.12,
+      "duration": 5.36
+    },
+    {
+      "text": "on gp4 right which is probably only",
+      "start": 616.519,
+      "duration": 5.961
+    },
+    {
+      "text": "pre-trained so why why is the second",
+      "start": 619.48,
+      "duration": 5.08
+    },
+    {
+      "text": "stage which is fine tuning why is that",
+      "start": 622.48,
+      "duration": 4.84
+    },
+    {
+      "text": "really needed the reason fine tuning is",
+      "start": 624.56,
+      "duration": 6.56
+    },
+    {
+      "text": "important is because let's say you are",
+      "start": 627.32,
+      "duration": 5.519
+    },
+    {
+      "text": "uh you are a manager of an airline",
+      "start": 631.12,
+      "duration": 5.0
+    },
+    {
+      "text": "company or you are the CEO of an airline",
+      "start": 632.839,
+      "duration": 7.081
+    },
+    {
+      "text": "company and you want to develop a",
+      "start": 636.12,
+      "duration": 6.64
+    },
+    {
+      "text": "chatbot so that users can interact with",
+      "start": 639.92,
+      "duration": 5.12
+    },
+    {
+      "text": "the chatbot and the chatbot responds",
+      "start": 642.76,
+      "duration": 4.72
+    },
+    {
+      "text": "let's a user can ask some question like",
+      "start": 645.04,
+      "duration": 4.64
+    },
+    {
+      "text": "hey what's the price for the Lanza",
+      "start": 647.48,
+      "duration": 6.84
+    },
+    {
+      "text": "Airline which leaves at 600 p.m. now the",
+      "start": 649.68,
+      "duration": 7.04
+    },
+    {
+      "text": "response which you want is very specific",
+      "start": 654.32,
+      "duration": 5.4
+    },
+    {
+      "text": "to your company the resp response which",
+      "start": 656.72,
+      "duration": 6.6
+    },
+    {
+      "text": "you want is not generic response which",
+      "start": 659.72,
+      "duration": 6.28
+    },
+    {
+      "text": "is collected from all the places on the",
+      "start": 663.32,
+      "duration": 4.92
+    },
+    {
+      "text": "internet so if you just use the",
+      "start": 666.0,
+      "duration": 5.12
+    },
+    {
+      "text": "pre-trained model and if you use that",
+      "start": 668.24,
+      "duration": 5.2
+    },
+    {
+      "text": "model to build the chatbot it it has",
+      "start": 671.12,
+      "duration": 4.36
+    },
+    {
+      "text": "been trained on a huge amount of data",
+      "start": 673.44,
+      "duration": 3.839
+    },
+    {
+      "text": "not just your company data Maybe the",
+      "start": 675.48,
+      "duration": 3.359
+    },
+    {
+      "text": "pre-trend model does not even have",
+      "start": 677.279,
+      "duration": 3.721
+    },
+    {
+      "text": "access to your company data so the",
+      "start": 678.839,
+      "duration": 4.641
+    },
+    {
+      "text": "answer which will come is pretty generic",
+      "start": 681.0,
+      "duration": 5.12
+    },
+    {
+      "text": "it will not be specific to your company",
+      "start": 683.48,
+      "duration": 4.4
+    },
+    {
+      "text": "it will not be specific to your",
+      "start": 686.12,
+      "duration": 3.56
+    },
+    {
+      "text": "application",
+      "start": 687.88,
+      "duration": 5.519
+    },
+    {
+      "text": "secondly as I showed you before we can",
+      "start": 689.68,
+      "duration": 6.32
+    },
+    {
+      "text": "use chat GPT to generate multiple choice",
+      "start": 693.399,
+      "duration": 4.321
+    },
+    {
+      "text": "question but let's say if you are a very",
+      "start": 696.0,
+      "duration": 4.16
+    },
+    {
+      "text": "big educational company and if you want",
+      "start": 697.72,
+      "duration": 5.44
+    },
+    {
+      "text": "to develop really very high quality",
+      "start": 700.16,
+      "duration": 5.76
+    },
+    {
+      "text": "questions maybe you should not just rely",
+      "start": 703.16,
+      "duration": 4.679
+    },
+    {
+      "text": "on the pre-train model and you should",
+      "start": 705.92,
+      "duration": 5.039
+    },
+    {
+      "text": "fine tune the model so that it's better",
+      "start": 707.839,
+      "duration": 4.961
+    },
+    {
+      "text": "for your specific",
+      "start": 710.959,
+      "duration": 4.481
+    },
+    {
+      "text": "application so the main purposes of of",
+      "start": 712.8,
+      "duration": 5.64
+    },
+    {
+      "text": "fine tuning are it is basically a",
+      "start": 715.44,
+      "duration": 5.839
+    },
+    {
+      "text": "refinement on the pre-training on a much",
+      "start": 718.44,
+      "duration": 5.639
+    },
+    {
+      "text": "narrower data set so let's say you are a",
+      "start": 721.279,
+      "duration": 5.24
+    },
+    {
+      "text": "bank JP Morgan and if you have collected",
+      "start": 724.079,
+      "duration": 4.081
+    },
+    {
+      "text": "huge amount of data which is not",
+      "start": 726.519,
+      "duration": 4.161
+    },
+    {
+      "text": "publicly available what you can do you",
+      "start": 728.16,
+      "duration": 4.799
+    },
+    {
+      "text": "can take the pre-train model and then",
+      "start": 730.68,
+      "duration": 5.159
+    },
+    {
+      "text": "you can give your own data set and then",
+      "start": 732.959,
+      "duration": 4.961
+    },
+    {
+      "text": "train the model again on your data set",
+      "start": 735.839,
+      "duration": 4.201
+    },
+    {
+      "text": "so that when it answers it",
+      "start": 737.92,
+      "duration": 4.359
+    },
+    {
+      "text": "answers uh in such a way which is",
+      "start": 740.04,
+      "duration": 4.039
+    },
+    {
+      "text": "specific to your",
+      "start": 742.279,
+      "duration": 4.8
+    },
+    {
+      "text": "company so finetuning is needed if you",
+      "start": 744.079,
+      "duration": 4.721
+    },
+    {
+      "text": "want to build an application which is",
+      "start": 747.079,
+      "duration": 3.76
+    },
+    {
+      "text": "specific to a particular task or a",
+      "start": 748.8,
+      "duration": 4.32
+    },
+    {
+      "text": "particular domain if you are a general",
+      "start": 750.839,
+      "duration": 4.161
+    },
+    {
+      "text": "user if you are a student who just wants",
+      "start": 753.12,
+      "duration": 4.399
+    },
+    {
+      "text": "to let's say use chat GPT to get",
+      "start": 755.0,
+      "duration": 5.6
+    },
+    {
+      "text": "questions to uh get information about",
+      "start": 757.519,
+      "duration": 5.88
+    },
+    {
+      "text": "certain things then you can just use gp4",
+      "start": 760.6,
+      "duration": 5.64
+    },
+    {
+      "text": "you will not need um fine tuning too",
+      "start": 763.399,
+      "duration": 4.56
+    },
+    {
+      "text": "much but if you are a big company let's",
+      "start": 766.24,
+      "duration": 6.24
+    },
+    {
+      "text": "say and if you are wanting to deploy llm",
+      "start": 767.959,
+      "duration": 6.56
+    },
+    {
+      "text": "applications in the real world on your",
+      "start": 772.48,
+      "duration": 4.76
+    },
+    {
+      "text": "data set you will need fine tuning let",
+      "start": 774.519,
+      "duration": 4.401
+    },
+    {
+      "text": "me give you some examples of this which",
+      "start": 777.24,
+      "duration": 4.68
+    },
+    {
+      "text": "are mentioned on open A's website also",
+      "start": 778.92,
+      "duration": 5.279
+    },
+    {
+      "text": "so open a actually mentions so many",
+      "start": 781.92,
+      "duration": 3.919
+    },
+    {
+      "text": "things on their blog posts and their",
+      "start": 784.199,
+      "duration": 4.681
+    },
+    {
+      "text": "website which not many people know about",
+      "start": 785.839,
+      "duration": 4.921
+    },
+    {
+      "text": "so let's say let's look at this company",
+      "start": 788.88,
+      "duration": 4.16
+    },
+    {
+      "text": "called SK Telecom and it wanted to build",
+      "start": 790.76,
+      "duration": 5.24
+    },
+    {
+      "text": "a chatbot to improve customer service",
+      "start": 793.04,
+      "duration": 5.28
+    },
+    {
+      "text": "interactions for Telecom related",
+      "start": 796.0,
+      "duration": 5.639
+    },
+    {
+      "text": "conversations in Korean now if it just",
+      "start": 798.32,
+      "duration": 6.92
+    },
+    {
+      "text": "used the gp4 it's not suited for this",
+      "start": 801.639,
+      "duration": 5.961
+    },
+    {
+      "text": "particular requirement right gp4 maybe",
+      "start": 805.24,
+      "duration": 5.8
+    },
+    {
+      "text": "is not trained on Telecom conversation",
+      "start": 807.6,
+      "duration": 5.76
+    },
+    {
+      "text": "in Korean so the training data did not",
+      "start": 811.04,
+      "duration": 5.08
+    },
+    {
+      "text": "involve this probably so what this SK",
+      "start": 813.36,
+      "duration": 5.279
+    },
+    {
+      "text": "Telecom will do is that it will finetune",
+      "start": 816.12,
+      "duration": 5.719
+    },
+    {
+      "text": "gp4 by using its own training data so",
+      "start": 818.639,
+      "duration": 5.401
+    },
+    {
+      "text": "that it gets a fine tune model which is",
+      "start": 821.839,
+      "duration": 4.8
+    },
+    {
+      "text": "specific for its purpose as you can see",
+      "start": 824.04,
+      "duration": 4.56
+    },
+    {
+      "text": "for SK Telecom this resulted in",
+      "start": 826.639,
+      "duration": 3.921
+    },
+    {
+      "text": "significant improve in per Improvement",
+      "start": 828.6,
+      "duration": 5.12
+    },
+    {
+      "text": "in performance 35% increase in",
+      "start": 830.56,
+      "duration": 5.56
+    },
+    {
+      "text": "conversation summarization quality and",
+      "start": 833.72,
+      "duration": 5.4
+    },
+    {
+      "text": "33% increase in intent recognition",
+      "start": 836.12,
+      "duration": 5.76
+    },
+    {
+      "text": "accuracy that just one",
+      "start": 839.12,
+      "duration": 5.719
+    },
+    {
+      "text": "example uh the second example which you",
+      "start": 841.88,
+      "duration": 6.44
+    },
+    {
+      "text": "can see is the an example called Harvey",
+      "start": 844.839,
+      "duration": 6.081
+    },
+    {
+      "text": "so Harvey is basically an AI legal tool",
+      "start": 848.32,
+      "duration": 6.16
+    },
+    {
+      "text": "for attorneys so now imagine that if you",
+      "start": 850.92,
+      "duration": 7.12
+    },
+    {
+      "text": "have open a if you just use gp4 without",
+      "start": 854.48,
+      "duration": 6.84
+    },
+    {
+      "text": "fine tuning what if gp4 is not trained",
+      "start": 858.04,
+      "duration": 7.2
+    },
+    {
+      "text": "on legal cases what if the data is not",
+      "start": 861.32,
+      "duration": 5.8
+    },
+    {
+      "text": "does not cover the legal cases which",
+      "start": 865.24,
+      "duration": 4.32
+    },
+    {
+      "text": "happened in countries",
+      "start": 867.12,
+      "duration": 4.2
+    },
+    {
+      "text": "so then that's not a good tool for",
+      "start": 869.56,
+      "duration": 4.68
+    },
+    {
+      "text": "attorneys right attorneys ideally or",
+      "start": 871.32,
+      "duration": 6.0
+    },
+    {
+      "text": "lawyers want an AI tool which is trained",
+      "start": 874.24,
+      "duration": 5.56
+    },
+    {
+      "text": "on legal case",
+      "start": 877.32,
+      "duration": 5.16
+    },
+    {
+      "text": "history so as you have seen here while",
+      "start": 879.8,
+      "duration": 5.08
+    },
+    {
+      "text": "foundational models so pre-train models",
+      "start": 882.48,
+      "duration": 5.0
+    },
+    {
+      "text": "are also called foundational models",
+      "start": 884.88,
+      "duration": 4.8
+    },
+    {
+      "text": "while foundational models were strong at",
+      "start": 887.48,
+      "duration": 4.719
+    },
+    {
+      "text": "reasoning they lacked the extensive",
+      "start": 889.68,
+      "duration": 5.32
+    },
+    {
+      "text": "knowledge of legal case history and",
+      "start": 892.199,
+      "duration": 7.0
+    },
+    {
+      "text": "other knowledge required for legal work",
+      "start": 895.0,
+      "duration": 6.519
+    },
+    {
+      "text": "so the training data set lack the",
+      "start": 899.199,
+      "duration": 4.32
+    },
+    {
+      "text": "knowledge of legal case history and",
+      "start": 901.519,
+      "duration": 4.44
+    },
+    {
+      "text": "that's why if you were to build such an",
+      "start": 903.519,
+      "duration": 5.0
+    },
+    {
+      "text": "AI tool which can assist lawyers and",
+      "start": 905.959,
+      "duration": 5.24
+    },
+    {
+      "text": "attorneys you have to include the",
+      "start": 908.519,
+      "duration": 5.44
+    },
+    {
+      "text": "specific legal case history data and",
+      "start": 911.199,
+      "duration": 4.721
+    },
+    {
+      "text": "that's why you will have to fine tune",
+      "start": 913.959,
+      "duration": 4.88
+    },
+    {
+      "text": "the llm further remember one key",
+      "start": 915.92,
+      "duration": 4.64
+    },
+    {
+      "text": "terminology which I used here the",
+      "start": 918.839,
+      "duration": 3.761
+    },
+    {
+      "text": "pre-trained data or the pre-trained",
+      "start": 920.56,
+      "duration": 4.199
+    },
+    {
+      "text": "model is also called as the foundational",
+      "start": 922.6,
+      "duration": 4.84
+    },
+    {
+      "text": "model and the fine tuning happens after",
+      "start": 924.759,
+      "duration": 4.44
+    },
+    {
+      "text": "that",
+      "start": 927.44,
+      "duration": 4.759
+    },
+    {
+      "text": "so here's Harvey basically harvey. you",
+      "start": 929.199,
+      "duration": 4.76
+    },
+    {
+      "text": "can go to this link right now so this is",
+      "start": 932.199,
+      "duration": 5.0
+    },
+    {
+      "text": "a trusted legal AI platform and if you",
+      "start": 933.959,
+      "duration": 5.12
+    },
+    {
+      "text": "are thinking how different is it from",
+      "start": 937.199,
+      "duration": 4.401
+    },
+    {
+      "text": "gp4 now you have your answer this is a",
+      "start": 939.079,
+      "duration": 5.921
+    },
+    {
+      "text": "fine-tuned model which is specifically",
+      "start": 941.6,
+      "duration": 5.88
+    },
+    {
+      "text": "fine tuned on data sets which include",
+      "start": 945.0,
+      "duration": 4.199
+    },
+    {
+      "text": "legal case",
+      "start": 947.48,
+      "duration": 4.52
+    },
+    {
+      "text": "history and as you can see Harvey works",
+      "start": 949.199,
+      "duration": 5.521
+    },
+    {
+      "text": "with the world's best legal teams it it",
+      "start": 952.0,
+      "duration": 4.92
+    },
+    {
+      "text": "works really well here is another",
+      "start": 954.72,
+      "duration": 5.679
+    },
+    {
+      "text": "article which says JP Morgan Chase UNS",
+      "start": 956.92,
+      "duration": 6.08
+    },
+    {
+      "text": "AI powered llm Suite may replace",
+      "start": 960.399,
+      "duration": 4.92
+    },
+    {
+      "text": "research analysis now you might be",
+      "start": 963.0,
+      "duration": 4.8
+    },
+    {
+      "text": "thinking if gp4 is already there why did",
+      "start": 965.319,
+      "duration": 5.721
+    },
+    {
+      "text": "JP Morgan unve its own AI power llm and",
+      "start": 967.8,
+      "duration": 5.64
+    },
+    {
+      "text": "the reason is because it's fine-tuned",
+      "start": 971.04,
+      "duration": 5.96
+    },
+    {
+      "text": "with their own data it's fine tuned for",
+      "start": 973.44,
+      "duration": 6.68
+    },
+    {
+      "text": "their employees specifically maybe the",
+      "start": 977.0,
+      "duration": 5.16
+    },
+    {
+      "text": "JP Morgans data is not available",
+      "start": 980.12,
+      "duration": 4.6
+    },
+    {
+      "text": "publicly to anyone so only they have the",
+      "start": 982.16,
+      "duration": 4.32
+    },
+    {
+      "text": "data and they have trained the llm which",
+      "start": 984.72,
+      "duration": 4.239
+    },
+    {
+      "text": "is fine tuned so that the answers are",
+      "start": 986.48,
+      "duration": 5.68
+    },
+    {
+      "text": "specific for their",
+      "start": 988.959,
+      "duration": 3.201
+    },
+    {
+      "text": "company okay so this is so I showed you",
+      "start": 992.72,
+      "duration": 5.559
+    },
+    {
+      "text": "examples in the tele communication",
+      "start": 995.56,
+      "duration": 5.639
+    },
+    {
+      "text": "sector which is this SK Telecom I showed",
+      "start": 998.279,
+      "duration": 5.641
+    },
+    {
+      "text": "you examples in the legal sector which",
+      "start": 1001.199,
+      "duration": 5.921
+    },
+    {
+      "text": "is the example of Harvey and then I also",
+      "start": 1003.92,
+      "duration": 5.12
+    },
+    {
+      "text": "showed you examples in the economics or",
+      "start": 1007.12,
+      "duration": 4.68
+    },
+    {
+      "text": "banking sector essentially you will see",
+      "start": 1009.04,
+      "duration": 4.56
+    },
+    {
+      "text": "that when you go to a production level",
+      "start": 1011.8,
+      "duration": 3.32
+    },
+    {
+      "text": "or when you think of startups or",
+      "start": 1013.6,
+      "duration": 4.08
+    },
+    {
+      "text": "Industries you will definitely need fine",
+      "start": 1015.12,
+      "duration": 6.12
+    },
+    {
+      "text": "tuning uh directly using gp4 is good for",
+      "start": 1017.68,
+      "duration": 5.599
+    },
+    {
+      "text": "students because it satisfies their",
+      "start": 1021.24,
+      "duration": 4.199
+    },
+    {
+      "text": "purposes but fine tuning is needed as",
+      "start": 1023.279,
+      "duration": 4.52
+    },
+    {
+      "text": "you build more advanced",
+      "start": 1025.439,
+      "duration": 5.12
+    },
+    {
+      "text": "applications so these are the two stages",
+      "start": 1027.799,
+      "duration": 5.321
+    },
+    {
+      "text": "of building an llm the first stage is",
+      "start": 1030.559,
+      "duration": 4.64
+    },
+    {
+      "text": "pre-training as I mentioned and the",
+      "start": 1033.12,
+      "duration": 4.6
+    },
+    {
+      "text": "second stage is fine tuning I hope you",
+      "start": 1035.199,
+      "duration": 4.281
+    },
+    {
+      "text": "have understood up till this point if",
+      "start": 1037.72,
+      "duration": 3.56
+    },
+    {
+      "text": "something is unclear please put it in",
+      "start": 1039.48,
+      "duration": 4.439
+    },
+    {
+      "text": "the comment section of this particular",
+      "start": 1041.28,
+      "duration": 5.84
+    },
+    {
+      "text": "video now just so that this explain this",
+      "start": 1043.919,
+      "duration": 5.12
+    },
+    {
+      "text": "concept is explained to you in a better",
+      "start": 1047.12,
+      "duration": 3.96
+    },
+    {
+      "text": "manner I have created this pre-training",
+      "start": 1049.039,
+      "duration": 5.281
+    },
+    {
+      "text": "plus fine tuning schematic so that you",
+      "start": 1051.08,
+      "duration": 5.2
+    },
+    {
+      "text": "can go through this schematic step by",
+      "start": 1054.32,
+      "duration": 3.92
+    },
+    {
+      "text": "step to get a visual",
+      "start": 1056.28,
+      "duration": 4.04
+    },
+    {
+      "text": "representation so let's start with the",
+      "start": 1058.24,
+      "duration": 5.0
+    },
+    {
+      "text": "first block the first block is the data",
+      "start": 1060.32,
+      "duration": 5.8
+    },
+    {
+      "text": "on which the models are trained on",
+      "start": 1063.24,
+      "duration": 4.799
+    },
+    {
+      "text": "whether you do pre-training and later",
+      "start": 1066.12,
+      "duration": 3.88
+    },
+    {
+      "text": "whether you do F tuning you cannot get",
+      "start": 1068.039,
+      "duration": 5.161
+    },
+    {
+      "text": "anywhere without data so the data is",
+      "start": 1070.0,
+      "duration": 5.6
+    },
+    {
+      "text": "either internet text books media",
+      "start": 1073.2,
+      "duration": 3.56
+    },
+    {
+      "text": "research",
+      "start": 1075.6,
+      "duration": 4.04
+    },
+    {
+      "text": "articles um we saw this data over here",
+      "start": 1076.76,
+      "duration": 6.12
+    },
+    {
+      "text": "right you need huge amount of data and",
+      "start": 1079.64,
+      "duration": 6.8
+    },
+    {
+      "text": "you need to train the large language",
+      "start": 1082.88,
+      "duration": 6.4
+    },
+    {
+      "text": "model on this data set this data set can",
+      "start": 1086.44,
+      "duration": 5.08
+    },
+    {
+      "text": "include billions or even trillions of",
+      "start": 1089.28,
+      "duration": 5.279
+    },
+    {
+      "text": "words now one more point which I want to",
+      "start": 1091.52,
+      "duration": 5.6
+    },
+    {
+      "text": "raise here is the computational cost for",
+      "start": 1094.559,
+      "duration": 4.48
+    },
+    {
+      "text": "training the llm right so you're",
+      "start": 1097.12,
+      "duration": 4.12
+    },
+    {
+      "text": "training this llm on a huge amount of",
+      "start": 1099.039,
+      "duration": 4.041
+    },
+    {
+      "text": "data which is also the second step of",
+      "start": 1101.24,
+      "duration": 4.28
+    },
+    {
+      "text": "this schematic now to train this you",
+      "start": 1103.08,
+      "duration": 4.479
+    },
+    {
+      "text": "need computational power you need",
+      "start": 1105.52,
+      "duration": 4.8
+    },
+    {
+      "text": "computational units and it's not",
+      "start": 1107.559,
+      "duration": 5.081
+    },
+    {
+      "text": "possible for normal students or even for",
+      "start": 1110.32,
+      "duration": 4.16
+    },
+    {
+      "text": "normal people who don't have access to",
+      "start": 1112.64,
+      "duration": 4.56
+    },
+    {
+      "text": "powerful gpus to do this just to give",
+      "start": 1114.48,
+      "duration": 5.12
+    },
+    {
+      "text": "you a sense of the cost the total",
+      "start": 1117.2,
+      "duration": 7.04
+    },
+    {
+      "text": "pre-training cost for gpt3 is $4.6",
+      "start": 1119.6,
+      "duration": 8.0
+    },
+    {
+      "text": "million this is a huge amount $4.6",
+      "start": 1124.24,
+      "duration": 7.16
+    },
+    {
+      "text": "million think about it for pre-training",
+      "start": 1127.6,
+      "duration": 6.28
+    },
+    {
+      "text": "of gpt3 it cost this",
+      "start": 1131.4,
+      "duration": 5.159
+    },
+    {
+      "text": "much so the first two steps in this",
+      "start": 1133.88,
+      "duration": 4.48
+    },
+    {
+      "text": "schematic which is collecting this huge",
+      "start": 1136.559,
+      "duration": 4.641
+    },
+    {
+      "text": "amount of data and then training the llm",
+      "start": 1138.36,
+      "duration": 5.04
+    },
+    {
+      "text": "requires a lot of computational power",
+      "start": 1141.2,
+      "duration": 4.28
+    },
+    {
+      "text": "requires a lot of computational energy",
+      "start": 1143.4,
+      "duration": 3.639
+    },
+    {
+      "text": "and of course a lot of",
+      "start": 1145.48,
+      "duration": 4.679
+    },
+    {
+      "text": "money so when you train a pre-trained",
+      "start": 1147.039,
+      "duration": 4.841
+    },
+    {
+      "text": "llm like this it's also called as",
+      "start": 1150.159,
+      "duration": 4.441
+    },
+    {
+      "text": "foundational model and it is this also",
+      "start": 1151.88,
+      "duration": 4.44
+    },
+    {
+      "text": "is awesome it has huge amount of",
+      "start": 1154.6,
+      "duration": 3.76
+    },
+    {
+      "text": "capabilities like I'm interacting with",
+      "start": 1156.32,
+      "duration": 4.2
+    },
+    {
+      "text": "gp4 right now it's a foundational model",
+      "start": 1158.36,
+      "duration": 5.0
+    },
+    {
+      "text": "it's a pre-trend model it still has huge",
+      "start": 1160.52,
+      "duration": 4.639
+    },
+    {
+      "text": "amount of",
+      "start": 1163.36,
+      "duration": 4.24
+    },
+    {
+      "text": "capabilities and then the third step in",
+      "start": 1165.159,
+      "duration": 6.081
+    },
+    {
+      "text": "this is find tuning and fine tuning is",
+      "start": 1167.6,
+      "duration": 5.6
+    },
+    {
+      "text": "also so the third step as I mentioned is",
+      "start": 1171.24,
+      "duration": 4.919
+    },
+    {
+      "text": "fine tuned llm and after fine tuning you",
+      "start": 1173.2,
+      "duration": 5.2
+    },
+    {
+      "text": "can get specific applications like you",
+      "start": 1176.159,
+      "duration": 4.041
+    },
+    {
+      "text": "can build your own personal assistant",
+      "start": 1178.4,
+      "duration": 4.56
+    },
+    {
+      "text": "you can build a lang translation bot you",
+      "start": 1180.2,
+      "duration": 4.76
+    },
+    {
+      "text": "can build a summarization assistant you",
+      "start": 1182.96,
+      "duration": 4.88
+    },
+    {
+      "text": "can build your own classification bot so",
+      "start": 1184.96,
+      "duration": 4.8
+    },
+    {
+      "text": "if you are a company or an industry or a",
+      "start": 1187.84,
+      "duration": 3.44
+    },
+    {
+      "text": "startup who is looking for these",
+      "start": 1189.76,
+      "duration": 3.799
+    },
+    {
+      "text": "specific applications using your own",
+      "start": 1191.28,
+      "duration": 5.12
+    },
+    {
+      "text": "data you will fine tune the pre-trend",
+      "start": 1193.559,
+      "duration": 6.36
+    },
+    {
+      "text": "llm on the label data set",
+      "start": 1196.4,
+      "duration": 5.72
+    },
+    {
+      "text": "that's the three steps so the first step",
+      "start": 1199.919,
+      "duration": 5.721
+    },
+    {
+      "text": "is data second step is training the",
+      "start": 1202.12,
+      "duration": 6.48
+    },
+    {
+      "text": "foundational model and the third step is",
+      "start": 1205.64,
+      "duration": 6.68
+    },
+    {
+      "text": "fine tuning on the specific task now",
+      "start": 1208.6,
+      "duration": 5.52
+    },
+    {
+      "text": "there is also one thing between",
+      "start": 1212.32,
+      "duration": 5.04
+    },
+    {
+      "text": "unlabeled data and label data for this",
+      "start": 1214.12,
+      "duration": 5.32
+    },
+    {
+      "text": "pre-training we usually don't label the",
+      "start": 1217.36,
+      "duration": 5.04
+    },
+    {
+      "text": "data set uh it's an unsupervised",
+      "start": 1219.44,
+      "duration": 5.239
+    },
+    {
+      "text": "learning task and it's also called Auto",
+      "start": 1222.4,
+      "duration": 4.2
+    },
+    {
+      "text": "regression because if you are",
+      "start": 1224.679,
+      "duration": 3.601
+    },
+    {
+      "text": "considering a sentence and predicting",
+      "start": 1226.6,
+      "duration": 4.16
+    },
+    {
+      "text": "the next word the part of the sentence",
+      "start": 1228.28,
+      "duration": 4.32
+    },
+    {
+      "text": "is used for training and the next word",
+      "start": 1230.76,
+      "duration": 4.56
+    },
+    {
+      "text": "is used for forecasting or testing and",
+      "start": 1232.6,
+      "duration": 4.84
+    },
+    {
+      "text": "then for the next set of training the",
+      "start": 1235.32,
+      "duration": 4.28
+    },
+    {
+      "text": "earlier forecasted word is used as",
+      "start": 1237.44,
+      "duration": 4.44
+    },
+    {
+      "text": "training it's fine if you don't",
+      "start": 1239.6,
+      "duration": 4.12
+    },
+    {
+      "text": "understand this terminology right now",
+      "start": 1241.88,
+      "duration": 3.679
+    },
+    {
+      "text": "but just remember that pre-training is",
+      "start": 1243.72,
+      "duration": 4.24
+    },
+    {
+      "text": "done on unlabeled text Data whereas",
+      "start": 1245.559,
+      "duration": 4.401
+    },
+    {
+      "text": "finetuning is mostly done on labelled",
+      "start": 1247.96,
+      "duration": 2.88
+    },
+    {
+      "text": "text",
+      "start": 1249.96,
+      "duration": 3.28
+    },
+    {
+      "text": "Data let's say if you are doing a",
+      "start": 1250.84,
+      "duration": 5.04
+    },
+    {
+      "text": "classification task right or if you want",
+      "start": 1253.24,
+      "duration": 5.0
+    },
+    {
+      "text": "a specific llm task which classifies",
+      "start": 1255.88,
+      "duration": 5.2
+    },
+    {
+      "text": "email say spam or no spam you will need",
+      "start": 1258.24,
+      "duration": 5.36
+    },
+    {
+      "text": "to provide labels for which emails were",
+      "start": 1261.08,
+      "duration": 5.2
+    },
+    {
+      "text": "spam which were not spam Etc so",
+      "start": 1263.6,
+      "duration": 5.92
+    },
+    {
+      "text": "generally for fine tuning we will have a",
+      "start": 1266.28,
+      "duration": 4.84
+    },
+    {
+      "text": "labeled data",
+      "start": 1269.52,
+      "duration": 4.48
+    },
+    {
+      "text": "set let's say Harvey you considering the",
+      "start": 1271.12,
+      "duration": 5.2
+    },
+    {
+      "text": "case of Harvey which we s for legal data",
+      "start": 1274.0,
+      "duration": 5.36
+    },
+    {
+      "text": "we had these case studies uh legal case",
+      "start": 1276.32,
+      "duration": 5.04
+    },
+    {
+      "text": "studies right you will need to provide",
+      "start": 1279.36,
+      "duration": 3.919
+    },
+    {
+      "text": "those case studies and mention that for",
+      "start": 1281.36,
+      "duration": 4.16
+    },
+    {
+      "text": "these questions these were the answers",
+      "start": 1283.279,
+      "duration": 4.721
+    },
+    {
+      "text": "in this particular case study Etc so in",
+      "start": 1285.52,
+      "duration": 5.039
+    },
+    {
+      "text": "a sense that that becomes label",
+      "start": 1288.0,
+      "duration": 5.32
+    },
+    {
+      "text": "data so please keep this pre-training",
+      "start": 1290.559,
+      "duration": 4.921
+    },
+    {
+      "text": "plus fine tuning schematic in mind what",
+      "start": 1293.32,
+      "duration": 4.28
+    },
+    {
+      "text": "many students do is that they do not",
+      "start": 1295.48,
+      "duration": 3.16
+    },
+    {
+      "text": "understand the difference between",
+      "start": 1297.6,
+      "duration": 3.559
+    },
+    {
+      "text": "pre-training and fine tuning and they",
+      "start": 1298.64,
+      "duration": 4.24
+    },
+    {
+      "text": "also don't understand why is it called",
+      "start": 1301.159,
+      "duration": 3.041
+    },
+    {
+      "text": "pre-training in the first place",
+      "start": 1302.88,
+      "duration": 4.08
+    },
+    {
+      "text": "shouldn't it just be training ideally it",
+      "start": 1304.2,
+      "duration": 4.479
+    },
+    {
+      "text": "should just be called as training but",
+      "start": 1306.96,
+      "duration": 3.28
+    },
+    {
+      "text": "it's called pre-training because there",
+      "start": 1308.679,
+      "duration": 4.081
+    },
+    {
+      "text": "is also this fine-tuning component so",
+      "start": 1310.24,
+      "duration": 5.36
+    },
+    {
+      "text": "it's just a terminology thing so if you",
+      "start": 1312.76,
+      "duration": 4.919
+    },
+    {
+      "text": "understand this then you will get a",
+      "start": 1315.6,
+      "duration": 3.92
+    },
+    {
+      "text": "better Clarity of when you interact with",
+      "start": 1317.679,
+      "duration": 4.36
+    },
+    {
+      "text": "GPT you are essentially interacting with",
+      "start": 1319.52,
+      "duration": 6.399
+    },
+    {
+      "text": "a pre-trained or a foundational",
+      "start": 1322.039,
+      "duration": 7.281
+    },
+    {
+      "text": "model okay so I hope you have understood",
+      "start": 1325.919,
+      "duration": 4.961
+    },
+    {
+      "text": "the schematic and I hope you have",
+      "start": 1329.32,
+      "duration": 2.76
+    },
+    {
+      "text": "understood the difference between",
+      "start": 1330.88,
+      "duration": 3.919
+    },
+    {
+      "text": "pre-training and fine tuning now I want",
+      "start": 1332.08,
+      "duration": 4.599
+    },
+    {
+      "text": "to just show you the steps which are",
+      "start": 1334.799,
+      "duration": 3.921
+    },
+    {
+      "text": "needed for building an L which basically",
+      "start": 1336.679,
+      "duration": 4.161
+    },
+    {
+      "text": "summarizes what all we have covered in",
+      "start": 1338.72,
+      "duration": 4.839
+    },
+    {
+      "text": "today's lecture so the first step is to",
+      "start": 1340.84,
+      "duration": 5.839
+    },
+    {
+      "text": "train on a large Corpus of Text data",
+      "start": 1343.559,
+      "duration": 5.521
+    },
+    {
+      "text": "which is also called raw text remember",
+      "start": 1346.679,
+      "duration": 4.0
+    },
+    {
+      "text": "some of these terminologies keep on",
+      "start": 1349.08,
+      "duration": 3.88
+    },
+    {
+      "text": "appearing everywhere they actually mean",
+      "start": 1350.679,
+      "duration": 3.841
+    },
+    {
+      "text": "something very simple but they just",
+      "start": 1352.96,
+      "duration": 4.24
+    },
+    {
+      "text": "sound a bit fancy so raw text is just",
+      "start": 1354.52,
+      "duration": 4.6
+    },
+    {
+      "text": "basically training on a large Corpus of",
+      "start": 1357.2,
+      "duration": 4.52
+    },
+    {
+      "text": "text Data a more formal definition of",
+      "start": 1359.12,
+      "duration": 4.919
+    },
+    {
+      "text": "raw text is regular text without any",
+      "start": 1361.72,
+      "duration": 5.079
+    },
+    {
+      "text": "labeling information so raw text means",
+      "start": 1364.039,
+      "duration": 4.801
+    },
+    {
+      "text": "text which does not come with predefined",
+      "start": 1366.799,
+      "duration": 5.681
+    },
+    {
+      "text": "labels so first you train on such such",
+      "start": 1368.84,
+      "duration": 5.4
+    },
+    {
+      "text": "kind of a raw text and you need huge",
+      "start": 1372.48,
+      "duration": 3.199
+    },
+    {
+      "text": "amount of raw",
+      "start": 1374.24,
+      "duration": 4.4
+    },
+    {
+      "text": "text the second task is the first",
+      "start": 1375.679,
+      "duration": 5.48
+    },
+    {
+      "text": "training stage of nlm and this is called",
+      "start": 1378.64,
+      "duration": 5.159
+    },
+    {
+      "text": "as pre-training as we already saw this",
+      "start": 1381.159,
+      "duration": 4.88
+    },
+    {
+      "text": "task involves creation of an initially",
+      "start": 1383.799,
+      "duration": 4.161
+    },
+    {
+      "text": "pre-trained llm which is also called as",
+      "start": 1386.039,
+      "duration": 5.24
+    },
+    {
+      "text": "the base or a foundational model gp4 for",
+      "start": 1387.96,
+      "duration": 6.0
+    },
+    {
+      "text": "example what we saw in the paper this",
+      "start": 1391.279,
+      "duration": 4.801
+    },
+    {
+      "text": "paper over here I'll also be sharing the",
+      "start": 1393.96,
+      "duration": 5.04
+    },
+    {
+      "text": "link to this paper in the information",
+      "start": 1396.08,
+      "duration": 6.0
+    },
+    {
+      "text": "section uh this paper is a pre-train",
+      "start": 1399.0,
+      "duration": 6.0
+    },
+    {
+      "text": "model and uh it is actually capable of",
+      "start": 1402.08,
+      "duration": 5.16
+    },
+    {
+      "text": "text completion but it also turns out",
+      "start": 1405.0,
+      "duration": 5.279
+    },
+    {
+      "text": "it's capable of many other things like",
+      "start": 1407.24,
+      "duration": 4.84
+    },
+    {
+      "text": "uh as we saw over here sentiment",
+      "start": 1410.279,
+      "duration": 4.441
+    },
+    {
+      "text": "analysis question answering Etc so",
+      "start": 1412.08,
+      "duration": 5.68
+    },
+    {
+      "text": "pre-training also gives the llm a lot of",
+      "start": 1414.72,
+      "duration": 4.48
+    },
+    {
+      "text": "other",
+      "start": 1417.76,
+      "duration": 4.399
+    },
+    {
+      "text": "powers so that is Step number two step",
+      "start": 1419.2,
+      "duration": 5.28
+    },
+    {
+      "text": "number three after obtaining the",
+      "start": 1422.159,
+      "duration": 4.4
+    },
+    {
+      "text": "pre-trained llm the llm is further",
+      "start": 1424.48,
+      "duration": 5.6
+    },
+    {
+      "text": "trained on label data and this is fine",
+      "start": 1426.559,
+      "duration": 6.441
+    },
+    {
+      "text": "tuning so let me just mention over here",
+      "start": 1430.08,
+      "duration": 5.44
+    },
+    {
+      "text": "this is called as fine tuning and we saw",
+      "start": 1433.0,
+      "duration": 4.279
+    },
+    {
+      "text": "a number of applications of this in",
+      "start": 1435.52,
+      "duration": 4.639
+    },
+    {
+      "text": "different areas we saw applications in",
+      "start": 1437.279,
+      "duration": 6.041
+    },
+    {
+      "text": "the legal area then we saw applications",
+      "start": 1440.159,
+      "duration": 5.921
+    },
+    {
+      "text": "in the Comm telecommunication sector",
+      "start": 1443.32,
+      "duration": 6.16
+    },
+    {
+      "text": "this es Telecom Harvey we also saw an",
+      "start": 1446.08,
+      "duration": 6.479
+    },
+    {
+      "text": "application related to JP Morgan Chase",
+      "start": 1449.48,
+      "duration": 5.36
+    },
+    {
+      "text": "so fine tuning is essential as and when",
+      "start": 1452.559,
+      "duration": 4.48
+    },
+    {
+      "text": "you go into production and if you want a",
+      "start": 1454.84,
+      "duration": 4.56
+    },
+    {
+      "text": "really powerful model train specifically",
+      "start": 1457.039,
+      "duration": 5.841
+    },
+    {
+      "text": "on your data set even within fine tuning",
+      "start": 1459.4,
+      "duration": 5.6
+    },
+    {
+      "text": "there are usually two categories the",
+      "start": 1462.88,
+      "duration": 3.919
+    },
+    {
+      "text": "first category it's called instruction",
+      "start": 1465.0,
+      "duration": 4.159
+    },
+    {
+      "text": "fine tuning and second is called fine",
+      "start": 1466.799,
+      "duration": 5.0
+    },
+    {
+      "text": "tuning for classification tasks so let's",
+      "start": 1469.159,
+      "duration": 4.721
+    },
+    {
+      "text": "say you are an education company and if",
+      "start": 1471.799,
+      "duration": 3.48
+    },
+    {
+      "text": "you want",
+      "start": 1473.88,
+      "duration": 4.519
+    },
+    {
+      "text": "to uh if you want to or let's say if",
+      "start": 1475.279,
+      "duration": 5.681
+    },
+    {
+      "text": "you're a company like u a text",
+      "start": 1478.399,
+      "duration": 4.121
+    },
+    {
+      "text": "translation company which converts",
+      "start": 1480.96,
+      "duration": 4.439
+    },
+    {
+      "text": "English into French so here you might",
+      "start": 1482.52,
+      "duration": 4.879
+    },
+    {
+      "text": "need to give some sort of an instruction",
+      "start": 1485.399,
+      "duration": 3.64
+    },
+    {
+      "text": "like this is the English language and",
+      "start": 1487.399,
+      "duration": 4.28
+    },
+    {
+      "text": "you convert it into the French language",
+      "start": 1489.039,
+      "duration": 4.561
+    },
+    {
+      "text": "so you might need to give instruction",
+      "start": 1491.679,
+      "duration": 4.72
+    },
+    {
+      "text": "answer pairs as label data set so the",
+      "start": 1493.6,
+      "duration": 4.799
+    },
+    {
+      "text": "label data set means showing that okay",
+      "start": 1496.399,
+      "duration": 3.52
+    },
+    {
+      "text": "these are all the English language these",
+      "start": 1498.399,
+      "duration": 3.921
+    },
+    {
+      "text": "are all the French language use this to",
+      "start": 1499.919,
+      "duration": 5.041
+    },
+    {
+      "text": "further fine tune what you already know",
+      "start": 1502.32,
+      "duration": 4.359
+    },
+    {
+      "text": "so that's called as instruction fine",
+      "start": 1504.96,
+      "duration": 4.439
+    },
+    {
+      "text": "tuning even for Airline customer support",
+      "start": 1506.679,
+      "duration": 4.88
+    },
+    {
+      "text": "let's say someone is asking a question",
+      "start": 1509.399,
+      "duration": 4.241
+    },
+    {
+      "text": "and then the customer support responds",
+      "start": 1511.559,
+      "duration": 4.041
+    },
+    {
+      "text": "you might have a label data set which",
+      "start": 1513.64,
+      "duration": 3.96
+    },
+    {
+      "text": "consist of usually for this instruction",
+      "start": 1515.6,
+      "duration": 4.559
+    },
+    {
+      "text": "these are the responses let's say and",
+      "start": 1517.6,
+      "duration": 4.439
+    },
+    {
+      "text": "then you give this label data for fine",
+      "start": 1520.159,
+      "duration": 4.441
+    },
+    {
+      "text": "tuning the second type of fine tuning is",
+      "start": 1522.039,
+      "duration": 5.081
+    },
+    {
+      "text": "for classification even here you need a",
+      "start": 1524.6,
+      "duration": 4.799
+    },
+    {
+      "text": "label data let's say you want to build",
+      "start": 1527.12,
+      "duration": 4.559
+    },
+    {
+      "text": "an AI agent which classifies emails into",
+      "start": 1529.399,
+      "duration": 4.52
+    },
+    {
+      "text": "spam and no spam you need to give a",
+      "start": 1531.679,
+      "duration": 4.961
+    },
+    {
+      "text": "label data set which consists of the",
+      "start": 1533.919,
+      "duration": 5.041
+    },
+    {
+      "text": "text and the associated labels maybe",
+      "start": 1536.64,
+      "duration": 4.8
+    },
+    {
+      "text": "you'll give 10,000 emails and maybe",
+      "start": 1538.96,
+      "duration": 5.76
+    },
+    {
+      "text": "5,000 are spam 5,000 are not spam as the",
+      "start": 1541.44,
+      "duration": 5.76
+    },
+    {
+      "text": "training data to this llm and then you",
+      "start": 1544.72,
+      "duration": 5.48
+    },
+    {
+      "text": "will find tune it further so remember",
+      "start": 1547.2,
+      "duration": 5.28
+    },
+    {
+      "text": "pre-training usually does not need label",
+      "start": 1550.2,
+      "duration": 5.599
+    },
+    {
+      "text": "data and pre-training is so pre-training",
+      "start": 1552.48,
+      "duration": 5.4
+    },
+    {
+      "text": "does not need any without any labeling",
+      "start": 1555.799,
+      "duration": 4.681
+    },
+    {
+      "text": "information that's also fine but for",
+      "start": 1557.88,
+      "duration": 4.96
+    },
+    {
+      "text": "fine tuning you typically need a labeled",
+      "start": 1560.48,
+      "duration": 4.0
+    },
+    {
+      "text": "data",
+      "start": 1562.84,
+      "duration": 4.559
+    },
+    {
+      "text": "set okay so this actually brings us to",
+      "start": 1564.48,
+      "duration": 5.04
+    },
+    {
+      "text": "the end of today's lecture where we",
+      "start": 1567.399,
+      "duration": 4.121
+    },
+    {
+      "text": "covered about the two stages of building",
+      "start": 1569.52,
+      "duration": 4.24
+    },
+    {
+      "text": "an llm in particular pre-training and",
+      "start": 1571.52,
+      "duration": 5.24
+    },
+    {
+      "text": "fine tuning in pre-training we saw that",
+      "start": 1573.76,
+      "duration": 4.919
+    },
+    {
+      "text": "you have to train on a big Corpus of",
+      "start": 1576.76,
+      "duration": 4.399
+    },
+    {
+      "text": "diverse data and you need a lot of",
+      "start": 1578.679,
+      "duration": 5.12
+    },
+    {
+      "text": "computational power retraining is not",
+      "start": 1581.159,
+      "duration": 4.52
+    },
+    {
+      "text": "possible unless you have first of all",
+      "start": 1583.799,
+      "duration": 4.081
+    },
+    {
+      "text": "access to GPU and access to this kind of",
+      "start": 1585.679,
+      "duration": 5.521
+    },
+    {
+      "text": "money $4.6 million for pre-training",
+      "start": 1587.88,
+      "duration": 6.6
+    },
+    {
+      "text": "gpt3 and then the third step so after",
+      "start": 1591.2,
+      "duration": 5.64
+    },
+    {
+      "text": "data after pre-training those are the",
+      "start": 1594.48,
+      "duration": 5.04
+    },
+    {
+      "text": "first two steps final step is finetuning",
+      "start": 1596.84,
+      "duration": 4.6
+    },
+    {
+      "text": "which is usually done on a labeled data",
+      "start": 1599.52,
+      "duration": 5.279
+    },
+    {
+      "text": "set and using fine tune fine tuned llm",
+      "start": 1601.44,
+      "duration": 5.76
+    },
+    {
+      "text": "you can do specific tasks such as",
+      "start": 1604.799,
+      "duration": 4.081
+    },
+    {
+      "text": "classification",
+      "start": 1607.2,
+      "duration": 3.68
+    },
+    {
+      "text": "summarization uh translation and",
+      "start": 1608.88,
+      "duration": 4.519
+    },
+    {
+      "text": "building your own chatbot so nowadays",
+      "start": 1610.88,
+      "duration": 3.88
+    },
+    {
+      "text": "you must have seen companies are",
+      "start": 1613.399,
+      "duration": 4.28
+    },
+    {
+      "text": "building their own llm specific chatbots",
+      "start": 1614.76,
+      "duration": 4.919
+    },
+    {
+      "text": "all of these companies will do some kind",
+      "start": 1617.679,
+      "duration": 4.12
+    },
+    {
+      "text": "of fine tuning they never use just",
+      "start": 1619.679,
+      "duration": 4.441
+    },
+    {
+      "text": "foundational models you will see that",
+      "start": 1621.799,
+      "duration": 3.841
+    },
+    {
+      "text": "big companies never only use",
+      "start": 1624.12,
+      "duration": 3.439
+    },
+    {
+      "text": "foundational model they will have to go",
+      "start": 1625.64,
+      "duration": 4.36
+    },
+    {
+      "text": "that next step of fine tuning and that",
+      "start": 1627.559,
+      "duration": 4.961
+    },
+    {
+      "text": "is much more expensive rather than using",
+      "start": 1630.0,
+      "duration": 4.72
+    },
+    {
+      "text": "the foundational",
+      "start": 1632.52,
+      "duration": 4.68
+    },
+    {
+      "text": "model I hope you are understanding these",
+      "start": 1634.72,
+      "duration": 5.16
+    },
+    {
+      "text": "lectures and I'm keeping it a bit visual",
+      "start": 1637.2,
+      "duration": 6.44
+    },
+    {
+      "text": "so that there is some sort of visually",
+      "start": 1639.88,
+      "duration": 6.44
+    },
+    {
+      "text": "visual stimulation as you learn so and",
+      "start": 1643.64,
+      "duration": 4.919
+    },
+    {
+      "text": "I'm also writing these notes on a white",
+      "start": 1646.32,
+      "duration": 4.479
+    },
+    {
+      "text": "so that you if you see someone doing",
+      "start": 1648.559,
+      "duration": 4.081
+    },
+    {
+      "text": "this handson in front of you you will",
+      "start": 1650.799,
+      "duration": 4.281
+    },
+    {
+      "text": "also remain motivated for these lectures",
+      "start": 1652.64,
+      "duration": 4.639
+    },
+    {
+      "text": "I encourage you to also write down some",
+      "start": 1655.08,
+      "duration": 5.12
+    },
+    {
+      "text": "key points in a notebook or in a mirror",
+      "start": 1657.279,
+      "duration": 5.52
+    },
+    {
+      "text": "white board like I'm doing right now in",
+      "start": 1660.2,
+      "duration": 4.319
+    },
+    {
+      "text": "the next lecture we are going to start",
+      "start": 1662.799,
+      "duration": 3.321
+    },
+    {
+      "text": "looking at basic introduction to",
+      "start": 1664.519,
+      "duration": 4.16
+    },
+    {
+      "text": "Transformers and we'll also have a brief",
+      "start": 1666.12,
+      "duration": 4.32
+    },
+    {
+      "text": "look at the attention is all you need",
+      "start": 1668.679,
+      "duration": 4.281
+    },
+    {
+      "text": "paper we'll have maybe two to three more",
+      "start": 1670.44,
+      "duration": 6.119
+    },
+    {
+      "text": "lectures on this uh initial modules and",
+      "start": 1672.96,
+      "duration": 6.16
+    },
+    {
+      "text": "then we'll dive into uh",
+      "start": 1676.559,
+      "duration": 6.161
+    },
+    {
+      "text": "coding so thank you everyone and I look",
+      "start": 1679.12,
+      "duration": 5.08
+    },
+    {
+      "text": "forward to seeing you in the next",
+      "start": 1682.72,
+      "duration": 4.48
+    },
+    {
+      "text": "lecture",
+      "start": 1684.2,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to the third lecture in the building large language models llms from scratch Series today we are going to cover the topic which is titled stages of building large language models in this lecture I'm going to call large language models as llms henceforth so whenever I use the term l m you can think of the terminology as large language models so let's get started with today's lecture in the previous lectures we have covered a couple of important things in the last lecture we looked at the basics of large language models where the terminology llm is actually derived from then llm sources earlier NLP models we also saw that what's the secret Source behind large language models what really makes llm so good then we looked at the difference between terminologies what is llm what is Gen AI deep learning machine learning artificial intelligence what are the similarities and differences between all of these terms and then finally we also took a look at some applications of large language models if you have not gone through the previous lecture I would highly encourage you to quickly go through that lecture before watching the current one since the flow of the lectures has been organized in a very specific manner if you are watching this lecture as the first one in this series welcome to this series so now in the stages of building llms there are basically two stages which we are going to look at creating an llm involves the first stage which is called as pre-training and second stage which is called as fine tuning in this series we are going to build our own llm from scratch right so we are going to be looking at both of these stages for this you need to First understand what exactly is pre-training and you also have to understand what exactly is finetuning so let us initially look at pre-training first basically pre-training just means training on a large and diverse data set what does this mean so we have all interacted with chat GPT right let me show you an interaction right now uh let me open my chat GPT prompt and let me interact with it okay so let me ask uh here itself quiz me on ancient civilizations can you test my knowledge on ancient civilizations right I'm interacting with this large language model here now pre-training basically answers the question how can this llm interact so effectively with me how is it able to answer all of my questions how is it able to understand what I'm speaking as a human and how is it able to respond so accurately and so correctly and the way llms do that is because they are trained on a huge and diverse set of data so gpt3 which was the precursor or which came before gp4 which is right now the latest llm by open AI gpt3 had 175 billion parameters and it was trained on a huge amount or huge Corpus of data so let me just show you that data this is the original paper on gpt3 which I'm showing on the screen right now I'm sure it has a huge number of citations but I just want to show you the places from where they got their data so look at the amount of data which was used for now you can think of one token as equal to one word there is a bit of detailing here but that's not the scope of today's lecture so for the purposes of this lecture just think of one token to be equal to one word approximately so when gpt3 was trained they took 60% of data from common crawl common crawl is basically let me show you what common crawl is so if you type common crawl on Google you'll be taken through this which is basically a huge and open repository of all the data on the internet so they took 410 billion words from this data set imagine this let's say one word is uh let's say one sentence is 10 words this means 41 billion sentences were taken from the common craw 20 billion words or around 1 to two billion sentences were taken from web text 2 so if you search web text 2 here you will see this is a corpus of a huge amount of data which consists of uh Reddit submissions let's say then blog post stack Overflow articles codes all of these data was in incorporated as the data set not just that they also show you the data which they got from books so from a large number of books they got around 12 billion plus 55 billion which is 67 billion words from books and from Wikipedia gpt3 got 3 billion words as training data from Wikipedia so overall gpt3 was trained on 300 billion tokens or approximately 300 billion world and you can think of it as when kids are growing up their parents teach them about stuff right and then they remember that stuff the reason llms like what I showed you here perform here right now perform so well is because they're trained on a huge amount of data so initially when large language models were actually trained on this data uh they were trained for the task which is called called as word completion which means you are given a set of words let's say you are given uh this sentence the [Music] lion is in the dash so this next word is not known and chat GPT then predicts or llms then predict this word as let's say forest llms were trained on this type of a task initially with such a huge amount of data what really surprised people was that even if you train the llm for this simple task it turns out that it can do a wide range of other tasks as well so for example when openai released a paper in 2018 related to pre-training which we are which is what we are discussing right now here is what they have written WR so I'm showing you this blog post from open Ai and they have written this sentence please look at this sentence carefully we also noticed that we can use the underlying language model to begin to perform tasks without even training on them for example Performance on tasks like picking the right answer to a multiple choice question steadily increases as the underlying language model improves this means that even though you just train the llm for predicting the next word like how how I mentioned to you before it turned out that the llm can also do variety of other things such as translation such as answering multiple choice question such as summarizing a text then sentiment detection Etc in fact it can do all of these analysis sentiment analysis linguistic acceptability question answering and we did not specifically train the llm on any of these tasks still just even if it is trained for predicting the next word it could do all of these tasks so well and that's why llms have become so much popular than natural language processing because in NLP let's say you want to make a language translator you need to train it separately let's say you want to make a quiz answer chatbot you need to train it separately let's say you want to make uh an AI which detects emotion from the text you have to train a separate NLP model but with pre-training llms you get one model which can do all of these tasks on its own without ever being trained for these tasks so when I'm interacting with GPT right now and when let's say I'm answering asking the question uh generate four mcqs for me in the topic of Egyptian civilization it will generate those mcqs for me right and it was specifically not really trained for generating these questions but the pre-training was so good and it was done for such a huge amount of data that it is good enough to perform other tasks as well for example here's a app or dashboard which we ourselves have created at our company if you want to generate let's say McQ questions and you can give C certain things like I want one hard question one medium question one easy question and the total number of questions I want is three and the grade level is five and the topic I want let's say is photosynthesis maybe I can put grade level to 7th and then I click on generate you'll see that this is an llm which generates this McQ question which is one hard one medium and one easy so we are making an API call to gp4 for this which was not specifically trained for this McQ generation but it does a wonderful job of this so that's essentially what pre-training is pre-training means training an llm on a huge amount of data so that it can do a wide range of tasks that's it so then you must be thinking that what's this second thing called fine tuning because you can get all of your work done just on gp4 right which is probably only pre-trained so why why is the second stage which is fine tuning why is that really needed the reason fine tuning is important is because let's say you are uh you are a manager of an airline company or you are the CEO of an airline company and you want to develop a chatbot so that users can interact with the chatbot and the chatbot responds let's a user can ask some question like hey what's the price for the Lanza Airline which leaves at 600 p.m. now the response which you want is very specific to your company the resp response which you want is not generic response which is collected from all the places on the internet so if you just use the pre-trained model and if you use that model to build the chatbot it it has been trained on a huge amount of data not just your company data Maybe the pre-trend model does not even have access to your company data so the answer which will come is pretty generic it will not be specific to your company it will not be specific to your application secondly as I showed you before we can use chat GPT to generate multiple choice question but let's say if you are a very big educational company and if you want to develop really very high quality questions maybe you should not just rely on the pre-train model and you should fine tune the model so that it's better for your specific application so the main purposes of of fine tuning are it is basically a refinement on the pre-training on a much narrower data set so let's say you are a bank JP Morgan and if you have collected huge amount of data which is not publicly available what you can do you can take the pre-train model and then you can give your own data set and then train the model again on your data set so that when it answers it answers uh in such a way which is specific to your company so finetuning is needed if you want to build an application which is specific to a particular task or a particular domain if you are a general user if you are a student who just wants to let's say use chat GPT to get questions to uh get information about certain things then you can just use gp4 you will not need um fine tuning too much but if you are a big company let's say and if you are wanting to deploy llm applications in the real world on your data set you will need fine tuning let me give you some examples of this which are mentioned on open A's website also so open a actually mentions so many things on their blog posts and their website which not many people know about so let's say let's look at this company called SK Telecom and it wanted to build a chatbot to improve customer service interactions for Telecom related conversations in Korean now if it just used the gp4 it's not suited for this particular requirement right gp4 maybe is not trained on Telecom conversation in Korean so the training data did not involve this probably so what this SK Telecom will do is that it will finetune gp4 by using its own training data so that it gets a fine tune model which is specific for its purpose as you can see for SK Telecom this resulted in significant improve in per Improvement in performance 35% increase in conversation summarization quality and 33% increase in intent recognition accuracy that just one example uh the second example which you can see is the an example called Harvey so Harvey is basically an AI legal tool for attorneys so now imagine that if you have open a if you just use gp4 without fine tuning what if gp4 is not trained on legal cases what if the data is not does not cover the legal cases which happened in countries so then that's not a good tool for attorneys right attorneys ideally or lawyers want an AI tool which is trained on legal case history so as you have seen here while foundational models so pre-train models are also called foundational models while foundational models were strong at reasoning they lacked the extensive knowledge of legal case history and other knowledge required for legal work so the training data set lack the knowledge of legal case history and that's why if you were to build such an AI tool which can assist lawyers and attorneys you have to include the specific legal case history data and that's why you will have to fine tune the llm further remember one key terminology which I used here the pre-trained data or the pre-trained model is also called as the foundational model and the fine tuning happens after that so here's Harvey basically harvey. you can go to this link right now so this is a trusted legal AI platform and if you are thinking how different is it from gp4 now you have your answer this is a fine-tuned model which is specifically fine tuned on data sets which include legal case history and as you can see Harvey works with the world's best legal teams it it works really well here is another article which says JP Morgan Chase UNS AI powered llm Suite may replace research analysis now you might be thinking if gp4 is already there why did JP Morgan unve its own AI power llm and the reason is because it's fine-tuned with their own data it's fine tuned for their employees specifically maybe the JP Morgans data is not available publicly to anyone so only they have the data and they have trained the llm which is fine tuned so that the answers are specific for their company okay so this is so I showed you examples in the tele communication sector which is this SK Telecom I showed you examples in the legal sector which is the example of Harvey and then I also showed you examples in the economics or banking sector essentially you will see that when you go to a production level or when you think of startups or Industries you will definitely need fine tuning uh directly using gp4 is good for students because it satisfies their purposes but fine tuning is needed as you build more advanced applications so these are the two stages of building an llm the first stage is pre-training as I mentioned and the second stage is fine tuning I hope you have understood up till this point if something is unclear please put it in the comment section of this particular video now just so that this explain this concept is explained to you in a better manner I have created this pre-training plus fine tuning schematic so that you can go through this schematic step by step to get a visual representation so let's start with the first block the first block is the data on which the models are trained on whether you do pre-training and later whether you do F tuning you cannot get anywhere without data so the data is either internet text books media research articles um we saw this data over here right you need huge amount of data and you need to train the large language model on this data set this data set can include billions or even trillions of words now one more point which I want to raise here is the computational cost for training the llm right so you're training this llm on a huge amount of data which is also the second step of this schematic now to train this you need computational power you need computational units and it's not possible for normal students or even for normal people who don't have access to powerful gpus to do this just to give you a sense of the cost the total pre-training cost for gpt3 is $4.6 million this is a huge amount $4.6 million think about it for pre-training of gpt3 it cost this much so the first two steps in this schematic which is collecting this huge amount of data and then training the llm requires a lot of computational power requires a lot of computational energy and of course a lot of money so when you train a pre-trained llm like this it's also called as foundational model and it is this also is awesome it has huge amount of capabilities like I'm interacting with gp4 right now it's a foundational model it's a pre-trend model it still has huge amount of capabilities and then the third step in this is find tuning and fine tuning is also so the third step as I mentioned is fine tuned llm and after fine tuning you can get specific applications like you can build your own personal assistant you can build a lang translation bot you can build a summarization assistant you can build your own classification bot so if you are a company or an industry or a startup who is looking for these specific applications using your own data you will fine tune the pre-trend llm on the label data set that's the three steps so the first step is data second step is training the foundational model and the third step is fine tuning on the specific task now there is also one thing between unlabeled data and label data for this pre-training we usually don't label the data set uh it's an unsupervised learning task and it's also called Auto regression because if you are considering a sentence and predicting the next word the part of the sentence is used for training and the next word is used for forecasting or testing and then for the next set of training the earlier forecasted word is used as training it's fine if you don't understand this terminology right now but just remember that pre-training is done on unlabeled text Data whereas finetuning is mostly done on labelled text Data let's say if you are doing a classification task right or if you want a specific llm task which classifies email say spam or no spam you will need to provide labels for which emails were spam which were not spam Etc so generally for fine tuning we will have a labeled data set let's say Harvey you considering the case of Harvey which we s for legal data we had these case studies uh legal case studies right you will need to provide those case studies and mention that for these questions these were the answers in this particular case study Etc so in a sense that that becomes label data so please keep this pre-training plus fine tuning schematic in mind what many students do is that they do not understand the difference between pre-training and fine tuning and they also don't understand why is it called pre-training in the first place shouldn't it just be training ideally it should just be called as training but it's called pre-training because there is also this fine-tuning component so it's just a terminology thing so if you understand this then you will get a better Clarity of when you interact with GPT you are essentially interacting with a pre-trained or a foundational model okay so I hope you have understood the schematic and I hope you have understood the difference between pre-training and fine tuning now I want to just show you the steps which are needed for building an L which basically summarizes what all we have covered in today's lecture so the first step is to train on a large Corpus of Text data which is also called raw text remember some of these terminologies keep on appearing everywhere they actually mean something very simple but they just sound a bit fancy so raw text is just basically training on a large Corpus of text Data a more formal definition of raw text is regular text without any labeling information so raw text means text which does not come with predefined labels so first you train on such such kind of a raw text and you need huge amount of raw text the second task is the first training stage of nlm and this is called as pre-training as we already saw this task involves creation of an initially pre-trained llm which is also called as the base or a foundational model gp4 for example what we saw in the paper this paper over here I'll also be sharing the link to this paper in the information section uh this paper is a pre-train model and uh it is actually capable of text completion but it also turns out it's capable of many other things like uh as we saw over here sentiment analysis question answering Etc so pre-training also gives the llm a lot of other powers so that is Step number two step number three after obtaining the pre-trained llm the llm is further trained on label data and this is fine tuning so let me just mention over here this is called as fine tuning and we saw a number of applications of this in different areas we saw applications in the legal area then we saw applications in the Comm telecommunication sector this es Telecom Harvey we also saw an application related to JP Morgan Chase so fine tuning is essential as and when you go into production and if you want a really powerful model train specifically on your data set even within fine tuning there are usually two categories the first category it's called instruction fine tuning and second is called fine tuning for classification tasks so let's say you are an education company and if you want to uh if you want to or let's say if you're a company like u a text translation company which converts English into French so here you might need to give some sort of an instruction like this is the English language and you convert it into the French language so you might need to give instruction answer pairs as label data set so the label data set means showing that okay these are all the English language these are all the French language use this to further fine tune what you already know so that's called as instruction fine tuning even for Airline customer support let's say someone is asking a question and then the customer support responds you might have a label data set which consist of usually for this instruction these are the responses let's say and then you give this label data for fine tuning the second type of fine tuning is for classification even here you need a label data let's say you want to build an AI agent which classifies emails into spam and no spam you need to give a label data set which consists of the text and the associated labels maybe you'll give 10,000 emails and maybe 5,000 are spam 5,000 are not spam as the training data to this llm and then you will find tune it further so remember pre-training usually does not need label data and pre-training is so pre-training does not need any without any labeling information that's also fine but for fine tuning you typically need a labeled data set okay so this actually brings us to the end of today's lecture where we covered about the two stages of building an llm in particular pre-training and fine tuning in pre-training we saw that you have to train on a big Corpus of diverse data and you need a lot of computational power retraining is not possible unless you have first of all access to GPU and access to this kind of money $4.6 million for pre-training gpt3 and then the third step so after data after pre-training those are the first two steps final step is finetuning which is usually done on a labeled data set and using fine tune fine tuned llm you can do specific tasks such as classification summarization uh translation and building your own chatbot so nowadays you must have seen companies are building their own llm specific chatbots all of these companies will do some kind of fine tuning they never use just foundational models you will see that big companies never only use foundational model they will have to go that next step of fine tuning and that is much more expensive rather than using the foundational model I hope you are understanding these lectures and I'm keeping it a bit visual so that there is some sort of visually visual stimulation as you learn so and I'm also writing these notes on a white so that you if you see someone doing this handson in front of you you will also remain motivated for these lectures I encourage you to also write down some key points in a notebook or in a mirror white board like I'm doing right now in the next lecture we are going to start looking at basic introduction to Transformers and we'll also have a brief look at the attention is all you need paper we'll have maybe two to three more lectures on this uh initial modules and then we'll dive into uh coding so thank you everyone and I look forward to seeing you in the next lecture"
+}

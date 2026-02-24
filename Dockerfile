@@ -18,7 +18,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Output directory for generated books
-VOLUME /app/output
-
 ENTRYPOINT ["python", "main.py"]

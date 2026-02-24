@@ -1,0 +1,1840 @@
+{
+  "book_title": "Building LLMs from Scratch",
+  "total_videos": 43,
+  "videos": [
+    {
+      "index": 0,
+      "video_id": "Xpr8D6LeAtw",
+      "title": "Lecture 1: Building LLMs from scratch: Series introduction",
+      "duration_seconds": 968.0,
+      "duration_minutes": 16.1,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "Demonstration",
+          "start_time": 215.0
+        },
+        {
+          "title": "Open Source vs Closed Source",
+          "start_time": 393.0
+        },
+        {
+          "title": "What is generative AI",
+          "start_time": 487.0
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "video_id": "3dWzNZXA8DY",
+      "title": "Lecture 2: Large Language Models (LLM) Basics",
+      "duration_seconds": 2022.0,
+      "duration_minutes": 33.7,
+      "chapters": [
+        {
+          "title": "Objectives of the lecture",
+          "start_time": 0.0
+        },
+        {
+          "title": "What are Large Language Models (LLMs)",
+          "start_time": 125.0
+        },
+        {
+          "title": "Why \u201cLarge\u201d Language Models?",
+          "start_time": 405.0
+        },
+        {
+          "title": "LLMs vs Earlier NLP Models",
+          "start_time": 706.0
+        },
+        {
+          "title": "LLM Secret Sauce",
+          "start_time": 862.0
+        },
+        {
+          "title": "LLM vs GenAI vs DL vs ML vs AI",
+          "start_time": 1076.0
+        },
+        {
+          "title": "Applications of LLMs",
+          "start_time": 1547.0
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "video_id": "-bsa3fCNGg4",
+      "title": "Lecture 3: Pretraining LLMs vs Finetuning LLMs",
+      "duration_seconds": 1692.0,
+      "duration_minutes": 28.2,
+      "chapters": [
+        {
+          "title": "Introduction and quick recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Pretraining",
+          "start_time": 101.0
+        },
+        {
+          "title": "Finetuning",
+          "start_time": 608.0
+        },
+        {
+          "title": "Steps for building an LLM",
+          "start_time": 1334.0
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "video_id": "NLn4eetGmf8",
+      "title": "Lecture 4: What are transformers?",
+      "duration_seconds": 2439.0,
+      "duration_minutes": 40.6,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "Transformer basics",
+          "start_time": 128.0
+        },
+        {
+          "title": "Simplified transformer architecture",
+          "start_time": 333.0
+        },
+        {
+          "title": "A note on attention",
+          "start_time": 1257.0
+        },
+        {
+          "title": "BERT and GPT",
+          "start_time": 1540.0
+        },
+        {
+          "title": "Difference between transformers and LLMs",
+          "start_time": 1881.0
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "video_id": "xbaYCf2FHSY",
+      "title": "Lecture 5: How does GPT-3 really work?",
+      "duration_seconds": 2885.0,
+      "duration_minutes": 48.1,
+      "chapters": [
+        {
+          "title": "Introduction and recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Transformers, GPT, GPT-2, GPT-3 and GPT-4",
+          "start_time": 80.0
+        },
+        {
+          "title": "Zero Shot vs Few Shot learning",
+          "start_time": 590.0
+        },
+        {
+          "title": "Datasets for GPT pre-training",
+          "start_time": 1098.0
+        },
+        {
+          "title": "Next word prediction",
+          "start_time": 1636.0
+        },
+        {
+          "title": "Emergent behaviour",
+          "start_time": 2291.0
+        },
+        {
+          "title": "Recap of lecture",
+          "start_time": 2539.0
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "video_id": "z9fgKz1Drlc",
+      "title": "Lecture 6: Stages of building an LLM from Scratch",
+      "duration_seconds": 1215.0,
+      "duration_minutes": 20.2,
+      "chapters": []
+    },
+    {
+      "index": 6,
+      "video_id": "rsy5Ragmso8",
+      "title": "Lecture 7: Code an LLM Tokenizer from Scratch in Python",
+      "duration_seconds": 4184.0,
+      "duration_minutes": 69.7,
+      "chapters": [
+        {
+          "title": "Lecture goals",
+          "start_time": 0.0
+        },
+        {
+          "title": "2 steps of tokenisation",
+          "start_time": 168.0
+        },
+        {
+          "title": "Importing the dataset",
+          "start_time": 442.0
+        },
+        {
+          "title": "Tokenising the text",
+          "start_time": 763.0
+        },
+        {
+          "title": "Converting tokens into token IDs",
+          "start_time": 1458.0
+        },
+        {
+          "title": "Simple Tokenizer class in Python",
+          "start_time": 1893.0
+        },
+        {
+          "title": "Special Context Tokens",
+          "start_time": 2613.0
+        },
+        {
+          "title": "Additional context tokens",
+          "start_time": 3513.0
+        },
+        {
+          "title": "Lecture recap",
+          "start_time": 3757.0
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "video_id": "fKd8s29e-l4",
+      "title": "Lecture 8: The GPT Tokenizer: Byte Pair Encoding",
+      "duration_seconds": 3215.0,
+      "duration_minutes": 53.6,
+      "chapters": [
+        {
+          "title": "Why we need Byte Pair Encoder (BPE)",
+          "start_time": 0.0
+        },
+        {
+          "title": "Word and character level tokenizers",
+          "start_time": 175.0
+        },
+        {
+          "title": "Sub-word tokenization",
+          "start_time": 697.0
+        },
+        {
+          "title": "Byte Pair Encoder (BPE) Algorithm",
+          "start_time": 965.0
+        },
+        {
+          "title": "BPE for Large Language Models",
+          "start_time": 1293.0
+        },
+        {
+          "title": "BPE practical demonstration",
+          "start_time": 1362.0
+        },
+        {
+          "title": "Implementing BPE in Python",
+          "start_time": 2451.0
+        },
+        {
+          "title": "Key takeaways",
+          "start_time": 2867.0
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "video_id": "iQZFH8dr2yI",
+      "title": "Lecture 9: Creating Input-Target data pairs using Python DataLoader",
+      "duration_seconds": 3345.0,
+      "duration_minutes": 55.8,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "What are input-target pairs in LLMs?",
+          "start_time": 181.0
+        },
+        {
+          "title": "Coding input-output pairs in Python",
+          "start_time": 810.0
+        },
+        {
+          "title": "What is context size?",
+          "start_time": 1006.0
+        },
+        {
+          "title": "Creating a DataLoader",
+          "start_time": 1370.0
+        },
+        {
+          "title": "Implementing DataLoader in Python",
+          "start_time": 1866.0
+        },
+        {
+          "title": "Batch size and parallel computing",
+          "start_time": 2584.0
+        },
+        {
+          "title": "What is stride?",
+          "start_time": 2740.0
+        },
+        {
+          "title": "Effect of larger batch size",
+          "start_time": 2982.0
+        },
+        {
+          "title": "Lecture recap",
+          "start_time": 3088.0
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "video_id": "ghCSGRgVB_o",
+      "title": "Lecture 10: What are token embeddings?",
+      "duration_seconds": 3652.0,
+      "duration_minutes": 60.9,
+      "chapters": [
+        {
+          "title": "Lecture agenda",
+          "start_time": 0.0
+        },
+        {
+          "title": "What are token embeddings?",
+          "start_time": 215.0
+        },
+        {
+          "title": "Hands on token embeddings demo",
+          "start_time": 1010.0
+        },
+        {
+          "title": "LLM Embedding Weight Matrix introduction",
+          "start_time": 1577.0
+        },
+        {
+          "title": "Coding Embedding Weight Matrix",
+          "start_time": 2032.0
+        },
+        {
+          "title": "Embedding matrix as a lookup table",
+          "start_time": 2487.0
+        },
+        {
+          "title": "Embedding layer vs neural network linear layer",
+          "start_time": 2912.0
+        },
+        {
+          "title": "Lecture recap",
+          "start_time": 3309.0
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "video_id": "ufrPLpKnapU",
+      "title": "Lecture 11: The importance of Positional Embeddings",
+      "duration_seconds": 2932.0,
+      "duration_minutes": 48.9,
+      "chapters": [
+        {
+          "title": "Lecture agenda",
+          "start_time": 0.0
+        },
+        {
+          "title": "Absolute vs Relative positional embeddings",
+          "start_time": 467.0
+        },
+        {
+          "title": "Hands on Python implementation",
+          "start_time": 1208.0
+        },
+        {
+          "title": "Creating input batches using DataLoader",
+          "start_time": 1494.0
+        },
+        {
+          "title": "Generate token embeddings",
+          "start_time": 1824.0
+        },
+        {
+          "title": "Generate positional embeddings",
+          "start_time": 2076.0
+        },
+        {
+          "title": "Add token and positional embeddings",
+          "start_time": 2495.0
+        },
+        {
+          "title": "Lecture recap",
+          "start_time": 2600.0
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "video_id": "mk-6cFebjis",
+      "title": "Lecture 12: The entire Data Preprocessing Pipeline of Large Language Models (LLMs)",
+      "duration_seconds": 5655.0,
+      "duration_minutes": 94.2,
+      "chapters": [
+        {
+          "title": "Lecture agenda",
+          "start_time": 0.0
+        },
+        {
+          "title": "Word based tokenizer",
+          "start_time": 235.0
+        },
+        {
+          "title": "Special Context Tokens",
+          "start_time": 1339.0
+        },
+        {
+          "title": "Subword and character tokenizers",
+          "start_time": 1760.0
+        },
+        {
+          "title": "Byte Pair Encoder (BPE)",
+          "start_time": 2184.0
+        },
+        {
+          "title": "Dataloader and input-target pairs",
+          "start_time": 2934.0
+        },
+        {
+          "title": "Token embeddings",
+          "start_time": 3833.0
+        },
+        {
+          "title": "Positional embeddings",
+          "start_time": 4966.0
+        },
+        {
+          "title": "Create final input embeddings",
+          "start_time": 5403.0
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "video_id": "XN7sevVxyUM",
+      "title": "Lecture 13: Introduction to the Attention Mechanism in Large Language Models (LLMs)",
+      "duration_seconds": 3085.0,
+      "duration_minutes": 51.4,
+      "chapters": [
+        {
+          "title": "Why we care about \u201cattention\u201d",
+          "start_time": 0.0
+        },
+        {
+          "title": "4 types of attention mechanism",
+          "start_time": 379.0
+        },
+        {
+          "title": "Problems with modeling long sequences",
+          "start_time": 621.0
+        },
+        {
+          "title": "How RNNs work",
+          "start_time": 972.0
+        },
+        {
+          "title": "RNN Limitations",
+          "start_time": 1415.0
+        },
+        {
+          "title": "Bahdanau Attention Mechanism",
+          "start_time": 1632.0
+        },
+        {
+          "title": "History of RNNs, LSTMs, Attention and Transformers",
+          "start_time": 2523.0
+        },
+        {
+          "title": "Self attention",
+          "start_time": 2648.0
+        },
+        {
+          "title": "Lecture recap",
+          "start_time": 2880.0
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "video_id": "eSRhpYLerw4",
+      "title": "Lecture 14: Simplified Attention Mechanism  - Coded from scratch in Python | No trainable weights",
+      "duration_seconds": 4762.0,
+      "duration_minutes": 79.4,
+      "chapters": [
+        {
+          "title": "Lecture objective",
+          "start_time": 0.0
+        },
+        {
+          "title": "Context vectors",
+          "start_time": 149.0
+        },
+        {
+          "title": "Coding embedding vectors in Python",
+          "start_time": 574.0
+        },
+        {
+          "title": "What are attention scores?",
+          "start_time": 885.0
+        },
+        {
+          "title": "Dot product and attention scores",
+          "start_time": 1158.0
+        },
+        {
+          "title": "Coding attention scores in Python",
+          "start_time": 1377.0
+        },
+        {
+          "title": "Simple normalisation",
+          "start_time": 1582.0
+        },
+        {
+          "title": "Softmax normalisation",
+          "start_time": 2047.0
+        },
+        {
+          "title": "Coding attention weights in Python",
+          "start_time": 2254.0
+        },
+        {
+          "title": "Context vector calculation visualised",
+          "start_time": 2626.0
+        },
+        {
+          "title": "Coding context vectors in Python",
+          "start_time": 3019.0
+        },
+        {
+          "title": "Coding attention score matrix for all queries",
+          "start_time": 3329.0
+        },
+        {
+          "title": "Coding attention weight matrix for all queries",
+          "start_time": 3622.0
+        },
+        {
+          "title": "Coding context vector matrix for all queries",
+          "start_time": 3867.0
+        },
+        {
+          "title": "Need for trainable weights in the attention mechanism",
+          "start_time": 4450.0
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "video_id": "UjdRN80c6p8",
+      "title": "Lecture 15: Coding the self attention mechanism with key, query and value matrices",
+      "duration_seconds": 4748.0,
+      "duration_minutes": 79.1,
+      "chapters": [
+        {
+          "title": "Lecture objective",
+          "start_time": 0.0
+        },
+        {
+          "title": "Context vector recap",
+          "start_time": 244.0
+        },
+        {
+          "title": "Key, Query and Value Weight Matrices",
+          "start_time": 517.0
+        },
+        {
+          "title": "Coding the Key, Query and Value Weight Matrices",
+          "start_time": 933.0
+        },
+        {
+          "title": "Transforming Input Embeddings to Keys, Queries and Values",
+          "start_time": 1351.0
+        },
+        {
+          "title": "Calculating attention scores",
+          "start_time": 1507.0
+        },
+        {
+          "title": "Coding attention scores",
+          "start_time": 1807.0
+        },
+        {
+          "title": "Calculating attention weights",
+          "start_time": 2117.0
+        },
+        {
+          "title": "Coding attention weights",
+          "start_time": 2398.0
+        },
+        {
+          "title": "Scaling by square root of key dimension",
+          "start_time": 2559.0
+        },
+        {
+          "title": "Calculating context vectors",
+          "start_time": 3066.0
+        },
+        {
+          "title": "Context vectors visually explained",
+          "start_time": 3230.0
+        },
+        {
+          "title": "Context vector mathematical formula",
+          "start_time": 3463.0
+        },
+        {
+          "title": "Self Attention Python class - Basic version",
+          "start_time": 3646.0
+        },
+        {
+          "title": "Self Attention Python class - Advanced version",
+          "start_time": 4148.0
+        },
+        {
+          "title": "One figure to visualise self attention",
+          "start_time": 4349.0
+        },
+        {
+          "title": "Key, Query, Value intuition",
+          "start_time": 4529.0
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "video_id": "h94TQOK7NRA",
+      "title": "Lecture 16: Causal Self Attention Mechanism  | Coded from scratch in Python",
+      "duration_seconds": 3355.0,
+      "duration_minutes": 55.9,
+      "chapters": [
+        {
+          "title": "Self attention recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "What is causal attention?",
+          "start_time": 570.0
+        },
+        {
+          "title": "Coding the casual attention mask in Python",
+          "start_time": 865.0
+        },
+        {
+          "title": "Data leakage",
+          "start_time": 1485.0
+        },
+        {
+          "title": "Negative infinity masking and softmax",
+          "start_time": 1599.0
+        },
+        {
+          "title": "Dropout in causal attention",
+          "start_time": 1953.0
+        },
+        {
+          "title": "Coding causal attention dropout in Python",
+          "start_time": 2173.0
+        },
+        {
+          "title": "Coding the Causal Attention Class in Python",
+          "start_time": 2445.0
+        },
+        {
+          "title": "register_buffer in PyTorch",
+          "start_time": 3087.0
+        },
+        {
+          "title": "Next steps",
+          "start_time": 3233.0
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "video_id": "cPaBCoNdCtE",
+      "title": "Lecture 17: Multi Head Attention Part 1 - Basics and Python code",
+      "duration_seconds": 1939.0,
+      "duration_minutes": 32.3,
+      "chapters": [
+        {
+          "title": "Causal attention: concept recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Causal attention class: code recap",
+          "start_time": 600.0
+        },
+        {
+          "title": "What is multi-head attention?",
+          "start_time": 799.0
+        },
+        {
+          "title": "Coding multi-head attention in Python",
+          "start_time": 1218.0
+        },
+        {
+          "title": "Making multi-head more efficient",
+          "start_time": 1747.0
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "video_id": "K5u9eEaoxFg",
+      "title": "Lecture 18: Multi Head Attention Part 2 - Entire mathematics explained",
+      "duration_seconds": 3673.0,
+      "duration_minutes": 61.2,
+      "chapters": [
+        {
+          "title": "Multi-head attention recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Multi-head attention with weight splits introduction",
+          "start_time": 198.0
+        },
+        {
+          "title": "Defining inputs",
+          "start_time": 581.0
+        },
+        {
+          "title": "Decide output dimension, number of heads",
+          "start_time": 704.0
+        },
+        {
+          "title": "Initialize trainable key, query, value weight matrices",
+          "start_time": 825.0
+        },
+        {
+          "title": "Calculate the key, query and value matrices",
+          "start_time": 972.0
+        },
+        {
+          "title": "Unroll key, query, value dimensions to include num_heads",
+          "start_time": 1154.0
+        },
+        {
+          "title": "Group matrices by number of heads",
+          "start_time": 1488.0
+        },
+        {
+          "title": "Finding attention scores",
+          "start_time": 1725.0
+        },
+        {
+          "title": "Finding attention weights",
+          "start_time": 2160.0
+        },
+        {
+          "title": "Finding multi-head context vectors",
+          "start_time": 2645.0
+        },
+        {
+          "title": "Hands on example testing",
+          "start_time": 3290.0
+        },
+        {
+          "title": "Conclusion",
+          "start_time": 3571.0
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "video_id": "4i23dYoXp-A",
+      "title": "Lecture 19: Birds Eye View of the LLM Architecture",
+      "duration_seconds": 2931.0,
+      "duration_minutes": 48.9,
+      "chapters": [
+        {
+          "title": "Goal of this lecture",
+          "start_time": 0.0
+        },
+        {
+          "title": "Overview of the LLM architecture",
+          "start_time": 217.0
+        },
+        {
+          "title": "GPT-2 model architecture overview",
+          "start_time": 694.0
+        },
+        {
+          "title": "Begin coding the GPT-2 architecture",
+          "start_time": 1227.0
+        },
+        {
+          "title": "Dummy GPT model class",
+          "start_time": 1278.0
+        },
+        {
+          "title": "Passing the input",
+          "start_time": 1401.0
+        },
+        {
+          "title": "Vector embeddings",
+          "start_time": 1491.0
+        },
+        {
+          "title": "Positional embeddings",
+          "start_time": 1864.0
+        },
+        {
+          "title": "Transformer block",
+          "start_time": 2169.0
+        },
+        {
+          "title": "Output logits",
+          "start_time": 2220.0
+        },
+        {
+          "title": "LLM Architecture workflow summary",
+          "start_time": 2580.0
+        },
+        {
+          "title": "Next steps and recap",
+          "start_time": 2776.0
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "video_id": "G3W-LT79LSI",
+      "title": "Lecture 20: Layer Normalization in the LLM Architecture",
+      "duration_seconds": 2337.0,
+      "duration_minutes": 39.0,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "Why do we need layer normalization ?",
+          "start_time": 290.0
+        },
+        {
+          "title": "What is layer normalization ?",
+          "start_time": 675.0
+        },
+        {
+          "title": "Layer normalization basics in Python",
+          "start_time": 999.0
+        },
+        {
+          "title": "Coding the Layer normalization class in Python",
+          "start_time": 1561.0
+        },
+        {
+          "title": "Bessel\u2019s correction",
+          "start_time": 1914.0
+        },
+        {
+          "title": "Testing the Layer normalization class",
+          "start_time": 2014.0
+        },
+        {
+          "title": "Layer vs Batch normalization",
+          "start_time": 2215.0
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "video_id": "d_PiwZe8UF4",
+      "title": "GELU Activation Function in the LLM Architecture",
+      "duration_seconds": 1677.0,
+      "duration_minutes": 27.9,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "GELU activation mathematics",
+          "start_time": 238.0
+        },
+        {
+          "title": "Why do we use GELU?",
+          "start_time": 529.0
+        },
+        {
+          "title": "Coding the GELU activation class",
+          "start_time": 659.0
+        },
+        {
+          "title": "Feed forward neural network architecture",
+          "start_time": 834.0
+        },
+        {
+          "title": "Coding the feedforward neural network class",
+          "start_time": 1196.0
+        },
+        {
+          "title": "Feedforward neural network advantages",
+          "start_time": 1466.0
+        },
+        {
+          "title": "Summary",
+          "start_time": 1592.0
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "video_id": "2r0QahNdwMw",
+      "title": "Shortcut connections in the LLM Architecture",
+      "duration_seconds": 1966.0,
+      "duration_minutes": 32.8,
+      "chapters": [
+        {
+          "title": "Recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Introduction to shortcut connections",
+          "start_time": 150.0
+        },
+        {
+          "title": "The vanishing gradient problem",
+          "start_time": 193.0
+        },
+        {
+          "title": "Shortcut connections mechanism",
+          "start_time": 397.0
+        },
+        {
+          "title": "Mathematical understanding",
+          "start_time": 599.0
+        },
+        {
+          "title": "Shortcut connections visual effect on loss landscape",
+          "start_time": 890.0
+        },
+        {
+          "title": "Coding shortcut connections in Python",
+          "start_time": 1002.0
+        },
+        {
+          "title": "Gradient flow without shortcut connections",
+          "start_time": 1375.0
+        },
+        {
+          "title": "Gradient flow with shortcut connections",
+          "start_time": 1687.0
+        },
+        {
+          "title": "Summary",
+          "start_time": 1848.0
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "video_id": "dvH6lFGhFrs",
+      "title": "Coding the entire LLM Transformer Block",
+      "duration_seconds": 2706.0,
+      "duration_minutes": 45.1,
+      "chapters": [
+        {
+          "title": "Transformer block visualised",
+          "start_time": 0.0
+        },
+        {
+          "title": "5 components of the transformer block",
+          "start_time": 236.0
+        },
+        {
+          "title": "Transformer block shape preservation",
+          "start_time": 988.0
+        },
+        {
+          "title": "Let us jump into code!",
+          "start_time": 1174.0
+        },
+        {
+          "title": "Coding LayerNorm and FeedForward Neural Network class",
+          "start_time": 1274.0
+        },
+        {
+          "title": "Coding the transformer block class in Python",
+          "start_time": 1540.0
+        },
+        {
+          "title": "Transformer block code summary",
+          "start_time": 2037.0
+        },
+        {
+          "title": "Testing the transformer class using simple example",
+          "start_time": 2112.0
+        },
+        {
+          "title": "Lecture summary and next steps",
+          "start_time": 2469.0
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "video_id": "G3-JgHckzjw",
+      "title": "Coding the 124 million parameter GPT-2 model",
+      "duration_seconds": 3693.0,
+      "duration_minutes": 61.5,
+      "chapters": [
+        {
+          "title": "Birds eye view of GPT-2 architecture",
+          "start_time": 0.0
+        },
+        {
+          "title": "Token, positional and input embeddings",
+          "start_time": 465.0
+        },
+        {
+          "title": "Dropout layer",
+          "start_time": 1049.0
+        },
+        {
+          "title": "The 8 steps of the transformer block",
+          "start_time": 1247.0
+        },
+        {
+          "title": "Post transformer layer normalisation",
+          "start_time": 1957.0
+        },
+        {
+          "title": "Output layer",
+          "start_time": 2016.0
+        },
+        {
+          "title": "Coding the entire GPT-2 architecture in Python",
+          "start_time": 2420.0
+        },
+        {
+          "title": "Testing the GPT model class on a simple example",
+          "start_time": 3102.0
+        },
+        {
+          "title": "Parameter and memory calculations",
+          "start_time": 3231.0
+        },
+        {
+          "title": "Conclusion and summary",
+          "start_time": 3476.0
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "video_id": "F1Sm7z2R96w",
+      "title": "Coding GPT-2 to predict the next token",
+      "duration_seconds": 2459.0,
+      "duration_minutes": 41.0,
+      "chapters": [
+        {
+          "title": "How LLM generates text?",
+          "start_time": 0.0
+        },
+        {
+          "title": "GPT Model recap",
+          "start_time": 191.0
+        },
+        {
+          "title": "GPT Model visual flow",
+          "start_time": 312.0
+        },
+        {
+          "title": "Converting output logins into next word prediction",
+          "start_time": 481.0
+        },
+        {
+          "title": "Next word prediction visualised",
+          "start_time": 860.0
+        },
+        {
+          "title": "Coding the next token generator function",
+          "start_time": 1190.0
+        },
+        {
+          "title": "Role of softmax in next token prediction",
+          "start_time": 1788.0
+        },
+        {
+          "title": "Testing the next token generator function",
+          "start_time": 1937.0
+        },
+        {
+          "title": "Analysing the next token predictions",
+          "start_time": 2128.0
+        },
+        {
+          "title": "Recap and summary",
+          "start_time": 2243.0
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "video_id": "7TKCrt--bWI",
+      "title": "Measuring the LLM loss function",
+      "duration_seconds": 3374.0,
+      "duration_minutes": 56.2,
+      "chapters": [
+        {
+          "title": "Objectives of lecture",
+          "start_time": 0.0
+        },
+        {
+          "title": "Inputs and targets",
+          "start_time": 492.0
+        },
+        {
+          "title": "LLM Model Outputs",
+          "start_time": 728.0
+        },
+        {
+          "title": "Coding the LLM Model Outputs",
+          "start_time": 1275.0
+        },
+        {
+          "title": "Cross entropy loss in LLMs",
+          "start_time": 1818.0
+        },
+        {
+          "title": "Coding the LLM cross entropy loss",
+          "start_time": 2690.0
+        },
+        {
+          "title": "Perplexity loss measure",
+          "start_time": 3068.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 3222.0
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "video_id": "zuj_NJNouAA",
+      "title": "Evaluating LLM performance on real dataset | Hands on project | Book data",
+      "duration_seconds": 3516.0,
+      "duration_minutes": 58.6,
+      "chapters": [
+        {
+          "title": "Lecture Objectives",
+          "start_time": 0.0
+        },
+        {
+          "title": "Understanding the dataset",
+          "start_time": 212.0
+        },
+        {
+          "title": "How to construct LLM input-target pairs?",
+          "start_time": 439.0
+        },
+        {
+          "title": "How to get the LLM loss?",
+          "start_time": 854.0
+        },
+        {
+          "title": "How to get the LLM output?",
+          "start_time": 979.0
+        },
+        {
+          "title": "Finding the loss between the target and LLM output",
+          "start_time": 1336.0
+        },
+        {
+          "title": "Finding loss for multiple batches",
+          "start_time": 1563.0
+        },
+        {
+          "title": "Coding: Loading the dataset",
+          "start_time": 1989.0
+        },
+        {
+          "title": "Coding: Implementing the dataloader class",
+          "start_time": 2135.0
+        },
+        {
+          "title": "Coding: Creating training and validation dataloaders",
+          "start_time": 2399.0
+        },
+        {
+          "title": "Coding: implementing the LLM architecture",
+          "start_time": 2734.0
+        },
+        {
+          "title": "Coding: LLM Loss function implementation",
+          "start_time": 2877.0
+        },
+        {
+          "title": "Coding: Finding LLM Loss on our dataset",
+          "start_time": 3223.0
+        },
+        {
+          "title": "Next steps",
+          "start_time": 3355.0
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "video_id": "Zxf-34voZss",
+      "title": "Coding the entire LLM Pre-training Loop",
+      "duration_seconds": 2601.0,
+      "duration_minutes": 43.4,
+      "chapters": [
+        {
+          "title": "LLM loss function recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "LLM Pretraining loop",
+          "start_time": 623.0
+        },
+        {
+          "title": "Measuring LLM parameters (~160 M)",
+          "start_time": 1025.0
+        },
+        {
+          "title": "Coding the LLM Pretraining loop",
+          "start_time": 1298.0
+        },
+        {
+          "title": "Pretraining the LLM on our dataset",
+          "start_time": 1810.0
+        },
+        {
+          "title": "Analyzing pretraining results",
+          "start_time": 2055.0
+        },
+        {
+          "title": "LLM Overfitting",
+          "start_time": 2360.0
+        },
+        {
+          "title": "Next steps",
+          "start_time": 2456.0
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "video_id": "oG1FPVnY0pI",
+      "title": "Temperature Scaling in Large Language Models (LLMs)",
+      "duration_seconds": 1592.0,
+      "duration_minutes": 26.5,
+      "chapters": [
+        {
+          "title": "Traditional next token generation",
+          "start_time": 0.0
+        },
+        {
+          "title": "Probabilistic next token generation",
+          "start_time": 211.0
+        },
+        {
+          "title": "Multinomial probability distribution",
+          "start_time": 245.0
+        },
+        {
+          "title": "Predicting next token from multinomial",
+          "start_time": 396.0
+        },
+        {
+          "title": "What is temperature scaling?",
+          "start_time": 880.0
+        },
+        {
+          "title": "Coding the temperature scaling",
+          "start_time": 940.0
+        },
+        {
+          "title": "Interpreting temperature scaling",
+          "start_time": 1277.0
+        },
+        {
+          "title": "Temperature scaling visualised",
+          "start_time": 1373.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 1461.0
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "video_id": "EhU32O7DkA4",
+      "title": "Top-k sampling in Large Language Models",
+      "duration_seconds": 1414.0,
+      "duration_minutes": 23.6,
+      "chapters": [
+        {
+          "title": "Temperature Scaling recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "What is top-k sampling?",
+          "start_time": 339.0
+        },
+        {
+          "title": "Coding top-k sampling in Python",
+          "start_time": 447.0
+        },
+        {
+          "title": "Merging temperature scaling with top-k sampling",
+          "start_time": 657.0
+        },
+        {
+          "title": "Coding top-k sampling + temperature scaling in Python",
+          "start_time": 811.0
+        },
+        {
+          "title": "Testing top-k + temperature scaling on demo example",
+          "start_time": 1057.0
+        },
+        {
+          "title": "Role of decoding strategies in reducing overfitting",
+          "start_time": 1145.0
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "video_id": "Bc-9sf0VihQ",
+      "title": "Saving and loading LLM model weights using PyTorch",
+      "duration_seconds": 746.0,
+      "duration_minutes": 12.4,
+      "chapters": [
+        {
+          "title": "Recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Saving and loading model parameters",
+          "start_time": 168.0
+        },
+        {
+          "title": "Saving and loading the optimizer parameters and history",
+          "start_time": 420.0
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "video_id": "yXrGeDNuymY",
+      "title": "Loading pre-trained weights from OpenAI GPT-2",
+      "duration_seconds": 3021.0,
+      "duration_minutes": 50.4,
+      "chapters": [
+        {
+          "title": "Need for retrained weights",
+          "start_time": 0.0
+        },
+        {
+          "title": "Open AI GPT-2 weights",
+          "start_time": 146.0
+        },
+        {
+          "title": "Loading libraries",
+          "start_time": 218.0
+        },
+        {
+          "title": "Gpt2 weights downloading introduction",
+          "start_time": 312.0
+        },
+        {
+          "title": "Understanding the gpt downloaded files",
+          "start_time": 477.0
+        },
+        {
+          "title": "Understanding the gpt-2 download code",
+          "start_time": 725.0
+        },
+        {
+          "title": "Understanding the gpt-2 parameter dictionary",
+          "start_time": 863.0
+        },
+        {
+          "title": "Downloading gpt-2 weights into Python code",
+          "start_time": 1720.0
+        },
+        {
+          "title": "Integrating the gpt-2 weights with our LLM architecture",
+          "start_time": 2074.0
+        },
+        {
+          "title": "Testing the pre-trained GPT2 model",
+          "start_time": 2601.0
+        },
+        {
+          "title": "Research explorations and next steps",
+          "start_time": 2725.0
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "video_id": "yZpy_hsC1bE",
+      "title": "Introduction to LLM Finetuning | Python Coding with hands-on-example",
+      "duration_seconds": 1644.0,
+      "duration_minutes": 27.4,
+      "chapters": [
+        {
+          "title": "Recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "What is finetuning?",
+          "start_time": 99.0
+        },
+        {
+          "title": "Finetuning practical example",
+          "start_time": 286.0
+        },
+        {
+          "title": "Instruction and classification finetuning",
+          "start_time": 461.0
+        },
+        {
+          "title": "Hands on project: email classification finetuning",
+          "start_time": 860.0
+        },
+        {
+          "title": "Coding: downloading the email classification dataset",
+          "start_time": 955.0
+        },
+        {
+          "title": "Coding: Balancing the dataset",
+          "start_time": 1149.0
+        },
+        {
+          "title": "Training, validation and testing dataset splits",
+          "start_time": 1296.0
+        },
+        {
+          "title": "Summary and next steps",
+          "start_time": 1554.0
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "video_id": "f6zqClXOh7Y",
+      "title": "Dataloaders in LLM Classification Finetuning | Python Coding | Hands on LLM project",
+      "duration_seconds": 1863.0,
+      "duration_minutes": 31.1,
+      "chapters": [
+        {
+          "title": "Recap of classification finetuning",
+          "start_time": 0.0
+        },
+        {
+          "title": "Datasets and Dataloaders introduction",
+          "start_time": 213.0
+        },
+        {
+          "title": "Equal text length for all data samples",
+          "start_time": 354.0
+        },
+        {
+          "title": "End of text padding",
+          "start_time": 506.0
+        },
+        {
+          "title": "Coding the Spam Dataset class in Python",
+          "start_time": 782.0
+        },
+        {
+          "title": "Coding the Data Loaders",
+          "start_time": 1370.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 1784.0
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "video_id": "izyxvl-2JlM",
+      "title": "Coding the model architecture for LLM classification fine-tuning",
+      "duration_seconds": 2084.0,
+      "duration_minutes": 34.7,
+      "chapters": [
+        {
+          "title": "Recap of classification fine-tuning so far",
+          "start_time": 0.0
+        },
+        {
+          "title": "Loading OpenAI GPT-2 pretrained weights",
+          "start_time": 366.0
+        },
+        {
+          "title": "Adding classification head to model architecture",
+          "start_time": 973.0
+        },
+        {
+          "title": "Select layers which want to fine-tune",
+          "start_time": 1207.0
+        },
+        {
+          "title": "Coding the finetuning architecture",
+          "start_time": 1501.0
+        },
+        {
+          "title": "Extracting last token output",
+          "start_time": 1904.0
+        },
+        {
+          "title": "Next steps",
+          "start_time": 1992.0
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "video_id": "0PpxZ3kNPWo",
+      "title": "Coding a fine-tuned LLM spam classification model | From Scratch",
+      "duration_seconds": 2979.0,
+      "duration_minutes": 49.6,
+      "chapters": [
+        {
+          "title": "Recap of classification fine-tuning so far",
+          "start_time": 0.0
+        },
+        {
+          "title": "Converting LLM outputs to predicted labels",
+          "start_time": 351.0
+        },
+        {
+          "title": "Measuring classification accuracy",
+          "start_time": 574.0
+        },
+        {
+          "title": "Cross entropy loss function implementation",
+          "start_time": 923.0
+        },
+        {
+          "title": "Fine-tuning training loop implementation",
+          "start_time": 1444.0
+        },
+        {
+          "title": "Analysing training results",
+          "start_time": 2015.0
+        },
+        {
+          "title": "Testing model on new data",
+          "start_time": 2316.0
+        },
+        {
+          "title": "Next steps for exploration and research",
+          "start_time": 2722.0
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "video_id": "1bLhvqZzdaQ",
+      "title": "Introduction to LLM Instruction Fine-tuning | Loading Dataset | Alpaca Prompt format",
+      "duration_seconds": 1532.0,
+      "duration_minutes": 25.5,
+      "chapters": [
+        {
+          "title": "What is instruction fine-tuning?",
+          "start_time": 0.0
+        },
+        {
+          "title": "Instruction fine-tuning examples",
+          "start_time": 208.0
+        },
+        {
+          "title": "Steps for instruction fine-tuning",
+          "start_time": 515.0
+        },
+        {
+          "title": "Preparing and loading the dataset",
+          "start_time": 546.0
+        },
+        {
+          "title": "Converting instructions into Alpaca prompt format",
+          "start_time": 791.0
+        },
+        {
+          "title": "Splitting dataset into train-test-validation",
+          "start_time": 1324.0
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "video_id": "bkUkcyL_Xxc",
+      "title": "Data Batching in LLM instruction fine-tuning | Hands on project | Live Python coding",
+      "duration_seconds": 3122.0,
+      "duration_minutes": 52.0,
+      "chapters": [
+        {
+          "title": "Instruction finetuning recap so far",
+          "start_time": 0.0
+        },
+        {
+          "title": "Batching the dataset introduction",
+          "start_time": 353.0
+        },
+        {
+          "title": "Tokenizing formatted data",
+          "start_time": 548.0
+        },
+        {
+          "title": "Padding token IDs",
+          "start_time": 685.0
+        },
+        {
+          "title": "Creating target IDs for training",
+          "start_time": 906.0
+        },
+        {
+          "title": "Replace padding tokens with \u201cignore index = -100\u201d",
+          "start_time": 1404.0
+        },
+        {
+          "title": "Coding the Instruction Dataset class",
+          "start_time": 1471.0
+        },
+        {
+          "title": "Coding the custom collate padding function",
+          "start_time": 1670.0
+        },
+        {
+          "title": "Coding target token IDs",
+          "start_time": 1924.0
+        },
+        {
+          "title": "Coding the padding token replacement with \u201cignore index = -100\u201d",
+          "start_time": 2202.0
+        },
+        {
+          "title": "Significance of PyTorch \u201cignore index = -100\u201d",
+          "start_time": 2467.0
+        },
+        {
+          "title": "Masking target token IDs",
+          "start_time": 2822.0
+        },
+        {
+          "title": "Recap and summary",
+          "start_time": 3040.0
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "video_id": "egFqsJQ9kuY",
+      "title": "Dataloaders in Instruction Fine-tuning",
+      "duration_seconds": 1465.0,
+      "duration_minutes": 24.4,
+      "chapters": [
+        {
+          "title": "Instruction finetuning recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Coding the data loaders in Python",
+          "start_time": 710.0
+        },
+        {
+          "title": "Visualizing training data loader output",
+          "start_time": 1130.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 1365.0
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "video_id": "__OiQznq4ao",
+      "title": "Instruction fine-tuning: Loading pre-trained LLM weights",
+      "duration_seconds": 1169.0,
+      "duration_minutes": 19.5,
+      "chapters": [
+        {
+          "title": "Instruction finetuning recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "Why do we need a pre-trained LLM?",
+          "start_time": 94.0
+        },
+        {
+          "title": "Coding - load a pre-trained LLM",
+          "start_time": 335.0
+        },
+        {
+          "title": "Pre-trained LLM performance",
+          "start_time": 789.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 1105.0
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "video_id": "r7unILsP0Es",
+      "title": "LLM fine-tuning training loop | Coded from scratch",
+      "duration_seconds": 1427.0,
+      "duration_minutes": 23.8,
+      "chapters": [
+        {
+          "title": "Instruction finetuning process",
+          "start_time": 0.0
+        },
+        {
+          "title": "Understanding the finetuning training loop",
+          "start_time": 313.0
+        },
+        {
+          "title": "Understanding the finetuning loss function",
+          "start_time": 382.0
+        },
+        {
+          "title": "Coding the finetuning training loop in Python",
+          "start_time": 560.0
+        },
+        {
+          "title": "Monitoring the finetuned LLM results",
+          "start_time": 1042.0
+        },
+        {
+          "title": "Recap and next steps",
+          "start_time": 1377.0
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "video_id": "7m2jV7BOFkA",
+      "title": "Evaluating fine-tuned LLM using Ollama",
+      "duration_seconds": 3178.0,
+      "duration_minutes": 53.0,
+      "chapters": [
+        {
+          "title": "Instruction fine-tuning recap",
+          "start_time": 0.0
+        },
+        {
+          "title": "The need for LLM evaluation",
+          "start_time": 277.0
+        },
+        {
+          "title": "Extracting and saving LLM responses",
+          "start_time": 400.0
+        },
+        {
+          "title": "3 methods to evaluate instruction fine-tuned LLM performance",
+          "start_time": 718.0
+        },
+        {
+          "title": "Evaluation Method 1 - MMLU",
+          "start_time": 787.0
+        },
+        {
+          "title": "Evaluation Method 2 - Human preference comparison",
+          "start_time": 943.0
+        },
+        {
+          "title": "Evaluation Method 3 - LLM measures another LLM",
+          "start_time": 964.0
+        },
+        {
+          "title": "Collecting LLM responses in JSON format",
+          "start_time": 1100.0
+        },
+        {
+          "title": "Saving the LLM parameters",
+          "start_time": 1295.0
+        },
+        {
+          "title": "Evaluating the fine-tuning LLM introduction",
+          "start_time": 1448.0
+        },
+        {
+          "title": "Ollama introduction and setup",
+          "start_time": 1473.0
+        },
+        {
+          "title": "Query Llama 3 and generate response",
+          "start_time": 1918.0
+        },
+        {
+          "title": "Using Llama 3 to evaluate our fine-tuned LLM",
+          "start_time": 2155.0
+        },
+        {
+          "title": "Steps to improve the fine-tuned model",
+          "start_time": 2724.0
+        },
+        {
+          "title": "Recap and summary",
+          "start_time": 2991.0
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "video_id": "_xH-jXNFRjA",
+      "title": "Build LLMs from scratch 20 minutes summary",
+      "duration_seconds": 1158.0,
+      "duration_minutes": 19.3,
+      "chapters": [
+        {
+          "title": "Introduction",
+          "start_time": 0.0
+        },
+        {
+          "title": "Recap",
+          "start_time": 142.0
+        },
+        {
+          "title": "Data Preprocessing Pipeline",
+          "start_time": 272.0
+        },
+        {
+          "title": "Attention Mechanism",
+          "start_time": 380.0
+        },
+        {
+          "title": "LLM Architecture",
+          "start_time": 536.0
+        },
+        {
+          "title": "LLM Fine Tuning",
+          "start_time": 945.0
+        }
+      ]
+    }
+  ]
+}

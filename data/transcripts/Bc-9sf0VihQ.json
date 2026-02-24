@@ -1,0 +1,1566 @@
+{
+  "video": {
+    "video_id": "Bc-9sf0VihQ",
+    "title": "Saving and loading LLM model weights using PyTorch",
+    "duration": 746.0,
+    "index": 30
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone and uh welcome to this",
+      "start": 5.08,
+      "duration": 4.84
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.759,
+      "duration": 5.92
+    },
+    {
+      "text": "models from scratch Series today it's",
+      "start": 9.92,
+      "duration": 5.919
+    },
+    {
+      "text": "going to be a short lecture in which we",
+      "start": 13.679,
+      "duration": 4.6
+    },
+    {
+      "text": "are going to be learning about loading",
+      "start": 15.839,
+      "duration": 5.921
+    },
+    {
+      "text": "and saving pytorch model weights this is",
+      "start": 18.279,
+      "duration": 5.361
+    },
+    {
+      "text": "going to be very important especially",
+      "start": 21.76,
+      "duration": 4.08
+    },
+    {
+      "text": "when dealing with huge models such as",
+      "start": 23.64,
+      "duration": 3.76
+    },
+    {
+      "text": "the large language model which we have",
+      "start": 25.84,
+      "duration": 4.16
+    },
+    {
+      "text": "built so far this will help us to save",
+      "start": 27.4,
+      "duration": 6.2
+    },
+    {
+      "text": "memory it will help us to save time so I",
+      "start": 30.0,
+      "duration": 5.6
+    },
+    {
+      "text": "have dedicated this special lecture to",
+      "start": 33.6,
+      "duration": 4.0
+    },
+    {
+      "text": "teach you how to do this loading and",
+      "start": 35.6,
+      "duration": 3.32
+    },
+    {
+      "text": "saving in",
+      "start": 37.6,
+      "duration": 3.6
+    },
+    {
+      "text": "Python before getting started let's",
+      "start": 38.92,
+      "duration": 4.04
+    },
+    {
+      "text": "quickly recap whatever we have done",
+      "start": 41.2,
+      "duration": 5.879
+    },
+    {
+      "text": "until now so initially in this series on",
+      "start": 42.96,
+      "duration": 6.079
+    },
+    {
+      "text": "pre-training large language models we",
+      "start": 47.079,
+      "duration": 4.521
+    },
+    {
+      "text": "looked at evaluating the loss function",
+      "start": 49.039,
+      "duration": 5.601
+    },
+    {
+      "text": "for an llm we saw how the cross entropy",
+      "start": 51.6,
+      "duration": 5.68
+    },
+    {
+      "text": "loss comes into the picture here and uh",
+      "start": 54.64,
+      "duration": 6.0
+    },
+    {
+      "text": "we can Define the loss between the",
+      "start": 57.28,
+      "duration": 6.4
+    },
+    {
+      "text": "Target text which we want and the llm",
+      "start": 60.64,
+      "duration": 4.56
+    },
+    {
+      "text": "predicted",
+      "start": 63.68,
+      "duration": 5.079
+    },
+    {
+      "text": "output we also ran the pre-training loop",
+      "start": 65.2,
+      "duration": 5.4
+    },
+    {
+      "text": "so this was an awesome lecture in which",
+      "start": 68.759,
+      "duration": 7.081
+    },
+    {
+      "text": "we actually ran an llm for 10 epochs and",
+      "start": 70.6,
+      "duration": 7.68
+    },
+    {
+      "text": "then we generated new text from the",
+      "start": 75.84,
+      "duration": 4.959
+    },
+    {
+      "text": "input text which was given to the llm",
+      "start": 78.28,
+      "duration": 5.199
+    },
+    {
+      "text": "here we saw that there was an issue of",
+      "start": 80.799,
+      "duration": 5.121
+    },
+    {
+      "text": "overfitting so the large language model",
+      "start": 83.479,
+      "duration": 4.361
+    },
+    {
+      "text": "was just memorizing the text on which it",
+      "start": 85.92,
+      "duration": 4.44
+    },
+    {
+      "text": "was trained on and in the prediction it",
+      "start": 87.84,
+      "duration": 5.16
+    },
+    {
+      "text": "was just using that memorized text to",
+      "start": 90.36,
+      "duration": 4.399
+    },
+    {
+      "text": "avoid overfitting we looked at text",
+      "start": 93.0,
+      "duration": 3.799
+    },
+    {
+      "text": "generation strategies we looked at",
+      "start": 94.759,
+      "duration": 4.521
+    },
+    {
+      "text": "temperature scaling and we looked at top",
+      "start": 96.799,
+      "duration": 4.761
+    },
+    {
+      "text": "K sampling and we saw how those both can",
+      "start": 99.28,
+      "duration": 5.0
+    },
+    {
+      "text": "be integrated together to generate text",
+      "start": 101.56,
+      "duration": 5.8
+    },
+    {
+      "text": "which is not overfitting although the",
+      "start": 104.28,
+      "duration": 5.24
+    },
+    {
+      "text": "text does not overfit or although the",
+      "start": 107.36,
+      "duration": 5.359
+    },
+    {
+      "text": "llm does not overfit um the text which",
+      "start": 109.52,
+      "duration": 5.68
+    },
+    {
+      "text": "is generated is still not making too",
+      "start": 112.719,
+      "duration": 5.121
+    },
+    {
+      "text": "much meaningful sense and that's because",
+      "start": 115.2,
+      "duration": 4.44
+    },
+    {
+      "text": "the data set on which we are training is",
+      "start": 117.84,
+      "duration": 2.599
+    },
+    {
+      "text": "not",
+      "start": 119.64,
+      "duration": 3.64
+    },
+    {
+      "text": "huge So eventually in the next lecture",
+      "start": 120.439,
+      "duration": 5.161
+    },
+    {
+      "text": "we are going to load pre-trained weights",
+      "start": 123.28,
+      "duration": 5.199
+    },
+    {
+      "text": "from open a into the model instead of",
+      "start": 125.6,
+      "duration": 6.639
+    },
+    {
+      "text": "training our own model so open has spent",
+      "start": 128.479,
+      "duration": 5.801
+    },
+    {
+      "text": "millions of dollars pre-training weights",
+      "start": 132.239,
+      "duration": 4.161
+    },
+    {
+      "text": "and they have made it open source for",
+      "start": 134.28,
+      "duration": 4.679
+    },
+    {
+      "text": "gpt2 so in the next lecture we are going",
+      "start": 136.4,
+      "duration": 5.32
+    },
+    {
+      "text": "to actually use the pre-rain weights",
+      "start": 138.959,
+      "duration": 4.521
+    },
+    {
+      "text": "from open Ai and we are going to",
+      "start": 141.72,
+      "duration": 4.08
+    },
+    {
+      "text": "integrate that into the GPT architecture",
+      "start": 143.48,
+      "duration": 5.0
+    },
+    {
+      "text": "which we have built so far but in",
+      "start": 145.8,
+      "duration": 5.079
+    },
+    {
+      "text": "today's lecture I want to build the",
+      "start": 148.48,
+      "duration": 5.8
+    },
+    {
+      "text": "foundation for weight saving and loading",
+      "start": 150.879,
+      "duration": 5.64
+    },
+    {
+      "text": "because this will be very useful for",
+      "start": 154.28,
+      "duration": 4.16
+    },
+    {
+      "text": "pre-training when we use the pre- trend",
+      "start": 156.519,
+      "duration": 4.241
+    },
+    {
+      "text": "weights for open AI so you can think of",
+      "start": 158.44,
+      "duration": 5.04
+    },
+    {
+      "text": "today's lecture as a toolbox which I'm",
+      "start": 160.76,
+      "duration": 5.08
+    },
+    {
+      "text": "equipping you with so that you can",
+      "start": 163.48,
+      "duration": 3.56
+    },
+    {
+      "text": "understand the next lecture on",
+      "start": 165.84,
+      "duration": 3.679
+    },
+    {
+      "text": "pre-trained weights from open AI let's",
+      "start": 167.04,
+      "duration": 5.04
+    },
+    {
+      "text": "get started so there are two main",
+      "start": 169.519,
+      "duration": 4.8
+    },
+    {
+      "text": "functions which are very important first",
+      "start": 172.08,
+      "duration": 5.239
+    },
+    {
+      "text": "is tor. save and second is basically",
+      "start": 174.319,
+      "duration": 5.961
+    },
+    {
+      "text": "model. load State dictionary I explain",
+      "start": 177.319,
+      "duration": 5.321
+    },
+    {
+      "text": "to you what each of this actually means",
+      "start": 180.28,
+      "duration": 6.4
+    },
+    {
+      "text": "let's say we have a GPT model and uh we",
+      "start": 182.64,
+      "duration": 6.64
+    },
+    {
+      "text": "want to save the parameters of the",
+      "start": 186.68,
+      "duration": 5.72
+    },
+    {
+      "text": "model what does this mean so essentially",
+      "start": 189.28,
+      "duration": 5.36
+    },
+    {
+      "text": "we have defined this GPT model class",
+      "start": 192.4,
+      "duration": 4.399
+    },
+    {
+      "text": "right we have defined this in code",
+      "start": 194.64,
+      "duration": 4.28
+    },
+    {
+      "text": "before and when this class is defined",
+      "start": 196.799,
+      "duration": 4.641
+    },
+    {
+      "text": "this kind of GPT model is constructed",
+      "start": 198.92,
+      "duration": 4.48
+    },
+    {
+      "text": "there are huge number of parameters here",
+      "start": 201.44,
+      "duration": 4.079
+    },
+    {
+      "text": "in fact the parameters are more than 100",
+      "start": 203.4,
+      "duration": 5.0
+    },
+    {
+      "text": "million parameters so instead of running",
+      "start": 205.519,
+      "duration": 5.08
+    },
+    {
+      "text": "a new instance of this model each time I",
+      "start": 208.4,
+      "duration": 4.0
+    },
+    {
+      "text": "would like to save these 100 million",
+      "start": 210.599,
+      "duration": 4.601
+    },
+    {
+      "text": "parameters somewhere and the P torch",
+      "start": 212.4,
+      "duration": 4.559
+    },
+    {
+      "text": "command to save these parameters is",
+      "start": 215.2,
+      "duration": 5.56
+    },
+    {
+      "text": "torch. save and model. state so torge do",
+      "start": 216.959,
+      "duration": 6.041
+    },
+    {
+      "text": "save and then you pass in two arguments",
+      "start": 220.76,
+      "duration": 5.199
+    },
+    {
+      "text": "the first is the model State dictionary",
+      "start": 223.0,
+      "duration": 4.879
+    },
+    {
+      "text": "and the second is the file name where",
+      "start": 225.959,
+      "duration": 4.601
+    },
+    {
+      "text": "you want to store the model parameters",
+      "start": 227.879,
+      "duration": 4.801
+    },
+    {
+      "text": "so model. State dictionary is a",
+      "start": 230.56,
+      "duration": 3.92
+    },
+    {
+      "text": "dictionary mapping each layer to its",
+      "start": 232.68,
+      "duration": 3.919
+    },
+    {
+      "text": "parameters and it's by default available",
+      "start": 234.48,
+      "duration": 4.88
+    },
+    {
+      "text": "to any pytorch model and this is the",
+      "start": 236.599,
+      "duration": 6.0
+    },
+    {
+      "text": "file name which is model. pth here I",
+      "start": 239.36,
+      "duration": 4.76
+    },
+    {
+      "text": "have opened the state dictionary and",
+      "start": 242.599,
+      "duration": 3.761
+    },
+    {
+      "text": "here you can see that in py the",
+      "start": 244.12,
+      "duration": 4.959
+    },
+    {
+      "text": "learnable parameters of any tor. nn.",
+      "start": 246.36,
+      "duration": 5.2
+    },
+    {
+      "text": "module are contained in model.",
+      "start": 249.079,
+      "duration": 4.401
+    },
+    {
+      "text": "parameters and the state dictionary is",
+      "start": 251.56,
+      "duration": 3.84
+    },
+    {
+      "text": "simply a python dictionary object that",
+      "start": 253.48,
+      "duration": 4.92
+    },
+    {
+      "text": "Maps each layer to its parameter tensor",
+      "start": 255.4,
+      "duration": 5.32
+    },
+    {
+      "text": "so now you can think of different layers",
+      "start": 258.4,
+      "duration": 5.44
+    },
+    {
+      "text": "here right what this state do dictionary",
+      "start": 260.72,
+      "duration": 4.88
+    },
+    {
+      "text": "will do is that it will just take each",
+      "start": 263.84,
+      "duration": 4.52
+    },
+    {
+      "text": "layer and construct a dictionary mapping",
+      "start": 265.6,
+      "duration": 5.52
+    },
+    {
+      "text": "it to its parameters of the layer and",
+      "start": 268.36,
+      "duration": 5.119
+    },
+    {
+      "text": "then using tor. save we can save all of",
+      "start": 271.12,
+      "duration": 4.6
+    },
+    {
+      "text": "these parameter dictionary in the file",
+      "start": 273.479,
+      "duration": 4.121
+    },
+    {
+      "text": "called model.",
+      "start": 275.72,
+      "duration": 4.919
+    },
+    {
+      "text": "pth the second command is model. load",
+      "start": 277.6,
+      "duration": 5.28
+    },
+    {
+      "text": "State dictionary now let's say that you",
+      "start": 280.639,
+      "duration": 4.4
+    },
+    {
+      "text": "save the parameters and you send it to",
+      "start": 282.88,
+      "duration": 4.599
+    },
+    {
+      "text": "someone else who is your collaborator on",
+      "start": 285.039,
+      "duration": 4.44
+    },
+    {
+      "text": "this project what they can do on their",
+      "start": 287.479,
+      "duration": 4.121
+    },
+    {
+      "text": "end is that they can use this file",
+      "start": 289.479,
+      "duration": 5.881
+    },
+    {
+      "text": "model. pth and they can use tor. load",
+      "start": 291.6,
+      "duration": 5.599
+    },
+    {
+      "text": "and they can do model. loadad state",
+      "start": 295.36,
+      "duration": 3.76
+    },
+    {
+      "text": "dictionary so what it will do is that",
+      "start": 297.199,
+      "duration": 3.56
+    },
+    {
+      "text": "when they are starting this model from",
+      "start": 299.12,
+      "duration": 3.88
+    },
+    {
+      "text": "scratch their model will be loaded with",
+      "start": 300.759,
+      "duration": 4.241
+    },
+    {
+      "text": "these parameters which are contained in",
+      "start": 303.0,
+      "duration": 4.12
+    },
+    {
+      "text": "the model. pth",
+      "start": 305.0,
+      "duration": 6.759
+    },
+    {
+      "text": "file so I have even um showed that here",
+      "start": 307.12,
+      "duration": 7.639
+    },
+    {
+      "text": "tor. nn. module. load State dictionary",
+      "start": 311.759,
+      "duration": 4.72
+    },
+    {
+      "text": "so it loads the models parameter",
+      "start": 314.759,
+      "duration": 3.761
+    },
+    {
+      "text": "dictionary using State dict which we",
+      "start": 316.479,
+      "duration": 4.56
+    },
+    {
+      "text": "have already defined before so State",
+      "start": 318.52,
+      "duration": 5.72
+    },
+    {
+      "text": "dict is basically this awesome so these",
+      "start": 321.039,
+      "duration": 4.841
+    },
+    {
+      "text": "are the two commands and let's see them",
+      "start": 324.24,
+      "duration": 4.88
+    },
+    {
+      "text": "in action in code right now okay so uh",
+      "start": 325.88,
+      "duration": 5.2
+    },
+    {
+      "text": "we have constructed an instance of this",
+      "start": 329.12,
+      "duration": 4.28
+    },
+    {
+      "text": "GPT model class and I showed this GPT",
+      "start": 331.08,
+      "duration": 5.0
+    },
+    {
+      "text": "model class to you over here this is the",
+      "start": 333.4,
+      "duration": 5.56
+    },
+    {
+      "text": "class which we have defined in the code",
+      "start": 336.08,
+      "duration": 5.559
+    },
+    {
+      "text": "before um so I've created an instance of",
+      "start": 338.96,
+      "duration": 4.64
+    },
+    {
+      "text": "this class right now and it's 124",
+      "start": 341.639,
+      "duration": 4.801
+    },
+    {
+      "text": "million the configuration is 124 million",
+      "start": 343.6,
+      "duration": 5.039
+    },
+    {
+      "text": "parameters and then see I'm using the",
+      "start": 346.44,
+      "duration": 4.96
+    },
+    {
+      "text": "tor. save command here and this is the",
+      "start": 348.639,
+      "duration": 4.761
+    },
+    {
+      "text": "model State dictionary and I'm saving",
+      "start": 351.4,
+      "duration": 3.639
+    },
+    {
+      "text": "this parameter dictionary in a file",
+      "start": 353.4,
+      "duration": 4.519
+    },
+    {
+      "text": "called model. pth so as I've written",
+      "start": 355.039,
+      "duration": 5.321
+    },
+    {
+      "text": "here the pth extension is a convention",
+      "start": 357.919,
+      "duration": 5.28
+    },
+    {
+      "text": "for pytorch files we could technically",
+      "start": 360.36,
+      "duration": 4.88
+    },
+    {
+      "text": "use any file extension that does not",
+      "start": 363.199,
+      "duration": 4.56
+    },
+    {
+      "text": "matter and then what we can do is that",
+      "start": 365.24,
+      "duration": 4.959
+    },
+    {
+      "text": "let's say uh I am a collaborator working",
+      "start": 367.759,
+      "duration": 5.0
+    },
+    {
+      "text": "with someone else and I send this uh",
+      "start": 370.199,
+      "duration": 6.041
+    },
+    {
+      "text": "model. pth to that person they can",
+      "start": 372.759,
+      "duration": 5.401
+    },
+    {
+      "text": "create an instance of the GPT model",
+      "start": 376.24,
+      "duration": 3.64
+    },
+    {
+      "text": "class and they can already load this",
+      "start": 378.16,
+      "duration": 3.8
+    },
+    {
+      "text": "model with the parameters which are",
+      "start": 379.88,
+      "duration": 4.64
+    },
+    {
+      "text": "present in model. pth for that they can",
+      "start": 381.96,
+      "duration": 5.6
+    },
+    {
+      "text": "do something like torch. load and they",
+      "start": 384.52,
+      "duration": 5.6
+    },
+    {
+      "text": "can do model. load State dictionary and",
+      "start": 387.56,
+      "duration": 3.8
+    },
+    {
+      "text": "then they can put the model in",
+      "start": 390.12,
+      "duration": 2.88
+    },
+    {
+      "text": "evaluation mode and they can see that",
+      "start": 391.36,
+      "duration": 3.32
+    },
+    {
+      "text": "all of the parameters have been loaded",
+      "start": 393.0,
+      "duration": 4.12
+    },
+    {
+      "text": "in the model the parameters which were",
+      "start": 394.68,
+      "duration": 5.28
+    },
+    {
+      "text": "present in the model. pth that really",
+      "start": 397.12,
+      "duration": 4.799
+    },
+    {
+      "text": "saves a lot of time for this new person",
+      "start": 399.96,
+      "duration": 4.359
+    },
+    {
+      "text": "who has received this even for you if",
+      "start": 401.919,
+      "duration": 5.921
+    },
+    {
+      "text": "you suddenly log out of uh python or",
+      "start": 404.319,
+      "duration": 5.681
+    },
+    {
+      "text": "Google collab or jupyter notebook",
+      "start": 407.84,
+      "duration": 3.919
+    },
+    {
+      "text": "instead of pre-training the model again",
+      "start": 410.0,
+      "duration": 3.319
+    },
+    {
+      "text": "if you are frequently saving the",
+      "start": 411.759,
+      "duration": 3.84
+    },
+    {
+      "text": "parameters it will really save you a lot",
+      "start": 413.319,
+      "duration": 4.32
+    },
+    {
+      "text": "of time and also memory when you run the",
+      "start": 415.599,
+      "duration": 4.88
+    },
+    {
+      "text": "code um the next time",
+      "start": 417.639,
+      "duration": 4.921
+    },
+    {
+      "text": "now let's say that on one day Ive",
+      "start": 420.479,
+      "duration": 3.921
+    },
+    {
+      "text": "trained the code up till a certain point",
+      "start": 422.56,
+      "duration": 5.44
+    },
+    {
+      "text": "and I want to train it tomorrow again",
+      "start": 424.4,
+      "duration": 6.56
+    },
+    {
+      "text": "uh loading the model parameters is one",
+      "start": 428.0,
+      "duration": 5.8
+    },
+    {
+      "text": "thing but what about the optimizer",
+      "start": 430.96,
+      "duration": 6.12
+    },
+    {
+      "text": "because in cases of optimizers like Adam",
+      "start": 433.8,
+      "duration": 5.48
+    },
+    {
+      "text": "the optimizer also maintains a history",
+      "start": 437.08,
+      "duration": 5.64
+    },
+    {
+      "text": "of the gradient and it also maintains a",
+      "start": 439.28,
+      "duration": 5.56
+    },
+    {
+      "text": "history of the squared gradient values",
+      "start": 442.72,
+      "duration": 4.199
+    },
+    {
+      "text": "right shouldn't I be saving these values",
+      "start": 444.84,
+      "duration": 4.16
+    },
+    {
+      "text": "also because that's needed by the par",
+      "start": 446.919,
+      "duration": 3.601
+    },
+    {
+      "text": "optimizer",
+      "start": 449.0,
+      "duration": 3.879
+    },
+    {
+      "text": "if I just save the model parameters the",
+      "start": 450.52,
+      "duration": 4.6
+    },
+    {
+      "text": "optimizer essentially loses the gradient",
+      "start": 452.879,
+      "duration": 4.6
+    },
+    {
+      "text": "values and the squared gradient values",
+      "start": 455.12,
+      "duration": 4.0
+    },
+    {
+      "text": "which it has calculated until the",
+      "start": 457.479,
+      "duration": 4.4
+    },
+    {
+      "text": "training process right so usually it's",
+      "start": 459.12,
+      "duration": 5.0
+    },
+    {
+      "text": "also recommended to",
+      "start": 461.879,
+      "duration": 5.801
+    },
+    {
+      "text": "save uh the optimizer State and similar",
+      "start": 464.12,
+      "duration": 5.359
+    },
+    {
+      "text": "to the parameters which we have saved",
+      "start": 467.68,
+      "duration": 4.199
+    },
+    {
+      "text": "the optimizers can also be saved using",
+      "start": 469.479,
+      "duration": 3.801
+    },
+    {
+      "text": "something like Optimizer State",
+      "start": 471.879,
+      "duration": 3.361
+    },
+    {
+      "text": "dictionary and I'm going to show that to",
+      "start": 473.28,
+      "duration": 3.72
+    },
+    {
+      "text": "you just in a minute what this",
+      "start": 475.24,
+      "duration": 3.56
+    },
+    {
+      "text": "dictionary stores is that it stores the",
+      "start": 477.0,
+      "duration": 4.56
+    },
+    {
+      "text": "hyper parameter but it also Optimizer",
+      "start": 478.8,
+      "duration": 5.16
+    },
+    {
+      "text": "hyper parameters but it also stores the",
+      "start": 481.56,
+      "duration": 5.599
+    },
+    {
+      "text": "historical data used by that hyper used",
+      "start": 483.96,
+      "duration": 4.959
+    },
+    {
+      "text": "by that Optimizer such as the past",
+      "start": 487.159,
+      "duration": 3.32
+    },
+    {
+      "text": "gradient values the square of the",
+      "start": 488.919,
+      "duration": 3.4
+    },
+    {
+      "text": "gradient values which are needed for the",
+      "start": 490.479,
+      "duration": 4.4
+    },
+    {
+      "text": "Adam Optimizer so let's see how we can",
+      "start": 492.319,
+      "duration": 5.241
+    },
+    {
+      "text": "go ahead and save the optimizer state so",
+      "start": 494.879,
+      "duration": 4.16
+    },
+    {
+      "text": "I have written here that adaptive",
+      "start": 497.56,
+      "duration": 3.72
+    },
+    {
+      "text": "optimizers such as admw which we have",
+      "start": 499.039,
+      "duration": 4.921
+    },
+    {
+      "text": "used to train the llm store additional",
+      "start": 501.28,
+      "duration": 4.919
+    },
+    {
+      "text": "parameters for each model weight this",
+      "start": 503.96,
+      "duration": 4.72
+    },
+    {
+      "text": "Optimizer uses historical data to adjust",
+      "start": 506.199,
+      "duration": 4.161
+    },
+    {
+      "text": "learning rates for each model such as",
+      "start": 508.68,
+      "duration": 3.839
+    },
+    {
+      "text": "the gradient history of the gradients",
+      "start": 510.36,
+      "duration": 4.799
+    },
+    {
+      "text": "history of the square of the gradients",
+      "start": 512.519,
+      "duration": 5.041
+    },
+    {
+      "text": "now without storing these history the",
+      "start": 515.159,
+      "duration": 4.721
+    },
+    {
+      "text": "optimizer resets and that's not very",
+      "start": 517.56,
+      "duration": 4.359
+    },
+    {
+      "text": "good because then we have essentially",
+      "start": 519.88,
+      "duration": 3.92
+    },
+    {
+      "text": "not utilized the training which has",
+      "start": 521.919,
+      "duration": 4.281
+    },
+    {
+      "text": "happened so far and then the model may",
+      "start": 523.8,
+      "duration": 5.32
+    },
+    {
+      "text": "not converge properly right so using",
+      "start": 526.2,
+      "duration": 5.04
+    },
+    {
+      "text": "torch. save actually we can save both",
+      "start": 529.12,
+      "duration": 3.96
+    },
+    {
+      "text": "the model and the optimizer State",
+      "start": 531.24,
+      "duration": 5.36
+    },
+    {
+      "text": "dictionary also so here is the optimizer",
+      "start": 533.08,
+      "duration": 5.8
+    },
+    {
+      "text": "which we have defined earlier and now",
+      "start": 536.6,
+      "duration": 4.72
+    },
+    {
+      "text": "here you see earlier we had used tor.",
+      "start": 538.88,
+      "duration": 4.68
+    },
+    {
+      "text": "save and only saved the model parameters",
+      "start": 541.32,
+      "duration": 5.4
+    },
+    {
+      "text": "right now we can use torge Dove and save",
+      "start": 543.56,
+      "duration": 5.36
+    },
+    {
+      "text": "the model State dictionary and we can",
+      "start": 546.72,
+      "duration": 4.2
+    },
+    {
+      "text": "also save the optimizer State dictionary",
+      "start": 548.92,
+      "duration": 6.0
+    },
+    {
+      "text": "using Optimizer do state dict so you can",
+      "start": 550.92,
+      "duration": 5.56
+    },
+    {
+      "text": "uh see this in",
+      "start": 554.92,
+      "duration": 4.2
+    },
+    {
+      "text": "pytorch uh this is Optimizer do state",
+      "start": 556.48,
+      "duration": 4.68
+    },
+    {
+      "text": "dictionary and it Returns the state of",
+      "start": 559.12,
+      "duration": 5.32
+    },
+    {
+      "text": "the optimizer it also really uh",
+      "start": 561.16,
+      "duration": 6.16
+    },
+    {
+      "text": "maintains a history of the gradients the",
+      "start": 564.44,
+      "duration": 4.72
+    },
+    {
+      "text": "gradient square and the parameters such",
+      "start": 567.32,
+      "duration": 4.88
+    },
+    {
+      "text": "as learning rate weight DK Etc so the",
+      "start": 569.16,
+      "duration": 5.28
+    },
+    {
+      "text": "Adam Optimizer is initialized with these",
+      "start": 572.2,
+      "duration": 4.52
+    },
+    {
+      "text": "parameters so when you save the",
+      "start": 574.44,
+      "duration": 4.04
+    },
+    {
+      "text": "optimizer State dictionary of course",
+      "start": 576.72,
+      "duration": 3.799
+    },
+    {
+      "text": "saves these parameters but it also saves",
+      "start": 578.48,
+      "duration": 4.359
+    },
+    {
+      "text": "the history and you save these two",
+      "start": 580.519,
+      "duration": 4.121
+    },
+    {
+      "text": "dictionaries in this file which is",
+      "start": 582.839,
+      "duration": 4.321
+    },
+    {
+      "text": "called as model and Optimizer pth so",
+      "start": 584.64,
+      "duration": 4.48
+    },
+    {
+      "text": "when you give this code to someone else",
+      "start": 587.16,
+      "duration": 4.56
+    },
+    {
+      "text": "you can now pass them the model as well",
+      "start": 589.12,
+      "duration": 4.92
+    },
+    {
+      "text": "as the optimizer state so that they can",
+      "start": 591.72,
+      "duration": 4.0
+    },
+    {
+      "text": "directly use the model as well as the",
+      "start": 594.04,
+      "duration": 3.4
+    },
+    {
+      "text": "current state of the optimizer to keep",
+      "start": 595.72,
+      "duration": 3.92
+    },
+    {
+      "text": "on running the model on their end even",
+      "start": 597.44,
+      "duration": 4.36
+    },
+    {
+      "text": "for you let's say if you close the",
+      "start": 599.64,
+      "duration": 4.12
+    },
+    {
+      "text": "session of training today and then you",
+      "start": 601.8,
+      "duration": 3.68
+    },
+    {
+      "text": "want to resume the training you have to",
+      "start": 603.76,
+      "duration": 3.36
+    },
+    {
+      "text": "save the parameters as well as the",
+      "start": 605.48,
+      "duration": 3.84
+    },
+    {
+      "text": "optimizers in this file modeland",
+      "start": 607.12,
+      "duration": 5.279
+    },
+    {
+      "text": "Optimizer pth now what we can actually",
+      "start": 609.32,
+      "duration": 5.44
+    },
+    {
+      "text": "do is that we can test this so this file",
+      "start": 612.399,
+      "duration": 4.721
+    },
+    {
+      "text": "is saved so you can do tor. load this",
+      "start": 614.76,
+      "duration": 4.24
+    },
+    {
+      "text": "particular file and then load the",
+      "start": 617.12,
+      "duration": 4.68
+    },
+    {
+      "text": "contents in an object called checkpoint",
+      "start": 619.0,
+      "duration": 4.6
+    },
+    {
+      "text": "what we can now do is that we can create",
+      "start": 621.8,
+      "duration": 4.76
+    },
+    {
+      "text": "an instance of the model GPT model class",
+      "start": 623.6,
+      "duration": 6.359
+    },
+    {
+      "text": "and first we can load the uh",
+      "start": 626.56,
+      "duration": 6.2
+    },
+    {
+      "text": "model parameters so we use this",
+      "start": 629.959,
+      "duration": 4.801
+    },
+    {
+      "text": "checkpoint and then we see this",
+      "start": 632.76,
+      "duration": 4.079
+    },
+    {
+      "text": "dictionary model. State dictionary and",
+      "start": 634.76,
+      "duration": 5.48
+    },
+    {
+      "text": "load the model parameters here right",
+      "start": 636.839,
+      "duration": 5.081
+    },
+    {
+      "text": "then what we do is that we Define the",
+      "start": 640.24,
+      "duration": 4.399
+    },
+    {
+      "text": "optimizer and then we also load the",
+      "start": 641.92,
+      "duration": 5.76
+    },
+    {
+      "text": "optimizer dictionary so we look at the",
+      "start": 644.639,
+      "duration": 5.401
+    },
+    {
+      "text": "checkpoint object and we load the",
+      "start": 647.68,
+      "duration": 3.839
+    },
+    {
+      "text": "optimizer State dictionary which will",
+      "start": 650.04,
+      "duration": 3.64
+    },
+    {
+      "text": "load the optimizer parameters as well as",
+      "start": 651.519,
+      "duration": 3.521
+    },
+    {
+      "text": "the history of the gradient and the",
+      "start": 653.68,
+      "duration": 4.2
+    },
+    {
+      "text": "square of square gradients and then you",
+      "start": 655.04,
+      "duration": 4.76
+    },
+    {
+      "text": "put the model in train mode so this",
+      "start": 657.88,
+      "duration": 3.84
+    },
+    {
+      "text": "model. train will not do the training",
+      "start": 659.8,
+      "duration": 3.76
+    },
+    {
+      "text": "but we just put the model in train mode",
+      "start": 661.72,
+      "duration": 3.72
+    },
+    {
+      "text": "right now to do the training we'll need",
+      "start": 663.56,
+      "duration": 4.16
+    },
+    {
+      "text": "to do the forward pass the backward pass",
+      "start": 665.44,
+      "duration": 4.199
+    },
+    {
+      "text": "gradient descent Etc which we have done",
+      "start": 667.72,
+      "duration": 5.239
+    },
+    {
+      "text": "earlier but I showed you this saving of",
+      "start": 669.639,
+      "duration": 5.521
+    },
+    {
+      "text": "the model and saving of the optimizer",
+      "start": 672.959,
+      "duration": 4.56
+    },
+    {
+      "text": "States just because it's very useful",
+      "start": 675.16,
+      "duration": 3.84
+    },
+    {
+      "text": "practice especially for dealing with",
+      "start": 677.519,
+      "duration": 3.681
+    },
+    {
+      "text": "large language models otherwise it can",
+      "start": 679.0,
+      "duration": 3.72
+    },
+    {
+      "text": "be really frustrating to start",
+      "start": 681.2,
+      "duration": 3.199
+    },
+    {
+      "text": "everything from scratch again to lose",
+      "start": 682.72,
+      "duration": 3.2
+    },
+    {
+      "text": "the model parameters to lose the",
+      "start": 684.399,
+      "duration": 3.801
+    },
+    {
+      "text": "optimizer States and I've seen many",
+      "start": 685.92,
+      "duration": 4.159
+    },
+    {
+      "text": "researchers make this mistake of not",
+      "start": 688.2,
+      "duration": 4.48
+    },
+    {
+      "text": "knowing exactly how to load the model",
+      "start": 690.079,
+      "duration": 4.56
+    },
+    {
+      "text": "parameters the optimizer parameters and",
+      "start": 692.68,
+      "duration": 4.24
+    },
+    {
+      "text": "the optimizer State once you learn how",
+      "start": 694.639,
+      "duration": 4.041
+    },
+    {
+      "text": "to do it it's actually pretty simple",
+      "start": 696.92,
+      "duration": 4.84
+    },
+    {
+      "text": "I'll also be sharing these uh pytorch",
+      "start": 698.68,
+      "duration": 6.44
+    },
+    {
+      "text": "links with you in the video description",
+      "start": 701.76,
+      "duration": 5.0
+    },
+    {
+      "text": "I hope you have understood this lecture",
+      "start": 705.12,
+      "duration": 4.76
+    },
+    {
+      "text": "in which we covered about um essentially",
+      "start": 706.76,
+      "duration": 5.28
+    },
+    {
+      "text": "loading and saving model weights in",
+      "start": 709.88,
+      "duration": 5.24
+    },
+    {
+      "text": "pytorch now we have all the ammunition",
+      "start": 712.04,
+      "duration": 5.039
+    },
+    {
+      "text": "necessary to attack the next lecture",
+      "start": 715.12,
+      "duration": 3.44
+    },
+    {
+      "text": "which is loading pre-trained weights",
+      "start": 717.079,
+      "duration": 3.241
+    },
+    {
+      "text": "from open AI this will be an awesome",
+      "start": 718.56,
+      "duration": 4.16
+    },
+    {
+      "text": "lecture in which we will use the weights",
+      "start": 720.32,
+      "duration": 5.6
+    },
+    {
+      "text": "which are given by open AI for gpt2 and",
+      "start": 722.72,
+      "duration": 5.48
+    },
+    {
+      "text": "then we'll use our own GPT architecture",
+      "start": 725.92,
+      "duration": 3.76
+    },
+    {
+      "text": "which we have built in this series so",
+      "start": 728.2,
+      "duration": 3.12
+    },
+    {
+      "text": "far and we'll do the next word",
+      "start": 729.68,
+      "duration": 3.839
+    },
+    {
+      "text": "prediction task thank you so much",
+      "start": 731.32,
+      "duration": 3.879
+    },
+    {
+      "text": "everyone I hope you learned from this",
+      "start": 733.519,
+      "duration": 4.201
+    },
+    {
+      "text": "lecture stay tuned and I look forward to",
+      "start": 735.199,
+      "duration": 6.561
+    },
+    {
+      "text": "seeing you in the next lecture",
+      "start": 737.72,
+      "duration": 4.04
+    }
+  ],
+  "full_text": "[Music] hello everyone and uh welcome to this lecture in the build large language models from scratch Series today it's going to be a short lecture in which we are going to be learning about loading and saving pytorch model weights this is going to be very important especially when dealing with huge models such as the large language model which we have built so far this will help us to save memory it will help us to save time so I have dedicated this special lecture to teach you how to do this loading and saving in Python before getting started let's quickly recap whatever we have done until now so initially in this series on pre-training large language models we looked at evaluating the loss function for an llm we saw how the cross entropy loss comes into the picture here and uh we can Define the loss between the Target text which we want and the llm predicted output we also ran the pre-training loop so this was an awesome lecture in which we actually ran an llm for 10 epochs and then we generated new text from the input text which was given to the llm here we saw that there was an issue of overfitting so the large language model was just memorizing the text on which it was trained on and in the prediction it was just using that memorized text to avoid overfitting we looked at text generation strategies we looked at temperature scaling and we looked at top K sampling and we saw how those both can be integrated together to generate text which is not overfitting although the text does not overfit or although the llm does not overfit um the text which is generated is still not making too much meaningful sense and that's because the data set on which we are training is not huge So eventually in the next lecture we are going to load pre-trained weights from open a into the model instead of training our own model so open has spent millions of dollars pre-training weights and they have made it open source for gpt2 so in the next lecture we are going to actually use the pre-rain weights from open Ai and we are going to integrate that into the GPT architecture which we have built so far but in today's lecture I want to build the foundation for weight saving and loading because this will be very useful for pre-training when we use the pre- trend weights for open AI so you can think of today's lecture as a toolbox which I'm equipping you with so that you can understand the next lecture on pre-trained weights from open AI let's get started so there are two main functions which are very important first is tor. save and second is basically model. load State dictionary I explain to you what each of this actually means let's say we have a GPT model and uh we want to save the parameters of the model what does this mean so essentially we have defined this GPT model class right we have defined this in code before and when this class is defined this kind of GPT model is constructed there are huge number of parameters here in fact the parameters are more than 100 million parameters so instead of running a new instance of this model each time I would like to save these 100 million parameters somewhere and the P torch command to save these parameters is torch. save and model. state so torge do save and then you pass in two arguments the first is the model State dictionary and the second is the file name where you want to store the model parameters so model. State dictionary is a dictionary mapping each layer to its parameters and it's by default available to any pytorch model and this is the file name which is model. pth here I have opened the state dictionary and here you can see that in py the learnable parameters of any tor. nn. module are contained in model. parameters and the state dictionary is simply a python dictionary object that Maps each layer to its parameter tensor so now you can think of different layers here right what this state do dictionary will do is that it will just take each layer and construct a dictionary mapping it to its parameters of the layer and then using tor. save we can save all of these parameter dictionary in the file called model. pth the second command is model. load State dictionary now let's say that you save the parameters and you send it to someone else who is your collaborator on this project what they can do on their end is that they can use this file model. pth and they can use tor. load and they can do model. loadad state dictionary so what it will do is that when they are starting this model from scratch their model will be loaded with these parameters which are contained in the model. pth file so I have even um showed that here tor. nn. module. load State dictionary so it loads the models parameter dictionary using State dict which we have already defined before so State dict is basically this awesome so these are the two commands and let's see them in action in code right now okay so uh we have constructed an instance of this GPT model class and I showed this GPT model class to you over here this is the class which we have defined in the code before um so I've created an instance of this class right now and it's 124 million the configuration is 124 million parameters and then see I'm using the tor. save command here and this is the model State dictionary and I'm saving this parameter dictionary in a file called model. pth so as I've written here the pth extension is a convention for pytorch files we could technically use any file extension that does not matter and then what we can do is that let's say uh I am a collaborator working with someone else and I send this uh model. pth to that person they can create an instance of the GPT model class and they can already load this model with the parameters which are present in model. pth for that they can do something like torch. load and they can do model. load State dictionary and then they can put the model in evaluation mode and they can see that all of the parameters have been loaded in the model the parameters which were present in the model. pth that really saves a lot of time for this new person who has received this even for you if you suddenly log out of uh python or Google collab or jupyter notebook instead of pre-training the model again if you are frequently saving the parameters it will really save you a lot of time and also memory when you run the code um the next time now let's say that on one day Ive trained the code up till a certain point and I want to train it tomorrow again uh loading the model parameters is one thing but what about the optimizer because in cases of optimizers like Adam the optimizer also maintains a history of the gradient and it also maintains a history of the squared gradient values right shouldn't I be saving these values also because that's needed by the par optimizer if I just save the model parameters the optimizer essentially loses the gradient values and the squared gradient values which it has calculated until the training process right so usually it's also recommended to save uh the optimizer State and similar to the parameters which we have saved the optimizers can also be saved using something like Optimizer State dictionary and I'm going to show that to you just in a minute what this dictionary stores is that it stores the hyper parameter but it also Optimizer hyper parameters but it also stores the historical data used by that hyper used by that Optimizer such as the past gradient values the square of the gradient values which are needed for the Adam Optimizer so let's see how we can go ahead and save the optimizer state so I have written here that adaptive optimizers such as admw which we have used to train the llm store additional parameters for each model weight this Optimizer uses historical data to adjust learning rates for each model such as the gradient history of the gradients history of the square of the gradients now without storing these history the optimizer resets and that's not very good because then we have essentially not utilized the training which has happened so far and then the model may not converge properly right so using torch. save actually we can save both the model and the optimizer State dictionary also so here is the optimizer which we have defined earlier and now here you see earlier we had used tor. save and only saved the model parameters right now we can use torge Dove and save the model State dictionary and we can also save the optimizer State dictionary using Optimizer do state dict so you can uh see this in pytorch uh this is Optimizer do state dictionary and it Returns the state of the optimizer it also really uh maintains a history of the gradients the gradient square and the parameters such as learning rate weight DK Etc so the Adam Optimizer is initialized with these parameters so when you save the optimizer State dictionary of course saves these parameters but it also saves the history and you save these two dictionaries in this file which is called as model and Optimizer pth so when you give this code to someone else you can now pass them the model as well as the optimizer state so that they can directly use the model as well as the current state of the optimizer to keep on running the model on their end even for you let's say if you close the session of training today and then you want to resume the training you have to save the parameters as well as the optimizers in this file modeland Optimizer pth now what we can actually do is that we can test this so this file is saved so you can do tor. load this particular file and then load the contents in an object called checkpoint what we can now do is that we can create an instance of the model GPT model class and first we can load the uh model parameters so we use this checkpoint and then we see this dictionary model. State dictionary and load the model parameters here right then what we do is that we Define the optimizer and then we also load the optimizer dictionary so we look at the checkpoint object and we load the optimizer State dictionary which will load the optimizer parameters as well as the history of the gradient and the square of square gradients and then you put the model in train mode so this model. train will not do the training but we just put the model in train mode right now to do the training we'll need to do the forward pass the backward pass gradient descent Etc which we have done earlier but I showed you this saving of the model and saving of the optimizer States just because it's very useful practice especially for dealing with large language models otherwise it can be really frustrating to start everything from scratch again to lose the model parameters to lose the optimizer States and I've seen many researchers make this mistake of not knowing exactly how to load the model parameters the optimizer parameters and the optimizer State once you learn how to do it it's actually pretty simple I'll also be sharing these uh pytorch links with you in the video description I hope you have understood this lecture in which we covered about um essentially loading and saving model weights in pytorch now we have all the ammunition necessary to attack the next lecture which is loading pre-trained weights from open AI this will be an awesome lecture in which we will use the weights which are given by open AI for gpt2 and then we'll use our own GPT architecture which we have built in this series so far and we'll do the next word prediction task thank you so much everyone I hope you learned from this lecture stay tuned and I look forward to seeing you in the next lecture"
+}

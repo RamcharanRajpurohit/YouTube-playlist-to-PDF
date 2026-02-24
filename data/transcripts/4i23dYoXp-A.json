@@ -1,0 +1,6226 @@
+{
+  "video": {
+    "video_id": "4i23dYoXp-A",
+    "title": "Lecture 19: Birds Eye View of the LLM Architecture",
+    "duration": 2931.0,
+    "index": 18
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.24
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.16,
+      "duration": 5.28
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 8.24,
+      "duration": 3.279
+    },
+    {
+      "text": "scratch",
+      "start": 10.44,
+      "duration": 4.439
+    },
+    {
+      "text": "series first let me take you through",
+      "start": 11.519,
+      "duration": 5.6
+    },
+    {
+      "text": "what all we have learned so far in this",
+      "start": 14.879,
+      "duration": 5.921
+    },
+    {
+      "text": "lecture series through this diagram so",
+      "start": 17.119,
+      "duration": 5.481
+    },
+    {
+      "text": "in this lecture series we are going to",
+      "start": 20.8,
+      "duration": 4.04
+    },
+    {
+      "text": "build a large language model completely",
+      "start": 22.6,
+      "duration": 4.8
+    },
+    {
+      "text": "from scratch and we are going to do that",
+      "start": 24.84,
+      "duration": 7.04
+    },
+    {
+      "text": "in three stages in the stage one we will",
+      "start": 27.4,
+      "duration": 6.56
+    },
+    {
+      "text": "uh lay the foundations for building an",
+      "start": 31.88,
+      "duration": 5.199
+    },
+    {
+      "text": "llm in the stage two we will pre-train",
+      "start": 33.96,
+      "duration": 5.72
+    },
+    {
+      "text": "the llm and in stage three we are going",
+      "start": 37.079,
+      "duration": 4.201
+    },
+    {
+      "text": "to fine tune the",
+      "start": 39.68,
+      "duration": 4.64
+    },
+    {
+      "text": "llm we are still at stage one and until",
+      "start": 41.28,
+      "duration": 5.04
+    },
+    {
+      "text": "now we have covered two aspects of stage",
+      "start": 44.32,
+      "duration": 3.96
+    },
+    {
+      "text": "one we have looked at the data",
+      "start": 46.32,
+      "duration": 6.0
+    },
+    {
+      "text": "preparation and sampling which included",
+      "start": 48.28,
+      "duration": 6.32
+    },
+    {
+      "text": "tokenization vector embeddings and",
+      "start": 52.32,
+      "duration": 4.919
+    },
+    {
+      "text": "positional embeddings and very recently",
+      "start": 54.6,
+      "duration": 3.959
+    },
+    {
+      "text": "we have looked at the attention",
+      "start": 57.239,
+      "duration": 3.921
+    },
+    {
+      "text": "mechanism in a lot of detail DET in",
+      "start": 58.559,
+      "duration": 4.121
+    },
+    {
+      "text": "particular those of you who have",
+      "start": 61.16,
+      "duration": 3.84
+    },
+    {
+      "text": "followed the attention mechanism we had",
+      "start": 62.68,
+      "duration": 5.52
+    },
+    {
+      "text": "a very detailed uh four to five lectures",
+      "start": 65.0,
+      "duration": 4.88
+    },
+    {
+      "text": "which started from simplified self",
+      "start": 68.2,
+      "duration": 3.919
+    },
+    {
+      "text": "attention self attention causal",
+      "start": 69.88,
+      "duration": 4.16
+    },
+    {
+      "text": "attention and multi-head",
+      "start": 72.119,
+      "duration": 4.04
+    },
+    {
+      "text": "attention if you have not been through",
+      "start": 74.04,
+      "duration": 4.28
+    },
+    {
+      "text": "these lectures I highly encourage you to",
+      "start": 76.159,
+      "duration": 4.681
+    },
+    {
+      "text": "go through them because attention really",
+      "start": 78.32,
+      "duration": 5.119
+    },
+    {
+      "text": "serves as the fundamental building block",
+      "start": 80.84,
+      "duration": 5.4
+    },
+    {
+      "text": "to understand everything which follows",
+      "start": 83.439,
+      "duration": 5.32
+    },
+    {
+      "text": "if you have watched all the previous",
+      "start": 86.24,
+      "duration": 4.44
+    },
+    {
+      "text": "lectures and if you have run the code",
+      "start": 88.759,
+      "duration": 3.161
+    },
+    {
+      "text": "which I have been",
+      "start": 90.68,
+      "duration": 4.0
+    },
+    {
+      "text": "providing it's amazing and I would like",
+      "start": 91.92,
+      "duration": 4.96
+    },
+    {
+      "text": "to congratulate you that you have",
+      "start": 94.68,
+      "duration": 4.28
+    },
+    {
+      "text": "reached this part understanding",
+      "start": 96.88,
+      "duration": 4.12
+    },
+    {
+      "text": "attention is one of the most difficult",
+      "start": 98.96,
+      "duration": 4.08
+    },
+    {
+      "text": "aspects of understanding large language",
+      "start": 101.0,
+      "duration": 4.32
+    },
+    {
+      "text": "models and if you have reached up till",
+      "start": 103.04,
+      "duration": 5.119
+    },
+    {
+      "text": "here the rest of this will be easier for",
+      "start": 105.32,
+      "duration": 6.32
+    },
+    {
+      "text": "you so let's get started in these",
+      "start": 108.159,
+      "duration": 5.721
+    },
+    {
+      "text": "subsequent lecture videos which are to",
+      "start": 111.64,
+      "duration": 4.28
+    },
+    {
+      "text": "follow we are going to learn about this",
+      "start": 113.88,
+      "duration": 4.12
+    },
+    {
+      "text": "part number three which is the large",
+      "start": 115.92,
+      "duration": 4.68
+    },
+    {
+      "text": "language model architecture as I always",
+      "start": 118.0,
+      "duration": 4.64
+    },
+    {
+      "text": "do I'm going to break this into multiple",
+      "start": 120.6,
+      "duration": 4.24
+    },
+    {
+      "text": "videos I will not cover everything in",
+      "start": 122.64,
+      "duration": 5.72
+    },
+    {
+      "text": "one video um we will cover every single",
+      "start": 124.84,
+      "duration": 5.52
+    },
+    {
+      "text": "video in a lot of detail and completely",
+      "start": 128.36,
+      "duration": 3.0
+    },
+    {
+      "text": "from",
+      "start": 130.36,
+      "duration": 3.76
+    },
+    {
+      "text": "scratch today right now it's the first",
+      "start": 131.36,
+      "duration": 4.56
+    },
+    {
+      "text": "video in the large language model",
+      "start": 134.12,
+      "duration": 5.36
+    },
+    {
+      "text": "architecture module so let's get started",
+      "start": 135.92,
+      "duration": 5.12
+    },
+    {
+      "text": "I think this will be a very interesting",
+      "start": 139.48,
+      "duration": 4.039
+    },
+    {
+      "text": "module for all of you especially to",
+      "start": 141.04,
+      "duration": 4.36
+    },
+    {
+      "text": "those of you who have followed until now",
+      "start": 143.519,
+      "duration": 3.401
+    },
+    {
+      "text": "we have learned about the attention",
+      "start": 145.4,
+      "duration": 3.52
+    },
+    {
+      "text": "mechanism we learned about input",
+      "start": 146.92,
+      "duration": 3.72
+    },
+    {
+      "text": "embeddings we learned about position",
+      "start": 148.92,
+      "duration": 3.56
+    },
+    {
+      "text": "embeddings but all of you must be",
+      "start": 150.64,
+      "duration": 3.48
+    },
+    {
+      "text": "thinking how does all of this really",
+      "start": 152.48,
+      "duration": 4.0
+    },
+    {
+      "text": "come together to give me something like",
+      "start": 154.12,
+      "duration": 5.479
+    },
+    {
+      "text": "a GPT where does the training happen",
+      "start": 156.48,
+      "duration": 5.039
+    },
+    {
+      "text": "where does back propagation happen where",
+      "start": 159.599,
+      "duration": 4.321
+    },
+    {
+      "text": "are the neural networks here if you",
+      "start": 161.519,
+      "duration": 4.601
+    },
+    {
+      "text": "remember at the start I told you that",
+      "start": 163.92,
+      "duration": 4.16
+    },
+    {
+      "text": "large language models are just deep",
+      "start": 166.12,
+      "duration": 4.0
+    },
+    {
+      "text": "neural networks where are neural",
+      "start": 168.08,
+      "duration": 4.36
+    },
+    {
+      "text": "networks and what exactly is the",
+      "start": 170.12,
+      "duration": 4.16
+    },
+    {
+      "text": "Transformer we learned about the",
+      "start": 172.44,
+      "duration": 5.12
+    },
+    {
+      "text": "attention mechanism and uh you must have",
+      "start": 174.28,
+      "duration": 5.959
+    },
+    {
+      "text": "heard about this that um attention",
+      "start": 177.56,
+      "duration": 4.0
+    },
+    {
+      "text": "mechanism is at the heart of",
+      "start": 180.239,
+      "duration": 3.64
+    },
+    {
+      "text": "Transformers but what really is",
+      "start": 181.56,
+      "duration": 4.959
+    },
+    {
+      "text": "Transformers when do we do the training",
+      "start": 183.879,
+      "duration": 4.801
+    },
+    {
+      "text": "and where do we generate the next word",
+      "start": 186.519,
+      "duration": 5.08
+    },
+    {
+      "text": "as the output all of that will become",
+      "start": 188.68,
+      "duration": 5.199
+    },
+    {
+      "text": "pretty clear to you as we slowly start",
+      "start": 191.599,
+      "duration": 5.041
+    },
+    {
+      "text": "unraveling this box of the llm",
+      "start": 193.879,
+      "duration": 5.64
+    },
+    {
+      "text": "architecture I really had a lot of fun",
+      "start": 196.64,
+      "duration": 5.56
+    },
+    {
+      "text": "learning about this and uh let's get",
+      "start": 199.519,
+      "duration": 5.481
+    },
+    {
+      "text": "started as I told you llm architecture",
+      "start": 202.2,
+      "duration": 4.52
+    },
+    {
+      "text": "I'm planning to cover in four to five",
+      "start": 205.0,
+      "duration": 5.2
+    },
+    {
+      "text": "videos and today is the first video",
+      "start": 206.72,
+      "duration": 5.879
+    },
+    {
+      "text": "so after learning about the attention",
+      "start": 210.2,
+      "duration": 4.52
+    },
+    {
+      "text": "mechanism in the previous lectures let",
+      "start": 212.599,
+      "duration": 5.56
+    },
+    {
+      "text": "us learn about the llm architecture now",
+      "start": 214.72,
+      "duration": 7.36
+    },
+    {
+      "text": "I want to give you initially a view of",
+      "start": 218.159,
+      "duration": 6.0
+    },
+    {
+      "text": "what the llm architecture really looks",
+      "start": 222.08,
+      "duration": 4.799
+    },
+    {
+      "text": "like this is the birds ey View and we",
+      "start": 224.159,
+      "duration": 4.561
+    },
+    {
+      "text": "are going to cover every single aspect",
+      "start": 226.879,
+      "duration": 3.64
+    },
+    {
+      "text": "of this in detail but right now I want",
+      "start": 228.72,
+      "duration": 4.96
+    },
+    {
+      "text": "to show you what all you have learned",
+      "start": 230.519,
+      "duration": 5.321
+    },
+    {
+      "text": "and how does that fit in the context of",
+      "start": 233.68,
+      "duration": 3.479
+    },
+    {
+      "text": "what's to come",
+      "start": 235.84,
+      "duration": 4.44
+    },
+    {
+      "text": "next this always helps in the learning",
+      "start": 237.159,
+      "duration": 5.601
+    },
+    {
+      "text": "process imagine if you are getting",
+      "start": 240.28,
+      "duration": 4.4
+    },
+    {
+      "text": "walking through a forest right and if",
+      "start": 242.76,
+      "duration": 3.96
+    },
+    {
+      "text": "you want to get to the other side it's",
+      "start": 244.68,
+      "duration": 5.119
+    },
+    {
+      "text": "always good to know to track your path",
+      "start": 246.72,
+      "duration": 5.28
+    },
+    {
+      "text": "to have some kind of feedback like okay",
+      "start": 249.799,
+      "duration": 3.881
+    },
+    {
+      "text": "this is what you have covered right",
+      "start": 252.0,
+      "duration": 4.04
+    },
+    {
+      "text": "right now and this is what's next to",
+      "start": 253.68,
+      "duration": 4.839
+    },
+    {
+      "text": "come so that you can relate what you're",
+      "start": 256.04,
+      "duration": 4.52
+    },
+    {
+      "text": "learning next with the learnings from",
+      "start": 258.519,
+      "duration": 3.921
+    },
+    {
+      "text": "the past and that helps you reach the",
+      "start": 260.56,
+      "duration": 4.639
+    },
+    {
+      "text": "end of the forest in our",
+      "start": 262.44,
+      "duration": 5.36
+    },
+    {
+      "text": "case learning about how the previous",
+      "start": 265.199,
+      "duration": 4.641
+    },
+    {
+      "text": "knowledge fits into what we are are",
+      "start": 267.8,
+      "duration": 3.959
+    },
+    {
+      "text": "going to learn about next will really",
+      "start": 269.84,
+      "duration": 4.04
+    },
+    {
+      "text": "help you learn about llms in a much",
+      "start": 271.759,
+      "duration": 5.361
+    },
+    {
+      "text": "better manner so initially we started",
+      "start": 273.88,
+      "duration": 6.24
+    },
+    {
+      "text": "with tokenizing then we looked at Vector",
+      "start": 277.12,
+      "duration": 6.639
+    },
+    {
+      "text": "embedding and positional embedding the",
+      "start": 280.12,
+      "duration": 6.56
+    },
+    {
+      "text": "final embedding lay vectors which we had",
+      "start": 283.759,
+      "duration": 5.761
+    },
+    {
+      "text": "for every token were then converted into",
+      "start": 286.68,
+      "duration": 6.44
+    },
+    {
+      "text": "context vectors through M MK multi-head",
+      "start": 289.52,
+      "duration": 6.92
+    },
+    {
+      "text": "attention so the main aim of attention",
+      "start": 293.12,
+      "duration": 6.0
+    },
+    {
+      "text": "or rather the multi-ad attention was to",
+      "start": 296.44,
+      "duration": 4.56
+    },
+    {
+      "text": "take the input embedding vectors and",
+      "start": 299.12,
+      "duration": 4.24
+    },
+    {
+      "text": "convert them into context vectors",
+      "start": 301.0,
+      "duration": 4.96
+    },
+    {
+      "text": "context vectors are a much richer form",
+      "start": 303.36,
+      "duration": 5.04
+    },
+    {
+      "text": "of representation than embedding vectors",
+      "start": 305.96,
+      "duration": 4.36
+    },
+    {
+      "text": "because they not only contain semantic",
+      "start": 308.4,
+      "duration": 3.88
+    },
+    {
+      "text": "meaning of the token but they also",
+      "start": 310.32,
+      "duration": 4.0
+    },
+    {
+      "text": "contain information about how the token",
+      "start": 312.28,
+      "duration": 4.8
+    },
+    {
+      "text": "relates to all the other tokens in the",
+      "start": 314.32,
+      "duration": 4.599
+    },
+    {
+      "text": "sentence",
+      "start": 317.08,
+      "duration": 5.839
+    },
+    {
+      "text": "now uh mask multi-head attention forms a",
+      "start": 318.919,
+      "duration": 5.761
+    },
+    {
+      "text": "very important part of something which",
+      "start": 322.919,
+      "duration": 4.28
+    },
+    {
+      "text": "is called as the Transformer block",
+      "start": 324.68,
+      "duration": 4.72
+    },
+    {
+      "text": "Transformer block is the most important",
+      "start": 327.199,
+      "duration": 4.84
+    },
+    {
+      "text": "part of the large language model",
+      "start": 329.4,
+      "duration": 4.68
+    },
+    {
+      "text": "architecture and it's a block which",
+      "start": 332.039,
+      "duration": 4.0
+    },
+    {
+      "text": "actually consists of many different",
+      "start": 334.08,
+      "duration": 4.32
+    },
+    {
+      "text": "aspects which are linked together so let",
+      "start": 336.039,
+      "duration": 4.72
+    },
+    {
+      "text": "us zoom into this Transformer block a",
+      "start": 338.4,
+      "duration": 5.079
+    },
+    {
+      "text": "bit unravel it open this block and see",
+      "start": 340.759,
+      "duration": 5.0
+    },
+    {
+      "text": "what it contains if you zoom into the",
+      "start": 343.479,
+      "duration": 3.84
+    },
+    {
+      "text": "Transformer block you'll see that it",
+      "start": 345.759,
+      "duration": 3.28
+    },
+    {
+      "text": "contains a number of things and mask",
+      "start": 347.319,
+      "duration": 3.6
+    },
+    {
+      "text": "multi-head attention forms a part of",
+      "start": 349.039,
+      "duration": 3.681
+    },
+    {
+      "text": "this so whatever you have learned in the",
+      "start": 350.919,
+      "duration": 4.241
+    },
+    {
+      "text": "multihead attention comes over here so",
+      "start": 352.72,
+      "duration": 5.199
+    },
+    {
+      "text": "imagine you have a sentence such as",
+      "start": 355.16,
+      "duration": 5.52
+    },
+    {
+      "text": "every effort moves you and you want to",
+      "start": 357.919,
+      "duration": 4.961
+    },
+    {
+      "text": "predict the next word right the first",
+      "start": 360.68,
+      "duration": 5.0
+    },
+    {
+      "text": "step is to convert each of these into",
+      "start": 362.88,
+      "duration": 5.039
+    },
+    {
+      "text": "input embeddings or vector embedding so",
+      "start": 365.68,
+      "duration": 4.44
+    },
+    {
+      "text": "these are these and let's say we also",
+      "start": 367.919,
+      "duration": 4.521
+    },
+    {
+      "text": "add a positional embedding right these",
+      "start": 370.12,
+      "duration": 4.56
+    },
+    {
+      "text": "embedding vectors are then passed onto",
+      "start": 372.44,
+      "duration": 4.8
+    },
+    {
+      "text": "the Transformer block the first part of",
+      "start": 374.68,
+      "duration": 5.0
+    },
+    {
+      "text": "the Transformer block is a layer normal",
+      "start": 377.24,
+      "duration": 4.92
+    },
+    {
+      "text": "normalization the second is M multihead",
+      "start": 379.68,
+      "duration": 4.04
+    },
+    {
+      "text": "attention which converts the input",
+      "start": 382.16,
+      "duration": 4.879
+    },
+    {
+      "text": "embedding tokens into context vectors",
+      "start": 383.72,
+      "duration": 5.319
+    },
+    {
+      "text": "these are then passed into a Dropout",
+      "start": 387.039,
+      "duration": 5.081
+    },
+    {
+      "text": "layer you can notice this plus signs so",
+      "start": 389.039,
+      "duration": 6.121
+    },
+    {
+      "text": "these arrows which run from here to this",
+      "start": 392.12,
+      "duration": 4.72
+    },
+    {
+      "text": "plus sign they are called as shortcut",
+      "start": 395.16,
+      "duration": 3.879
+    },
+    {
+      "text": "connections the output of the shortcut",
+      "start": 396.84,
+      "duration": 4.32
+    },
+    {
+      "text": "connection goes to another layer",
+      "start": 399.039,
+      "duration": 4.081
+    },
+    {
+      "text": "normalization then we have a feed",
+      "start": 401.16,
+      "duration": 4.64
+    },
+    {
+      "text": "forward neural network here then another",
+      "start": 403.12,
+      "duration": 4.76
+    },
+    {
+      "text": "Dropout layer is connected and there's",
+      "start": 405.8,
+      "duration": 5.959
+    },
+    {
+      "text": "one more shortcut uh connection here and",
+      "start": 407.88,
+      "duration": 5.879
+    },
+    {
+      "text": "if you zoom into the feed forward neural",
+      "start": 411.759,
+      "duration": 3.84
+    },
+    {
+      "text": "network further you will see that it has",
+      "start": 413.759,
+      "duration": 4.241
+    },
+    {
+      "text": "something which is called as the JLo",
+      "start": 415.599,
+      "duration": 4.6
+    },
+    {
+      "text": "activation if you look at all these",
+      "start": 418.0,
+      "duration": 4.28
+    },
+    {
+      "text": "terminologies and you you think what",
+      "start": 420.199,
+      "duration": 4.481
+    },
+    {
+      "text": "does it mean what is layer normalization",
+      "start": 422.28,
+      "duration": 4.12
+    },
+    {
+      "text": "what is Dropout what is the JLo",
+      "start": 424.68,
+      "duration": 3.639
+    },
+    {
+      "text": "activation why do we have a feed forward",
+      "start": 426.4,
+      "duration": 4.079
+    },
+    {
+      "text": "neural network here and why are all",
+      "start": 428.319,
+      "duration": 4.88
+    },
+    {
+      "text": "these things stacked together like this",
+      "start": 430.479,
+      "duration": 4.56
+    },
+    {
+      "text": "that's all what we are going to cover in",
+      "start": 433.199,
+      "duration": 4.161
+    },
+    {
+      "text": "this video and the four to five videos",
+      "start": 435.039,
+      "duration": 4.44
+    },
+    {
+      "text": "which are going to follow forward but",
+      "start": 437.36,
+      "duration": 4.16
+    },
+    {
+      "text": "remember this entire architecture has a",
+      "start": 439.479,
+      "duration": 3.961
+    },
+    {
+      "text": "large number of trainable parameters and",
+      "start": 441.52,
+      "duration": 5.079
+    },
+    {
+      "text": "trainable weights when the llm is",
+      "start": 443.44,
+      "duration": 5.08
+    },
+    {
+      "text": "pre-trained these weights and these",
+      "start": 446.599,
+      "duration": 3.88
+    },
+    {
+      "text": "parameters are optimized and ultimately",
+      "start": 448.52,
+      "duration": 4.88
+    },
+    {
+      "text": "we get the output the outputs are such",
+      "start": 450.479,
+      "duration": 4.321
+    },
+    {
+      "text": "that they have the same form and",
+      "start": 453.4,
+      "duration": 4.16
+    },
+    {
+      "text": "dimensions as the inputs and the outputs",
+      "start": 454.8,
+      "duration": 5.28
+    },
+    {
+      "text": "are then processed further which gives",
+      "start": 457.56,
+      "duration": 4.84
+    },
+    {
+      "text": "the final text so once we get the output",
+      "start": 460.08,
+      "duration": 4.519
+    },
+    {
+      "text": "from the Transformer block it goes to",
+      "start": 462.4,
+      "duration": 5.16
+    },
+    {
+      "text": "these output layers and then the which",
+      "start": 464.599,
+      "duration": 4.88
+    },
+    {
+      "text": "decodes the output from the Transformer",
+      "start": 467.56,
+      "duration": 4.84
+    },
+    {
+      "text": "block and we get the next word so every",
+      "start": 469.479,
+      "duration": 5.0
+    },
+    {
+      "text": "effort moves you was the input if you",
+      "start": 472.4,
+      "duration": 5.04
+    },
+    {
+      "text": "remember and the next word is forward I",
+      "start": 474.479,
+      "duration": 4.761
+    },
+    {
+      "text": "just wanted to give you this bird eye",
+      "start": 477.44,
+      "duration": 4.56
+    },
+    {
+      "text": "view of what exactly is going on and",
+      "start": 479.24,
+      "duration": 4.12
+    },
+    {
+      "text": "what we are building what you have",
+      "start": 482.0,
+      "duration": 3.8
+    },
+    {
+      "text": "learned so far and how it fits into what",
+      "start": 483.36,
+      "duration": 5.04
+    },
+    {
+      "text": "we are planning to learn next in these",
+      "start": 485.8,
+      "duration": 4.359
+    },
+    {
+      "text": "set of lectures which we which are going",
+      "start": 488.4,
+      "duration": 3.759
+    },
+    {
+      "text": "to follow we are going to zoom into this",
+      "start": 490.159,
+      "duration": 4.681
+    },
+    {
+      "text": "Transformer block and we are going to",
+      "start": 492.159,
+      "duration": 4.121
+    },
+    {
+      "text": "understand every single thing which has",
+      "start": 494.84,
+      "duration": 3.759
+    },
+    {
+      "text": "been mentioned here we will learn about",
+      "start": 496.28,
+      "duration": 3.919
+    },
+    {
+      "text": "first of all we'll learn about how to",
+      "start": 498.599,
+      "duration": 3.481
+    },
+    {
+      "text": "stack these different layers together",
+      "start": 500.199,
+      "duration": 3.921
+    },
+    {
+      "text": "which will be in today's lecture then we",
+      "start": 502.08,
+      "duration": 3.959
+    },
+    {
+      "text": "will dive into each individual layer and",
+      "start": 504.12,
+      "duration": 4.199
+    },
+    {
+      "text": "learn about them we'll have a separate",
+      "start": 506.039,
+      "duration": 4.361
+    },
+    {
+      "text": "lecture on layer normaliz ation a",
+      "start": 508.319,
+      "duration": 3.56
+    },
+    {
+      "text": "separate lecture on the shortcut",
+      "start": 510.4,
+      "duration": 3.68
+    },
+    {
+      "text": "connections a separate lecture on feed",
+      "start": 511.879,
+      "duration": 4.681
+    },
+    {
+      "text": "forward neural network with J activation",
+      "start": 514.08,
+      "duration": 4.28
+    },
+    {
+      "text": "we'll stack all of these together and",
+      "start": 516.56,
+      "duration": 3.2
+    },
+    {
+      "text": "then finally we'll have a separate",
+      "start": 518.36,
+      "duration": 3.52
+    },
+    {
+      "text": "lecture on how this output from the",
+      "start": 519.76,
+      "duration": 4.24
+    },
+    {
+      "text": "Transformer is decoded to produce the",
+      "start": 521.88,
+      "duration": 5.68
+    },
+    {
+      "text": "next World okay so I hope you have",
+      "start": 524.0,
+      "duration": 5.32
+    },
+    {
+      "text": "understood why we learned about the mask",
+      "start": 527.56,
+      "duration": 3.6
+    },
+    {
+      "text": "multihead attention because if we had",
+      "start": 529.32,
+      "duration": 3.959
+    },
+    {
+      "text": "not learned about this see this forms",
+      "start": 531.16,
+      "duration": 4.0
+    },
+    {
+      "text": "such a critical part of this Transformer",
+      "start": 533.279,
+      "duration": 4.041
+    },
+    {
+      "text": "block right to learn about this one",
+      "start": 535.16,
+      "duration": 4.679
+    },
+    {
+      "text": "small block is it took us five lectures",
+      "start": 537.32,
+      "duration": 5.48
+    },
+    {
+      "text": "spanning over 7 hours but that's the",
+      "start": 539.839,
+      "duration": 4.881
+    },
+    {
+      "text": "importance of the attention mechanism if",
+      "start": 542.8,
+      "duration": 3.2
+    },
+    {
+      "text": "this block is",
+      "start": 544.72,
+      "duration": 3.76
+    },
+    {
+      "text": "removed uh if this Mass multi-head block",
+      "start": 546.0,
+      "duration": 5.0
+    },
+    {
+      "text": "is removed it's like the large language",
+      "start": 548.48,
+      "duration": 5.32
+    },
+    {
+      "text": "models would lose all their power and",
+      "start": 551.0,
+      "duration": 4.44
+    },
+    {
+      "text": "then we are back to the age of recurrent",
+      "start": 553.8,
+      "duration": 3.2
+    },
+    {
+      "text": "neural networks and long short-term",
+      "start": 555.44,
+      "duration": 2.519
+    },
+    {
+      "text": "memory",
+      "start": 557.0,
+      "duration": 4.16
+    },
+    {
+      "text": "networks okay so let's see what we have",
+      "start": 557.959,
+      "duration": 5.041
+    },
+    {
+      "text": "learned so far we have learned about",
+      "start": 561.16,
+      "duration": 4.04
+    },
+    {
+      "text": "input tokenization we have learned about",
+      "start": 563.0,
+      "duration": 4.959
+    },
+    {
+      "text": "embedding token plus positional and we",
+      "start": 565.2,
+      "duration": 4.48
+    },
+    {
+      "text": "have learned about mask multi head",
+      "start": 567.959,
+      "duration": 5.801
+    },
+    {
+      "text": "attention Okay so uh let me first give",
+      "start": 569.68,
+      "duration": 5.56
+    },
+    {
+      "text": "you a brief overview of the Mask",
+      "start": 573.76,
+      "duration": 3.28
+    },
+    {
+      "text": "multihead attention in which you have if",
+      "start": 575.24,
+      "duration": 4.64
+    },
+    {
+      "text": "in case you have forgotten so we have",
+      "start": 577.04,
+      "duration": 4.64
+    },
+    {
+      "text": "the input embedding vectors which are",
+      "start": 579.88,
+      "duration": 4.36
+    },
+    {
+      "text": "stacked together like this we have a",
+      "start": 581.68,
+      "duration": 4.96
+    },
+    {
+      "text": "bunch of keys queries and the value",
+      "start": 584.24,
+      "duration": 4.52
+    },
+    {
+      "text": "matrices which are multiplied with the",
+      "start": 586.64,
+      "duration": 5.04
+    },
+    {
+      "text": "inputs to give the queries the keys and",
+      "start": 588.76,
+      "duration": 3.72
+    },
+    {
+      "text": "the",
+      "start": 591.68,
+      "duration": 3.2
+    },
+    {
+      "text": "values the queries are multiplied with",
+      "start": 592.48,
+      "duration": 4.599
+    },
+    {
+      "text": "the keys transposed to give us attention",
+      "start": 594.88,
+      "duration": 4.48
+    },
+    {
+      "text": "scores which are then converted into",
+      "start": 597.079,
+      "duration": 3.481
+    },
+    {
+      "text": "attention",
+      "start": 599.36,
+      "duration": 3.4
+    },
+    {
+      "text": "weights attention weights are then",
+      "start": 600.56,
+      "duration": 3.959
+    },
+    {
+      "text": "multiplied with the values Matrix to",
+      "start": 602.76,
+      "duration": 4.04
+    },
+    {
+      "text": "give us the context vector and since we",
+      "start": 604.519,
+      "duration": 3.841
+    },
+    {
+      "text": "have multiple attention heads the",
+      "start": 606.8,
+      "duration": 3.4
+    },
+    {
+      "text": "context vectors are stacked together to",
+      "start": 608.36,
+      "duration": 4.56
+    },
+    {
+      "text": "give us a combined context Vector this",
+      "start": 610.2,
+      "duration": 4.36
+    },
+    {
+      "text": "is what is happening in the multi-ad",
+      "start": 612.92,
+      "duration": 4.479
+    },
+    {
+      "text": "attention block now uh this whole",
+      "start": 614.56,
+      "duration": 4.44
+    },
+    {
+      "text": "process of what all we have learned so",
+      "start": 617.399,
+      "duration": 4.201
+    },
+    {
+      "text": "far can be visualized like this also if",
+      "start": 619.0,
+      "duration": 4.36
+    },
+    {
+      "text": "you have the input text which is every",
+      "start": 621.6,
+      "duration": 4.12
+    },
+    {
+      "text": "effort moves you it's first tokenized",
+      "start": 623.36,
+      "duration": 4.68
+    },
+    {
+      "text": "and GPT uses a bite pair tokenizer which",
+      "start": 625.72,
+      "duration": 4.679
+    },
+    {
+      "text": "we learned about before every single",
+      "start": 628.04,
+      "duration": 5.52
+    },
+    {
+      "text": "token is converted into a token ID every",
+      "start": 630.399,
+      "duration": 5.281
+    },
+    {
+      "text": "single token ID is converted into a",
+      "start": 633.56,
+      "duration": 4.279
+    },
+    {
+      "text": "vector embedding which is a vectorized",
+      "start": 635.68,
+      "duration": 4.12
+    },
+    {
+      "text": "representation these Vector embeddings",
+      "start": 637.839,
+      "duration": 3.921
+    },
+    {
+      "text": "are passed into the GPT model which",
+      "start": 639.8,
+      "duration": 3.8
+    },
+    {
+      "text": "consist of the Transformer block which I",
+      "start": 641.76,
+      "duration": 3.68
+    },
+    {
+      "text": "showed you before then there is an",
+      "start": 643.6,
+      "duration": 4.32
+    },
+    {
+      "text": "output that output is further decoded",
+      "start": 645.44,
+      "duration": 4.519
+    },
+    {
+      "text": "and that gives us the output",
+      "start": 647.92,
+      "duration": 5.359
+    },
+    {
+      "text": "text for gpt2 the token embeddings which",
+      "start": 649.959,
+      "duration": 5.801
+    },
+    {
+      "text": "were used had a embedding Vector size of",
+      "start": 653.279,
+      "duration": 5.641
+    },
+    {
+      "text": "768 Dimensions which means each token ID",
+      "start": 655.76,
+      "duration": 5.36
+    },
+    {
+      "text": "was converted into a vector of 768",
+      "start": 658.92,
+      "duration": 4.599
+    },
+    {
+      "text": "Dimension and the output is generated",
+      "start": 661.12,
+      "duration": 4.64
+    },
+    {
+      "text": "such that the dimensions are matched so",
+      "start": 663.519,
+      "duration": 4.841
+    },
+    {
+      "text": "the output is a 768 dimensional Vector",
+      "start": 665.76,
+      "duration": 5.48
+    },
+    {
+      "text": "for each 768 dimensional input token",
+      "start": 668.36,
+      "duration": 4.8
+    },
+    {
+      "text": "embedding and then we do some",
+      "start": 671.24,
+      "duration": 4.039
+    },
+    {
+      "text": "postprocessing with the output so that",
+      "start": 673.16,
+      "duration": 3.56
+    },
+    {
+      "text": "we generate the next word which is",
+      "start": 675.279,
+      "duration": 6.201
+    },
+    {
+      "text": "forward so every effort moves you",
+      "start": 676.72,
+      "duration": 4.76
+    },
+    {
+      "text": "forward great so what we are yet to",
+      "start": 681.639,
+      "duration": 4.161
+    },
+    {
+      "text": "learn is the Transformer block and we'll",
+      "start": 683.88,
+      "duration": 3.92
+    },
+    {
+      "text": "start learning about this in today in",
+      "start": 685.8,
+      "duration": 4.52
+    },
+    {
+      "text": "today's lecture we'll dive slowly deeper",
+      "start": 687.8,
+      "duration": 4.279
+    },
+    {
+      "text": "and deeper into every single layer of",
+      "start": 690.32,
+      "duration": 4.84
+    },
+    {
+      "text": "this block in subsequent lectures so for",
+      "start": 692.079,
+      "duration": 4.88
+    },
+    {
+      "text": "this set of four to five lectures we",
+      "start": 695.16,
+      "duration": 3.72
+    },
+    {
+      "text": "will not use a toy problem we will not",
+      "start": 696.959,
+      "duration": 4.201
+    },
+    {
+      "text": "use a toy model we are directly going to",
+      "start": 698.88,
+      "duration": 3.24
+    },
+    {
+      "text": "use",
+      "start": 701.16,
+      "duration": 3.4
+    },
+    {
+      "text": "gpt2 so we will use the same",
+      "start": 702.12,
+      "duration": 4.32
+    },
+    {
+      "text": "architecture which was used to build the",
+      "start": 704.56,
+      "duration": 4.76
+    },
+    {
+      "text": "gpt2 model so if you look at this",
+      "start": 706.44,
+      "duration": 4.92
+    },
+    {
+      "text": "paper this was the paper which",
+      "start": 709.32,
+      "duration": 3.319
+    },
+    {
+      "text": "introduced",
+      "start": 711.36,
+      "duration": 4.2
+    },
+    {
+      "text": "gpt2 and if you look at the models which",
+      "start": 712.639,
+      "duration": 4.64
+    },
+    {
+      "text": "they had they had",
+      "start": 715.56,
+      "duration": 4.44
+    },
+    {
+      "text": "uh they had a small model model and they",
+      "start": 717.279,
+      "duration": 5.56
+    },
+    {
+      "text": "had a large model which has 1542 million",
+      "start": 720.0,
+      "duration": 4.839
+    },
+    {
+      "text": "parameters if you look at the small",
+      "start": 722.839,
+      "duration": 4.921
+    },
+    {
+      "text": "model it had 117 million parameters this",
+      "start": 724.839,
+      "duration": 5.281
+    },
+    {
+      "text": "was revised later to be 124 million",
+      "start": 727.76,
+      "duration": 4.4
+    },
+    {
+      "text": "parameters which is what we are going to",
+      "start": 730.12,
+      "duration": 4.2
+    },
+    {
+      "text": "use for these set of lectures and for",
+      "start": 732.16,
+      "duration": 4.28
+    },
+    {
+      "text": "the rest of these video series as well",
+      "start": 734.32,
+      "duration": 3.959
+    },
+    {
+      "text": "so we are going to construct an llm with",
+      "start": 736.44,
+      "duration": 4.399
+    },
+    {
+      "text": "124 million parameters which has 12",
+      "start": 738.279,
+      "duration": 4.92
+    },
+    {
+      "text": "layers what are these layers which means",
+      "start": 740.839,
+      "duration": 5.521
+    },
+    {
+      "text": "we'll have 12 Transformer blocks and uh",
+      "start": 743.199,
+      "duration": 5.041
+    },
+    {
+      "text": "D model which is the vector embedding",
+      "start": 746.36,
+      "duration": 4.36
+    },
+    {
+      "text": "size is 76 these are the parameters",
+      "start": 748.24,
+      "duration": 4.399
+    },
+    {
+      "text": "which we are going to use in today's",
+      "start": 750.72,
+      "duration": 4.52
+    },
+    {
+      "text": "lecture and also in the rest of the",
+      "start": 752.639,
+      "duration": 4.2
+    },
+    {
+      "text": "lectures",
+      "start": 755.24,
+      "duration": 5.599
+    },
+    {
+      "text": "um so why are we using gpt2 and not gpt3",
+      "start": 756.839,
+      "duration": 6.841
+    },
+    {
+      "text": "or GPT 4 one reason is that gpt2 is",
+      "start": 760.839,
+      "duration": 5.481
+    },
+    {
+      "text": "smaller so it's better to run it locally",
+      "start": 763.68,
+      "duration": 5.48
+    },
+    {
+      "text": "on our local machine uh and second",
+      "start": 766.32,
+      "duration": 4.959
+    },
+    {
+      "text": "reason is that open AI has made only",
+      "start": 769.16,
+      "duration": 5.0
+    },
+    {
+      "text": "gpt2 weights public opena has really not",
+      "start": 771.279,
+      "duration": 6.441
+    },
+    {
+      "text": "made the weights of gpt3 and gp4 public",
+      "start": 774.16,
+      "duration": 6.239
+    },
+    {
+      "text": "yet uh so that's the thing with open",
+      "start": 777.72,
+      "duration": 4.88
+    },
+    {
+      "text": "source right open a is closed Source",
+      "start": 780.399,
+      "duration": 4.361
+    },
+    {
+      "text": "right now whereas meta's Lama models are",
+      "start": 782.6,
+      "duration": 3.76
+    },
+    {
+      "text": "open source so all weights have been",
+      "start": 784.76,
+      "duration": 3.68
+    },
+    {
+      "text": "released so that's why we are sticking",
+      "start": 786.36,
+      "duration": 3.919
+    },
+    {
+      "text": "with gpt2 because its weights have been",
+      "start": 788.44,
+      "duration": 4.0
+    },
+    {
+      "text": "made public we'll we'll load these",
+      "start": 790.279,
+      "duration": 4.56
+    },
+    {
+      "text": "weights later in one of the subsequent",
+      "start": 792.44,
+      "duration": 4.88
+    },
+    {
+      "text": "videos so here is the configuration",
+      "start": 794.839,
+      "duration": 5.56
+    },
+    {
+      "text": "which we are going to use and uh to all",
+      "start": 797.32,
+      "duration": 4.72
+    },
+    {
+      "text": "those who are watching the video you can",
+      "start": 800.399,
+      "duration": 3.401
+    },
+    {
+      "text": "pause here and try to understand whether",
+      "start": 802.04,
+      "duration": 3.799
+    },
+    {
+      "text": "you understand every single terminology",
+      "start": 803.8,
+      "duration": 4.2
+    },
+    {
+      "text": "here we have covered all of these in the",
+      "start": 805.839,
+      "duration": 3.68
+    },
+    {
+      "text": "previous lecture so I'm I'm going to",
+      "start": 808.0,
+      "duration": 4.76
+    },
+    {
+      "text": "pause here and ask you to also pause on",
+      "start": 809.519,
+      "duration": 4.921
+    },
+    {
+      "text": "your end and try to think about these",
+      "start": 812.76,
+      "duration": 4.079
+    },
+    {
+      "text": "terminologies I'll anyway explain each",
+      "start": 814.44,
+      "duration": 4.639
+    },
+    {
+      "text": "of these terminologies but I want you to",
+      "start": 816.839,
+      "duration": 4.841
+    },
+    {
+      "text": "just give it a shot and try to",
+      "start": 819.079,
+      "duration": 5.12
+    },
+    {
+      "text": "understand okay so so let's go step by",
+      "start": 821.68,
+      "duration": 5.12
+    },
+    {
+      "text": "step the first is the vocabulary size",
+      "start": 824.199,
+      "duration": 5.681
+    },
+    {
+      "text": "this means that uh every we start with a",
+      "start": 826.8,
+      "duration": 7.68
+    },
+    {
+      "text": "vocabulary so um the gpt2 uses a bite",
+      "start": 829.88,
+      "duration": 6.68
+    },
+    {
+      "text": "pair encoder right so it's a subword",
+      "start": 834.48,
+      "duration": 4.84
+    },
+    {
+      "text": "tokenizer so the vocabulary is how many",
+      "start": 836.56,
+      "duration": 5.399
+    },
+    {
+      "text": "subwords are basically there uh this",
+      "start": 839.32,
+      "duration": 4.68
+    },
+    {
+      "text": "will be used for tokenization so if the",
+      "start": 841.959,
+      "duration": 4.68
+    },
+    {
+      "text": "vocabulary is a word level tokenization",
+      "start": 844.0,
+      "duration": 5.399
+    },
+    {
+      "text": "so if the sentence is every step moves",
+      "start": 846.639,
+      "duration": 5.44
+    },
+    {
+      "text": "you forward then the vocabulary will",
+      "start": 849.399,
+      "duration": 4.961
+    },
+    {
+      "text": "have every step moves you forward so",
+      "start": 852.079,
+      "duration": 4.281
+    },
+    {
+      "text": "that way the tokenization will happen",
+      "start": 854.36,
+      "duration": 4.32
+    },
+    {
+      "text": "but if you use a bite pair encoder with",
+      "start": 856.36,
+      "duration": 5.159
+    },
+    {
+      "text": "gpt2 uses it's a subword tokenizer so",
+      "start": 858.68,
+      "duration": 5.159
+    },
+    {
+      "text": "the vocabulary size is",
+      "start": 861.519,
+      "duration": 5.12
+    },
+    {
+      "text": "50257 and it may contain of characters",
+      "start": 863.839,
+      "duration": 4.841
+    },
+    {
+      "text": "it may contain subwords it may contain",
+      "start": 866.639,
+      "duration": 4.401
+    },
+    {
+      "text": "full words also but this is the",
+      "start": 868.68,
+      "duration": 5.12
+    },
+    {
+      "text": "vocabulary size which we deal with when",
+      "start": 871.04,
+      "duration": 4.0
+    },
+    {
+      "text": "we",
+      "start": 873.8,
+      "duration": 4.719
+    },
+    {
+      "text": "consider uh gpt2 this will be very",
+      "start": 875.04,
+      "duration": 6.08
+    },
+    {
+      "text": "useful for tokenization so when we do",
+      "start": 878.519,
+      "duration": 4.721
+    },
+    {
+      "text": "tokenization what happens is we have a",
+      "start": 881.12,
+      "duration": 4.76
+    },
+    {
+      "text": "vocabulary and there are tokens in the",
+      "start": 883.24,
+      "duration": 4.839
+    },
+    {
+      "text": "vocabulary and there's a token ID with",
+      "start": 885.88,
+      "duration": 3.879
+    },
+    {
+      "text": "respect to every single",
+      "start": 888.079,
+      "duration": 4.32
+    },
+    {
+      "text": "token and whenever whenever a new text",
+      "start": 889.759,
+      "duration": 4.961
+    },
+    {
+      "text": "is given to us using that vocabulary",
+      "start": 892.399,
+      "duration": 4.68
+    },
+    {
+      "text": "that text is converted into tokens and",
+      "start": 894.72,
+      "duration": 4.32
+    },
+    {
+      "text": "then those tokens are converted into to",
+      "start": 897.079,
+      "duration": 5.76
+    },
+    {
+      "text": "token IDs if some text does not belong",
+      "start": 899.04,
+      "duration": 5.56
+    },
+    {
+      "text": "to the vocabulary that's called as the",
+      "start": 902.839,
+      "duration": 3.881
+    },
+    {
+      "text": "out of vocabulary problem the bite pair",
+      "start": 904.6,
+      "duration": 4.039
+    },
+    {
+      "text": "encoder does not face this issue because",
+      "start": 906.72,
+      "duration": 3.359
+    },
+    {
+      "text": "it's a subw",
+      "start": 908.639,
+      "duration": 3.401
+    },
+    {
+      "text": "tokenizer we have covered about",
+      "start": 910.079,
+      "duration": 4.0
+    },
+    {
+      "text": "vocabulary size in our lecture on",
+      "start": 912.04,
+      "duration": 3.919
+    },
+    {
+      "text": "embedding so if you are unclear about",
+      "start": 914.079,
+      "duration": 4.041
+    },
+    {
+      "text": "this please refer to that the second is",
+      "start": 915.959,
+      "duration": 4.32
+    },
+    {
+      "text": "the context length the context length",
+      "start": 918.12,
+      "duration": 4.399
+    },
+    {
+      "text": "basically refers to how many maximum",
+      "start": 920.279,
+      "duration": 4.92
+    },
+    {
+      "text": "words are used to predict the next word",
+      "start": 922.519,
+      "duration": 5.721
+    },
+    {
+      "text": "so if there is context length is 1024",
+      "start": 925.199,
+      "duration": 5.041
+    },
+    {
+      "text": "which was actually used in gpt2 we are",
+      "start": 928.24,
+      "duration": 4.399
+    },
+    {
+      "text": "going to look at one24 words and we are",
+      "start": 930.24,
+      "duration": 5.079
+    },
+    {
+      "text": "going to predict the next word maximum",
+      "start": 932.639,
+      "duration": 3.921
+    },
+    {
+      "text": "there will be no case when we are",
+      "start": 935.319,
+      "duration": 3.0
+    },
+    {
+      "text": "looking at 2,000 words let's say and",
+      "start": 936.56,
+      "duration": 3.959
+    },
+    {
+      "text": "predicting the next word when I say word",
+      "start": 938.319,
+      "duration": 4.64
+    },
+    {
+      "text": "I'm actually meaning token here which is",
+      "start": 940.519,
+      "duration": 5.281
+    },
+    {
+      "text": "not exactly correct because gpt2 uses",
+      "start": 942.959,
+      "duration": 5.641
+    },
+    {
+      "text": "the bite pair encoder toker to tokenizer",
+      "start": 945.8,
+      "duration": 5.76
+    },
+    {
+      "text": "which is subword tokenization scheme but",
+      "start": 948.6,
+      "duration": 4.799
+    },
+    {
+      "text": "for the sake of this lecture if I use",
+      "start": 951.56,
+      "duration": 4.12
+    },
+    {
+      "text": "word and token interchangeably it's",
+      "start": 953.399,
+      "duration": 4.721
+    },
+    {
+      "text": "because it's good for intuition the",
+      "start": 955.68,
+      "duration": 4.8
+    },
+    {
+      "text": "second thing is the embedding Dimension",
+      "start": 958.12,
+      "duration": 4.719
+    },
+    {
+      "text": "now every token in this vocabulary which",
+      "start": 960.48,
+      "duration": 4.479
+    },
+    {
+      "text": "we have will be projected into a vector",
+      "start": 962.839,
+      "duration": 4.92
+    },
+    {
+      "text": "space such as this so for example the",
+      "start": 964.959,
+      "duration": 4.961
+    },
+    {
+      "text": "tokens are your journey starts with one",
+      "start": 967.759,
+      "duration": 4.601
+    },
+    {
+      "text": "step here is a three-dimensional Vector",
+      "start": 969.92,
+      "duration": 4.76
+    },
+    {
+      "text": "representation of every single token",
+      "start": 972.36,
+      "duration": 6.399
+    },
+    {
+      "text": "right um and the embedding should be",
+      "start": 974.68,
+      "duration": 6.719
+    },
+    {
+      "text": "such that the meaning is captured so for",
+      "start": 978.759,
+      "duration": 4.76
+    },
+    {
+      "text": "example if journey and starts are more",
+      "start": 981.399,
+      "duration": 4.041
+    },
+    {
+      "text": "similar in meaning they would be closer",
+      "start": 983.519,
+      "duration": 4.12
+    },
+    {
+      "text": "together in this embedding space so this",
+      "start": 985.44,
+      "duration": 3.48
+    },
+    {
+      "text": "is a three-dimensional embedding",
+      "start": 987.639,
+      "duration": 3.921
+    },
+    {
+      "text": "embedding space in gpt2 we are using a",
+      "start": 988.92,
+      "duration": 5.08
+    },
+    {
+      "text": "768 dimensional embedding space it's",
+      "start": 991.56,
+      "duration": 4.32
+    },
+    {
+      "text": "very difficult to show this over here",
+      "start": 994.0,
+      "duration": 4.079
+    },
+    {
+      "text": "but you can imagine a 768 dimensional",
+      "start": 995.88,
+      "duration": 4.48
+    },
+    {
+      "text": "embedding space in which the words are",
+      "start": 998.079,
+      "duration": 4.961
+    },
+    {
+      "text": "projected now if you are thinking how do",
+      "start": 1000.36,
+      "duration": 4.44
+    },
+    {
+      "text": "we learn about these projections how do",
+      "start": 1003.04,
+      "duration": 4.0
+    },
+    {
+      "text": "we know which Vector Journey corresponds",
+      "start": 1004.8,
+      "duration": 5.519
+    },
+    {
+      "text": "to now that's also trained in gpt2 when",
+      "start": 1007.04,
+      "duration": 5.039
+    },
+    {
+      "text": "we look at the Transformer block you'll",
+      "start": 1010.319,
+      "duration": 4.281
+    },
+    {
+      "text": "see that the embedding itself is not",
+      "start": 1012.079,
+      "duration": 4.801
+    },
+    {
+      "text": "fixed we are going to train the",
+      "start": 1014.6,
+      "duration": 5.4
+    },
+    {
+      "text": "embedding layer so that uh every word is",
+      "start": 1016.88,
+      "duration": 5.399
+    },
+    {
+      "text": "embedded correctly so that semantic",
+      "start": 1020.0,
+      "duration": 5.039
+    },
+    {
+      "text": "meaning is captured the next thing is",
+      "start": 1022.279,
+      "duration": 4.8
+    },
+    {
+      "text": "the number of heads and these are the",
+      "start": 1025.039,
+      "duration": 3.441
+    },
+    {
+      "text": "number of attention heads which are",
+      "start": 1027.079,
+      "duration": 3.521
+    },
+    {
+      "text": "equal to 12 so if you look at this",
+      "start": 1028.48,
+      "duration": 4.4
+    },
+    {
+      "text": "diagram over here I told you that",
+      "start": 1030.6,
+      "duration": 5.239
+    },
+    {
+      "text": "multiple queries keys and values Matrix",
+      "start": 1032.88,
+      "duration": 5.439
+    },
+    {
+      "text": "matrices are created right so the more",
+      "start": 1035.839,
+      "duration": 4.161
+    },
+    {
+      "text": "the number of attention heads the more",
+      "start": 1038.319,
+      "duration": 4.081
+    },
+    {
+      "text": "the number of these matrices are created",
+      "start": 1040.0,
+      "duration": 4.12
+    },
+    {
+      "text": "so if we have 12 attention heads it",
+      "start": 1042.4,
+      "duration": 3.919
+    },
+    {
+      "text": "means there will be 12 such queries keys",
+      "start": 1044.12,
+      "duration": 3.199
+    },
+    {
+      "text": "and value",
+      "start": 1046.319,
+      "duration": 3.881
+    },
+    {
+      "text": "matrices so here the number of heads is",
+      "start": 1047.319,
+      "duration": 4.72
+    },
+    {
+      "text": "12 number of layers is the number of",
+      "start": 1050.2,
+      "duration": 4.08
+    },
+    {
+      "text": "Transformer blocks remember this is",
+      "start": 1052.039,
+      "duration": 3.721
+    },
+    {
+      "text": "different than the number of attention",
+      "start": 1054.28,
+      "duration": 4.04
+    },
+    {
+      "text": "heads number of layers is how many such",
+      "start": 1055.76,
+      "duration": 4.919
+    },
+    {
+      "text": "layers are we going to have so this is",
+      "start": 1058.32,
+      "duration": 5.2
+    },
+    {
+      "text": "one one Transformer block layer and it",
+      "start": 1060.679,
+      "duration": 5.161
+    },
+    {
+      "text": "includes multi-ad attention so within",
+      "start": 1063.52,
+      "duration": 3.68
+    },
+    {
+      "text": "this one layer there will be 12",
+      "start": 1065.84,
+      "duration": 4.44
+    },
+    {
+      "text": "attention heads but in terms of these",
+      "start": 1067.2,
+      "duration": 4.92
+    },
+    {
+      "text": "Transformer blocks itself there can be",
+      "start": 1070.28,
+      "duration": 5.04
+    },
+    {
+      "text": "12 blocks so it's not necessary that the",
+      "start": 1072.12,
+      "duration": 5.559
+    },
+    {
+      "text": "number of layers and number of heads are",
+      "start": 1075.32,
+      "duration": 3.88
+    },
+    {
+      "text": "similar",
+      "start": 1077.679,
+      "duration": 4.921
+    },
+    {
+      "text": "here we are using 12 Transformer blocks",
+      "start": 1079.2,
+      "duration": 5.28
+    },
+    {
+      "text": "U which will which will see later how",
+      "start": 1082.6,
+      "duration": 3.36
+    },
+    {
+      "text": "they are stacked up",
+      "start": 1084.48,
+      "duration": 4.0
+    },
+    {
+      "text": "together okay so number of layers is 12",
+      "start": 1085.96,
+      "duration": 4.44
+    },
+    {
+      "text": "then drop rate is basically the dropout",
+      "start": 1088.48,
+      "duration": 7.439
+    },
+    {
+      "text": "rate and uh query key value bias is or Q",
+      "start": 1090.4,
+      "duration": 7.44
+    },
+    {
+      "text": "KV bias is the bias term when we",
+      "start": 1095.919,
+      "duration": 3.64
+    },
+    {
+      "text": "initialize the query key and the value",
+      "start": 1097.84,
+      "duration": 5.52
+    },
+    {
+      "text": "matrix by default this is always set to",
+      "start": 1099.559,
+      "duration": 6.881
+    },
+    {
+      "text": "false okay so the number of Transformer",
+      "start": 1103.36,
+      "duration": 4.72
+    },
+    {
+      "text": "blocks one more thing which I want to",
+      "start": 1106.44,
+      "duration": 3.16
+    },
+    {
+      "text": "mention here is is that we are looking",
+      "start": 1108.08,
+      "duration": 4.599
+    },
+    {
+      "text": "at the gpt2 small model which use 12",
+      "start": 1109.6,
+      "duration": 4.92
+    },
+    {
+      "text": "transform which uses 12 Transformer",
+      "start": 1112.679,
+      "duration": 3.88
+    },
+    {
+      "text": "blocks right but as we saw over here",
+      "start": 1114.52,
+      "duration": 5.0
+    },
+    {
+      "text": "they had four models of gpt2 so if you",
+      "start": 1116.559,
+      "duration": 4.881
+    },
+    {
+      "text": "go from left to right here you'll see",
+      "start": 1119.52,
+      "duration": 4.279
+    },
+    {
+      "text": "small the medium has 24 transformer",
+      "start": 1121.44,
+      "duration": 5.239
+    },
+    {
+      "text": "blocks the large has 36 Transformer",
+      "start": 1123.799,
+      "duration": 5.801
+    },
+    {
+      "text": "blocks and the largest which is extra",
+      "start": 1126.679,
+      "duration": 5.441
+    },
+    {
+      "text": "large that has 48 Transformer blocks and",
+      "start": 1129.6,
+      "duration": 4.4
+    },
+    {
+      "text": "you'll see that the dimensionality also",
+      "start": 1132.12,
+      "duration": 3.96
+    },
+    {
+      "text": "increases from left to right we are",
+      "start": 1134.0,
+      "duration": 5.159
+    },
+    {
+      "text": "using 768 Dimension gp22 small but if",
+      "start": 1136.08,
+      "duration": 4.719
+    },
+    {
+      "text": "you go from left to right you'll see",
+      "start": 1139.159,
+      "duration": 4.801
+    },
+    {
+      "text": "that 10241 1280 and finally the gpt2",
+      "start": 1140.799,
+      "duration": 6.961
+    },
+    {
+      "text": "extra large has a dimensionality of",
+      "start": 1143.96,
+      "duration": 6.52
+    },
+    {
+      "text": "1600 okay so I hope you have understood",
+      "start": 1147.76,
+      "duration": 3.919
+    },
+    {
+      "text": "this this",
+      "start": 1150.48,
+      "duration": 3.36
+    },
+    {
+      "text": "configuration and what we are now going",
+      "start": 1151.679,
+      "duration": 3.961
+    },
+    {
+      "text": "to do is that now I'm going to take you",
+      "start": 1153.84,
+      "duration": 4.88
+    },
+    {
+      "text": "to code and I'm going to build a GPT",
+      "start": 1155.64,
+      "duration": 4.44
+    },
+    {
+      "text": "placeholder",
+      "start": 1158.72,
+      "duration": 3.48
+    },
+    {
+      "text": "architecture what does this mean this",
+      "start": 1160.08,
+      "duration": 3.839
+    },
+    {
+      "text": "basically means that whatever I showed",
+      "start": 1162.2,
+      "duration": 5.24
+    },
+    {
+      "text": "you over here right this thing this",
+      "start": 1163.919,
+      "duration": 5.64
+    },
+    {
+      "text": "thing whatever I showed you I know that",
+      "start": 1167.44,
+      "duration": 4.2
+    },
+    {
+      "text": "you have not yet understood the layer",
+      "start": 1169.559,
+      "duration": 4.841
+    },
+    {
+      "text": "normalization the shortcut connection",
+      "start": 1171.64,
+      "duration": 4.44
+    },
+    {
+      "text": "even the Transformer block what it",
+      "start": 1174.4,
+      "duration": 3.84
+    },
+    {
+      "text": "exactly has has what the speed forward",
+      "start": 1176.08,
+      "duration": 3.8
+    },
+    {
+      "text": "neural network is what the JLo",
+      "start": 1178.24,
+      "duration": 4.04
+    },
+    {
+      "text": "activation is right now what I want to",
+      "start": 1179.88,
+      "duration": 4.24
+    },
+    {
+      "text": "do is I just want to create a skeleton",
+      "start": 1182.28,
+      "duration": 3.399
+    },
+    {
+      "text": "for our code where these different",
+      "start": 1184.12,
+      "duration": 3.24
+    },
+    {
+      "text": "blocks will come in together we'll code",
+      "start": 1185.679,
+      "duration": 3.561
+    },
+    {
+      "text": "them later in subsequent parts and we'll",
+      "start": 1187.36,
+      "duration": 4.6
+    },
+    {
+      "text": "have a separate lecture for each of them",
+      "start": 1189.24,
+      "duration": 4.84
+    },
+    {
+      "text": "but right now we'll build a GPT",
+      "start": 1191.96,
+      "duration": 4.32
+    },
+    {
+      "text": "placeholder architecture which will also",
+      "start": 1194.08,
+      "duration": 5.2
+    },
+    {
+      "text": "called as the dummy GPT model",
+      "start": 1196.28,
+      "duration": 4.519
+    },
+    {
+      "text": "this will actually give a bird's eyee",
+      "start": 1199.28,
+      "duration": 3.84
+    },
+    {
+      "text": "view of how everything fits together so",
+      "start": 1200.799,
+      "duration": 4.24
+    },
+    {
+      "text": "here I have shown a bird's eye and this",
+      "start": 1203.12,
+      "duration": 4.32
+    },
+    {
+      "text": "is a bird's eye view so the reason this",
+      "start": 1205.039,
+      "duration": 4.441
+    },
+    {
+      "text": "Birds Eye is again very important is",
+      "start": 1207.44,
+      "duration": 4.16
+    },
+    {
+      "text": "that you'll see what we are planning to",
+      "start": 1209.48,
+      "duration": 4.079
+    },
+    {
+      "text": "do in the subsequent lectures and that's",
+      "start": 1211.6,
+      "duration": 4.0
+    },
+    {
+      "text": "why the skeleton is very important",
+      "start": 1213.559,
+      "duration": 4.201
+    },
+    {
+      "text": "especially for a complicated topic like",
+      "start": 1215.6,
+      "duration": 3.88
+    },
+    {
+      "text": "the llm architecture where multiple",
+      "start": 1217.76,
+      "duration": 3.72
+    },
+    {
+      "text": "things have to fit in together first",
+      "start": 1219.48,
+      "duration": 3.8
+    },
+    {
+      "text": "let's zoom out and see what all has to",
+      "start": 1221.48,
+      "duration": 4.0
+    },
+    {
+      "text": "fit in together and then in subsequent",
+      "start": 1223.28,
+      "duration": 4.72
+    },
+    {
+      "text": "lectures we'll start coding it out so",
+      "start": 1225.48,
+      "duration": 4.36
+    },
+    {
+      "text": "I'm going to take you to code right now",
+      "start": 1228.0,
+      "duration": 4.039
+    },
+    {
+      "text": "this is the GPT configuration 124",
+      "start": 1229.84,
+      "duration": 3.88
+    },
+    {
+      "text": "million parameters which we are going to",
+      "start": 1232.039,
+      "duration": 4.441
+    },
+    {
+      "text": "use so let's jump right into",
+      "start": 1233.72,
+      "duration": 6.199
+    },
+    {
+      "text": "it okay so now what we are going to do",
+      "start": 1236.48,
+      "duration": 5.52
+    },
+    {
+      "text": "is we are going to implement a GPT model",
+      "start": 1239.919,
+      "duration": 4.721
+    },
+    {
+      "text": "from scratch to generate text and I'll",
+      "start": 1242.0,
+      "duration": 4.28
+    },
+    {
+      "text": "show you exactly how the code is",
+      "start": 1244.64,
+      "duration": 3.8
+    },
+    {
+      "text": "executed but at every single step of the",
+      "start": 1246.28,
+      "duration": 3.48
+    },
+    {
+      "text": "code I'll again take you to the",
+      "start": 1248.44,
+      "duration": 3.4
+    },
+    {
+      "text": "Whiteboard so that you can visualize",
+      "start": 1249.76,
+      "duration": 4.32
+    },
+    {
+      "text": "what every parameter means it's very",
+      "start": 1251.84,
+      "duration": 4.719
+    },
+    {
+      "text": "important for you to read a sentence of",
+      "start": 1254.08,
+      "duration": 4.839
+    },
+    {
+      "text": "the code and to visualize how it how how",
+      "start": 1256.559,
+      "duration": 4.441
+    },
+    {
+      "text": "it looks like only then you'll really",
+      "start": 1258.919,
+      "duration": 4.281
+    },
+    {
+      "text": "understand the code so this is the GPT",
+      "start": 1261.0,
+      "duration": 3.72
+    },
+    {
+      "text": "configuration which we covered on the",
+      "start": 1263.2,
+      "duration": 3.04
+    },
+    {
+      "text": "Whiteboard I hope you have understood",
+      "start": 1264.72,
+      "duration": 3.52
+    },
+    {
+      "text": "the meaning of every single terminology",
+      "start": 1266.24,
+      "duration": 4.28
+    },
+    {
+      "text": "here if not just look up the meaning",
+      "start": 1268.24,
+      "duration": 4.36
+    },
+    {
+      "text": "once more or go through our previous",
+      "start": 1270.52,
+      "duration": 3.8
+    },
+    {
+      "text": "lectures but it's very important that",
+      "start": 1272.6,
+      "duration": 3.76
+    },
+    {
+      "text": "you don't just skim through it without",
+      "start": 1274.32,
+      "duration": 3.56
+    },
+    {
+      "text": "understanding the",
+      "start": 1276.36,
+      "duration": 4.0
+    },
+    {
+      "text": "meaning okay now as I told you we are",
+      "start": 1277.88,
+      "duration": 4.56
+    },
+    {
+      "text": "going to build the GPT architecture so",
+      "start": 1280.36,
+      "duration": 4.76
+    },
+    {
+      "text": "this is a dummy GPT model class we'll",
+      "start": 1282.44,
+      "duration": 4.52
+    },
+    {
+      "text": "use a placeholder for the Transformer",
+      "start": 1285.12,
+      "duration": 3.799
+    },
+    {
+      "text": "block we'll use a placeholder for the",
+      "start": 1286.96,
+      "duration": 5.76
+    },
+    {
+      "text": "layer normalization okay so first let me",
+      "start": 1288.919,
+      "duration": 5.841
+    },
+    {
+      "text": "give you a broad overview of what all do",
+      "start": 1292.72,
+      "duration": 4.959
+    },
+    {
+      "text": "we have here so we have a Dy GPT model",
+      "start": 1294.76,
+      "duration": 5.76
+    },
+    {
+      "text": "over here and it has the forward pass",
+      "start": 1297.679,
+      "duration": 4.88
+    },
+    {
+      "text": "what this forward or rather I should",
+      "start": 1300.52,
+      "duration": 3.72
+    },
+    {
+      "text": "call it the forward method what this",
+      "start": 1302.559,
+      "duration": 3.681
+    },
+    {
+      "text": "forward method does is that it takes an",
+      "start": 1304.24,
+      "duration": 4.24
+    },
+    {
+      "text": "input and at the end of this forward",
+      "start": 1306.24,
+      "duration": 4.799
+    },
+    {
+      "text": "method we are going to uh print out the",
+      "start": 1308.48,
+      "duration": 5.559
+    },
+    {
+      "text": "output this is what we are aiming to do",
+      "start": 1311.039,
+      "duration": 5.441
+    },
+    {
+      "text": "so if you look at the figure which um",
+      "start": 1314.039,
+      "duration": 5.561
+    },
+    {
+      "text": "Let me show this figure to you",
+      "start": 1316.48,
+      "duration": 5.12
+    },
+    {
+      "text": "here this is the main thing right so",
+      "start": 1319.6,
+      "duration": 3.679
+    },
+    {
+      "text": "what that forward method does is that it",
+      "start": 1321.6,
+      "duration": 4.48
+    },
+    {
+      "text": "takes an input which basically can just",
+      "start": 1323.279,
+      "duration": 6.0
+    },
+    {
+      "text": "be these words and then the aim of this",
+      "start": 1326.08,
+      "duration": 5.36
+    },
+    {
+      "text": "is to the aim of the forward pass is to",
+      "start": 1329.279,
+      "duration": 5.041
+    },
+    {
+      "text": "give you the next word in this case the",
+      "start": 1331.44,
+      "duration": 4.44
+    },
+    {
+      "text": "next word is forward so that's the",
+      "start": 1334.32,
+      "duration": 3.479
+    },
+    {
+      "text": "output so all of what we want to",
+      "start": 1335.88,
+      "duration": 4.919
+    },
+    {
+      "text": "implement somewhere lies in the middle",
+      "start": 1337.799,
+      "duration": 6.281
+    },
+    {
+      "text": "right um so there are two main blocks",
+      "start": 1340.799,
+      "duration": 5.561
+    },
+    {
+      "text": "which will be very important to us so",
+      "start": 1344.08,
+      "duration": 4.44
+    },
+    {
+      "text": "there is first the Transformer block we",
+      "start": 1346.36,
+      "duration": 3.6
+    },
+    {
+      "text": "we are going to create a class for the",
+      "start": 1348.52,
+      "duration": 3.32
+    },
+    {
+      "text": "Transformer block not in this lecture",
+      "start": 1349.96,
+      "duration": 4.0
+    },
+    {
+      "text": "but in later lectures and we are going",
+      "start": 1351.84,
+      "duration": 3.8
+    },
+    {
+      "text": "to create a class for the layer",
+      "start": 1353.96,
+      "duration": 3.64
+    },
+    {
+      "text": "normalization let me show you where",
+      "start": 1355.64,
+      "duration": 4.44
+    },
+    {
+      "text": "these come into the picture so if you",
+      "start": 1357.6,
+      "duration": 4.92
+    },
+    {
+      "text": "look at the Transformer block over here",
+      "start": 1360.08,
+      "duration": 4.479
+    },
+    {
+      "text": "the Transformer block consists of all of",
+      "start": 1362.52,
+      "duration": 3.48
+    },
+    {
+      "text": "these things right and layer",
+      "start": 1364.559,
+      "duration": 3.36
+    },
+    {
+      "text": "normalization is a very important part",
+      "start": 1366.0,
+      "duration": 4.64
+    },
+    {
+      "text": "of it layer normalization will also be",
+      "start": 1367.919,
+      "duration": 4.721
+    },
+    {
+      "text": "implemented before the Transformer and",
+      "start": 1370.64,
+      "duration": 4.0
+    },
+    {
+      "text": "after the Transformer but it is also",
+      "start": 1372.64,
+      "duration": 4.32
+    },
+    {
+      "text": "present within the Transformer itself so",
+      "start": 1374.64,
+      "duration": 4.72
+    },
+    {
+      "text": "we'll have a Transformer block we'll in",
+      "start": 1376.96,
+      "duration": 3.959
+    },
+    {
+      "text": "which we'll put all of these things what",
+      "start": 1379.36,
+      "duration": 3.24
+    },
+    {
+      "text": "I'm showing here and we'll have a",
+      "start": 1380.919,
+      "duration": 4.201
+    },
+    {
+      "text": "separate layer normalization block the",
+      "start": 1382.6,
+      "duration": 4.04
+    },
+    {
+      "text": "reason we are having a separate layer",
+      "start": 1385.12,
+      "duration": 4.0
+    },
+    {
+      "text": "normalization block is that it comes in",
+      "start": 1386.64,
+      "duration": 4.44
+    },
+    {
+      "text": "the Transformer block that's fine but it",
+      "start": 1389.12,
+      "duration": 4.08
+    },
+    {
+      "text": "also comes at other places so it's",
+      "start": 1391.08,
+      "duration": 4.68
+    },
+    {
+      "text": "better to define a separate class of it",
+      "start": 1393.2,
+      "duration": 4.28
+    },
+    {
+      "text": "so this is the class which will Define",
+      "start": 1395.76,
+      "duration": 3.76
+    },
+    {
+      "text": "later not now this is the class will",
+      "start": 1397.48,
+      "duration": 5.0
+    },
+    {
+      "text": "which will Define later not now now let",
+      "start": 1399.52,
+      "duration": 5.399
+    },
+    {
+      "text": "us see what what this forward method is",
+      "start": 1402.48,
+      "duration": 4.559
+    },
+    {
+      "text": "actually doing okay so the forward",
+      "start": 1404.919,
+      "duration": 5.201
+    },
+    {
+      "text": "method first takes in an input",
+      "start": 1407.039,
+      "duration": 6.0
+    },
+    {
+      "text": "and uh let me show you what that input",
+      "start": 1410.12,
+      "duration": 5.76
+    },
+    {
+      "text": "actually looks like",
+      "start": 1413.039,
+      "duration": 6.201
+    },
+    {
+      "text": "um okay",
+      "start": 1415.88,
+      "duration": 3.36
+    },
+    {
+      "text": "so I have just made some visualizations",
+      "start": 1419.279,
+      "duration": 4.721
+    },
+    {
+      "text": "over here so that you understand what's",
+      "start": 1422.039,
+      "duration": 5.281
+    },
+    {
+      "text": "going on yeah okay so the forward method",
+      "start": 1424.0,
+      "duration": 5.08
+    },
+    {
+      "text": "is going to take an input right and the",
+      "start": 1427.32,
+      "duration": 4.28
+    },
+    {
+      "text": "input let's say is this same thing let",
+      "start": 1429.08,
+      "duration": 5.92
+    },
+    {
+      "text": "me write it over here what's that input",
+      "start": 1431.6,
+      "duration": 7.079
+    },
+    {
+      "text": "the input is every effort moves you",
+      "start": 1435.0,
+      "duration": 5.559
+    },
+    {
+      "text": "let's say this is the input which is",
+      "start": 1438.679,
+      "duration": 4.681
+    },
+    {
+      "text": "which is passed to the forward method",
+      "start": 1440.559,
+      "duration": 5.0
+    },
+    {
+      "text": "let me write over here right and I'm",
+      "start": 1443.36,
+      "duration": 3.559
+    },
+    {
+      "text": "going to write this with a different",
+      "start": 1445.559,
+      "duration": 4.041
+    },
+    {
+      "text": "color so let's say the input",
+      "start": 1446.919,
+      "duration": 5.681
+    },
+    {
+      "text": "is",
+      "start": 1449.6,
+      "duration": 3.0
+    },
+    {
+      "text": "every every",
+      "start": 1454.039,
+      "duration": 3.601
+    },
+    {
+      "text": "effort",
+      "start": 1458.64,
+      "duration": 5.6
+    },
+    {
+      "text": "moves",
+      "start": 1461.24,
+      "duration": 3.0
+    },
+    {
+      "text": "you okay great so this is my input right",
+      "start": 1464.559,
+      "duration": 4.961
+    },
+    {
+      "text": "now the way this will be fed to the",
+      "start": 1467.84,
+      "duration": 4.76
+    },
+    {
+      "text": "forward method is that uh let me",
+      "start": 1469.52,
+      "duration": 4.879
+    },
+    {
+      "text": "actually show you",
+      "start": 1472.6,
+      "duration": 4.799
+    },
+    {
+      "text": "that so we are going to feed this input",
+      "start": 1474.399,
+      "duration": 5.321
+    },
+    {
+      "text": "to the forward method doing something",
+      "start": 1477.399,
+      "duration": 4.841
+    },
+    {
+      "text": "like this so let's say every effort",
+      "start": 1479.72,
+      "duration": 4.36
+    },
+    {
+      "text": "moves you is the input right we are",
+      "start": 1482.24,
+      "duration": 4.039
+    },
+    {
+      "text": "first going to use the tick token",
+      "start": 1484.08,
+      "duration": 4.28
+    },
+    {
+      "text": "tokenizer which is the bite pair encoder",
+      "start": 1486.279,
+      "duration": 4.12
+    },
+    {
+      "text": "and we are going to convert these tokens",
+      "start": 1488.36,
+      "duration": 5.199
+    },
+    {
+      "text": "into token IDs so remember the workflow",
+      "start": 1490.399,
+      "duration": 6.88
+    },
+    {
+      "text": "which we saw over here every token here",
+      "start": 1493.559,
+      "duration": 5.961
+    },
+    {
+      "text": "see every token is essentially converted",
+      "start": 1497.279,
+      "duration": 5.481
+    },
+    {
+      "text": "into token IDs and then everything later",
+      "start": 1499.52,
+      "duration": 5.84
+    },
+    {
+      "text": "after this point happens within the GPT",
+      "start": 1502.76,
+      "duration": 5.76
+    },
+    {
+      "text": "model class but till this stage we have",
+      "start": 1505.36,
+      "duration": 5.6
+    },
+    {
+      "text": "to do it outside and then pass the token",
+      "start": 1508.52,
+      "duration": 5.879
+    },
+    {
+      "text": "IDs to the GPT model class so now we",
+      "start": 1510.96,
+      "duration": 5.48
+    },
+    {
+      "text": "have this every effort moves you right",
+      "start": 1514.399,
+      "duration": 4.28
+    },
+    {
+      "text": "this will be converted into a token ID",
+      "start": 1516.44,
+      "duration": 4.28
+    },
+    {
+      "text": "this will be converted into a token ID",
+      "start": 1518.679,
+      "duration": 3.841
+    },
+    {
+      "text": "this will be converted into a token ID",
+      "start": 1520.72,
+      "duration": 3.4
+    },
+    {
+      "text": "and this will be converted into a token",
+      "start": 1522.52,
+      "duration": 4.36
+    },
+    {
+      "text": "ID right the first step is that every",
+      "start": 1524.12,
+      "duration": 6.36
+    },
+    {
+      "text": "token ID will be converted into token",
+      "start": 1526.88,
+      "duration": 7.64
+    },
+    {
+      "text": "embedding uh and so what that means is",
+      "start": 1530.48,
+      "duration": 7.24
+    },
+    {
+      "text": "every token ID so let's say this is ID",
+      "start": 1534.52,
+      "duration": 7.36
+    },
+    {
+      "text": "1 let's say this is ID 1 this is id2",
+      "start": 1537.72,
+      "duration": 7.72
+    },
+    {
+      "text": "this is ID3 and this is ID 4 right each",
+      "start": 1541.88,
+      "duration": 5.24
+    },
+    {
+      "text": "of these token IDs will need to be",
+      "start": 1545.44,
+      "duration": 4.16
+    },
+    {
+      "text": "converted into a",
+      "start": 1547.12,
+      "duration": 6.08
+    },
+    {
+      "text": "768 a 768",
+      "start": 1549.6,
+      "duration": 6.76
+    },
+    {
+      "text": "Vector 768 Vector embedding essentially",
+      "start": 1553.2,
+      "duration": 5.52
+    },
+    {
+      "text": "that is going to be the input embedding",
+      "start": 1556.36,
+      "duration": 4.52
+    },
+    {
+      "text": "and the way we are going to do that is",
+      "start": 1558.72,
+      "duration": 3.72
+    },
+    {
+      "text": "that we are going to first create a",
+      "start": 1560.88,
+      "duration": 3.56
+    },
+    {
+      "text": "token embedding",
+      "start": 1562.44,
+      "duration": 5.2
+    },
+    {
+      "text": "layer and for that we will use the nn.",
+      "start": 1564.44,
+      "duration": 6.479
+    },
+    {
+      "text": "embedding in pytorch what this layer",
+      "start": 1567.64,
+      "duration": 6.279
+    },
+    {
+      "text": "actually does is that uh it creates this",
+      "start": 1570.919,
+      "duration": 4.681
+    },
+    {
+      "text": "Matrix which is called as the token",
+      "start": 1573.919,
+      "duration": 4.601
+    },
+    {
+      "text": "embedding Matrix it has rows which is",
+      "start": 1575.6,
+      "duration": 5.4
+    },
+    {
+      "text": "equal to the model vocabulary size and",
+      "start": 1578.52,
+      "duration": 4.32
+    },
+    {
+      "text": "every row basically corresponds to one",
+      "start": 1581.0,
+      "duration": 4.799
+    },
+    {
+      "text": "token ID and every Row the length of",
+      "start": 1582.84,
+      "duration": 5.8
+    },
+    {
+      "text": "every row is essentially 768 so now if",
+      "start": 1585.799,
+      "duration": 6.0
+    },
+    {
+      "text": "you want to uh find the vector embedding",
+      "start": 1588.64,
+      "duration": 5.72
+    },
+    {
+      "text": "for ID number one let's say ID number",
+      "start": 1591.799,
+      "duration": 5.12
+    },
+    {
+      "text": "one is 44 you just look at the 44 throw",
+      "start": 1594.36,
+      "duration": 4.919
+    },
+    {
+      "text": "over here and you get the 768",
+      "start": 1596.919,
+      "duration": 4.721
+    },
+    {
+      "text": "dimensional Vector if you want to look",
+      "start": 1599.279,
+      "duration": 5.441
+    },
+    {
+      "text": "at the let's say for effort the ID is 64",
+      "start": 1601.64,
+      "duration": 5.36
+    },
+    {
+      "text": "you look at ID number 64 for effort you",
+      "start": 1604.72,
+      "duration": 5.319
+    },
+    {
+      "text": "get the 768 dimensional Vector similarly",
+      "start": 1607.0,
+      "duration": 6.559
+    },
+    {
+      "text": "U let's say the ID for U is 85 or or",
+      "start": 1610.039,
+      "duration": 6.321
+    },
+    {
+      "text": "rather 40,000 you go downward and you",
+      "start": 1613.559,
+      "duration": 5.761
+    },
+    {
+      "text": "get you go to the 40,000 row and you get",
+      "start": 1616.36,
+      "duration": 6.48
+    },
+    {
+      "text": "the 768 Vector 768 dimensional input",
+      "start": 1619.32,
+      "duration": 4.92
+    },
+    {
+      "text": "embedding",
+      "start": 1622.84,
+      "duration": 3.64
+    },
+    {
+      "text": "Vector now that's why this token",
+      "start": 1624.24,
+      "duration": 3.84
+    },
+    {
+      "text": "embedding Matrix is also called as the",
+      "start": 1626.48,
+      "duration": 3.72
+    },
+    {
+      "text": "lookup Matrix you just pass in the token",
+      "start": 1628.08,
+      "duration": 4.04
+    },
+    {
+      "text": "IDs and it gives you the vector",
+      "start": 1630.2,
+      "duration": 4.24
+    },
+    {
+      "text": "embeddings remember that all of the",
+      "start": 1632.12,
+      "duration": 4.88
+    },
+    {
+      "text": "parameters here here everywhere in this",
+      "start": 1634.44,
+      "duration": 4.28
+    },
+    {
+      "text": "token embedding Matrix they will be",
+      "start": 1637.0,
+      "duration": 3.96
+    },
+    {
+      "text": "initialized randomly for now and we will",
+      "start": 1638.72,
+      "duration": 4.319
+    },
+    {
+      "text": "train these parameters so when we",
+      "start": 1640.96,
+      "duration": 4.079
+    },
+    {
+      "text": "initialize this token embedding layer it",
+      "start": 1643.039,
+      "duration": 4.161
+    },
+    {
+      "text": "initializes the parameters from a goian",
+      "start": 1645.039,
+      "duration": 4.441
+    },
+    {
+      "text": "distribution and then they are",
+      "start": 1647.2,
+      "duration": 4.16
+    },
+    {
+      "text": "initialized randomly later when we do",
+      "start": 1649.48,
+      "duration": 4.0
+    },
+    {
+      "text": "back propagation we'll train these for",
+      "start": 1651.36,
+      "duration": 4.36
+    },
+    {
+      "text": "now when when you look at all these",
+      "start": 1653.48,
+      "duration": 4.24
+    },
+    {
+      "text": "embedding matrices just just know that",
+      "start": 1655.72,
+      "duration": 4.72
+    },
+    {
+      "text": "their values are random for now okay so",
+      "start": 1657.72,
+      "duration": 4.52
+    },
+    {
+      "text": "the first step is to convert all of",
+      "start": 1660.44,
+      "duration": 3.119
+    },
+    {
+      "text": "these tokens",
+      "start": 1662.24,
+      "duration": 4.64
+    },
+    {
+      "text": "into um token embeddings which are 768",
+      "start": 1663.559,
+      "duration": 6.0
+    },
+    {
+      "text": "embedding uh vectors and you'll see that",
+      "start": 1666.88,
+      "duration": 5.36
+    },
+    {
+      "text": "that has been done over here so when you",
+      "start": 1669.559,
+      "duration": 4.561
+    },
+    {
+      "text": "go to the forward method first what you",
+      "start": 1672.24,
+      "duration": 4.679
+    },
+    {
+      "text": "do is you look at the input shape right",
+      "start": 1674.12,
+      "duration": 4.72
+    },
+    {
+      "text": "the input shape is basic basically batch",
+      "start": 1676.919,
+      "duration": 4.6
+    },
+    {
+      "text": "size which are the number of rows and",
+      "start": 1678.84,
+      "duration": 6.6
+    },
+    {
+      "text": "the sequence length which is essentially",
+      "start": 1681.519,
+      "duration": 6.201
+    },
+    {
+      "text": "uh the length of the number of tokens",
+      "start": 1685.44,
+      "duration": 4.52
+    },
+    {
+      "text": "which we are considering so for example",
+      "start": 1687.72,
+      "duration": 5.0
+    },
+    {
+      "text": "let us look at",
+      "start": 1689.96,
+      "duration": 5.76
+    },
+    {
+      "text": "this this is for example one such batch",
+      "start": 1692.72,
+      "duration": 5.679
+    },
+    {
+      "text": "right so I have in this batch two the",
+      "start": 1695.72,
+      "duration": 4.559
+    },
+    {
+      "text": "batch length the batch size is two so",
+      "start": 1698.399,
+      "duration": 3.441
+    },
+    {
+      "text": "there are two rows in this tensor and",
+      "start": 1700.279,
+      "duration": 3.161
+    },
+    {
+      "text": "the number of columns are the number of",
+      "start": 1701.84,
+      "duration": 3.88
+    },
+    {
+      "text": "tokens which I'm going to use for now",
+      "start": 1703.44,
+      "duration": 4.4
+    },
+    {
+      "text": "let's just look at one batch so I'm I'm",
+      "start": 1705.72,
+      "duration": 4.679
+    },
+    {
+      "text": "feeding reading in four tokens and which",
+      "start": 1707.84,
+      "duration": 4.719
+    },
+    {
+      "text": "are my input inputs and then I want to",
+      "start": 1710.399,
+      "duration": 4.601
+    },
+    {
+      "text": "get the next word so every effort moves",
+      "start": 1712.559,
+      "duration": 4.401
+    },
+    {
+      "text": "you forward which will be the next to it",
+      "start": 1715.0,
+      "duration": 4.48
+    },
+    {
+      "text": "right so that's why the shape is batch",
+      "start": 1716.96,
+      "duration": 4.28
+    },
+    {
+      "text": "size and sequence length so batch size",
+      "start": 1719.48,
+      "duration": 3.28
+    },
+    {
+      "text": "is in the example which I showed you",
+      "start": 1721.24,
+      "duration": 3.2
+    },
+    {
+      "text": "there are two batches so two rows and",
+      "start": 1722.76,
+      "duration": 3.519
+    },
+    {
+      "text": "sequence length is the number of tokens",
+      "start": 1724.44,
+      "duration": 4.32
+    },
+    {
+      "text": "basically great so the first thing what",
+      "start": 1726.279,
+      "duration": 4.801
+    },
+    {
+      "text": "we are going to do is that we are going",
+      "start": 1728.76,
+      "duration": 5.279
+    },
+    {
+      "text": "to create the token embeddings out of",
+      "start": 1731.08,
+      "duration": 7.079
+    },
+    {
+      "text": "the input um input index which is the",
+      "start": 1734.039,
+      "duration": 6.12
+    },
+    {
+      "text": "inputs which we have given now take a",
+      "start": 1738.159,
+      "duration": 3.601
+    },
+    {
+      "text": "look at these inputs and just look at",
+      "start": 1740.159,
+      "duration": 3.841
+    },
+    {
+      "text": "the first batch the first batch is a",
+      "start": 1741.76,
+      "duration": 4.96
+    },
+    {
+      "text": "list of token IDs which you which uh",
+      "start": 1744.0,
+      "duration": 4.72
+    },
+    {
+      "text": "have been mentioned over here what we'll",
+      "start": 1746.72,
+      "duration": 4.12
+    },
+    {
+      "text": "do with these token IDs is we will then",
+      "start": 1748.72,
+      "duration": 4.64
+    },
+    {
+      "text": "query or look up the token embedding",
+      "start": 1750.84,
+      "duration": 4.8
+    },
+    {
+      "text": "Matrix and then retrieve those input",
+      "start": 1753.36,
+      "duration": 4.919
+    },
+    {
+      "text": "embedding vectors so for this token ID",
+      "start": 1755.64,
+      "duration": 5.0
+    },
+    {
+      "text": "there will be a 768 dimensional Vector",
+      "start": 1758.279,
+      "duration": 4.441
+    },
+    {
+      "text": "for this token ID there will be a 768",
+      "start": 1760.64,
+      "duration": 4.44
+    },
+    {
+      "text": "dimensional Vector Etc so you might be",
+      "start": 1762.72,
+      "duration": 4.439
+    },
+    {
+      "text": "thinking where is that embedding Matrix",
+      "start": 1765.08,
+      "duration": 4.16
+    },
+    {
+      "text": "so that has been created in the init",
+      "start": 1767.159,
+      "duration": 4.52
+    },
+    {
+      "text": "Constructor which is invoked by default",
+      "start": 1769.24,
+      "duration": 4.319
+    },
+    {
+      "text": "so see first we have a token embedding",
+      "start": 1771.679,
+      "duration": 4.48
+    },
+    {
+      "text": "Matrix which has been created uh the",
+      "start": 1773.559,
+      "duration": 4.921
+    },
+    {
+      "text": "number of rows of this Matrix are equal",
+      "start": 1776.159,
+      "duration": 4.36
+    },
+    {
+      "text": "to the vocabulary size exactly what we",
+      "start": 1778.48,
+      "duration": 3.48
+    },
+    {
+      "text": "have written over",
+      "start": 1780.519,
+      "duration": 3.88
+    },
+    {
+      "text": "here the number of rows of this token",
+      "start": 1781.96,
+      "duration": 3.839
+    },
+    {
+      "text": "embedding Matrix is equal to the",
+      "start": 1784.399,
+      "duration": 3.441
+    },
+    {
+      "text": "vocabulary size and the number of",
+      "start": 1785.799,
+      "duration": 3.801
+    },
+    {
+      "text": "columns of this token embedding Matrix",
+      "start": 1787.84,
+      "duration": 4.36
+    },
+    {
+      "text": "is the embedding Dimension why because",
+      "start": 1789.6,
+      "duration": 6.48
+    },
+    {
+      "text": "every token or every token ID has a 768",
+      "start": 1792.2,
+      "duration": 6.16
+    },
+    {
+      "text": "dimensional Vector associated with it so",
+      "start": 1796.08,
+      "duration": 5.0
+    },
+    {
+      "text": "the number of uh columns which are there",
+      "start": 1798.36,
+      "duration": 6.08
+    },
+    {
+      "text": "is equal to the 768 so for every token",
+      "start": 1801.08,
+      "duration": 7.439
+    },
+    {
+      "text": "ID essentially there will be 768 columns",
+      "start": 1804.44,
+      "duration": 7.359
+    },
+    {
+      "text": "uh so this is the embedding uh token",
+      "start": 1808.519,
+      "duration": 4.961
+    },
+    {
+      "text": "embedding weight Matrix which has been",
+      "start": 1811.799,
+      "duration": 4.24
+    },
+    {
+      "text": "created using this pytorch embedding",
+      "start": 1813.48,
+      "duration": 4.559
+    },
+    {
+      "text": "class and what we are doing here",
+      "start": 1816.039,
+      "duration": 3.76
+    },
+    {
+      "text": "essentially in the forward method is",
+      "start": 1818.039,
+      "duration": 4.561
+    },
+    {
+      "text": "that we are looking at the input token",
+      "start": 1819.799,
+      "duration": 4.401
+    },
+    {
+      "text": "IDs which have been mentioned in our",
+      "start": 1822.6,
+      "duration": 4.319
+    },
+    {
+      "text": "batch and we are going to look up that",
+      "start": 1824.2,
+      "duration": 5.12
+    },
+    {
+      "text": "token embedding Matrix and we'll get the",
+      "start": 1826.919,
+      "duration": 4.88
+    },
+    {
+      "text": "token embeddings for the inputs so we'll",
+      "start": 1829.32,
+      "duration": 5.56
+    },
+    {
+      "text": "essentially have four four 768",
+      "start": 1831.799,
+      "duration": 4.921
+    },
+    {
+      "text": "dimensional vectors for the first batch",
+      "start": 1834.88,
+      "duration": 3.84
+    },
+    {
+      "text": "and we'll have four 768 dimensional",
+      "start": 1836.72,
+      "duration": 3.72
+    },
+    {
+      "text": "vectors for the second",
+      "start": 1838.72,
+      "duration": 4.28
+    },
+    {
+      "text": "batch great The Next Step which we are",
+      "start": 1840.44,
+      "duration": 4.88
+    },
+    {
+      "text": "going to do after getting the token IDs",
+      "start": 1843.0,
+      "duration": 4.12
+    },
+    {
+      "text": "is we have to get the positional",
+      "start": 1845.32,
+      "duration": 4.839
+    },
+    {
+      "text": "embedding right so remember up till now",
+      "start": 1847.12,
+      "duration": 5.84
+    },
+    {
+      "text": "we have uh we have a 768 dimensional",
+      "start": 1850.159,
+      "duration": 5.64
+    },
+    {
+      "text": "Vector for id1 a 768 dimensional Vector",
+      "start": 1852.96,
+      "duration": 5.679
+    },
+    {
+      "text": "for id2 a 768 dimensional VOR VOR for ID",
+      "start": 1855.799,
+      "duration": 5.921
+    },
+    {
+      "text": "3 and a 768 dimensional Vector for ID",
+      "start": 1858.639,
+      "duration": 4.961
+    },
+    {
+      "text": "number",
+      "start": 1861.72,
+      "duration": 4.12
+    },
+    {
+      "text": "four now what we are essentially going",
+      "start": 1863.6,
+      "duration": 4.64
+    },
+    {
+      "text": "to do is that we are going to add a",
+      "start": 1865.84,
+      "duration": 5.6
+    },
+    {
+      "text": "positional embedding to each of these",
+      "start": 1868.24,
+      "duration": 5.96
+    },
+    {
+      "text": "four vectors okay so for that first we",
+      "start": 1871.44,
+      "duration": 4.28
+    },
+    {
+      "text": "need a positional embedding weight",
+      "start": 1874.2,
+      "duration": 3.16
+    },
+    {
+      "text": "Matrix very similar to the Token",
+      "start": 1875.72,
+      "duration": 4.28
+    },
+    {
+      "text": "embedding weight Matrix so remember the",
+      "start": 1877.36,
+      "duration": 4.4
+    },
+    {
+      "text": "positional embedding really depends on",
+      "start": 1880.0,
+      "duration": 5.88
+    },
+    {
+      "text": "the context size because uh at for uh",
+      "start": 1881.76,
+      "duration": 7.879
+    },
+    {
+      "text": "we'll take let's say Contex size is 1024",
+      "start": 1885.88,
+      "duration": 6.919
+    },
+    {
+      "text": "at Max we'll use 1024 tokens to predict",
+      "start": 1889.639,
+      "duration": 5.28
+    },
+    {
+      "text": "the next word right so we just need to",
+      "start": 1892.799,
+      "duration": 5.081
+    },
+    {
+      "text": "know the uh let's say the position is",
+      "start": 1894.919,
+      "duration": 6.321
+    },
+    {
+      "text": "one so let's say the position is one we",
+      "start": 1897.88,
+      "duration": 5.2
+    },
+    {
+      "text": "need a positional embedding Vector for",
+      "start": 1901.24,
+      "duration": 4.159
+    },
+    {
+      "text": "this position if the position is three",
+      "start": 1903.08,
+      "duration": 3.959
+    },
+    {
+      "text": "or two we need a positional embedding",
+      "start": 1905.399,
+      "duration": 3.721
+    },
+    {
+      "text": "Vector for this position similarly if",
+      "start": 1907.039,
+      "duration": 4.041
+    },
+    {
+      "text": "the position is 1024 we need a",
+      "start": 1909.12,
+      "duration": 4.0
+    },
+    {
+      "text": "positional embedding Vector for this we",
+      "start": 1911.08,
+      "duration": 3.68
+    },
+    {
+      "text": "don't need a positional embedding Vector",
+      "start": 1913.12,
+      "duration": 4.88
+    },
+    {
+      "text": "for one to5 why because we are not we",
+      "start": 1914.76,
+      "duration": 5.879
+    },
+    {
+      "text": "are not looking at uh the context window",
+      "start": 1918.0,
+      "duration": 5.24
+    },
+    {
+      "text": "of 1025 we are only going to look at",
+      "start": 1920.639,
+      "duration": 5.561
+    },
+    {
+      "text": "maximum one24 tokens at once and predict",
+      "start": 1923.24,
+      "duration": 4.0
+    },
+    {
+      "text": "the next",
+      "start": 1926.2,
+      "duration": 3.64
+    },
+    {
+      "text": "word so that's why the number of rows in",
+      "start": 1927.24,
+      "duration": 4.399
+    },
+    {
+      "text": "the positional embedding Matrix is the",
+      "start": 1929.84,
+      "duration": 4.04
+    },
+    {
+      "text": "equal to the context size but if you see",
+      "start": 1931.639,
+      "duration": 3.801
+    },
+    {
+      "text": "the number of columns they are still",
+      "start": 1933.88,
+      "duration": 4.12
+    },
+    {
+      "text": "equal to the embedding size and that is",
+      "start": 1935.44,
+      "duration": 4.119
+    },
+    {
+      "text": "important because we are going to add",
+      "start": 1938.0,
+      "duration": 4.12
+    },
+    {
+      "text": "the positional embedding vectors to the",
+      "start": 1939.559,
+      "duration": 3.641
+    },
+    {
+      "text": "Token",
+      "start": 1942.12,
+      "duration": 3.2
+    },
+    {
+      "text": "embedding uh to the Token embedding",
+      "start": 1943.2,
+      "duration": 4.959
+    },
+    {
+      "text": "vectors so here there are four token",
+      "start": 1945.32,
+      "duration": 5.479
+    },
+    {
+      "text": "embedding vectors of 768 Dimensions each",
+      "start": 1948.159,
+      "duration": 6.321
+    },
+    {
+      "text": "right to each of these we will have four",
+      "start": 1950.799,
+      "duration": 6.72
+    },
+    {
+      "text": "positional embedding vectors so now uh",
+      "start": 1954.48,
+      "duration": 5.72
+    },
+    {
+      "text": "every effort moves you let's say so it's",
+      "start": 1957.519,
+      "duration": 4.601
+    },
+    {
+      "text": "position number one position number two",
+      "start": 1960.2,
+      "duration": 3.359
+    },
+    {
+      "text": "position number three and position",
+      "start": 1962.12,
+      "duration": 4.279
+    },
+    {
+      "text": "number four right so we will get the",
+      "start": 1963.559,
+      "duration": 4.6
+    },
+    {
+      "text": "positional M Vector corresponding to",
+      "start": 1966.399,
+      "duration": 4.52
+    },
+    {
+      "text": "First Position second position third",
+      "start": 1968.159,
+      "duration": 4.801
+    },
+    {
+      "text": "position and fourth position and we'll",
+      "start": 1970.919,
+      "duration": 5.081
+    },
+    {
+      "text": "add them uh to each of these token",
+      "start": 1972.96,
+      "duration": 5.599
+    },
+    {
+      "text": "embedding vectors the context size is",
+      "start": 1976.0,
+      "duration": 5.08
+    },
+    {
+      "text": "1024 but for now I'm just showing you a",
+      "start": 1978.559,
+      "duration": 6.561
+    },
+    {
+      "text": "simple version of four context size but",
+      "start": 1981.08,
+      "duration": 5.92
+    },
+    {
+      "text": "the main point I'm trying to illustrate",
+      "start": 1985.12,
+      "duration": 3.519
+    },
+    {
+      "text": "here is that once we get the token",
+      "start": 1987.0,
+      "duration": 3.919
+    },
+    {
+      "text": "embedding vectors for these four tokens",
+      "start": 1988.639,
+      "duration": 3.801
+    },
+    {
+      "text": "We'll add them with the positional",
+      "start": 1990.919,
+      "duration": 2.841
+    },
+    {
+      "text": "embedding",
+      "start": 1992.44,
+      "duration": 3.959
+    },
+    {
+      "text": "vectors okay so here you can see that",
+      "start": 1993.76,
+      "duration": 5.2
+    },
+    {
+      "text": "first a positional embedding Matrix is",
+      "start": 1996.399,
+      "duration": 4.64
+    },
+    {
+      "text": "also initialized when this init",
+      "start": 1998.96,
+      "duration": 4.319
+    },
+    {
+      "text": "Constructor is called and the number of",
+      "start": 2001.039,
+      "duration": 3.921
+    },
+    {
+      "text": "rows here are equal to the context",
+      "start": 2003.279,
+      "duration": 3.561
+    },
+    {
+      "text": "length which is exactly what I showed",
+      "start": 2004.96,
+      "duration": 4.92
+    },
+    {
+      "text": "you uh over here the number of rows are",
+      "start": 2006.84,
+      "duration": 4.48
+    },
+    {
+      "text": "equal to the context length or the",
+      "start": 2009.88,
+      "duration": 3.679
+    },
+    {
+      "text": "context size and the number of columns",
+      "start": 2011.32,
+      "duration": 4.479
+    },
+    {
+      "text": "are equal to the embedding Dimension so",
+      "start": 2013.559,
+      "duration": 5.08
+    },
+    {
+      "text": "this is again a nn. embedding which is",
+      "start": 2015.799,
+      "duration": 5.201
+    },
+    {
+      "text": "very similar to the embedding class or",
+      "start": 2018.639,
+      "duration": 3.801
+    },
+    {
+      "text": "exactly the same embedding class which",
+      "start": 2021.0,
+      "duration": 3.639
+    },
+    {
+      "text": "we used for token embedding again these",
+      "start": 2022.44,
+      "duration": 4.04
+    },
+    {
+      "text": "will be initialized randomly for now",
+      "start": 2024.639,
+      "duration": 3.16
+    },
+    {
+      "text": "we'll train them",
+      "start": 2026.48,
+      "duration": 3.72
+    },
+    {
+      "text": "later now what we'll be doing is that",
+      "start": 2027.799,
+      "duration": 3.561
+    },
+    {
+      "text": "based on the",
+      "start": 2030.2,
+      "duration": 5.68
+    },
+    {
+      "text": "positions um in the in the tokens we are",
+      "start": 2031.36,
+      "duration": 7.039
+    },
+    {
+      "text": "going to uh qu",
+      "start": 2035.88,
+      "duration": 3.799
+    },
+    {
+      "text": "or we are going to look up the",
+      "start": 2038.399,
+      "duration": 3.801
+    },
+    {
+      "text": "positional embedding Matrix so torch.",
+      "start": 2039.679,
+      "duration": 4.6
+    },
+    {
+      "text": "arrange sequence length what this will",
+      "start": 2042.2,
+      "duration": 4.16
+    },
+    {
+      "text": "this is going to do is that it will look",
+      "start": 2044.279,
+      "duration": 3.84
+    },
+    {
+      "text": "at the token length so in this case the",
+      "start": 2046.36,
+      "duration": 5.16
+    },
+    {
+      "text": "token length uh let's say right now the",
+      "start": 2048.119,
+      "duration": 5.96
+    },
+    {
+      "text": "token length is equal to 4 right the",
+      "start": 2051.52,
+      "duration": 4.2
+    },
+    {
+      "text": "token length is equal to four in this",
+      "start": 2054.079,
+      "duration": 3.681
+    },
+    {
+      "text": "batch which I given so it will arrange",
+      "start": 2055.72,
+      "duration": 4.52
+    },
+    {
+      "text": "it as 0 1 2 and three and it will get",
+      "start": 2057.76,
+      "duration": 5.119
+    },
+    {
+      "text": "the positional embedding uh it will get",
+      "start": 2060.24,
+      "duration": 4.32
+    },
+    {
+      "text": "the positional embedding vectors for row",
+      "start": 2062.879,
+      "duration": 3.561
+    },
+    {
+      "text": "number zero row number one row number",
+      "start": 2064.56,
+      "duration": 5.0
+    },
+    {
+      "text": "two and row number three three and then",
+      "start": 2066.44,
+      "duration": 4.919
+    },
+    {
+      "text": "it will then what we are going to do is",
+      "start": 2069.56,
+      "duration": 3.839
+    },
+    {
+      "text": "we are going to add the token embeddings",
+      "start": 2071.359,
+      "duration": 4.601
+    },
+    {
+      "text": "for the four tokens and we are going to",
+      "start": 2073.399,
+      "duration": 4.601
+    },
+    {
+      "text": "add the positional embeddings for the",
+      "start": 2075.96,
+      "duration": 6.639
+    },
+    {
+      "text": "four tokens so the X the um we have the",
+      "start": 2078.0,
+      "duration": 6.24
+    },
+    {
+      "text": "input initially right the way it's been",
+      "start": 2082.599,
+      "duration": 3.601
+    },
+    {
+      "text": "transformed is like this so the four",
+      "start": 2084.24,
+      "duration": 4.48
+    },
+    {
+      "text": "tokens which we had in every batch uh",
+      "start": 2086.2,
+      "duration": 5.24
+    },
+    {
+      "text": "we'll convert them into 768 dimensional",
+      "start": 2088.72,
+      "duration": 5.72
+    },
+    {
+      "text": "input vectors we'll then add the 768",
+      "start": 2091.44,
+      "duration": 4.639
+    },
+    {
+      "text": "dimensional positional vectors to each",
+      "start": 2094.44,
+      "duration": 4.84
+    },
+    {
+      "text": "of them and then finally we have a 768",
+      "start": 2096.079,
+      "duration": 6.681
+    },
+    {
+      "text": "dimensional uh embedding Vector for each",
+      "start": 2099.28,
+      "duration": 4.68
+    },
+    {
+      "text": "of these",
+      "start": 2102.76,
+      "duration": 4.28
+    },
+    {
+      "text": "tokens awesome so now next what we are",
+      "start": 2103.96,
+      "duration": 4.72
+    },
+    {
+      "text": "going to do is the next step is",
+      "start": 2107.04,
+      "duration": 3.96
+    },
+    {
+      "text": "something which is called as drop EMB",
+      "start": 2108.68,
+      "duration": 4.6
+    },
+    {
+      "text": "which is the Dropout embedding uh so",
+      "start": 2111.0,
+      "duration": 4.2
+    },
+    {
+      "text": "this is just the dropout rate so what it",
+      "start": 2113.28,
+      "duration": 4.559
+    },
+    {
+      "text": "will do is that it will take these uh it",
+      "start": 2115.2,
+      "duration": 5.76
+    },
+    {
+      "text": "will take the embedding vectors for um",
+      "start": 2117.839,
+      "duration": 5.321
+    },
+    {
+      "text": "all the tokens and it will randomly turn",
+      "start": 2120.96,
+      "duration": 4.48
+    },
+    {
+      "text": "off some weight values this generally",
+      "start": 2123.16,
+      "duration": 4.199
+    },
+    {
+      "text": "helps the generalization performance and",
+      "start": 2125.44,
+      "duration": 4.679
+    },
+    {
+      "text": "prev overfitting we'll look at this in",
+      "start": 2127.359,
+      "duration": 5.441
+    },
+    {
+      "text": "detail in one of the next classes after",
+      "start": 2130.119,
+      "duration": 6.521
+    },
+    {
+      "text": "we get these uh embedding vectors let me",
+      "start": 2132.8,
+      "duration": 6.52
+    },
+    {
+      "text": "show you the figure what happens next so",
+      "start": 2136.64,
+      "duration": 4.68
+    },
+    {
+      "text": "once we get these embedding vectors as I",
+      "start": 2139.32,
+      "duration": 6.08
+    },
+    {
+      "text": "showed you over here",
+      "start": 2141.32,
+      "duration": 9.759
+    },
+    {
+      "text": "um uh yeah actually let me show it over",
+      "start": 2145.4,
+      "duration": 5.679
+    },
+    {
+      "text": "here yeah so once we get these uh token",
+      "start": 2151.76,
+      "duration": 6.0
+    },
+    {
+      "text": "IDs and the token embeddings right uh",
+      "start": 2155.28,
+      "duration": 5.079
+    },
+    {
+      "text": "we'll then pass it to the GPT model",
+      "start": 2157.76,
+      "duration": 4.48
+    },
+    {
+      "text": "which essentially consists of the",
+      "start": 2160.359,
+      "duration": 5.801
+    },
+    {
+      "text": "Transformer block and then the output is",
+      "start": 2162.24,
+      "duration": 7.92
+    },
+    {
+      "text": "generated so after we get the yeah so",
+      "start": 2166.16,
+      "duration": 6.08
+    },
+    {
+      "text": "after we get the input embedding and",
+      "start": 2170.16,
+      "duration": 3.919
+    },
+    {
+      "text": "after we add the positional embedding",
+      "start": 2172.24,
+      "duration": 3.44
+    },
+    {
+      "text": "next what we have to do is we have to",
+      "start": 2174.079,
+      "duration": 3.28
+    },
+    {
+      "text": "pass it through the entire Transformer",
+      "start": 2175.68,
+      "duration": 4.399
+    },
+    {
+      "text": "block and also we later have a layer",
+      "start": 2177.359,
+      "duration": 5.561
+    },
+    {
+      "text": "normalization layer so this is exactly",
+      "start": 2180.079,
+      "duration": 5.04
+    },
+    {
+      "text": "what is done over here after we get",
+      "start": 2182.92,
+      "duration": 3.76
+    },
+    {
+      "text": "these embeddings and we apply the",
+      "start": 2185.119,
+      "duration": 3.641
+    },
+    {
+      "text": "Dropout layer we then pass it through",
+      "start": 2186.68,
+      "duration": 4.24
+    },
+    {
+      "text": "the Transformer block so in this one",
+      "start": 2188.76,
+      "duration": 3.559
+    },
+    {
+      "text": "step actually several things are",
+      "start": 2190.92,
+      "duration": 3.76
+    },
+    {
+      "text": "happening in this one step what we are",
+      "start": 2192.319,
+      "duration": 4.561
+    },
+    {
+      "text": "doing is that we are implementing",
+      "start": 2194.68,
+      "duration": 4.32
+    },
+    {
+      "text": "multi-head attention we are implementing",
+      "start": 2196.88,
+      "duration": 3.76
+    },
+    {
+      "text": "a Dropout layer we are implementing",
+      "start": 2199.0,
+      "duration": 3.839
+    },
+    {
+      "text": "shortcut connections we are implementing",
+      "start": 2200.64,
+      "duration": 4.16
+    },
+    {
+      "text": "layer Norm we are implementing feed",
+      "start": 2202.839,
+      "duration": 3.961
+    },
+    {
+      "text": "forward neural network with JLo",
+      "start": 2204.8,
+      "duration": 5.039
+    },
+    {
+      "text": "activation then another Dropout layer uh",
+      "start": 2206.8,
+      "duration": 4.84
+    },
+    {
+      "text": "and then remember we have 12 of these",
+      "start": 2209.839,
+      "duration": 3.681
+    },
+    {
+      "text": "Transformer blocks in",
+      "start": 2211.64,
+      "duration": 4.52
+    },
+    {
+      "text": "gpt2 and then finally we have another",
+      "start": 2213.52,
+      "duration": 4.96
+    },
+    {
+      "text": "final Norm which is the",
+      "start": 2216.16,
+      "duration": 4.439
+    },
+    {
+      "text": "um layer normalization layer towards the",
+      "start": 2218.48,
+      "duration": 4.24
+    },
+    {
+      "text": "end and the important step which I want",
+      "start": 2220.599,
+      "duration": 4.121
+    },
+    {
+      "text": "to highlight in today's lecture is this",
+      "start": 2222.72,
+      "duration": 5.0
+    },
+    {
+      "text": "last step which is the output which we",
+      "start": 2224.72,
+      "duration": 4.56
+    },
+    {
+      "text": "have which are called as logits and",
+      "start": 2227.72,
+      "duration": 3.0
+    },
+    {
+      "text": "there is a reason why they are called as",
+      "start": 2229.28,
+      "duration": 5.0
+    },
+    {
+      "text": "logits so let me explain that to",
+      "start": 2230.72,
+      "duration": 9.32
+    },
+    {
+      "text": "you uh okay okay so when we reach the",
+      "start": 2234.28,
+      "duration": 8.079
+    },
+    {
+      "text": "when we reach the output what we'll be",
+      "start": 2240.04,
+      "duration": 5.0
+    },
+    {
+      "text": "having is that we'll have four tokens",
+      "start": 2242.359,
+      "duration": 4.72
+    },
+    {
+      "text": "and each of those four tokens we have a",
+      "start": 2245.04,
+      "duration": 4.68
+    },
+    {
+      "text": "76 68 dimensional representation that's",
+      "start": 2247.079,
+      "duration": 5.0
+    },
+    {
+      "text": "the output vectors right but now we want",
+      "start": 2249.72,
+      "duration": 5.84
+    },
+    {
+      "text": "to predict the next word based on the",
+      "start": 2252.079,
+      "duration": 5.641
+    },
+    {
+      "text": "input token based on the input sentence",
+      "start": 2255.56,
+      "duration": 4.2
+    },
+    {
+      "text": "the input sentence as I mentioned was",
+      "start": 2257.72,
+      "duration": 3.96
+    },
+    {
+      "text": "every effort moves you we have to",
+      "start": 2259.76,
+      "duration": 5.88
+    },
+    {
+      "text": "somehow predict the next word which is",
+      "start": 2261.68,
+      "duration": 3.96
+    },
+    {
+      "text": "forward so after all of the Transformer",
+      "start": 2266.48,
+      "duration": 5.72
+    },
+    {
+      "text": "blocks have been implemented the output",
+      "start": 2269.76,
+      "duration": 4.92
+    },
+    {
+      "text": "is such that for every",
+      "start": 2272.2,
+      "duration": 6.68
+    },
+    {
+      "text": "token uh for every token we'll have a",
+      "start": 2274.68,
+      "duration": 8.72
+    },
+    {
+      "text": "768 dimensional Vector that's the output",
+      "start": 2278.88,
+      "duration": 6.959
+    },
+    {
+      "text": "now what the main thing is that how will",
+      "start": 2283.4,
+      "duration": 5.04
+    },
+    {
+      "text": "we predict the next word and so the way",
+      "start": 2285.839,
+      "duration": 5.401
+    },
+    {
+      "text": "this is done is that the final output",
+      "start": 2288.44,
+      "duration": 4.48
+    },
+    {
+      "text": "Matrix which we have which we have will",
+      "start": 2291.24,
+      "duration": 3.52
+    },
+    {
+      "text": "have this format where there will be",
+      "start": 2292.92,
+      "duration": 4.28
+    },
+    {
+      "text": "four tokens which are the number of rows",
+      "start": 2294.76,
+      "duration": 4.04
+    },
+    {
+      "text": "but there will be columns which is equal",
+      "start": 2297.2,
+      "duration": 3.68
+    },
+    {
+      "text": "to vocabulary size which is",
+      "start": 2298.8,
+      "duration": 4.92
+    },
+    {
+      "text": "50257 and let me tell you why so if you",
+      "start": 2300.88,
+      "duration": 5.8
+    },
+    {
+      "text": "look at token number one uh actually",
+      "start": 2303.72,
+      "duration": 5.119
+    },
+    {
+      "text": "before that when we look at an input",
+      "start": 2306.68,
+      "duration": 4.639
+    },
+    {
+      "text": "batch every effort moves you there are",
+      "start": 2308.839,
+      "duration": 4.561
+    },
+    {
+      "text": "actually Four prediction tasks which are",
+      "start": 2311.319,
+      "duration": 4.961
+    },
+    {
+      "text": "happening here uh you have you first",
+      "start": 2313.4,
+      "duration": 4.88
+    },
+    {
+      "text": "look at one word every and you predict",
+      "start": 2316.28,
+      "duration": 3.96
+    },
+    {
+      "text": "the next word which is effort then you",
+      "start": 2318.28,
+      "duration": 4.92
+    },
+    {
+      "text": "look at the next which is every",
+      "start": 2320.24,
+      "duration": 5.839
+    },
+    {
+      "text": "effort this becomes an input in the next",
+      "start": 2323.2,
+      "duration": 5.6
+    },
+    {
+      "text": "and then you predict the next word then",
+      "start": 2326.079,
+      "duration": 7.161
+    },
+    {
+      "text": "the next input is every",
+      "start": 2328.8,
+      "duration": 4.44
+    },
+    {
+      "text": "effort moves",
+      "start": 2333.359,
+      "duration": 4.0
+    },
+    {
+      "text": "and then you predict youu only then",
+      "start": 2337.72,
+      "duration": 4.08
+    },
+    {
+      "text": "there is the fourth task which is every",
+      "start": 2340.119,
+      "duration": 3.441
+    },
+    {
+      "text": "effort moves you and then you predict",
+      "start": 2341.8,
+      "duration": 3.92
+    },
+    {
+      "text": "the next word which is forward so when",
+      "start": 2343.56,
+      "duration": 3.88
+    },
+    {
+      "text": "you look at this input batch which has",
+      "start": 2345.72,
+      "duration": 3.879
+    },
+    {
+      "text": "four tokens or a context length of four",
+      "start": 2347.44,
+      "duration": 4.04
+    },
+    {
+      "text": "in this case we are actually doing four",
+      "start": 2349.599,
+      "duration": 4.161
+    },
+    {
+      "text": "prediction tasks so when you look at",
+      "start": 2351.48,
+      "duration": 4.68
+    },
+    {
+      "text": "token number one which is every we need",
+      "start": 2353.76,
+      "duration": 4.8
+    },
+    {
+      "text": "to predict what what's the next token",
+      "start": 2356.16,
+      "duration": 5.32
+    },
+    {
+      "text": "right out of the vocabulary what has the",
+      "start": 2358.56,
+      "duration": 5.759
+    },
+    {
+      "text": "highest probability of coming next so if",
+      "start": 2361.48,
+      "duration": 5.56
+    },
+    {
+      "text": "you look at the rows there will be the",
+      "start": 2364.319,
+      "duration": 4.321
+    },
+    {
+      "text": "column length will be",
+      "start": 2367.04,
+      "duration": 4.079
+    },
+    {
+      "text": "50257 and every element here will",
+      "start": 2368.64,
+      "duration": 5.28
+    },
+    {
+      "text": "represent probabilities so you will then",
+      "start": 2371.119,
+      "duration": 4.96
+    },
+    {
+      "text": "take that element which has the highest",
+      "start": 2373.92,
+      "duration": 3.96
+    },
+    {
+      "text": "highest probability so let's say that is",
+      "start": 2376.079,
+      "duration": 2.561
+    },
+    {
+      "text": "the",
+      "start": 2377.88,
+      "duration": 3.439
+    },
+    {
+      "text": "40,000 that is the 40,000 column over",
+      "start": 2378.64,
+      "duration": 4.84
+    },
+    {
+      "text": "here so then we look at the vocabulary",
+      "start": 2381.319,
+      "duration": 5.401
+    },
+    {
+      "text": "we'll look at the 40,000 token in the",
+      "start": 2383.48,
+      "duration": 5.599
+    },
+    {
+      "text": "vocabulary which and that seems to have",
+      "start": 2386.72,
+      "duration": 4.399
+    },
+    {
+      "text": "the highest prior probability we'll",
+      "start": 2389.079,
+      "duration": 4.0
+    },
+    {
+      "text": "choose only that token which has the",
+      "start": 2391.119,
+      "duration": 3.921
+    },
+    {
+      "text": "highest probability so that's the 40,000",
+      "start": 2393.079,
+      "duration": 4.921
+    },
+    {
+      "text": "column and then that 40,000 column will",
+      "start": 2395.04,
+      "duration": 5.84
+    },
+    {
+      "text": "be effort now similarly when you look at",
+      "start": 2398.0,
+      "duration": 4.64
+    },
+    {
+      "text": "token two so the input will be every",
+      "start": 2400.88,
+      "duration": 4.56
+    },
+    {
+      "text": "effort right and then you'll again look",
+      "start": 2402.64,
+      "duration": 6.56
+    },
+    {
+      "text": "at the row and you'll see uh that column",
+      "start": 2405.44,
+      "duration": 5.399
+    },
+    {
+      "text": "number which has the highest probability",
+      "start": 2409.2,
+      "duration": 3.28
+    },
+    {
+      "text": "and let's say this column number is",
+      "start": 2410.839,
+      "duration": 3.76
+    },
+    {
+      "text": "20,000 so you look at the token",
+      "start": 2412.48,
+      "duration": 3.879
+    },
+    {
+      "text": "corresponding to 20,000 in the",
+      "start": 2414.599,
+      "duration": 3.161
+    },
+    {
+      "text": "vocabulary of",
+      "start": 2416.359,
+      "duration": 4.96
+    },
+    {
+      "text": "50257 and that should be",
+      "start": 2417.76,
+      "duration": 6.559
+    },
+    {
+      "text": "moves similarly every effort moves you",
+      "start": 2421.319,
+      "duration": 5.121
+    },
+    {
+      "text": "will be the input and we'll again have a",
+      "start": 2424.319,
+      "duration": 4.401
+    },
+    {
+      "text": "token corresponding to you and then",
+      "start": 2426.44,
+      "duration": 4.72
+    },
+    {
+      "text": "every effort moves you will be the input",
+      "start": 2428.72,
+      "duration": 3.44
+    },
+    {
+      "text": "and then we'll have a token",
+      "start": 2431.16,
+      "duration": 3.64
+    },
+    {
+      "text": "corresponding to forward so that's why",
+      "start": 2432.16,
+      "duration": 4.28
+    },
+    {
+      "text": "the output which we expect will have",
+      "start": 2434.8,
+      "duration": 4.039
+    },
+    {
+      "text": "this format which has these tokens which",
+      "start": 2436.44,
+      "duration": 4.159
+    },
+    {
+      "text": "is the input sequence length and in this",
+      "start": 2438.839,
+      "duration": 3.721
+    },
+    {
+      "text": "case it's equal to four and the",
+      "start": 2440.599,
+      "duration": 3.76
+    },
+    {
+      "text": "vocabulary size will be",
+      "start": 2442.56,
+      "duration": 4.48
+    },
+    {
+      "text": "50257 and then this will essentially",
+      "start": 2444.359,
+      "duration": 4.401
+    },
+    {
+      "text": "give us an idea of what the next word",
+      "start": 2447.04,
+      "duration": 4.24
+    },
+    {
+      "text": "will be at every single prediction stage",
+      "start": 2448.76,
+      "duration": 4.04
+    },
+    {
+      "text": "since there are four input output",
+      "start": 2451.28,
+      "duration": 4.96
+    },
+    {
+      "text": "prediction tasks in this uh input",
+      "start": 2452.8,
+      "duration": 5.68
+    },
+    {
+      "text": "sentence so that's why if you look at",
+      "start": 2456.24,
+      "duration": 5.04
+    },
+    {
+      "text": "the output head later when we print out",
+      "start": 2458.48,
+      "duration": 4.72
+    },
+    {
+      "text": "the output Dimensions it Dimensions will",
+      "start": 2461.28,
+      "duration": 4.079
+    },
+    {
+      "text": "be the number of tokens and the number",
+      "start": 2463.2,
+      "duration": 3.919
+    },
+    {
+      "text": "of columns will be equal to vocabulary",
+      "start": 2465.359,
+      "duration": 4.041
+    },
+    {
+      "text": "size so even if you look at the output",
+      "start": 2467.119,
+      "duration": 5.2
+    },
+    {
+      "text": "head Dimension uh remember when we reach",
+      "start": 2469.4,
+      "duration": 4.8
+    },
+    {
+      "text": "up till this point the number of rows",
+      "start": 2472.319,
+      "duration": 3.441
+    },
+    {
+      "text": "are equal to the number of tokens which",
+      "start": 2474.2,
+      "duration": 3.32
+    },
+    {
+      "text": "is four number of columns is the",
+      "start": 2475.76,
+      "duration": 4.319
+    },
+    {
+      "text": "embedding Dimension which is 768 that",
+      "start": 2477.52,
+      "duration": 4.2
+    },
+    {
+      "text": "will be multiplied by this neural",
+      "start": 2480.079,
+      "duration": 5.721
+    },
+    {
+      "text": "network which has 768 rows and 50257",
+      "start": 2481.72,
+      "duration": 6.52
+    },
+    {
+      "text": "columns so ultimately the result which",
+      "start": 2485.8,
+      "duration": 4.559
+    },
+    {
+      "text": "will come in logits will have four rows",
+      "start": 2488.24,
+      "duration": 7.04
+    },
+    {
+      "text": "and 50257 columns very similar to uh",
+      "start": 2490.359,
+      "duration": 6.441
+    },
+    {
+      "text": "very similar to what we have seen over",
+      "start": 2495.28,
+      "duration": 4.64
+    },
+    {
+      "text": "here four rows and 50257 columns don't",
+      "start": 2496.8,
+      "duration": 4.64
+    },
+    {
+      "text": "worry in the subsequent lectures we'll",
+      "start": 2499.92,
+      "duration": 3.36
+    },
+    {
+      "text": "have a separate lecture for each of each",
+      "start": 2501.44,
+      "duration": 3.919
+    },
+    {
+      "text": "of these but right now I just wanted to",
+      "start": 2503.28,
+      "duration": 4.0
+    },
+    {
+      "text": "show you this overall thing of what we",
+      "start": 2505.359,
+      "duration": 4.041
+    },
+    {
+      "text": "are going to implement when we reach the",
+      "start": 2507.28,
+      "duration": 3.839
+    },
+    {
+      "text": "end of the next four to five lectures",
+      "start": 2509.4,
+      "duration": 4.24
+    },
+    {
+      "text": "we'll get these logits Matrix so that",
+      "start": 2511.119,
+      "duration": 4.081
+    },
+    {
+      "text": "we'll know what the next word in the",
+      "start": 2513.64,
+      "duration": 4.8
+    },
+    {
+      "text": "prediction is now now see here what we",
+      "start": 2515.2,
+      "duration": 5.0
+    },
+    {
+      "text": "are doing is that we have taken two",
+      "start": 2518.44,
+      "duration": 4.2
+    },
+    {
+      "text": "texts every effort moves you is text",
+      "start": 2520.2,
+      "duration": 4.44
+    },
+    {
+      "text": "number one which is also batch one and",
+      "start": 2522.64,
+      "duration": 4.479
+    },
+    {
+      "text": "the second text is everyday holds up",
+      "start": 2524.64,
+      "duration": 4.88
+    },
+    {
+      "text": "right so we are creating a batch which",
+      "start": 2527.119,
+      "duration": 4.681
+    },
+    {
+      "text": "has two texts and the first step as I",
+      "start": 2529.52,
+      "duration": 4.4
+    },
+    {
+      "text": "mentioned is to get the token IDs so",
+      "start": 2531.8,
+      "duration": 4.2
+    },
+    {
+      "text": "these are the token IDs these four token",
+      "start": 2533.92,
+      "duration": 4.0
+    },
+    {
+      "text": "IDs for the first batch these are the",
+      "start": 2536.0,
+      "duration": 4.4
+    },
+    {
+      "text": "four token IDs for the second batch what",
+      "start": 2537.92,
+      "duration": 4.399
+    },
+    {
+      "text": "we do then is that we create an instance",
+      "start": 2540.4,
+      "duration": 4.32
+    },
+    {
+      "text": "of the dummy GPT model with the",
+      "start": 2542.319,
+      "duration": 5.04
+    },
+    {
+      "text": "configuration as I mentioned above with",
+      "start": 2544.72,
+      "duration": 4.28
+    },
+    {
+      "text": "the configuration as",
+      "start": 2547.359,
+      "duration": 4.321
+    },
+    {
+      "text": "this right and although we have not",
+      "start": 2549.0,
+      "duration": 4.0
+    },
+    {
+      "text": "defined anything over here and",
+      "start": 2551.68,
+      "duration": 2.919
+    },
+    {
+      "text": "everything is placeholder right now we",
+      "start": 2553.0,
+      "duration": 4.68
+    },
+    {
+      "text": "can still run this code um nothing is",
+      "start": 2554.599,
+      "duration": 4.76
+    },
+    {
+      "text": "initialized here right so this block",
+      "start": 2557.68,
+      "duration": 3.28
+    },
+    {
+      "text": "currently does nothing and even this",
+      "start": 2559.359,
+      "duration": 3.24
+    },
+    {
+      "text": "layer currently does nothing but we can",
+      "start": 2560.96,
+      "duration": 3.72
+    },
+    {
+      "text": "still execute this code and get the",
+      "start": 2562.599,
+      "duration": 3.921
+    },
+    {
+      "text": "output so what will happen is that these",
+      "start": 2564.68,
+      "duration": 3.399
+    },
+    {
+      "text": "two blocks will not essentially do",
+      "start": 2566.52,
+      "duration": 3.839
+    },
+    {
+      "text": "anything but we can still it's a",
+      "start": 2568.079,
+      "duration": 3.801
+    },
+    {
+      "text": "functional code so we'll still get the",
+      "start": 2570.359,
+      "duration": 4.72
+    },
+    {
+      "text": "Logics so let's see what the result is",
+      "start": 2571.88,
+      "duration": 5.92
+    },
+    {
+      "text": "uh so we'll pass in this batch to the",
+      "start": 2575.079,
+      "duration": 4.52
+    },
+    {
+      "text": "model right now and let's see the output",
+      "start": 2577.8,
+      "duration": 4.759
+    },
+    {
+      "text": "shape so once we pass in this batch try",
+      "start": 2579.599,
+      "duration": 4.361
+    },
+    {
+      "text": "to visualize the steps which are",
+      "start": 2582.559,
+      "duration": 3.361
+    },
+    {
+      "text": "happening right uh and your",
+      "start": 2583.96,
+      "duration": 4.56
+    },
+    {
+      "text": "visualization should follow this",
+      "start": 2585.92,
+      "duration": 5.8
+    },
+    {
+      "text": "workflow for now think of the workflow",
+      "start": 2588.52,
+      "duration": 4.92
+    },
+    {
+      "text": "so first I have this first look at only",
+      "start": 2591.72,
+      "duration": 4.16
+    },
+    {
+      "text": "one batch so I have four token IDs these",
+      "start": 2593.44,
+      "duration": 4.919
+    },
+    {
+      "text": "are the four token IDs these four token",
+      "start": 2595.88,
+      "duration": 5.36
+    },
+    {
+      "text": "IDs will be converted into 768",
+      "start": 2598.359,
+      "duration": 5.681
+    },
+    {
+      "text": "dimensional input embedding vectors then",
+      "start": 2601.24,
+      "duration": 4.839
+    },
+    {
+      "text": "I will add positional embedding vectors",
+      "start": 2604.04,
+      "duration": 4.16
+    },
+    {
+      "text": "to each of them the resultant will be",
+      "start": 2606.079,
+      "duration": 5.321
+    },
+    {
+      "text": "passed through um let's see what the",
+      "start": 2608.2,
+      "duration": 4.76
+    },
+    {
+      "text": "result yeah the resultant will be passed",
+      "start": 2611.4,
+      "duration": 3.52
+    },
+    {
+      "text": "through a Dropout layer then I'll have",
+      "start": 2612.96,
+      "duration": 3.639
+    },
+    {
+      "text": "then will go through the Transformer",
+      "start": 2614.92,
+      "duration": 4.6
+    },
+    {
+      "text": "block then the result will go through",
+      "start": 2616.599,
+      "duration": 7.76
+    },
+    {
+      "text": "the another uh normalization layer which",
+      "start": 2619.52,
+      "duration": 7.0
+    },
+    {
+      "text": "is also called as layer normalization",
+      "start": 2624.359,
+      "duration": 4.72
+    },
+    {
+      "text": "layer and then until this point when I",
+      "start": 2626.52,
+      "duration": 4.72
+    },
+    {
+      "text": "reach this stage the output will have",
+      "start": 2629.079,
+      "duration": 3.76
+    },
+    {
+      "text": "four rows corresponding to the four",
+      "start": 2631.24,
+      "duration": 3.8
+    },
+    {
+      "text": "tokens and 768 columns because the",
+      "start": 2632.839,
+      "duration": 4.72
+    },
+    {
+      "text": "embedding Dimension is 768 that's for",
+      "start": 2635.04,
+      "duration": 4.6
+    },
+    {
+      "text": "one batch now this will go through the",
+      "start": 2637.559,
+      "duration": 4.961
+    },
+    {
+      "text": "output embedding uh output head which is",
+      "start": 2639.64,
+      "duration": 5.16
+    },
+    {
+      "text": "the final neural network and then the",
+      "start": 2642.52,
+      "duration": 4.16
+    },
+    {
+      "text": "result will be number of tokens which is",
+      "start": 2644.8,
+      "duration": 5.799
+    },
+    {
+      "text": "four and 50257 columns because I want to",
+      "start": 2646.68,
+      "duration": 6.679
+    },
+    {
+      "text": "now get logits and see which one which",
+      "start": 2650.599,
+      "duration": 4.921
+    },
+    {
+      "text": "word should come next so here you can",
+      "start": 2653.359,
+      "duration": 4.401
+    },
+    {
+      "text": "see the result for the first",
+      "start": 2655.52,
+      "duration": 5.559
+    },
+    {
+      "text": "batch there are four rows and then 5",
+      "start": 2657.76,
+      "duration": 7.599
+    },
+    {
+      "text": "0257 columns this is exactly similar to",
+      "start": 2661.079,
+      "duration": 6.081
+    },
+    {
+      "text": "the output which I was showing you over",
+      "start": 2665.359,
+      "duration": 4.24
+    },
+    {
+      "text": "here the output Logics should have four",
+      "start": 2667.16,
+      "duration": 5.64
+    },
+    {
+      "text": "tokens as the rows and 50257 columns and",
+      "start": 2669.599,
+      "duration": 4.96
+    },
+    {
+      "text": "similarly for the second batch there are",
+      "start": 2672.8,
+      "duration": 5.08
+    },
+    {
+      "text": "four rows and 50257 columns each",
+      "start": 2674.559,
+      "duration": 5.441
+    },
+    {
+      "text": "parameter here should ideally represent",
+      "start": 2677.88,
+      "duration": 4.56
+    },
+    {
+      "text": "the probability of the next",
+      "start": 2680.0,
+      "duration": 4.88
+    },
+    {
+      "text": "token remember when you look at these",
+      "start": 2682.44,
+      "duration": 4.6
+    },
+    {
+      "text": "four tokens there are four input output",
+      "start": 2684.88,
+      "duration": 4.76
+    },
+    {
+      "text": "tasks Happening Here not just one so",
+      "start": 2687.04,
+      "duration": 4.68
+    },
+    {
+      "text": "every is the first input and effort",
+      "start": 2689.64,
+      "duration": 4.6
+    },
+    {
+      "text": "should be the first output every effort",
+      "start": 2691.72,
+      "duration": 4.28
+    },
+    {
+      "text": "is the first is the second input and",
+      "start": 2694.24,
+      "duration": 4.44
+    },
+    {
+      "text": "moves should be the second output every",
+      "start": 2696.0,
+      "duration": 4.88
+    },
+    {
+      "text": "effort moves should be the third input",
+      "start": 2698.68,
+      "duration": 4.8
+    },
+    {
+      "text": "and U should be the third output every",
+      "start": 2700.88,
+      "duration": 5.04
+    },
+    {
+      "text": "effort moves U should be the final input",
+      "start": 2703.48,
+      "duration": 4.639
+    },
+    {
+      "text": "and the output should be forward so",
+      "start": 2705.92,
+      "duration": 4.24
+    },
+    {
+      "text": "right now these these outputs are random",
+      "start": 2708.119,
+      "duration": 3.641
+    },
+    {
+      "text": "because we have not trained anything but",
+      "start": 2710.16,
+      "duration": 3.679
+    },
+    {
+      "text": "ultimately we'll just add the back",
+      "start": 2711.76,
+      "duration": 4.16
+    },
+    {
+      "text": "propagation algorithm and then all of",
+      "start": 2713.839,
+      "duration": 3.801
+    },
+    {
+      "text": "these probabilities will start to make",
+      "start": 2715.92,
+      "duration": 4.12
+    },
+    {
+      "text": "sense later we'll also apply soft Max",
+      "start": 2717.64,
+      "duration": 4.199
+    },
+    {
+      "text": "Etc to these logic so that they'll be",
+      "start": 2720.04,
+      "duration": 3.36
+    },
+    {
+      "text": "between 0 to",
+      "start": 2721.839,
+      "duration": 3.921
+    },
+    {
+      "text": "one okay so here you can see that the",
+      "start": 2723.4,
+      "duration": 4.36
+    },
+    {
+      "text": "output tensor has two rows corresponding",
+      "start": 2725.76,
+      "duration": 4.319
+    },
+    {
+      "text": "to the two text samples this first row",
+      "start": 2727.76,
+      "duration": 4.76
+    },
+    {
+      "text": "corresponds to the first text sample the",
+      "start": 2730.079,
+      "duration": 4.321
+    },
+    {
+      "text": "second row corresponds to the second",
+      "start": 2732.52,
+      "duration": 4.48
+    },
+    {
+      "text": "text sample each Tex sample consist of",
+      "start": 2734.4,
+      "duration": 5.719
+    },
+    {
+      "text": "four tokens so first token first row",
+      "start": 2737.0,
+      "duration": 5.079
+    },
+    {
+      "text": "correspond to First token second to the",
+      "start": 2740.119,
+      "duration": 4.681
+    },
+    {
+      "text": "second token Etc and each token is a",
+      "start": 2742.079,
+      "duration": 5.201
+    },
+    {
+      "text": "50257 dimensional Vector which matches",
+      "start": 2744.8,
+      "duration": 4.88
+    },
+    {
+      "text": "the size of the tokenizers vocabulary so",
+      "start": 2747.28,
+      "duration": 4.64
+    },
+    {
+      "text": "yeah here you can see each token is a",
+      "start": 2749.68,
+      "duration": 5.159
+    },
+    {
+      "text": "50257 dimensional vector and it encodes",
+      "start": 2751.92,
+      "duration": 5.32
+    },
+    {
+      "text": "the probability of what should come next",
+      "start": 2754.839,
+      "duration": 4.76
+    },
+    {
+      "text": "the embedding has 50257 Dimensions",
+      "start": 2757.24,
+      "duration": 4.16
+    },
+    {
+      "text": "because each of these Dimensions refers",
+      "start": 2759.599,
+      "duration": 4.48
+    },
+    {
+      "text": "to a unique token in the vocabulary at",
+      "start": 2761.4,
+      "duration": 4.64
+    },
+    {
+      "text": "the end of the series of lectures when",
+      "start": 2764.079,
+      "duration": 4.681
+    },
+    {
+      "text": "we implement the postprocessing code",
+      "start": 2766.04,
+      "duration": 5.24
+    },
+    {
+      "text": "we'll convert these 50257 dimensional",
+      "start": 2768.76,
+      "duration": 4.76
+    },
+    {
+      "text": "vectors back into token IDs which we can",
+      "start": 2771.28,
+      "duration": 5.2
+    },
+    {
+      "text": "decode into what word comes",
+      "start": 2773.52,
+      "duration": 6.799
+    },
+    {
+      "text": "next okay uh so in this lecture we have",
+      "start": 2776.48,
+      "duration": 6.119
+    },
+    {
+      "text": "looked at a top down View at the GPT",
+      "start": 2780.319,
+      "duration": 4.361
+    },
+    {
+      "text": "architecture what are the inputs what",
+      "start": 2782.599,
+      "duration": 4.841
+    },
+    {
+      "text": "are the outputs Etc and",
+      "start": 2784.68,
+      "duration": 4.84
+    },
+    {
+      "text": "uh I hope you have gotten a sense of",
+      "start": 2787.44,
+      "duration": 4.2
+    },
+    {
+      "text": "what all we are going to implement in",
+      "start": 2789.52,
+      "duration": 3.839
+    },
+    {
+      "text": "the subsequent lectures so in the next",
+      "start": 2791.64,
+      "duration": 3.4
+    },
+    {
+      "text": "lectures we'll go through every single",
+      "start": 2793.359,
+      "duration": 4.24
+    },
+    {
+      "text": "block sequentially so my next lecture is",
+      "start": 2795.04,
+      "duration": 4.319
+    },
+    {
+      "text": "planned for layer normalization then",
+      "start": 2797.599,
+      "duration": 4.52
+    },
+    {
+      "text": "after that we have a lecture on feed",
+      "start": 2799.359,
+      "duration": 4.96
+    },
+    {
+      "text": "forward neural network with J activation",
+      "start": 2802.119,
+      "duration": 3.841
+    },
+    {
+      "text": "then we have a lecture on shortcut",
+      "start": 2804.319,
+      "duration": 4.081
+    },
+    {
+      "text": "connections then we'll have a lecture on",
+      "start": 2805.96,
+      "duration": 4.24
+    },
+    {
+      "text": "uh how all of these come together in the",
+      "start": 2808.4,
+      "duration": 4.199
+    },
+    {
+      "text": "Transformer block and then finally we'll",
+      "start": 2810.2,
+      "duration": 5.0
+    },
+    {
+      "text": "have the entire GPT model implementation",
+      "start": 2812.599,
+      "duration": 4.841
+    },
+    {
+      "text": "and the last lecture will be gener text",
+      "start": 2815.2,
+      "duration": 4.96
+    },
+    {
+      "text": "from output tokens so this logits Matrix",
+      "start": 2817.44,
+      "duration": 4.28
+    },
+    {
+      "text": "which is there right which you obtained",
+      "start": 2820.16,
+      "duration": 2.72
+    },
+    {
+      "text": "over",
+      "start": 2821.72,
+      "duration": 5.04
+    },
+    {
+      "text": "here uh where was that yeah here was the",
+      "start": 2822.88,
+      "duration": 6.76
+    },
+    {
+      "text": "Logics Matrix which was uh which was",
+      "start": 2826.76,
+      "duration": 4.52
+    },
+    {
+      "text": "returned how to convert this into the",
+      "start": 2829.64,
+      "duration": 3.24
+    },
+    {
+      "text": "next word we'll see that in the last",
+      "start": 2831.28,
+      "duration": 3.52
+    },
+    {
+      "text": "lecture in this series of",
+      "start": 2832.88,
+      "duration": 4.16
+    },
+    {
+      "text": "lectures okay so that that actually",
+      "start": 2834.8,
+      "duration": 3.92
+    },
+    {
+      "text": "brings me to the end of this lecture I",
+      "start": 2837.04,
+      "duration": 5.96
+    },
+    {
+      "text": "want to leave you with this one",
+      "start": 2838.72,
+      "duration": 7.119
+    },
+    {
+      "text": "image this one image so what we have",
+      "start": 2843.0,
+      "duration": 5.359
+    },
+    {
+      "text": "learned right now is this GPT backbone",
+      "start": 2845.839,
+      "duration": 4.28
+    },
+    {
+      "text": "so we have started this series with",
+      "start": 2848.359,
+      "duration": 3.521
+    },
+    {
+      "text": "understanding the GPT backbone but",
+      "start": 2850.119,
+      "duration": 3.801
+    },
+    {
+      "text": "remember this GPT backbone consists of",
+      "start": 2851.88,
+      "duration": 5.16
+    },
+    {
+      "text": "layer normalization jalu activation feed",
+      "start": 2853.92,
+      "duration": 5.919
+    },
+    {
+      "text": "forward Network and shortcut connection",
+      "start": 2857.04,
+      "duration": 5.24
+    },
+    {
+      "text": "and all of these actually come together",
+      "start": 2859.839,
+      "duration": 4.441
+    },
+    {
+      "text": "all of this feed in",
+      "start": 2862.28,
+      "duration": 5.52
+    },
+    {
+      "text": "together um to make what is called as",
+      "start": 2864.28,
+      "duration": 6.52
+    },
+    {
+      "text": "the Transformer",
+      "start": 2867.8,
+      "duration": 3.0
+    },
+    {
+      "text": "block um that's why it's called",
+      "start": 2871.119,
+      "duration": 3.521
+    },
+    {
+      "text": "Transformer so you might be thinking",
+      "start": 2873.079,
+      "duration": 3.24
+    },
+    {
+      "text": "what exactly is the Transformer and why",
+      "start": 2874.64,
+      "duration": 3.08
+    },
+    {
+      "text": "do we say that that attention is the",
+      "start": 2876.319,
+      "duration": 3.321
+    },
+    {
+      "text": "heart of it the reason people say",
+      "start": 2877.72,
+      "duration": 3.72
+    },
+    {
+      "text": "attention mechanism is the heart of",
+      "start": 2879.64,
+      "duration": 4.28
+    },
+    {
+      "text": "Transformer because if you if you unlock",
+      "start": 2881.44,
+      "duration": 5.24
+    },
+    {
+      "text": "or Unravel the Transformer block you'll",
+      "start": 2883.92,
+      "duration": 4.439
+    },
+    {
+      "text": "see that the mass multi-ad attention is",
+      "start": 2886.68,
+      "duration": 3.8
+    },
+    {
+      "text": "a crucial component of it but there are",
+      "start": 2888.359,
+      "duration": 4.2
+    },
+    {
+      "text": "several other components which you also",
+      "start": 2890.48,
+      "duration": 4.68
+    },
+    {
+      "text": "should be aware of and we'll cover that",
+      "start": 2892.559,
+      "duration": 4.56
+    },
+    {
+      "text": "I hope you have got a bird's eye view",
+      "start": 2895.16,
+      "duration": 4.6
+    },
+    {
+      "text": "which I planned for in today's lecture",
+      "start": 2897.119,
+      "duration": 4.521
+    },
+    {
+      "text": "um thank you everyone I hope you're",
+      "start": 2899.76,
+      "duration": 3.64
+    },
+    {
+      "text": "having a lot of fun with these",
+      "start": 2901.64,
+      "duration": 3.679
+    },
+    {
+      "text": "whiteboard notes as well as through this",
+      "start": 2903.4,
+      "duration": 4.159
+    },
+    {
+      "text": "coding assignments as well as through",
+      "start": 2905.319,
+      "duration": 4.561
+    },
+    {
+      "text": "this coding part the Transformers",
+      "start": 2907.559,
+      "duration": 4.441
+    },
+    {
+      "text": "lectures which came before were a bit",
+      "start": 2909.88,
+      "duration": 4.56
+    },
+    {
+      "text": "complicated but now it's getting a bit",
+      "start": 2912.0,
+      "duration": 4.48
+    },
+    {
+      "text": "easier so you have been through the hard",
+      "start": 2914.44,
+      "duration": 4.56
+    },
+    {
+      "text": "part of the course so congrats for that",
+      "start": 2916.48,
+      "duration": 4.2
+    },
+    {
+      "text": "and now comes the very interesting part",
+      "start": 2919.0,
+      "duration": 3.92
+    },
+    {
+      "text": "later thanks everyone I'll look forward",
+      "start": 2920.68,
+      "duration": 6.28
+    },
+    {
+      "text": "to seeing you in the next lecture",
+      "start": 2922.92,
+      "duration": 4.04
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch series first let me take you through what all we have learned so far in this lecture series through this diagram so in this lecture series we are going to build a large language model completely from scratch and we are going to do that in three stages in the stage one we will uh lay the foundations for building an llm in the stage two we will pre-train the llm and in stage three we are going to fine tune the llm we are still at stage one and until now we have covered two aspects of stage one we have looked at the data preparation and sampling which included tokenization vector embeddings and positional embeddings and very recently we have looked at the attention mechanism in a lot of detail DET in particular those of you who have followed the attention mechanism we had a very detailed uh four to five lectures which started from simplified self attention self attention causal attention and multi-head attention if you have not been through these lectures I highly encourage you to go through them because attention really serves as the fundamental building block to understand everything which follows if you have watched all the previous lectures and if you have run the code which I have been providing it's amazing and I would like to congratulate you that you have reached this part understanding attention is one of the most difficult aspects of understanding large language models and if you have reached up till here the rest of this will be easier for you so let's get started in these subsequent lecture videos which are to follow we are going to learn about this part number three which is the large language model architecture as I always do I'm going to break this into multiple videos I will not cover everything in one video um we will cover every single video in a lot of detail and completely from scratch today right now it's the first video in the large language model architecture module so let's get started I think this will be a very interesting module for all of you especially to those of you who have followed until now we have learned about the attention mechanism we learned about input embeddings we learned about position embeddings but all of you must be thinking how does all of this really come together to give me something like a GPT where does the training happen where does back propagation happen where are the neural networks here if you remember at the start I told you that large language models are just deep neural networks where are neural networks and what exactly is the Transformer we learned about the attention mechanism and uh you must have heard about this that um attention mechanism is at the heart of Transformers but what really is Transformers when do we do the training and where do we generate the next word as the output all of that will become pretty clear to you as we slowly start unraveling this box of the llm architecture I really had a lot of fun learning about this and uh let's get started as I told you llm architecture I'm planning to cover in four to five videos and today is the first video so after learning about the attention mechanism in the previous lectures let us learn about the llm architecture now I want to give you initially a view of what the llm architecture really looks like this is the birds ey View and we are going to cover every single aspect of this in detail but right now I want to show you what all you have learned and how does that fit in the context of what's to come next this always helps in the learning process imagine if you are getting walking through a forest right and if you want to get to the other side it's always good to know to track your path to have some kind of feedback like okay this is what you have covered right right now and this is what's next to come so that you can relate what you're learning next with the learnings from the past and that helps you reach the end of the forest in our case learning about how the previous knowledge fits into what we are are going to learn about next will really help you learn about llms in a much better manner so initially we started with tokenizing then we looked at Vector embedding and positional embedding the final embedding lay vectors which we had for every token were then converted into context vectors through M MK multi-head attention so the main aim of attention or rather the multi-ad attention was to take the input embedding vectors and convert them into context vectors context vectors are a much richer form of representation than embedding vectors because they not only contain semantic meaning of the token but they also contain information about how the token relates to all the other tokens in the sentence now uh mask multi-head attention forms a very important part of something which is called as the Transformer block Transformer block is the most important part of the large language model architecture and it's a block which actually consists of many different aspects which are linked together so let us zoom into this Transformer block a bit unravel it open this block and see what it contains if you zoom into the Transformer block you'll see that it contains a number of things and mask multi-head attention forms a part of this so whatever you have learned in the multihead attention comes over here so imagine you have a sentence such as every effort moves you and you want to predict the next word right the first step is to convert each of these into input embeddings or vector embedding so these are these and let's say we also add a positional embedding right these embedding vectors are then passed onto the Transformer block the first part of the Transformer block is a layer normal normalization the second is M multihead attention which converts the input embedding tokens into context vectors these are then passed into a Dropout layer you can notice this plus signs so these arrows which run from here to this plus sign they are called as shortcut connections the output of the shortcut connection goes to another layer normalization then we have a feed forward neural network here then another Dropout layer is connected and there's one more shortcut uh connection here and if you zoom into the feed forward neural network further you will see that it has something which is called as the JLo activation if you look at all these terminologies and you you think what does it mean what is layer normalization what is Dropout what is the JLo activation why do we have a feed forward neural network here and why are all these things stacked together like this that's all what we are going to cover in this video and the four to five videos which are going to follow forward but remember this entire architecture has a large number of trainable parameters and trainable weights when the llm is pre-trained these weights and these parameters are optimized and ultimately we get the output the outputs are such that they have the same form and dimensions as the inputs and the outputs are then processed further which gives the final text so once we get the output from the Transformer block it goes to these output layers and then the which decodes the output from the Transformer block and we get the next word so every effort moves you was the input if you remember and the next word is forward I just wanted to give you this bird eye view of what exactly is going on and what we are building what you have learned so far and how it fits into what we are planning to learn next in these set of lectures which we which are going to follow we are going to zoom into this Transformer block and we are going to understand every single thing which has been mentioned here we will learn about first of all we'll learn about how to stack these different layers together which will be in today's lecture then we will dive into each individual layer and learn about them we'll have a separate lecture on layer normaliz ation a separate lecture on the shortcut connections a separate lecture on feed forward neural network with J activation we'll stack all of these together and then finally we'll have a separate lecture on how this output from the Transformer is decoded to produce the next World okay so I hope you have understood why we learned about the mask multihead attention because if we had not learned about this see this forms such a critical part of this Transformer block right to learn about this one small block is it took us five lectures spanning over 7 hours but that's the importance of the attention mechanism if this block is removed uh if this Mass multi-head block is removed it's like the large language models would lose all their power and then we are back to the age of recurrent neural networks and long short-term memory networks okay so let's see what we have learned so far we have learned about input tokenization we have learned about embedding token plus positional and we have learned about mask multi head attention Okay so uh let me first give you a brief overview of the Mask multihead attention in which you have if in case you have forgotten so we have the input embedding vectors which are stacked together like this we have a bunch of keys queries and the value matrices which are multiplied with the inputs to give the queries the keys and the values the queries are multiplied with the keys transposed to give us attention scores which are then converted into attention weights attention weights are then multiplied with the values Matrix to give us the context vector and since we have multiple attention heads the context vectors are stacked together to give us a combined context Vector this is what is happening in the multi-ad attention block now uh this whole process of what all we have learned so far can be visualized like this also if you have the input text which is every effort moves you it's first tokenized and GPT uses a bite pair tokenizer which we learned about before every single token is converted into a token ID every single token ID is converted into a vector embedding which is a vectorized representation these Vector embeddings are passed into the GPT model which consist of the Transformer block which I showed you before then there is an output that output is further decoded and that gives us the output text for gpt2 the token embeddings which were used had a embedding Vector size of 768 Dimensions which means each token ID was converted into a vector of 768 Dimension and the output is generated such that the dimensions are matched so the output is a 768 dimensional Vector for each 768 dimensional input token embedding and then we do some postprocessing with the output so that we generate the next word which is forward so every effort moves you forward great so what we are yet to learn is the Transformer block and we'll start learning about this in today in today's lecture we'll dive slowly deeper and deeper into every single layer of this block in subsequent lectures so for this set of four to five lectures we will not use a toy problem we will not use a toy model we are directly going to use gpt2 so we will use the same architecture which was used to build the gpt2 model so if you look at this paper this was the paper which introduced gpt2 and if you look at the models which they had they had uh they had a small model model and they had a large model which has 1542 million parameters if you look at the small model it had 117 million parameters this was revised later to be 124 million parameters which is what we are going to use for these set of lectures and for the rest of these video series as well so we are going to construct an llm with 124 million parameters which has 12 layers what are these layers which means we'll have 12 Transformer blocks and uh D model which is the vector embedding size is 76 these are the parameters which we are going to use in today's lecture and also in the rest of the lectures um so why are we using gpt2 and not gpt3 or GPT 4 one reason is that gpt2 is smaller so it's better to run it locally on our local machine uh and second reason is that open AI has made only gpt2 weights public opena has really not made the weights of gpt3 and gp4 public yet uh so that's the thing with open source right open a is closed Source right now whereas meta's Lama models are open source so all weights have been released so that's why we are sticking with gpt2 because its weights have been made public we'll we'll load these weights later in one of the subsequent videos so here is the configuration which we are going to use and uh to all those who are watching the video you can pause here and try to understand whether you understand every single terminology here we have covered all of these in the previous lecture so I'm I'm going to pause here and ask you to also pause on your end and try to think about these terminologies I'll anyway explain each of these terminologies but I want you to just give it a shot and try to understand okay so so let's go step by step the first is the vocabulary size this means that uh every we start with a vocabulary so um the gpt2 uses a bite pair encoder right so it's a subword tokenizer so the vocabulary is how many subwords are basically there uh this will be used for tokenization so if the vocabulary is a word level tokenization so if the sentence is every step moves you forward then the vocabulary will have every step moves you forward so that way the tokenization will happen but if you use a bite pair encoder with gpt2 uses it's a subword tokenizer so the vocabulary size is 50257 and it may contain of characters it may contain subwords it may contain full words also but this is the vocabulary size which we deal with when we consider uh gpt2 this will be very useful for tokenization so when we do tokenization what happens is we have a vocabulary and there are tokens in the vocabulary and there's a token ID with respect to every single token and whenever whenever a new text is given to us using that vocabulary that text is converted into tokens and then those tokens are converted into to token IDs if some text does not belong to the vocabulary that's called as the out of vocabulary problem the bite pair encoder does not face this issue because it's a subw tokenizer we have covered about vocabulary size in our lecture on embedding so if you are unclear about this please refer to that the second is the context length the context length basically refers to how many maximum words are used to predict the next word so if there is context length is 1024 which was actually used in gpt2 we are going to look at one24 words and we are going to predict the next word maximum there will be no case when we are looking at 2,000 words let's say and predicting the next word when I say word I'm actually meaning token here which is not exactly correct because gpt2 uses the bite pair encoder toker to tokenizer which is subword tokenization scheme but for the sake of this lecture if I use word and token interchangeably it's because it's good for intuition the second thing is the embedding Dimension now every token in this vocabulary which we have will be projected into a vector space such as this so for example the tokens are your journey starts with one step here is a three-dimensional Vector representation of every single token right um and the embedding should be such that the meaning is captured so for example if journey and starts are more similar in meaning they would be closer together in this embedding space so this is a three-dimensional embedding embedding space in gpt2 we are using a 768 dimensional embedding space it's very difficult to show this over here but you can imagine a 768 dimensional embedding space in which the words are projected now if you are thinking how do we learn about these projections how do we know which Vector Journey corresponds to now that's also trained in gpt2 when we look at the Transformer block you'll see that the embedding itself is not fixed we are going to train the embedding layer so that uh every word is embedded correctly so that semantic meaning is captured the next thing is the number of heads and these are the number of attention heads which are equal to 12 so if you look at this diagram over here I told you that multiple queries keys and values Matrix matrices are created right so the more the number of attention heads the more the number of these matrices are created so if we have 12 attention heads it means there will be 12 such queries keys and value matrices so here the number of heads is 12 number of layers is the number of Transformer blocks remember this is different than the number of attention heads number of layers is how many such layers are we going to have so this is one one Transformer block layer and it includes multi-ad attention so within this one layer there will be 12 attention heads but in terms of these Transformer blocks itself there can be 12 blocks so it's not necessary that the number of layers and number of heads are similar here we are using 12 Transformer blocks U which will which will see later how they are stacked up together okay so number of layers is 12 then drop rate is basically the dropout rate and uh query key value bias is or Q KV bias is the bias term when we initialize the query key and the value matrix by default this is always set to false okay so the number of Transformer blocks one more thing which I want to mention here is is that we are looking at the gpt2 small model which use 12 transform which uses 12 Transformer blocks right but as we saw over here they had four models of gpt2 so if you go from left to right here you'll see small the medium has 24 transformer blocks the large has 36 Transformer blocks and the largest which is extra large that has 48 Transformer blocks and you'll see that the dimensionality also increases from left to right we are using 768 Dimension gp22 small but if you go from left to right you'll see that 10241 1280 and finally the gpt2 extra large has a dimensionality of 1600 okay so I hope you have understood this this configuration and what we are now going to do is that now I'm going to take you to code and I'm going to build a GPT placeholder architecture what does this mean this basically means that whatever I showed you over here right this thing this thing whatever I showed you I know that you have not yet understood the layer normalization the shortcut connection even the Transformer block what it exactly has has what the speed forward neural network is what the JLo activation is right now what I want to do is I just want to create a skeleton for our code where these different blocks will come in together we'll code them later in subsequent parts and we'll have a separate lecture for each of them but right now we'll build a GPT placeholder architecture which will also called as the dummy GPT model this will actually give a bird's eyee view of how everything fits together so here I have shown a bird's eye and this is a bird's eye view so the reason this Birds Eye is again very important is that you'll see what we are planning to do in the subsequent lectures and that's why the skeleton is very important especially for a complicated topic like the llm architecture where multiple things have to fit in together first let's zoom out and see what all has to fit in together and then in subsequent lectures we'll start coding it out so I'm going to take you to code right now this is the GPT configuration 124 million parameters which we are going to use so let's jump right into it okay so now what we are going to do is we are going to implement a GPT model from scratch to generate text and I'll show you exactly how the code is executed but at every single step of the code I'll again take you to the Whiteboard so that you can visualize what every parameter means it's very important for you to read a sentence of the code and to visualize how it how how it looks like only then you'll really understand the code so this is the GPT configuration which we covered on the Whiteboard I hope you have understood the meaning of every single terminology here if not just look up the meaning once more or go through our previous lectures but it's very important that you don't just skim through it without understanding the meaning okay now as I told you we are going to build the GPT architecture so this is a dummy GPT model class we'll use a placeholder for the Transformer block we'll use a placeholder for the layer normalization okay so first let me give you a broad overview of what all do we have here so we have a Dy GPT model over here and it has the forward pass what this forward or rather I should call it the forward method what this forward method does is that it takes an input and at the end of this forward method we are going to uh print out the output this is what we are aiming to do so if you look at the figure which um Let me show this figure to you here this is the main thing right so what that forward method does is that it takes an input which basically can just be these words and then the aim of this is to the aim of the forward pass is to give you the next word in this case the next word is forward so that's the output so all of what we want to implement somewhere lies in the middle right um so there are two main blocks which will be very important to us so there is first the Transformer block we we are going to create a class for the Transformer block not in this lecture but in later lectures and we are going to create a class for the layer normalization let me show you where these come into the picture so if you look at the Transformer block over here the Transformer block consists of all of these things right and layer normalization is a very important part of it layer normalization will also be implemented before the Transformer and after the Transformer but it is also present within the Transformer itself so we'll have a Transformer block we'll in which we'll put all of these things what I'm showing here and we'll have a separate layer normalization block the reason we are having a separate layer normalization block is that it comes in the Transformer block that's fine but it also comes at other places so it's better to define a separate class of it so this is the class which will Define later not now this is the class will which will Define later not now now let us see what what this forward method is actually doing okay so the forward method first takes in an input and uh let me show you what that input actually looks like um okay so I have just made some visualizations over here so that you understand what's going on yeah okay so the forward method is going to take an input right and the input let's say is this same thing let me write it over here what's that input the input is every effort moves you let's say this is the input which is which is passed to the forward method let me write over here right and I'm going to write this with a different color so let's say the input is every every effort moves you okay great so this is my input right now the way this will be fed to the forward method is that uh let me actually show you that so we are going to feed this input to the forward method doing something like this so let's say every effort moves you is the input right we are first going to use the tick token tokenizer which is the bite pair encoder and we are going to convert these tokens into token IDs so remember the workflow which we saw over here every token here see every token is essentially converted into token IDs and then everything later after this point happens within the GPT model class but till this stage we have to do it outside and then pass the token IDs to the GPT model class so now we have this every effort moves you right this will be converted into a token ID this will be converted into a token ID this will be converted into a token ID and this will be converted into a token ID right the first step is that every token ID will be converted into token embedding uh and so what that means is every token ID so let's say this is ID 1 let's say this is ID 1 this is id2 this is ID3 and this is ID 4 right each of these token IDs will need to be converted into a 768 a 768 Vector 768 Vector embedding essentially that is going to be the input embedding and the way we are going to do that is that we are going to first create a token embedding layer and for that we will use the nn. embedding in pytorch what this layer actually does is that uh it creates this Matrix which is called as the token embedding Matrix it has rows which is equal to the model vocabulary size and every row basically corresponds to one token ID and every Row the length of every row is essentially 768 so now if you want to uh find the vector embedding for ID number one let's say ID number one is 44 you just look at the 44 throw over here and you get the 768 dimensional Vector if you want to look at the let's say for effort the ID is 64 you look at ID number 64 for effort you get the 768 dimensional Vector similarly U let's say the ID for U is 85 or or rather 40,000 you go downward and you get you go to the 40,000 row and you get the 768 Vector 768 dimensional input embedding Vector now that's why this token embedding Matrix is also called as the lookup Matrix you just pass in the token IDs and it gives you the vector embeddings remember that all of the parameters here here everywhere in this token embedding Matrix they will be initialized randomly for now and we will train these parameters so when we initialize this token embedding layer it initializes the parameters from a goian distribution and then they are initialized randomly later when we do back propagation we'll train these for now when when you look at all these embedding matrices just just know that their values are random for now okay so the first step is to convert all of these tokens into um token embeddings which are 768 embedding uh vectors and you'll see that that has been done over here so when you go to the forward method first what you do is you look at the input shape right the input shape is basic basically batch size which are the number of rows and the sequence length which is essentially uh the length of the number of tokens which we are considering so for example let us look at this this is for example one such batch right so I have in this batch two the batch length the batch size is two so there are two rows in this tensor and the number of columns are the number of tokens which I'm going to use for now let's just look at one batch so I'm I'm feeding reading in four tokens and which are my input inputs and then I want to get the next word so every effort moves you forward which will be the next to it right so that's why the shape is batch size and sequence length so batch size is in the example which I showed you there are two batches so two rows and sequence length is the number of tokens basically great so the first thing what we are going to do is that we are going to create the token embeddings out of the input um input index which is the inputs which we have given now take a look at these inputs and just look at the first batch the first batch is a list of token IDs which you which uh have been mentioned over here what we'll do with these token IDs is we will then query or look up the token embedding Matrix and then retrieve those input embedding vectors so for this token ID there will be a 768 dimensional Vector for this token ID there will be a 768 dimensional Vector Etc so you might be thinking where is that embedding Matrix so that has been created in the init Constructor which is invoked by default so see first we have a token embedding Matrix which has been created uh the number of rows of this Matrix are equal to the vocabulary size exactly what we have written over here the number of rows of this token embedding Matrix is equal to the vocabulary size and the number of columns of this token embedding Matrix is the embedding Dimension why because every token or every token ID has a 768 dimensional Vector associated with it so the number of uh columns which are there is equal to the 768 so for every token ID essentially there will be 768 columns uh so this is the embedding uh token embedding weight Matrix which has been created using this pytorch embedding class and what we are doing here essentially in the forward method is that we are looking at the input token IDs which have been mentioned in our batch and we are going to look up that token embedding Matrix and we'll get the token embeddings for the inputs so we'll essentially have four four 768 dimensional vectors for the first batch and we'll have four 768 dimensional vectors for the second batch great The Next Step which we are going to do after getting the token IDs is we have to get the positional embedding right so remember up till now we have uh we have a 768 dimensional Vector for id1 a 768 dimensional Vector for id2 a 768 dimensional VOR VOR for ID 3 and a 768 dimensional Vector for ID number four now what we are essentially going to do is that we are going to add a positional embedding to each of these four vectors okay so for that first we need a positional embedding weight Matrix very similar to the Token embedding weight Matrix so remember the positional embedding really depends on the context size because uh at for uh we'll take let's say Contex size is 1024 at Max we'll use 1024 tokens to predict the next word right so we just need to know the uh let's say the position is one so let's say the position is one we need a positional embedding Vector for this position if the position is three or two we need a positional embedding Vector for this position similarly if the position is 1024 we need a positional embedding Vector for this we don't need a positional embedding Vector for one to5 why because we are not we are not looking at uh the context window of 1025 we are only going to look at maximum one24 tokens at once and predict the next word so that's why the number of rows in the positional embedding Matrix is the equal to the context size but if you see the number of columns they are still equal to the embedding size and that is important because we are going to add the positional embedding vectors to the Token embedding uh to the Token embedding vectors so here there are four token embedding vectors of 768 Dimensions each right to each of these we will have four positional embedding vectors so now uh every effort moves you let's say so it's position number one position number two position number three and position number four right so we will get the positional M Vector corresponding to First Position second position third position and fourth position and we'll add them uh to each of these token embedding vectors the context size is 1024 but for now I'm just showing you a simple version of four context size but the main point I'm trying to illustrate here is that once we get the token embedding vectors for these four tokens We'll add them with the positional embedding vectors okay so here you can see that first a positional embedding Matrix is also initialized when this init Constructor is called and the number of rows here are equal to the context length which is exactly what I showed you uh over here the number of rows are equal to the context length or the context size and the number of columns are equal to the embedding Dimension so this is again a nn. embedding which is very similar to the embedding class or exactly the same embedding class which we used for token embedding again these will be initialized randomly for now we'll train them later now what we'll be doing is that based on the positions um in the in the tokens we are going to uh qu or we are going to look up the positional embedding Matrix so torch. arrange sequence length what this will this is going to do is that it will look at the token length so in this case the token length uh let's say right now the token length is equal to 4 right the token length is equal to four in this batch which I given so it will arrange it as 0 1 2 and three and it will get the positional embedding uh it will get the positional embedding vectors for row number zero row number one row number two and row number three three and then it will then what we are going to do is we are going to add the token embeddings for the four tokens and we are going to add the positional embeddings for the four tokens so the X the um we have the input initially right the way it's been transformed is like this so the four tokens which we had in every batch uh we'll convert them into 768 dimensional input vectors we'll then add the 768 dimensional positional vectors to each of them and then finally we have a 768 dimensional uh embedding Vector for each of these tokens awesome so now next what we are going to do is the next step is something which is called as drop EMB which is the Dropout embedding uh so this is just the dropout rate so what it will do is that it will take these uh it will take the embedding vectors for um all the tokens and it will randomly turn off some weight values this generally helps the generalization performance and prev overfitting we'll look at this in detail in one of the next classes after we get these uh embedding vectors let me show you the figure what happens next so once we get these embedding vectors as I showed you over here um uh yeah actually let me show it over here yeah so once we get these uh token IDs and the token embeddings right uh we'll then pass it to the GPT model which essentially consists of the Transformer block and then the output is generated so after we get the yeah so after we get the input embedding and after we add the positional embedding next what we have to do is we have to pass it through the entire Transformer block and also we later have a layer normalization layer so this is exactly what is done over here after we get these embeddings and we apply the Dropout layer we then pass it through the Transformer block so in this one step actually several things are happening in this one step what we are doing is that we are implementing multi-head attention we are implementing a Dropout layer we are implementing shortcut connections we are implementing layer Norm we are implementing feed forward neural network with JLo activation then another Dropout layer uh and then remember we have 12 of these Transformer blocks in gpt2 and then finally we have another final Norm which is the um layer normalization layer towards the end and the important step which I want to highlight in today's lecture is this last step which is the output which we have which are called as logits and there is a reason why they are called as logits so let me explain that to you uh okay okay so when we reach the when we reach the output what we'll be having is that we'll have four tokens and each of those four tokens we have a 76 68 dimensional representation that's the output vectors right but now we want to predict the next word based on the input token based on the input sentence the input sentence as I mentioned was every effort moves you we have to somehow predict the next word which is forward so after all of the Transformer blocks have been implemented the output is such that for every token uh for every token we'll have a 768 dimensional Vector that's the output now what the main thing is that how will we predict the next word and so the way this is done is that the final output Matrix which we have which we have will have this format where there will be four tokens which are the number of rows but there will be columns which is equal to vocabulary size which is 50257 and let me tell you why so if you look at token number one uh actually before that when we look at an input batch every effort moves you there are actually Four prediction tasks which are happening here uh you have you first look at one word every and you predict the next word which is effort then you look at the next which is every effort this becomes an input in the next and then you predict the next word then the next input is every effort moves and then you predict youu only then there is the fourth task which is every effort moves you and then you predict the next word which is forward so when you look at this input batch which has four tokens or a context length of four in this case we are actually doing four prediction tasks so when you look at token number one which is every we need to predict what what's the next token right out of the vocabulary what has the highest probability of coming next so if you look at the rows there will be the column length will be 50257 and every element here will represent probabilities so you will then take that element which has the highest highest probability so let's say that is the 40,000 that is the 40,000 column over here so then we look at the vocabulary we'll look at the 40,000 token in the vocabulary which and that seems to have the highest prior probability we'll choose only that token which has the highest probability so that's the 40,000 column and then that 40,000 column will be effort now similarly when you look at token two so the input will be every effort right and then you'll again look at the row and you'll see uh that column number which has the highest probability and let's say this column number is 20,000 so you look at the token corresponding to 20,000 in the vocabulary of 50257 and that should be moves similarly every effort moves you will be the input and we'll again have a token corresponding to you and then every effort moves you will be the input and then we'll have a token corresponding to forward so that's why the output which we expect will have this format which has these tokens which is the input sequence length and in this case it's equal to four and the vocabulary size will be 50257 and then this will essentially give us an idea of what the next word will be at every single prediction stage since there are four input output prediction tasks in this uh input sentence so that's why if you look at the output head later when we print out the output Dimensions it Dimensions will be the number of tokens and the number of columns will be equal to vocabulary size so even if you look at the output head Dimension uh remember when we reach up till this point the number of rows are equal to the number of tokens which is four number of columns is the embedding Dimension which is 768 that will be multiplied by this neural network which has 768 rows and 50257 columns so ultimately the result which will come in logits will have four rows and 50257 columns very similar to uh very similar to what we have seen over here four rows and 50257 columns don't worry in the subsequent lectures we'll have a separate lecture for each of each of these but right now I just wanted to show you this overall thing of what we are going to implement when we reach the end of the next four to five lectures we'll get these logits Matrix so that we'll know what the next word in the prediction is now now see here what we are doing is that we have taken two texts every effort moves you is text number one which is also batch one and the second text is everyday holds up right so we are creating a batch which has two texts and the first step as I mentioned is to get the token IDs so these are the token IDs these four token IDs for the first batch these are the four token IDs for the second batch what we do then is that we create an instance of the dummy GPT model with the configuration as I mentioned above with the configuration as this right and although we have not defined anything over here and everything is placeholder right now we can still run this code um nothing is initialized here right so this block currently does nothing and even this layer currently does nothing but we can still execute this code and get the output so what will happen is that these two blocks will not essentially do anything but we can still it's a functional code so we'll still get the Logics so let's see what the result is uh so we'll pass in this batch to the model right now and let's see the output shape so once we pass in this batch try to visualize the steps which are happening right uh and your visualization should follow this workflow for now think of the workflow so first I have this first look at only one batch so I have four token IDs these are the four token IDs these four token IDs will be converted into 768 dimensional input embedding vectors then I will add positional embedding vectors to each of them the resultant will be passed through um let's see what the result yeah the resultant will be passed through a Dropout layer then I'll have then will go through the Transformer block then the result will go through the another uh normalization layer which is also called as layer normalization layer and then until this point when I reach this stage the output will have four rows corresponding to the four tokens and 768 columns because the embedding Dimension is 768 that's for one batch now this will go through the output embedding uh output head which is the final neural network and then the result will be number of tokens which is four and 50257 columns because I want to now get logits and see which one which word should come next so here you can see the result for the first batch there are four rows and then 5 0257 columns this is exactly similar to the output which I was showing you over here the output Logics should have four tokens as the rows and 50257 columns and similarly for the second batch there are four rows and 50257 columns each parameter here should ideally represent the probability of the next token remember when you look at these four tokens there are four input output tasks Happening Here not just one so every is the first input and effort should be the first output every effort is the first is the second input and moves should be the second output every effort moves should be the third input and U should be the third output every effort moves U should be the final input and the output should be forward so right now these these outputs are random because we have not trained anything but ultimately we'll just add the back propagation algorithm and then all of these probabilities will start to make sense later we'll also apply soft Max Etc to these logic so that they'll be between 0 to one okay so here you can see that the output tensor has two rows corresponding to the two text samples this first row corresponds to the first text sample the second row corresponds to the second text sample each Tex sample consist of four tokens so first token first row correspond to First token second to the second token Etc and each token is a 50257 dimensional Vector which matches the size of the tokenizers vocabulary so yeah here you can see each token is a 50257 dimensional vector and it encodes the probability of what should come next the embedding has 50257 Dimensions because each of these Dimensions refers to a unique token in the vocabulary at the end of the series of lectures when we implement the postprocessing code we'll convert these 50257 dimensional vectors back into token IDs which we can decode into what word comes next okay uh so in this lecture we have looked at a top down View at the GPT architecture what are the inputs what are the outputs Etc and uh I hope you have gotten a sense of what all we are going to implement in the subsequent lectures so in the next lectures we'll go through every single block sequentially so my next lecture is planned for layer normalization then after that we have a lecture on feed forward neural network with J activation then we have a lecture on shortcut connections then we'll have a lecture on uh how all of these come together in the Transformer block and then finally we'll have the entire GPT model implementation and the last lecture will be gener text from output tokens so this logits Matrix which is there right which you obtained over here uh where was that yeah here was the Logics Matrix which was uh which was returned how to convert this into the next word we'll see that in the last lecture in this series of lectures okay so that that actually brings me to the end of this lecture I want to leave you with this one image this one image so what we have learned right now is this GPT backbone so we have started this series with understanding the GPT backbone but remember this GPT backbone consists of layer normalization jalu activation feed forward Network and shortcut connection and all of these actually come together all of this feed in together um to make what is called as the Transformer block um that's why it's called Transformer so you might be thinking what exactly is the Transformer and why do we say that that attention is the heart of it the reason people say attention mechanism is the heart of Transformer because if you if you unlock or Unravel the Transformer block you'll see that the mass multi-ad attention is a crucial component of it but there are several other components which you also should be aware of and we'll cover that I hope you have got a bird's eye view which I planned for in today's lecture um thank you everyone I hope you're having a lot of fun with these whiteboard notes as well as through this coding assignments as well as through this coding part the Transformers lectures which came before were a bit complicated but now it's getting a bit easier so you have been through the hard part of the course so congrats for that and now comes the very interesting part later thanks everyone I'll look forward to seeing you in the next lecture"
+}

@@ -1,0 +1,4326 @@
+{
+  "video": {
+    "video_id": "2r0QahNdwMw",
+    "title": "Shortcut connections in the LLM Architecture",
+    "duration": 1966.0,
+    "index": 21
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.16
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.44,
+      "duration": 4.92
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 8.16,
+      "duration": 5.08
+    },
+    {
+      "text": "scratch Series today we are going to",
+      "start": 10.36,
+      "duration": 5.08
+    },
+    {
+      "text": "learn about another very important",
+      "start": 13.24,
+      "duration": 4.52
+    },
+    {
+      "text": "component of the large language model",
+      "start": 15.44,
+      "duration": 4.4
+    },
+    {
+      "text": "architecture and that is called as",
+      "start": 17.76,
+      "duration": 3.32
+    },
+    {
+      "text": "shortcut",
+      "start": 19.84,
+      "duration": 3.88
+    },
+    {
+      "text": "connections so first let's see what all",
+      "start": 21.08,
+      "duration": 5.16
+    },
+    {
+      "text": "we have covered until now so the GPT",
+      "start": 23.72,
+      "duration": 4.399
+    },
+    {
+      "text": "architecture consists of multiple",
+      "start": 26.24,
+      "duration": 4.359
+    },
+    {
+      "text": "building blocks it consists of layer",
+      "start": 28.119,
+      "duration": 4.801
+    },
+    {
+      "text": "normalization the JLo activation with",
+      "start": 30.599,
+      "duration": 4.8
+    },
+    {
+      "text": "feed forward neural network and one more",
+      "start": 32.92,
+      "duration": 4.159
+    },
+    {
+      "text": "building block is this shortcut",
+      "start": 35.399,
+      "duration": 3.921
+    },
+    {
+      "text": "Connections in the previous lectures we",
+      "start": 37.079,
+      "duration": 4.081
+    },
+    {
+      "text": "have looked at layer normalization the",
+      "start": 39.32,
+      "duration": 4.44
+    },
+    {
+      "text": "Jou and the feed forward neural network",
+      "start": 41.16,
+      "duration": 4.28
+    },
+    {
+      "text": "today we are going to look at shortcut",
+      "start": 43.76,
+      "duration": 3.76
+    },
+    {
+      "text": "connections and then in the next lecture",
+      "start": 45.44,
+      "duration": 4.32
+    },
+    {
+      "text": "you'll see that all these four building",
+      "start": 47.52,
+      "duration": 4.32
+    },
+    {
+      "text": "blocks essentially come together to form",
+      "start": 49.76,
+      "duration": 4.24
+    },
+    {
+      "text": "the Transformer block which is the",
+      "start": 51.84,
+      "duration": 4.76
+    },
+    {
+      "text": "beating heart or the main component of",
+      "start": 54.0,
+      "duration": 4.559
+    },
+    {
+      "text": "the final GPT",
+      "start": 56.6,
+      "duration": 4.08
+    },
+    {
+      "text": "architecture so we we are slowly but",
+      "start": 58.559,
+      "duration": 5.801
+    },
+    {
+      "text": "steadily making progress towards the",
+      "start": 60.68,
+      "duration": 5.92
+    },
+    {
+      "text": "entire GPT architecture and we are",
+      "start": 64.36,
+      "duration": 4.32
+    },
+    {
+      "text": "making our our way towards the top like",
+      "start": 66.6,
+      "duration": 4.36
+    },
+    {
+      "text": "this so today's lecture is going to be",
+      "start": 68.68,
+      "duration": 4.96
+    },
+    {
+      "text": "very important and also very interesting",
+      "start": 70.96,
+      "duration": 4.72
+    },
+    {
+      "text": "because shortcut connections really make",
+      "start": 73.64,
+      "duration": 4.28
+    },
+    {
+      "text": "our life very easy when training the",
+      "start": 75.68,
+      "duration": 4.6
+    },
+    {
+      "text": "large language model and today I'm going",
+      "start": 77.92,
+      "duration": 4.76
+    },
+    {
+      "text": "to demonstrate why we need shortcut",
+      "start": 80.28,
+      "duration": 4.839
+    },
+    {
+      "text": "connections how they are integrated",
+      "start": 82.68,
+      "duration": 4.36
+    },
+    {
+      "text": "within the Transformer block and how do",
+      "start": 85.119,
+      "duration": 3.36
+    },
+    {
+      "text": "they exactly",
+      "start": 87.04,
+      "duration": 4.32
+    },
+    {
+      "text": "work so first first thing first let me",
+      "start": 88.479,
+      "duration": 5.161
+    },
+    {
+      "text": "show you where the trans shortcut",
+      "start": 91.36,
+      "duration": 4.68
+    },
+    {
+      "text": "connections actually come in the",
+      "start": 93.64,
+      "duration": 4.88
+    },
+    {
+      "text": "Transformer block itself so here's the",
+      "start": 96.04,
+      "duration": 4.92
+    },
+    {
+      "text": "zoomed in view of the Transformer block",
+      "start": 98.52,
+      "duration": 5.0
+    },
+    {
+      "text": "you'll see that first we have the layer",
+      "start": 100.96,
+      "duration": 4.479
+    },
+    {
+      "text": "normalization then we have the mask",
+      "start": 103.52,
+      "duration": 4.48
+    },
+    {
+      "text": "multi- attention then the Dropout layers",
+      "start": 105.439,
+      "duration": 4.801
+    },
+    {
+      "text": "layer normalization to feed forward",
+      "start": 108.0,
+      "duration": 4.52
+    },
+    {
+      "text": "neural network and Dropout so you might",
+      "start": 110.24,
+      "duration": 4.239
+    },
+    {
+      "text": "be thinking that okay where exactly is",
+      "start": 112.52,
+      "duration": 4.84
+    },
+    {
+      "text": "the shortcut connection on over here so",
+      "start": 114.479,
+      "duration": 5.881
+    },
+    {
+      "text": "these plus symbols which you see both of",
+      "start": 117.36,
+      "duration": 5.439
+    },
+    {
+      "text": "these are shortcut connections and",
+      "start": 120.36,
+      "duration": 4.119
+    },
+    {
+      "text": "wherever you see the plus symbol you'll",
+      "start": 122.799,
+      "duration": 3.24
+    },
+    {
+      "text": "see that there is an arrow which is",
+      "start": 124.479,
+      "duration": 4.56
+    },
+    {
+      "text": "associated with the plus symbol U with",
+      "start": 126.039,
+      "duration": 4.761
+    },
+    {
+      "text": "this symbol there is this arrow and with",
+      "start": 129.039,
+      "duration": 3.56
+    },
+    {
+      "text": "this symbol there is this arrow that is",
+      "start": 130.8,
+      "duration": 3.799
+    },
+    {
+      "text": "essentially the shortcut",
+      "start": 132.599,
+      "duration": 4.481
+    },
+    {
+      "text": "connection so you might be thinking that",
+      "start": 134.599,
+      "duration": 4.321
+    },
+    {
+      "text": "what exactly are these connections what",
+      "start": 137.08,
+      "duration": 3.68
+    },
+    {
+      "text": "are these arrows because things are not",
+      "start": 138.92,
+      "duration": 4.2
+    },
+    {
+      "text": "flowing exactly linearly here right I",
+      "start": 140.76,
+      "duration": 3.96
+    },
+    {
+      "text": "mean they are flowing linearly but there",
+      "start": 143.12,
+      "duration": 3.759
+    },
+    {
+      "text": "are these two arrows which are shortcut",
+      "start": 144.72,
+      "duration": 3.96
+    },
+    {
+      "text": "connections and today we are going to",
+      "start": 146.879,
+      "duration": 3.761
+    },
+    {
+      "text": "learn about them",
+      "start": 148.68,
+      "duration": 5.12
+    },
+    {
+      "text": "so let's get started you may have if you",
+      "start": 150.64,
+      "duration": 4.72
+    },
+    {
+      "text": "have studied machine learning or deep",
+      "start": 153.8,
+      "duration": 3.4
+    },
+    {
+      "text": "learning before you may have come across",
+      "start": 155.36,
+      "duration": 3.56
+    },
+    {
+      "text": "this term as skip connections or",
+      "start": 157.2,
+      "duration": 3.759
+    },
+    {
+      "text": "residual connections essentially it",
+      "start": 158.92,
+      "duration": 3.959
+    },
+    {
+      "text": "means the same thing so shortcut",
+      "start": 160.959,
+      "duration": 3.681
+    },
+    {
+      "text": "connections are also known as skip",
+      "start": 162.879,
+      "duration": 4.201
+    },
+    {
+      "text": "connections or residual",
+      "start": 164.64,
+      "duration": 5.319
+    },
+    {
+      "text": "connections um initially when shortcut",
+      "start": 167.08,
+      "duration": 5.0
+    },
+    {
+      "text": "connections were first discovered they",
+      "start": 169.959,
+      "duration": 4.321
+    },
+    {
+      "text": "were proposed in the field of computer",
+      "start": 172.08,
+      "duration": 6.36
+    },
+    {
+      "text": "vision to solve the problem of Vanishing",
+      "start": 174.28,
+      "duration": 6.56
+    },
+    {
+      "text": "gradients now this this is the main",
+      "start": 178.44,
+      "duration": 5.56
+    },
+    {
+      "text": "problem which shortcut connections solve",
+      "start": 180.84,
+      "duration": 4.64
+    },
+    {
+      "text": "so if you understand the vanishing",
+      "start": 184.0,
+      "duration": 3.68
+    },
+    {
+      "text": "gradient problem you will really",
+      "start": 185.48,
+      "duration": 3.64
+    },
+    {
+      "text": "understand why we need shortcut",
+      "start": 187.68,
+      "duration": 3.839
+    },
+    {
+      "text": "connections so let me try to explain",
+      "start": 189.12,
+      "duration": 5.08
+    },
+    {
+      "text": "this problem of Vanishing gradient first",
+      "start": 191.519,
+      "duration": 4.401
+    },
+    {
+      "text": "so this main problem is that the",
+      "start": 194.2,
+      "duration": 4.399
+    },
+    {
+      "text": "gradients become progressively smaller",
+      "start": 195.92,
+      "duration": 4.36
+    },
+    {
+      "text": "as we propagate backwards through a",
+      "start": 198.599,
+      "duration": 4.2
+    },
+    {
+      "text": "neural network and when gradients become",
+      "start": 200.28,
+      "duration": 4.8
+    },
+    {
+      "text": "very small then weight updates are not",
+      "start": 202.799,
+      "duration": 4.36
+    },
+    {
+      "text": "made learning becomes",
+      "start": 205.08,
+      "duration": 5.04
+    },
+    {
+      "text": "stagnant and so convergence is delayed",
+      "start": 207.159,
+      "duration": 5.521
+    },
+    {
+      "text": "and the llm does not learn very",
+      "start": 210.12,
+      "duration": 5.28
+    },
+    {
+      "text": "well we can even visualize this further",
+      "start": 212.68,
+      "duration": 4.32
+    },
+    {
+      "text": "so let's say if you have a deep neural",
+      "start": 215.4,
+      "duration": 3.44
+    },
+    {
+      "text": "network like this which has three hidden",
+      "start": 217.0,
+      "duration": 4.72
+    },
+    {
+      "text": "layers so we have the hidden layer one",
+      "start": 218.84,
+      "duration": 5.52
+    },
+    {
+      "text": "we have the hidden Layer Two and we have",
+      "start": 221.72,
+      "duration": 5.84
+    },
+    {
+      "text": "the hidden layer three when we do the",
+      "start": 224.36,
+      "duration": 6.519
+    },
+    {
+      "text": "backward pass we find the gradients with",
+      "start": 227.56,
+      "duration": 4.959
+    },
+    {
+      "text": "respect to all the weights in that",
+      "start": 230.879,
+      "duration": 3.841
+    },
+    {
+      "text": "particular layer so when I say gradient",
+      "start": 232.519,
+      "duration": 4.36
+    },
+    {
+      "text": "4 it's a matrix of all the gradients in",
+      "start": 234.72,
+      "duration": 4.32
+    },
+    {
+      "text": "the output layer when I say gradient",
+      "start": 236.879,
+      "duration": 4.36
+    },
+    {
+      "text": "three it's a Matrix of all the gradients",
+      "start": 239.04,
+      "duration": 4.24
+    },
+    {
+      "text": "in the hidden layer three when I say",
+      "start": 241.239,
+      "duration": 4.321
+    },
+    {
+      "text": "gradient 2 it's with respect to Hidden",
+      "start": 243.28,
+      "duration": 4.679
+    },
+    {
+      "text": "Layer Two And when I say gradient one",
+      "start": 245.56,
+      "duration": 4.16
+    },
+    {
+      "text": "it's the Matrix of gradients in the",
+      "start": 247.959,
+      "duration": 4.401
+    },
+    {
+      "text": "hidden layer one now it's very important",
+      "start": 249.72,
+      "duration": 4.4
+    },
+    {
+      "text": "to understand the gradient flow",
+      "start": 252.36,
+      "duration": 4.399
+    },
+    {
+      "text": "Direction the gradient flow direction is",
+      "start": 254.12,
+      "duration": 4.639
+    },
+    {
+      "text": "always from the output of the neural",
+      "start": 256.759,
+      "duration": 3.76
+    },
+    {
+      "text": "network to the input of the neural",
+      "start": 258.759,
+      "duration": 4.121
+    },
+    {
+      "text": "network so from right to",
+      "start": 260.519,
+      "duration": 4.881
+    },
+    {
+      "text": "left this means that first we find the",
+      "start": 262.88,
+      "duration": 4.8
+    },
+    {
+      "text": "gradient number four that is then used",
+      "start": 265.4,
+      "duration": 4.4
+    },
+    {
+      "text": "to find gradient number three that is is",
+      "start": 267.68,
+      "duration": 4.12
+    },
+    {
+      "text": "then used to find gradient number two",
+      "start": 269.8,
+      "duration": 3.92
+    },
+    {
+      "text": "and that is then used to find gradient",
+      "start": 271.8,
+      "duration": 4.0
+    },
+    {
+      "text": "number one and there are multiplication",
+      "start": 273.72,
+      "duration": 4.199
+    },
+    {
+      "text": "operations involved so imagine that",
+      "start": 275.8,
+      "duration": 3.76
+    },
+    {
+      "text": "let's say if gradient four becomes",
+      "start": 277.919,
+      "duration": 4.401
+    },
+    {
+      "text": "suddenly very small and if we multiply",
+      "start": 279.56,
+      "duration": 7.28
+    },
+    {
+      "text": "it with uh the back propagated values we",
+      "start": 282.32,
+      "duration": 6.64
+    },
+    {
+      "text": "get gradient three which is even smaller",
+      "start": 286.84,
+      "duration": 3.72
+    },
+    {
+      "text": "gradient two which will be even more",
+      "start": 288.96,
+      "duration": 3.48
+    },
+    {
+      "text": "smaller and then gradient one will be",
+      "start": 290.56,
+      "duration": 4.56
+    },
+    {
+      "text": "further small so that's why it's called",
+      "start": 292.44,
+      "duration": 5.16
+    },
+    {
+      "text": "Vanishing gradient because if the",
+      "start": 295.12,
+      "duration": 4.76
+    },
+    {
+      "text": "gradients suddenly become small then as",
+      "start": 297.6,
+      "duration": 5.159
+    },
+    {
+      "text": "we multiply these gradients gradient one",
+      "start": 299.88,
+      "duration": 4.599
+    },
+    {
+      "text": "becomes extremely small because a",
+      "start": 302.759,
+      "duration": 3.88
+    },
+    {
+      "text": "product of small quantities becomes even",
+      "start": 304.479,
+      "duration": 4.681
+    },
+    {
+      "text": "more smaller so by the time the training",
+      "start": 306.639,
+      "duration": 4.961
+    },
+    {
+      "text": "is finished and by the time we get the",
+      "start": 309.16,
+      "duration": 4.24
+    },
+    {
+      "text": "gradients of the loss with respect to",
+      "start": 311.6,
+      "duration": 4.08
+    },
+    {
+      "text": "all the weights of this layer we find",
+      "start": 313.4,
+      "duration": 4.16
+    },
+    {
+      "text": "that this gradient becomes very small",
+      "start": 315.68,
+      "duration": 4.4
+    },
+    {
+      "text": "and then it even starts approaching zero",
+      "start": 317.56,
+      "duration": 4.04
+    },
+    {
+      "text": "do you see the problem which happens",
+      "start": 320.08,
+      "duration": 3.239
+    },
+    {
+      "text": "when the gradient start approaching zero",
+      "start": 321.6,
+      "duration": 3.24
+    },
+    {
+      "text": "so let's say if you have a particular",
+      "start": 323.319,
+      "duration": 4.521
+    },
+    {
+      "text": "weight uh the gradient update or the",
+      "start": 324.84,
+      "duration": 4.68
+    },
+    {
+      "text": "weight update rule looks something like",
+      "start": 327.84,
+      "duration": 3.32
+    },
+    {
+      "text": "the the weight in the new iteration is",
+      "start": 329.52,
+      "duration": 4.119
+    },
+    {
+      "text": "the weight in the old iteration minus",
+      "start": 331.16,
+      "duration": 5.24
+    },
+    {
+      "text": "Alpha which is the step size multiplied",
+      "start": 333.639,
+      "duration": 5.601
+    },
+    {
+      "text": "by partial derivative of loss with",
+      "start": 336.4,
+      "duration": 7.4
+    },
+    {
+      "text": "respect to the weights right um so",
+      "start": 339.24,
+      "duration": 6.84
+    },
+    {
+      "text": "partial derivative of L with respect to",
+      "start": 343.8,
+      "duration": 5.48
+    },
+    {
+      "text": "W now do you see what will happen if the",
+      "start": 346.08,
+      "duration": 5.52
+    },
+    {
+      "text": "gradient itself become small so if this",
+      "start": 349.28,
+      "duration": 3.96
+    },
+    {
+      "text": "partial derivative of loss with respect",
+      "start": 351.6,
+      "duration": 4.24
+    },
+    {
+      "text": "to W which is the gradient of loss with",
+      "start": 353.24,
+      "duration": 4.6
+    },
+    {
+      "text": "respect to W if it becomes very small so",
+      "start": 355.84,
+      "duration": 5.799
+    },
+    {
+      "text": "let's say if this approach is zero",
+      "start": 357.84,
+      "duration": 3.799
+    },
+    {
+      "text": "the weight will not be updated at all",
+      "start": 362.52,
+      "duration": 3.679
+    },
+    {
+      "text": "what the new value of the weight which",
+      "start": 364.52,
+      "duration": 4.2
+    },
+    {
+      "text": "is W star will be same as the old value",
+      "start": 366.199,
+      "duration": 4.4
+    },
+    {
+      "text": "of the weight so w star will be equal to",
+      "start": 368.72,
+      "duration": 4.72
+    },
+    {
+      "text": "W old because this quantity will be zero",
+      "start": 370.599,
+      "duration": 4.561
+    },
+    {
+      "text": "so if the weights are not updating",
+      "start": 373.44,
+      "duration": 3.24
+    },
+    {
+      "text": "that's equivalent to saying that the",
+      "start": 375.16,
+      "duration": 3.28
+    },
+    {
+      "text": "neural network is not learning",
+      "start": 376.68,
+      "duration": 4.44
+    },
+    {
+      "text": "essentially this leads to a stagnancy",
+      "start": 378.44,
+      "duration": 4.24
+    },
+    {
+      "text": "problem where we have reached a local",
+      "start": 381.12,
+      "duration": 4.68
+    },
+    {
+      "text": "Minima let's say nothing is proceeding",
+      "start": 382.68,
+      "duration": 5.359
+    },
+    {
+      "text": "further this is called as the vanishing",
+      "start": 385.8,
+      "duration": 5.48
+    },
+    {
+      "text": "gradient problem and and implementation",
+      "start": 388.039,
+      "duration": 5.201
+    },
+    {
+      "text": "of shortcut connections really solves",
+      "start": 391.28,
+      "duration": 4.0
+    },
+    {
+      "text": "this problem so first let's see what",
+      "start": 393.24,
+      "duration": 5.0
+    },
+    {
+      "text": "shortcut connections actually are uh",
+      "start": 395.28,
+      "duration": 5.96
+    },
+    {
+      "text": "essentially shortcut connection create",
+      "start": 398.24,
+      "duration": 5.519
+    },
+    {
+      "text": "an alternative path for the gradient to",
+      "start": 401.24,
+      "duration": 5.88
+    },
+    {
+      "text": "Flow by skipping one or more",
+      "start": 403.759,
+      "duration": 5.84
+    },
+    {
+      "text": "layers what do we mean by creating an",
+      "start": 407.12,
+      "duration": 5.84
+    },
+    {
+      "text": "alternative path let's see so this is",
+      "start": 409.599,
+      "duration": 5.521
+    },
+    {
+      "text": "achieved by adding the output of one",
+      "start": 412.96,
+      "duration": 5.72
+    },
+    {
+      "text": "layer to the output of a later layer let",
+      "start": 415.12,
+      "duration": 5.88
+    },
+    {
+      "text": "me show this to you visually so if you",
+      "start": 418.68,
+      "duration": 6.639
+    },
+    {
+      "text": "look at the diagram on the left hand",
+      "start": 421.0,
+      "duration": 6.08
+    },
+    {
+      "text": "side this is a deep neural network",
+      "start": 425.319,
+      "duration": 4.121
+    },
+    {
+      "text": "without shortcut connections so here you",
+      "start": 427.08,
+      "duration": 4.6
+    },
+    {
+      "text": "can see that there are no arrows which",
+      "start": 429.44,
+      "duration": 5.36
+    },
+    {
+      "text": "connects two layers right uh these are",
+      "start": 431.68,
+      "duration": 5.28
+    },
+    {
+      "text": "just normal all the arrows are flowing",
+      "start": 434.8,
+      "duration": 3.959
+    },
+    {
+      "text": "forward and let's take a look at the",
+      "start": 436.96,
+      "duration": 4.239
+    },
+    {
+      "text": "magnitude of the gradients so we start",
+      "start": 438.759,
+      "duration": 4.241
+    },
+    {
+      "text": "from the outermost gradient remember the",
+      "start": 441.199,
+      "duration": 3.641
+    },
+    {
+      "text": "gradient flow is from the last layer to",
+      "start": 443.0,
+      "duration": 5.16
+    },
+    {
+      "text": "the first layer the magnitude is 0.5",
+      "start": 444.84,
+      "duration": 5.479
+    },
+    {
+      "text": "here let's see what happens to the",
+      "start": 448.16,
+      "duration": 4.319
+    },
+    {
+      "text": "magnitude as we come to the inner layers",
+      "start": 450.319,
+      "duration": 4.201
+    },
+    {
+      "text": "so the magnitude decreases to",
+      "start": 452.479,
+      "duration": 4.641
+    },
+    {
+      "text": "0.0013 here the magnitude of the",
+      "start": 454.52,
+      "duration": 5.16
+    },
+    {
+      "text": "gradient decreases even further to",
+      "start": 457.12,
+      "duration": 5.479
+    },
+    {
+      "text": "0.007 when I'm seeing the magnitude here",
+      "start": 459.68,
+      "duration": 5.44
+    },
+    {
+      "text": "I'm essentially taking the mean of all",
+      "start": 462.599,
+      "duration": 5.32
+    },
+    {
+      "text": "the gradient values in that layer and if",
+      "start": 465.12,
+      "duration": 4.759
+    },
+    {
+      "text": "you look at the layer number one you can",
+      "start": 467.919,
+      "duration": 4.28
+    },
+    {
+      "text": "see how small the gradient has become",
+      "start": 469.879,
+      "duration": 4.361
+    },
+    {
+      "text": "when we reach layer number one this",
+      "start": 472.199,
+      "duration": 3.56
+    },
+    {
+      "text": "perfectly illustrates The Vanishing",
+      "start": 474.24,
+      "duration": 3.519
+    },
+    {
+      "text": "gradient problem what shortcut",
+      "start": 475.759,
+      "duration": 4.12
+    },
+    {
+      "text": "connections do is that they connect the",
+      "start": 477.759,
+      "duration": 5.201
+    },
+    {
+      "text": "output of one layer to the output of",
+      "start": 479.879,
+      "duration": 5.201
+    },
+    {
+      "text": "another layer so let's say there is this",
+      "start": 482.96,
+      "duration": 4.079
+    },
+    {
+      "text": "is the input layer right we connect the",
+      "start": 485.08,
+      "duration": 3.88
+    },
+    {
+      "text": "output of the input layer to the output",
+      "start": 487.039,
+      "duration": 4.641
+    },
+    {
+      "text": "of the first layer with this second",
+      "start": 488.96,
+      "duration": 4.32
+    },
+    {
+      "text": "shortcut connection we connect the",
+      "start": 491.68,
+      "duration": 4.04
+    },
+    {
+      "text": "output of the first layer to the output",
+      "start": 493.28,
+      "duration": 3.599
+    },
+    {
+      "text": "of the second",
+      "start": 495.72,
+      "duration": 3.72
+    },
+    {
+      "text": "layer with this shortcut connection we",
+      "start": 496.879,
+      "duration": 4.16
+    },
+    {
+      "text": "connect the output of the second layer",
+      "start": 499.44,
+      "duration": 3.879
+    },
+    {
+      "text": "to the output of the third layer with",
+      "start": 501.039,
+      "duration": 4.041
+    },
+    {
+      "text": "this shortcut connection we connect the",
+      "start": 503.319,
+      "duration": 3.32
+    },
+    {
+      "text": "output of the third layer with the",
+      "start": 505.08,
+      "duration": 3.72
+    },
+    {
+      "text": "fourth layer what does it mean",
+      "start": 506.639,
+      "duration": 4.161
+    },
+    {
+      "text": "connecting the output of one layer with",
+      "start": 508.8,
+      "duration": 3.84
+    },
+    {
+      "text": "another layer what that means is",
+      "start": 510.8,
+      "duration": 4.599
+    },
+    {
+      "text": "basically we just add the output of one",
+      "start": 512.64,
+      "duration": 5.199
+    },
+    {
+      "text": "layer to the output of another layer and",
+      "start": 515.399,
+      "duration": 4.52
+    },
+    {
+      "text": "let me show you how that how that is",
+      "start": 517.839,
+      "duration": 3.841
+    },
+    {
+      "text": "done so this plus symbol indicates that",
+      "start": 519.919,
+      "duration": 4.12
+    },
+    {
+      "text": "we are adding the output of this input",
+      "start": 521.68,
+      "duration": 4.88
+    },
+    {
+      "text": "layer with this output similarly this",
+      "start": 524.039,
+      "duration": 4.521
+    },
+    {
+      "text": "plus symbol here means that we are",
+      "start": 526.56,
+      "duration": 4.08
+    },
+    {
+      "text": "adding the output of the earlier layer",
+      "start": 528.56,
+      "duration": 5.24
+    },
+    {
+      "text": "with the output of the present layer now",
+      "start": 530.64,
+      "duration": 4.8
+    },
+    {
+      "text": "I'll show you how this works but just",
+      "start": 533.8,
+      "duration": 3.4
+    },
+    {
+      "text": "take a look at the gradient magnitudes",
+      "start": 535.44,
+      "duration": 5.88
+    },
+    {
+      "text": "now 1.3 to 26",
+      "start": 537.2,
+      "duration": 8.16
+    },
+    {
+      "text": "32 um 2 in layer 2 and for layer 1 it's",
+      "start": 541.32,
+      "duration": 7.92
+    },
+    {
+      "text": "22 so compare this 22 value now with the",
+      "start": 545.36,
+      "duration": 5.52
+    },
+    {
+      "text": "value which we had obtained without",
+      "start": 549.24,
+      "duration": 3.44
+    },
+    {
+      "text": "shortcut connection so without shortcut",
+      "start": 550.88,
+      "duration": 3.44
+    },
+    {
+      "text": "connections the value which was obtained",
+      "start": 552.68,
+      "duration": 3.0
+    },
+    {
+      "text": "was",
+      "start": 554.32,
+      "duration": 3.92
+    },
+    {
+      "text": "0.02 and now the value has increased by",
+      "start": 555.68,
+      "duration": 4.56
+    },
+    {
+      "text": "more than thousand times that's awesome",
+      "start": 558.24,
+      "duration": 4.12
+    },
+    {
+      "text": "right this is a clear indication that we",
+      "start": 560.24,
+      "duration": 3.599
+    },
+    {
+      "text": "don't have the vanishing gradient",
+      "start": 562.36,
+      "duration": 5.039
+    },
+    {
+      "text": "problem when we uh use shortcut",
+      "start": 563.839,
+      "duration": 7.161
+    },
+    {
+      "text": "connections now let me prove to you",
+      "start": 567.399,
+      "duration": 5.68
+    },
+    {
+      "text": "mathematically how the short how",
+      "start": 571.0,
+      "duration": 3.92
+    },
+    {
+      "text": "addition of shortcut connections really",
+      "start": 573.079,
+      "duration": 3.961
+    },
+    {
+      "text": "helps and why does it really help solve",
+      "start": 574.92,
+      "duration": 4.479
+    },
+    {
+      "text": "the vanishing gradient problem some",
+      "start": 577.04,
+      "duration": 4.28
+    },
+    {
+      "text": "student just look at this and they feel",
+      "start": 579.399,
+      "duration": 4.601
+    },
+    {
+      "text": "that okay I understood vaguely that it",
+      "start": 581.32,
+      "duration": 4.16
+    },
+    {
+      "text": "will solve the vanishing gradient",
+      "start": 584.0,
+      "duration": 3.44
+    },
+    {
+      "text": "problem but remember that you should",
+      "start": 585.48,
+      "duration": 4.919
+    },
+    {
+      "text": "always ask why go deeper dive deeper try",
+      "start": 587.44,
+      "duration": 5.48
+    },
+    {
+      "text": "to take some mathematical formulations",
+      "start": 590.399,
+      "duration": 4.521
+    },
+    {
+      "text": "and try to prove and try to see for",
+      "start": 592.92,
+      "duration": 4.0
+    },
+    {
+      "text": "yourself why this shortcut gradient",
+      "start": 594.92,
+      "duration": 4.64
+    },
+    {
+      "text": "shortcut connections help so let's take",
+      "start": 596.92,
+      "duration": 5.4
+    },
+    {
+      "text": "a simple uh connection of two layers so",
+      "start": 599.56,
+      "duration": 4.519
+    },
+    {
+      "text": "here's the first layer the output of the",
+      "start": 602.32,
+      "duration": 3.959
+    },
+    {
+      "text": "first layer is y l which passes through",
+      "start": 604.079,
+      "duration": 4.361
+    },
+    {
+      "text": "the second layer here f is the neural",
+      "start": 606.279,
+      "duration": 3.961
+    },
+    {
+      "text": "network in the second layer and the",
+      "start": 608.44,
+      "duration": 4.399
+    },
+    {
+      "text": "output of the second layer is f of y l",
+      "start": 610.24,
+      "duration": 5.4
+    },
+    {
+      "text": "right if shortcut connections were not",
+      "start": 612.839,
+      "duration": 4.841
+    },
+    {
+      "text": "implemented then the output of the",
+      "start": 615.64,
+      "duration": 4.56
+    },
+    {
+      "text": "second layer will just be F of yl but",
+      "start": 617.68,
+      "duration": 4.36
+    },
+    {
+      "text": "now with shortcut connections being",
+      "start": 620.2,
+      "duration": 4.28
+    },
+    {
+      "text": "implemented we add the output of the",
+      "start": 622.04,
+      "duration": 4.6
+    },
+    {
+      "text": "first layer which is y l to the output",
+      "start": 624.48,
+      "duration": 4.84
+    },
+    {
+      "text": "of the second layer which is f of y l so",
+      "start": 626.64,
+      "duration": 4.24
+    },
+    {
+      "text": "so now the output which is coming from",
+      "start": 629.32,
+      "duration": 5.04
+    },
+    {
+      "text": "the second layer is f of y l + y l this",
+      "start": 630.88,
+      "duration": 5.28
+    },
+    {
+      "text": "so when I said adding the output of one",
+      "start": 634.36,
+      "duration": 3.279
+    },
+    {
+      "text": "layer to another layer you might have",
+      "start": 636.16,
+      "duration": 3.679
+    },
+    {
+      "text": "been confused what do we do exactly",
+      "start": 637.639,
+      "duration": 4.44
+    },
+    {
+      "text": "right we actually perform this",
+      "start": 639.839,
+      "duration": 5.041
+    },
+    {
+      "text": "mathematical operation that when we uh",
+      "start": 642.079,
+      "duration": 4.641
+    },
+    {
+      "text": "when this neural network takes the input",
+      "start": 644.88,
+      "duration": 5.24
+    },
+    {
+      "text": "and computes the output um we add the",
+      "start": 646.72,
+      "duration": 5.359
+    },
+    {
+      "text": "input or we add the output of the",
+      "start": 650.12,
+      "duration": 3.839
+    },
+    {
+      "text": "previous layer to this output and then",
+      "start": 652.079,
+      "duration": 4.121
+    },
+    {
+      "text": "we proceed ahead now I'm going to",
+      "start": 653.959,
+      "duration": 4.801
+    },
+    {
+      "text": "demonstrate to you why this helps solve",
+      "start": 656.2,
+      "duration": 5.879
+    },
+    {
+      "text": "the vanish gradient problem so y l + 1",
+      "start": 658.76,
+      "duration": 6.0
+    },
+    {
+      "text": "is the output of the second layer l + 1",
+      "start": 662.079,
+      "duration": 5.241
+    },
+    {
+      "text": "and the earlier layer output is y",
+      "start": 664.76,
+      "duration": 5.44
+    },
+    {
+      "text": "l okay so if shortcut connection was not",
+      "start": 667.32,
+      "duration": 4.68
+    },
+    {
+      "text": "there we would not have taken this term",
+      "start": 670.2,
+      "duration": 3.68
+    },
+    {
+      "text": "into account we would just say that y l",
+      "start": 672.0,
+      "duration": 5.12
+    },
+    {
+      "text": "+ 1 is equal to F of Y but now since",
+      "start": 673.88,
+      "duration": 5.44
+    },
+    {
+      "text": "shortcut connection is there the output",
+      "start": 677.12,
+      "duration": 6.519
+    },
+    {
+      "text": "of the second layer will be F of y + yl",
+      "start": 679.32,
+      "duration": 6.639
+    },
+    {
+      "text": "now when we do the back propagation what",
+      "start": 683.639,
+      "duration": 3.88
+    },
+    {
+      "text": "we are really interested in is the",
+      "start": 685.959,
+      "duration": 3.0
+    },
+    {
+      "text": "partial derivative of the loss with",
+      "start": 687.519,
+      "duration": 4.0
+    },
+    {
+      "text": "respect respect to uh the output of the",
+      "start": 688.959,
+      "duration": 4.361
+    },
+    {
+      "text": "first layer right so the partial",
+      "start": 691.519,
+      "duration": 3.361
+    },
+    {
+      "text": "derivative of all the weights in this",
+      "start": 693.32,
+      "duration": 3.04
+    },
+    {
+      "text": "layer will depend on the partial",
+      "start": 694.88,
+      "duration": 3.8
+    },
+    {
+      "text": "derivative of the loss which we which we",
+      "start": 696.36,
+      "duration": 5.12
+    },
+    {
+      "text": "calculate in the forward pass partial",
+      "start": 698.68,
+      "duration": 4.36
+    },
+    {
+      "text": "derivative of loss with respect to the",
+      "start": 701.48,
+      "duration": 3.84
+    },
+    {
+      "text": "output of the first layer so to prevent",
+      "start": 703.04,
+      "duration": 4.239
+    },
+    {
+      "text": "the vanishing gradient problem we really",
+      "start": 705.32,
+      "duration": 4.28
+    },
+    {
+      "text": "want the partial derivative of loss with",
+      "start": 707.279,
+      "duration": 4.161
+    },
+    {
+      "text": "respect to the first layer output to be",
+      "start": 709.6,
+      "duration": 4.28
+    },
+    {
+      "text": "as large as possible so that the partial",
+      "start": 711.44,
+      "duration": 3.959
+    },
+    {
+      "text": "derivative of the loss with respect to",
+      "start": 713.88,
+      "duration": 3.16
+    },
+    {
+      "text": "the weights in the first layer will be",
+      "start": 715.399,
+      "duration": 4.401
+    },
+    {
+      "text": "large and they won't go to zero",
+      "start": 717.04,
+      "duration": 4.599
+    },
+    {
+      "text": "so let's see how adding the shortcut",
+      "start": 719.8,
+      "duration": 4.279
+    },
+    {
+      "text": "connection makes this possible so using",
+      "start": 721.639,
+      "duration": 4.121
+    },
+    {
+      "text": "the chain rule we can write partial",
+      "start": 724.079,
+      "duration": 4.0
+    },
+    {
+      "text": "derivative of loss with respect to y l",
+      "start": 725.76,
+      "duration": 3.96
+    },
+    {
+      "text": "as partial derivative of loss with",
+      "start": 728.079,
+      "duration": 4.56
+    },
+    {
+      "text": "respect to y l + 1 multiplied by partial",
+      "start": 729.72,
+      "duration": 5.08
+    },
+    {
+      "text": "derivative of y l + 1 with respect to y",
+      "start": 732.639,
+      "duration": 6.681
+    },
+    {
+      "text": "l and y l + 1 depends on y l like this",
+      "start": 734.8,
+      "duration": 6.719
+    },
+    {
+      "text": "so partial derivative of y l + 1 with",
+      "start": 739.32,
+      "duration": 4.56
+    },
+    {
+      "text": "respect to y l will be partial",
+      "start": 741.519,
+      "duration": 5.361
+    },
+    {
+      "text": "derivative of f of y l with y l plus",
+      "start": 743.88,
+      "duration": 4.959
+    },
+    {
+      "text": "partial derivative of y with Y which is",
+      "start": 746.88,
+      "duration": 5.319
+    },
+    {
+      "text": "equal to to just one so if you now write",
+      "start": 748.839,
+      "duration": 5.0
+    },
+    {
+      "text": "this quantity further you'll see that",
+      "start": 752.199,
+      "duration": 3.361
+    },
+    {
+      "text": "partial derivative of loss with respect",
+      "start": 753.839,
+      "duration": 4.601
+    },
+    {
+      "text": "to y l is equal to partial derivative of",
+      "start": 755.56,
+      "duration": 6.12
+    },
+    {
+      "text": "loss with respect to y + 1 multiplied by",
+      "start": 758.44,
+      "duration": 5.0
+    },
+    {
+      "text": "partial derivative of f with respect to",
+      "start": 761.68,
+      "duration": 5.88
+    },
+    {
+      "text": "y + 1 now when we are doing the back",
+      "start": 763.44,
+      "duration": 6.6
+    },
+    {
+      "text": "propagation uh partial derivative of f",
+      "start": 767.56,
+      "duration": 5.519
+    },
+    {
+      "text": "of yl with respect to Y can become small",
+      "start": 770.04,
+      "duration": 4.919
+    },
+    {
+      "text": "because we are accumulating different",
+      "start": 773.079,
+      "duration": 3.601
+    },
+    {
+      "text": "gradients and when we reach the first",
+      "start": 774.959,
+      "duration": 3.921
+    },
+    {
+      "text": "layer this first term over here which",
+      "start": 776.68,
+      "duration": 4.24
+    },
+    {
+      "text": "I'm now highlighting in the bracket that",
+      "start": 778.88,
+      "duration": 4.0
+    },
+    {
+      "text": "might go to zero because of the",
+      "start": 780.92,
+      "duration": 4.8
+    },
+    {
+      "text": "vanishing radiant problem right",
+      "start": 782.88,
+      "duration": 5.88
+    },
+    {
+      "text": "but that won't affect us because now we",
+      "start": 785.72,
+      "duration": 5.119
+    },
+    {
+      "text": "have this addition of this plus one term",
+      "start": 788.76,
+      "duration": 4.36
+    },
+    {
+      "text": "here this is the main contribution of",
+      "start": 790.839,
+      "duration": 4.521
+    },
+    {
+      "text": "the shortcut connection if we did not",
+      "start": 793.12,
+      "duration": 3.8
+    },
+    {
+      "text": "have the shortcut connection this plus",
+      "start": 795.36,
+      "duration": 3.839
+    },
+    {
+      "text": "one would not have been there but now",
+      "start": 796.92,
+      "duration": 3.84
+    },
+    {
+      "text": "because we have the shortcut connection",
+      "start": 799.199,
+      "duration": 3.64
+    },
+    {
+      "text": "this plus one term is there which will",
+      "start": 800.76,
+      "duration": 3.879
+    },
+    {
+      "text": "make sure that the partial derivative of",
+      "start": 802.839,
+      "duration": 3.921
+    },
+    {
+      "text": "loss with respect to y l will not go to",
+      "start": 804.639,
+      "duration": 4.921
+    },
+    {
+      "text": "zero will not vanish so this plus one",
+      "start": 806.76,
+      "duration": 4.56
+    },
+    {
+      "text": "term actually keeps the gradient flowing",
+      "start": 809.56,
+      "duration": 3.92
+    },
+    {
+      "text": "through the network and it makes sure",
+      "start": 811.32,
+      "duration": 3.879
+    },
+    {
+      "text": "that the partial derivative of loss with",
+      "start": 813.48,
+      "duration": 5.039
+    },
+    {
+      "text": "respect to y l is a significant amount",
+      "start": 815.199,
+      "duration": 5.161
+    },
+    {
+      "text": "and this will further make sure that the",
+      "start": 818.519,
+      "duration": 4.44
+    },
+    {
+      "text": "partial derivative of the loss uh which",
+      "start": 820.36,
+      "duration": 4.159
+    },
+    {
+      "text": "is partial derivative of loss with",
+      "start": 822.959,
+      "duration": 3.281
+    },
+    {
+      "text": "respect to the weights of the first",
+      "start": 824.519,
+      "duration": 4.081
+    },
+    {
+      "text": "layer these are the final weights which",
+      "start": 826.24,
+      "duration": 4.12
+    },
+    {
+      "text": "won't this partial derivative won't",
+      "start": 828.6,
+      "duration": 4.28
+    },
+    {
+      "text": "ultimately vanish and that's why when we",
+      "start": 830.36,
+      "duration": 4.919
+    },
+    {
+      "text": "update the weight parameters we won't",
+      "start": 832.88,
+      "duration": 4.72
+    },
+    {
+      "text": "get stagnation because this value will",
+      "start": 835.279,
+      "duration": 4.56
+    },
+    {
+      "text": "not be equal to zero why will this not",
+      "start": 837.6,
+      "duration": 4.0
+    },
+    {
+      "text": "be equal to zero because partial",
+      "start": 839.839,
+      "duration": 3.481
+    },
+    {
+      "text": "derivative of loss with respect to first",
+      "start": 841.6,
+      "duration": 4.239
+    },
+    {
+      "text": "layer output will not be zero because of",
+      "start": 843.32,
+      "duration": 4.36
+    },
+    {
+      "text": "the addition of this one term which will",
+      "start": 845.839,
+      "duration": 3.92
+    },
+    {
+      "text": "keep the gradient flowing through the",
+      "start": 847.68,
+      "duration": 4.44
+    },
+    {
+      "text": "network this is the mathematical and",
+      "start": 849.759,
+      "duration": 4.361
+    },
+    {
+      "text": "also the intuitive explanation for why",
+      "start": 852.12,
+      "duration": 4.279
+    },
+    {
+      "text": "adding shortcut connection really helps",
+      "start": 854.12,
+      "duration": 4.2
+    },
+    {
+      "text": "if you keep this small demonstration in",
+      "start": 856.399,
+      "duration": 3.841
+    },
+    {
+      "text": "mind you'll never forget why we add",
+      "start": 858.32,
+      "duration": 4.72
+    },
+    {
+      "text": "shortcut Connections in deep",
+      "start": 860.24,
+      "duration": 5.2
+    },
+    {
+      "text": "learning awesome so now we have",
+      "start": 863.04,
+      "duration": 4.359
+    },
+    {
+      "text": "understood why shortcut connections are",
+      "start": 865.44,
+      "duration": 4.36
+    },
+    {
+      "text": "implemented right it this is because",
+      "start": 867.399,
+      "duration": 4.401
+    },
+    {
+      "text": "they create an alternative path for the",
+      "start": 869.8,
+      "duration": 3.76
+    },
+    {
+      "text": "gradient to flow they keep the gradient",
+      "start": 871.8,
+      "duration": 3.159
+    },
+    {
+      "text": "flowing because of the addition of the",
+      "start": 873.56,
+      "duration": 4.56
+    },
+    {
+      "text": "plus one term which we saw earlier and",
+      "start": 874.959,
+      "duration": 4.68
+    },
+    {
+      "text": "these shortcut connections are also",
+      "start": 878.12,
+      "duration": 3.959
+    },
+    {
+      "text": "called as skip connections they really",
+      "start": 879.639,
+      "duration": 4.76
+    },
+    {
+      "text": "play a crucial role in preserving flow",
+      "start": 882.079,
+      "duration": 5.521
+    },
+    {
+      "text": "of gradients during uh the backward pass",
+      "start": 884.399,
+      "duration": 5.201
+    },
+    {
+      "text": "or while training the neural",
+      "start": 887.6,
+      "duration": 4.479
+    },
+    {
+      "text": "network so what I now want to show to",
+      "start": 889.6,
+      "duration": 4.56
+    },
+    {
+      "text": "you is this paper which was actually",
+      "start": 892.079,
+      "duration": 5.2
+    },
+    {
+      "text": "published um I think it was published in",
+      "start": 894.16,
+      "duration": 6.239
+    },
+    {
+      "text": "um 2018 in New yor urps and this is",
+      "start": 897.279,
+      "duration": 5.12
+    },
+    {
+      "text": "called visualizing the Lost landscape of",
+      "start": 900.399,
+      "duration": 4.56
+    },
+    {
+      "text": "neural Nets so just look at this left",
+      "start": 902.399,
+      "duration": 4.601
+    },
+    {
+      "text": "figure which is without using skip",
+      "start": 904.959,
+      "duration": 3.961
+    },
+    {
+      "text": "connections the Lost landscape look like",
+      "start": 907.0,
+      "duration": 4.44
+    },
+    {
+      "text": "this we have several local Minima and",
+      "start": 908.92,
+      "duration": 4.64
+    },
+    {
+      "text": "there are several Peaks and valleys",
+      "start": 911.44,
+      "duration": 4.319
+    },
+    {
+      "text": "whereas if you include skip connections",
+      "start": 913.56,
+      "duration": 4.399
+    },
+    {
+      "text": "you will see that the number of local",
+      "start": 915.759,
+      "duration": 4.401
+    },
+    {
+      "text": "Minima are not that much there is just",
+      "start": 917.959,
+      "duration": 4.721
+    },
+    {
+      "text": "seems to be a very smooth landscape with",
+      "start": 920.16,
+      "duration": 5.0
+    },
+    {
+      "text": "one single local Minima that's what skip",
+      "start": 922.68,
+      "duration": 4.599
+    },
+    {
+      "text": "connection does since the Lost function",
+      "start": 925.16,
+      "duration": 3.799
+    },
+    {
+      "text": "landscape becomes so smooth the grade",
+      "start": 927.279,
+      "duration": 4.601
+    },
+    {
+      "text": "Med flow also become smooth and that's",
+      "start": 928.959,
+      "duration": 4.24
+    },
+    {
+      "text": "the advantage of having skipped",
+      "start": 931.88,
+      "duration": 2.72
+    },
+    {
+      "text": "connection so if you forget the",
+      "start": 933.199,
+      "duration": 3.841
+    },
+    {
+      "text": "mathematical deriv derivations and if",
+      "start": 934.6,
+      "duration": 4.12
+    },
+    {
+      "text": "you are a person who is good at visual",
+      "start": 937.04,
+      "duration": 3.719
+    },
+    {
+      "text": "learning just keep this loss function",
+      "start": 938.72,
+      "duration": 4.0
+    },
+    {
+      "text": "landscape in mind and remember that",
+      "start": 940.759,
+      "duration": 3.801
+    },
+    {
+      "text": "adding skip connections will help us go",
+      "start": 942.72,
+      "duration": 3.799
+    },
+    {
+      "text": "from the left which has a number of",
+      "start": 944.56,
+      "duration": 3.6
+    },
+    {
+      "text": "oscillations the loss function is not",
+      "start": 946.519,
+      "duration": 3.361
+    },
+    {
+      "text": "smooth to the right where the loss",
+      "start": 948.16,
+      "duration": 4.159
+    },
+    {
+      "text": "function as you can see is pretty",
+      "start": 949.88,
+      "duration": 4.759
+    },
+    {
+      "text": "smooth now that we have learned about",
+      "start": 952.319,
+      "duration": 5.121
+    },
+    {
+      "text": "the mathematical intuition and visual",
+      "start": 954.639,
+      "duration": 4.601
+    },
+    {
+      "text": "understanding of the skip connections or",
+      "start": 957.44,
+      "duration": 4.24
+    },
+    {
+      "text": "shortcut connections let's go to code",
+      "start": 959.24,
+      "duration": 4.839
+    },
+    {
+      "text": "right now and uh let's actually",
+      "start": 961.68,
+      "duration": 4.519
+    },
+    {
+      "text": "Implement shortcut connection so what we",
+      "start": 964.079,
+      "duration": 3.68
+    },
+    {
+      "text": "are going to do in code is that we are",
+      "start": 966.199,
+      "duration": 3.521
+    },
+    {
+      "text": "going to look at a neural network like",
+      "start": 967.759,
+      "duration": 4.64
+    },
+    {
+      "text": "this which will take in the inputs of a",
+      "start": 969.72,
+      "duration": 5.359
+    },
+    {
+      "text": "certain size let me Mark it with",
+      "start": 972.399,
+      "duration": 4.201
+    },
+    {
+      "text": "different color the neural network will",
+      "start": 975.079,
+      "duration": 3.961
+    },
+    {
+      "text": "take in the inputs of a certain size and",
+      "start": 976.6,
+      "duration": 4.64
+    },
+    {
+      "text": "we will stack multiple layers",
+      "start": 979.04,
+      "duration": 5.0
+    },
+    {
+      "text": "together and we will give a provision to",
+      "start": 981.24,
+      "duration": 4.48
+    },
+    {
+      "text": "add the shortcut connection so the",
+      "start": 984.04,
+      "duration": 3.479
+    },
+    {
+      "text": "output of any layer we can add to the",
+      "start": 985.72,
+      "duration": 4.28
+    },
+    {
+      "text": "input of the previous layer",
+      "start": 987.519,
+      "duration": 4.0
+    },
+    {
+      "text": "this is what we are going to implement",
+      "start": 990.0,
+      "duration": 3.639
+    },
+    {
+      "text": "right now and we are also going to check",
+      "start": 991.519,
+      "duration": 4.641
+    },
+    {
+      "text": "the similarities or we are going to",
+      "start": 993.639,
+      "duration": 5.161
+    },
+    {
+      "text": "compare the gradient flow magnitudes",
+      "start": 996.16,
+      "duration": 4.479
+    },
+    {
+      "text": "without shortcut connections and with",
+      "start": 998.8,
+      "duration": 4.2
+    },
+    {
+      "text": "shortcut connections so let's get to",
+      "start": 1000.639,
+      "duration": 3.44
+    },
+    {
+      "text": "code right",
+      "start": 1003.0,
+      "duration": 3.959
+    },
+    {
+      "text": "now so here we are going to implement",
+      "start": 1004.079,
+      "duration": 5.801
+    },
+    {
+      "text": "this class example deep neural network",
+      "start": 1006.959,
+      "duration": 5.0
+    },
+    {
+      "text": "and uh when an instance of this class is",
+      "start": 1009.88,
+      "duration": 4.48
+    },
+    {
+      "text": "created by default this init Constructor",
+      "start": 1011.959,
+      "duration": 4.481
+    },
+    {
+      "text": "is called and this takes in some",
+      "start": 1014.36,
+      "duration": 3.919
+    },
+    {
+      "text": "arguments first it takes in the layer",
+      "start": 1016.44,
+      "duration": 4.8
+    },
+    {
+      "text": "sizes which are basically uh how many",
+      "start": 1018.279,
+      "duration": 5.0
+    },
+    {
+      "text": "neurons you want in each layer so the",
+      "start": 1021.24,
+      "duration": 4.92
+    },
+    {
+      "text": "layer sizes can be three three 3 3 and",
+      "start": 1023.279,
+      "duration": 5.721
+    },
+    {
+      "text": "one which means that there are five",
+      "start": 1026.16,
+      "duration": 4.72
+    },
+    {
+      "text": "layers with three neurons and the final",
+      "start": 1029.0,
+      "duration": 4.28
+    },
+    {
+      "text": "layer has one neuron so if the layer",
+      "start": 1030.88,
+      "duration": 5.679
+    },
+    {
+      "text": "size is 3 3 3 3 one it looks something",
+      "start": 1033.28,
+      "duration": 5.44
+    },
+    {
+      "text": "like this so here you can see that there",
+      "start": 1036.559,
+      "duration": 4.0
+    },
+    {
+      "text": "are five layers with three neurons and",
+      "start": 1038.72,
+      "duration": 4.359
+    },
+    {
+      "text": "there is one layer with one neuron",
+      "start": 1040.559,
+      "duration": 4.041
+    },
+    {
+      "text": "that's the first argument which is the",
+      "start": 1043.079,
+      "duration": 4.281
+    },
+    {
+      "text": "layer size which this function will take",
+      "start": 1044.6,
+      "duration": 5.319
+    },
+    {
+      "text": "the second argument is use shortcut so",
+      "start": 1047.36,
+      "duration": 4.52
+    },
+    {
+      "text": "if this can be true or false if it's",
+      "start": 1049.919,
+      "duration": 3.601
+    },
+    {
+      "text": "false we'll not use the shortcut",
+      "start": 1051.88,
+      "duration": 3.28
+    },
+    {
+      "text": "connections if it's true we'll use the",
+      "start": 1053.52,
+      "duration": 4.0
+    },
+    {
+      "text": "shortcut connections so let's see how",
+      "start": 1055.16,
+      "duration": 4.72
+    },
+    {
+      "text": "this is constructed first we construct a",
+      "start": 1057.52,
+      "duration": 4.36
+    },
+    {
+      "text": "neural network by using this nn.",
+      "start": 1059.88,
+      "duration": 4.24
+    },
+    {
+      "text": "sequential as I also showed you in the",
+      "start": 1061.88,
+      "duration": 5.039
+    },
+    {
+      "text": "last lecture nn. sequential is a very",
+      "start": 1064.12,
+      "duration": 4.96
+    },
+    {
+      "text": "important module provided by pytorch",
+      "start": 1066.919,
+      "duration": 3.681
+    },
+    {
+      "text": "where we can connect different neural",
+      "start": 1069.08,
+      "duration": 4.2
+    },
+    {
+      "text": "network layers together I'll also share",
+      "start": 1070.6,
+      "duration": 4.64
+    },
+    {
+      "text": "this link when I upload the YouTube",
+      "start": 1073.28,
+      "duration": 4.32
+    },
+    {
+      "text": "video so you can find this in the",
+      "start": 1075.24,
+      "duration": 5.12
+    },
+    {
+      "text": "description okay so here as you can see",
+      "start": 1077.6,
+      "duration": 5.4
+    },
+    {
+      "text": "we are we are chaining different layers",
+      "start": 1080.36,
+      "duration": 4.439
+    },
+    {
+      "text": "together so if you look at the first",
+      "start": 1083.0,
+      "duration": 4.24
+    },
+    {
+      "text": "layer the input is layer size is zero",
+      "start": 1084.799,
+      "duration": 4.161
+    },
+    {
+      "text": "the output Dimension is layer size is",
+      "start": 1087.24,
+      "duration": 3.96
+    },
+    {
+      "text": "one and then we have a j activation",
+      "start": 1088.96,
+      "duration": 5.16
+    },
+    {
+      "text": "function similarly for every layer the",
+      "start": 1091.2,
+      "duration": 5.08
+    },
+    {
+      "text": "input Dimension is described by the",
+      "start": 1094.12,
+      "duration": 3.84
+    },
+    {
+      "text": "layer size the output Dimension is",
+      "start": 1096.28,
+      "duration": 3.68
+    },
+    {
+      "text": "described by the layer size and we have",
+      "start": 1097.96,
+      "duration": 4.36
+    },
+    {
+      "text": "a j activation function for all of these",
+      "start": 1099.96,
+      "duration": 6.079
+    },
+    {
+      "text": "layers um which have been constructed",
+      "start": 1102.32,
+      "duration": 7.2
+    },
+    {
+      "text": "right uh so here if you can can see",
+      "start": 1106.039,
+      "duration": 5.361
+    },
+    {
+      "text": "maximum provision which I have allocated",
+      "start": 1109.52,
+      "duration": 4.84
+    },
+    {
+      "text": "over here is for layer sizes bracket",
+      "start": 1111.4,
+      "duration": 5.8
+    },
+    {
+      "text": "five which means the layer sizes can at",
+      "start": 1114.36,
+      "duration": 6.84
+    },
+    {
+      "text": "Max uh have let's say uh 0 to five so if",
+      "start": 1117.2,
+      "duration": 6.8
+    },
+    {
+      "text": "you see over here this is 0o this is one",
+      "start": 1121.2,
+      "duration": 4.68
+    },
+    {
+      "text": "this is two this is three this is four",
+      "start": 1124.0,
+      "duration": 5.159
+    },
+    {
+      "text": "and with this five so there are six uh",
+      "start": 1125.88,
+      "duration": 5.12
+    },
+    {
+      "text": "there are six elements",
+      "start": 1129.159,
+      "duration": 5.081
+    },
+    {
+      "text": "here so uh this is how the different",
+      "start": 1131.0,
+      "duration": 5.44
+    },
+    {
+      "text": "neural this is how the neural network is",
+      "start": 1134.24,
+      "duration": 3.96
+    },
+    {
+      "text": "connect is created by chaining the",
+      "start": 1136.44,
+      "duration": 4.08
+    },
+    {
+      "text": "different layers together now what does",
+      "start": 1138.2,
+      "duration": 4.4
+    },
+    {
+      "text": "this layer sizes zero and one mean it",
+      "start": 1140.52,
+      "duration": 4.48
+    },
+    {
+      "text": "means that let's say for the first layer",
+      "start": 1142.6,
+      "duration": 4.36
+    },
+    {
+      "text": "the it takes this as the input so the",
+      "start": 1145.0,
+      "duration": 3.6
+    },
+    {
+      "text": "input Dimension is three the output",
+      "start": 1146.96,
+      "duration": 3.64
+    },
+    {
+      "text": "Dimension is three for the second layer",
+      "start": 1148.6,
+      "duration": 3.64
+    },
+    {
+      "text": "the input Dimension is three the output",
+      "start": 1150.6,
+      "duration": 4.16
+    },
+    {
+      "text": "Dimension is three so just just like",
+      "start": 1152.24,
+      "duration": 4.28
+    },
+    {
+      "text": "what has been shown over",
+      "start": 1154.76,
+      "duration": 5.039
+    },
+    {
+      "text": "here the layer sizes is constructed so",
+      "start": 1156.52,
+      "duration": 5.32
+    },
+    {
+      "text": "let me explain this to you intuitively",
+      "start": 1159.799,
+      "duration": 3.36
+    },
+    {
+      "text": "just so that you get a sense of",
+      "start": 1161.84,
+      "duration": 3.88
+    },
+    {
+      "text": "Dimension right so for this layer over",
+      "start": 1163.159,
+      "duration": 5.64
+    },
+    {
+      "text": "here for the first layer over here uh",
+      "start": 1165.72,
+      "duration": 5.04
+    },
+    {
+      "text": "let me zoom into this further to just",
+      "start": 1168.799,
+      "duration": 3.88
+    },
+    {
+      "text": "show you the first layer and how it",
+      "start": 1170.76,
+      "duration": 4.039
+    },
+    {
+      "text": "essentially the input and the output",
+      "start": 1172.679,
+      "duration": 5.48
+    },
+    {
+      "text": "dimensions of that layer are",
+      "start": 1174.799,
+      "duration": 3.36
+    },
+    {
+      "text": "constructed yeah so if you zoom into",
+      "start": 1182.96,
+      "duration": 4.199
+    },
+    {
+      "text": "this first layer here it has three",
+      "start": 1185.08,
+      "duration": 3.76
+    },
+    {
+      "text": "inputs so the input Dimension will be",
+      "start": 1187.159,
+      "duration": 3.361
+    },
+    {
+      "text": "three and it has three outputs because",
+      "start": 1188.84,
+      "duration": 3.24
+    },
+    {
+      "text": "it's going to the next layer which has",
+      "start": 1190.52,
+      "duration": 3.84
+    },
+    {
+      "text": "three outputs now if you look at this",
+      "start": 1192.08,
+      "duration": 6.16
+    },
+    {
+      "text": "next layer here um its inputs are equal",
+      "start": 1194.36,
+      "duration": 6.16
+    },
+    {
+      "text": "to three because it it takes in the",
+      "start": 1198.24,
+      "duration": 3.84
+    },
+    {
+      "text": "output of the previous layer which has",
+      "start": 1200.52,
+      "duration": 4.08
+    },
+    {
+      "text": "three neurons so it has three inputs and",
+      "start": 1202.08,
+      "duration": 4.079
+    },
+    {
+      "text": "the outputs are also equal to three",
+      "start": 1204.6,
+      "duration": 3.36
+    },
+    {
+      "text": "because the next layer size is equal to",
+      "start": 1206.159,
+      "duration": 4.4
+    },
+    {
+      "text": "three so to get the input size of a of a",
+      "start": 1207.96,
+      "duration": 4.079
+    },
+    {
+      "text": "current layer we look at the input",
+      "start": 1210.559,
+      "duration": 4.401
+    },
+    {
+      "text": "dimensions of that layer or the previous",
+      "start": 1212.039,
+      "duration": 5.76
+    },
+    {
+      "text": "layer previous layer output and then to",
+      "start": 1214.96,
+      "duration": 5.56
+    },
+    {
+      "text": "get the output size of the current um",
+      "start": 1217.799,
+      "duration": 5.0
+    },
+    {
+      "text": "layer we look at the next layer",
+      "start": 1220.52,
+      "duration": 5.76
+    },
+    {
+      "text": "Dimension size so that's how these layer",
+      "start": 1222.799,
+      "duration": 6.76
+    },
+    {
+      "text": "sizes are constructed and we access the",
+      "start": 1226.28,
+      "duration": 5.48
+    },
+    {
+      "text": "particular index to get the input",
+      "start": 1229.559,
+      "duration": 4.24
+    },
+    {
+      "text": "Dimension and we access another index to",
+      "start": 1231.76,
+      "duration": 4.48
+    },
+    {
+      "text": "get the output dimension of a layer also",
+      "start": 1233.799,
+      "duration": 4.24
+    },
+    {
+      "text": "keep in mind that we are using the JLo",
+      "start": 1236.24,
+      "duration": 3.24
+    },
+    {
+      "text": "activation function which we learned",
+      "start": 1238.039,
+      "duration": 3.801
+    },
+    {
+      "text": "about in the previous lecture so this is",
+      "start": 1239.48,
+      "duration": 4.24
+    },
+    {
+      "text": "where we create uh we initialize the",
+      "start": 1241.84,
+      "duration": 4.36
+    },
+    {
+      "text": "layers now this forward method is where",
+      "start": 1243.72,
+      "duration": 4.36
+    },
+    {
+      "text": "all the magic actually happens so let's",
+      "start": 1246.2,
+      "duration": 4.2
+    },
+    {
+      "text": "try to understand this forward method in",
+      "start": 1248.08,
+      "duration": 5.64
+    },
+    {
+      "text": "detail if shortcut is not applied then",
+      "start": 1250.4,
+      "duration": 5.12
+    },
+    {
+      "text": "what we'll do is that we'll just take",
+      "start": 1253.72,
+      "duration": 5.52
+    },
+    {
+      "text": "the output of every layer and then uh we",
+      "start": 1255.52,
+      "duration": 5.76
+    },
+    {
+      "text": "will we will first take the output of",
+      "start": 1259.24,
+      "duration": 4.6
+    },
+    {
+      "text": "the first layer then we will again go to",
+      "start": 1261.28,
+      "duration": 4.24
+    },
+    {
+      "text": "this for Loop the output of the first",
+      "start": 1263.84,
+      "duration": 3.319
+    },
+    {
+      "text": "layer will then serve as the input to",
+      "start": 1265.52,
+      "duration": 3.72
+    },
+    {
+      "text": "the second layer and this process will",
+      "start": 1267.159,
+      "duration": 3.921
+    },
+    {
+      "text": "continue until we get the output of the",
+      "start": 1269.24,
+      "duration": 4.919
+    },
+    {
+      "text": "final layer but now let's see what what",
+      "start": 1271.08,
+      "duration": 5.28
+    },
+    {
+      "text": "happens when we use the shortcut so at",
+      "start": 1274.159,
+      "duration": 4.76
+    },
+    {
+      "text": "the first layer let's say what will",
+      "start": 1276.36,
+      "duration": 4.16
+    },
+    {
+      "text": "happen at the first layer is that we'll",
+      "start": 1278.919,
+      "duration": 3.561
+    },
+    {
+      "text": "take the input and then we'll add with",
+      "start": 1280.52,
+      "duration": 3.96
+    },
+    {
+      "text": "the first layer output so this is",
+      "start": 1282.48,
+      "duration": 4.4
+    },
+    {
+      "text": "exactly what has been shown over here at",
+      "start": 1284.48,
+      "duration": 4.559
+    },
+    {
+      "text": "the first layer We'll add the in put",
+      "start": 1286.88,
+      "duration": 5.12
+    },
+    {
+      "text": "with the first layer output correct and",
+      "start": 1289.039,
+      "duration": 5.12
+    },
+    {
+      "text": "then what we'll do is that so then X",
+      "start": 1292.0,
+      "duration": 4.039
+    },
+    {
+      "text": "will be X Plus layer output and then",
+      "start": 1294.159,
+      "duration": 4.201
+    },
+    {
+      "text": "we'll go to the loop again in the second",
+      "start": 1296.039,
+      "duration": 4.161
+    },
+    {
+      "text": "pass of the loop what will happen is",
+      "start": 1298.36,
+      "duration": 3.919
+    },
+    {
+      "text": "that",
+      "start": 1300.2,
+      "duration": 4.68
+    },
+    {
+      "text": "um the output which we had computed",
+      "start": 1302.279,
+      "duration": 6.4
+    },
+    {
+      "text": "previously which was this X Plus input",
+      "start": 1304.88,
+      "duration": 5.799
+    },
+    {
+      "text": "that will be added with the second layer",
+      "start": 1308.679,
+      "duration": 5.36
+    },
+    {
+      "text": "output so we will perform this operation",
+      "start": 1310.679,
+      "duration": 6.401
+    },
+    {
+      "text": "then when we go to the next iteration of",
+      "start": 1314.039,
+      "duration": 5.081
+    },
+    {
+      "text": "the loop this out output which was",
+      "start": 1317.08,
+      "duration": 4.199
+    },
+    {
+      "text": "computed previously will be added to the",
+      "start": 1319.12,
+      "duration": 4.52
+    },
+    {
+      "text": "next layer's output so then this",
+      "start": 1321.279,
+      "duration": 4.361
+    },
+    {
+      "text": "operation will be performed similarly",
+      "start": 1323.64,
+      "duration": 3.919
+    },
+    {
+      "text": "when we reach the end we'll apply all of",
+      "start": 1325.64,
+      "duration": 3.6
+    },
+    {
+      "text": "the shortcut connections and then we'll",
+      "start": 1327.559,
+      "duration": 4.0
+    },
+    {
+      "text": "get the final output variable so at",
+      "start": 1329.24,
+      "duration": 4.039
+    },
+    {
+      "text": "every step of the process we take the",
+      "start": 1331.559,
+      "duration": 3.6
+    },
+    {
+      "text": "output of that layer and we take and we",
+      "start": 1333.279,
+      "duration": 4.121
+    },
+    {
+      "text": "add the output from the previous layers",
+      "start": 1335.159,
+      "duration": 4.12
+    },
+    {
+      "text": "so it's an accumulation of all shortcut",
+      "start": 1337.4,
+      "duration": 3.92
+    },
+    {
+      "text": "connection so when we reach this final",
+      "start": 1339.279,
+      "duration": 3.561
+    },
+    {
+      "text": "shortcut connection it's the",
+      "start": 1341.32,
+      "duration": 3.32
+    },
+    {
+      "text": "accumulation of all the four shortcut",
+      "start": 1342.84,
+      "duration": 3.8
+    },
+    {
+      "text": "connections which have come before",
+      "start": 1344.64,
+      "duration": 4.36
+    },
+    {
+      "text": "it so that's how the short shortcut",
+      "start": 1346.64,
+      "duration": 4.2
+    },
+    {
+      "text": "connection is applied it just one simple",
+      "start": 1349.0,
+      "duration": 5.12
+    },
+    {
+      "text": "line of code xal to X Plus layer output",
+      "start": 1350.84,
+      "duration": 5.079
+    },
+    {
+      "text": "so here you can see this code implements",
+      "start": 1354.12,
+      "duration": 4.039
+    },
+    {
+      "text": "a deep neural network with five",
+      "start": 1355.919,
+      "duration": 4.841
+    },
+    {
+      "text": "layers and each consisting of a linear",
+      "start": 1358.159,
+      "duration": 5.12
+    },
+    {
+      "text": "layer and JLo activation in the forward",
+      "start": 1360.76,
+      "duration": 4.32
+    },
+    {
+      "text": "pass we iteratively pass the input",
+      "start": 1363.279,
+      "duration": 3.52
+    },
+    {
+      "text": "through the layers and optionally add",
+      "start": 1365.08,
+      "duration": 3.28
+    },
+    {
+      "text": "the shortcut",
+      "start": 1366.799,
+      "duration": 4.281
+    },
+    {
+      "text": "connections uh if self. use shortcut",
+      "start": 1368.36,
+      "duration": 4.48
+    },
+    {
+      "text": "attribute is set to",
+      "start": 1371.08,
+      "duration": 4.68
+    },
+    {
+      "text": "true so now what we can do is let us use",
+      "start": 1372.84,
+      "duration": 4.76
+    },
+    {
+      "text": "this code to First initialize a neural",
+      "start": 1375.76,
+      "duration": 4.279
+    },
+    {
+      "text": "network without the shortcut connections",
+      "start": 1377.6,
+      "duration": 4.199
+    },
+    {
+      "text": "and later we'll initialize the neural",
+      "start": 1380.039,
+      "duration": 3.601
+    },
+    {
+      "text": "network with shortcut",
+      "start": 1381.799,
+      "duration": 4.161
+    },
+    {
+      "text": "connection so the neural network is",
+      "start": 1383.64,
+      "duration": 5.08
+    },
+    {
+      "text": "initialized like this so three 3 3 3 and",
+      "start": 1385.96,
+      "duration": 4.92
+    },
+    {
+      "text": "one so we have five layers of three",
+      "start": 1388.72,
+      "duration": 4.76
+    },
+    {
+      "text": "neurons and one output neuron and the",
+      "start": 1390.88,
+      "duration": 5.919
+    },
+    {
+      "text": "input is a three-dimensional input which",
+      "start": 1393.48,
+      "duration": 6.04
+    },
+    {
+      "text": "is if you look at this figure here so we",
+      "start": 1396.799,
+      "duration": 5.48
+    },
+    {
+      "text": "are now looking at this neural network",
+      "start": 1399.52,
+      "duration": 5.399
+    },
+    {
+      "text": "this neural network which does not have",
+      "start": 1402.279,
+      "duration": 4.161
+    },
+    {
+      "text": "let me show the arrow here this neural",
+      "start": 1404.919,
+      "duration": 3.0
+    },
+    {
+      "text": "network which does not have shortcut",
+      "start": 1406.44,
+      "duration": 3.4
+    },
+    {
+      "text": "connection and you'll see that this",
+      "start": 1407.919,
+      "duration": 4.401
+    },
+    {
+      "text": "neural network takes in three inputs it",
+      "start": 1409.84,
+      "duration": 4.48
+    },
+    {
+      "text": "goes through this five layers and then",
+      "start": 1412.32,
+      "duration": 4.88
+    },
+    {
+      "text": "we compute the output right so let if",
+      "start": 1414.32,
+      "duration": 7.08
+    },
+    {
+      "text": "you get the layer sizes as 3 3 3 3 3 1",
+      "start": 1417.2,
+      "duration": 6.28
+    },
+    {
+      "text": "this is the sample input which has three",
+      "start": 1421.4,
+      "duration": 5.0
+    },
+    {
+      "text": "input values one 0 and minus one and",
+      "start": 1423.48,
+      "duration": 5.0
+    },
+    {
+      "text": "then we are going to set use shortcut",
+      "start": 1426.4,
+      "duration": 4.12
+    },
+    {
+      "text": "equal to false and create an instance of",
+      "start": 1428.48,
+      "duration": 4.36
+    },
+    {
+      "text": "the example deep neural network and then",
+      "start": 1430.52,
+      "duration": 3.92
+    },
+    {
+      "text": "we get this output which is model",
+      "start": 1432.84,
+      "duration": 2.56
+    },
+    {
+      "text": "without",
+      "start": 1434.44,
+      "duration": 3.239
+    },
+    {
+      "text": "shortcut now what I also want to do",
+      "start": 1435.4,
+      "duration": 3.72
+    },
+    {
+      "text": "which is the main thing here is that I",
+      "start": 1437.679,
+      "duration": 3.321
+    },
+    {
+      "text": "want to print out the gradients at every",
+      "start": 1439.12,
+      "duration": 4.919
+    },
+    {
+      "text": "single layer so let me first show you",
+      "start": 1441.0,
+      "duration": 5.559
+    },
+    {
+      "text": "how that is going to work so if you look",
+      "start": 1444.039,
+      "duration": 4.401
+    },
+    {
+      "text": "at each layer so if you look at the",
+      "start": 1446.559,
+      "duration": 2.921
+    },
+    {
+      "text": "first",
+      "start": 1448.44,
+      "duration": 4.16
+    },
+    {
+      "text": "layer uh or rather this is the first",
+      "start": 1449.48,
+      "duration": 4.92
+    },
+    {
+      "text": "layer right if you let me show this with",
+      "start": 1452.6,
+      "duration": 4.4
+    },
+    {
+      "text": "a different color just for Simplicity so",
+      "start": 1454.4,
+      "duration": 4.32
+    },
+    {
+      "text": "if you look at the first layer here",
+      "start": 1457.0,
+      "duration": 3.679
+    },
+    {
+      "text": "there are three neurons and each neuron",
+      "start": 1458.72,
+      "duration": 3.92
+    },
+    {
+      "text": "will have three weights so the weight",
+      "start": 1460.679,
+      "duration": 6.681
+    },
+    {
+      "text": "Matrix will be a 3X3 Matrix in fact for",
+      "start": 1462.64,
+      "duration": 7.56
+    },
+    {
+      "text": "every every layer since the input is",
+      "start": 1467.36,
+      "duration": 4.919
+    },
+    {
+      "text": "three and the output Dimension is three",
+      "start": 1470.2,
+      "duration": 4.04
+    },
+    {
+      "text": "for every layer we'll have a 3X3 weight",
+      "start": 1472.279,
+      "duration": 4.4
+    },
+    {
+      "text": "Matrix for this layer we'll have a 3X3",
+      "start": 1474.24,
+      "duration": 4.24
+    },
+    {
+      "text": "for this layer we'll have a 3X3 weight",
+      "start": 1476.679,
+      "duration": 4.201
+    },
+    {
+      "text": "Matrix for this layer we'll have 3x3 for",
+      "start": 1478.48,
+      "duration": 4.4
+    },
+    {
+      "text": "the final layer we'll have a 3x1 weight",
+      "start": 1480.88,
+      "duration": 4.08
+    },
+    {
+      "text": "Matrix right and when you do the",
+      "start": 1482.88,
+      "duration": 4.679
+    },
+    {
+      "text": "backward pass you first find partial",
+      "start": 1484.96,
+      "duration": 4.28
+    },
+    {
+      "text": "derivative of loss with respect to all",
+      "start": 1487.559,
+      "duration": 4.041
+    },
+    {
+      "text": "of the values in this weight Matrix and",
+      "start": 1489.24,
+      "duration": 5.12
+    },
+    {
+      "text": "you update them so when I what I'm going",
+      "start": 1491.6,
+      "duration": 4.36
+    },
+    {
+      "text": "to do is that I'm going to do an",
+      "start": 1494.36,
+      "duration": 4.039
+    },
+    {
+      "text": "iteration of the backward pass in which",
+      "start": 1495.96,
+      "duration": 4.28
+    },
+    {
+      "text": "all these weight values will be updated",
+      "start": 1498.399,
+      "duration": 3.441
+    },
+    {
+      "text": "and then I'm going to find the mean of",
+      "start": 1500.24,
+      "duration": 3.28
+    },
+    {
+      "text": "these nine",
+      "start": 1501.84,
+      "duration": 4.16
+    },
+    {
+      "text": "values and that I'm going to call as the",
+      "start": 1503.52,
+      "duration": 4.84
+    },
+    {
+      "text": "mean gradient in that particular layer",
+      "start": 1506.0,
+      "duration": 4.32
+    },
+    {
+      "text": "so if I look at this layer I have this",
+      "start": 1508.36,
+      "duration": 4.72
+    },
+    {
+      "text": "3x3 Matrix I'll find the mean of the",
+      "start": 1510.32,
+      "duration": 5.4
+    },
+    {
+      "text": "mean of all the gradients to get the",
+      "start": 1513.08,
+      "duration": 4.959
+    },
+    {
+      "text": "mean gradient value of that layer if you",
+      "start": 1515.72,
+      "duration": 4.0
+    },
+    {
+      "text": "are unfamiliar of the concept of",
+      "start": 1518.039,
+      "duration": 4.0
+    },
+    {
+      "text": "backward pass we have a neural networks",
+      "start": 1519.72,
+      "duration": 3.88
+    },
+    {
+      "text": "from scratch Series so I really",
+      "start": 1522.039,
+      "duration": 3.321
+    },
+    {
+      "text": "encourage you to go through that to",
+      "start": 1523.6,
+      "duration": 4.199
+    },
+    {
+      "text": "understand this but the main idea is",
+      "start": 1525.36,
+      "duration": 5.36
+    },
+    {
+      "text": "that we have this output Y and then we",
+      "start": 1527.799,
+      "duration": 5.041
+    },
+    {
+      "text": "Define a loss which is y minus the",
+      "start": 1530.72,
+      "duration": 4.16
+    },
+    {
+      "text": "ground truth so if the ground truth is",
+      "start": 1532.84,
+      "duration": 5.439
+    },
+    {
+      "text": "zero then the loss will be y - 0 squ and",
+      "start": 1534.88,
+      "duration": 5.0
+    },
+    {
+      "text": "then we have to find the partial",
+      "start": 1538.279,
+      "duration": 4.161
+    },
+    {
+      "text": "derivative of the loss with respect to",
+      "start": 1539.88,
+      "duration": 4.88
+    },
+    {
+      "text": "all the weights in the first layer we",
+      "start": 1542.44,
+      "duration": 3.68
+    },
+    {
+      "text": "have to find the partial derivative of",
+      "start": 1544.76,
+      "duration": 2.68
+    },
+    {
+      "text": "the loss with respect to all the weights",
+      "start": 1546.12,
+      "duration": 3.24
+    },
+    {
+      "text": "in the first layer then we have to find",
+      "start": 1547.44,
+      "duration": 3.719
+    },
+    {
+      "text": "the partial derivative of the loss with",
+      "start": 1549.36,
+      "duration": 3.4
+    },
+    {
+      "text": "sorry partial derivative of the loss",
+      "start": 1551.159,
+      "duration": 2.961
+    },
+    {
+      "text": "with the weights in the output layer",
+      "start": 1552.76,
+      "duration": 3.36
+    },
+    {
+      "text": "first then we have to go backwards then",
+      "start": 1554.12,
+      "duration": 3.6
+    },
+    {
+      "text": "find the partial derivative of the loss",
+      "start": 1556.12,
+      "duration": 3.039
+    },
+    {
+      "text": "with the fourth layer then with the",
+      "start": 1557.72,
+      "duration": 3.559
+    },
+    {
+      "text": "third layer and then finally we'll find",
+      "start": 1559.159,
+      "duration": 3.601
+    },
+    {
+      "text": "the partial derivative of the loss with",
+      "start": 1561.279,
+      "duration": 3.921
+    },
+    {
+      "text": "the weights in the first layer that's",
+      "start": 1562.76,
+      "duration": 3.68
+    },
+    {
+      "text": "how the backward pass will be",
+      "start": 1565.2,
+      "duration": 3.0
+    },
+    {
+      "text": "implemented so here you can see the",
+      "start": 1566.44,
+      "duration": 3.839
+    },
+    {
+      "text": "target is zero which we want to match",
+      "start": 1568.2,
+      "duration": 4.959
+    },
+    {
+      "text": "the output is the model of X and then",
+      "start": 1570.279,
+      "duration": 4.321
+    },
+    {
+      "text": "what we are going to do is we are going",
+      "start": 1573.159,
+      "duration": 3.4
+    },
+    {
+      "text": "to just use a squared loss and then do",
+      "start": 1574.6,
+      "duration": 4.199
+    },
+    {
+      "text": "loss do backward what this will do is",
+      "start": 1576.559,
+      "duration": 3.921
+    },
+    {
+      "text": "that this will calculate gradients in",
+      "start": 1578.799,
+      "duration": 4.441
+    },
+    {
+      "text": "every single layer for that 9 by9 Matrix",
+      "start": 1580.48,
+      "duration": 4.439
+    },
+    {
+      "text": "and then what I will do is that I will",
+      "start": 1583.24,
+      "duration": 4.319
+    },
+    {
+      "text": "just take a mean of the Matrix in every",
+      "start": 1584.919,
+      "duration": 4.48
+    },
+    {
+      "text": "layer that will print out the gradients",
+      "start": 1587.559,
+      "duration": 4.24
+    },
+    {
+      "text": "which I've calculated for one backward",
+      "start": 1589.399,
+      "duration": 5.441
+    },
+    {
+      "text": "pass in every layer so I just written",
+      "start": 1591.799,
+      "duration": 4.961
+    },
+    {
+      "text": "what I'm doing here in the preceding",
+      "start": 1594.84,
+      "duration": 3.959
+    },
+    {
+      "text": "code we specify a loss function that",
+      "start": 1596.76,
+      "duration": 4.12
+    },
+    {
+      "text": "computes how close the model output and",
+      "start": 1598.799,
+      "duration": 4.441
+    },
+    {
+      "text": "a user specified Target is this is",
+      "start": 1600.88,
+      "duration": 4.159
+    },
+    {
+      "text": "exactly what happens in actual code we",
+      "start": 1603.24,
+      "duration": 4.48
+    },
+    {
+      "text": "have a predefined output and we have the",
+      "start": 1605.039,
+      "duration": 5.041
+    },
+    {
+      "text": "output predicted by our model we Define",
+      "start": 1607.72,
+      "duration": 4.679
+    },
+    {
+      "text": "a loss function based on our output and",
+      "start": 1610.08,
+      "duration": 4.199
+    },
+    {
+      "text": "the True Value then we find the",
+      "start": 1612.399,
+      "duration": 3.721
+    },
+    {
+      "text": "gradients of that loss with all the",
+      "start": 1614.279,
+      "duration": 3.441
+    },
+    {
+      "text": "parameters and then we update the",
+      "start": 1616.12,
+      "duration": 4.0
+    },
+    {
+      "text": "gradients and that's how our model gets",
+      "start": 1617.72,
+      "duration": 4.439
+    },
+    {
+      "text": "better and better and better as it tries",
+      "start": 1620.12,
+      "duration": 6.08
+    },
+    {
+      "text": "to reach um lower values of",
+      "start": 1622.159,
+      "duration": 7.88
+    },
+    {
+      "text": "loss okay so I have here I have said",
+      "start": 1626.2,
+      "duration": 7.16
+    },
+    {
+      "text": "that um we have 3x3 gradient values at",
+      "start": 1630.039,
+      "duration": 5.201
+    },
+    {
+      "text": "every layer and we print the mean",
+      "start": 1633.36,
+      "duration": 4.319
+    },
+    {
+      "text": "absolute gradient of these 3x3 values to",
+      "start": 1635.24,
+      "duration": 5.36
+    },
+    {
+      "text": "obtain a single gradient value per",
+      "start": 1637.679,
+      "duration": 5.281
+    },
+    {
+      "text": "layer uh so backward method is a",
+      "start": 1640.6,
+      "duration": 4.079
+    },
+    {
+      "text": "convenient method in pytorch that",
+      "start": 1642.96,
+      "duration": 3.36
+    },
+    {
+      "text": "computes the loss gradients during the",
+      "start": 1644.679,
+      "duration": 4.36
+    },
+    {
+      "text": "backward pass right so here you can see",
+      "start": 1646.32,
+      "duration": 4.599
+    },
+    {
+      "text": "what we are doing is loss. backward in",
+      "start": 1649.039,
+      "duration": 4.561
+    },
+    {
+      "text": "this one single command uh we just",
+      "start": 1650.919,
+      "duration": 5.0
+    },
+    {
+      "text": "compute the gradients in the backward",
+      "start": 1653.6,
+      "duration": 4.48
+    },
+    {
+      "text": "pass for all the layers so now we can",
+      "start": 1655.919,
+      "duration": 3.88
+    },
+    {
+      "text": "print these mean gradients for every",
+      "start": 1658.08,
+      "duration": 4.439
+    },
+    {
+      "text": "layer and you'll see that layer 4 has",
+      "start": 1659.799,
+      "duration": 5.72
+    },
+    {
+      "text": "the gradient mean of 0.05",
+      "start": 1662.519,
+      "duration": 5.721
+    },
+    {
+      "text": "0.005 but you can see what happens as we",
+      "start": 1665.519,
+      "duration": 4.561
+    },
+    {
+      "text": "move backward to layer three to Layer",
+      "start": 1668.24,
+      "duration": 3.799
+    },
+    {
+      "text": "Two to layer 1 and finally to the first",
+      "start": 1670.08,
+      "duration": 5.0
+    },
+    {
+      "text": "layer the first layer has the gradient",
+      "start": 1672.039,
+      "duration": 4.88
+    },
+    {
+      "text": "value of",
+      "start": 1675.08,
+      "duration": 4.479
+    },
+    {
+      "text": "0.002 so so this is a clear illustration",
+      "start": 1676.919,
+      "duration": 4.64
+    },
+    {
+      "text": "of the vanishing gradient problem right",
+      "start": 1679.559,
+      "duration": 3.921
+    },
+    {
+      "text": "the gradient has reached so low that it",
+      "start": 1681.559,
+      "duration": 3.921
+    },
+    {
+      "text": "has almost become equal to zero when we",
+      "start": 1683.48,
+      "duration": 4.799
+    },
+    {
+      "text": "reach the first layer now what we are",
+      "start": 1685.48,
+      "duration": 4.72
+    },
+    {
+      "text": "going to do is that we are going to",
+      "start": 1688.279,
+      "duration": 3.841
+    },
+    {
+      "text": "instantiate a model with skip connection",
+      "start": 1690.2,
+      "duration": 4.079
+    },
+    {
+      "text": "set to true so we are going to use",
+      "start": 1692.12,
+      "duration": 4.36
+    },
+    {
+      "text": "shortcut equal to true and then we are",
+      "start": 1694.279,
+      "duration": 4.64
+    },
+    {
+      "text": "going to print out these gradients so",
+      "start": 1696.48,
+      "duration": 4.199
+    },
+    {
+      "text": "we'll follow the exact same procedure",
+      "start": 1698.919,
+      "duration": 4.0
+    },
+    {
+      "text": "we'll do this loss dot backward but now",
+      "start": 1700.679,
+      "duration": 4.441
+    },
+    {
+      "text": "what we'll do is that we'll add another",
+      "start": 1702.919,
+      "duration": 4.961
+    },
+    {
+      "text": "path for the gradients to flow and as",
+      "start": 1705.12,
+      "duration": 4.64
+    },
+    {
+      "text": "shown sh in the Whiteboard what that",
+      "start": 1707.88,
+      "duration": 3.519
+    },
+    {
+      "text": "that will do is that that will add a",
+      "start": 1709.76,
+      "duration": 3.919
+    },
+    {
+      "text": "skip connection between every layer so",
+      "start": 1711.399,
+      "duration": 4.4
+    },
+    {
+      "text": "see these green colored skip connections",
+      "start": 1713.679,
+      "duration": 4.321
+    },
+    {
+      "text": "which have added these are alternative",
+      "start": 1715.799,
+      "duration": 4.681
+    },
+    {
+      "text": "paths for the gradient to flow and now",
+      "start": 1718.0,
+      "duration": 4.159
+    },
+    {
+      "text": "let's see what the mean gradient value",
+      "start": 1720.48,
+      "duration": 3.84
+    },
+    {
+      "text": "is in every layer so now I have put use",
+      "start": 1722.159,
+      "duration": 4.601
+    },
+    {
+      "text": "shortcut equal to true and I going to",
+      "start": 1724.32,
+      "duration": 4.839
+    },
+    {
+      "text": "print the gradients at every layer so",
+      "start": 1726.76,
+      "duration": 4.039
+    },
+    {
+      "text": "you'll see that layer four which is the",
+      "start": 1729.159,
+      "duration": 4.441
+    },
+    {
+      "text": "last layer as a mean gradient of 1.32",
+      "start": 1730.799,
+      "duration": 5.24
+    },
+    {
+      "text": "and as we do the backward backward pass",
+      "start": 1733.6,
+      "duration": 4.64
+    },
+    {
+      "text": "and move to layer three layer two layer",
+      "start": 1736.039,
+      "duration": 4.561
+    },
+    {
+      "text": "one and layer zero the layer three gr",
+      "start": 1738.24,
+      "duration": 5.36
+    },
+    {
+      "text": "layer zero gradient mean is 0.22 which",
+      "start": 1740.6,
+      "duration": 5.12
+    },
+    {
+      "text": "is not negligible at all in fact it's",
+      "start": 1743.6,
+      "duration": 4.799
+    },
+    {
+      "text": "not close to zero and this value is much",
+      "start": 1745.72,
+      "duration": 5.559
+    },
+    {
+      "text": "higher than without using the shortcut",
+      "start": 1748.399,
+      "duration": 5.081
+    },
+    {
+      "text": "connections this clearly shows that",
+      "start": 1751.279,
+      "duration": 4.161
+    },
+    {
+      "text": "using the shortcut connection solves the",
+      "start": 1753.48,
+      "duration": 3.52
+    },
+    {
+      "text": "vanishing gradient",
+      "start": 1755.44,
+      "duration": 3.92
+    },
+    {
+      "text": "problem in fact you also see that the",
+      "start": 1757.0,
+      "duration": 4.799
+    },
+    {
+      "text": "gradient value stabilizes as we progress",
+      "start": 1759.36,
+      "duration": 4.439
+    },
+    {
+      "text": "towards the first layer and does not",
+      "start": 1761.799,
+      "duration": 4.6
+    },
+    {
+      "text": "shrink to a vanishingly small value this",
+      "start": 1763.799,
+      "duration": 4.6
+    },
+    {
+      "text": "is an impractical proof and",
+      "start": 1766.399,
+      "duration": 4.76
+    },
+    {
+      "text": "demonstration that shortcut connections",
+      "start": 1768.399,
+      "duration": 4.841
+    },
+    {
+      "text": "actually uh help us prevent the",
+      "start": 1771.159,
+      "duration": 4.24
+    },
+    {
+      "text": "vanishing radiant problem so in",
+      "start": 1773.24,
+      "duration": 4.159
+    },
+    {
+      "text": "conclusion shortcut connections are very",
+      "start": 1775.399,
+      "duration": 3.921
+    },
+    {
+      "text": "important to overcome the limitations",
+      "start": 1777.399,
+      "duration": 3.801
+    },
+    {
+      "text": "posed by The Vanishing gradient problem",
+      "start": 1779.32,
+      "duration": 4.76
+    },
+    {
+      "text": "in deep neural networks uh and they are",
+      "start": 1781.2,
+      "duration": 4.88
+    },
+    {
+      "text": "a very core building block of large",
+      "start": 1784.08,
+      "duration": 4.4
+    },
+    {
+      "text": "language models such as llm they",
+      "start": 1786.08,
+      "duration": 4.959
+    },
+    {
+      "text": "facilitate more effective training by",
+      "start": 1788.48,
+      "duration": 4.76
+    },
+    {
+      "text": "ensuring consistent gradient flow across",
+      "start": 1791.039,
+      "duration": 5.681
+    },
+    {
+      "text": "layers when we train the GPT model so as",
+      "start": 1793.24,
+      "duration": 5.279
+    },
+    {
+      "text": "we can see in this lecture we learned",
+      "start": 1796.72,
+      "duration": 5.6
+    },
+    {
+      "text": "about the conceptual understanding of um",
+      "start": 1798.519,
+      "duration": 5.961
+    },
+    {
+      "text": "shortcut connections on the Whiteboard",
+      "start": 1802.32,
+      "duration": 4.44
+    },
+    {
+      "text": "and we also looked at",
+      "start": 1804.48,
+      "duration": 5.079
+    },
+    {
+      "text": "the from scratch coding implementation",
+      "start": 1806.76,
+      "duration": 4.919
+    },
+    {
+      "text": "of shortcut connection so we connected",
+      "start": 1809.559,
+      "duration": 4.12
+    },
+    {
+      "text": "two we constructed two deep neural",
+      "start": 1811.679,
+      "duration": 3.72
+    },
+    {
+      "text": "networks one without shortcut",
+      "start": 1813.679,
+      "duration": 3.72
+    },
+    {
+      "text": "connections where we saw that the",
+      "start": 1815.399,
+      "duration": 4.16
+    },
+    {
+      "text": "gradient flow had the vanishing gradient",
+      "start": 1817.399,
+      "duration": 4.16
+    },
+    {
+      "text": "problem as we reached the first layer",
+      "start": 1819.559,
+      "duration": 4.401
+    },
+    {
+      "text": "the gradients vanished to almost zero",
+      "start": 1821.559,
+      "duration": 5.321
+    },
+    {
+      "text": "then we used shortcut Connection in the",
+      "start": 1823.96,
+      "duration": 5.079
+    },
+    {
+      "text": "Deep neural network and then we saw that",
+      "start": 1826.88,
+      "duration": 3.84
+    },
+    {
+      "text": "the gradient flow has stabilized and we",
+      "start": 1829.039,
+      "duration": 4.281
+    },
+    {
+      "text": "solve the vanishing gradient problem so",
+      "start": 1830.72,
+      "duration": 4.36
+    },
+    {
+      "text": "now hopefully you'll be able to better",
+      "start": 1833.32,
+      "duration": 3.56
+    },
+    {
+      "text": "appreciate why we are actually using the",
+      "start": 1835.08,
+      "duration": 4.12
+    },
+    {
+      "text": "shortcut Connections in the first place",
+      "start": 1836.88,
+      "duration": 4.159
+    },
+    {
+      "text": "it really helps to stabilize training",
+      "start": 1839.2,
+      "duration": 6.04
+    },
+    {
+      "text": "and that helps us when we uh when we are",
+      "start": 1841.039,
+      "duration": 6.321
+    },
+    {
+      "text": "constructing the architecture for large",
+      "start": 1845.24,
+      "duration": 5.159
+    },
+    {
+      "text": "language models now what I want to do is",
+      "start": 1847.36,
+      "duration": 4.48
+    },
+    {
+      "text": "that just want to",
+      "start": 1850.399,
+      "duration": 4.081
+    },
+    {
+      "text": "quickly um want to quickly go to the",
+      "start": 1851.84,
+      "duration": 4.559
+    },
+    {
+      "text": "Transformer block architecture and show",
+      "start": 1854.48,
+      "duration": 5.199
+    },
+    {
+      "text": "you where we use the shortcut connection",
+      "start": 1856.399,
+      "duration": 5.561
+    },
+    {
+      "text": "so here you can see now hopefully you'll",
+      "start": 1859.679,
+      "duration": 4.761
+    },
+    {
+      "text": "start to better appreciate these arrows",
+      "start": 1861.96,
+      "duration": 4.959
+    },
+    {
+      "text": "so let me rub whatever is mentioned here",
+      "start": 1864.44,
+      "duration": 5.479
+    },
+    {
+      "text": "so that you can clearly see these",
+      "start": 1866.919,
+      "duration": 5.441
+    },
+    {
+      "text": "arrows yeah so now hopefully you'll",
+      "start": 1869.919,
+      "duration": 5.081
+    },
+    {
+      "text": "start to understand and appreciate the",
+      "start": 1872.36,
+      "duration": 5.08
+    },
+    {
+      "text": "significance of these arrows over here",
+      "start": 1875.0,
+      "duration": 4.24
+    },
+    {
+      "text": "these arrows are the shortcut",
+      "start": 1877.44,
+      "duration": 3.719
+    },
+    {
+      "text": "connections between different layers",
+      "start": 1879.24,
+      "duration": 3.84
+    },
+    {
+      "text": "these arrows provide an alternative path",
+      "start": 1881.159,
+      "duration": 4.081
+    },
+    {
+      "text": "for the gradient to flow so here you can",
+      "start": 1883.08,
+      "duration": 3.8
+    },
+    {
+      "text": "see we can we can actually add a",
+      "start": 1885.24,
+      "duration": 3.039
+    },
+    {
+      "text": "shortcut connection between with any",
+      "start": 1886.88,
+      "duration": 4.039
+    },
+    {
+      "text": "layers of the Transformer block and that",
+      "start": 1888.279,
+      "duration": 4.841
+    },
+    {
+      "text": "helps the solve the vanishing gradient",
+      "start": 1890.919,
+      "duration": 4.281
+    },
+    {
+      "text": "problem because ultimately we'll do the",
+      "start": 1893.12,
+      "duration": 3.799
+    },
+    {
+      "text": "backward propagation through this entire",
+      "start": 1895.2,
+      "duration": 5.319
+    },
+    {
+      "text": "Transformer block from the output to the",
+      "start": 1896.919,
+      "duration": 5.841
+    },
+    {
+      "text": "input so we have to make sure that",
+      "start": 1900.519,
+      "duration": 4.561
+    },
+    {
+      "text": "gradients don't vanish and learning",
+      "start": 1902.76,
+      "duration": 5.919
+    },
+    {
+      "text": "continues uh in a stable way that brings",
+      "start": 1905.08,
+      "duration": 6.04
+    },
+    {
+      "text": "us to the end of this lecture and now we",
+      "start": 1908.679,
+      "duration": 4.401
+    },
+    {
+      "text": "have covered several things for building",
+      "start": 1911.12,
+      "duration": 4.24
+    },
+    {
+      "text": "the Transformer Block in the previous",
+      "start": 1913.08,
+      "duration": 3.64
+    },
+    {
+      "text": "lectures we covered the layer",
+      "start": 1915.36,
+      "duration": 3.52
+    },
+    {
+      "text": "normalization J activation and feed",
+      "start": 1916.72,
+      "duration": 4.16
+    },
+    {
+      "text": "forward neural network in today's",
+      "start": 1918.88,
+      "duration": 3.84
+    },
+    {
+      "text": "lecture we have covered the shortcut",
+      "start": 1920.88,
+      "duration": 4.24
+    },
+    {
+      "text": "Connections in a lot of detail and now",
+      "start": 1922.72,
+      "duration": 4.12
+    },
+    {
+      "text": "we are fully ready with all the building",
+      "start": 1925.12,
+      "duration": 3.48
+    },
+    {
+      "text": "blocks to understand the Transformer",
+      "start": 1926.84,
+      "duration": 4.24
+    },
+    {
+      "text": "block which will be the main part which",
+      "start": 1928.6,
+      "duration": 5.0
+    },
+    {
+      "text": "we'll cover in the next lecture so thank",
+      "start": 1931.08,
+      "duration": 4.28
+    },
+    {
+      "text": "you so much everyone this brings us to",
+      "start": 1933.6,
+      "duration": 3.439
+    },
+    {
+      "text": "the end of this lecture I hope you are",
+      "start": 1935.36,
+      "duration": 4.679
+    },
+    {
+      "text": "learning a lot and in detail my whole",
+      "start": 1937.039,
+      "duration": 4.52
+    },
+    {
+      "text": "goal is that every lecture should",
+      "start": 1940.039,
+      "duration": 3.6
+    },
+    {
+      "text": "provide you intuitive understanding",
+      "start": 1941.559,
+      "duration": 4.12
+    },
+    {
+      "text": "theoretical understanding as well as",
+      "start": 1943.639,
+      "duration": 4.76
+    },
+    {
+      "text": "coding knowledge and I try to cover all",
+      "start": 1945.679,
+      "duration": 4.801
+    },
+    {
+      "text": "of these three aspects in my lectures I",
+      "start": 1948.399,
+      "duration": 3.76
+    },
+    {
+      "text": "hope you are liking these lectures if",
+      "start": 1950.48,
+      "duration": 3.72
+    },
+    {
+      "text": "you have some doubts or questions please",
+      "start": 1952.159,
+      "duration": 3.561
+    },
+    {
+      "text": "put it in the YouTube comments and I'll",
+      "start": 1954.2,
+      "duration": 3.4
+    },
+    {
+      "text": "try to address it in the next video",
+      "start": 1955.72,
+      "duration": 3.48
+    },
+    {
+      "text": "thanks a lot everyone and I look forward",
+      "start": 1957.6,
+      "duration": 5.679
+    },
+    {
+      "text": "to seeing you in the next video",
+      "start": 1959.2,
+      "duration": 4.079
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series today we are going to learn about another very important component of the large language model architecture and that is called as shortcut connections so first let's see what all we have covered until now so the GPT architecture consists of multiple building blocks it consists of layer normalization the JLo activation with feed forward neural network and one more building block is this shortcut Connections in the previous lectures we have looked at layer normalization the Jou and the feed forward neural network today we are going to look at shortcut connections and then in the next lecture you'll see that all these four building blocks essentially come together to form the Transformer block which is the beating heart or the main component of the final GPT architecture so we we are slowly but steadily making progress towards the entire GPT architecture and we are making our our way towards the top like this so today's lecture is going to be very important and also very interesting because shortcut connections really make our life very easy when training the large language model and today I'm going to demonstrate why we need shortcut connections how they are integrated within the Transformer block and how do they exactly work so first first thing first let me show you where the trans shortcut connections actually come in the Transformer block itself so here's the zoomed in view of the Transformer block you'll see that first we have the layer normalization then we have the mask multi- attention then the Dropout layers layer normalization to feed forward neural network and Dropout so you might be thinking that okay where exactly is the shortcut connection on over here so these plus symbols which you see both of these are shortcut connections and wherever you see the plus symbol you'll see that there is an arrow which is associated with the plus symbol U with this symbol there is this arrow and with this symbol there is this arrow that is essentially the shortcut connection so you might be thinking that what exactly are these connections what are these arrows because things are not flowing exactly linearly here right I mean they are flowing linearly but there are these two arrows which are shortcut connections and today we are going to learn about them so let's get started you may have if you have studied machine learning or deep learning before you may have come across this term as skip connections or residual connections essentially it means the same thing so shortcut connections are also known as skip connections or residual connections um initially when shortcut connections were first discovered they were proposed in the field of computer vision to solve the problem of Vanishing gradients now this this is the main problem which shortcut connections solve so if you understand the vanishing gradient problem you will really understand why we need shortcut connections so let me try to explain this problem of Vanishing gradient first so this main problem is that the gradients become progressively smaller as we propagate backwards through a neural network and when gradients become very small then weight updates are not made learning becomes stagnant and so convergence is delayed and the llm does not learn very well we can even visualize this further so let's say if you have a deep neural network like this which has three hidden layers so we have the hidden layer one we have the hidden Layer Two and we have the hidden layer three when we do the backward pass we find the gradients with respect to all the weights in that particular layer so when I say gradient 4 it's a matrix of all the gradients in the output layer when I say gradient three it's a Matrix of all the gradients in the hidden layer three when I say gradient 2 it's with respect to Hidden Layer Two And when I say gradient one it's the Matrix of gradients in the hidden layer one now it's very important to understand the gradient flow Direction the gradient flow direction is always from the output of the neural network to the input of the neural network so from right to left this means that first we find the gradient number four that is then used to find gradient number three that is is then used to find gradient number two and that is then used to find gradient number one and there are multiplication operations involved so imagine that let's say if gradient four becomes suddenly very small and if we multiply it with uh the back propagated values we get gradient three which is even smaller gradient two which will be even more smaller and then gradient one will be further small so that's why it's called Vanishing gradient because if the gradients suddenly become small then as we multiply these gradients gradient one becomes extremely small because a product of small quantities becomes even more smaller so by the time the training is finished and by the time we get the gradients of the loss with respect to all the weights of this layer we find that this gradient becomes very small and then it even starts approaching zero do you see the problem which happens when the gradient start approaching zero so let's say if you have a particular weight uh the gradient update or the weight update rule looks something like the the weight in the new iteration is the weight in the old iteration minus Alpha which is the step size multiplied by partial derivative of loss with respect to the weights right um so partial derivative of L with respect to W now do you see what will happen if the gradient itself become small so if this partial derivative of loss with respect to W which is the gradient of loss with respect to W if it becomes very small so let's say if this approach is zero the weight will not be updated at all what the new value of the weight which is W star will be same as the old value of the weight so w star will be equal to W old because this quantity will be zero so if the weights are not updating that's equivalent to saying that the neural network is not learning essentially this leads to a stagnancy problem where we have reached a local Minima let's say nothing is proceeding further this is called as the vanishing gradient problem and and implementation of shortcut connections really solves this problem so first let's see what shortcut connections actually are uh essentially shortcut connection create an alternative path for the gradient to Flow by skipping one or more layers what do we mean by creating an alternative path let's see so this is achieved by adding the output of one layer to the output of a later layer let me show this to you visually so if you look at the diagram on the left hand side this is a deep neural network without shortcut connections so here you can see that there are no arrows which connects two layers right uh these are just normal all the arrows are flowing forward and let's take a look at the magnitude of the gradients so we start from the outermost gradient remember the gradient flow is from the last layer to the first layer the magnitude is 0.5 here let's see what happens to the magnitude as we come to the inner layers so the magnitude decreases to 0.0013 here the magnitude of the gradient decreases even further to 0.007 when I'm seeing the magnitude here I'm essentially taking the mean of all the gradient values in that layer and if you look at the layer number one you can see how small the gradient has become when we reach layer number one this perfectly illustrates The Vanishing gradient problem what shortcut connections do is that they connect the output of one layer to the output of another layer so let's say there is this is the input layer right we connect the output of the input layer to the output of the first layer with this second shortcut connection we connect the output of the first layer to the output of the second layer with this shortcut connection we connect the output of the second layer to the output of the third layer with this shortcut connection we connect the output of the third layer with the fourth layer what does it mean connecting the output of one layer with another layer what that means is basically we just add the output of one layer to the output of another layer and let me show you how that how that is done so this plus symbol indicates that we are adding the output of this input layer with this output similarly this plus symbol here means that we are adding the output of the earlier layer with the output of the present layer now I'll show you how this works but just take a look at the gradient magnitudes now 1.3 to 26 32 um 2 in layer 2 and for layer 1 it's 22 so compare this 22 value now with the value which we had obtained without shortcut connection so without shortcut connections the value which was obtained was 0.02 and now the value has increased by more than thousand times that's awesome right this is a clear indication that we don't have the vanishing gradient problem when we uh use shortcut connections now let me prove to you mathematically how the short how addition of shortcut connections really helps and why does it really help solve the vanishing gradient problem some student just look at this and they feel that okay I understood vaguely that it will solve the vanishing gradient problem but remember that you should always ask why go deeper dive deeper try to take some mathematical formulations and try to prove and try to see for yourself why this shortcut gradient shortcut connections help so let's take a simple uh connection of two layers so here's the first layer the output of the first layer is y l which passes through the second layer here f is the neural network in the second layer and the output of the second layer is f of y l right if shortcut connections were not implemented then the output of the second layer will just be F of yl but now with shortcut connections being implemented we add the output of the first layer which is y l to the output of the second layer which is f of y l so so now the output which is coming from the second layer is f of y l + y l this so when I said adding the output of one layer to another layer you might have been confused what do we do exactly right we actually perform this mathematical operation that when we uh when this neural network takes the input and computes the output um we add the input or we add the output of the previous layer to this output and then we proceed ahead now I'm going to demonstrate to you why this helps solve the vanish gradient problem so y l + 1 is the output of the second layer l + 1 and the earlier layer output is y l okay so if shortcut connection was not there we would not have taken this term into account we would just say that y l + 1 is equal to F of Y but now since shortcut connection is there the output of the second layer will be F of y + yl now when we do the back propagation what we are really interested in is the partial derivative of the loss with respect respect to uh the output of the first layer right so the partial derivative of all the weights in this layer will depend on the partial derivative of the loss which we which we calculate in the forward pass partial derivative of loss with respect to the output of the first layer so to prevent the vanishing gradient problem we really want the partial derivative of loss with respect to the first layer output to be as large as possible so that the partial derivative of the loss with respect to the weights in the first layer will be large and they won't go to zero so let's see how adding the shortcut connection makes this possible so using the chain rule we can write partial derivative of loss with respect to y l as partial derivative of loss with respect to y l + 1 multiplied by partial derivative of y l + 1 with respect to y l and y l + 1 depends on y l like this so partial derivative of y l + 1 with respect to y l will be partial derivative of f of y l with y l plus partial derivative of y with Y which is equal to to just one so if you now write this quantity further you'll see that partial derivative of loss with respect to y l is equal to partial derivative of loss with respect to y + 1 multiplied by partial derivative of f with respect to y + 1 now when we are doing the back propagation uh partial derivative of f of yl with respect to Y can become small because we are accumulating different gradients and when we reach the first layer this first term over here which I'm now highlighting in the bracket that might go to zero because of the vanishing radiant problem right but that won't affect us because now we have this addition of this plus one term here this is the main contribution of the shortcut connection if we did not have the shortcut connection this plus one would not have been there but now because we have the shortcut connection this plus one term is there which will make sure that the partial derivative of loss with respect to y l will not go to zero will not vanish so this plus one term actually keeps the gradient flowing through the network and it makes sure that the partial derivative of loss with respect to y l is a significant amount and this will further make sure that the partial derivative of the loss uh which is partial derivative of loss with respect to the weights of the first layer these are the final weights which won't this partial derivative won't ultimately vanish and that's why when we update the weight parameters we won't get stagnation because this value will not be equal to zero why will this not be equal to zero because partial derivative of loss with respect to first layer output will not be zero because of the addition of this one term which will keep the gradient flowing through the network this is the mathematical and also the intuitive explanation for why adding shortcut connection really helps if you keep this small demonstration in mind you'll never forget why we add shortcut Connections in deep learning awesome so now we have understood why shortcut connections are implemented right it this is because they create an alternative path for the gradient to flow they keep the gradient flowing because of the addition of the plus one term which we saw earlier and these shortcut connections are also called as skip connections they really play a crucial role in preserving flow of gradients during uh the backward pass or while training the neural network so what I now want to show to you is this paper which was actually published um I think it was published in um 2018 in New yor urps and this is called visualizing the Lost landscape of neural Nets so just look at this left figure which is without using skip connections the Lost landscape look like this we have several local Minima and there are several Peaks and valleys whereas if you include skip connections you will see that the number of local Minima are not that much there is just seems to be a very smooth landscape with one single local Minima that's what skip connection does since the Lost function landscape becomes so smooth the grade Med flow also become smooth and that's the advantage of having skipped connection so if you forget the mathematical deriv derivations and if you are a person who is good at visual learning just keep this loss function landscape in mind and remember that adding skip connections will help us go from the left which has a number of oscillations the loss function is not smooth to the right where the loss function as you can see is pretty smooth now that we have learned about the mathematical intuition and visual understanding of the skip connections or shortcut connections let's go to code right now and uh let's actually Implement shortcut connection so what we are going to do in code is that we are going to look at a neural network like this which will take in the inputs of a certain size let me Mark it with different color the neural network will take in the inputs of a certain size and we will stack multiple layers together and we will give a provision to add the shortcut connection so the output of any layer we can add to the input of the previous layer this is what we are going to implement right now and we are also going to check the similarities or we are going to compare the gradient flow magnitudes without shortcut connections and with shortcut connections so let's get to code right now so here we are going to implement this class example deep neural network and uh when an instance of this class is created by default this init Constructor is called and this takes in some arguments first it takes in the layer sizes which are basically uh how many neurons you want in each layer so the layer sizes can be three three 3 3 and one which means that there are five layers with three neurons and the final layer has one neuron so if the layer size is 3 3 3 3 one it looks something like this so here you can see that there are five layers with three neurons and there is one layer with one neuron that's the first argument which is the layer size which this function will take the second argument is use shortcut so if this can be true or false if it's false we'll not use the shortcut connections if it's true we'll use the shortcut connections so let's see how this is constructed first we construct a neural network by using this nn. sequential as I also showed you in the last lecture nn. sequential is a very important module provided by pytorch where we can connect different neural network layers together I'll also share this link when I upload the YouTube video so you can find this in the description okay so here as you can see we are we are chaining different layers together so if you look at the first layer the input is layer size is zero the output Dimension is layer size is one and then we have a j activation function similarly for every layer the input Dimension is described by the layer size the output Dimension is described by the layer size and we have a j activation function for all of these layers um which have been constructed right uh so here if you can can see maximum provision which I have allocated over here is for layer sizes bracket five which means the layer sizes can at Max uh have let's say uh 0 to five so if you see over here this is 0o this is one this is two this is three this is four and with this five so there are six uh there are six elements here so uh this is how the different neural this is how the neural network is connect is created by chaining the different layers together now what does this layer sizes zero and one mean it means that let's say for the first layer the it takes this as the input so the input Dimension is three the output Dimension is three for the second layer the input Dimension is three the output Dimension is three so just just like what has been shown over here the layer sizes is constructed so let me explain this to you intuitively just so that you get a sense of Dimension right so for this layer over here for the first layer over here uh let me zoom into this further to just show you the first layer and how it essentially the input and the output dimensions of that layer are constructed yeah so if you zoom into this first layer here it has three inputs so the input Dimension will be three and it has three outputs because it's going to the next layer which has three outputs now if you look at this next layer here um its inputs are equal to three because it it takes in the output of the previous layer which has three neurons so it has three inputs and the outputs are also equal to three because the next layer size is equal to three so to get the input size of a of a current layer we look at the input dimensions of that layer or the previous layer previous layer output and then to get the output size of the current um layer we look at the next layer Dimension size so that's how these layer sizes are constructed and we access the particular index to get the input Dimension and we access another index to get the output dimension of a layer also keep in mind that we are using the JLo activation function which we learned about in the previous lecture so this is where we create uh we initialize the layers now this forward method is where all the magic actually happens so let's try to understand this forward method in detail if shortcut is not applied then what we'll do is that we'll just take the output of every layer and then uh we will we will first take the output of the first layer then we will again go to this for Loop the output of the first layer will then serve as the input to the second layer and this process will continue until we get the output of the final layer but now let's see what what happens when we use the shortcut so at the first layer let's say what will happen at the first layer is that we'll take the input and then we'll add with the first layer output so this is exactly what has been shown over here at the first layer We'll add the in put with the first layer output correct and then what we'll do is that so then X will be X Plus layer output and then we'll go to the loop again in the second pass of the loop what will happen is that um the output which we had computed previously which was this X Plus input that will be added with the second layer output so we will perform this operation then when we go to the next iteration of the loop this out output which was computed previously will be added to the next layer's output so then this operation will be performed similarly when we reach the end we'll apply all of the shortcut connections and then we'll get the final output variable so at every step of the process we take the output of that layer and we take and we add the output from the previous layers so it's an accumulation of all shortcut connection so when we reach this final shortcut connection it's the accumulation of all the four shortcut connections which have come before it so that's how the short shortcut connection is applied it just one simple line of code xal to X Plus layer output so here you can see this code implements a deep neural network with five layers and each consisting of a linear layer and JLo activation in the forward pass we iteratively pass the input through the layers and optionally add the shortcut connections uh if self. use shortcut attribute is set to true so now what we can do is let us use this code to First initialize a neural network without the shortcut connections and later we'll initialize the neural network with shortcut connection so the neural network is initialized like this so three 3 3 3 and one so we have five layers of three neurons and one output neuron and the input is a three-dimensional input which is if you look at this figure here so we are now looking at this neural network this neural network which does not have let me show the arrow here this neural network which does not have shortcut connection and you'll see that this neural network takes in three inputs it goes through this five layers and then we compute the output right so let if you get the layer sizes as 3 3 3 3 3 1 this is the sample input which has three input values one 0 and minus one and then we are going to set use shortcut equal to false and create an instance of the example deep neural network and then we get this output which is model without shortcut now what I also want to do which is the main thing here is that I want to print out the gradients at every single layer so let me first show you how that is going to work so if you look at each layer so if you look at the first layer uh or rather this is the first layer right if you let me show this with a different color just for Simplicity so if you look at the first layer here there are three neurons and each neuron will have three weights so the weight Matrix will be a 3X3 Matrix in fact for every every layer since the input is three and the output Dimension is three for every layer we'll have a 3X3 weight Matrix for this layer we'll have a 3X3 for this layer we'll have a 3X3 weight Matrix for this layer we'll have 3x3 for the final layer we'll have a 3x1 weight Matrix right and when you do the backward pass you first find partial derivative of loss with respect to all of the values in this weight Matrix and you update them so when I what I'm going to do is that I'm going to do an iteration of the backward pass in which all these weight values will be updated and then I'm going to find the mean of these nine values and that I'm going to call as the mean gradient in that particular layer so if I look at this layer I have this 3x3 Matrix I'll find the mean of the mean of all the gradients to get the mean gradient value of that layer if you are unfamiliar of the concept of backward pass we have a neural networks from scratch Series so I really encourage you to go through that to understand this but the main idea is that we have this output Y and then we Define a loss which is y minus the ground truth so if the ground truth is zero then the loss will be y - 0 squ and then we have to find the partial derivative of the loss with respect to all the weights in the first layer we have to find the partial derivative of the loss with respect to all the weights in the first layer then we have to find the partial derivative of the loss with sorry partial derivative of the loss with the weights in the output layer first then we have to go backwards then find the partial derivative of the loss with the fourth layer then with the third layer and then finally we'll find the partial derivative of the loss with the weights in the first layer that's how the backward pass will be implemented so here you can see the target is zero which we want to match the output is the model of X and then what we are going to do is we are going to just use a squared loss and then do loss do backward what this will do is that this will calculate gradients in every single layer for that 9 by9 Matrix and then what I will do is that I will just take a mean of the Matrix in every layer that will print out the gradients which I've calculated for one backward pass in every layer so I just written what I'm doing here in the preceding code we specify a loss function that computes how close the model output and a user specified Target is this is exactly what happens in actual code we have a predefined output and we have the output predicted by our model we Define a loss function based on our output and the True Value then we find the gradients of that loss with all the parameters and then we update the gradients and that's how our model gets better and better and better as it tries to reach um lower values of loss okay so I have here I have said that um we have 3x3 gradient values at every layer and we print the mean absolute gradient of these 3x3 values to obtain a single gradient value per layer uh so backward method is a convenient method in pytorch that computes the loss gradients during the backward pass right so here you can see what we are doing is loss. backward in this one single command uh we just compute the gradients in the backward pass for all the layers so now we can print these mean gradients for every layer and you'll see that layer 4 has the gradient mean of 0.05 0.005 but you can see what happens as we move backward to layer three to Layer Two to layer 1 and finally to the first layer the first layer has the gradient value of 0.002 so so this is a clear illustration of the vanishing gradient problem right the gradient has reached so low that it has almost become equal to zero when we reach the first layer now what we are going to do is that we are going to instantiate a model with skip connection set to true so we are going to use shortcut equal to true and then we are going to print out these gradients so we'll follow the exact same procedure we'll do this loss dot backward but now what we'll do is that we'll add another path for the gradients to flow and as shown sh in the Whiteboard what that that will do is that that will add a skip connection between every layer so see these green colored skip connections which have added these are alternative paths for the gradient to flow and now let's see what the mean gradient value is in every layer so now I have put use shortcut equal to true and I going to print the gradients at every layer so you'll see that layer four which is the last layer as a mean gradient of 1.32 and as we do the backward backward pass and move to layer three layer two layer one and layer zero the layer three gr layer zero gradient mean is 0.22 which is not negligible at all in fact it's not close to zero and this value is much higher than without using the shortcut connections this clearly shows that using the shortcut connection solves the vanishing gradient problem in fact you also see that the gradient value stabilizes as we progress towards the first layer and does not shrink to a vanishingly small value this is an impractical proof and demonstration that shortcut connections actually uh help us prevent the vanishing radiant problem so in conclusion shortcut connections are very important to overcome the limitations posed by The Vanishing gradient problem in deep neural networks uh and they are a very core building block of large language models such as llm they facilitate more effective training by ensuring consistent gradient flow across layers when we train the GPT model so as we can see in this lecture we learned about the conceptual understanding of um shortcut connections on the Whiteboard and we also looked at the from scratch coding implementation of shortcut connection so we connected two we constructed two deep neural networks one without shortcut connections where we saw that the gradient flow had the vanishing gradient problem as we reached the first layer the gradients vanished to almost zero then we used shortcut Connection in the Deep neural network and then we saw that the gradient flow has stabilized and we solve the vanishing gradient problem so now hopefully you'll be able to better appreciate why we are actually using the shortcut Connections in the first place it really helps to stabilize training and that helps us when we uh when we are constructing the architecture for large language models now what I want to do is that just want to quickly um want to quickly go to the Transformer block architecture and show you where we use the shortcut connection so here you can see now hopefully you'll start to better appreciate these arrows so let me rub whatever is mentioned here so that you can clearly see these arrows yeah so now hopefully you'll start to understand and appreciate the significance of these arrows over here these arrows are the shortcut connections between different layers these arrows provide an alternative path for the gradient to flow so here you can see we can we can actually add a shortcut connection between with any layers of the Transformer block and that helps the solve the vanishing gradient problem because ultimately we'll do the backward propagation through this entire Transformer block from the output to the input so we have to make sure that gradients don't vanish and learning continues uh in a stable way that brings us to the end of this lecture and now we have covered several things for building the Transformer Block in the previous lectures we covered the layer normalization J activation and feed forward neural network in today's lecture we have covered the shortcut Connections in a lot of detail and now we are fully ready with all the building blocks to understand the Transformer block which will be the main part which we'll cover in the next lecture so thank you so much everyone this brings us to the end of this lecture I hope you are learning a lot and in detail my whole goal is that every lecture should provide you intuitive understanding theoretical understanding as well as coding knowledge and I try to cover all of these three aspects in my lectures I hope you are liking these lectures if you have some doubts or questions please put it in the YouTube comments and I'll try to address it in the next video thanks a lot everyone and I look forward to seeing you in the next video"
+}

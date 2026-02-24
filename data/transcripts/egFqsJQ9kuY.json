@@ -1,0 +1,3116 @@
+{
+  "video": {
+    "video_id": "egFqsJQ9kuY",
+    "title": "Dataloaders in Instruction Fine-tuning",
+    "duration": 1465.0,
+    "index": 38
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.08,
+      "duration": 4.88
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.56,
+      "duration": 5.039
+    },
+    {
+      "text": "models from scratch series we are",
+      "start": 9.96,
+      "duration": 5.12
+    },
+    {
+      "text": "looking at instruction F tuning and we",
+      "start": 12.599,
+      "duration": 4.84
+    },
+    {
+      "text": "have finished step number one which is",
+      "start": 15.08,
+      "duration": 4.8
+    },
+    {
+      "text": "data set download and formatting and in",
+      "start": 17.439,
+      "duration": 4.08
+    },
+    {
+      "text": "the last lecture we have finished step",
+      "start": 19.88,
+      "duration": 3.52
+    },
+    {
+      "text": "number two which is batching the data",
+      "start": 21.519,
+      "duration": 4.321
+    },
+    {
+      "text": "set in this lecture we are going to look",
+      "start": 23.4,
+      "duration": 5.119
+    },
+    {
+      "text": "at creating data loaders so you can",
+      "start": 25.84,
+      "duration": 5.12
+    },
+    {
+      "text": "think of data loaders as an efficient",
+      "start": 28.519,
+      "duration": 4.801
+    },
+    {
+      "text": "way to just collect the different",
+      "start": 30.96,
+      "duration": 4.84
+    },
+    {
+      "text": "batches whenever we need to do",
+      "start": 33.32,
+      "duration": 5.48
+    },
+    {
+      "text": "so using data loaders the process of",
+      "start": 35.8,
+      "duration": 5.52
+    },
+    {
+      "text": "training a large language model becomes",
+      "start": 38.8,
+      "duration": 5.0
+    },
+    {
+      "text": "very easy because then you can access",
+      "start": 41.32,
+      "duration": 4.48
+    },
+    {
+      "text": "batches in a sequential Manner and in a",
+      "start": 43.8,
+      "duration": 5.079
+    },
+    {
+      "text": "much more efficient manner so here's the",
+      "start": 45.8,
+      "duration": 5.279
+    },
+    {
+      "text": "pytorch data sets and data loaders",
+      "start": 48.879,
+      "duration": 4.36
+    },
+    {
+      "text": "documentation I'll be sharing the link",
+      "start": 51.079,
+      "duration": 4.681
+    },
+    {
+      "text": "to this and as you can read here data",
+      "start": 53.239,
+      "duration": 5.16
+    },
+    {
+      "text": "loader wraps an iterable around the data",
+      "start": 55.76,
+      "duration": 4.799
+    },
+    {
+      "text": "set which means that the B which we have",
+      "start": 58.399,
+      "duration": 5.0
+    },
+    {
+      "text": "created can be accessed in an iterative",
+      "start": 60.559,
+      "duration": 5.121
+    },
+    {
+      "text": "manner using the data loader and by",
+      "start": 63.399,
+      "duration": 4.08
+    },
+    {
+      "text": "iterative I just mean in a sequential",
+      "start": 65.68,
+      "duration": 4.24
+    },
+    {
+      "text": "Manner and essentially it makes it very",
+      "start": 67.479,
+      "duration": 4.32
+    },
+    {
+      "text": "easy to access the different data",
+      "start": 69.92,
+      "duration": 4.76
+    },
+    {
+      "text": "samples so the reason we use data sets",
+      "start": 71.799,
+      "duration": 5.64
+    },
+    {
+      "text": "and data loaders is more for efficiency",
+      "start": 74.68,
+      "duration": 5.24
+    },
+    {
+      "text": "of access to the data itself and that",
+      "start": 77.439,
+      "duration": 4.081
+    },
+    {
+      "text": "makes a very big difference when",
+      "start": 79.92,
+      "duration": 5.44
+    },
+    {
+      "text": "training a huge model um such as llms",
+      "start": 81.52,
+      "duration": 6.559
+    },
+    {
+      "text": "with more than 100 million",
+      "start": 85.36,
+      "duration": 5.079
+    },
+    {
+      "text": "parameters so let me quickly recap",
+      "start": 88.079,
+      "duration": 4.241
+    },
+    {
+      "text": "whatever we have done so far so the",
+      "start": 90.439,
+      "duration": 4.201
+    },
+    {
+      "text": "first step was data set download and",
+      "start": 92.32,
+      "duration": 5.28
+    },
+    {
+      "text": "formatting here's the instruction fine",
+      "start": 94.64,
+      "duration": 6.04
+    },
+    {
+      "text": "tuning data set so we have 1100 pairs of",
+      "start": 97.6,
+      "duration": 6.0
+    },
+    {
+      "text": "instructions inputs and outputs so an",
+      "start": 100.68,
+      "duration": 4.64
+    },
+    {
+      "text": "instruction could be something like edit",
+      "start": 103.6,
+      "duration": 3.839
+    },
+    {
+      "text": "the following sentence for grammar the",
+      "start": 105.32,
+      "duration": 4.439
+    },
+    {
+      "text": "input can be he go to the park every day",
+      "start": 107.439,
+      "duration": 4.28
+    },
+    {
+      "text": "and the correct output is he goes to the",
+      "start": 109.759,
+      "duration": 4.32
+    },
+    {
+      "text": "park every day the instruction can be",
+      "start": 111.719,
+      "duration": 5.281
+    },
+    {
+      "text": "convert 45 kilomet to meters and here it",
+      "start": 114.079,
+      "duration": 4.601
+    },
+    {
+      "text": "does not have any input because there is",
+      "start": 117.0,
+      "duration": 4.479
+    },
+    {
+      "text": "one fixed answer and the output is 45",
+      "start": 118.68,
+      "duration": 5.0
+    },
+    {
+      "text": "kilom is 45,000",
+      "start": 121.479,
+      "duration": 5.121
+    },
+    {
+      "text": "M so what we are essentially doing is",
+      "start": 123.68,
+      "duration": 4.439
+    },
+    {
+      "text": "that we are telling the large language",
+      "start": 126.6,
+      "duration": 3.879
+    },
+    {
+      "text": "model that hey we look we know that you",
+      "start": 128.119,
+      "duration": 4.361
+    },
+    {
+      "text": "are pre-trained but you are not very",
+      "start": 130.479,
+      "duration": 4.48
+    },
+    {
+      "text": "good at following instructions here is a",
+      "start": 132.48,
+      "duration": 5.0
+    },
+    {
+      "text": "training data set which I have that will",
+      "start": 134.959,
+      "duration": 4.441
+    },
+    {
+      "text": "teach you how to follow instructions and",
+      "start": 137.48,
+      "duration": 4.32
+    },
+    {
+      "text": "how to respond effectively so we are",
+      "start": 139.4,
+      "duration": 4.52
+    },
+    {
+      "text": "providing this training data set as an",
+      "start": 141.8,
+      "duration": 4.719
+    },
+    {
+      "text": "additional specific data set and then we",
+      "start": 143.92,
+      "duration": 4.399
+    },
+    {
+      "text": "will train the large language model",
+      "start": 146.519,
+      "duration": 4.161
+    },
+    {
+      "text": "again so that it it gets better at",
+      "start": 148.319,
+      "duration": 3.881
+    },
+    {
+      "text": "responding to",
+      "start": 150.68,
+      "duration": 3.639
+    },
+    {
+      "text": "instructions so that's the first step",
+      "start": 152.2,
+      "duration": 3.88
+    },
+    {
+      "text": "which we implemented and that was data",
+      "start": 154.319,
+      "duration": 4.161
+    },
+    {
+      "text": "set download and formatting what's meant",
+      "start": 156.08,
+      "duration": 4.84
+    },
+    {
+      "text": "by formatting well there is this uh",
+      "start": 158.48,
+      "duration": 4.479
+    },
+    {
+      "text": "template which is called as alpaka",
+      "start": 160.92,
+      "duration": 4.08
+    },
+    {
+      "text": "format and what this template",
+      "start": 162.959,
+      "duration": 3.761
+    },
+    {
+      "text": "essentially does is that when we are",
+      "start": 165.0,
+      "duration": 4.92
+    },
+    {
+      "text": "going to do instruction fine tuning um",
+      "start": 166.72,
+      "duration": 4.76
+    },
+    {
+      "text": "so let me go",
+      "start": 169.92,
+      "duration": 4.599
+    },
+    {
+      "text": "to Stanford",
+      "start": 171.48,
+      "duration": 4.759
+    },
+    {
+      "text": "alpaca",
+      "start": 174.519,
+      "duration": 4.401
+    },
+    {
+      "text": "GitHub right so this is the GitHub",
+      "start": 176.239,
+      "duration": 5.761
+    },
+    {
+      "text": "repository and and basically they have a",
+      "start": 178.92,
+      "duration": 6.84
+    },
+    {
+      "text": "data set of 52,000 instruction response",
+      "start": 182.0,
+      "duration": 6.4
+    },
+    {
+      "text": "pairs such as what I showed you here and",
+      "start": 185.76,
+      "duration": 4.399
+    },
+    {
+      "text": "they have a specific way to convert",
+      "start": 188.4,
+      "duration": 4.399
+    },
+    {
+      "text": "these into prompts so when we are going",
+      "start": 190.159,
+      "duration": 4.321
+    },
+    {
+      "text": "to train the large language model we",
+      "start": 192.799,
+      "duration": 4.041
+    },
+    {
+      "text": "need inputs and outputs right so there",
+      "start": 194.48,
+      "duration": 4.64
+    },
+    {
+      "text": "is a specific prompt which we are going",
+      "start": 196.84,
+      "duration": 4.44
+    },
+    {
+      "text": "to use and that prompt itself will serve",
+      "start": 199.12,
+      "duration": 5.199
+    },
+    {
+      "text": "as input output input Target pairs so if",
+      "start": 201.28,
+      "duration": 6.2
+    },
+    {
+      "text": "the instruction is something like let's",
+      "start": 204.319,
+      "duration": 5.761
+    },
+    {
+      "text": "say convert 45 km to meters and the",
+      "start": 207.48,
+      "duration": 6.72
+    },
+    {
+      "text": "output is 45 km is 45,000 M The Prompt",
+      "start": 210.08,
+      "duration": 5.879
+    },
+    {
+      "text": "which we are going to give the llm is",
+      "start": 214.2,
+      "duration": 3.64
+    },
+    {
+      "text": "that below is an instruction that",
+      "start": 215.959,
+      "duration": 4.521
+    },
+    {
+      "text": "describes a task paired with an input",
+      "start": 217.84,
+      "duration": 5.08
+    },
+    {
+      "text": "that provides further context Write a",
+      "start": 220.48,
+      "duration": 4.44
+    },
+    {
+      "text": "response that appropriately completes",
+      "start": 222.92,
+      "duration": 4.239
+    },
+    {
+      "text": "the request and then in the instruction",
+      "start": 224.92,
+      "duration": 3.959
+    },
+    {
+      "text": "we provide the instruction which was",
+      "start": 227.159,
+      "duration": 4.92
+    },
+    {
+      "text": "convert 45 km to meters then we have the",
+      "start": 228.879,
+      "duration": 5.321
+    },
+    {
+      "text": "input the input in this case does not",
+      "start": 232.079,
+      "duration": 4.24
+    },
+    {
+      "text": "exist because there's only one answer",
+      "start": 234.2,
+      "duration": 3.72
+    },
+    {
+      "text": "and then we have the",
+      "start": 236.319,
+      "duration": 3.92
+    },
+    {
+      "text": "response now this is the prompt which",
+      "start": 237.92,
+      "duration": 4.28
+    },
+    {
+      "text": "will be provided to the llm and then we",
+      "start": 240.239,
+      "duration": 5.121
+    },
+    {
+      "text": "will train the llm with the next word",
+      "start": 242.2,
+      "duration": 5.08
+    },
+    {
+      "text": "prediction tasks which means that this",
+      "start": 245.36,
+      "duration": 3.84
+    },
+    {
+      "text": "is an auto regressive model within this",
+      "start": 247.28,
+      "duration": 3.92
+    },
+    {
+      "text": "prompt itself there are input and Target",
+      "start": 249.2,
+      "duration": 4.84
+    },
+    {
+      "text": "pairs so when below is the input below",
+      "start": 251.2,
+      "duration": 5.439
+    },
+    {
+      "text": "is is the output when below is is the",
+      "start": 254.04,
+      "duration": 5.439
+    },
+    {
+      "text": "input below is and is the output when",
+      "start": 256.639,
+      "duration": 4.84
+    },
+    {
+      "text": "below is an instruction is the input",
+      "start": 259.479,
+      "duration": 4.28
+    },
+    {
+      "text": "below is an instruction that will be the",
+      "start": 261.479,
+      "duration": 4.881
+    },
+    {
+      "text": "output so similarly when we train the",
+      "start": 263.759,
+      "duration": 5.961
+    },
+    {
+      "text": "llm on this entire prompt we will show",
+      "start": 266.36,
+      "duration": 5.44
+    },
+    {
+      "text": "early reach a stage when it reads when",
+      "start": 269.72,
+      "duration": 3.96
+    },
+    {
+      "text": "it reads the instruction and the input",
+      "start": 271.8,
+      "duration": 5.399
+    },
+    {
+      "text": "it learns how to uh provide the",
+      "start": 273.68,
+      "duration": 6.16
+    },
+    {
+      "text": "response so that's what's meant by",
+      "start": 277.199,
+      "duration": 5.881
+    },
+    {
+      "text": "formatting every input every input",
+      "start": 279.84,
+      "duration": 6.04
+    },
+    {
+      "text": "instruction and response is formatted",
+      "start": 283.08,
+      "duration": 6.08
+    },
+    {
+      "text": "into this uh alpaka style",
+      "start": 285.88,
+      "duration": 6.319
+    },
+    {
+      "text": "format and that's done in the data set",
+      "start": 289.16,
+      "duration": 5.28
+    },
+    {
+      "text": "downloading and formatting stage then",
+      "start": 292.199,
+      "duration": 4.641
+    },
+    {
+      "text": "what we do is that we batch the data set",
+      "start": 294.44,
+      "duration": 5.28
+    },
+    {
+      "text": "this was not as easy as simply creating",
+      "start": 296.84,
+      "duration": 4.88
+    },
+    {
+      "text": "batches but there were multiple steps",
+      "start": 299.72,
+      "duration": 4.28
+    },
+    {
+      "text": "involved in data batching itself and",
+      "start": 301.72,
+      "duration": 5.24
+    },
+    {
+      "text": "these steps are divided into five",
+      "start": 304.0,
+      "duration": 5.24
+    },
+    {
+      "text": "substeps uh or these steps can be",
+      "start": 306.96,
+      "duration": 3.64
+    },
+    {
+      "text": "bucketed into",
+      "start": 309.24,
+      "duration": 4.56
+    },
+    {
+      "text": "five uh five main components the first",
+      "start": 310.6,
+      "duration": 5.159
+    },
+    {
+      "text": "as I mentioned is format data using the",
+      "start": 313.8,
+      "duration": 4.28
+    },
+    {
+      "text": "prom template and we use the alpaka",
+      "start": 315.759,
+      "duration": 4.761
+    },
+    {
+      "text": "template there is also the 53 template",
+      "start": 318.08,
+      "duration": 4.88
+    },
+    {
+      "text": "which is used by Microsoft uh and you",
+      "start": 320.52,
+      "duration": 4.08
+    },
+    {
+      "text": "can try that when I'm going to share",
+      "start": 322.96,
+      "duration": 3.72
+    },
+    {
+      "text": "this code file with you so that's the",
+      "start": 324.6,
+      "duration": 3.76
+    },
+    {
+      "text": "first step the Second Step which we are",
+      "start": 326.68,
+      "duration": 3.44
+    },
+    {
+      "text": "going to do is we are going to to toize",
+      "start": 328.36,
+      "duration": 4.72
+    },
+    {
+      "text": "the formatted data which means that",
+      "start": 330.12,
+      "duration": 6.04
+    },
+    {
+      "text": "here's the formatted data right which is",
+      "start": 333.08,
+      "duration": 4.72
+    },
+    {
+      "text": "in the alpaka prompt style we are going",
+      "start": 336.16,
+      "duration": 4.36
+    },
+    {
+      "text": "to convert this entire data into token",
+      "start": 337.8,
+      "duration": 5.92
+    },
+    {
+      "text": "IDs so let's say one batch has four",
+      "start": 340.52,
+      "duration": 5.28
+    },
+    {
+      "text": "instruction input output pairs or two",
+      "start": 343.72,
+      "duration": 4.52
+    },
+    {
+      "text": "instruction output input output pairs",
+      "start": 345.8,
+      "duration": 4.119
+    },
+    {
+      "text": "the First Data will look something like",
+      "start": 348.24,
+      "duration": 3.48
+    },
+    {
+      "text": "this when tokenized the second data will",
+      "start": 349.919,
+      "duration": 3.881
+    },
+    {
+      "text": "look something like this when tokenized",
+      "start": 351.72,
+      "duration": 4.56
+    },
+    {
+      "text": "now naturally the length of the tokens",
+      "start": 353.8,
+      "duration": 4.239
+    },
+    {
+      "text": "here and the length of the tokens here",
+      "start": 356.28,
+      "duration": 3.919
+    },
+    {
+      "text": "won't be the same and that's a problem",
+      "start": 358.039,
+      "duration": 4.201
+    },
+    {
+      "text": "since we are dealing with batches so the",
+      "start": 360.199,
+      "duration": 4.401
+    },
+    {
+      "text": "next step is that so after tokenizing",
+      "start": 362.24,
+      "duration": 4.28
+    },
+    {
+      "text": "the next step is that we are going to in",
+      "start": 364.6,
+      "duration": 4.719
+    },
+    {
+      "text": "one batch we need to adjust so that all",
+      "start": 366.52,
+      "duration": 5.119
+    },
+    {
+      "text": "of the data samples have the same token",
+      "start": 369.319,
+      "duration": 5.16
+    },
+    {
+      "text": "ID so consider this batch for example",
+      "start": 371.639,
+      "duration": 4.641
+    },
+    {
+      "text": "where there are three inputs when the",
+      "start": 374.479,
+      "duration": 4.361
+    },
+    {
+      "text": "first input is tokenized it has five",
+      "start": 376.28,
+      "duration": 4.319
+    },
+    {
+      "text": "token IDs when the second input is",
+      "start": 378.84,
+      "duration": 3.919
+    },
+    {
+      "text": "tokenized it has two and when the third",
+      "start": 380.599,
+      "duration": 4.361
+    },
+    {
+      "text": "input is tokenized it has three and",
+      "start": 382.759,
+      "duration": 3.84
+    },
+    {
+      "text": "that's not good we need to make sure",
+      "start": 384.96,
+      "duration": 3.359
+    },
+    {
+      "text": "that all of these have the same number",
+      "start": 386.599,
+      "duration": 4.361
+    },
+    {
+      "text": "of token IDs so the way we do it is that",
+      "start": 388.319,
+      "duration": 4.521
+    },
+    {
+      "text": "we take that input which has the maximum",
+      "start": 390.96,
+      "duration": 3.679
+    },
+    {
+      "text": "number of token IDs in this case it's",
+      "start": 392.84,
+      "duration": 4.4
+    },
+    {
+      "text": "the first input which has five token IDs",
+      "start": 394.639,
+      "duration": 4.4
+    },
+    {
+      "text": "and then we we take the remaining two",
+      "start": 397.24,
+      "duration": 3.679
+    },
+    {
+      "text": "inputs and we pad them with the end of",
+      "start": 399.039,
+      "duration": 3.641
+    },
+    {
+      "text": "text token which is",
+      "start": 400.919,
+      "duration": 4.161
+    },
+    {
+      "text": "50256 and we pad them so that their",
+      "start": 402.68,
+      "duration": 4.959
+    },
+    {
+      "text": "length becomes equal to the maximum",
+      "start": 405.08,
+      "duration": 4.88
+    },
+    {
+      "text": "token ID length which is equal to five",
+      "start": 407.639,
+      "duration": 4.801
+    },
+    {
+      "text": "since the first one has five token IDs",
+      "start": 409.96,
+      "duration": 4.239
+    },
+    {
+      "text": "and once you do this padding you make",
+      "start": 412.44,
+      "duration": 4.319
+    },
+    {
+      "text": "sure that in every batch all the inputs",
+      "start": 414.199,
+      "duration": 4.84
+    },
+    {
+      "text": "of every batch have the same number of",
+      "start": 416.759,
+      "duration": 4.241
+    },
+    {
+      "text": "token so all of these three have the",
+      "start": 419.039,
+      "duration": 4.081
+    },
+    {
+      "text": "same token ID if you look at the second",
+      "start": 421.0,
+      "duration": 4.199
+    },
+    {
+      "text": "batch all of these have the same token",
+      "start": 423.12,
+      "duration": 4.88
+    },
+    {
+      "text": "ID that's the third step in the fourth",
+      "start": 425.199,
+      "duration": 5.081
+    },
+    {
+      "text": "step we have to create the target pairs",
+      "start": 428.0,
+      "duration": 4.36
+    },
+    {
+      "text": "so we have inputs and targets right and",
+      "start": 430.28,
+      "duration": 3.8
+    },
+    {
+      "text": "targets are just the input pairs which",
+      "start": 432.36,
+      "duration": 4.04
+    },
+    {
+      "text": "are shifted to the right by one so if",
+      "start": 434.08,
+      "duration": 4.48
+    },
+    {
+      "text": "you have an input which looks like this",
+      "start": 436.4,
+      "duration": 3.919
+    },
+    {
+      "text": "the way to create the target pairs is",
+      "start": 438.56,
+      "duration": 3.72
+    },
+    {
+      "text": "just you get rid of the first element",
+      "start": 440.319,
+      "duration": 4.361
+    },
+    {
+      "text": "and have the remaining so input shifted",
+      "start": 442.28,
+      "duration": 4.8
+    },
+    {
+      "text": "to the right by one and then you add an",
+      "start": 444.68,
+      "duration": 4.56
+    },
+    {
+      "text": "end of text token to convey that this is",
+      "start": 447.08,
+      "duration": 4.239
+    },
+    {
+      "text": "the end end of the instruction output",
+      "start": 449.24,
+      "duration": 4.519
+    },
+    {
+      "text": "PIR so that's what I mentioned earlier",
+      "start": 451.319,
+      "duration": 4.28
+    },
+    {
+      "text": "by the next toen prediction task right",
+      "start": 453.759,
+      "duration": 3.921
+    },
+    {
+      "text": "when below is an input below is is the",
+      "start": 455.599,
+      "duration": 4.6
+    },
+    {
+      "text": "output when below is is the input below",
+      "start": 457.68,
+      "duration": 5.68
+    },
+    {
+      "text": "is and is the output this input Target",
+      "start": 460.199,
+      "duration": 5.161
+    },
+    {
+      "text": "pair creation is probably the most",
+      "start": 463.36,
+      "duration": 4.399
+    },
+    {
+      "text": "important step in fine tuning and it's",
+      "start": 465.36,
+      "duration": 4.6
+    },
+    {
+      "text": "also not very intuitive because you are",
+      "start": 467.759,
+      "duration": 3.801
+    },
+    {
+      "text": "not saying that the response is the",
+      "start": 469.96,
+      "duration": 3.519
+    },
+    {
+      "text": "output you're saying that the whole",
+      "start": 471.56,
+      "duration": 3.84
+    },
+    {
+      "text": "thing itself is your data and within",
+      "start": 473.479,
+      "duration": 4.201
+    },
+    {
+      "text": "that you have input and Target pairs it",
+      "start": 475.4,
+      "duration": 4.16
+    },
+    {
+      "text": "turns that it turns out that with this",
+      "start": 477.68,
+      "duration": 4.04
+    },
+    {
+      "text": "next token prediction task the llm",
+      "start": 479.56,
+      "duration": 5.44
+    },
+    {
+      "text": "learns to uh segregate or recognize that",
+      "start": 481.72,
+      "duration": 5.08
+    },
+    {
+      "text": "up till here I have the instruction with",
+      "start": 485.0,
+      "duration": 3.479
+    },
+    {
+      "text": "the input and then this is the response",
+      "start": 486.8,
+      "duration": 3.959
+    },
+    {
+      "text": "which I have to predict so the next word",
+      "start": 488.479,
+      "duration": 5.0
+    },
+    {
+      "text": "or the next token prediction task is",
+      "start": 490.759,
+      "duration": 4.4
+    },
+    {
+      "text": "What's Done in fine tuning as well",
+      "start": 493.479,
+      "duration": 3.84
+    },
+    {
+      "text": "similar to pre-training in fine tuning",
+      "start": 495.159,
+      "duration": 4.081
+    },
+    {
+      "text": "we are also doing the next token",
+      "start": 497.319,
+      "duration": 4.481
+    },
+    {
+      "text": "prediction and this is how we create the",
+      "start": 499.24,
+      "duration": 5.239
+    },
+    {
+      "text": "input and Target Pairs and the last step",
+      "start": 501.8,
+      "duration": 4.28
+    },
+    {
+      "text": "here is that we replace the padding",
+      "start": 504.479,
+      "duration": 5.44
+    },
+    {
+      "text": "tokens with minus 100 so all the 5025 6",
+      "start": 506.08,
+      "duration": 6.36
+    },
+    {
+      "text": "here is replaced with minus 100 and the",
+      "start": 509.919,
+      "duration": 5.6
+    },
+    {
+      "text": "reason it's replaced with Let me show",
+      "start": 512.44,
+      "duration": 8.36
+    },
+    {
+      "text": "this to you um right over here yeah so",
+      "start": 515.519,
+      "duration": 7.921
+    },
+    {
+      "text": "here you see all the 50256 tokens are",
+      "start": 520.8,
+      "duration": 4.92
+    },
+    {
+      "text": "replaced with minus 100 the reason they",
+      "start": 523.44,
+      "duration": 5.079
+    },
+    {
+      "text": "are replaced with minus 100 is that in P",
+      "start": 525.72,
+      "duration": 5.119
+    },
+    {
+      "text": "torch when you use the categorical cross",
+      "start": 528.519,
+      "duration": 4.801
+    },
+    {
+      "text": "entropy loss this minus 100 is the",
+      "start": 530.839,
+      "duration": 5.68
+    },
+    {
+      "text": "ignore index which means that when we",
+      "start": 533.32,
+      "duration": 5.28
+    },
+    {
+      "text": "use these inputs and Target pairs to",
+      "start": 536.519,
+      "duration": 3.961
+    },
+    {
+      "text": "calculate the loss",
+      "start": 538.6,
+      "duration": 4.52
+    },
+    {
+      "text": "the token tokens associated with these",
+      "start": 540.48,
+      "duration": 5.599
+    },
+    {
+      "text": "IDs will not be counted for getting the",
+      "start": 543.12,
+      "duration": 4.48
+    },
+    {
+      "text": "loss function and that makes sense",
+      "start": 546.079,
+      "duration": 4.0
+    },
+    {
+      "text": "because all of these are useless end of",
+      "start": 547.6,
+      "duration": 4.12
+    },
+    {
+      "text": "text tokens which we have just padded",
+      "start": 550.079,
+      "duration": 3.401
+    },
+    {
+      "text": "over here they should not be used for",
+      "start": 551.72,
+      "duration": 5.52
+    },
+    {
+      "text": "the loss calculation we retain one 50256",
+      "start": 553.48,
+      "duration": 6.24
+    },
+    {
+      "text": "token in every input because that",
+      "start": 557.24,
+      "duration": 4.719
+    },
+    {
+      "text": "conveys the end of text but all the",
+      "start": 559.72,
+      "duration": 4.72
+    },
+    {
+      "text": "remaining 50256 we replace them with",
+      "start": 561.959,
+      "duration": 4.32
+    },
+    {
+      "text": "minus 100 so that they don't influence",
+      "start": 564.44,
+      "duration": 3.92
+    },
+    {
+      "text": "the loss and you can check this so you",
+      "start": 566.279,
+      "duration": 4.921
+    },
+    {
+      "text": "can search",
+      "start": 568.36,
+      "duration": 6.0
+    },
+    {
+      "text": "pytorch cross entropy and if you see",
+      "start": 571.2,
+      "duration": 5.68
+    },
+    {
+      "text": "this function you'll see that the ignore",
+      "start": 574.36,
+      "duration": 5.56
+    },
+    {
+      "text": "index is equal to minus 100 and that's",
+      "start": 576.88,
+      "duration": 4.959
+    },
+    {
+      "text": "why all the target pairs which have",
+      "start": 579.92,
+      "duration": 4.52
+    },
+    {
+      "text": "minus 100 in the token ID they will not",
+      "start": 581.839,
+      "duration": 4.361
+    },
+    {
+      "text": "be utilized for the loss function",
+      "start": 584.44,
+      "duration": 3.76
+    },
+    {
+      "text": "calculation the reason I went through",
+      "start": 586.2,
+      "duration": 3.84
+    },
+    {
+      "text": "all this summary again is that it's very",
+      "start": 588.2,
+      "duration": 3.48
+    },
+    {
+      "text": "important for you to understand how",
+      "start": 590.04,
+      "duration": 4.12
+    },
+    {
+      "text": "batches are created and once you",
+      "start": 591.68,
+      "duration": 4.12
+    },
+    {
+      "text": "understand how batches are created it's",
+      "start": 594.16,
+      "duration": 3.32
+    },
+    {
+      "text": "pretty straightforward to create data",
+      "start": 595.8,
+      "duration": 3.36
+    },
+    {
+      "text": "loaders which is what we'll understand",
+      "start": 597.48,
+      "duration": 3.12
+    },
+    {
+      "text": "in today's",
+      "start": 599.16,
+      "duration": 3.88
+    },
+    {
+      "text": "lecture great so now let's get started",
+      "start": 600.6,
+      "duration": 4.2
+    },
+    {
+      "text": "with today's lecture where what we'll do",
+      "start": 603.04,
+      "duration": 4.52
+    },
+    {
+      "text": "is that uh we have the training testing",
+      "start": 604.8,
+      "duration": 4.64
+    },
+    {
+      "text": "and validation data sets right and we",
+      "start": 607.56,
+      "duration": 3.56
+    },
+    {
+      "text": "have also batched the data set which",
+      "start": 609.44,
+      "duration": 3.2
+    },
+    {
+      "text": "means that we have created multiple",
+      "start": 611.12,
+      "duration": 3.88
+    },
+    {
+      "text": "batches we are going to pass these data",
+      "start": 612.64,
+      "duration": 4.6
+    },
+    {
+      "text": "sets as inputs to data loaders and we",
+      "start": 615.0,
+      "duration": 3.92
+    },
+    {
+      "text": "are going to create the training the",
+      "start": 617.24,
+      "duration": 4.76
+    },
+    {
+      "text": "testing and the validation data loaders",
+      "start": 618.92,
+      "duration": 4.72
+    },
+    {
+      "text": "so I'm going to take you to code right",
+      "start": 622.0,
+      "duration": 5.0
+    },
+    {
+      "text": "now um so here let me first show you the",
+      "start": 623.64,
+      "duration": 5.52
+    },
+    {
+      "text": "code to create the batches itself so",
+      "start": 627.0,
+      "duration": 4.24
+    },
+    {
+      "text": "this this custom colate function this is",
+      "start": 629.16,
+      "duration": 4.48
+    },
+    {
+      "text": "the final function what this does is",
+      "start": 631.24,
+      "duration": 3.92
+    },
+    {
+      "text": "exactly what I had outlined on the",
+      "start": 633.64,
+      "duration": 5.4
+    },
+    {
+      "text": "Whiteboard right it first converts the",
+      "start": 635.16,
+      "duration": 7.28
+    },
+    {
+      "text": "tokens into token IDs then it does the",
+      "start": 639.04,
+      "duration": 5.039
+    },
+    {
+      "text": "padding so that in every batch the",
+      "start": 642.44,
+      "duration": 3.6
+    },
+    {
+      "text": "length of the number of tokens is the",
+      "start": 644.079,
+      "duration": 6.44
+    },
+    {
+      "text": "same and then it replaces the 50256 with",
+      "start": 646.04,
+      "duration": 7.16
+    },
+    {
+      "text": "a token ID of minus 100 and it creates",
+      "start": 650.519,
+      "duration": 5.76
+    },
+    {
+      "text": "the input sensor and the target sensor",
+      "start": 653.2,
+      "duration": 4.879
+    },
+    {
+      "text": "so these are the inputs and the target",
+      "start": 656.279,
+      "duration": 4.961
+    },
+    {
+      "text": "batches which have been created",
+      "start": 658.079,
+      "duration": 3.161
+    },
+    {
+      "text": "uh so we have to also specify the batch",
+      "start": 661.44,
+      "duration": 4.8
+    },
+    {
+      "text": "length because in one batch there might",
+      "start": 664.24,
+      "duration": 5.279
+    },
+    {
+      "text": "be eight different uh instruction",
+      "start": 666.24,
+      "duration": 5.12
+    },
+    {
+      "text": "response pairs or there might be 10 or",
+      "start": 669.519,
+      "duration": 4.081
+    },
+    {
+      "text": "there might be 50 we have to specify",
+      "start": 671.36,
+      "duration": 4.479
+    },
+    {
+      "text": "what's the batch size and based on the",
+      "start": 673.6,
+      "duration": 4.239
+    },
+    {
+      "text": "batch size inputs and targets will be",
+      "start": 675.839,
+      "duration": 5.321
+    },
+    {
+      "text": "created for every instruction response",
+      "start": 677.839,
+      "duration": 5.161
+    },
+    {
+      "text": "pair so let's say if we have this",
+      "start": 681.16,
+      "duration": 4.239
+    },
+    {
+      "text": "instruction input output input sensor",
+      "start": 683.0,
+      "duration": 4.6
+    },
+    {
+      "text": "and Target sensor will be created if we",
+      "start": 685.399,
+      "duration": 4.68
+    },
+    {
+      "text": "have this instruction input output the",
+      "start": 687.6,
+      "duration": 4.72
+    },
+    {
+      "text": "input and the targets will be created if",
+      "start": 690.079,
+      "duration": 4.161
+    },
+    {
+      "text": "the batch size is equal to three all of",
+      "start": 692.32,
+      "duration": 3.84
+    },
+    {
+      "text": "these will be in one",
+      "start": 694.24,
+      "duration": 6.159
+    },
+    {
+      "text": "batch uh awesome so we have the inputs",
+      "start": 696.16,
+      "duration": 6.08
+    },
+    {
+      "text": "and the target tensor which has been",
+      "start": 700.399,
+      "duration": 3.56
+    },
+    {
+      "text": "created for the different batches but we",
+      "start": 702.24,
+      "duration": 3.719
+    },
+    {
+      "text": "have not yet created the data loaders",
+      "start": 703.959,
+      "duration": 4.201
+    },
+    {
+      "text": "right so that's what we have that's what",
+      "start": 705.959,
+      "duration": 4.961
+    },
+    {
+      "text": "we have to do right now so now the main",
+      "start": 708.16,
+      "duration": 5.2
+    },
+    {
+      "text": "goal of uh this lecture is to create",
+      "start": 710.92,
+      "duration": 5.32
+    },
+    {
+      "text": "data loaders for an instruction data set",
+      "start": 713.36,
+      "duration": 4.52
+    },
+    {
+      "text": "one small thing which I would like to",
+      "start": 716.24,
+      "duration": 3.839
+    },
+    {
+      "text": "mention before we start this lecture is",
+      "start": 717.88,
+      "duration": 6.399
+    },
+    {
+      "text": "about the device so if you see this this",
+      "start": 720.079,
+      "duration": 6.961
+    },
+    {
+      "text": "piece of code over here we have",
+      "start": 724.279,
+      "duration": 5.56
+    },
+    {
+      "text": "the uh we have the input sensor and we",
+      "start": 727.04,
+      "duration": 5.4
+    },
+    {
+      "text": "have the target sensor for a particular",
+      "start": 729.839,
+      "duration": 4.281
+    },
+    {
+      "text": "let's say for a particular instruction",
+      "start": 732.44,
+      "duration": 4.199
+    },
+    {
+      "text": "input and output and uh we have this",
+      "start": 734.12,
+      "duration": 4.839
+    },
+    {
+      "text": "code which lets which lets us transfer",
+      "start": 736.639,
+      "duration": 4.401
+    },
+    {
+      "text": "these tensors to the Target device which",
+      "start": 738.959,
+      "duration": 3.921
+    },
+    {
+      "text": "we have we already have integrated this",
+      "start": 741.04,
+      "duration": 4.32
+    },
+    {
+      "text": "in our code now we'll see why we have",
+      "start": 742.88,
+      "duration": 5.0
+    },
+    {
+      "text": "done that and what is the use of that so",
+      "start": 745.36,
+      "duration": 4.919
+    },
+    {
+      "text": "the custom colate function includes code",
+      "start": 747.88,
+      "duration": 4.92
+    },
+    {
+      "text": "to move the input and Target tensors to",
+      "start": 750.279,
+      "duration": 4.8
+    },
+    {
+      "text": "a specific device that's the piece of",
+      "start": 752.8,
+      "duration": 4.039
+    },
+    {
+      "text": "code which I just showed you right now",
+      "start": 755.079,
+      "duration": 5.161
+    },
+    {
+      "text": "that device can be CPU or Cuda for gpus",
+      "start": 756.839,
+      "duration": 6.481
+    },
+    {
+      "text": "or it can be MPS also for Max with apple",
+      "start": 760.24,
+      "duration": 6.719
+    },
+    {
+      "text": "silicon chips so uh the advantage of",
+      "start": 763.32,
+      "duration": 5.519
+    },
+    {
+      "text": "this is that in the previous chapters or",
+      "start": 766.959,
+      "duration": 3.56
+    },
+    {
+      "text": "in the previous lectures we moved the",
+      "start": 768.839,
+      "duration": 3.24
+    },
+    {
+      "text": "data onto the target device for",
+      "start": 770.519,
+      "duration": 4.401
+    },
+    {
+      "text": "pre-training itself for example we used",
+      "start": 772.079,
+      "duration": 5.56
+    },
+    {
+      "text": "the GPU memory when device equal to QA",
+      "start": 774.92,
+      "duration": 5.599
+    },
+    {
+      "text": "and we did this in the training Loop",
+      "start": 777.639,
+      "duration": 5.161
+    },
+    {
+      "text": "now we have this as a part of the custom",
+      "start": 780.519,
+      "duration": 4.841
+    },
+    {
+      "text": "colate function itself so we have this",
+      "start": 782.8,
+      "duration": 4.399
+    },
+    {
+      "text": "device transfer in the custom colate",
+      "start": 785.36,
+      "duration": 3.36
+    },
+    {
+      "text": "function which is not part of the",
+      "start": 787.199,
+      "duration": 3.561
+    },
+    {
+      "text": "training Loop and that gives a",
+      "start": 788.72,
+      "duration": 4.6
+    },
+    {
+      "text": "significant Advantage having this code",
+      "start": 790.76,
+      "duration": 4.68
+    },
+    {
+      "text": "as part of the custom colate function",
+      "start": 793.32,
+      "duration": 4.199
+    },
+    {
+      "text": "offers the advantage of Performing the",
+      "start": 795.44,
+      "duration": 4.639
+    },
+    {
+      "text": "device transfer process as a background",
+      "start": 797.519,
+      "duration": 4.961
+    },
+    {
+      "text": "process outside the training Loop and",
+      "start": 800.079,
+      "duration": 5.601
+    },
+    {
+      "text": "that prevents it from blocking the GPU",
+      "start": 802.48,
+      "duration": 5.479
+    },
+    {
+      "text": "during model training so let's say if we",
+      "start": 805.68,
+      "duration": 3.88
+    },
+    {
+      "text": "have if we are doing model training",
+      "start": 807.959,
+      "duration": 4.401
+    },
+    {
+      "text": "we'll need to use the GPU right um and",
+      "start": 809.56,
+      "duration": 4.839
+    },
+    {
+      "text": "we don't need to block the GPU during",
+      "start": 812.36,
+      "duration": 3.36
+    },
+    {
+      "text": "that time because that's the most",
+      "start": 814.399,
+      "duration": 4.601
+    },
+    {
+      "text": "important part so this this process we",
+      "start": 815.72,
+      "duration": 6.2
+    },
+    {
+      "text": "are doing kind of in the background we",
+      "start": 819.0,
+      "duration": 4.88
+    },
+    {
+      "text": "have not in included this transfer",
+      "start": 821.92,
+      "duration": 5.039
+    },
+    {
+      "text": "process during the pre-training itself",
+      "start": 823.88,
+      "duration": 4.8
+    },
+    {
+      "text": "so this process takes place in the",
+      "start": 826.959,
+      "duration": 3.401
+    },
+    {
+      "text": "background and that makes sure that when",
+      "start": 828.68,
+      "duration": 3.399
+    },
+    {
+      "text": "we do the training and when we are using",
+      "start": 830.36,
+      "duration": 4.08
+    },
+    {
+      "text": "the GPU the GPU is not",
+      "start": 832.079,
+      "duration": 4.801
+    },
+    {
+      "text": "blocked um so I hope you have understood",
+      "start": 834.44,
+      "duration": 4.959
+    },
+    {
+      "text": "this and then we have to specify the",
+      "start": 836.88,
+      "duration": 4.84
+    },
+    {
+      "text": "device itself so here device equal to",
+      "start": 839.399,
+      "duration": 4.841
+    },
+    {
+      "text": "torch. device if you have GPU available",
+      "start": 841.72,
+      "duration": 4.559
+    },
+    {
+      "text": "you can specify Cuda else it will",
+      "start": 844.24,
+      "duration": 4.64
+    },
+    {
+      "text": "utilize your CPU I'm using a Macbook",
+      "start": 846.279,
+      "duration": 5.8
+    },
+    {
+      "text": "2020 and I'm utilizing the CPU which is",
+      "start": 848.88,
+      "duration": 6.199
+    },
+    {
+      "text": "the lowest configuration and uh whatever",
+      "start": 852.079,
+      "duration": 5.401
+    },
+    {
+      "text": "I'm showing to you in this uh in these",
+      "start": 855.079,
+      "duration": 4.2
+    },
+    {
+      "text": "set of lectures I'm deliberately showing",
+      "start": 857.48,
+      "duration": 3.88
+    },
+    {
+      "text": "it on a low configuration device without",
+      "start": 859.279,
+      "duration": 4.48
+    },
+    {
+      "text": "any GPU so that you can also replicate",
+      "start": 861.36,
+      "duration": 6.68
+    },
+    {
+      "text": "it on your device but if you do have uh",
+      "start": 863.759,
+      "duration": 5.841
+    },
+    {
+      "text": "if you do have a laptop with an apple",
+      "start": 868.04,
+      "duration": 3.799
+    },
+    {
+      "text": "silicon chip you can uncommit this piece",
+      "start": 869.6,
+      "duration": 4.28
+    },
+    {
+      "text": "of code because if the Silicon chip is",
+      "start": 871.839,
+      "duration": 3.761
+    },
+    {
+      "text": "available you can just use storage.",
+      "start": 873.88,
+      "duration": 3.959
+    },
+    {
+      "text": "device MPS that will run the code in a",
+      "start": 875.6,
+      "duration": 4.4
+    },
+    {
+      "text": "much faster manner for now I'm just",
+      "start": 877.839,
+      "duration": 4.12
+    },
+    {
+      "text": "going to use device equal to",
+      "start": 880.0,
+      "duration": 4.639
+    },
+    {
+      "text": "CPU and then what we do is that if you",
+      "start": 881.959,
+      "duration": 4.44
+    },
+    {
+      "text": "look at the custom colate function we",
+      "start": 884.639,
+      "duration": 4.241
+    },
+    {
+      "text": "have to pass in the different arguments",
+      "start": 886.399,
+      "duration": 4.44
+    },
+    {
+      "text": "right and one of the argument is uh",
+      "start": 888.88,
+      "duration": 4.72
+    },
+    {
+      "text": "device and one such is allowed maximum",
+      "start": 890.839,
+      "duration": 4.8
+    },
+    {
+      "text": "length now I want to Define another",
+      "start": 893.6,
+      "duration": 3.88
+    },
+    {
+      "text": "function which defines these arguments",
+      "start": 895.639,
+      "duration": 4.56
+    },
+    {
+      "text": "by default uh and I don't have to pass",
+      "start": 897.48,
+      "duration": 5.279
+    },
+    {
+      "text": "in them separately and I'll do that",
+      "start": 900.199,
+      "duration": 4.681
+    },
+    {
+      "text": "using the partial",
+      "start": 902.759,
+      "duration": 4.801
+    },
+    {
+      "text": "command so we will be using the partial",
+      "start": 904.88,
+      "duration": 5.04
+    },
+    {
+      "text": "function from pytorch Funk tools",
+      "start": 907.56,
+      "duration": 4.24
+    },
+    {
+      "text": "standard library from Python's",
+      "start": 909.92,
+      "duration": 4.039
+    },
+    {
+      "text": "functional tool standard library to",
+      "start": 911.8,
+      "duration": 3.719
+    },
+    {
+      "text": "create a new version of the function",
+      "start": 913.959,
+      "duration": 3.8
+    },
+    {
+      "text": "with the device argument pre-filled so",
+      "start": 915.519,
+      "duration": 4.361
+    },
+    {
+      "text": "we'll already fill the device argument",
+      "start": 917.759,
+      "duration": 4.121
+    },
+    {
+      "text": "with CPU in this case the device will be",
+      "start": 919.88,
+      "duration": 4.36
+    },
+    {
+      "text": "CPU if you have a GPU the device will be",
+      "start": 921.88,
+      "duration": 4.519
+    },
+    {
+      "text": "GPU and then I'll say the allowed",
+      "start": 924.24,
+      "duration": 3.68
+    },
+    {
+      "text": "maximum length which is the context",
+      "start": 926.399,
+      "duration": 5.44
+    },
+    {
+      "text": "length is going to be 1 02 4 what's the",
+      "start": 927.92,
+      "duration": 5.88
+    },
+    {
+      "text": "context length here well we are doing",
+      "start": 931.839,
+      "duration": 3.641
+    },
+    {
+      "text": "the input Target pairs right so the",
+      "start": 933.8,
+      "duration": 3.36
+    },
+    {
+      "text": "entire prompt which we are going to look",
+      "start": 935.48,
+      "duration": 5.32
+    },
+    {
+      "text": "at um let's see so if the prompt looks",
+      "start": 937.16,
+      "duration": 7.0
+    },
+    {
+      "text": "something like this this entire thing um",
+      "start": 940.8,
+      "duration": 6.12
+    },
+    {
+      "text": "will have the context length which means",
+      "start": 944.16,
+      "duration": 4.56
+    },
+    {
+      "text": "that at one time what's the maximum",
+      "start": 946.92,
+      "duration": 4.24
+    },
+    {
+      "text": "number of tokens which I'm going to look",
+      "start": 948.72,
+      "duration": 5.52
+    },
+    {
+      "text": "at Great and then what we are doing is",
+      "start": 951.16,
+      "duration": 5.159
+    },
+    {
+      "text": "that now we are ready to set up the data",
+      "start": 954.24,
+      "duration": 6.0
+    },
+    {
+      "text": "loader so uh you see we have the",
+      "start": 956.319,
+      "duration": 5.681
+    },
+    {
+      "text": "instruction data set class which we",
+      "start": 960.24,
+      "duration": 4.32
+    },
+    {
+      "text": "defined in the previous lecture let me",
+      "start": 962.0,
+      "duration": 4.959
+    },
+    {
+      "text": "take you to that class right now so that",
+      "start": 964.56,
+      "duration": 4.36
+    },
+    {
+      "text": "you can understand what this instruction",
+      "start": 966.959,
+      "duration": 4.88
+    },
+    {
+      "text": "data set class is doing so see this is",
+      "start": 968.92,
+      "duration": 5.599
+    },
+    {
+      "text": "the instruction data set class what this",
+      "start": 971.839,
+      "duration": 5.56
+    },
+    {
+      "text": "class does is that it takes the um it",
+      "start": 974.519,
+      "duration": 6.32
+    },
+    {
+      "text": "takes the data set it converts it into",
+      "start": 977.399,
+      "duration": 7.321
+    },
+    {
+      "text": "uh it converts it into token IDs so then",
+      "start": 980.839,
+      "duration": 5.081
+    },
+    {
+      "text": "what we are doing is that we are",
+      "start": 984.72,
+      "duration": 3.239
+    },
+    {
+      "text": "creating an instance of this instruction",
+      "start": 985.92,
+      "duration": 5.0
+    },
+    {
+      "text": "data set class",
+      "start": 987.959,
+      "duration": 2.961
+    },
+    {
+      "text": "yeah here you see we are creating an",
+      "start": 991.319,
+      "duration": 3.2
+    },
+    {
+      "text": "instance of this data set class which is",
+      "start": 992.92,
+      "duration": 3.719
+    },
+    {
+      "text": "the training data set so the instruction",
+      "start": 994.519,
+      "duration": 6.201
+    },
+    {
+      "text": "data set also uh takes the training data",
+      "start": 996.639,
+      "duration": 7.161
+    },
+    {
+      "text": "and converts it into token IDs then we",
+      "start": 1000.72,
+      "duration": 5.2
+    },
+    {
+      "text": "have to pass the training data set into",
+      "start": 1003.8,
+      "duration": 5.32
+    },
+    {
+      "text": "the data loader itself um and uh we have",
+      "start": 1005.92,
+      "duration": 5.2
+    },
+    {
+      "text": "to use the colate function this is where",
+      "start": 1009.12,
+      "duration": 4.92
+    },
+    {
+      "text": "most of the magic actually happens uh we",
+      "start": 1011.12,
+      "duration": 4.8
+    },
+    {
+      "text": "have used a customized colate function",
+      "start": 1014.04,
+      "duration": 5.12
+    },
+    {
+      "text": "here which means that uh whatever I told",
+      "start": 1015.92,
+      "duration": 6.64
+    },
+    {
+      "text": "in this part the process which we create",
+      "start": 1019.16,
+      "duration": 4.679
+    },
+    {
+      "text": "the process through which we create",
+      "start": 1022.56,
+      "duration": 3.399
+    },
+    {
+      "text": "batches that has been implemented in the",
+      "start": 1023.839,
+      "duration": 4.36
+    },
+    {
+      "text": "customized colate function you have a",
+      "start": 1025.959,
+      "duration": 5.84
+    },
+    {
+      "text": "batch you have uh multiple prompts in",
+      "start": 1028.199,
+      "duration": 5.441
+    },
+    {
+      "text": "that batch you first format them using",
+      "start": 1031.799,
+      "duration": 4.24
+    },
+    {
+      "text": "the alpaka style format you make sure",
+      "start": 1033.64,
+      "duration": 4.039
+    },
+    {
+      "text": "that in one batch the length of the",
+      "start": 1036.039,
+      "duration": 4.16
+    },
+    {
+      "text": "token IDs is the same then you pad with",
+      "start": 1037.679,
+      "duration": 6.081
+    },
+    {
+      "text": "50256 tokens and then except for 5256",
+      "start": 1040.199,
+      "duration": 6.281
+    },
+    {
+      "text": "you replace everything with minus 100",
+      "start": 1043.76,
+      "duration": 4.48
+    },
+    {
+      "text": "that's what's happening in this colate",
+      "start": 1046.48,
+      "duration": 3.439
+    },
+    {
+      "text": "function",
+      "start": 1048.24,
+      "duration": 3.6
+    },
+    {
+      "text": "and then the reason we are calling it",
+      "start": 1049.919,
+      "duration": 3.601
+    },
+    {
+      "text": "training loader is that the data set is",
+      "start": 1051.84,
+      "duration": 3.68
+    },
+    {
+      "text": "the training data set remember that we",
+      "start": 1053.52,
+      "duration": 6.399
+    },
+    {
+      "text": "are using uh 10% we are using 80% of the",
+      "start": 1055.52,
+      "duration": 6.6
+    },
+    {
+      "text": "data as training let me actually check",
+      "start": 1059.919,
+      "duration": 4.961
+    },
+    {
+      "text": "that how much percentage of the data we",
+      "start": 1062.12,
+      "duration": 5.919
+    },
+    {
+      "text": "are using for",
+      "start": 1064.88,
+      "duration": 5.919
+    },
+    {
+      "text": "training yeah we are using 85% of the",
+      "start": 1068.039,
+      "duration": 5.561
+    },
+    {
+      "text": "data for training 10% for testing and 5%",
+      "start": 1070.799,
+      "duration": 5.681
+    },
+    {
+      "text": "for validation so of this entire data of",
+      "start": 1073.6,
+      "duration": 5.68
+    },
+    {
+      "text": "this entire data set 85% is used for for",
+      "start": 1076.48,
+      "duration": 5.4
+    },
+    {
+      "text": "training uh so the train data set",
+      "start": 1079.28,
+      "duration": 4.6
+    },
+    {
+      "text": "consists of this training data but it's",
+      "start": 1081.88,
+      "duration": 5.039
+    },
+    {
+      "text": "converted into token IDs and then using",
+      "start": 1083.88,
+      "duration": 5.4
+    },
+    {
+      "text": "the colate function we collect it into",
+      "start": 1086.919,
+      "duration": 4.321
+    },
+    {
+      "text": "batches so here the batch size is equal",
+      "start": 1089.28,
+      "duration": 4.279
+    },
+    {
+      "text": "to eight so one batch will have eight",
+      "start": 1091.24,
+      "duration": 5.2
+    },
+    {
+      "text": "prompts and uh each alpaka prompt has",
+      "start": 1093.559,
+      "duration": 4.881
+    },
+    {
+      "text": "the instruction input output Pairs and",
+      "start": 1096.44,
+      "duration": 3.8
+    },
+    {
+      "text": "remember that in each batch the number",
+      "start": 1098.44,
+      "duration": 4.719
+    },
+    {
+      "text": "of token IDs um or the length of each",
+      "start": 1100.24,
+      "duration": 4.88
+    },
+    {
+      "text": "input the number of token IDs in each",
+      "start": 1103.159,
+      "duration": 4.64
+    },
+    {
+      "text": "input is the same that's the train",
+      "start": 1105.12,
+      "duration": 4.96
+    },
+    {
+      "text": "loader and and then similarly we create",
+      "start": 1107.799,
+      "duration": 4.12
+    },
+    {
+      "text": "the validation loader and we create the",
+      "start": 1110.08,
+      "duration": 4.32
+    },
+    {
+      "text": "test loader to create the train loader",
+      "start": 1111.919,
+      "duration": 4.081
+    },
+    {
+      "text": "the validation loader and the test",
+      "start": 1114.4,
+      "duration": 4.0
+    },
+    {
+      "text": "loader we use this data loader function",
+      "start": 1116.0,
+      "duration": 4.64
+    },
+    {
+      "text": "and I've already uh mentioned to you",
+      "start": 1118.4,
+      "duration": 4.32
+    },
+    {
+      "text": "about the data loader it helps us access",
+      "start": 1120.64,
+      "duration": 4.48
+    },
+    {
+      "text": "the data in a very easy manner so the",
+      "start": 1122.72,
+      "duration": 3.92
+    },
+    {
+      "text": "simplest way to think about the train",
+      "start": 1125.12,
+      "duration": 3.36
+    },
+    {
+      "text": "loader the validation loader and data",
+      "start": 1126.64,
+      "duration": 4.36
+    },
+    {
+      "text": "loader is that it creates batches so now",
+      "start": 1128.48,
+      "duration": 4.36
+    },
+    {
+      "text": "if you actually run this piece of code",
+      "start": 1131.0,
+      "duration": 4.32
+    },
+    {
+      "text": "and if you print out the train loader",
+      "start": 1132.84,
+      "duration": 4.64
+    },
+    {
+      "text": "and if you print out the shape let's see",
+      "start": 1135.32,
+      "duration": 4.32
+    },
+    {
+      "text": "so the train loader looks like this if",
+      "start": 1137.48,
+      "duration": 5.319
+    },
+    {
+      "text": "you look at uh the first entry here",
+      "start": 1139.64,
+      "duration": 5.12
+    },
+    {
+      "text": "that's the first batch and the first",
+      "start": 1142.799,
+      "duration": 3.681
+    },
+    {
+      "text": "batch has eight samples because the",
+      "start": 1144.76,
+      "duration": 3.88
+    },
+    {
+      "text": "batch size is equal to 8 and why are",
+      "start": 1146.48,
+      "duration": 4.319
+    },
+    {
+      "text": "there two there are two such things here",
+      "start": 1148.64,
+      "duration": 4.12
+    },
+    {
+      "text": "the first is the input sensor and the",
+      "start": 1150.799,
+      "duration": 4.36
+    },
+    {
+      "text": "second is the target stenor so what's",
+      "start": 1152.76,
+      "duration": 6.399
+    },
+    {
+      "text": "happening in this 8X 61 and 8x 61 is",
+      "start": 1155.159,
+      "duration": 8.201
+    },
+    {
+      "text": "that um let's say you have prompt number",
+      "start": 1159.159,
+      "duration": 5.681
+    },
+    {
+      "text": "one which looks something like this",
+      "start": 1163.36,
+      "duration": 3.96
+    },
+    {
+      "text": "prompt number two similarly there are",
+      "start": 1164.84,
+      "duration": 4.319
+    },
+    {
+      "text": "eight prompts",
+      "start": 1167.32,
+      "duration": 3.68
+    },
+    {
+      "text": "and all of them have the same length",
+      "start": 1169.159,
+      "duration": 5.4
+    },
+    {
+      "text": "which is equal to 61 so this is my",
+      "start": 1171.0,
+      "duration": 6.72
+    },
+    {
+      "text": "inputs input sensor and similarly there",
+      "start": 1174.559,
+      "duration": 6.24
+    },
+    {
+      "text": "is a target sensor the target sensor",
+      "start": 1177.72,
+      "duration": 4.72
+    },
+    {
+      "text": "will just be the input shifted to the",
+      "start": 1180.799,
+      "duration": 4.88
+    },
+    {
+      "text": "right by one right U and then there will",
+      "start": 1182.44,
+      "duration": 5.52
+    },
+    {
+      "text": "be eight such Target tensors here so",
+      "start": 1185.679,
+      "duration": 7.0
+    },
+    {
+      "text": "this will be 8X 61 and this will be 8X",
+      "start": 1187.96,
+      "duration": 7.64
+    },
+    {
+      "text": "61 this is exactly the first row so the",
+      "start": 1192.679,
+      "duration": 5.281
+    },
+    {
+      "text": "first row the input sensor is 8x 61 the",
+      "start": 1195.6,
+      "duration": 4.559
+    },
+    {
+      "text": "target sensor is 8x 61 that's the first",
+      "start": 1197.96,
+      "duration": 4.959
+    },
+    {
+      "text": "batch now let's look at the second batch",
+      "start": 1200.159,
+      "duration": 5.201
+    },
+    {
+      "text": "why is the second entor 76 and in the",
+      "start": 1202.919,
+      "duration": 5.681
+    },
+    {
+      "text": "first it was only 61 the reason it's 76",
+      "start": 1205.36,
+      "duration": 5.76
+    },
+    {
+      "text": "is that when we look at the second batch",
+      "start": 1208.6,
+      "duration": 4.76
+    },
+    {
+      "text": "when we look at the second batch the",
+      "start": 1211.12,
+      "duration": 4.0
+    },
+    {
+      "text": "eight the eight samples might have",
+      "start": 1213.36,
+      "duration": 5.16
+    },
+    {
+      "text": "varying length right so we have to look",
+      "start": 1215.12,
+      "duration": 5.6
+    },
+    {
+      "text": "at that sample which has the maximum",
+      "start": 1218.52,
+      "duration": 4.24
+    },
+    {
+      "text": "length right and in the second batch it",
+      "start": 1220.72,
+      "duration": 5.0
+    },
+    {
+      "text": "will be 76 so then all the other samples",
+      "start": 1222.76,
+      "duration": 5.24
+    },
+    {
+      "text": "will be appended so that their length is",
+      "start": 1225.72,
+      "duration": 3.839
+    },
+    {
+      "text": "also equal to",
+      "start": 1228.0,
+      "duration": 4.0
+    },
+    {
+      "text": "76 so that's why every batch has",
+      "start": 1229.559,
+      "duration": 4.081
+    },
+    {
+      "text": "different number of token IDs in the",
+      "start": 1232.0,
+      "duration": 4.36
+    },
+    {
+      "text": "first batch it was 61 because the input",
+      "start": 1233.64,
+      "duration": 4.48
+    },
+    {
+      "text": "with the maximum token ID length would",
+      "start": 1236.36,
+      "duration": 4.76
+    },
+    {
+      "text": "have been 61 in the second it's 76 so it",
+      "start": 1238.12,
+      "duration": 4.679
+    },
+    {
+      "text": "might change because we are calculating",
+      "start": 1241.12,
+      "duration": 4.12
+    },
+    {
+      "text": "the maximum length for each batch",
+      "start": 1242.799,
+      "duration": 4.36
+    },
+    {
+      "text": "separately so this is the training",
+      "start": 1245.24,
+      "duration": 4.28
+    },
+    {
+      "text": "loader so now I hope you understand how",
+      "start": 1247.159,
+      "duration": 4.041
+    },
+    {
+      "text": "to access the data in the training",
+      "start": 1249.52,
+      "duration": 3.92
+    },
+    {
+      "text": "loader if you want to access the first",
+      "start": 1251.2,
+      "duration": 4.88
+    },
+    {
+      "text": "input Target pair in the training loader",
+      "start": 1253.44,
+      "duration": 4.239
+    },
+    {
+      "text": "you just look at the first row if you",
+      "start": 1256.08,
+      "duration": 3.12
+    },
+    {
+      "text": "want to access the second you just look",
+      "start": 1257.679,
+      "duration": 3.441
+    },
+    {
+      "text": "at the second row so that's why data",
+      "start": 1259.2,
+      "duration": 3.44
+    },
+    {
+      "text": "loaders are used because it's much",
+      "start": 1261.12,
+      "duration": 4.24
+    },
+    {
+      "text": "easier to access the inputs and Target",
+      "start": 1262.64,
+      "duration": 4.96
+    },
+    {
+      "text": "uh pairs if you want to access the",
+      "start": 1265.36,
+      "duration": 3.84
+    },
+    {
+      "text": "second batch and if you want to access",
+      "start": 1267.6,
+      "duration": 3.24
+    },
+    {
+      "text": "the second prompt of the second batch",
+      "start": 1269.2,
+      "duration": 4.04
+    },
+    {
+      "text": "you just look at the second row of the",
+      "start": 1270.84,
+      "duration": 4.0
+    },
+    {
+      "text": "second batch and you'll get the input",
+      "start": 1273.24,
+      "duration": 4.36
+    },
+    {
+      "text": "and the target pairs for the second",
+      "start": 1274.84,
+      "duration": 5.8
+    },
+    {
+      "text": "batch uh similarly you can print out the",
+      "start": 1277.6,
+      "duration": 4.64
+    },
+    {
+      "text": "inputs and targets for the validation",
+      "start": 1280.64,
+      "duration": 3.6
+    },
+    {
+      "text": "loaders as well the batch size will be",
+      "start": 1282.24,
+      "duration": 6.48
+    },
+    {
+      "text": "equal to eight but the number number of",
+      "start": 1284.24,
+      "duration": 6.319
+    },
+    {
+      "text": "batches will be small because the",
+      "start": 1288.72,
+      "duration": 4.52
+    },
+    {
+      "text": "validation data is 5% and the test data",
+      "start": 1290.559,
+      "duration": 5.841
+    },
+    {
+      "text": "is 10% the training data is 85% that's",
+      "start": 1293.24,
+      "duration": 6.039
+    },
+    {
+      "text": "why we have so many batches over here",
+      "start": 1296.4,
+      "duration": 4.639
+    },
+    {
+      "text": "but each batch has a batch size equal to",
+      "start": 1299.279,
+      "duration": 3.041
+    },
+    {
+      "text": "eight which means that the number of",
+      "start": 1301.039,
+      "duration": 4.12
+    },
+    {
+      "text": "samples in each batch will be equal to",
+      "start": 1302.32,
+      "duration": 5.76
+    },
+    {
+      "text": "eight uh okay so this is how we have",
+      "start": 1305.159,
+      "duration": 4.52
+    },
+    {
+      "text": "created the training loader we have",
+      "start": 1308.08,
+      "duration": 3.28
+    },
+    {
+      "text": "created the validation loader and we",
+      "start": 1309.679,
+      "duration": 3.961
+    },
+    {
+      "text": "have created the test loader as well and",
+      "start": 1311.36,
+      "duration": 4.12
+    },
+    {
+      "text": "we have printed the TR training loader",
+      "start": 1313.64,
+      "duration": 4.039
+    },
+    {
+      "text": "and I hope you have understood the shape",
+      "start": 1315.48,
+      "duration": 4.439
+    },
+    {
+      "text": "of the training loader because once you",
+      "start": 1317.679,
+      "duration": 3.641
+    },
+    {
+      "text": "understand the dimensions over here you",
+      "start": 1319.919,
+      "duration": 3.041
+    },
+    {
+      "text": "will really understand what we have done",
+      "start": 1321.32,
+      "duration": 3.68
+    },
+    {
+      "text": "in the train train loader and the",
+      "start": 1322.96,
+      "duration": 3.0
+    },
+    {
+      "text": "validation",
+      "start": 1325.0,
+      "duration": 3.4
+    },
+    {
+      "text": "loader so in the preceding output you",
+      "start": 1325.96,
+      "duration": 4.959
+    },
+    {
+      "text": "can see that the first input and Target",
+      "start": 1328.4,
+      "duration": 5.12
+    },
+    {
+      "text": "batch have dimensions of 8X 61 as you",
+      "start": 1330.919,
+      "duration": 5.521
+    },
+    {
+      "text": "can see over here 8 by 61 input and",
+      "start": 1333.52,
+      "duration": 5.84
+    },
+    {
+      "text": "Target batch of dimensions 8 by 61 where",
+      "start": 1336.44,
+      "duration": 5.16
+    },
+    {
+      "text": "8 represents the batch size and 61 is",
+      "start": 1339.36,
+      "duration": 4.12
+    },
+    {
+      "text": "the number of tokens in each training",
+      "start": 1341.6,
+      "duration": 4.6
+    },
+    {
+      "text": "example or number of token",
+      "start": 1343.48,
+      "duration": 5.24
+    },
+    {
+      "text": "IDs the second input and Target taret",
+      "start": 1346.2,
+      "duration": 4.04
+    },
+    {
+      "text": "batch have a different number of tokens",
+      "start": 1348.72,
+      "duration": 4.36
+    },
+    {
+      "text": "for instance 76 and that is because in",
+      "start": 1350.24,
+      "duration": 4.679
+    },
+    {
+      "text": "our custom colate function the data",
+      "start": 1353.08,
+      "duration": 3.76
+    },
+    {
+      "text": "loader is looking at each batch",
+      "start": 1354.919,
+      "duration": 5.041
+    },
+    {
+      "text": "separately and then it creates the token",
+      "start": 1356.84,
+      "duration": 4.959
+    },
+    {
+      "text": "length separately for each batch based",
+      "start": 1359.96,
+      "duration": 3.599
+    },
+    {
+      "text": "on the input with the maximum number of",
+      "start": 1361.799,
+      "duration": 3.041
+    },
+    {
+      "text": "tokens in that",
+      "start": 1363.559,
+      "duration": 3.6
+    },
+    {
+      "text": "batch this brings us to the end of",
+      "start": 1364.84,
+      "duration": 5.36
+    },
+    {
+      "text": "today's lecture where we looked at uh",
+      "start": 1367.159,
+      "duration": 6.201
+    },
+    {
+      "text": "data loaders and especially we looked at",
+      "start": 1370.2,
+      "duration": 5.8
+    },
+    {
+      "text": "this third step which",
+      "start": 1373.36,
+      "duration": 5.919
+    },
+    {
+      "text": "is creating data loaders",
+      "start": 1376.0,
+      "duration": 4.96
+    },
+    {
+      "text": "so one thing which I would like to",
+      "start": 1379.279,
+      "duration": 3.241
+    },
+    {
+      "text": "emphasize over here is that when you",
+      "start": 1380.96,
+      "duration": 3.24
+    },
+    {
+      "text": "think of fine",
+      "start": 1382.52,
+      "duration": 4.84
+    },
+    {
+      "text": "tuning uh a lot of time should be spent",
+      "start": 1384.2,
+      "duration": 4.959
+    },
+    {
+      "text": "on batching the data set and creating",
+      "start": 1387.36,
+      "duration": 3.64
+    },
+    {
+      "text": "the data loaders itself because once you",
+      "start": 1389.159,
+      "duration": 4.681
+    },
+    {
+      "text": "do that correctly the rest of the parts",
+      "start": 1391.0,
+      "duration": 4.799
+    },
+    {
+      "text": "essentially step number four step number",
+      "start": 1393.84,
+      "duration": 3.64
+    },
+    {
+      "text": "five and step number six can actually",
+      "start": 1395.799,
+      "duration": 3.641
+    },
+    {
+      "text": "proceed in a much more simplified and",
+      "start": 1397.48,
+      "duration": 4.04
+    },
+    {
+      "text": "easy manner if you understand how the",
+      "start": 1399.44,
+      "duration": 4.4
+    },
+    {
+      "text": "data loaders have been created so we",
+      "start": 1401.52,
+      "duration": 4.68
+    },
+    {
+      "text": "have spent a lot of time on SP uh step",
+      "start": 1403.84,
+      "duration": 4.16
+    },
+    {
+      "text": "number one step number two and step",
+      "start": 1406.2,
+      "duration": 4.0
+    },
+    {
+      "text": "number three and that is because as with",
+      "start": 1408.0,
+      "duration": 4.32
+    },
+    {
+      "text": "all machine learning projects the real",
+      "start": 1410.2,
+      "duration": 4.04
+    },
+    {
+      "text": "skill of an llm engineer or a machine",
+      "start": 1412.32,
+      "duration": 3.719
+    },
+    {
+      "text": "learning engineer is how you pre-process",
+      "start": 1414.24,
+      "duration": 3.96
+    },
+    {
+      "text": "the data how you clean the data and then",
+      "start": 1416.039,
+      "duration": 4.921
+    },
+    {
+      "text": "you feed it to the model uh that's why",
+      "start": 1418.2,
+      "duration": 4.599
+    },
+    {
+      "text": "it's very very important to spend a lot",
+      "start": 1420.96,
+      "duration": 3.76
+    },
+    {
+      "text": "of time on the data preparation step",
+      "start": 1422.799,
+      "duration": 4.201
+    },
+    {
+      "text": "itself so at the end of this lecture we",
+      "start": 1424.72,
+      "duration": 4.16
+    },
+    {
+      "text": "have actually finished stage one of the",
+      "start": 1427.0,
+      "duration": 3.32
+    },
+    {
+      "text": "instruction fine tuning which is",
+      "start": 1428.88,
+      "duration": 4.0
+    },
+    {
+      "text": "preparing the data set itself and now we",
+      "start": 1430.32,
+      "duration": 5.0
+    },
+    {
+      "text": "are ready to move to stage two which",
+      "start": 1432.88,
+      "duration": 4.88
+    },
+    {
+      "text": "we'll be covering in the next video so",
+      "start": 1435.32,
+      "duration": 3.959
+    },
+    {
+      "text": "thanks a lot every everyone I hope you",
+      "start": 1437.76,
+      "duration": 2.72
+    },
+    {
+      "text": "enjoyed this lecture where you",
+      "start": 1439.279,
+      "duration": 3.121
+    },
+    {
+      "text": "understood how to create data loaders",
+      "start": 1440.48,
+      "duration": 4.4
+    },
+    {
+      "text": "for an instruction data set in the next",
+      "start": 1442.4,
+      "duration": 5.04
+    },
+    {
+      "text": "lecture we'll be diving further into",
+      "start": 1444.88,
+      "duration": 5.6
+    },
+    {
+      "text": "loading the pre-trained llm and actually",
+      "start": 1447.44,
+      "duration": 6.359
+    },
+    {
+      "text": "fine-tuning um the llm and let's see the",
+      "start": 1450.48,
+      "duration": 5.48
+    },
+    {
+      "text": "performance thanks a lot everyone and I",
+      "start": 1453.799,
+      "duration": 3.721
+    },
+    {
+      "text": "look forward to seeing you in the next",
+      "start": 1455.96,
+      "duration": 4.56
+    },
+    {
+      "text": "lecture",
+      "start": 1457.52,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the build large language models from scratch series we are looking at instruction F tuning and we have finished step number one which is data set download and formatting and in the last lecture we have finished step number two which is batching the data set in this lecture we are going to look at creating data loaders so you can think of data loaders as an efficient way to just collect the different batches whenever we need to do so using data loaders the process of training a large language model becomes very easy because then you can access batches in a sequential Manner and in a much more efficient manner so here's the pytorch data sets and data loaders documentation I'll be sharing the link to this and as you can read here data loader wraps an iterable around the data set which means that the B which we have created can be accessed in an iterative manner using the data loader and by iterative I just mean in a sequential Manner and essentially it makes it very easy to access the different data samples so the reason we use data sets and data loaders is more for efficiency of access to the data itself and that makes a very big difference when training a huge model um such as llms with more than 100 million parameters so let me quickly recap whatever we have done so far so the first step was data set download and formatting here's the instruction fine tuning data set so we have 1100 pairs of instructions inputs and outputs so an instruction could be something like edit the following sentence for grammar the input can be he go to the park every day and the correct output is he goes to the park every day the instruction can be convert 45 kilomet to meters and here it does not have any input because there is one fixed answer and the output is 45 kilom is 45,000 M so what we are essentially doing is that we are telling the large language model that hey we look we know that you are pre-trained but you are not very good at following instructions here is a training data set which I have that will teach you how to follow instructions and how to respond effectively so we are providing this training data set as an additional specific data set and then we will train the large language model again so that it it gets better at responding to instructions so that's the first step which we implemented and that was data set download and formatting what's meant by formatting well there is this uh template which is called as alpaka format and what this template essentially does is that when we are going to do instruction fine tuning um so let me go to Stanford alpaca GitHub right so this is the GitHub repository and and basically they have a data set of 52,000 instruction response pairs such as what I showed you here and they have a specific way to convert these into prompts so when we are going to train the large language model we need inputs and outputs right so there is a specific prompt which we are going to use and that prompt itself will serve as input output input Target pairs so if the instruction is something like let's say convert 45 km to meters and the output is 45 km is 45,000 M The Prompt which we are going to give the llm is that below is an instruction that describes a task paired with an input that provides further context Write a response that appropriately completes the request and then in the instruction we provide the instruction which was convert 45 km to meters then we have the input the input in this case does not exist because there's only one answer and then we have the response now this is the prompt which will be provided to the llm and then we will train the llm with the next word prediction tasks which means that this is an auto regressive model within this prompt itself there are input and Target pairs so when below is the input below is is the output when below is is the input below is and is the output when below is an instruction is the input below is an instruction that will be the output so similarly when we train the llm on this entire prompt we will show early reach a stage when it reads when it reads the instruction and the input it learns how to uh provide the response so that's what's meant by formatting every input every input instruction and response is formatted into this uh alpaka style format and that's done in the data set downloading and formatting stage then what we do is that we batch the data set this was not as easy as simply creating batches but there were multiple steps involved in data batching itself and these steps are divided into five substeps uh or these steps can be bucketed into five uh five main components the first as I mentioned is format data using the prom template and we use the alpaka template there is also the 53 template which is used by Microsoft uh and you can try that when I'm going to share this code file with you so that's the first step the Second Step which we are going to do is we are going to to toize the formatted data which means that here's the formatted data right which is in the alpaka prompt style we are going to convert this entire data into token IDs so let's say one batch has four instruction input output pairs or two instruction output input output pairs the First Data will look something like this when tokenized the second data will look something like this when tokenized now naturally the length of the tokens here and the length of the tokens here won't be the same and that's a problem since we are dealing with batches so the next step is that so after tokenizing the next step is that we are going to in one batch we need to adjust so that all of the data samples have the same token ID so consider this batch for example where there are three inputs when the first input is tokenized it has five token IDs when the second input is tokenized it has two and when the third input is tokenized it has three and that's not good we need to make sure that all of these have the same number of token IDs so the way we do it is that we take that input which has the maximum number of token IDs in this case it's the first input which has five token IDs and then we we take the remaining two inputs and we pad them with the end of text token which is 50256 and we pad them so that their length becomes equal to the maximum token ID length which is equal to five since the first one has five token IDs and once you do this padding you make sure that in every batch all the inputs of every batch have the same number of token so all of these three have the same token ID if you look at the second batch all of these have the same token ID that's the third step in the fourth step we have to create the target pairs so we have inputs and targets right and targets are just the input pairs which are shifted to the right by one so if you have an input which looks like this the way to create the target pairs is just you get rid of the first element and have the remaining so input shifted to the right by one and then you add an end of text token to convey that this is the end end of the instruction output PIR so that's what I mentioned earlier by the next toen prediction task right when below is an input below is is the output when below is is the input below is and is the output this input Target pair creation is probably the most important step in fine tuning and it's also not very intuitive because you are not saying that the response is the output you're saying that the whole thing itself is your data and within that you have input and Target pairs it turns that it turns out that with this next token prediction task the llm learns to uh segregate or recognize that up till here I have the instruction with the input and then this is the response which I have to predict so the next word or the next token prediction task is What's Done in fine tuning as well similar to pre-training in fine tuning we are also doing the next token prediction and this is how we create the input and Target Pairs and the last step here is that we replace the padding tokens with minus 100 so all the 5025 6 here is replaced with minus 100 and the reason it's replaced with Let me show this to you um right over here yeah so here you see all the 50256 tokens are replaced with minus 100 the reason they are replaced with minus 100 is that in P torch when you use the categorical cross entropy loss this minus 100 is the ignore index which means that when we use these inputs and Target pairs to calculate the loss the token tokens associated with these IDs will not be counted for getting the loss function and that makes sense because all of these are useless end of text tokens which we have just padded over here they should not be used for the loss calculation we retain one 50256 token in every input because that conveys the end of text but all the remaining 50256 we replace them with minus 100 so that they don't influence the loss and you can check this so you can search pytorch cross entropy and if you see this function you'll see that the ignore index is equal to minus 100 and that's why all the target pairs which have minus 100 in the token ID they will not be utilized for the loss function calculation the reason I went through all this summary again is that it's very important for you to understand how batches are created and once you understand how batches are created it's pretty straightforward to create data loaders which is what we'll understand in today's lecture great so now let's get started with today's lecture where what we'll do is that uh we have the training testing and validation data sets right and we have also batched the data set which means that we have created multiple batches we are going to pass these data sets as inputs to data loaders and we are going to create the training the testing and the validation data loaders so I'm going to take you to code right now um so here let me first show you the code to create the batches itself so this this custom colate function this is the final function what this does is exactly what I had outlined on the Whiteboard right it first converts the tokens into token IDs then it does the padding so that in every batch the length of the number of tokens is the same and then it replaces the 50256 with a token ID of minus 100 and it creates the input sensor and the target sensor so these are the inputs and the target batches which have been created uh so we have to also specify the batch length because in one batch there might be eight different uh instruction response pairs or there might be 10 or there might be 50 we have to specify what's the batch size and based on the batch size inputs and targets will be created for every instruction response pair so let's say if we have this instruction input output input sensor and Target sensor will be created if we have this instruction input output the input and the targets will be created if the batch size is equal to three all of these will be in one batch uh awesome so we have the inputs and the target tensor which has been created for the different batches but we have not yet created the data loaders right so that's what we have that's what we have to do right now so now the main goal of uh this lecture is to create data loaders for an instruction data set one small thing which I would like to mention before we start this lecture is about the device so if you see this this piece of code over here we have the uh we have the input sensor and we have the target sensor for a particular let's say for a particular instruction input and output and uh we have this code which lets which lets us transfer these tensors to the Target device which we have we already have integrated this in our code now we'll see why we have done that and what is the use of that so the custom colate function includes code to move the input and Target tensors to a specific device that's the piece of code which I just showed you right now that device can be CPU or Cuda for gpus or it can be MPS also for Max with apple silicon chips so uh the advantage of this is that in the previous chapters or in the previous lectures we moved the data onto the target device for pre-training itself for example we used the GPU memory when device equal to QA and we did this in the training Loop now we have this as a part of the custom colate function itself so we have this device transfer in the custom colate function which is not part of the training Loop and that gives a significant Advantage having this code as part of the custom colate function offers the advantage of Performing the device transfer process as a background process outside the training Loop and that prevents it from blocking the GPU during model training so let's say if we have if we are doing model training we'll need to use the GPU right um and we don't need to block the GPU during that time because that's the most important part so this this process we are doing kind of in the background we have not in included this transfer process during the pre-training itself so this process takes place in the background and that makes sure that when we do the training and when we are using the GPU the GPU is not blocked um so I hope you have understood this and then we have to specify the device itself so here device equal to torch. device if you have GPU available you can specify Cuda else it will utilize your CPU I'm using a Macbook 2020 and I'm utilizing the CPU which is the lowest configuration and uh whatever I'm showing to you in this uh in these set of lectures I'm deliberately showing it on a low configuration device without any GPU so that you can also replicate it on your device but if you do have uh if you do have a laptop with an apple silicon chip you can uncommit this piece of code because if the Silicon chip is available you can just use storage. device MPS that will run the code in a much faster manner for now I'm just going to use device equal to CPU and then what we do is that if you look at the custom colate function we have to pass in the different arguments right and one of the argument is uh device and one such is allowed maximum length now I want to Define another function which defines these arguments by default uh and I don't have to pass in them separately and I'll do that using the partial command so we will be using the partial function from pytorch Funk tools standard library from Python's functional tool standard library to create a new version of the function with the device argument pre-filled so we'll already fill the device argument with CPU in this case the device will be CPU if you have a GPU the device will be GPU and then I'll say the allowed maximum length which is the context length is going to be 1 02 4 what's the context length here well we are doing the input Target pairs right so the entire prompt which we are going to look at um let's see so if the prompt looks something like this this entire thing um will have the context length which means that at one time what's the maximum number of tokens which I'm going to look at Great and then what we are doing is that now we are ready to set up the data loader so uh you see we have the instruction data set class which we defined in the previous lecture let me take you to that class right now so that you can understand what this instruction data set class is doing so see this is the instruction data set class what this class does is that it takes the um it takes the data set it converts it into uh it converts it into token IDs so then what we are doing is that we are creating an instance of this instruction data set class yeah here you see we are creating an instance of this data set class which is the training data set so the instruction data set also uh takes the training data and converts it into token IDs then we have to pass the training data set into the data loader itself um and uh we have to use the colate function this is where most of the magic actually happens uh we have used a customized colate function here which means that uh whatever I told in this part the process which we create the process through which we create batches that has been implemented in the customized colate function you have a batch you have uh multiple prompts in that batch you first format them using the alpaka style format you make sure that in one batch the length of the token IDs is the same then you pad with 50256 tokens and then except for 5256 you replace everything with minus 100 that's what's happening in this colate function and then the reason we are calling it training loader is that the data set is the training data set remember that we are using uh 10% we are using 80% of the data as training let me actually check that how much percentage of the data we are using for training yeah we are using 85% of the data for training 10% for testing and 5% for validation so of this entire data of this entire data set 85% is used for for training uh so the train data set consists of this training data but it's converted into token IDs and then using the colate function we collect it into batches so here the batch size is equal to eight so one batch will have eight prompts and uh each alpaka prompt has the instruction input output Pairs and remember that in each batch the number of token IDs um or the length of each input the number of token IDs in each input is the same that's the train loader and and then similarly we create the validation loader and we create the test loader to create the train loader the validation loader and the test loader we use this data loader function and I've already uh mentioned to you about the data loader it helps us access the data in a very easy manner so the simplest way to think about the train loader the validation loader and data loader is that it creates batches so now if you actually run this piece of code and if you print out the train loader and if you print out the shape let's see so the train loader looks like this if you look at uh the first entry here that's the first batch and the first batch has eight samples because the batch size is equal to 8 and why are there two there are two such things here the first is the input sensor and the second is the target stenor so what's happening in this 8X 61 and 8x 61 is that um let's say you have prompt number one which looks something like this prompt number two similarly there are eight prompts and all of them have the same length which is equal to 61 so this is my inputs input sensor and similarly there is a target sensor the target sensor will just be the input shifted to the right by one right U and then there will be eight such Target tensors here so this will be 8X 61 and this will be 8X 61 this is exactly the first row so the first row the input sensor is 8x 61 the target sensor is 8x 61 that's the first batch now let's look at the second batch why is the second entor 76 and in the first it was only 61 the reason it's 76 is that when we look at the second batch when we look at the second batch the eight the eight samples might have varying length right so we have to look at that sample which has the maximum length right and in the second batch it will be 76 so then all the other samples will be appended so that their length is also equal to 76 so that's why every batch has different number of token IDs in the first batch it was 61 because the input with the maximum token ID length would have been 61 in the second it's 76 so it might change because we are calculating the maximum length for each batch separately so this is the training loader so now I hope you understand how to access the data in the training loader if you want to access the first input Target pair in the training loader you just look at the first row if you want to access the second you just look at the second row so that's why data loaders are used because it's much easier to access the inputs and Target uh pairs if you want to access the second batch and if you want to access the second prompt of the second batch you just look at the second row of the second batch and you'll get the input and the target pairs for the second batch uh similarly you can print out the inputs and targets for the validation loaders as well the batch size will be equal to eight but the number number of batches will be small because the validation data is 5% and the test data is 10% the training data is 85% that's why we have so many batches over here but each batch has a batch size equal to eight which means that the number of samples in each batch will be equal to eight uh okay so this is how we have created the training loader we have created the validation loader and we have created the test loader as well and we have printed the TR training loader and I hope you have understood the shape of the training loader because once you understand the dimensions over here you will really understand what we have done in the train train loader and the validation loader so in the preceding output you can see that the first input and Target batch have dimensions of 8X 61 as you can see over here 8 by 61 input and Target batch of dimensions 8 by 61 where 8 represents the batch size and 61 is the number of tokens in each training example or number of token IDs the second input and Target taret batch have a different number of tokens for instance 76 and that is because in our custom colate function the data loader is looking at each batch separately and then it creates the token length separately for each batch based on the input with the maximum number of tokens in that batch this brings us to the end of today's lecture where we looked at uh data loaders and especially we looked at this third step which is creating data loaders so one thing which I would like to emphasize over here is that when you think of fine tuning uh a lot of time should be spent on batching the data set and creating the data loaders itself because once you do that correctly the rest of the parts essentially step number four step number five and step number six can actually proceed in a much more simplified and easy manner if you understand how the data loaders have been created so we have spent a lot of time on SP uh step number one step number two and step number three and that is because as with all machine learning projects the real skill of an llm engineer or a machine learning engineer is how you pre-process the data how you clean the data and then you feed it to the model uh that's why it's very very important to spend a lot of time on the data preparation step itself so at the end of this lecture we have actually finished stage one of the instruction fine tuning which is preparing the data set itself and now we are ready to move to stage two which we'll be covering in the next video so thanks a lot every everyone I hope you enjoyed this lecture where you understood how to create data loaders for an instruction data set in the next lecture we'll be diving further into loading the pre-trained llm and actually fine-tuning um the llm and let's see the performance thanks a lot everyone and I look forward to seeing you in the next lecture"
+}

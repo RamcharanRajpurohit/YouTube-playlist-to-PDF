@@ -1,0 +1,2671 @@
+{
+  "video": {
+    "video_id": "_xH-jXNFRjA",
+    "title": "Build LLMs from scratch 20 minutes summary",
+    "duration": 1158.0,
+    "index": 42
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone welcome to this video in",
+      "start": 4.12,
+      "duration": 4.479
+    },
+    {
+      "text": "the build large language models from",
+      "start": 6.68,
+      "duration": 4.76
+    },
+    {
+      "text": "scratch Series this is a conclusion",
+      "start": 8.599,
+      "duration": 5.601
+    },
+    {
+      "text": "video in which I'll try to quickly",
+      "start": 11.44,
+      "duration": 5.24
+    },
+    {
+      "text": "summarize what all we have completed in",
+      "start": 14.2,
+      "duration": 4.239
+    },
+    {
+      "text": "this lecture Series so",
+      "start": 16.68,
+      "duration": 4.64
+    },
+    {
+      "text": "far you may be into two categories of",
+      "start": 18.439,
+      "duration": 4.801
+    },
+    {
+      "text": "students the first is who has followed",
+      "start": 21.32,
+      "duration": 4.92
+    },
+    {
+      "text": "this entire series and who is watching",
+      "start": 23.24,
+      "duration": 5.32
+    },
+    {
+      "text": "this video congratulations you have made",
+      "start": 26.24,
+      "duration": 4.72
+    },
+    {
+      "text": "it this far you now one you are now one",
+      "start": 28.56,
+      "duration": 4.24
+    },
+    {
+      "text": "of the few students in the whole world I",
+      "start": 30.96,
+      "duration": 3.64
+    },
+    {
+      "text": "would say who knows how to build an",
+      "start": 32.8,
+      "duration": 4.12
+    },
+    {
+      "text": "entire large language model completely",
+      "start": 34.6,
+      "duration": 4.639
+    },
+    {
+      "text": "from scratch if you have stumbled upon",
+      "start": 36.92,
+      "duration": 4.2
+    },
+    {
+      "text": "this video and if you don't know about",
+      "start": 39.239,
+      "duration": 3.84
+    },
+    {
+      "text": "the rest of the playlist I highly",
+      "start": 41.12,
+      "duration": 4.16
+    },
+    {
+      "text": "encourage you to go through all of the",
+      "start": 43.079,
+      "duration": 4.841
+    },
+    {
+      "text": "videos to develop a very firm",
+      "start": 45.28,
+      "duration": 4.959
+    },
+    {
+      "text": "understanding of large language models I",
+      "start": 47.92,
+      "duration": 4.0
+    },
+    {
+      "text": "started this lecture series with the",
+      "start": 50.239,
+      "duration": 4.561
+    },
+    {
+      "text": "goal of teaching you how to be a",
+      "start": 51.92,
+      "duration": 5.479
+    },
+    {
+      "text": "fundamental researcher or a fundamental",
+      "start": 54.8,
+      "duration": 6.079
+    },
+    {
+      "text": "engineer in machine learning the main",
+      "start": 57.399,
+      "duration": 5.16
+    },
+    {
+      "text": "thing which you should really focus on",
+      "start": 60.879,
+      "duration": 3.64
+    },
+    {
+      "text": "is to understand the nuts and bols of",
+      "start": 62.559,
+      "duration": 4.401
+    },
+    {
+      "text": "how things work instead of running fancy",
+      "start": 64.519,
+      "duration": 4.561
+    },
+    {
+      "text": "large language model applications we",
+      "start": 66.96,
+      "duration": 4.159
+    },
+    {
+      "text": "should focus our attention to how large",
+      "start": 69.08,
+      "duration": 4.12
+    },
+    {
+      "text": "language models are really built we",
+      "start": 71.119,
+      "duration": 4.0
+    },
+    {
+      "text": "should understand the nuts and bols of",
+      "start": 73.2,
+      "duration": 4.04
+    },
+    {
+      "text": "large language models and that has been",
+      "start": 75.119,
+      "duration": 4.481
+    },
+    {
+      "text": "the whole focus of the series The videos",
+      "start": 77.24,
+      "duration": 4.559
+    },
+    {
+      "text": "have been long but they have been very",
+      "start": 79.6,
+      "duration": 4.76
+    },
+    {
+      "text": "satisfying um as I have seen from",
+      "start": 81.799,
+      "duration": 4.921
+    },
+    {
+      "text": "interactions with many students who have",
+      "start": 84.36,
+      "duration": 4.28
+    },
+    {
+      "text": "watched the",
+      "start": 86.72,
+      "duration": 4.2
+    },
+    {
+      "text": "videos uh when when I started this",
+      "start": 88.64,
+      "duration": 3.839
+    },
+    {
+      "text": "lecture series I took a lot of",
+      "start": 90.92,
+      "duration": 3.4
+    },
+    {
+      "text": "inspiration from this book build a large",
+      "start": 92.479,
+      "duration": 4.441
+    },
+    {
+      "text": "language model by Sabastian rashka so",
+      "start": 94.32,
+      "duration": 3.759
+    },
+    {
+      "text": "thank you",
+      "start": 96.92,
+      "duration": 4.36
+    },
+    {
+      "text": "Sabastian and uh this really helped me",
+      "start": 98.079,
+      "duration": 5.601
+    },
+    {
+      "text": "construct the courses or construct the",
+      "start": 101.28,
+      "duration": 5.439
+    },
+    {
+      "text": "entire lecture series here is the code",
+      "start": 103.68,
+      "duration": 5.28
+    },
+    {
+      "text": "file which we have run throughout these",
+      "start": 106.719,
+      "duration": 5.161
+    },
+    {
+      "text": "entire or throughout this entire lecture",
+      "start": 108.96,
+      "duration": 5.119
+    },
+    {
+      "text": "series as you can see the code has",
+      "start": 111.88,
+      "duration": 4.32
+    },
+    {
+      "text": "become pretty long but every single",
+      "start": 114.079,
+      "duration": 3.64
+    },
+    {
+      "text": "thing has been explained in a lot of",
+      "start": 116.2,
+      "duration": 3.959
+    },
+    {
+      "text": "detail in the videos which we have seen",
+      "start": 117.719,
+      "duration": 4.04
+    },
+    {
+      "text": "throughout this course I've explained",
+      "start": 120.159,
+      "duration": 4.361
+    },
+    {
+      "text": "every single code block to you and we do",
+      "start": 121.759,
+      "duration": 4.441
+    },
+    {
+      "text": "not assume anything in this lecture",
+      "start": 124.52,
+      "duration": 3.56
+    },
+    {
+      "text": "series everything is covered in depth",
+      "start": 126.2,
+      "duration": 4.479
+    },
+    {
+      "text": "from scratch I shared this code file",
+      "start": 128.08,
+      "duration": 4.64
+    },
+    {
+      "text": "with all of the students who have been",
+      "start": 130.679,
+      "duration": 4.56
+    },
+    {
+      "text": "watching and uh I hope that once you",
+      "start": 132.72,
+      "duration": 4.36
+    },
+    {
+      "text": "have access to this Cod code file you",
+      "start": 135.239,
+      "duration": 3.801
+    },
+    {
+      "text": "are able to run and construct the entire",
+      "start": 137.08,
+      "duration": 4.64
+    },
+    {
+      "text": "large language model on your",
+      "start": 139.04,
+      "duration": 5.44
+    },
+    {
+      "text": "own here is the workflow of everything",
+      "start": 141.72,
+      "duration": 5.0
+    },
+    {
+      "text": "which we covered in this series first we",
+      "start": 144.48,
+      "duration": 4.759
+    },
+    {
+      "text": "started with stage number one then we",
+      "start": 146.72,
+      "duration": 4.72
+    },
+    {
+      "text": "sequentially we move to stage number two",
+      "start": 149.239,
+      "duration": 4.561
+    },
+    {
+      "text": "and then we move to stage number three",
+      "start": 151.44,
+      "duration": 4.2
+    },
+    {
+      "text": "just like to build a house we first need",
+      "start": 153.8,
+      "duration": 4.159
+    },
+    {
+      "text": "to lay the foundation in stage number",
+      "start": 155.64,
+      "duration": 4.36
+    },
+    {
+      "text": "one we laid the foundation for building",
+      "start": 157.959,
+      "duration": 4.2
+    },
+    {
+      "text": "the large language model we looked at",
+      "start": 160.0,
+      "duration": 4.28
+    },
+    {
+      "text": "data preparation and sampling then we",
+      "start": 162.159,
+      "duration": 3.921
+    },
+    {
+      "text": "looked at the attention mechanism which",
+      "start": 164.28,
+      "duration": 5.2
+    },
+    {
+      "text": "is the engine behind which behind which",
+      "start": 166.08,
+      "duration": 6.439
+    },
+    {
+      "text": "or uh using which large language models",
+      "start": 169.48,
+      "duration": 4.36
+    },
+    {
+      "text": "derive their",
+      "start": 172.519,
+      "duration": 3.761
+    },
+    {
+      "text": "power um and finally we looked at the",
+      "start": 173.84,
+      "duration": 4.2
+    },
+    {
+      "text": "large language model architecture in",
+      "start": 176.28,
+      "duration": 3.72
+    },
+    {
+      "text": "stage one how different blocks are are",
+      "start": 178.04,
+      "duration": 3.88
+    },
+    {
+      "text": "arranged together to construct the large",
+      "start": 180.0,
+      "duration": 4.239
+    },
+    {
+      "text": "language model once stage one is",
+      "start": 181.92,
+      "duration": 3.92
+    },
+    {
+      "text": "finished then we move to stage number",
+      "start": 184.239,
+      "duration": 4.0
+    },
+    {
+      "text": "two which is essentially pre-training in",
+      "start": 185.84,
+      "duration": 4.52
+    },
+    {
+      "text": "pre-training we looked at how to",
+      "start": 188.239,
+      "duration": 3.961
+    },
+    {
+      "text": "implement the loss function for the",
+      "start": 190.36,
+      "duration": 3.72
+    },
+    {
+      "text": "large language model how to do a",
+      "start": 192.2,
+      "duration": 5.2
+    },
+    {
+      "text": "backward pass and how to train more than",
+      "start": 194.08,
+      "duration": 5.439
+    },
+    {
+      "text": "100 million or the billion parameters",
+      "start": 197.4,
+      "duration": 4.479
+    },
+    {
+      "text": "which are typically involved in the llm",
+      "start": 199.519,
+      "duration": 4.36
+    },
+    {
+      "text": "we also saw how to load pre-trained",
+      "start": 201.879,
+      "duration": 4.681
+    },
+    {
+      "text": "weights from uh large language model",
+      "start": 203.879,
+      "duration": 6.28
+    },
+    {
+      "text": "such as open air gpt2 and that EX Ates",
+      "start": 206.56,
+      "duration": 5.84
+    },
+    {
+      "text": "the pre-training process and then in",
+      "start": 210.159,
+      "duration": 3.921
+    },
+    {
+      "text": "stage number three we saw that",
+      "start": 212.4,
+      "duration": 4.039
+    },
+    {
+      "text": "pre-training is not enough to make sure",
+      "start": 214.08,
+      "duration": 4.6
+    },
+    {
+      "text": "that the llm performs well on specific",
+      "start": 216.439,
+      "duration": 4.921
+    },
+    {
+      "text": "tasks such as classification or making",
+      "start": 218.68,
+      "duration": 4.6
+    },
+    {
+      "text": "our own personalized chatbot we learned",
+      "start": 221.36,
+      "duration": 4.04
+    },
+    {
+      "text": "about fine tuning we completed two",
+      "start": 223.28,
+      "duration": 4.519
+    },
+    {
+      "text": "handson projects fully from scratch we",
+      "start": 225.4,
+      "duration": 4.119
+    },
+    {
+      "text": "made an llm classifier which can",
+      "start": 227.799,
+      "duration": 3.881
+    },
+    {
+      "text": "distinguish between spam versus no spam",
+      "start": 229.519,
+      "duration": 4.681
+    },
+    {
+      "text": "emails and we also built our own",
+      "start": 231.68,
+      "duration": 4.52
+    },
+    {
+      "text": "personal assistant which can follow",
+      "start": 234.2,
+      "duration": 4.399
+    },
+    {
+      "text": "instructions these were incredibly",
+      "start": 236.2,
+      "duration": 4.84
+    },
+    {
+      "text": "rewarding experiences and we displayed",
+      "start": 238.599,
+      "duration": 5.081
+    },
+    {
+      "text": "and understood everything from the very",
+      "start": 241.04,
+      "duration": 5.08
+    },
+    {
+      "text": "Basics now what I'll do is that I'll",
+      "start": 243.68,
+      "duration": 5.16
+    },
+    {
+      "text": "take you through individual steps and",
+      "start": 246.12,
+      "duration": 4.44
+    },
+    {
+      "text": "key components of what all we have",
+      "start": 248.84,
+      "duration": 4.239
+    },
+    {
+      "text": "covered in this journey so far if you",
+      "start": 250.56,
+      "duration": 4.0
+    },
+    {
+      "text": "have watched the lecture Series this",
+      "start": 253.079,
+      "duration": 3.641
+    },
+    {
+      "text": "will serve as a good recap for you and",
+      "start": 254.56,
+      "duration": 4.6
+    },
+    {
+      "text": "you can also use it as a quick uh",
+      "start": 256.72,
+      "duration": 5.16
+    },
+    {
+      "text": "revision before you go for interviews",
+      "start": 259.16,
+      "duration": 5.36
+    },
+    {
+      "text": "and uh if you are if you have not",
+      "start": 261.88,
+      "duration": 4.4
+    },
+    {
+      "text": "watched the previous lecture videos this",
+      "start": 264.52,
+      "duration": 4.44
+    },
+    {
+      "text": "will serve as a good video for you to",
+      "start": 266.28,
+      "duration": 4.56
+    },
+    {
+      "text": "see what all we will be covering in this",
+      "start": 268.96,
+      "duration": 4.56
+    },
+    {
+      "text": "lecture Series so the first step of a",
+      "start": 270.84,
+      "duration": 4.56
+    },
+    {
+      "text": "large building a large language model is",
+      "start": 273.52,
+      "duration": 3.72
+    },
+    {
+      "text": "to implement the data pre-processing",
+      "start": 275.4,
+      "duration": 4.079
+    },
+    {
+      "text": "pipeline the data pre-processing",
+      "start": 277.24,
+      "duration": 5.08
+    },
+    {
+      "text": "pipeline for an llm is much different",
+      "start": 279.479,
+      "duration": 5.0
+    },
+    {
+      "text": "than a regression model or a",
+      "start": 282.32,
+      "duration": 4.599
+    },
+    {
+      "text": "classification model when you have input",
+      "start": 284.479,
+      "duration": 4.641
+    },
+    {
+      "text": "texts in a large language model the goal",
+      "start": 286.919,
+      "duration": 4.361
+    },
+    {
+      "text": "is to predict the next token right so",
+      "start": 289.12,
+      "duration": 3.76
+    },
+    {
+      "text": "the first thing what you do is that you",
+      "start": 291.28,
+      "duration": 3.8
+    },
+    {
+      "text": "have to convert this input text into",
+      "start": 292.88,
+      "duration": 4.24
+    },
+    {
+      "text": "tokens and then you have to convert the",
+      "start": 295.08,
+      "duration": 4.679
+    },
+    {
+      "text": "tokens into token IDs",
+      "start": 297.12,
+      "duration": 4.56
+    },
+    {
+      "text": "after this the next step is to convert",
+      "start": 299.759,
+      "duration": 3.521
+    },
+    {
+      "text": "these token IDs into the higher",
+      "start": 301.68,
+      "duration": 3.799
+    },
+    {
+      "text": "dimensional Vector space so that the",
+      "start": 303.28,
+      "duration": 4.479
+    },
+    {
+      "text": "semantic meaning of different tokens is",
+      "start": 305.479,
+      "duration": 4.881
+    },
+    {
+      "text": "capture when you project the tokens into",
+      "start": 307.759,
+      "duration": 4.361
+    },
+    {
+      "text": "higher dimensional Vector space then you",
+      "start": 310.36,
+      "duration": 5.08
+    },
+    {
+      "text": "have to add uh the positional embeddings",
+      "start": 312.12,
+      "duration": 5.519
+    },
+    {
+      "text": "to these token embeddings so the",
+      "start": 315.44,
+      "duration": 4.08
+    },
+    {
+      "text": "projections of token IDs into higher",
+      "start": 317.639,
+      "duration": 3.68
+    },
+    {
+      "text": "dimensional Vector spaces as has been",
+      "start": 319.52,
+      "duration": 3.28
+    },
+    {
+      "text": "shown here are called as token",
+      "start": 321.319,
+      "duration": 3.6
+    },
+    {
+      "text": "embeddings you have to add positional",
+      "start": 322.8,
+      "duration": 4.08
+    },
+    {
+      "text": "embedding vectors to the Token embedding",
+      "start": 324.919,
+      "duration": 4.0
+    },
+    {
+      "text": "vectors the reason we add positional",
+      "start": 326.88,
+      "duration": 3.68
+    },
+    {
+      "text": "embeddings is because along with",
+      "start": 328.919,
+      "duration": 3.601
+    },
+    {
+      "text": "converting tokens into Vector",
+      "start": 330.56,
+      "duration": 4.88
+    },
+    {
+      "text": "representations the positions at which",
+      "start": 332.52,
+      "duration": 5.0
+    },
+    {
+      "text": "individual tokens show up is also very",
+      "start": 335.44,
+      "duration": 4.64
+    },
+    {
+      "text": "important when predicting the next token",
+      "start": 337.52,
+      "duration": 4.08
+    },
+    {
+      "text": "when you add token embeddings to",
+      "start": 340.08,
+      "duration": 3.239
+    },
+    {
+      "text": "positional embeddings it results into",
+      "start": 341.6,
+      "duration": 3.2
+    },
+    {
+      "text": "something which is called as input",
+      "start": 343.319,
+      "duration": 4.521
+    },
+    {
+      "text": "embeddings now these input embeddings",
+      "start": 344.8,
+      "duration": 6.2
+    },
+    {
+      "text": "are the output which we expect from the",
+      "start": 347.84,
+      "duration": 5.479
+    },
+    {
+      "text": "data pre-processing pipeline the whole",
+      "start": 351.0,
+      "duration": 4.24
+    },
+    {
+      "text": "goal of the data pre-processing pipeline",
+      "start": 353.319,
+      "duration": 4.121
+    },
+    {
+      "text": "is to take the input text from the huge",
+      "start": 355.24,
+      "duration": 4.399
+    },
+    {
+      "text": "number of documents the training data",
+      "start": 357.44,
+      "duration": 3.759
+    },
+    {
+      "text": "data which we are feeding to the large",
+      "start": 359.639,
+      "duration": 3.961
+    },
+    {
+      "text": "language model and to convert all of",
+      "start": 361.199,
+      "duration": 5.241
+    },
+    {
+      "text": "those documents into sentences then into",
+      "start": 363.6,
+      "duration": 5.319
+    },
+    {
+      "text": "tokens then into token IDs then into",
+      "start": 366.44,
+      "duration": 4.4
+    },
+    {
+      "text": "token embeddings then add positional",
+      "start": 368.919,
+      "duration": 3.601
+    },
+    {
+      "text": "embeddings and convert it into input",
+      "start": 370.84,
+      "duration": 3.639
+    },
+    {
+      "text": "embeddings to give you a sense of the",
+      "start": 372.52,
+      "duration": 4.32
+    },
+    {
+      "text": "token embedding dimension in gpt2 the",
+      "start": 374.479,
+      "duration": 4.361
+    },
+    {
+      "text": "embedding Dimension is of",
+      "start": 376.84,
+      "duration": 4.68
+    },
+    {
+      "text": "768 right so that's the first thing the",
+      "start": 378.84,
+      "duration": 4.919
+    },
+    {
+      "text": "data pre-processing pipeline after this",
+      "start": 381.52,
+      "duration": 3.92
+    },
+    {
+      "text": "we move to understand the attention",
+      "start": 383.759,
+      "duration": 3.961
+    },
+    {
+      "text": "mechanism attention mechanism is the",
+      "start": 385.44,
+      "duration": 5.96
+    },
+    {
+      "text": "driving engine which gives llm power so",
+      "start": 387.72,
+      "duration": 6.199
+    },
+    {
+      "text": "the main idea of attention is that when",
+      "start": 391.4,
+      "duration": 4.12
+    },
+    {
+      "text": "you look at Vector embeddings you just",
+      "start": 393.919,
+      "duration": 3.441
+    },
+    {
+      "text": "look at semantic meaning of one token",
+      "start": 395.52,
+      "duration": 3.32
+    },
+    {
+      "text": "right you do not look at the",
+      "start": 397.36,
+      "duration": 3.279
+    },
+    {
+      "text": "relationship of one token with all the",
+      "start": 398.84,
+      "duration": 3.68
+    },
+    {
+      "text": "other tokens however when you're",
+      "start": 400.639,
+      "duration": 3.921
+    },
+    {
+      "text": "predicting the next token context is",
+      "start": 402.52,
+      "duration": 4.239
+    },
+    {
+      "text": "very important you need to know how one",
+      "start": 404.56,
+      "duration": 4.84
+    },
+    {
+      "text": "token relates to all the other tokens",
+      "start": 406.759,
+      "duration": 4.241
+    },
+    {
+      "text": "when you look at one token how much",
+      "start": 409.4,
+      "duration": 3.199
+    },
+    {
+      "text": "importance to should you give to other",
+      "start": 411.0,
+      "duration": 3.96
+    },
+    {
+      "text": "tokens and that importance is also",
+      "start": 412.599,
+      "duration": 4.961
+    },
+    {
+      "text": "called as attention so the whole goal of",
+      "start": 414.96,
+      "duration": 4.679
+    },
+    {
+      "text": "the attention mechanism is to convert",
+      "start": 417.56,
+      "duration": 4.24
+    },
+    {
+      "text": "the input vectors to convert the input",
+      "start": 419.639,
+      "duration": 3.881
+    },
+    {
+      "text": "embedding vectors which look like this",
+      "start": 421.8,
+      "duration": 3.119
+    },
+    {
+      "text": "into something which is called as the",
+      "start": 423.52,
+      "duration": 3.799
+    },
+    {
+      "text": "context vectors so at the end of the",
+      "start": 424.919,
+      "duration": 3.881
+    },
+    {
+      "text": "attention when the attention mechanism",
+      "start": 427.319,
+      "duration": 3.56
+    },
+    {
+      "text": "is implemented the input vectors are",
+      "start": 428.8,
+      "duration": 3.88
+    },
+    {
+      "text": "converted into context vectors so you",
+      "start": 430.879,
+      "duration": 3.641
+    },
+    {
+      "text": "see the input embedding Vector for",
+      "start": 432.68,
+      "duration": 4.16
+    },
+    {
+      "text": "Journey and here is the context Vector",
+      "start": 434.52,
+      "duration": 4.6
+    },
+    {
+      "text": "for Journey context vectors are much",
+      "start": 436.84,
+      "duration": 4.039
+    },
+    {
+      "text": "richer than input embedding vectors",
+      "start": 439.12,
+      "duration": 3.479
+    },
+    {
+      "text": "because they also contain information",
+      "start": 440.879,
+      "duration": 4.04
+    },
+    {
+      "text": "about how Journey let say relates to all",
+      "start": 442.599,
+      "duration": 3.961
+    },
+    {
+      "text": "the other tokens in the",
+      "start": 444.919,
+      "duration": 4.161
+    },
+    {
+      "text": "sentence and to go from the input",
+      "start": 446.56,
+      "duration": 5.28
+    },
+    {
+      "text": "embedding vectors to the context vectors",
+      "start": 449.08,
+      "duration": 5.679
+    },
+    {
+      "text": "there is a huge sequential flow uh which",
+      "start": 451.84,
+      "duration": 4.84
+    },
+    {
+      "text": "we need to understand we first multiply",
+      "start": 454.759,
+      "duration": 4.16
+    },
+    {
+      "text": "the inputs with the trainable query key",
+      "start": 456.68,
+      "duration": 4.519
+    },
+    {
+      "text": "and the value matrices which give us the",
+      "start": 458.919,
+      "duration": 4.441
+    },
+    {
+      "text": "queries keys and the value Matrix we",
+      "start": 461.199,
+      "duration": 4.521
+    },
+    {
+      "text": "multiply queries with the keys transpose",
+      "start": 463.36,
+      "duration": 4.36
+    },
+    {
+      "text": "which gives us the attention score then",
+      "start": 465.72,
+      "duration": 3.879
+    },
+    {
+      "text": "we scale the attention score with square",
+      "start": 467.72,
+      "duration": 3.96
+    },
+    {
+      "text": "root of the keys Dimension we add",
+      "start": 469.599,
+      "duration": 4.681
+    },
+    {
+      "text": "Dropout we Implement caal attention",
+      "start": 471.68,
+      "duration": 5.56
+    },
+    {
+      "text": "which means that we add a mask to all of",
+      "start": 474.28,
+      "duration": 5.8
+    },
+    {
+      "text": "those tokens um which are not involved",
+      "start": 477.24,
+      "duration": 4.639
+    },
+    {
+      "text": "in the next token prediction task and",
+      "start": 480.08,
+      "duration": 4.48
+    },
+    {
+      "text": "then we add a soft Max layer so after",
+      "start": 481.879,
+      "duration": 4.641
+    },
+    {
+      "text": "implementing the scaling plus Dropout",
+      "start": 484.56,
+      "duration": 3.759
+    },
+    {
+      "text": "plus softmax we convert the attention",
+      "start": 486.52,
+      "duration": 3.88
+    },
+    {
+      "text": "scores into attention weights the",
+      "start": 488.319,
+      "duration": 3.72
+    },
+    {
+      "text": "attention weights are then multiplied",
+      "start": 490.4,
+      "duration": 3.519
+    },
+    {
+      "text": "with the values and then we get the",
+      "start": 492.039,
+      "duration": 4.521
+    },
+    {
+      "text": "context Vector Matrix now this is only",
+      "start": 493.919,
+      "duration": 5.361
+    },
+    {
+      "text": "for one attention head when we consider",
+      "start": 496.56,
+      "duration": 4.24
+    },
+    {
+      "text": "a large language model there are",
+      "start": 499.28,
+      "duration": 2.96
+    },
+    {
+      "text": "multiple attention heads which are",
+      "start": 500.8,
+      "duration": 3.32
+    },
+    {
+      "text": "acting the reason we have multiple",
+      "start": 502.24,
+      "duration": 3.639
+    },
+    {
+      "text": "attention head is to capture multiple",
+      "start": 504.12,
+      "duration": 3.96
+    },
+    {
+      "text": "dependencies and long range dependencies",
+      "start": 505.879,
+      "duration": 5.88
+    },
+    {
+      "text": "within a large paragraph So when you",
+      "start": 508.08,
+      "duration": 5.959
+    },
+    {
+      "text": "combine the context Vector matrices from",
+      "start": 511.759,
+      "duration": 4.041
+    },
+    {
+      "text": "multiple attention heads you get this",
+      "start": 514.039,
+      "duration": 4.24
+    },
+    {
+      "text": "ultimate final context Vector Matrix",
+      "start": 515.8,
+      "duration": 4.44
+    },
+    {
+      "text": "that's the output when the input",
+      "start": 518.279,
+      "duration": 4.081
+    },
+    {
+      "text": "embedding Matrix passes through the",
+      "start": 520.24,
+      "duration": 5.24
+    },
+    {
+      "text": "attention head so the whole Revolution",
+      "start": 522.36,
+      "duration": 4.44
+    },
+    {
+      "text": "which happened with respect to large",
+      "start": 525.48,
+      "duration": 3.0
+    },
+    {
+      "text": "language models is because of this",
+      "start": 526.8,
+      "duration": 3.479
+    },
+    {
+      "text": "workflow which I'm sharing on the screen",
+      "start": 528.48,
+      "duration": 3.799
+    },
+    {
+      "text": "right now taking the input embedding",
+      "start": 530.279,
+      "duration": 3.761
+    },
+    {
+      "text": "Matrix and converting it into this",
+      "start": 532.279,
+      "duration": 4.721
+    },
+    {
+      "text": "context Vector Matrix that's the key",
+      "start": 534.04,
+      "duration": 4.76
+    },
+    {
+      "text": "after you understood the attention",
+      "start": 537.0,
+      "duration": 3.88
+    },
+    {
+      "text": "mechanism then we move to the llm",
+      "start": 538.8,
+      "duration": 4.279
+    },
+    {
+      "text": "architecture now remember that I'm going",
+      "start": 540.88,
+      "duration": 4.68
+    },
+    {
+      "text": "a bit fast here because this is a recap",
+      "start": 543.079,
+      "duration": 4.801
+    },
+    {
+      "text": "uh this is a summary if you want to",
+      "start": 545.56,
+      "duration": 3.76
+    },
+    {
+      "text": "understand each and every element I",
+      "start": 547.88,
+      "duration": 3.04
+    },
+    {
+      "text": "highly encourage you to go to that",
+      "start": 549.32,
+      "duration": 3.44
+    },
+    {
+      "text": "specific lecture and watch that entire",
+      "start": 550.92,
+      "duration": 4.68
+    },
+    {
+      "text": "video again now the next step after",
+      "start": 552.76,
+      "duration": 4.04
+    },
+    {
+      "text": "understanding attention is to look at",
+      "start": 555.6,
+      "duration": 3.359
+    },
+    {
+      "text": "the llm architecture so this is the",
+      "start": 556.8,
+      "duration": 3.68
+    },
+    {
+      "text": "bird's eye view of how the llm",
+      "start": 558.959,
+      "duration": 3.521
+    },
+    {
+      "text": "architecture looks like and actually let",
+      "start": 560.48,
+      "duration": 3.88
+    },
+    {
+      "text": "me take another figure which I think is",
+      "start": 562.48,
+      "duration": 3.24
+    },
+    {
+      "text": "a better",
+      "start": 564.36,
+      "duration": 3.64
+    },
+    {
+      "text": "representation of the llm architecture",
+      "start": 565.72,
+      "duration": 4.799
+    },
+    {
+      "text": "so I'm just taking a screenshot sh of",
+      "start": 568.0,
+      "duration": 4.44
+    },
+    {
+      "text": "this figure here and I'm going to move",
+      "start": 570.519,
+      "duration": 5.76
+    },
+    {
+      "text": "it above so if you look",
+      "start": 572.44,
+      "duration": 8.12
+    },
+    {
+      "text": "at right so if you look at this this",
+      "start": 576.279,
+      "duration": 6.761
+    },
+    {
+      "text": "architecture this gives us",
+      "start": 580.56,
+      "duration": 5.519
+    },
+    {
+      "text": "a a bird's eye view of what actually",
+      "start": 583.04,
+      "duration": 4.6
+    },
+    {
+      "text": "goes on when you look at a large",
+      "start": 586.079,
+      "duration": 3.601
+    },
+    {
+      "text": "language model so first as I mentioned",
+      "start": 587.64,
+      "duration": 4.72
+    },
+    {
+      "text": "you have inputs U yeah first as I",
+      "start": 589.68,
+      "duration": 4.0
+    },
+    {
+      "text": "mentioned you have inputs those are",
+      "start": 592.36,
+      "duration": 4.52
+    },
+    {
+      "text": "converted into bunch of tokens then uh",
+      "start": 593.68,
+      "duration": 4.719
+    },
+    {
+      "text": "the tokens are converted into Vector",
+      "start": 596.88,
+      "duration": 3.56
+    },
+    {
+      "text": "embeddings we add embeddings and that",
+      "start": 598.399,
+      "duration": 4.201
+    },
+    {
+      "text": "gives us input embeddings the input",
+      "start": 600.44,
+      "duration": 3.8
+    },
+    {
+      "text": "embeddings are then passed into this",
+      "start": 602.6,
+      "duration": 4.72
+    },
+    {
+      "text": "block into this uh yeah so token",
+      "start": 604.24,
+      "duration": 4.599
+    },
+    {
+      "text": "embedding layer positional embedding",
+      "start": 607.32,
+      "duration": 4.32
+    },
+    {
+      "text": "layer and then we have a Dropout layer",
+      "start": 608.839,
+      "duration": 4.601
+    },
+    {
+      "text": "and then we have these input embeddings",
+      "start": 611.64,
+      "duration": 3.36
+    },
+    {
+      "text": "which are then passed into this Blue",
+      "start": 613.44,
+      "duration": 3.8
+    },
+    {
+      "text": "Block which is the Transformer block the",
+      "start": 615.0,
+      "duration": 4.519
+    },
+    {
+      "text": "Transformer block is where all the magic",
+      "start": 617.24,
+      "duration": 4.44
+    },
+    {
+      "text": "happens so you might be thinking okay",
+      "start": 619.519,
+      "duration": 3.961
+    },
+    {
+      "text": "now where does attention fit within the",
+      "start": 621.68,
+      "duration": 4.12
+    },
+    {
+      "text": "Transformer block within the Transformer",
+      "start": 623.48,
+      "duration": 3.919
+    },
+    {
+      "text": "block there is another module which is",
+      "start": 625.8,
+      "duration": 3.84
+    },
+    {
+      "text": "called as the attention module so the",
+      "start": 627.399,
+      "duration": 3.761
+    },
+    {
+      "text": "attention mechanism which we learned",
+      "start": 629.64,
+      "duration": 3.8
+    },
+    {
+      "text": "about earlier and the key query value",
+      "start": 631.16,
+      "duration": 3.6
+    },
+    {
+      "text": "all of these things are actually",
+      "start": 633.44,
+      "duration": 3.28
+    },
+    {
+      "text": "happening inside this mask multi-ad",
+      "start": 634.76,
+      "duration": 4.36
+    },
+    {
+      "text": "attention modu so within the Transformer",
+      "start": 636.72,
+      "duration": 4.04
+    },
+    {
+      "text": "block there is a normalization layer",
+      "start": 639.12,
+      "duration": 3.839
+    },
+    {
+      "text": "multi-head attention Dropout layer these",
+      "start": 640.76,
+      "duration": 3.879
+    },
+    {
+      "text": "are shortcut connection then other",
+      "start": 642.959,
+      "duration": 3.68
+    },
+    {
+      "text": "normalization layer a feed forward",
+      "start": 644.639,
+      "duration": 4.481
+    },
+    {
+      "text": "neural network another Dropout layer one",
+      "start": 646.639,
+      "duration": 4.161
+    },
+    {
+      "text": "more shortcut connection and then we",
+      "start": 649.12,
+      "duration": 3.959
+    },
+    {
+      "text": "come out of the Transformer block after",
+      "start": 650.8,
+      "duration": 3.96
+    },
+    {
+      "text": "coming out of the Transformer block",
+      "start": 653.079,
+      "duration": 3.721
+    },
+    {
+      "text": "there's a layer normalization layer and",
+      "start": 654.76,
+      "duration": 4.0
+    },
+    {
+      "text": "a final neural network which converts",
+      "start": 656.8,
+      "duration": 3.92
+    },
+    {
+      "text": "the trans former outputs into something",
+      "start": 658.76,
+      "duration": 4.28
+    },
+    {
+      "text": "which is called as the loged sensor the",
+      "start": 660.72,
+      "duration": 4.919
+    },
+    {
+      "text": "loged sensor is then used to predict the",
+      "start": 663.04,
+      "duration": 5.2
+    },
+    {
+      "text": "next token given a given uh given an",
+      "start": 665.639,
+      "duration": 4.081
+    },
+    {
+      "text": "input",
+      "start": 668.24,
+      "duration": 4.12
+    },
+    {
+      "text": "sequence now when you look at a gpt2",
+      "start": 669.72,
+      "duration": 4.359
+    },
+    {
+      "text": "let's say there are 12 such Transformer",
+      "start": 672.36,
+      "duration": 3.52
+    },
+    {
+      "text": "blocks which are arranged together for",
+      "start": 674.079,
+      "duration": 4.56
+    },
+    {
+      "text": "larger llms even multiple more",
+      "start": 675.88,
+      "duration": 4.759
+    },
+    {
+      "text": "Transformer blocks are arranged together",
+      "start": 678.639,
+      "duration": 3.801
+    },
+    {
+      "text": "and Within These Transformer blocks",
+      "start": 680.639,
+      "duration": 3.921
+    },
+    {
+      "text": "there is multi-ad attention so within",
+      "start": 682.44,
+      "duration": 3.959
+    },
+    {
+      "text": "every Transformer block there can be 12",
+      "start": 684.56,
+      "duration": 4.12
+    },
+    {
+      "text": "or there can be 24 attention heads so",
+      "start": 686.399,
+      "duration": 4.0
+    },
+    {
+      "text": "there are multip mle Transformer blocks",
+      "start": 688.68,
+      "duration": 3.48
+    },
+    {
+      "text": "and within each Transformer blocks there",
+      "start": 690.399,
+      "duration": 4.44
+    },
+    {
+      "text": "are multiple attention heads uh the",
+      "start": 692.16,
+      "duration": 4.919
+    },
+    {
+      "text": "terminology is a bit complex but once",
+      "start": 694.839,
+      "duration": 4.361
+    },
+    {
+      "text": "you get a visual feel of this",
+      "start": 697.079,
+      "duration": 5.0
+    },
+    {
+      "text": "architecture uh it's actually quite easy",
+      "start": 699.2,
+      "duration": 4.84
+    },
+    {
+      "text": "to code it sequentially so once you",
+      "start": 702.079,
+      "duration": 3.76
+    },
+    {
+      "text": "understood this architecture what we did",
+      "start": 704.04,
+      "duration": 3.599
+    },
+    {
+      "text": "in the lecture series is that we coded",
+      "start": 705.839,
+      "duration": 3.401
+    },
+    {
+      "text": "every single thing with respect to this",
+      "start": 707.639,
+      "duration": 3.921
+    },
+    {
+      "text": "architecture completely from scratch so",
+      "start": 709.24,
+      "duration": 3.2
+    },
+    {
+      "text": "you can",
+      "start": 711.56,
+      "duration": 3.839
+    },
+    {
+      "text": "search feed forward here and here is the",
+      "start": 712.44,
+      "duration": 4.959
+    },
+    {
+      "text": "part three of the architecture so in",
+      "start": 715.399,
+      "duration": 3.721
+    },
+    {
+      "text": "fact we went sequentially with respect",
+      "start": 717.399,
+      "duration": 4.24
+    },
+    {
+      "text": "to to all the parts we first covered",
+      "start": 719.12,
+      "duration": 5.719
+    },
+    {
+      "text": "layer normalization then we covered uh",
+      "start": 721.639,
+      "duration": 5.2
+    },
+    {
+      "text": "the feed forward neural network then we",
+      "start": 724.839,
+      "duration": 4.44
+    },
+    {
+      "text": "covered the shortcut connections then we",
+      "start": 726.839,
+      "duration": 4.641
+    },
+    {
+      "text": "covered the coding attention layers so",
+      "start": 729.279,
+      "duration": 4.161
+    },
+    {
+      "text": "everything is covered in coding as well",
+      "start": 731.48,
+      "duration": 4.32
+    },
+    {
+      "text": "along with this whiteboard approach so",
+      "start": 733.44,
+      "duration": 3.839
+    },
+    {
+      "text": "once you figure out this llm",
+      "start": 735.8,
+      "duration": 3.24
+    },
+    {
+      "text": "architecture you will have a bird's ey",
+      "start": 737.279,
+      "duration": 3.36
+    },
+    {
+      "text": "view of what exactly happens with the",
+      "start": 739.04,
+      "duration": 3.239
+    },
+    {
+      "text": "input sequence how it goes through the",
+      "start": 740.639,
+      "duration": 3.721
+    },
+    {
+      "text": "Transformer how it comes out of the",
+      "start": 742.279,
+      "duration": 4.041
+    },
+    {
+      "text": "transform Transformer we have the logic",
+      "start": 744.36,
+      "duration": 4.36
+    },
+    {
+      "text": "sensor and that is then used to predict",
+      "start": 746.32,
+      "duration": 4.68
+    },
+    {
+      "text": "the next two token so this is my llm",
+      "start": 748.72,
+      "duration": 4.52
+    },
+    {
+      "text": "prediction now this next token which is",
+      "start": 751.0,
+      "duration": 4.68
+    },
+    {
+      "text": "predicted by my llm is used to calculate",
+      "start": 753.24,
+      "duration": 6.039
+    },
+    {
+      "text": "the loss function between the llm output",
+      "start": 755.68,
+      "duration": 5.839
+    },
+    {
+      "text": "and the True Result after we get the",
+      "start": 759.279,
+      "duration": 3.92
+    },
+    {
+      "text": "loss function the next step is to run",
+      "start": 761.519,
+      "duration": 4.12
+    },
+    {
+      "text": "the llm pre-training loop which means",
+      "start": 763.199,
+      "duration": 5.08
+    },
+    {
+      "text": "that once we have understood how to do",
+      "start": 765.639,
+      "duration": 4.921
+    },
+    {
+      "text": "the forward pass which means that how to",
+      "start": 768.279,
+      "duration": 4.041
+    },
+    {
+      "text": "have an input sentence or how to have an",
+      "start": 770.56,
+      "duration": 4.04
+    },
+    {
+      "text": "input sequence get the output from the",
+      "start": 772.32,
+      "duration": 5.12
+    },
+    {
+      "text": "llm and get the loss based on the next",
+      "start": 774.6,
+      "duration": 4.599
+    },
+    {
+      "text": "token and this loss by the way is the",
+      "start": 777.44,
+      "duration": 3.6
+    },
+    {
+      "text": "loss entropy loss between the next token",
+      "start": 779.199,
+      "duration": 4.08
+    },
+    {
+      "text": "prediction which we have and the actual",
+      "start": 781.04,
+      "duration": 4.44
+    },
+    {
+      "text": "next token once we know how to get the",
+      "start": 783.279,
+      "duration": 3.441
+    },
+    {
+      "text": "loss then we have to do a back",
+      "start": 785.48,
+      "duration": 3.039
+    },
+    {
+      "text": "propagation which means that then we",
+      "start": 786.72,
+      "duration": 3.52
+    },
+    {
+      "text": "have to take the partial derivative of",
+      "start": 788.519,
+      "duration": 3.281
+    },
+    {
+      "text": "the loss with respect to all of the",
+      "start": 790.24,
+      "duration": 4.719
+    },
+    {
+      "text": "parameters in the llm architecture so",
+      "start": 791.8,
+      "duration": 4.599
+    },
+    {
+      "text": "here I have just mentioned the training",
+      "start": 794.959,
+      "duration": 3.24
+    },
+    {
+      "text": "Loop first you calculate the loss on the",
+      "start": 796.399,
+      "duration": 3.481
+    },
+    {
+      "text": "entire batch then you do the backward",
+      "start": 798.199,
+      "duration": 3.601
+    },
+    {
+      "text": "pass which means that you calculate the",
+      "start": 799.88,
+      "duration": 3.56
+    },
+    {
+      "text": "partial derivative of the loss with",
+      "start": 801.8,
+      "duration": 3.76
+    },
+    {
+      "text": "respect to all of the trainable weights",
+      "start": 803.44,
+      "duration": 3.68
+    },
+    {
+      "text": "so here you might be thinking what all",
+      "start": 805.56,
+      "duration": 3.56
+    },
+    {
+      "text": "are the different trainable weights so",
+      "start": 807.12,
+      "duration": 3.48
+    },
+    {
+      "text": "so there are trainable weights in the",
+      "start": 809.12,
+      "duration": 3.6
+    },
+    {
+      "text": "token embedding positional embedding",
+      "start": 810.6,
+      "duration": 4.28
+    },
+    {
+      "text": "because we don't know the so when I say",
+      "start": 812.72,
+      "duration": 3.84
+    },
+    {
+      "text": "transform it into a vector space we",
+      "start": 814.88,
+      "duration": 3.48
+    },
+    {
+      "text": "don't know what the ideal transformation",
+      "start": 816.56,
+      "duration": 3.76
+    },
+    {
+      "text": "so we need to figure out those",
+      "start": 818.36,
+      "duration": 3.44
+    },
+    {
+      "text": "parameters we need to figure out the",
+      "start": 820.32,
+      "duration": 3.759
+    },
+    {
+      "text": "positional embedding parameters we need",
+      "start": 821.8,
+      "duration": 4.24
+    },
+    {
+      "text": "to have the we need to figure out the",
+      "start": 824.079,
+      "duration": 4.921
+    },
+    {
+      "text": "scale and shift parameters in the layer",
+      "start": 826.04,
+      "duration": 5.84
+    },
+    {
+      "text": "normalization we need to train the query",
+      "start": 829.0,
+      "duration": 4.72
+    },
+    {
+      "text": "key and the value trainable weight",
+      "start": 831.88,
+      "duration": 4.36
+    },
+    {
+      "text": "matrices these parameters in the mass",
+      "start": 833.72,
+      "duration": 4.6
+    },
+    {
+      "text": "multihead attention module then the",
+      "start": 836.24,
+      "duration": 4.039
+    },
+    {
+      "text": "second layer nor alization layer also",
+      "start": 838.32,
+      "duration": 4.04
+    },
+    {
+      "text": "has trainable parameters the feed",
+      "start": 840.279,
+      "duration": 3.881
+    },
+    {
+      "text": "forward Network also has trainable",
+      "start": 842.36,
+      "duration": 4.08
+    },
+    {
+      "text": "parameters and the final output layer",
+      "start": 844.16,
+      "duration": 3.919
+    },
+    {
+      "text": "and the final layer Norm also have",
+      "start": 846.44,
+      "duration": 3.92
+    },
+    {
+      "text": "trainable parameters and remember that",
+      "start": 848.079,
+      "duration": 4.801
+    },
+    {
+      "text": "we have 12 such Transformer blocks so",
+      "start": 850.36,
+      "duration": 4.12
+    },
+    {
+      "text": "that's why all of these parameters when",
+      "start": 852.88,
+      "duration": 3.16
+    },
+    {
+      "text": "you add up it leads to more than a",
+      "start": 854.48,
+      "duration": 3.159
+    },
+    {
+      "text": "million or more than even a billion",
+      "start": 856.04,
+      "duration": 3.76
+    },
+    {
+      "text": "parameters which we need to train so we",
+      "start": 857.639,
+      "duration": 3.961
+    },
+    {
+      "text": "need to find the gradients for all of",
+      "start": 859.8,
+      "duration": 3.44
+    },
+    {
+      "text": "these parameters and then we need to do",
+      "start": 861.6,
+      "duration": 4.84
+    },
+    {
+      "text": "a gradient update by something like wi +",
+      "start": 863.24,
+      "duration": 6.2
+    },
+    {
+      "text": "1 is equal to Wi IUS Alpha * the partial",
+      "start": 866.44,
+      "duration": 4.8
+    },
+    {
+      "text": "gradient of loss with respect to the",
+      "start": 869.44,
+      "duration": 4.0
+    },
+    {
+      "text": "weights this is just a vanilla gradient",
+      "start": 871.24,
+      "duration": 4.159
+    },
+    {
+      "text": "descent which I'm showing you usually we",
+      "start": 873.44,
+      "duration": 3.519
+    },
+    {
+      "text": "Implement some more sophisticated",
+      "start": 875.399,
+      "duration": 4.44
+    },
+    {
+      "text": "schemes like ADM or Adam with weight",
+      "start": 876.959,
+      "duration": 5.641
+    },
+    {
+      "text": "Decay once you do this pre-training Loop",
+      "start": 879.839,
+      "duration": 5.44
+    },
+    {
+      "text": "you will actually get loss function as a",
+      "start": 882.6,
+      "duration": 5.56
+    },
+    {
+      "text": "uh loss as a function of the epox and",
+      "start": 885.279,
+      "duration": 5.0
+    },
+    {
+      "text": "this we have done on our own laptop on",
+      "start": 888.16,
+      "duration": 4.16
+    },
+    {
+      "text": "our own system but on a very small data",
+      "start": 890.279,
+      "duration": 4.92
+    },
+    {
+      "text": "set keep in mind that the pre-training",
+      "start": 892.32,
+      "duration": 4.72
+    },
+    {
+      "text": "which is needed for actual llms like",
+      "start": 895.199,
+      "duration": 5.361
+    },
+    {
+      "text": "gpt2 gpt3 GPT 4 Etc they are done on",
+      "start": 897.04,
+      "duration": 5.799
+    },
+    {
+      "text": "huge amounts of data set with millions",
+      "start": 900.56,
+      "duration": 6.04
+    },
+    {
+      "text": "of uh news articles with millions of",
+      "start": 902.839,
+      "duration": 6.44
+    },
+    {
+      "text": "blogs books Etc and that pre-training",
+      "start": 906.6,
+      "duration": 5.72
+    },
+    {
+      "text": "costs more than $1 million also so it's",
+      "start": 909.279,
+      "duration": 5.161
+    },
+    {
+      "text": "impossible for us to pre-train an actual",
+      "start": 912.32,
+      "duration": 4.48
+    },
+    {
+      "text": "full-blown large language models on our",
+      "start": 914.44,
+      "duration": 4.16
+    },
+    {
+      "text": "laptop but once you go through the",
+      "start": 916.8,
+      "duration": 4.24
+    },
+    {
+      "text": "lecture videos which I'm showing you you",
+      "start": 918.6,
+      "duration": 4.0
+    },
+    {
+      "text": "can run the pre-training loop for a",
+      "start": 921.04,
+      "duration": 3.2
+    },
+    {
+      "text": "small data set and that gives you an",
+      "start": 922.6,
+      "duration": 4.359
+    },
+    {
+      "text": "entire feel of how GPT is constructed",
+      "start": 924.24,
+      "duration": 4.36
+    },
+    {
+      "text": "what we did after this is that we took",
+      "start": 926.959,
+      "duration": 3.481
+    },
+    {
+      "text": "our architecture we took our llm",
+      "start": 928.6,
+      "duration": 3.88
+    },
+    {
+      "text": "architecture and we loaded pre-trained",
+      "start": 930.44,
+      "duration": 3.319
+    },
+    {
+      "text": "weights from",
+      "start": 932.48,
+      "duration": 4.08
+    },
+    {
+      "text": "gpt2 and then we actually predicted the",
+      "start": 933.759,
+      "duration": 5.56
+    },
+    {
+      "text": "next token based on the input input",
+      "start": 936.56,
+      "duration": 4.959
+    },
+    {
+      "text": "sentence this was the first fundamental",
+      "start": 939.319,
+      "duration": 5.0
+    },
+    {
+      "text": "result which we achieved in this lecture",
+      "start": 941.519,
+      "duration": 4.921
+    },
+    {
+      "text": "series after the pre-training is",
+      "start": 944.319,
+      "duration": 3.801
+    },
+    {
+      "text": "completed then we move to llm fine",
+      "start": 946.44,
+      "duration": 3.6
+    },
+    {
+      "text": "tuning we learned about two types of",
+      "start": 948.12,
+      "duration": 4.159
+    },
+    {
+      "text": "fine tuning classification fine tuning",
+      "start": 950.04,
+      "duration": 3.64
+    },
+    {
+      "text": "in which we built an email",
+      "start": 952.279,
+      "duration": 4.0
+    },
+    {
+      "text": "classification llm so when you have",
+      "start": 953.68,
+      "duration": 4.68
+    },
+    {
+      "text": "given an email the llm can classify",
+      "start": 956.279,
+      "duration": 4.321
+    },
+    {
+      "text": "whether it's SP or not a Spam and then",
+      "start": 958.36,
+      "duration": 5.159
+    },
+    {
+      "text": "we also built an instruction finetuned",
+      "start": 960.6,
+      "duration": 4.84
+    },
+    {
+      "text": "llm fully from scratch so you have to",
+      "start": 963.519,
+      "duration": 3.76
+    },
+    {
+      "text": "give a bunch of instructions inputs and",
+      "start": 965.44,
+      "duration": 3.8
+    },
+    {
+      "text": "outputs and train the llm to do a good",
+      "start": 967.279,
+      "duration": 4.12
+    },
+    {
+      "text": "job on instructions so let's say if the",
+      "start": 969.24,
+      "duration": 3.56
+    },
+    {
+      "text": "instruction is convert the active",
+      "start": 971.399,
+      "duration": 3.56
+    },
+    {
+      "text": "sentence to passive the active sentence",
+      "start": 972.8,
+      "duration": 4.159
+    },
+    {
+      "text": "is the chef Cooks the meal every day the",
+      "start": 974.959,
+      "duration": 3.641
+    },
+    {
+      "text": "passive sentence is the meal is cooked",
+      "start": 976.959,
+      "duration": 3.8
+    },
+    {
+      "text": "every day by the chef and we train this",
+      "start": 978.6,
+      "duration": 3.919
+    },
+    {
+      "text": "fully from scratch whatever I'm showing",
+      "start": 980.759,
+      "duration": 3.681
+    },
+    {
+      "text": "you right now has been",
+      "start": 982.519,
+      "duration": 4.44
+    },
+    {
+      "text": "implemented uh based on the architecture",
+      "start": 984.44,
+      "duration": 4.12
+    },
+    {
+      "text": "which we have developed in code we have",
+      "start": 986.959,
+      "duration": 4.481
+    },
+    {
+      "text": "not used used it from anywhere else and",
+      "start": 988.56,
+      "duration": 4.639
+    },
+    {
+      "text": "then finally we learned about llm",
+      "start": 991.44,
+      "duration": 3.879
+    },
+    {
+      "text": "evaluation we learned about three types",
+      "start": 993.199,
+      "duration": 4.481
+    },
+    {
+      "text": "of evaluation the first is M",
+      "start": 995.319,
+      "duration": 4.681
+    },
+    {
+      "text": "mlu which is based on this paper",
+      "start": 997.68,
+      "duration": 4.48
+    },
+    {
+      "text": "measuring massive multitask language",
+      "start": 1000.0,
+      "duration": 3.88
+    },
+    {
+      "text": "understanding what they show in this",
+      "start": 1002.16,
+      "duration": 4.479
+    },
+    {
+      "text": "paper here is that basically we have uh",
+      "start": 1003.88,
+      "duration": 5.48
+    },
+    {
+      "text": "57 tests which we can eval use to",
+      "start": 1006.639,
+      "duration": 5.401
+    },
+    {
+      "text": "evaluate the llm performance that's one",
+      "start": 1009.36,
+      "duration": 4.56
+    },
+    {
+      "text": "type of evaluation the second type is",
+      "start": 1012.04,
+      "duration": 4.799
+    },
+    {
+      "text": "using humans to compare and rate llms",
+      "start": 1013.92,
+      "duration": 5.08
+    },
+    {
+      "text": "and the third type is using a powerful",
+      "start": 1016.839,
+      "duration": 4.201
+    },
+    {
+      "text": "large language model to to evaluate",
+      "start": 1019.0,
+      "duration": 4.12
+    },
+    {
+      "text": "another llm so this is the approach",
+      "start": 1021.04,
+      "duration": 3.84
+    },
+    {
+      "text": "which we followed so we used a tool",
+      "start": 1023.12,
+      "duration": 5.439
+    },
+    {
+      "text": "called o Lama to access Lama 3 llm",
+      "start": 1024.88,
+      "duration": 5.439
+    },
+    {
+      "text": "especially we use this",
+      "start": 1028.559,
+      "duration": 5.721
+    },
+    {
+      "text": "llama 8 billion parameter Lama 38b",
+      "start": 1030.319,
+      "duration": 5.401
+    },
+    {
+      "text": "instruct model which is already",
+      "start": 1034.28,
+      "duration": 3.039
+    },
+    {
+      "text": "finetuned and it has 8 billion",
+      "start": 1035.72,
+      "duration": 4.8
+    },
+    {
+      "text": "parameters so it is super powerful and",
+      "start": 1037.319,
+      "duration": 5.24
+    },
+    {
+      "text": "uh what we did with this larger llm is",
+      "start": 1040.52,
+      "duration": 4.48
+    },
+    {
+      "text": "that if the true output is this and if",
+      "start": 1042.559,
+      "duration": 4.28
+    },
+    {
+      "text": "the model response is this we ask the",
+      "start": 1045.0,
+      "duration": 3.88
+    },
+    {
+      "text": "llm to compare the output with theel",
+      "start": 1046.839,
+      "duration": 3.881
+    },
+    {
+      "text": "model response and to give an evaluation",
+      "start": 1048.88,
+      "duration": 4.44
+    },
+    {
+      "text": "score and this is the evaluation score",
+      "start": 1050.72,
+      "duration": 3.839
+    },
+    {
+      "text": "given by the",
+      "start": 1053.32,
+      "duration": 4.32
+    },
+    {
+      "text": "llm So based on the model response and",
+      "start": 1054.559,
+      "duration": 4.841
+    },
+    {
+      "text": "the actual response it assigns a score",
+      "start": 1057.64,
+      "duration": 3.76
+    },
+    {
+      "text": "out of 100 so that's the third",
+      "start": 1059.4,
+      "duration": 4.92
+    },
+    {
+      "text": "evaluation tactic which we learned about",
+      "start": 1061.4,
+      "duration": 5.519
+    },
+    {
+      "text": "this is the entire details of what all",
+      "start": 1064.32,
+      "duration": 4.08
+    },
+    {
+      "text": "we implemented in this course we",
+      "start": 1066.919,
+      "duration": 4.281
+    },
+    {
+      "text": "implemented an next word or next token",
+      "start": 1068.4,
+      "duration": 4.76
+    },
+    {
+      "text": "prediction llm from scratch we",
+      "start": 1071.2,
+      "duration": 4.04
+    },
+    {
+      "text": "implemented an email classification fine",
+      "start": 1073.16,
+      "duration": 3.999
+    },
+    {
+      "text": "tuned llm and we implemented an",
+      "start": 1075.24,
+      "duration": 4.2
+    },
+    {
+      "text": "instruction fine tuned llm once you",
+      "start": 1077.159,
+      "duration": 4.241
+    },
+    {
+      "text": "complete this lecture series I'm sure",
+      "start": 1079.44,
+      "duration": 3.56
+    },
+    {
+      "text": "that you will understand the nuts and",
+      "start": 1081.4,
+      "duration": 3.84
+    },
+    {
+      "text": "bolts of building a large language model",
+      "start": 1083.0,
+      "duration": 4.28
+    },
+    {
+      "text": "and you will be a much stronger machine",
+      "start": 1085.24,
+      "duration": 4.64
+    },
+    {
+      "text": "learning and llm engineer if you have",
+      "start": 1087.28,
+      "duration": 4.08
+    },
+    {
+      "text": "completed this series and if you're",
+      "start": 1089.88,
+      "duration": 3.48
+    },
+    {
+      "text": "watching this lecture now I highly",
+      "start": 1091.36,
+      "duration": 3.88
+    },
+    {
+      "text": "encourage you as next steps to dive into",
+      "start": 1093.36,
+      "duration": 4.16
+    },
+    {
+      "text": "fundamental research you have this code",
+      "start": 1095.24,
+      "duration": 5.52
+    },
+    {
+      "text": "file right start making changes start",
+      "start": 1097.52,
+      "duration": 4.92
+    },
+    {
+      "text": "exploring small language",
+      "start": 1100.76,
+      "duration": 4.039
+    },
+    {
+      "text": "models why what's the need for large",
+      "start": 1102.44,
+      "duration": 4.28
+    },
+    {
+      "text": "language models can we just have three",
+      "start": 1104.799,
+      "duration": 3.641
+    },
+    {
+      "text": "Transformer blocks you can now start",
+      "start": 1106.72,
+      "duration": 3.72
+    },
+    {
+      "text": "making all these edits to the code",
+      "start": 1108.44,
+      "duration": 3.52
+    },
+    {
+      "text": "because the code is in building blocks",
+      "start": 1110.44,
+      "duration": 3.28
+    },
+    {
+      "text": "format right you can change hyper",
+      "start": 1111.96,
+      "duration": 3.36
+    },
+    {
+      "text": "parameters explore the effect of",
+      "start": 1113.72,
+      "duration": 3.88
+    },
+    {
+      "text": "different optimizers explore the effect",
+      "start": 1115.32,
+      "duration": 3.8
+    },
+    {
+      "text": "of different learning rates different",
+      "start": 1117.6,
+      "duration": 4.24
+    },
+    {
+      "text": "number of Transformer blocks explore the",
+      "start": 1119.12,
+      "duration": 4.6
+    },
+    {
+      "text": "effect of different evaluation",
+      "start": 1121.84,
+      "duration": 3.64
+    },
+    {
+      "text": "strategies it's an area of active",
+      "start": 1123.72,
+      "duration": 4.36
+    },
+    {
+      "text": "research try to dive into research and",
+      "start": 1125.48,
+      "duration": 4.04
+    },
+    {
+      "text": "that's the best way to stay at The",
+      "start": 1128.08,
+      "duration": 3.52
+    },
+    {
+      "text": "Cutting Edge and contribute to",
+      "start": 1129.52,
+      "duration": 4.88
+    },
+    {
+      "text": "Innovative and impactful llm research I",
+      "start": 1131.6,
+      "duration": 4.439
+    },
+    {
+      "text": "hope all of you enjoyed this lecture",
+      "start": 1134.4,
+      "duration": 4.08
+    },
+    {
+      "text": "series my whole goal for everyone who's",
+      "start": 1136.039,
+      "duration": 3.921
+    },
+    {
+      "text": "learning through these lectures is to",
+      "start": 1138.48,
+      "duration": 3.88
+    },
+    {
+      "text": "train you to become fundamental llm and",
+      "start": 1139.96,
+      "duration": 3.92
+    },
+    {
+      "text": "machine learning Engineers who can",
+      "start": 1142.36,
+      "duration": 3.679
+    },
+    {
+      "text": "contribute to Innovative research and",
+      "start": 1143.88,
+      "duration": 4.919
+    },
+    {
+      "text": "not just deploy llm apis thank you so",
+      "start": 1146.039,
+      "duration": 4.161
+    },
+    {
+      "text": "much everyone and I look forward to",
+      "start": 1148.799,
+      "duration": 5.401
+    },
+    {
+      "text": "seeing you in the next lecture",
+      "start": 1150.2,
+      "duration": 4.0
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this video in the build large language models from scratch Series this is a conclusion video in which I'll try to quickly summarize what all we have completed in this lecture Series so far you may be into two categories of students the first is who has followed this entire series and who is watching this video congratulations you have made it this far you now one you are now one of the few students in the whole world I would say who knows how to build an entire large language model completely from scratch if you have stumbled upon this video and if you don't know about the rest of the playlist I highly encourage you to go through all of the videos to develop a very firm understanding of large language models I started this lecture series with the goal of teaching you how to be a fundamental researcher or a fundamental engineer in machine learning the main thing which you should really focus on is to understand the nuts and bols of how things work instead of running fancy large language model applications we should focus our attention to how large language models are really built we should understand the nuts and bols of large language models and that has been the whole focus of the series The videos have been long but they have been very satisfying um as I have seen from interactions with many students who have watched the videos uh when when I started this lecture series I took a lot of inspiration from this book build a large language model by Sabastian rashka so thank you Sabastian and uh this really helped me construct the courses or construct the entire lecture series here is the code file which we have run throughout these entire or throughout this entire lecture series as you can see the code has become pretty long but every single thing has been explained in a lot of detail in the videos which we have seen throughout this course I've explained every single code block to you and we do not assume anything in this lecture series everything is covered in depth from scratch I shared this code file with all of the students who have been watching and uh I hope that once you have access to this Cod code file you are able to run and construct the entire large language model on your own here is the workflow of everything which we covered in this series first we started with stage number one then we sequentially we move to stage number two and then we move to stage number three just like to build a house we first need to lay the foundation in stage number one we laid the foundation for building the large language model we looked at data preparation and sampling then we looked at the attention mechanism which is the engine behind which behind which or uh using which large language models derive their power um and finally we looked at the large language model architecture in stage one how different blocks are are arranged together to construct the large language model once stage one is finished then we move to stage number two which is essentially pre-training in pre-training we looked at how to implement the loss function for the large language model how to do a backward pass and how to train more than 100 million or the billion parameters which are typically involved in the llm we also saw how to load pre-trained weights from uh large language model such as open air gpt2 and that EX Ates the pre-training process and then in stage number three we saw that pre-training is not enough to make sure that the llm performs well on specific tasks such as classification or making our own personalized chatbot we learned about fine tuning we completed two handson projects fully from scratch we made an llm classifier which can distinguish between spam versus no spam emails and we also built our own personal assistant which can follow instructions these were incredibly rewarding experiences and we displayed and understood everything from the very Basics now what I'll do is that I'll take you through individual steps and key components of what all we have covered in this journey so far if you have watched the lecture Series this will serve as a good recap for you and you can also use it as a quick uh revision before you go for interviews and uh if you are if you have not watched the previous lecture videos this will serve as a good video for you to see what all we will be covering in this lecture Series so the first step of a large building a large language model is to implement the data pre-processing pipeline the data pre-processing pipeline for an llm is much different than a regression model or a classification model when you have input texts in a large language model the goal is to predict the next token right so the first thing what you do is that you have to convert this input text into tokens and then you have to convert the tokens into token IDs after this the next step is to convert these token IDs into the higher dimensional Vector space so that the semantic meaning of different tokens is capture when you project the tokens into higher dimensional Vector space then you have to add uh the positional embeddings to these token embeddings so the projections of token IDs into higher dimensional Vector spaces as has been shown here are called as token embeddings you have to add positional embedding vectors to the Token embedding vectors the reason we add positional embeddings is because along with converting tokens into Vector representations the positions at which individual tokens show up is also very important when predicting the next token when you add token embeddings to positional embeddings it results into something which is called as input embeddings now these input embeddings are the output which we expect from the data pre-processing pipeline the whole goal of the data pre-processing pipeline is to take the input text from the huge number of documents the training data data which we are feeding to the large language model and to convert all of those documents into sentences then into tokens then into token IDs then into token embeddings then add positional embeddings and convert it into input embeddings to give you a sense of the token embedding dimension in gpt2 the embedding Dimension is of 768 right so that's the first thing the data pre-processing pipeline after this we move to understand the attention mechanism attention mechanism is the driving engine which gives llm power so the main idea of attention is that when you look at Vector embeddings you just look at semantic meaning of one token right you do not look at the relationship of one token with all the other tokens however when you're predicting the next token context is very important you need to know how one token relates to all the other tokens when you look at one token how much importance to should you give to other tokens and that importance is also called as attention so the whole goal of the attention mechanism is to convert the input vectors to convert the input embedding vectors which look like this into something which is called as the context vectors so at the end of the attention when the attention mechanism is implemented the input vectors are converted into context vectors so you see the input embedding Vector for Journey and here is the context Vector for Journey context vectors are much richer than input embedding vectors because they also contain information about how Journey let say relates to all the other tokens in the sentence and to go from the input embedding vectors to the context vectors there is a huge sequential flow uh which we need to understand we first multiply the inputs with the trainable query key and the value matrices which give us the queries keys and the value Matrix we multiply queries with the keys transpose which gives us the attention score then we scale the attention score with square root of the keys Dimension we add Dropout we Implement caal attention which means that we add a mask to all of those tokens um which are not involved in the next token prediction task and then we add a soft Max layer so after implementing the scaling plus Dropout plus softmax we convert the attention scores into attention weights the attention weights are then multiplied with the values and then we get the context Vector Matrix now this is only for one attention head when we consider a large language model there are multiple attention heads which are acting the reason we have multiple attention head is to capture multiple dependencies and long range dependencies within a large paragraph So when you combine the context Vector matrices from multiple attention heads you get this ultimate final context Vector Matrix that's the output when the input embedding Matrix passes through the attention head so the whole Revolution which happened with respect to large language models is because of this workflow which I'm sharing on the screen right now taking the input embedding Matrix and converting it into this context Vector Matrix that's the key after you understood the attention mechanism then we move to the llm architecture now remember that I'm going a bit fast here because this is a recap uh this is a summary if you want to understand each and every element I highly encourage you to go to that specific lecture and watch that entire video again now the next step after understanding attention is to look at the llm architecture so this is the bird's eye view of how the llm architecture looks like and actually let me take another figure which I think is a better representation of the llm architecture so I'm just taking a screenshot sh of this figure here and I'm going to move it above so if you look at right so if you look at this this architecture this gives us a a bird's eye view of what actually goes on when you look at a large language model so first as I mentioned you have inputs U yeah first as I mentioned you have inputs those are converted into bunch of tokens then uh the tokens are converted into Vector embeddings we add embeddings and that gives us input embeddings the input embeddings are then passed into this block into this uh yeah so token embedding layer positional embedding layer and then we have a Dropout layer and then we have these input embeddings which are then passed into this Blue Block which is the Transformer block the Transformer block is where all the magic happens so you might be thinking okay now where does attention fit within the Transformer block within the Transformer block there is another module which is called as the attention module so the attention mechanism which we learned about earlier and the key query value all of these things are actually happening inside this mask multi-ad attention modu so within the Transformer block there is a normalization layer multi-head attention Dropout layer these are shortcut connection then other normalization layer a feed forward neural network another Dropout layer one more shortcut connection and then we come out of the Transformer block after coming out of the Transformer block there's a layer normalization layer and a final neural network which converts the trans former outputs into something which is called as the loged sensor the loged sensor is then used to predict the next token given a given uh given an input sequence now when you look at a gpt2 let's say there are 12 such Transformer blocks which are arranged together for larger llms even multiple more Transformer blocks are arranged together and Within These Transformer blocks there is multi-ad attention so within every Transformer block there can be 12 or there can be 24 attention heads so there are multip mle Transformer blocks and within each Transformer blocks there are multiple attention heads uh the terminology is a bit complex but once you get a visual feel of this architecture uh it's actually quite easy to code it sequentially so once you understood this architecture what we did in the lecture series is that we coded every single thing with respect to this architecture completely from scratch so you can search feed forward here and here is the part three of the architecture so in fact we went sequentially with respect to to all the parts we first covered layer normalization then we covered uh the feed forward neural network then we covered the shortcut connections then we covered the coding attention layers so everything is covered in coding as well along with this whiteboard approach so once you figure out this llm architecture you will have a bird's ey view of what exactly happens with the input sequence how it goes through the Transformer how it comes out of the transform Transformer we have the logic sensor and that is then used to predict the next two token so this is my llm prediction now this next token which is predicted by my llm is used to calculate the loss function between the llm output and the True Result after we get the loss function the next step is to run the llm pre-training loop which means that once we have understood how to do the forward pass which means that how to have an input sentence or how to have an input sequence get the output from the llm and get the loss based on the next token and this loss by the way is the loss entropy loss between the next token prediction which we have and the actual next token once we know how to get the loss then we have to do a back propagation which means that then we have to take the partial derivative of the loss with respect to all of the parameters in the llm architecture so here I have just mentioned the training Loop first you calculate the loss on the entire batch then you do the backward pass which means that you calculate the partial derivative of the loss with respect to all of the trainable weights so here you might be thinking what all are the different trainable weights so so there are trainable weights in the token embedding positional embedding because we don't know the so when I say transform it into a vector space we don't know what the ideal transformation so we need to figure out those parameters we need to figure out the positional embedding parameters we need to have the we need to figure out the scale and shift parameters in the layer normalization we need to train the query key and the value trainable weight matrices these parameters in the mass multihead attention module then the second layer nor alization layer also has trainable parameters the feed forward Network also has trainable parameters and the final output layer and the final layer Norm also have trainable parameters and remember that we have 12 such Transformer blocks so that's why all of these parameters when you add up it leads to more than a million or more than even a billion parameters which we need to train so we need to find the gradients for all of these parameters and then we need to do a gradient update by something like wi + 1 is equal to Wi IUS Alpha * the partial gradient of loss with respect to the weights this is just a vanilla gradient descent which I'm showing you usually we Implement some more sophisticated schemes like ADM or Adam with weight Decay once you do this pre-training Loop you will actually get loss function as a uh loss as a function of the epox and this we have done on our own laptop on our own system but on a very small data set keep in mind that the pre-training which is needed for actual llms like gpt2 gpt3 GPT 4 Etc they are done on huge amounts of data set with millions of uh news articles with millions of blogs books Etc and that pre-training costs more than $1 million also so it's impossible for us to pre-train an actual full-blown large language models on our laptop but once you go through the lecture videos which I'm showing you you can run the pre-training loop for a small data set and that gives you an entire feel of how GPT is constructed what we did after this is that we took our architecture we took our llm architecture and we loaded pre-trained weights from gpt2 and then we actually predicted the next token based on the input input sentence this was the first fundamental result which we achieved in this lecture series after the pre-training is completed then we move to llm fine tuning we learned about two types of fine tuning classification fine tuning in which we built an email classification llm so when you have given an email the llm can classify whether it's SP or not a Spam and then we also built an instruction finetuned llm fully from scratch so you have to give a bunch of instructions inputs and outputs and train the llm to do a good job on instructions so let's say if the instruction is convert the active sentence to passive the active sentence is the chef Cooks the meal every day the passive sentence is the meal is cooked every day by the chef and we train this fully from scratch whatever I'm showing you right now has been implemented uh based on the architecture which we have developed in code we have not used used it from anywhere else and then finally we learned about llm evaluation we learned about three types of evaluation the first is M mlu which is based on this paper measuring massive multitask language understanding what they show in this paper here is that basically we have uh 57 tests which we can eval use to evaluate the llm performance that's one type of evaluation the second type is using humans to compare and rate llms and the third type is using a powerful large language model to to evaluate another llm so this is the approach which we followed so we used a tool called o Lama to access Lama 3 llm especially we use this llama 8 billion parameter Lama 38b instruct model which is already finetuned and it has 8 billion parameters so it is super powerful and uh what we did with this larger llm is that if the true output is this and if the model response is this we ask the llm to compare the output with theel model response and to give an evaluation score and this is the evaluation score given by the llm So based on the model response and the actual response it assigns a score out of 100 so that's the third evaluation tactic which we learned about this is the entire details of what all we implemented in this course we implemented an next word or next token prediction llm from scratch we implemented an email classification fine tuned llm and we implemented an instruction fine tuned llm once you complete this lecture series I'm sure that you will understand the nuts and bolts of building a large language model and you will be a much stronger machine learning and llm engineer if you have completed this series and if you're watching this lecture now I highly encourage you as next steps to dive into fundamental research you have this code file right start making changes start exploring small language models why what's the need for large language models can we just have three Transformer blocks you can now start making all these edits to the code because the code is in building blocks format right you can change hyper parameters explore the effect of different optimizers explore the effect of different learning rates different number of Transformer blocks explore the effect of different evaluation strategies it's an area of active research try to dive into research and that's the best way to stay at The Cutting Edge and contribute to Innovative and impactful llm research I hope all of you enjoyed this lecture series my whole goal for everyone who's learning through these lectures is to train you to become fundamental llm and machine learning Engineers who can contribute to Innovative research and not just deploy llm apis thank you so much everyone and I look forward to seeing you in the next lecture"
+}

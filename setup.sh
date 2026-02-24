@@ -62,7 +62,7 @@ echo "════════════════════════�
 echo ""
 echo "  Quick start:"
 echo "    source .venv/bin/activate"
-echo "    python main.py --url \"https://youtube.com/watch?v=...&list=...\" --dry-run"
+echo "    python main.py --dry-run"
 echo ""
 echo "  The pipeline is configured to use Gemini by default."
 echo "  Make sure to add your GEMINI_API_KEY to .env."

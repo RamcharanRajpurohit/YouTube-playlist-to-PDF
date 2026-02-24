@@ -45,43 +45,92 @@ class Chapter:
 
 _TOC_SYSTEM = (
     "You are a senior technical book editor. Given the list of video titles, "
-    "durations, and short summaries from a YouTube playlist, produce a logical "
-    "book outline. Merge related CONSECUTIVE videos into coherent chapters. "
-    "CRITICAL: video_indices MUST be contiguous integers (e.g., [0, 1, 2], not [0, 2, 5]). "
-    "Do not skip any videos and do not jump out of order. "
+    "durations, and chapter markers from a YouTube playlist, produce a logical "
+    "book outline.\n\n"
+    "GROUPING PHILOSOPHY:\n"
+    "- Each chapter should represent a MEANINGFUL unit of a book — a reader should "
+    "finish a chapter feeling they learned one coherent topic.\n"
+    "- Group CONSECUTIVE videos that cover the same broad topic into ONE chapter. "
+    "Videos that are continuations or parts of the same subject belong together.\n"
+    "- Chapters should be BALANCED in size"
+    "- Think about what a READER expects from a chapter title — 'Attention Mechanisms' "
+    "is a good chapter that covers simplified, self, causal, and multi-head attention. "
+    "Having separate chapters for each type of attention is too granular for a book.\n\n"
+    "CONSTRAINTS:\n"
+    "- video_indices MUST be contiguous integers (e.g., [0, 1, 2], not [0, 2, 5]).\n"
+    "- Do not skip any videos and do not jump out of order.\n"
+    "- Every video must appear in exactly one chapter.\n\n"
     "Output ONLY valid JSON — an array of objects with keys: number, title, video_indices "
     "(0-based list), description."
+    "keep it between 1/3 to 1/2 the total number of videos (e.g., for 20 videos, aim for 6-10 chapters)."
 )
 
 _TOC_USER = (
-    "Here are the videos in the playlist:\n\n{video_list}\n\n"
+    "Here are the {total_videos} videos in the playlist (total runtime: {total_runtime}):\n\n"
+    "{video_list}\n\n"
     "Create a table of contents for a professional technical book titled "
-    '"{book_title}". Merge closely related CONSECUTIVE videos into single chapters. '
-    "Each chapter should cover a coherent topic. The videos MUST remain in their original "
-    "chronological order. Output ONLY the JSON array."
+    '"{book_title}". Group consecutive videos into chapters by broad topic. '
+    "Short related videos should be merged together; a chapter break should happen "
+    "when the subject clearly changes. "
+    "The videos MUST remain in their original chronological order. "
+    "Output ONLY the JSON array."
 )
 
 _CHAPTER_SYSTEM = (
-    "You are a professional technical author. Your task is to REWRITE the "
-    "provided transcript into formal, book-quality prose. CRITICAL RULES:\n\n"
-    "CONTENT PRESERVATION:\n"
-    "- Include ALL information from the transcript — do not summarize the content "
-    "itself. Preserve technical information, formulas, and code.\n\n"
-    "TONE CONVERSION:\n"
-    "- Remove ALL conversational filler words.\n"
-    "- Convert spoken lecture style into formal or instructional tone.\n\n"
-    "FORMATTING & CONTINUITY:\n"
-    "- Use clear Markdown headings (##, ###) accurately.\n"
-    "- Format code blocks with language tags.\n"
-    "- Ensure smooth, logical flow between paragraphs. Since this is chunked, "
-    "connect your writing gracefully to the summary of the previous chunk if provided.\n\n"
-    "SUMMARY EXTRACTION (CRITICAL):\n"
-    "At the VERY END of your markdown output, you MUST provide a brief summary "
-    "of what you just wrote wrapped in <summary> tags. This will be fed into "
-    "the generation of the next chunk to maintain narrative context.\n"
+    "You are a professional technical book author. Your task is to transform the "
+    "provided transcript into formal, book-quality written prose.\n\n"
+
+    "PRIMARY OBJECTIVE:\n"
+    "- Use the transcript as the SOLE source of truth.\n"
+    "- Preserve ALL technical meaning, explanations, examples, reasoning steps, and code.\n"
+    "- Maintain the SAME logical order of ideas as the transcript.\n"
+    "- Do NOT summarize, compress, or omit technical explanations.\n\n"
+
+    "CRITICAL PROHIBITIONS (VERY IMPORTANT):\n"
+    "- NEVER write lecture-style meta phrases such as:\n"
+    "  'In this lecture...', 'In this video...', 'In this chapter we will see...',\n"
+    "  'Previously we discussed...', 'Now let's talk about...', 'Welcome...', etc.\n"
+    "- NEVER refer to the transcript, speaker, lecture, video, or audience.\n"
+    "- NEVER repeat structural filler phrases.\n"
+    "- NEVER add introductions or conclusions that were not explicitly explained in the transcript.\n"
+    "- NEVER invent new information, examples, or explanations.\n\n"
+
+    "ALLOWED TRANSFORMATIONS:\n"
+    "- Remove filler words: um, uh, you know, like, so, basically, okay, right, etc.\n"
+    "- Remove conversational padding and repetition.\n"
+    "- Rewrite sentences into formal technical prose.\n"
+    "- Combine fragmented spoken sentences into clear written sentences.\n"
+    "- Improve clarity while preserving original meaning.\n\n"
+
+    "BOOK-STYLE WRITING REQUIREMENTS:\n"
+    "- Write as if this is part of a professional technical textbook.\n"
+    "- Present information directly and confidently.\n"
+    "- Focus ONLY on explaining the subject matter.\n"
+    "- Do NOT mention what will be covered — simply explain it.\n"
+    "- Do NOT use teaching narration — use declarative explanatory prose.\n"
+    "- Avoid conversational tone completely.\n\n"
+
+    "CONTENT COMPLETENESS (MANDATORY):\n"
+    "- Preserve EVERY concept, example, explanation, and step.\n"
+    "- Preserve ALL code, formulas, and technical details.\n"
+    "- If an example is explained step-by-step, keep ALL steps.\n"
+    "- DO NOT shorten explanations.\n"
+    "- Output length should be approximately equal to input length.\n\n"
+
+    "STRUCTURE AND FORMAT:\n"
+    "- Use proper Markdown headings where appropriate.\n"
+    "- Use proper paragraphs with logical flow.\n"
+    "- Use code blocks with correct formatting if present.\n"
+    "- Ensure smooth, continuous textbook-style flow.\n\n"
+
+    "STRICT BOOK-STYLE RULE:\n"
+    "- The output must read like a textbook chapter, NOT like a lecture transcript.\n"
+    "- It must NOT sound like someone speaking. It must sound like formal written knowledge.\n\n"
+
+    "SUMMARY REQUIREMENT:\n"
+    "At the VERY END, include a concise factual summary wrapped in <summary> tags.\n"
     "Example:\n"
-    "Your chapter prose here...\n"
-    "<summary>In this chunk, we covered the basics of tokenization and Byte-Pair Encoding.</summary>"
+    "<summary>This section explained gradient descent, its update rule, and a worked example.</summary>"
 )
 
 _CHAPTER_USER = (
@@ -153,7 +202,14 @@ class BookStructurer:
                     f"   (no chapter markers available)"
                 )
 
+        total_seconds = sum(v.duration for v in videos)
+        total_hours = int(total_seconds // 3600)
+        total_mins = int((total_seconds % 3600) // 60)
+        total_runtime = f"{total_hours}h {total_mins}m"
+
         prompt = _TOC_USER.format(
+            total_videos=len(videos),
+            total_runtime=total_runtime,
             video_list="\n".join(video_list_parts),
             book_title=book_title,
         )

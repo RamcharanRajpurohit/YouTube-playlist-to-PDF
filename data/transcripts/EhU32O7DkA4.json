@@ -1,0 +1,3036 @@
+{
+  "video": {
+    "video_id": "EhU32O7DkA4",
+    "title": "Top-k sampling in Large Language Models",
+    "duration": 1414.0,
+    "index": 29
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.68
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.16,
+      "duration": 4.519
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.68,
+      "duration": 5.4
+    },
+    {
+      "text": "models from scratch Series today we",
+      "start": 9.679,
+      "duration": 5.52
+    },
+    {
+      "text": "continue our discussion regarding",
+      "start": 13.08,
+      "duration": 5.72
+    },
+    {
+      "text": "strategies for llm decoding to reduce",
+      "start": 15.199,
+      "duration": 5.721
+    },
+    {
+      "text": "Randomness in the previous lecture we",
+      "start": 18.8,
+      "duration": 3.719
+    },
+    {
+      "text": "learned about this technique which is",
+      "start": 20.92,
+      "duration": 4.08
+    },
+    {
+      "text": "called as temperature scaling and in",
+      "start": 22.519,
+      "duration": 4.281
+    },
+    {
+      "text": "today's lecture we are going to learn",
+      "start": 25.0,
+      "duration": 4.359
+    },
+    {
+      "text": "about another technique which is a",
+      "start": 26.8,
+      "duration": 4.799
+    },
+    {
+      "text": "decoding strategy for llms and that is",
+      "start": 29.359,
+      "duration": 4.441
+    },
+    {
+      "text": "called as top K",
+      "start": 31.599,
+      "duration": 4.96
+    },
+    {
+      "text": "sampling topk sampling is used along",
+      "start": 33.8,
+      "duration": 4.64
+    },
+    {
+      "text": "with temperature scaling so if you have",
+      "start": 36.559,
+      "duration": 3.68
+    },
+    {
+      "text": "not been through the previous lecture I",
+      "start": 38.44,
+      "duration": 3.68
+    },
+    {
+      "text": "would highly recommend you to watch the",
+      "start": 40.239,
+      "duration": 4.081
+    },
+    {
+      "text": "previous lecture if you are coming to",
+      "start": 42.12,
+      "duration": 3.919
+    },
+    {
+      "text": "this lecture for the first time no",
+      "start": 44.32,
+      "duration": 3.719
+    },
+    {
+      "text": "problem I've designed it in such a way",
+      "start": 46.039,
+      "duration": 4.121
+    },
+    {
+      "text": "that it's selfcontain and you will",
+      "start": 48.039,
+      "duration": 4.561
+    },
+    {
+      "text": "understand everything what's going on",
+      "start": 50.16,
+      "duration": 4.52
+    },
+    {
+      "text": "what are llm decoding strategies and why",
+      "start": 52.6,
+      "duration": 4.52
+    },
+    {
+      "text": "did we even start learning about them",
+      "start": 54.68,
+      "duration": 4.28
+    },
+    {
+      "text": "the reason we require llm decoding",
+      "start": 57.12,
+      "duration": 4.56
+    },
+    {
+      "text": "strategies is that if you if you",
+      "start": 58.96,
+      "duration": 5.36
+    },
+    {
+      "text": "generate the next token using the first",
+      "start": 61.68,
+      "duration": 4.36
+    },
+    {
+      "text": "strategy which we had and that first",
+      "start": 64.32,
+      "duration": 3.479
+    },
+    {
+      "text": "strategy was basically something very",
+      "start": 66.04,
+      "duration": 4.439
+    },
+    {
+      "text": "simple what the first strategy was is",
+      "start": 67.799,
+      "duration": 4.841
+    },
+    {
+      "text": "that the generated token is just",
+      "start": 70.479,
+      "duration": 4.68
+    },
+    {
+      "text": "selected corresponding to the largest",
+      "start": 72.64,
+      "duration": 4.76
+    },
+    {
+      "text": "probability score among all the tokens",
+      "start": 75.159,
+      "duration": 5.28
+    },
+    {
+      "text": "in the vocabulary so",
+      "start": 77.4,
+      "duration": 6.359
+    },
+    {
+      "text": "we uh we have the input tokens and then",
+      "start": 80.439,
+      "duration": 5.561
+    },
+    {
+      "text": "to predict the next token we look at the",
+      "start": 83.759,
+      "duration": 4.601
+    },
+    {
+      "text": "indices which correspond to the maximum",
+      "start": 86.0,
+      "duration": 4.28
+    },
+    {
+      "text": "probability score and we say that those",
+      "start": 88.36,
+      "duration": 4.48
+    },
+    {
+      "text": "will be the next token this leads to a",
+      "start": 90.28,
+      "duration": 4.96
+    },
+    {
+      "text": "lot of issues because let's say if every",
+      "start": 92.84,
+      "duration": 5.919
+    },
+    {
+      "text": "effort moves is the input and let's say",
+      "start": 95.24,
+      "duration": 7.159
+    },
+    {
+      "text": "using that knif decoding strategy we",
+      "start": 98.759,
+      "duration": 5.96
+    },
+    {
+      "text": "print out the next 25 tokens you'll see",
+      "start": 102.399,
+      "duration": 4.281
+    },
+    {
+      "text": "that the next 25 tokens look something",
+      "start": 104.719,
+      "duration": 5.201
+    },
+    {
+      "text": "like this they are very random and it's",
+      "start": 106.68,
+      "duration": 4.799
+    },
+    {
+      "text": "difficult to get tokens which actually",
+      "start": 109.92,
+      "duration": 4.08
+    },
+    {
+      "text": "Mak sense and the reason is because we",
+      "start": 111.479,
+      "duration": 4.481
+    },
+    {
+      "text": "are giving too much importance to that",
+      "start": 114.0,
+      "duration": 4.399
+    },
+    {
+      "text": "token which has the maximum probability",
+      "start": 115.96,
+      "duration": 4.4
+    },
+    {
+      "text": "wouldn't it make sense to instead of",
+      "start": 118.399,
+      "duration": 4.68
+    },
+    {
+      "text": "choosing a token in a deterministic",
+      "start": 120.36,
+      "duration": 5.039
+    },
+    {
+      "text": "manner wouldn't it make more sense to",
+      "start": 123.079,
+      "duration": 4.921
+    },
+    {
+      "text": "sample the token from a probability",
+      "start": 125.399,
+      "duration": 4.56
+    },
+    {
+      "text": "distribution and that's where",
+      "start": 128.0,
+      "duration": 3.48
+    },
+    {
+      "text": "temperature scaling comes into the",
+      "start": 129.959,
+      "duration": 3.881
+    },
+    {
+      "text": "picture what we do is that we have this",
+      "start": 131.48,
+      "duration": 5.36
+    },
+    {
+      "text": "logic stenor right whenever we get",
+      "start": 133.84,
+      "duration": 5.56
+    },
+    {
+      "text": "output from the GPT architecture we have",
+      "start": 136.84,
+      "duration": 5.36
+    },
+    {
+      "text": "a logit tensor we apply soft Max and",
+      "start": 139.4,
+      "duration": 4.36
+    },
+    {
+      "text": "convert it into a tensor of",
+      "start": 142.2,
+      "duration": 4.72
+    },
+    {
+      "text": "probabilities right and then instead of",
+      "start": 143.76,
+      "duration": 5.28
+    },
+    {
+      "text": "choosing the max index corresponding to",
+      "start": 146.92,
+      "duration": 3.88
+    },
+    {
+      "text": "the maximum value",
+      "start": 149.04,
+      "duration": 4.32
+    },
+    {
+      "text": "what we now do is that we sample from",
+      "start": 150.8,
+      "duration": 4.799
+    },
+    {
+      "text": "the we sample using the multinomial",
+      "start": 153.36,
+      "duration": 4.159
+    },
+    {
+      "text": "distribution what the multinomial",
+      "start": 155.599,
+      "duration": 3.64
+    },
+    {
+      "text": "distribution does is that let's say if",
+      "start": 157.519,
+      "duration": 3.921
+    },
+    {
+      "text": "you have this tensor of probabilities",
+      "start": 159.239,
+      "duration": 5.08
+    },
+    {
+      "text": "instead of choosing the token with the",
+      "start": 161.44,
+      "duration": 6.32
+    },
+    {
+      "text": "maximum probability We Choose Or we",
+      "start": 164.319,
+      "duration": 5.64
+    },
+    {
+      "text": "sample the next token in a probabilistic",
+      "start": 167.76,
+      "duration": 4.559
+    },
+    {
+      "text": "manner and the way the multinomial",
+      "start": 169.959,
+      "duration": 5.321
+    },
+    {
+      "text": "distribution does it is that uh it",
+      "start": 172.319,
+      "duration": 5.321
+    },
+    {
+      "text": "samples the next token proportional to",
+      "start": 175.28,
+      "duration": 4.72
+    },
+    {
+      "text": "its probability score so here we can can",
+      "start": 177.64,
+      "duration": 5.2
+    },
+    {
+      "text": "see that among this probability tensor",
+      "start": 180.0,
+      "duration": 5.4
+    },
+    {
+      "text": "5721 is the maximum",
+      "start": 182.84,
+      "duration": 7.64
+    },
+    {
+      "text": "value uh so in our KN strategy the token",
+      "start": 185.4,
+      "duration": 7.6
+    },
+    {
+      "text": "corresponding to this will be the next",
+      "start": 190.48,
+      "duration": 4.52
+    },
+    {
+      "text": "token always in a very deterministic",
+      "start": 193.0,
+      "duration": 4.2
+    },
+    {
+      "text": "manner right but what happens in a",
+      "start": 195.0,
+      "duration": 4.2
+    },
+    {
+      "text": "multinomial distribution is that still",
+      "start": 197.2,
+      "duration": 3.44
+    },
+    {
+      "text": "this will be given the largest",
+      "start": 199.2,
+      "duration": 3.48
+    },
+    {
+      "text": "probability but it will now be sampled",
+      "start": 200.64,
+      "duration": 3.72
+    },
+    {
+      "text": "from a probability distribution which",
+      "start": 202.68,
+      "duration": 3.479
+    },
+    {
+      "text": "means that other tokens might also be",
+      "start": 204.36,
+      "duration": 3.799
+    },
+    {
+      "text": "selected as the next token compared to",
+      "start": 206.159,
+      "duration": 4.881
+    },
+    {
+      "text": "their probability values so if you",
+      "start": 208.159,
+      "duration": 4.72
+    },
+    {
+      "text": "sample thousand times using this",
+      "start": 211.04,
+      "duration": 4.399
+    },
+    {
+      "text": "multinomial distribution the token",
+      "start": 212.879,
+      "duration": 4.601
+    },
+    {
+      "text": "corresponding to the maximum probability",
+      "start": 215.439,
+      "duration": 4.041
+    },
+    {
+      "text": "will come of course more number of times",
+      "start": 217.48,
+      "duration": 4.16
+    },
+    {
+      "text": "582 times but there are other tokens",
+      "start": 219.48,
+      "duration": 4.16
+    },
+    {
+      "text": "which also come into the picture now",
+      "start": 221.64,
+      "duration": 3.239
+    },
+    {
+      "text": "that was not possible with the",
+      "start": 223.64,
+      "duration": 3.36
+    },
+    {
+      "text": "deterministic prediction and this",
+      "start": 224.879,
+      "duration": 4.201
+    },
+    {
+      "text": "actually enables to have more creativity",
+      "start": 227.0,
+      "duration": 5.48
+    },
+    {
+      "text": "in the llm output it helps us to control",
+      "start": 229.08,
+      "duration": 5.999
+    },
+    {
+      "text": "Randomness a bit by sampling from a",
+      "start": 232.48,
+      "duration": 4.52
+    },
+    {
+      "text": "probability distribution then we",
+      "start": 235.079,
+      "duration": 3.681
+    },
+    {
+      "text": "introduce the concept of temperature",
+      "start": 237.0,
+      "duration": 3.68
+    },
+    {
+      "text": "where we just divide the logits with",
+      "start": 238.76,
+      "duration": 4.96
+    },
+    {
+      "text": "this value called as temperature and uh",
+      "start": 240.68,
+      "duration": 5.119
+    },
+    {
+      "text": "then we take the soft Max the",
+      "start": 243.72,
+      "duration": 3.68
+    },
+    {
+      "text": "temperature has the effect that if the",
+      "start": 245.799,
+      "duration": 3.881
+    },
+    {
+      "text": "temperature is actually increased then",
+      "start": 247.4,
+      "duration": 4.32
+    },
+    {
+      "text": "all the tokens have kind of uniform",
+      "start": 249.68,
+      "duration": 4.119
+    },
+    {
+      "text": "probability of being the next token",
+      "start": 251.72,
+      "duration": 4.4
+    },
+    {
+      "text": "whereas if the temperature is very low",
+      "start": 253.799,
+      "duration": 3.921
+    },
+    {
+      "text": "then that means that we have sharper",
+      "start": 256.12,
+      "duration": 3.799
+    },
+    {
+      "text": "distribution where only one token will",
+      "start": 257.72,
+      "duration": 5.84
+    },
+    {
+      "text": "be selectively favored so uh when we",
+      "start": 259.919,
+      "duration": 6.361
+    },
+    {
+      "text": "divide the logits by the temperature",
+      "start": 263.56,
+      "duration": 5.16
+    },
+    {
+      "text": "here you can see uh an animation which",
+      "start": 266.28,
+      "duration": 3.96
+    },
+    {
+      "text": "shows that as the temperature goes from",
+      "start": 268.72,
+      "duration": 4.36
+    },
+    {
+      "text": "low to high the different tokens have",
+      "start": 270.24,
+      "duration": 4.72
+    },
+    {
+      "text": "different probabilities of being sampled",
+      "start": 273.08,
+      "duration": 3.48
+    },
+    {
+      "text": "the distribution changes from being a",
+      "start": 274.96,
+      "duration": 3.0
+    },
+    {
+      "text": "sharper distribution at lower",
+      "start": 276.56,
+      "duration": 4.24
+    },
+    {
+      "text": "temperature to a uniform",
+      "start": 277.96,
+      "duration": 5.64
+    },
+    {
+      "text": "distribution so this was the case with",
+      "start": 280.8,
+      "duration": 5.28
+    },
+    {
+      "text": "introducing temperature but there was an",
+      "start": 283.6,
+      "duration": 4.36
+    },
+    {
+      "text": "issue which we saw even when we",
+      "start": 286.08,
+      "duration": 3.36
+    },
+    {
+      "text": "introduce temperature let's say if the",
+      "start": 287.96,
+      "duration": 4.2
+    },
+    {
+      "text": "temperature value is equal to five uh",
+      "start": 289.44,
+      "duration": 4.56
+    },
+    {
+      "text": "then you can see that when every effort",
+      "start": 292.16,
+      "duration": 4.879
+    },
+    {
+      "text": "moves is the uh when every effort moves",
+      "start": 294.0,
+      "duration": 3.919
+    },
+    {
+      "text": "is",
+      "start": 297.039,
+      "duration": 3.6
+    },
+    {
+      "text": "the uh every effort moves you is the",
+      "start": 297.919,
+      "duration": 5.601
+    },
+    {
+      "text": "input then there is also the probability",
+      "start": 300.639,
+      "duration": 5.721
+    },
+    {
+      "text": "of tokens such as Pizza being the next",
+      "start": 303.52,
+      "duration": 5.399
+    },
+    {
+      "text": "token so if the temperature value is",
+      "start": 306.36,
+      "duration": 6.0
+    },
+    {
+      "text": "equal to five there is about 4% chance",
+      "start": 308.919,
+      "duration": 5.84
+    },
+    {
+      "text": "that the next token will be Visa so that",
+      "start": 312.36,
+      "duration": 5.04
+    },
+    {
+      "text": "is not very good right and that's the",
+      "start": 314.759,
+      "duration": 4.121
+    },
+    {
+      "text": "issue with just using temperature",
+      "start": 317.4,
+      "duration": 3.4
+    },
+    {
+      "text": "scaling if we just use temperature",
+      "start": 318.88,
+      "duration": 4.2
+    },
+    {
+      "text": "scaling all the tokens are all the",
+      "start": 320.8,
+      "duration": 4.36
+    },
+    {
+      "text": "tokens remain in the picture to become",
+      "start": 323.08,
+      "duration": 4.8
+    },
+    {
+      "text": "the next possible token all the tokens",
+      "start": 325.16,
+      "duration": 4.599
+    },
+    {
+      "text": "have a kind of probability or a chance",
+      "start": 327.88,
+      "duration": 3.72
+    },
+    {
+      "text": "to become the next token even completely",
+      "start": 329.759,
+      "duration": 4.521
+    },
+    {
+      "text": "random tokens and we don't want that we",
+      "start": 331.6,
+      "duration": 4.76
+    },
+    {
+      "text": "want to restrict that opportunity of",
+      "start": 334.28,
+      "duration": 4.639
+    },
+    {
+      "text": "being the next token to only a few",
+      "start": 336.36,
+      "duration": 4.88
+    },
+    {
+      "text": "number of tokens that's the best way to",
+      "start": 338.919,
+      "duration": 4.321
+    },
+    {
+      "text": "introduce you to the concept of topk",
+      "start": 341.24,
+      "duration": 4.44
+    },
+    {
+      "text": "sampling we want to restrict the",
+      "start": 343.24,
+      "duration": 4.64
+    },
+    {
+      "text": "opportunity of being the next token to",
+      "start": 345.68,
+      "duration": 5.04
+    },
+    {
+      "text": "only a few tokens which makes",
+      "start": 347.88,
+      "duration": 6.039
+    },
+    {
+      "text": "sense so what we are going to do is that",
+      "start": 350.72,
+      "duration": 5.44
+    },
+    {
+      "text": "in the concept of topk sampling is",
+      "start": 353.919,
+      "duration": 3.84
+    },
+    {
+      "text": "essentially pretty",
+      "start": 356.16,
+      "duration": 5.2
+    },
+    {
+      "text": "simple uh we restrict the sample tokens",
+      "start": 357.759,
+      "duration": 6.56
+    },
+    {
+      "text": "to the top K most likely tokens and we",
+      "start": 361.36,
+      "duration": 5.679
+    },
+    {
+      "text": "will exclude all the other tokens let me",
+      "start": 364.319,
+      "duration": 4.481
+    },
+    {
+      "text": "illustrate to you what this means let's",
+      "start": 367.039,
+      "duration": 3.761
+    },
+    {
+      "text": "say we have the logic sensor which looks",
+      "start": 368.8,
+      "duration": 4.88
+    },
+    {
+      "text": "something like this right now before",
+      "start": 370.8,
+      "duration": 4.6
+    },
+    {
+      "text": "applying soft Max what we are going to",
+      "start": 373.68,
+      "duration": 3.519
+    },
+    {
+      "text": "do is that we are only going to look at",
+      "start": 375.4,
+      "duration": 4.16
+    },
+    {
+      "text": "the top K logits and if K is equal to",
+      "start": 377.199,
+      "duration": 4.4
+    },
+    {
+      "text": "three we will only look at the top three",
+      "start": 379.56,
+      "duration": 6.16
+    },
+    {
+      "text": "logits which is this 4.51 6.75 and",
+      "start": 381.599,
+      "duration": 8.201
+    },
+    {
+      "text": "6.28 and uh we will ensure that when we",
+      "start": 385.72,
+      "duration": 6.52
+    },
+    {
+      "text": "apply soft Max all these other Logics",
+      "start": 389.8,
+      "duration": 4.64
+    },
+    {
+      "text": "are effectively not in the picture at",
+      "start": 392.24,
+      "duration": 4.959
+    },
+    {
+      "text": "all they are not considered and what's",
+      "start": 394.44,
+      "duration": 4.759
+    },
+    {
+      "text": "the best way to do this the best way to",
+      "start": 397.199,
+      "duration": 4.56
+    },
+    {
+      "text": "do this is to essentially replace all of",
+      "start": 399.199,
+      "duration": 4.161
+    },
+    {
+      "text": "these values which are not in the top",
+      "start": 401.759,
+      "duration": 3.081
+    },
+    {
+      "text": "three with negative",
+      "start": 403.36,
+      "duration": 4.08
+    },
+    {
+      "text": "Infinity when we replace these all other",
+      "start": 404.84,
+      "duration": 4.84
+    },
+    {
+      "text": "values with negative Infinity when we",
+      "start": 407.44,
+      "duration": 4.36
+    },
+    {
+      "text": "take soft Max we will ensure that all of",
+      "start": 409.68,
+      "duration": 4.4
+    },
+    {
+      "text": "these will effectively be zero so then",
+      "start": 411.8,
+      "duration": 3.72
+    },
+    {
+      "text": "they will not contribute to being the",
+      "start": 414.08,
+      "duration": 4.48
+    },
+    {
+      "text": "next token at all and only the top three",
+      "start": 415.52,
+      "duration": 4.56
+    },
+    {
+      "text": "values which we have",
+      "start": 418.56,
+      "duration": 2.44
+    },
+    {
+      "text": "Will",
+      "start": 420.08,
+      "duration": 3.239
+    },
+    {
+      "text": "Survive what this essentially does is",
+      "start": 421.0,
+      "duration": 4.319
+    },
+    {
+      "text": "that it removes all the other tokens",
+      "start": 423.319,
+      "duration": 4.28
+    },
+    {
+      "text": "which we which are which does not make",
+      "start": 425.319,
+      "duration": 4.041
+    },
+    {
+      "text": "sense at all right every effort moves",
+      "start": 427.599,
+      "duration": 4.681
+    },
+    {
+      "text": "you pizza has no should not have the",
+      "start": 429.36,
+      "duration": 4.72
+    },
+    {
+      "text": "opportunity to become the next token at",
+      "start": 432.28,
+      "duration": 3.919
+    },
+    {
+      "text": "all right so why should we even consider",
+      "start": 434.08,
+      "duration": 4.76
+    },
+    {
+      "text": "pizza so the token ID corresponding to",
+      "start": 436.199,
+      "duration": 4.4
+    },
+    {
+      "text": "pizza will be replaced with infinity",
+      "start": 438.84,
+      "duration": 4.72
+    },
+    {
+      "text": "when we take soft Max that will be uh",
+      "start": 440.599,
+      "duration": 5.761
+    },
+    {
+      "text": "reduced to zero now let us see this in",
+      "start": 443.56,
+      "duration": 4.639
+    },
+    {
+      "text": "action in code so I'm going to take you",
+      "start": 446.36,
+      "duration": 5.519
+    },
+    {
+      "text": "to python code now just before that I've",
+      "start": 448.199,
+      "duration": 5.921
+    },
+    {
+      "text": "written a few",
+      "start": 451.879,
+      "duration": 5.32
+    },
+    {
+      "text": "uh conceptual understanding sentences",
+      "start": 454.12,
+      "duration": 5.44
+    },
+    {
+      "text": "here so let me go through that in the",
+      "start": 457.199,
+      "duration": 4.241
+    },
+    {
+      "text": "previous section we implemented a",
+      "start": 459.56,
+      "duration": 3.919
+    },
+    {
+      "text": "probabilistic sampling approach coupled",
+      "start": 461.44,
+      "duration": 3.84
+    },
+    {
+      "text": "with temperature scaling as I just",
+      "start": 463.479,
+      "duration": 4.4
+    },
+    {
+      "text": "describ to you and we saw that higher",
+      "start": 465.28,
+      "duration": 4.24
+    },
+    {
+      "text": "temperature values result in more",
+      "start": 467.879,
+      "duration": 3.841
+    },
+    {
+      "text": "uniformly distributed next token",
+      "start": 469.52,
+      "duration": 4.16
+    },
+    {
+      "text": "probabilities which result in more",
+      "start": 471.72,
+      "duration": 3.319
+    },
+    {
+      "text": "diverse",
+      "start": 473.68,
+      "duration": 4.359
+    },
+    {
+      "text": "outputs okay this method allows for",
+      "start": 475.039,
+      "duration": 5.081
+    },
+    {
+      "text": "exploring less likely but potentially",
+      "start": 478.039,
+      "duration": 4.921
+    },
+    {
+      "text": "more interesting and creative paths but",
+      "start": 480.12,
+      "duration": 4.919
+    },
+    {
+      "text": "one downside of this approach is that",
+      "start": 482.96,
+      "duration": 3.76
+    },
+    {
+      "text": "sometimes it leads to grammatically",
+      "start": 485.039,
+      "duration": 3.681
+    },
+    {
+      "text": "incorrect or completely nonsensical",
+      "start": 486.72,
+      "duration": 4.64
+    },
+    {
+      "text": "output such as every effort moves you",
+      "start": 488.72,
+      "duration": 5.919
+    },
+    {
+      "text": "Piza does not make any sense at all in",
+      "start": 491.36,
+      "duration": 4.92
+    },
+    {
+      "text": "this section we introduce another",
+      "start": 494.639,
+      "duration": 3.801
+    },
+    {
+      "text": "concept which is called as top K",
+      "start": 496.28,
+      "duration": 4.479
+    },
+    {
+      "text": "sampling and later we'll see how to",
+      "start": 498.44,
+      "duration": 4.28
+    },
+    {
+      "text": "combine it with probabilistic sampling",
+      "start": 500.759,
+      "duration": 4.28
+    },
+    {
+      "text": "and temperature scaling for now let me",
+      "start": 502.72,
+      "duration": 4.28
+    },
+    {
+      "text": "just introduce to you the concept",
+      "start": 505.039,
+      "duration": 5.401
+    },
+    {
+      "text": "through a simple demonstration",
+      "start": 507.0,
+      "duration": 5.44
+    },
+    {
+      "text": "so let's say we have this next token",
+      "start": 510.44,
+      "duration": 4.2
+    },
+    {
+      "text": "logits which is a tensor that looks",
+      "start": 512.44,
+      "duration": 5.519
+    },
+    {
+      "text": "something like this",
+      "start": 514.64,
+      "duration": 7.44
+    },
+    {
+      "text": "uh yeah so this is the next token Logics",
+      "start": 517.959,
+      "duration": 6.281
+    },
+    {
+      "text": "it looks like this and let me again",
+      "start": 522.08,
+      "duration": 3.879
+    },
+    {
+      "text": "bring it over",
+      "start": 524.24,
+      "duration": 4.8
+    },
+    {
+      "text": "here so the next token logic tensor",
+      "start": 525.959,
+      "duration": 5.481
+    },
+    {
+      "text": "looks something like this and as I",
+      "start": 529.04,
+      "duration": 4.2
+    },
+    {
+      "text": "mentioned the first step to do in the",
+      "start": 531.44,
+      "duration": 3.88
+    },
+    {
+      "text": "topk sampling is to select how many",
+      "start": 533.24,
+      "duration": 4.68
+    },
+    {
+      "text": "tokens you want as the top so here I'm",
+      "start": 535.32,
+      "duration": 4.759
+    },
+    {
+      "text": "selecting the top K tokens to be equal",
+      "start": 537.92,
+      "duration": 5.24
+    },
+    {
+      "text": "to I want three tokens right then what",
+      "start": 540.079,
+      "duration": 6.641
+    },
+    {
+      "text": "you do is that P torch has this function",
+      "start": 543.16,
+      "duration": 6.2
+    },
+    {
+      "text": "called torch. top K what it does is that",
+      "start": 546.72,
+      "duration": 4.52
+    },
+    {
+      "text": "let's say if you give it a tensor it",
+      "start": 549.36,
+      "duration": 3.479
+    },
+    {
+      "text": "will look at this tensor and it will",
+      "start": 551.24,
+      "duration": 4.44
+    },
+    {
+      "text": "return two things it will return the top",
+      "start": 552.839,
+      "duration": 4.401
+    },
+    {
+      "text": "uh top three values which have the",
+      "start": 555.68,
+      "duration": 3.36
+    },
+    {
+      "text": "maximum value and it will return the",
+      "start": 557.24,
+      "duration": 5.36
+    },
+    {
+      "text": "indices corresponding to them so you",
+      "start": 559.04,
+      "duration": 6.0
+    },
+    {
+      "text": "apply this function t. top K to this",
+      "start": 562.6,
+      "duration": 5.479
+    },
+    {
+      "text": "next token logit sensor and then the top",
+      "start": 565.04,
+      "duration": 5.239
+    },
+    {
+      "text": "logits are returned and the position at",
+      "start": 568.079,
+      "duration": 4.361
+    },
+    {
+      "text": "which these top logits occur is also",
+      "start": 570.279,
+      "duration": 3.961
+    },
+    {
+      "text": "returned so you'll see that the top",
+      "start": 572.44,
+      "duration": 3.16
+    },
+    {
+      "text": "logits are",
+      "start": 574.24,
+      "duration": 5.52
+    },
+    {
+      "text": "6.75 which is this 6.28 which is this",
+      "start": 575.6,
+      "duration": 7.16
+    },
+    {
+      "text": "and 4.51 which is this and they occur in",
+      "start": 579.76,
+      "duration": 7.04
+    },
+    {
+      "text": "position numbers 3 7 and 0 awesome so",
+      "start": 582.76,
+      "duration": 5.44
+    },
+    {
+      "text": "here you will see that this is the",
+      "start": 586.8,
+      "duration": 4.64
+    },
+    {
+      "text": "torch. topk implementation in pytorch",
+      "start": 588.2,
+      "duration": 6.24
+    },
+    {
+      "text": "I'll be sharing the link to this when I",
+      "start": 591.44,
+      "duration": 5.6
+    },
+    {
+      "text": "uh in the YouTube information",
+      "start": 594.44,
+      "duration": 5.12
+    },
+    {
+      "text": "section okay now what we are going to do",
+      "start": 597.04,
+      "duration": 5.239
+    },
+    {
+      "text": "next is that we have identified the top",
+      "start": 599.56,
+      "duration": 4.24
+    },
+    {
+      "text": "Logics and we have identified the",
+      "start": 602.279,
+      "duration": 3.321
+    },
+    {
+      "text": "positions as I mentioned now we are",
+      "start": 603.8,
+      "duration": 3.56
+    },
+    {
+      "text": "going to replace all the other values",
+      "start": 605.6,
+      "duration": 3.44
+    },
+    {
+      "text": "which don't belong in top three with",
+      "start": 607.36,
+      "duration": 4.2
+    },
+    {
+      "text": "negative Infinity so the way to do this",
+      "start": 609.04,
+      "duration": 5.68
+    },
+    {
+      "text": "is that we use the tor. we function and",
+      "start": 611.56,
+      "duration": 5.959
+    },
+    {
+      "text": "then uh the condition which we are using",
+      "start": 614.72,
+      "duration": 5.64
+    },
+    {
+      "text": "is that all those logits which are less",
+      "start": 617.519,
+      "duration": 4.841
+    },
+    {
+      "text": "than uh",
+      "start": 620.36,
+      "duration": 4.28
+    },
+    {
+      "text": "4.51 they will be replaced with minus",
+      "start": 622.36,
+      "duration": 4.68
+    },
+    {
+      "text": "infinity and then we print the new logit",
+      "start": 624.64,
+      "duration": 4.12
+    },
+    {
+      "text": "tensor and you'll see that except for",
+      "start": 627.04,
+      "duration": 3.56
+    },
+    {
+      "text": "the top three values",
+      "start": 628.76,
+      "duration": 6.36
+    },
+    {
+      "text": "4.51 6.75 and 6.28 all the others have",
+      "start": 630.6,
+      "duration": 7.08
+    },
+    {
+      "text": "been replaced with negative infinity and",
+      "start": 635.12,
+      "duration": 4.88
+    },
+    {
+      "text": "then you do the soft Max and then you",
+      "start": 637.68,
+      "duration": 4.76
+    },
+    {
+      "text": "will see that all the other values don't",
+      "start": 640.0,
+      "duration": 4.24
+    },
+    {
+      "text": "have any probability score associated",
+      "start": 642.44,
+      "duration": 4.56
+    },
+    {
+      "text": "with them and only the top three uh",
+      "start": 644.24,
+      "duration": 4.56
+    },
+    {
+      "text": "tokens with the maximum probabilities",
+      "start": 647.0,
+      "duration": 3.88
+    },
+    {
+      "text": "have survived and they add up to one",
+      "start": 648.8,
+      "duration": 4.88
+    },
+    {
+      "text": "this is how we make sure that only the",
+      "start": 650.88,
+      "duration": 5.28
+    },
+    {
+      "text": "top tokens have an opportunity to be the",
+      "start": 653.68,
+      "duration": 3.279
+    },
+    {
+      "text": "next",
+      "start": 656.16,
+      "duration": 3.4
+    },
+    {
+      "text": "token and here is where the the",
+      "start": 656.959,
+      "duration": 5.0
+    },
+    {
+      "text": "temperature and the multinomial",
+      "start": 659.56,
+      "duration": 4.279
+    },
+    {
+      "text": "distribution which we discussed in the",
+      "start": 661.959,
+      "duration": 4.081
+    },
+    {
+      "text": "previous lecture comes into the picture",
+      "start": 663.839,
+      "duration": 4.081
+    },
+    {
+      "text": "what we are going to do is that before",
+      "start": 666.04,
+      "duration": 3.84
+    },
+    {
+      "text": "we apply soft Max let's say we have this",
+      "start": 667.92,
+      "duration": 4.159
+    },
+    {
+      "text": "Infinity mask what we are going to do",
+      "start": 669.88,
+      "duration": 4.079
+    },
+    {
+      "text": "here is that at this moment we are going",
+      "start": 672.079,
+      "duration": 4.481
+    },
+    {
+      "text": "to take the logits and we are going to",
+      "start": 673.959,
+      "duration": 4.44
+    },
+    {
+      "text": "divide it by temperature like what we",
+      "start": 676.56,
+      "duration": 3.36
+    },
+    {
+      "text": "did",
+      "start": 678.399,
+      "duration": 3.88
+    },
+    {
+      "text": "earlier and then what we are going to do",
+      "start": 679.92,
+      "duration": 4.12
+    },
+    {
+      "text": "is that then we are going to sample from",
+      "start": 682.279,
+      "duration": 3.201
+    },
+    {
+      "text": "the multinomial",
+      "start": 684.04,
+      "duration": 3.599
+    },
+    {
+      "text": "distribution exactly what we had learned",
+      "start": 685.48,
+      "duration": 4.88
+    },
+    {
+      "text": "in the previous lecture sample from",
+      "start": 687.639,
+      "duration": 5.0
+    },
+    {
+      "text": "multinomial so what this will do is that",
+      "start": 690.36,
+      "duration": 4.24
+    },
+    {
+      "text": "it will make sure that let's say only",
+      "start": 692.639,
+      "duration": 3.681
+    },
+    {
+      "text": "these these tokens have survived right",
+      "start": 694.6,
+      "duration": 4.76
+    },
+    {
+      "text": "4.51 6.75",
+      "start": 696.32,
+      "duration": 6.519
+    },
+    {
+      "text": "6.28 we'll divide by temperature uh for",
+      "start": 699.36,
+      "duration": 5.56
+    },
+    {
+      "text": "sure we'll divide by temperature and",
+      "start": 702.839,
+      "duration": 6.361
+    },
+    {
+      "text": "then we'll apply the soft Max so let's",
+      "start": 704.92,
+      "duration": 6.0
+    },
+    {
+      "text": "say the probability distribution is now",
+      "start": 709.2,
+      "duration": 4.56
+    },
+    {
+      "text": "something like this so then we'll sample",
+      "start": 710.92,
+      "duration": 4.76
+    },
+    {
+      "text": "from multinomial so what we'll do is",
+      "start": 713.76,
+      "duration": 4.16
+    },
+    {
+      "text": "that we'll say that every time this",
+      "start": 715.68,
+      "duration": 4.12
+    },
+    {
+      "text": "token is not selected we know it has the",
+      "start": 717.92,
+      "duration": 3.64
+    },
+    {
+      "text": "highest probability but it will be",
+      "start": 719.8,
+      "duration": 3.32
+    },
+    {
+      "text": "sampled based on how high the",
+      "start": 721.56,
+      "duration": 3.92
+    },
+    {
+      "text": "probability is from the multinomial",
+      "start": 723.12,
+      "duration": 4.08
+    },
+    {
+      "text": "distribution so many times this token",
+      "start": 725.48,
+      "duration": 3.32
+    },
+    {
+      "text": "will also be sampled many times this",
+      "start": 727.2,
+      "duration": 3.56
+    },
+    {
+      "text": "token will also be sampled but the most",
+      "start": 728.8,
+      "duration": 3.479
+    },
+    {
+      "text": "number of times this token will be",
+      "start": 730.76,
+      "duration": 3.079
+    },
+    {
+      "text": "sampled because it has the probability",
+      "start": 732.279,
+      "duration": 4.161
+    },
+    {
+      "text": "of 57 this is how we are going to",
+      "start": 733.839,
+      "duration": 6.68
+    },
+    {
+      "text": "integrate the top K sampling with uh the",
+      "start": 736.44,
+      "duration": 5.8
+    },
+    {
+      "text": "temperature scaling so to give you a",
+      "start": 740.519,
+      "duration": 4.841
+    },
+    {
+      "text": "sense of the entire procedure you first",
+      "start": 742.24,
+      "duration": 5.68
+    },
+    {
+      "text": "have the logic tensor which is which is",
+      "start": 745.36,
+      "duration": 4.56
+    },
+    {
+      "text": "received from the llm output",
+      "start": 747.92,
+      "duration": 6.719
+    },
+    {
+      "text": "architecture then you um perform topk",
+      "start": 749.92,
+      "duration": 6.12
+    },
+    {
+      "text": "sampling on this which means that you",
+      "start": 754.639,
+      "duration": 4.041
+    },
+    {
+      "text": "only return those Logics which have the",
+      "start": 756.04,
+      "duration": 5.12
+    },
+    {
+      "text": "maximum values only those K logits and",
+      "start": 758.68,
+      "duration": 4.0
+    },
+    {
+      "text": "then you replace all the others with",
+      "start": 761.16,
+      "duration": 4.76
+    },
+    {
+      "text": "negative Infinity then you uh divide the",
+      "start": 762.68,
+      "duration": 6.2
+    },
+    {
+      "text": "Logics by the",
+      "start": 765.92,
+      "duration": 2.96
+    },
+    {
+      "text": "temperature then you take the soft",
+      "start": 769.639,
+      "duration": 4.081
+    },
+    {
+      "text": "Max and then you sample from",
+      "start": 774.079,
+      "duration": 5.481
+    },
+    {
+      "text": "uh then then you sample from the",
+      "start": 777.279,
+      "duration": 4.961
+    },
+    {
+      "text": "multinomial",
+      "start": 779.56,
+      "duration": 2.68
+    },
+    {
+      "text": "distribution this is the entire workflow",
+      "start": 783.0,
+      "duration": 4.48
+    },
+    {
+      "text": "of the decoding strategy which we are",
+      "start": 785.76,
+      "duration": 5.92
+    },
+    {
+      "text": "going to follow this will ensure that uh",
+      "start": 787.48,
+      "duration": 6.44
+    },
+    {
+      "text": "temperature is integrated which means",
+      "start": 791.68,
+      "duration": 4.08
+    },
+    {
+      "text": "that we also have some amount of",
+      "start": 793.92,
+      "duration": 3.96
+    },
+    {
+      "text": "creativity in the process and we'll",
+      "start": 795.76,
+      "duration": 4.12
+    },
+    {
+      "text": "ensure that random tokens have not are",
+      "start": 797.88,
+      "duration": 3.759
+    },
+    {
+      "text": "not given an opportunity to become the",
+      "start": 799.88,
+      "duration": 4.16
+    },
+    {
+      "text": "next token using topk and using the",
+      "start": 801.639,
+      "duration": 4.361
+    },
+    {
+      "text": "multinomial distribution we make sure",
+      "start": 804.04,
+      "duration": 3.799
+    },
+    {
+      "text": "that the next token selection is not a",
+      "start": 806.0,
+      "duration": 3.56
+    },
+    {
+      "text": "deterministic process but but it's a",
+      "start": 807.839,
+      "duration": 3.12
+    },
+    {
+      "text": "probabilistic",
+      "start": 809.56,
+      "duration": 3.76
+    },
+    {
+      "text": "process so let's see this an action in",
+      "start": 810.959,
+      "duration": 4.401
+    },
+    {
+      "text": "code now we are going to write a",
+      "start": 813.32,
+      "duration": 4.28
+    },
+    {
+      "text": "function which predicts the next token",
+      "start": 815.36,
+      "duration": 4.08
+    },
+    {
+      "text": "which will merge the temperature scaling",
+      "start": 817.6,
+      "duration": 4.479
+    },
+    {
+      "text": "and top case sampling as I'm going",
+      "start": 819.44,
+      "duration": 4.399
+    },
+    {
+      "text": "through the code for this part please",
+      "start": 822.079,
+      "duration": 3.44
+    },
+    {
+      "text": "keep in mind this schematic which I've",
+      "start": 823.839,
+      "duration": 4.081
+    },
+    {
+      "text": "shown over here logits then top K logits",
+      "start": 825.519,
+      "duration": 3.841
+    },
+    {
+      "text": "divide by",
+      "start": 827.92,
+      "duration": 3.88
+    },
+    {
+      "text": "temperature then soft Max and then",
+      "start": 829.36,
+      "duration": 3.719
+    },
+    {
+      "text": "sample from",
+      "start": 831.8,
+      "duration": 3.52
+    },
+    {
+      "text": "multinomial remember when you apply top",
+      "start": 833.079,
+      "duration": 4.641
+    },
+    {
+      "text": "K all the other values which are not in",
+      "start": 835.32,
+      "duration": 5.56
+    },
+    {
+      "text": "the top K are replaced with negative",
+      "start": 837.72,
+      "duration": 5.64
+    },
+    {
+      "text": "Infinity great now what we are going to",
+      "start": 840.88,
+      "duration": 4.48
+    },
+    {
+      "text": "do is that we can apply the temperature",
+      "start": 843.36,
+      "duration": 3.88
+    },
+    {
+      "text": "scaling and multinomial function for",
+      "start": 845.36,
+      "duration": 5.279
+    },
+    {
+      "text": "probabilistic sampling to select the",
+      "start": 847.24,
+      "duration": 6.92
+    },
+    {
+      "text": "next token among the three nonzero",
+      "start": 850.639,
+      "duration": 5.56
+    },
+    {
+      "text": "probability scores so here you see the",
+      "start": 854.16,
+      "duration": 4.16
+    },
+    {
+      "text": "probability scores have been obtained",
+      "start": 856.199,
+      "duration": 4.721
+    },
+    {
+      "text": "now we will uh apply multinomial",
+      "start": 858.32,
+      "duration": 5.04
+    },
+    {
+      "text": "sampling here as we have seen before so",
+      "start": 860.92,
+      "duration": 3.8
+    },
+    {
+      "text": "let me take you through the function",
+      "start": 863.36,
+      "duration": 2.96
+    },
+    {
+      "text": "which I'm going to write right now this",
+      "start": 864.72,
+      "duration": 3.4
+    },
+    {
+      "text": "is the final function which will",
+      "start": 866.32,
+      "duration": 4.48
+    },
+    {
+      "text": "generate the next to for us it will take",
+      "start": 868.12,
+      "duration": 4.279
+    },
+    {
+      "text": "the model which is an instance of the",
+      "start": 870.8,
+      "duration": 4.2
+    },
+    {
+      "text": "GPT model class we have defined earlier",
+      "start": 872.399,
+      "duration": 4.44
+    },
+    {
+      "text": "it will take the maximum new tokens",
+      "start": 875.0,
+      "duration": 4.199
+    },
+    {
+      "text": "which it has to generate uh and context",
+      "start": 876.839,
+      "duration": 4.041
+    },
+    {
+      "text": "size so all of this was there in the",
+      "start": 879.199,
+      "duration": 4.361
+    },
+    {
+      "text": "previous generate function also the new",
+      "start": 880.88,
+      "duration": 4.8
+    },
+    {
+      "text": "things are the temperature value the top",
+      "start": 883.56,
+      "duration": 5.719
+    },
+    {
+      "text": "K value and the end of sample ID I'll",
+      "start": 885.68,
+      "duration": 5.2
+    },
+    {
+      "text": "explain to you what this",
+      "start": 889.279,
+      "duration": 3.841
+    },
+    {
+      "text": "means first what we'll do is that we",
+      "start": 890.88,
+      "duration": 5.0
+    },
+    {
+      "text": "have the logic sensor which is generated",
+      "start": 893.12,
+      "duration": 5.279
+    },
+    {
+      "text": "uh from the GPT output then we'll apply",
+      "start": 895.88,
+      "duration": 3.879
+    },
+    {
+      "text": "top k",
+      "start": 898.399,
+      "duration": 3.401
+    },
+    {
+      "text": "so if the top K let's say set to three",
+      "start": 899.759,
+      "duration": 5.121
+    },
+    {
+      "text": "we'll look at the logic tensor and only",
+      "start": 901.8,
+      "duration": 7.039
+    },
+    {
+      "text": "retain those values where the",
+      "start": 904.88,
+      "duration": 7.319
+    },
+    {
+      "text": "logits where the only return the top K",
+      "start": 908.839,
+      "duration": 5.401
+    },
+    {
+      "text": "values in the logit tensor and we",
+      "start": 912.199,
+      "duration": 4.041
+    },
+    {
+      "text": "replace all the other values with",
+      "start": 914.24,
+      "duration": 3.519
+    },
+    {
+      "text": "negative",
+      "start": 916.24,
+      "duration": 3.719
+    },
+    {
+      "text": "Infinity that's what is being done in",
+      "start": 917.759,
+      "duration": 3.921
+    },
+    {
+      "text": "this part of the code then as I",
+      "start": 919.959,
+      "duration": 4.601
+    },
+    {
+      "text": "mentioned so after top K is applied then",
+      "start": 921.68,
+      "duration": 5.04
+    },
+    {
+      "text": "we'll scale with",
+      "start": 924.56,
+      "duration": 4.56
+    },
+    {
+      "text": "temperature so in the next step what we",
+      "start": 926.72,
+      "duration": 3.76
+    },
+    {
+      "text": "are going to do is that if temperature",
+      "start": 929.12,
+      "duration": 2.88
+    },
+    {
+      "text": "is greater than zero we are going to",
+      "start": 930.48,
+      "duration": 3.68
+    },
+    {
+      "text": "scale the logits with temperature then",
+      "start": 932.0,
+      "duration": 4.48
+    },
+    {
+      "text": "we are going to take the soft Max and",
+      "start": 934.16,
+      "duration": 4.599
+    },
+    {
+      "text": "then we are going to do the next token",
+      "start": 936.48,
+      "duration": 4.279
+    },
+    {
+      "text": "ID using the multinomial probability",
+      "start": 938.759,
+      "duration": 4.121
+    },
+    {
+      "text": "distribution so exactly these three",
+      "start": 940.759,
+      "duration": 4.601
+    },
+    {
+      "text": "steps you scale with the temperature you",
+      "start": 942.88,
+      "duration": 4.519
+    },
+    {
+      "text": "take the soft Max and then you sample",
+      "start": 945.36,
+      "duration": 4.479
+    },
+    {
+      "text": "from multinomial this is how you select",
+      "start": 947.399,
+      "duration": 4.481
+    },
+    {
+      "text": "the next token ID and what you predict",
+      "start": 949.839,
+      "duration": 3.601
+    },
+    {
+      "text": "the next token ID to",
+      "start": 951.88,
+      "duration": 4.399
+    },
+    {
+      "text": "be now if temperature is not specified",
+      "start": 953.44,
+      "duration": 4.959
+    },
+    {
+      "text": "so if the user does not specify the",
+      "start": 956.279,
+      "duration": 3.201
+    },
+    {
+      "text": "temperature",
+      "start": 958.399,
+      "duration": 3.721
+    },
+    {
+      "text": "we will just uh do the sampling as",
+      "start": 959.48,
+      "duration": 6.599
+    },
+    {
+      "text": "before we'll just get the token with the",
+      "start": 962.12,
+      "duration": 6.719
+    },
+    {
+      "text": "maximum probability and we'll say that",
+      "start": 966.079,
+      "duration": 4.24
+    },
+    {
+      "text": "uh we'll get the token ID with the",
+      "start": 968.839,
+      "duration": 3.36
+    },
+    {
+      "text": "maximum probability and we'll say that",
+      "start": 970.319,
+      "duration": 4.44
+    },
+    {
+      "text": "this corresponds to the next token in my",
+      "start": 972.199,
+      "duration": 5.08
+    },
+    {
+      "text": "sequence but mostly when GPT",
+      "start": 974.759,
+      "duration": 4.52
+    },
+    {
+      "text": "architectures are developed and built",
+      "start": 977.279,
+      "duration": 4.0
+    },
+    {
+      "text": "the temperature value is specified I'll",
+      "start": 979.279,
+      "duration": 3.441
+    },
+    {
+      "text": "come to that in a",
+      "start": 981.279,
+      "duration": 4.201
+    },
+    {
+      "text": "moment there is one more uh loop here",
+      "start": 982.72,
+      "duration": 4.72
+    },
+    {
+      "text": "which is basically if end of sequence",
+      "start": 985.48,
+      "duration": 4.44
+    },
+    {
+      "text": "token so this EOS is actually end of",
+      "start": 987.44,
+      "duration": 6.12
+    },
+    {
+      "text": "sequence if end of sequence token is",
+      "start": 989.92,
+      "duration": 7.399
+    },
+    {
+      "text": "encountered then uh we can stop",
+      "start": 993.56,
+      "duration": 7.36
+    },
+    {
+      "text": "early however if end of sequence is end",
+      "start": 997.319,
+      "duration": 6.041
+    },
+    {
+      "text": "of sequence ID is not specified then we",
+      "start": 1000.92,
+      "duration": 6.44
+    },
+    {
+      "text": "can just uh keep on generating the next",
+      "start": 1003.36,
+      "duration": 7.56
+    },
+    {
+      "text": "token and then what we do is that uh we",
+      "start": 1007.36,
+      "duration": 6.399
+    },
+    {
+      "text": "append the new generated token ID to the",
+      "start": 1010.92,
+      "duration": 5.56
+    },
+    {
+      "text": "current ID until we reach this maximum",
+      "start": 1013.759,
+      "duration": 4.241
+    },
+    {
+      "text": "number of new tokens which are to be",
+      "start": 1016.48,
+      "duration": 4.4
+    },
+    {
+      "text": "generated so here you can see the flow",
+      "start": 1018.0,
+      "duration": 5.04
+    },
+    {
+      "text": "we have the logit tensor we apply the",
+      "start": 1020.88,
+      "duration": 4.799
+    },
+    {
+      "text": "top K sampling then we scale the logits",
+      "start": 1023.04,
+      "duration": 4.84
+    },
+    {
+      "text": "with the temperature and then we sample",
+      "start": 1025.679,
+      "duration": 3.88
+    },
+    {
+      "text": "the next token from a multinomial",
+      "start": 1027.88,
+      "duration": 4.0
+    },
+    {
+      "text": "probability distribution uh if",
+      "start": 1029.559,
+      "duration": 4.36
+    },
+    {
+      "text": "temperature is not specified then we",
+      "start": 1031.88,
+      "duration": 4.36
+    },
+    {
+      "text": "just use the argmax which was done",
+      "start": 1033.919,
+      "duration": 5.0
+    },
+    {
+      "text": "previously then we choose the next token",
+      "start": 1036.24,
+      "duration": 4.4
+    },
+    {
+      "text": "uh as that one which has the maximum",
+      "start": 1038.919,
+      "duration": 4.12
+    },
+    {
+      "text": "probability score and then we just keep",
+      "start": 1040.64,
+      "duration": 6.039
+    },
+    {
+      "text": "on appending the next token ID until the",
+      "start": 1043.039,
+      "duration": 5.441
+    },
+    {
+      "text": "maximum number of new tokens limit is",
+      "start": 1046.679,
+      "duration": 3.321
+    },
+    {
+      "text": "reached",
+      "start": 1048.48,
+      "duration": 4.28
+    },
+    {
+      "text": "this is exactly what is happening in the",
+      "start": 1050.0,
+      "duration": 4.559
+    },
+    {
+      "text": "uh generate function which we have",
+      "start": 1052.76,
+      "duration": 3.6
+    },
+    {
+      "text": "defined right now to generate the new",
+      "start": 1054.559,
+      "duration": 4.081
+    },
+    {
+      "text": "token and now what I'm going to do is",
+      "start": 1056.36,
+      "duration": 5.72
+    },
+    {
+      "text": "that I'm going to generate 25 new tokens",
+      "start": 1058.64,
+      "duration": 5.6
+    },
+    {
+      "text": "and let's compare the performance with",
+      "start": 1062.08,
+      "duration": 4.44
+    },
+    {
+      "text": "what we had earlier so earlier when the",
+      "start": 1064.24,
+      "duration": 4.799
+    },
+    {
+      "text": "KN decoding strategy was used of just",
+      "start": 1066.52,
+      "duration": 4.96
+    },
+    {
+      "text": "using the maximum probability you'll see",
+      "start": 1069.039,
+      "duration": 4.401
+    },
+    {
+      "text": "that the next tokens were was one of the",
+      "start": 1071.48,
+      "duration": 4.48
+    },
+    {
+      "text": "xmc laid down across the seers and",
+      "start": 1073.44,
+      "duration": 5.08
+    },
+    {
+      "text": "silver of an exquisitely appointed these",
+      "start": 1075.96,
+      "duration": 5.199
+    },
+    {
+      "text": "words we're not making too much sense so",
+      "start": 1078.52,
+      "duration": 4.68
+    },
+    {
+      "text": "let's say if the decoding has improved",
+      "start": 1081.159,
+      "duration": 4.0
+    },
+    {
+      "text": "using this new generate",
+      "start": 1083.2,
+      "duration": 4.24
+    },
+    {
+      "text": "function so I'm going to use this new",
+      "start": 1085.159,
+      "duration": 4.0
+    },
+    {
+      "text": "generate function now which has been",
+      "start": 1087.44,
+      "duration": 4.44
+    },
+    {
+      "text": "defined over here and we are going to",
+      "start": 1089.159,
+      "duration": 5.121
+    },
+    {
+      "text": "pass in the GPT model and then we have",
+      "start": 1091.88,
+      "duration": 4.64
+    },
+    {
+      "text": "to pass in the input token IDs which is",
+      "start": 1094.28,
+      "duration": 4.759
+    },
+    {
+      "text": "now every effort moves you maximum",
+      "start": 1096.52,
+      "duration": 4.159
+    },
+    {
+      "text": "number of new tokens I'm setting to be",
+      "start": 1099.039,
+      "duration": 4.801
+    },
+    {
+      "text": "15 the top ke tokens I'm setting to be",
+      "start": 1100.679,
+      "duration": 5.721
+    },
+    {
+      "text": "25 uh so I'm just going to look at the",
+      "start": 1103.84,
+      "duration": 6.4
+    },
+    {
+      "text": "25 tokens so remember the vocab size is",
+      "start": 1106.4,
+      "duration": 6.759
+    },
+    {
+      "text": "50257 and I'm going to look at the 25",
+      "start": 1110.24,
+      "duration": 4.36
+    },
+    {
+      "text": "tokens which have the highest",
+      "start": 1113.159,
+      "duration": 4.281
+    },
+    {
+      "text": "probabilities in those 50 to",
+      "start": 1114.6,
+      "duration": 5.439
+    },
+    {
+      "text": "57 and the temperature value have set to",
+      "start": 1117.44,
+      "duration": 4.84
+    },
+    {
+      "text": "1.4 this is a good trade-off because if",
+      "start": 1120.039,
+      "duration": 4.161
+    },
+    {
+      "text": "the temperature value is too low we'll",
+      "start": 1122.28,
+      "duration": 3.8
+    },
+    {
+      "text": "have sharper probability distributions",
+      "start": 1124.2,
+      "duration": 4.2
+    },
+    {
+      "text": "if it's too high then we'll get a",
+      "start": 1126.08,
+      "duration": 5.44
+    },
+    {
+      "text": "non-sensical output so 1.4 seems to be",
+      "start": 1128.4,
+      "duration": 4.48
+    },
+    {
+      "text": "like a good tradeoff you can even",
+      "start": 1131.52,
+      "duration": 3.44
+    },
+    {
+      "text": "experiment with this further so when I",
+      "start": 1132.88,
+      "duration": 4.44
+    },
+    {
+      "text": "run this I can see that the next output",
+      "start": 1134.96,
+      "duration": 4.12
+    },
+    {
+      "text": "which the next tokens which are",
+      "start": 1137.32,
+      "duration": 3.88
+    },
+    {
+      "text": "generated are every effort moves you",
+      "start": 1139.08,
+      "duration": 4.52
+    },
+    {
+      "text": "stand to work on surprise one of us had",
+      "start": 1141.2,
+      "duration": 3.4
+    },
+    {
+      "text": "gone with",
+      "start": 1143.6,
+      "duration": 4.079
+    },
+    {
+      "text": "random it is uh very different from the",
+      "start": 1144.6,
+      "duration": 4.92
+    },
+    {
+      "text": "one we had previously generated so",
+      "start": 1147.679,
+      "duration": 5.48
+    },
+    {
+      "text": "although here also we can see that uh",
+      "start": 1149.52,
+      "duration": 5.48
+    },
+    {
+      "text": "the next token does not make too much",
+      "start": 1153.159,
+      "duration": 3.441
+    },
+    {
+      "text": "sense but at least the overfitting",
+      "start": 1155.0,
+      "duration": 3.559
+    },
+    {
+      "text": "problem is solved what was happening",
+      "start": 1156.6,
+      "duration": 3.439
+    },
+    {
+      "text": "earlier is that we were making a",
+      "start": 1158.559,
+      "duration": 3.6
+    },
+    {
+      "text": "deterministic prediction right so when",
+      "start": 1160.039,
+      "duration": 4.361
+    },
+    {
+      "text": "the next tokens were selected it was",
+      "start": 1162.159,
+      "duration": 4.361
+    },
+    {
+      "text": "overfitting which means that the next",
+      "start": 1164.4,
+      "duration": 5.44
+    },
+    {
+      "text": "tokens were just being uh uh just being",
+      "start": 1166.52,
+      "duration": 5.279
+    },
+    {
+      "text": "taken from the text which we had so here",
+      "start": 1169.84,
+      "duration": 4.56
+    },
+    {
+      "text": "if you see the next tokens were directly",
+      "start": 1171.799,
+      "duration": 4.201
+    },
+    {
+      "text": "some of the next tokens were directly",
+      "start": 1174.4,
+      "duration": 3.32
+    },
+    {
+      "text": "taken from the text which is a classic",
+      "start": 1176.0,
+      "duration": 3.76
+    },
+    {
+      "text": "sign of overfitting the decoding",
+      "start": 1177.72,
+      "duration": 3.72
+    },
+    {
+      "text": "strategies which we have implemented are",
+      "start": 1179.76,
+      "duration": 3.44
+    },
+    {
+      "text": "probabilistic in nature which really",
+      "start": 1181.44,
+      "duration": 5.56
+    },
+    {
+      "text": "makes sense to avoid overfitting since",
+      "start": 1183.2,
+      "duration": 6.88
+    },
+    {
+      "text": "the sampling is probabilistic we it the",
+      "start": 1187.0,
+      "duration": 5.2
+    },
+    {
+      "text": "GPT model will not memorize the passage",
+      "start": 1190.08,
+      "duration": 3.68
+    },
+    {
+      "text": "when predicting the next words and",
+      "start": 1192.2,
+      "duration": 3.599
+    },
+    {
+      "text": "that's very important for us you will",
+      "start": 1193.76,
+      "duration": 3.6
+    },
+    {
+      "text": "have noticed that when you interact with",
+      "start": 1195.799,
+      "duration": 3.681
+    },
+    {
+      "text": "chat GPT it always gives you new output",
+      "start": 1197.36,
+      "duration": 3.64
+    },
+    {
+      "text": "right doesn't really memorize what you",
+      "start": 1199.48,
+      "duration": 4.04
+    },
+    {
+      "text": "have written and that is because of this",
+      "start": 1201.0,
+      "duration": 4.36
+    },
+    {
+      "text": "decoding strategies such as topk",
+      "start": 1203.52,
+      "duration": 4.0
+    },
+    {
+      "text": "sampling and temperature scaling they",
+      "start": 1205.36,
+      "duration": 4.04
+    },
+    {
+      "text": "really help to avoid overfitting and",
+      "start": 1207.52,
+      "duration": 4.159
+    },
+    {
+      "text": "that's one of the main purposes why we",
+      "start": 1209.4,
+      "duration": 4.32
+    },
+    {
+      "text": "also learn about decoding",
+      "start": 1211.679,
+      "duration": 4.24
+    },
+    {
+      "text": "strategies so you'll see that these new",
+      "start": 1213.72,
+      "duration": 4.6
+    },
+    {
+      "text": "words uh moves us stand to work on",
+      "start": 1215.919,
+      "duration": 3.921
+    },
+    {
+      "text": "surprise were not present in the",
+      "start": 1218.32,
+      "duration": 5.16
+    },
+    {
+      "text": "original text and we can check that",
+      "start": 1219.84,
+      "duration": 3.64
+    },
+    {
+      "text": "actually so this is the original text",
+      "start": 1225.48,
+      "duration": 5.4
+    },
+    {
+      "text": "and let's contrl F to see whether this",
+      "start": 1228.799,
+      "duration": 3.681
+    },
+    {
+      "text": "these words are actually present in the",
+      "start": 1230.88,
+      "duration": 5.44
+    },
+    {
+      "text": "original text moves you stand to work so",
+      "start": 1232.48,
+      "duration": 6.96
+    },
+    {
+      "text": "let me control F moves you it's not",
+      "start": 1236.32,
+      "duration": 6.0
+    },
+    {
+      "text": "there right let me search stand to work",
+      "start": 1239.44,
+      "duration": 5.76
+    },
+    {
+      "text": "it's not there which means that the next",
+      "start": 1242.32,
+      "duration": 4.359
+    },
+    {
+      "text": "tokens which have been generated are",
+      "start": 1245.2,
+      "duration": 3.32
+    },
+    {
+      "text": "completely new now it is a true",
+      "start": 1246.679,
+      "duration": 4.201
+    },
+    {
+      "text": "generative AI model because it's not",
+      "start": 1248.52,
+      "duration": 3.96
+    },
+    {
+      "text": "just memorizing what was there in the",
+      "start": 1250.88,
+      "duration": 3.48
+    },
+    {
+      "text": "original text it is actually generating",
+      "start": 1252.48,
+      "duration": 4.36
+    },
+    {
+      "text": "new tokens it is generating some new",
+      "start": 1254.36,
+      "duration": 4.96
+    },
+    {
+      "text": "sentences",
+      "start": 1256.84,
+      "duration": 4.319
+    },
+    {
+      "text": "awesome so that's the reason why we",
+      "start": 1259.32,
+      "duration": 3.68
+    },
+    {
+      "text": "learned about decoding strategies in",
+      "start": 1261.159,
+      "duration": 3.88
+    },
+    {
+      "text": "these modules you have now learned about",
+      "start": 1263.0,
+      "duration": 4.2
+    },
+    {
+      "text": "two decoding strategies first you",
+      "start": 1265.039,
+      "duration": 4.401
+    },
+    {
+      "text": "learned about temperature scaling and",
+      "start": 1267.2,
+      "duration": 5.24
+    },
+    {
+      "text": "that was very important to help us",
+      "start": 1269.44,
+      "duration": 4.68
+    },
+    {
+      "text": "intuitively get either sharper",
+      "start": 1272.44,
+      "duration": 4.4
+    },
+    {
+      "text": "distributions or uniform distributions",
+      "start": 1274.12,
+      "duration": 5.48
+    },
+    {
+      "text": "and it also helps to prevent overfitting",
+      "start": 1276.84,
+      "duration": 4.719
+    },
+    {
+      "text": "since we use multinomial probability",
+      "start": 1279.6,
+      "duration": 4.72
+    },
+    {
+      "text": "distribution to sample then we use topk",
+      "start": 1281.559,
+      "duration": 5.161
+    },
+    {
+      "text": "sampling because it addresses the issue",
+      "start": 1284.32,
+      "duration": 4.839
+    },
+    {
+      "text": "in temperature scaling where random also",
+      "start": 1286.72,
+      "duration": 4.439
+    },
+    {
+      "text": "or random tokens have the opportunity of",
+      "start": 1289.159,
+      "duration": 4.88
+    },
+    {
+      "text": "being the next token in top Cas sampling",
+      "start": 1291.159,
+      "duration": 5.841
+    },
+    {
+      "text": "we restrict the sample tokens to the top",
+      "start": 1294.039,
+      "duration": 5.24
+    },
+    {
+      "text": "K most likely tokens and we prevent",
+      "start": 1297.0,
+      "duration": 3.84
+    },
+    {
+      "text": "other tokens from even getting an",
+      "start": 1299.279,
+      "duration": 4.0
+    },
+    {
+      "text": "opportunity to become the next token and",
+      "start": 1300.84,
+      "duration": 4.36
+    },
+    {
+      "text": "that improves the meaning in the",
+      "start": 1303.279,
+      "duration": 3.88
+    },
+    {
+      "text": "generated next tokens it prevents us",
+      "start": 1305.2,
+      "duration": 4.8
+    },
+    {
+      "text": "from getting nonsensical or random",
+      "start": 1307.159,
+      "duration": 5.441
+    },
+    {
+      "text": "output uh as we conclude this lecture",
+      "start": 1310.0,
+      "duration": 4.52
+    },
+    {
+      "text": "please keep this workflow in mind where",
+      "start": 1312.6,
+      "duration": 5.12
+    },
+    {
+      "text": "you first uh you first obtain the logic",
+      "start": 1314.52,
+      "duration": 6.96
+    },
+    {
+      "text": "tensor from the GPT model then you apply",
+      "start": 1317.72,
+      "duration": 7.199
+    },
+    {
+      "text": "the topk sampling then what you do is",
+      "start": 1321.48,
+      "duration": 5.72
+    },
+    {
+      "text": "after topk sampling those tokens which",
+      "start": 1324.919,
+      "duration": 3.921
+    },
+    {
+      "text": "are not in the top K will be replaced",
+      "start": 1327.2,
+      "duration": 3.599
+    },
+    {
+      "text": "with negative Infinity then you do",
+      "start": 1328.84,
+      "duration": 3.52
+    },
+    {
+      "text": "temperature scaling so you divide the",
+      "start": 1330.799,
+      "duration": 3.641
+    },
+    {
+      "text": "logits with the temperature value then",
+      "start": 1332.36,
+      "duration": 4.4
+    },
+    {
+      "text": "you apply soft Max and then finally you",
+      "start": 1334.44,
+      "duration": 4.08
+    },
+    {
+      "text": "sample from the multinomial to predict",
+      "start": 1336.76,
+      "duration": 5.68
+    },
+    {
+      "text": "the next token this will make sure that",
+      "start": 1338.52,
+      "duration": 6.72
+    },
+    {
+      "text": "uh",
+      "start": 1342.44,
+      "duration": 5.4
+    },
+    {
+      "text": "overfitting overfitting is reduced or",
+      "start": 1345.24,
+      "duration": 5.36
+    },
+    {
+      "text": "overfitting is is",
+      "start": 1347.84,
+      "duration": 5.24
+    },
+    {
+      "text": "minimized uh thanks everyone this brings",
+      "start": 1350.6,
+      "duration": 4.12
+    },
+    {
+      "text": "us to the end of today's lecture where",
+      "start": 1353.08,
+      "duration": 3.719
+    },
+    {
+      "text": "we learned about the second decoding",
+      "start": 1354.72,
+      "duration": 4.4
+    },
+    {
+      "text": "strategy in the next lecture we'll look",
+      "start": 1356.799,
+      "duration": 4.201
+    },
+    {
+      "text": "at some interesting examples where we",
+      "start": 1359.12,
+      "duration": 3.76
+    },
+    {
+      "text": "will start to load pre-trained weights",
+      "start": 1361.0,
+      "duration": 4.279
+    },
+    {
+      "text": "from open AI itself and we'll learn at",
+      "start": 1362.88,
+      "duration": 5.039
+    },
+    {
+      "text": "we'll look at some other pre-training",
+      "start": 1365.279,
+      "duration": 4.801
+    },
+    {
+      "text": "strategies and after these set of",
+      "start": 1367.919,
+      "duration": 3.76
+    },
+    {
+      "text": "lectures are over we'll go to fine",
+      "start": 1370.08,
+      "duration": 4.16
+    },
+    {
+      "text": "tuning and look at applications thank",
+      "start": 1371.679,
+      "duration": 4.081
+    },
+    {
+      "text": "you so much everyone I hope you are",
+      "start": 1374.24,
+      "duration": 4.48
+    },
+    {
+      "text": "liking these series of lectures I have a",
+      "start": 1375.76,
+      "duration": 5.039
+    },
+    {
+      "text": "combination of whiteboard approach as",
+      "start": 1378.72,
+      "duration": 5.4
+    },
+    {
+      "text": "well as taking you through code I'm sure",
+      "start": 1380.799,
+      "duration": 5.12
+    },
+    {
+      "text": "that there are no other YouTube videos",
+      "start": 1384.12,
+      "duration": 3.439
+    },
+    {
+      "text": "right now which explain about large",
+      "start": 1385.919,
+      "duration": 3.36
+    },
+    {
+      "text": "language models in such a detailed",
+      "start": 1387.559,
+      "duration": 3.561
+    },
+    {
+      "text": "fashion so if you have reached this",
+      "start": 1389.279,
+      "duration": 4.64
+    },
+    {
+      "text": "stage I congratulate you for making this",
+      "start": 1391.12,
+      "duration": 6.08
+    },
+    {
+      "text": "way this much uh Headway into the course",
+      "start": 1393.919,
+      "duration": 4.841
+    },
+    {
+      "text": "if you are watching this for the first",
+      "start": 1397.2,
+      "duration": 3.44
+    },
+    {
+      "text": "time I encourage you to look at all the",
+      "start": 1398.76,
+      "duration": 3.519
+    },
+    {
+      "text": "previous videos which have been uploaded",
+      "start": 1400.64,
+      "duration": 3.44
+    },
+    {
+      "text": "in the course to develop your",
+      "start": 1402.279,
+      "duration": 3.601
+    },
+    {
+      "text": "understanding thanks everyone and I look",
+      "start": 1404.08,
+      "duration": 3.16
+    },
+    {
+      "text": "forward to seeing you in the next",
+      "start": 1405.88,
+      "duration": 4.36
+    },
+    {
+      "text": "lecture",
+      "start": 1407.24,
+      "duration": 3.0
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the build large language models from scratch Series today we continue our discussion regarding strategies for llm decoding to reduce Randomness in the previous lecture we learned about this technique which is called as temperature scaling and in today's lecture we are going to learn about another technique which is a decoding strategy for llms and that is called as top K sampling topk sampling is used along with temperature scaling so if you have not been through the previous lecture I would highly recommend you to watch the previous lecture if you are coming to this lecture for the first time no problem I've designed it in such a way that it's selfcontain and you will understand everything what's going on what are llm decoding strategies and why did we even start learning about them the reason we require llm decoding strategies is that if you if you generate the next token using the first strategy which we had and that first strategy was basically something very simple what the first strategy was is that the generated token is just selected corresponding to the largest probability score among all the tokens in the vocabulary so we uh we have the input tokens and then to predict the next token we look at the indices which correspond to the maximum probability score and we say that those will be the next token this leads to a lot of issues because let's say if every effort moves is the input and let's say using that knif decoding strategy we print out the next 25 tokens you'll see that the next 25 tokens look something like this they are very random and it's difficult to get tokens which actually Mak sense and the reason is because we are giving too much importance to that token which has the maximum probability wouldn't it make sense to instead of choosing a token in a deterministic manner wouldn't it make more sense to sample the token from a probability distribution and that's where temperature scaling comes into the picture what we do is that we have this logic stenor right whenever we get output from the GPT architecture we have a logit tensor we apply soft Max and convert it into a tensor of probabilities right and then instead of choosing the max index corresponding to the maximum value what we now do is that we sample from the we sample using the multinomial distribution what the multinomial distribution does is that let's say if you have this tensor of probabilities instead of choosing the token with the maximum probability We Choose Or we sample the next token in a probabilistic manner and the way the multinomial distribution does it is that uh it samples the next token proportional to its probability score so here we can can see that among this probability tensor 5721 is the maximum value uh so in our KN strategy the token corresponding to this will be the next token always in a very deterministic manner right but what happens in a multinomial distribution is that still this will be given the largest probability but it will now be sampled from a probability distribution which means that other tokens might also be selected as the next token compared to their probability values so if you sample thousand times using this multinomial distribution the token corresponding to the maximum probability will come of course more number of times 582 times but there are other tokens which also come into the picture now that was not possible with the deterministic prediction and this actually enables to have more creativity in the llm output it helps us to control Randomness a bit by sampling from a probability distribution then we introduce the concept of temperature where we just divide the logits with this value called as temperature and uh then we take the soft Max the temperature has the effect that if the temperature is actually increased then all the tokens have kind of uniform probability of being the next token whereas if the temperature is very low then that means that we have sharper distribution where only one token will be selectively favored so uh when we divide the logits by the temperature here you can see uh an animation which shows that as the temperature goes from low to high the different tokens have different probabilities of being sampled the distribution changes from being a sharper distribution at lower temperature to a uniform distribution so this was the case with introducing temperature but there was an issue which we saw even when we introduce temperature let's say if the temperature value is equal to five uh then you can see that when every effort moves is the uh when every effort moves is the uh every effort moves you is the input then there is also the probability of tokens such as Pizza being the next token so if the temperature value is equal to five there is about 4% chance that the next token will be Visa so that is not very good right and that's the issue with just using temperature scaling if we just use temperature scaling all the tokens are all the tokens remain in the picture to become the next possible token all the tokens have a kind of probability or a chance to become the next token even completely random tokens and we don't want that we want to restrict that opportunity of being the next token to only a few number of tokens that's the best way to introduce you to the concept of topk sampling we want to restrict the opportunity of being the next token to only a few tokens which makes sense so what we are going to do is that in the concept of topk sampling is essentially pretty simple uh we restrict the sample tokens to the top K most likely tokens and we will exclude all the other tokens let me illustrate to you what this means let's say we have the logic sensor which looks something like this right now before applying soft Max what we are going to do is that we are only going to look at the top K logits and if K is equal to three we will only look at the top three logits which is this 4.51 6.75 and 6.28 and uh we will ensure that when we apply soft Max all these other Logics are effectively not in the picture at all they are not considered and what's the best way to do this the best way to do this is to essentially replace all of these values which are not in the top three with negative Infinity when we replace these all other values with negative Infinity when we take soft Max we will ensure that all of these will effectively be zero so then they will not contribute to being the next token at all and only the top three values which we have Will Survive what this essentially does is that it removes all the other tokens which we which are which does not make sense at all right every effort moves you pizza has no should not have the opportunity to become the next token at all right so why should we even consider pizza so the token ID corresponding to pizza will be replaced with infinity when we take soft Max that will be uh reduced to zero now let us see this in action in code so I'm going to take you to python code now just before that I've written a few uh conceptual understanding sentences here so let me go through that in the previous section we implemented a probabilistic sampling approach coupled with temperature scaling as I just describ to you and we saw that higher temperature values result in more uniformly distributed next token probabilities which result in more diverse outputs okay this method allows for exploring less likely but potentially more interesting and creative paths but one downside of this approach is that sometimes it leads to grammatically incorrect or completely nonsensical output such as every effort moves you Piza does not make any sense at all in this section we introduce another concept which is called as top K sampling and later we'll see how to combine it with probabilistic sampling and temperature scaling for now let me just introduce to you the concept through a simple demonstration so let's say we have this next token logits which is a tensor that looks something like this uh yeah so this is the next token Logics it looks like this and let me again bring it over here so the next token logic tensor looks something like this and as I mentioned the first step to do in the topk sampling is to select how many tokens you want as the top so here I'm selecting the top K tokens to be equal to I want three tokens right then what you do is that P torch has this function called torch. top K what it does is that let's say if you give it a tensor it will look at this tensor and it will return two things it will return the top uh top three values which have the maximum value and it will return the indices corresponding to them so you apply this function t. top K to this next token logit sensor and then the top logits are returned and the position at which these top logits occur is also returned so you'll see that the top logits are 6.75 which is this 6.28 which is this and 4.51 which is this and they occur in position numbers 3 7 and 0 awesome so here you will see that this is the torch. topk implementation in pytorch I'll be sharing the link to this when I uh in the YouTube information section okay now what we are going to do next is that we have identified the top Logics and we have identified the positions as I mentioned now we are going to replace all the other values which don't belong in top three with negative Infinity so the way to do this is that we use the tor. we function and then uh the condition which we are using is that all those logits which are less than uh 4.51 they will be replaced with minus infinity and then we print the new logit tensor and you'll see that except for the top three values 4.51 6.75 and 6.28 all the others have been replaced with negative infinity and then you do the soft Max and then you will see that all the other values don't have any probability score associated with them and only the top three uh tokens with the maximum probabilities have survived and they add up to one this is how we make sure that only the top tokens have an opportunity to be the next token and here is where the the temperature and the multinomial distribution which we discussed in the previous lecture comes into the picture what we are going to do is that before we apply soft Max let's say we have this Infinity mask what we are going to do here is that at this moment we are going to take the logits and we are going to divide it by temperature like what we did earlier and then what we are going to do is that then we are going to sample from the multinomial distribution exactly what we had learned in the previous lecture sample from multinomial so what this will do is that it will make sure that let's say only these these tokens have survived right 4.51 6.75 6.28 we'll divide by temperature uh for sure we'll divide by temperature and then we'll apply the soft Max so let's say the probability distribution is now something like this so then we'll sample from multinomial so what we'll do is that we'll say that every time this token is not selected we know it has the highest probability but it will be sampled based on how high the probability is from the multinomial distribution so many times this token will also be sampled many times this token will also be sampled but the most number of times this token will be sampled because it has the probability of 57 this is how we are going to integrate the top K sampling with uh the temperature scaling so to give you a sense of the entire procedure you first have the logic tensor which is which is received from the llm output architecture then you um perform topk sampling on this which means that you only return those Logics which have the maximum values only those K logits and then you replace all the others with negative Infinity then you uh divide the Logics by the temperature then you take the soft Max and then you sample from uh then then you sample from the multinomial distribution this is the entire workflow of the decoding strategy which we are going to follow this will ensure that uh temperature is integrated which means that we also have some amount of creativity in the process and we'll ensure that random tokens have not are not given an opportunity to become the next token using topk and using the multinomial distribution we make sure that the next token selection is not a deterministic process but but it's a probabilistic process so let's see this an action in code now we are going to write a function which predicts the next token which will merge the temperature scaling and top case sampling as I'm going through the code for this part please keep in mind this schematic which I've shown over here logits then top K logits divide by temperature then soft Max and then sample from multinomial remember when you apply top K all the other values which are not in the top K are replaced with negative Infinity great now what we are going to do is that we can apply the temperature scaling and multinomial function for probabilistic sampling to select the next token among the three nonzero probability scores so here you see the probability scores have been obtained now we will uh apply multinomial sampling here as we have seen before so let me take you through the function which I'm going to write right now this is the final function which will generate the next to for us it will take the model which is an instance of the GPT model class we have defined earlier it will take the maximum new tokens which it has to generate uh and context size so all of this was there in the previous generate function also the new things are the temperature value the top K value and the end of sample ID I'll explain to you what this means first what we'll do is that we have the logic sensor which is generated uh from the GPT output then we'll apply top k so if the top K let's say set to three we'll look at the logic tensor and only retain those values where the logits where the only return the top K values in the logit tensor and we replace all the other values with negative Infinity that's what is being done in this part of the code then as I mentioned so after top K is applied then we'll scale with temperature so in the next step what we are going to do is that if temperature is greater than zero we are going to scale the logits with temperature then we are going to take the soft Max and then we are going to do the next token ID using the multinomial probability distribution so exactly these three steps you scale with the temperature you take the soft Max and then you sample from multinomial this is how you select the next token ID and what you predict the next token ID to be now if temperature is not specified so if the user does not specify the temperature we will just uh do the sampling as before we'll just get the token with the maximum probability and we'll say that uh we'll get the token ID with the maximum probability and we'll say that this corresponds to the next token in my sequence but mostly when GPT architectures are developed and built the temperature value is specified I'll come to that in a moment there is one more uh loop here which is basically if end of sequence token so this EOS is actually end of sequence if end of sequence token is encountered then uh we can stop early however if end of sequence is end of sequence ID is not specified then we can just uh keep on generating the next token and then what we do is that uh we append the new generated token ID to the current ID until we reach this maximum number of new tokens which are to be generated so here you can see the flow we have the logit tensor we apply the top K sampling then we scale the logits with the temperature and then we sample the next token from a multinomial probability distribution uh if temperature is not specified then we just use the argmax which was done previously then we choose the next token uh as that one which has the maximum probability score and then we just keep on appending the next token ID until the maximum number of new tokens limit is reached this is exactly what is happening in the uh generate function which we have defined right now to generate the new token and now what I'm going to do is that I'm going to generate 25 new tokens and let's compare the performance with what we had earlier so earlier when the KN decoding strategy was used of just using the maximum probability you'll see that the next tokens were was one of the xmc laid down across the seers and silver of an exquisitely appointed these words we're not making too much sense so let's say if the decoding has improved using this new generate function so I'm going to use this new generate function now which has been defined over here and we are going to pass in the GPT model and then we have to pass in the input token IDs which is now every effort moves you maximum number of new tokens I'm setting to be 15 the top ke tokens I'm setting to be 25 uh so I'm just going to look at the 25 tokens so remember the vocab size is 50257 and I'm going to look at the 25 tokens which have the highest probabilities in those 50 to 57 and the temperature value have set to 1.4 this is a good trade-off because if the temperature value is too low we'll have sharper probability distributions if it's too high then we'll get a non-sensical output so 1.4 seems to be like a good tradeoff you can even experiment with this further so when I run this I can see that the next output which the next tokens which are generated are every effort moves you stand to work on surprise one of us had gone with random it is uh very different from the one we had previously generated so although here also we can see that uh the next token does not make too much sense but at least the overfitting problem is solved what was happening earlier is that we were making a deterministic prediction right so when the next tokens were selected it was overfitting which means that the next tokens were just being uh uh just being taken from the text which we had so here if you see the next tokens were directly some of the next tokens were directly taken from the text which is a classic sign of overfitting the decoding strategies which we have implemented are probabilistic in nature which really makes sense to avoid overfitting since the sampling is probabilistic we it the GPT model will not memorize the passage when predicting the next words and that's very important for us you will have noticed that when you interact with chat GPT it always gives you new output right doesn't really memorize what you have written and that is because of this decoding strategies such as topk sampling and temperature scaling they really help to avoid overfitting and that's one of the main purposes why we also learn about decoding strategies so you'll see that these new words uh moves us stand to work on surprise were not present in the original text and we can check that actually so this is the original text and let's contrl F to see whether this these words are actually present in the original text moves you stand to work so let me control F moves you it's not there right let me search stand to work it's not there which means that the next tokens which have been generated are completely new now it is a true generative AI model because it's not just memorizing what was there in the original text it is actually generating new tokens it is generating some new sentences awesome so that's the reason why we learned about decoding strategies in these modules you have now learned about two decoding strategies first you learned about temperature scaling and that was very important to help us intuitively get either sharper distributions or uniform distributions and it also helps to prevent overfitting since we use multinomial probability distribution to sample then we use topk sampling because it addresses the issue in temperature scaling where random also or random tokens have the opportunity of being the next token in top Cas sampling we restrict the sample tokens to the top K most likely tokens and we prevent other tokens from even getting an opportunity to become the next token and that improves the meaning in the generated next tokens it prevents us from getting nonsensical or random output uh as we conclude this lecture please keep this workflow in mind where you first uh you first obtain the logic tensor from the GPT model then you apply the topk sampling then what you do is after topk sampling those tokens which are not in the top K will be replaced with negative Infinity then you do temperature scaling so you divide the logits with the temperature value then you apply soft Max and then finally you sample from the multinomial to predict the next token this will make sure that uh overfitting overfitting is reduced or overfitting is is minimized uh thanks everyone this brings us to the end of today's lecture where we learned about the second decoding strategy in the next lecture we'll look at some interesting examples where we will start to load pre-trained weights from open AI itself and we'll learn at we'll look at some other pre-training strategies and after these set of lectures are over we'll go to fine tuning and look at applications thank you so much everyone I hope you are liking these series of lectures I have a combination of whiteboard approach as well as taking you through code I'm sure that there are no other YouTube videos right now which explain about large language models in such a detailed fashion so if you have reached this stage I congratulate you for making this way this much uh Headway into the course if you are watching this for the first time I encourage you to look at all the previous videos which have been uploaded in the course to develop your understanding thanks everyone and I look forward to seeing you in the next lecture"
+}

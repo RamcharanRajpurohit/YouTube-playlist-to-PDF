@@ -1,0 +1,3106 @@
+{
+  "video": {
+    "video_id": "r7unILsP0Es",
+    "title": "LLM fine-tuning training loop | Coded from scratch",
+    "duration": 1427.0,
+    "index": 40
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 7.52
+    },
+    {
+      "text": "hello everyone and welcome to this",
+      "start": 5.16,
+      "duration": 4.32
+    },
+    {
+      "text": "lecture in the build large language",
+      "start": 7.52,
+      "duration": 5.279
+    },
+    {
+      "text": "models from scratch Series today we are",
+      "start": 9.48,
+      "duration": 6.84
+    },
+    {
+      "text": "actually going to f tune the model which",
+      "start": 12.799,
+      "duration": 5.161
+    },
+    {
+      "text": "we have been developing for the past",
+      "start": 16.32,
+      "duration": 4.039
+    },
+    {
+      "text": "four to five lectures we have been",
+      "start": 17.96,
+      "duration": 4.559
+    },
+    {
+      "text": "looking at an example where we do have a",
+      "start": 20.359,
+      "duration": 4.881
+    },
+    {
+      "text": "pre-trained llm but the llm is not",
+      "start": 22.519,
+      "duration": 4.361
+    },
+    {
+      "text": "really good enough to understand or",
+      "start": 25.24,
+      "duration": 2.64
+    },
+    {
+      "text": "follow",
+      "start": 26.88,
+      "duration": 3.92
+    },
+    {
+      "text": "instructions so we want to employ",
+      "start": 27.88,
+      "duration": 3.96
+    },
+    {
+      "text": "instruction",
+      "start": 30.8,
+      "duration": 3.48
+    },
+    {
+      "text": "finetuning and to do this we have been",
+      "start": 31.84,
+      "duration": 4.44
+    },
+    {
+      "text": "following these three stages the stage",
+      "start": 34.28,
+      "duration": 4.32
+    },
+    {
+      "text": "one is preparing the data set we have",
+      "start": 36.28,
+      "duration": 3.959
+    },
+    {
+      "text": "implemented this stage where we",
+      "start": 38.6,
+      "duration": 3.68
+    },
+    {
+      "text": "downloaded the data and formatted it",
+      "start": 40.239,
+      "duration": 4.761
+    },
+    {
+      "text": "using the alpaka prompt format then we",
+      "start": 42.28,
+      "duration": 4.759
+    },
+    {
+      "text": "divided the data set into multiple",
+      "start": 45.0,
+      "duration": 5.239
+    },
+    {
+      "text": "batches and then we created the",
+      "start": 47.039,
+      "duration": 8.561
+    },
+    {
+      "text": "training testing and the validation data",
+      "start": 50.239,
+      "duration": 7.8
+    },
+    {
+      "text": "loaders that was the stage one on",
+      "start": 55.6,
+      "duration": 5.36
+    },
+    {
+      "text": "preparing the data set in stage two",
+      "start": 58.039,
+      "duration": 5.2
+    },
+    {
+      "text": "which is fine-tuning the llm what we",
+      "start": 60.96,
+      "duration": 3.96
+    },
+    {
+      "text": "have done in the previous lecture is",
+      "start": 63.239,
+      "duration": 4.161
+    },
+    {
+      "text": "that we have the llm architecture which",
+      "start": 64.92,
+      "duration": 4.839
+    },
+    {
+      "text": "looks something like this and we have",
+      "start": 67.4,
+      "duration": 4.32
+    },
+    {
+      "text": "loaded this llm architecture with",
+      "start": 69.759,
+      "duration": 4.68
+    },
+    {
+      "text": "pre-trained weights from GPT model so we",
+      "start": 71.72,
+      "duration": 4.48
+    },
+    {
+      "text": "have used the pre pre-trained weights",
+      "start": 74.439,
+      "duration": 5.601
+    },
+    {
+      "text": "from gpt2 355 million parameter model",
+      "start": 76.2,
+      "duration": 5.8
+    },
+    {
+      "text": "and we have kept our architecture ready",
+      "start": 80.04,
+      "duration": 4.439
+    },
+    {
+      "text": "now with these pre-trained weights and",
+      "start": 82.0,
+      "duration": 5.079
+    },
+    {
+      "text": "now the stage is set for us to finetune",
+      "start": 84.479,
+      "duration": 5.081
+    },
+    {
+      "text": "the llm what this means is that we",
+      "start": 87.079,
+      "duration": 5.0
+    },
+    {
+      "text": "already already have pre-trained weights",
+      "start": 89.56,
+      "duration": 4.8
+    },
+    {
+      "text": "right but we have not yet trained this",
+      "start": 92.079,
+      "duration": 5.841
+    },
+    {
+      "text": "llm on data set on the instruction data",
+      "start": 94.36,
+      "duration": 6.36
+    },
+    {
+      "text": "set this is the instruction data set",
+      "start": 97.92,
+      "duration": 5.0
+    },
+    {
+      "text": "which we have been using in this",
+      "start": 100.72,
+      "duration": 4.2
+    },
+    {
+      "text": "Hands-On example and which we will",
+      "start": 102.92,
+      "duration": 5.199
+    },
+    {
+      "text": "finetune the lmon so this is a data set",
+      "start": 104.92,
+      "duration": 5.799
+    },
+    {
+      "text": "which consists of 1100 instruction input",
+      "start": 108.119,
+      "duration": 6.28
+    },
+    {
+      "text": "output Pairs and our hope is that when",
+      "start": 110.719,
+      "duration": 7.76
+    },
+    {
+      "text": "we train the weights of the llm again um",
+      "start": 114.399,
+      "duration": 6.521
+    },
+    {
+      "text": "using this instruction data it will get",
+      "start": 118.479,
+      "duration": 4.92
+    },
+    {
+      "text": "much much better at responding to",
+      "start": 120.92,
+      "duration": 4.839
+    },
+    {
+      "text": "instructions so let me show you in code",
+      "start": 123.399,
+      "duration": 4.72
+    },
+    {
+      "text": "where we ended the previous lecture in",
+      "start": 125.759,
+      "duration": 4.161
+    },
+    {
+      "text": "the previous lecture we just had the",
+      "start": 128.119,
+      "duration": 4.801
+    },
+    {
+      "text": "pre-trained llm without any fine tuning",
+      "start": 129.92,
+      "duration": 6.12
+    },
+    {
+      "text": "and we asked the llm the question that",
+      "start": 132.92,
+      "duration": 4.319
+    },
+    {
+      "text": "we use this",
+      "start": 136.04,
+      "duration": 4.6
+    },
+    {
+      "text": "particular um input and instruction so",
+      "start": 137.239,
+      "duration": 5.321
+    },
+    {
+      "text": "the instruction was convert the active",
+      "start": 140.64,
+      "duration": 4.48
+    },
+    {
+      "text": "sentence to passive and the sentence was",
+      "start": 142.56,
+      "duration": 5.24
+    },
+    {
+      "text": "the chef Cooks the meal every day the",
+      "start": 145.12,
+      "duration": 5.119
+    },
+    {
+      "text": "output which the llm gave was the Chef",
+      "start": 147.8,
+      "duration": 4.64
+    },
+    {
+      "text": "Cooks the meal every day and instruction",
+      "start": 150.239,
+      "duration": 4.481
+    },
+    {
+      "text": "convert the active sentence to passive",
+      "start": 152.44,
+      "duration": 4.799
+    },
+    {
+      "text": "basically it just regenerated the same",
+      "start": 154.72,
+      "duration": 4.799
+    },
+    {
+      "text": "thing what we had given as input it did",
+      "start": 157.239,
+      "duration": 4.36
+    },
+    {
+      "text": "not it was not able to convert the text",
+      "start": 159.519,
+      "duration": 5.72
+    },
+    {
+      "text": "into out into from active to passive at",
+      "start": 161.599,
+      "duration": 6.64
+    },
+    {
+      "text": "all so as you can see the response",
+      "start": 165.239,
+      "duration": 5.321
+    },
+    {
+      "text": "section was created but the llm simply",
+      "start": 168.239,
+      "duration": 4.64
+    },
+    {
+      "text": "repeats the original input sentence and",
+      "start": 170.56,
+      "duration": 4.679
+    },
+    {
+      "text": "part of the instruction and it fails to",
+      "start": 172.879,
+      "duration": 4.161
+    },
+    {
+      "text": "really convert the active sentence to",
+      "start": 175.239,
+      "duration": 3.72
+    },
+    {
+      "text": "the passive sentence or to passive voice",
+      "start": 177.04,
+      "duration": 3.44
+    },
+    {
+      "text": "as requested",
+      "start": 178.959,
+      "duration": 3.121
+    },
+    {
+      "text": "this is the stage which we are in right",
+      "start": 180.48,
+      "duration": 3.839
+    },
+    {
+      "text": "now and we want to really improve the",
+      "start": 182.08,
+      "duration": 5.159
+    },
+    {
+      "text": "llm performance when it receives an",
+      "start": 184.319,
+      "duration": 5.081
+    },
+    {
+      "text": "instruction so what we'll be doing is",
+      "start": 187.239,
+      "duration": 3.881
+    },
+    {
+      "text": "that if you look at this architecture",
+      "start": 189.4,
+      "duration": 4.04
+    },
+    {
+      "text": "there are number of areas where there",
+      "start": 191.12,
+      "duration": 4.199
+    },
+    {
+      "text": "are trainable parameters right token",
+      "start": 193.44,
+      "duration": 3.879
+    },
+    {
+      "text": "embedding has trainable weights",
+      "start": 195.319,
+      "duration": 3.48
+    },
+    {
+      "text": "positional embedding has trainable",
+      "start": 197.319,
+      "duration": 3.56
+    },
+    {
+      "text": "weights layer normalization has the",
+      "start": 198.799,
+      "duration": 3.8
+    },
+    {
+      "text": "scale and shift parameters which are",
+      "start": 200.879,
+      "duration": 4.121
+    },
+    {
+      "text": "trainable the multi-ad attention has the",
+      "start": 202.599,
+      "duration": 4.401
+    },
+    {
+      "text": "query key and value weight metries which",
+      "start": 205.0,
+      "duration": 4.4
+    },
+    {
+      "text": "are trainable again layer normalization",
+      "start": 207.0,
+      "duration": 4.48
+    },
+    {
+      "text": "has trainable scale and shift the feed",
+      "start": 209.4,
+      "duration": 3.839
+    },
+    {
+      "text": "forward neural network has trainable",
+      "start": 211.48,
+      "duration": 4.16
+    },
+    {
+      "text": "weights the final layer normalization",
+      "start": 213.239,
+      "duration": 5.441
+    },
+    {
+      "text": "and the final um output layer also has",
+      "start": 215.64,
+      "duration": 6.56
+    },
+    {
+      "text": "trainable weights we will train this",
+      "start": 218.68,
+      "duration": 5.759
+    },
+    {
+      "text": "architecture again on this particular",
+      "start": 222.2,
+      "duration": 3.759
+    },
+    {
+      "text": "data set which I just showed you this",
+      "start": 224.439,
+      "duration": 4.36
+    },
+    {
+      "text": "instruction data so that the weights are",
+      "start": 225.959,
+      "duration": 5.2
+    },
+    {
+      "text": "optimized and the llm can answer the",
+      "start": 228.799,
+      "duration": 4.761
+    },
+    {
+      "text": "instructions pretty well so then your",
+      "start": 231.159,
+      "duration": 4.041
+    },
+    {
+      "text": "question would be why did we pre-train",
+      "start": 233.56,
+      "duration": 4.28
+    },
+    {
+      "text": "the llm if we are training the llm again",
+      "start": 235.2,
+      "duration": 4.879
+    },
+    {
+      "text": "on this specific data set well the",
+      "start": 237.84,
+      "duration": 5.039
+    },
+    {
+      "text": "reason we pre-train the llm is because",
+      "start": 240.079,
+      "duration": 5.401
+    },
+    {
+      "text": "now the model essentially starts from a",
+      "start": 242.879,
+      "duration": 4.56
+    },
+    {
+      "text": "knowledgeable state so due to",
+      "start": 245.48,
+      "duration": 3.8
+    },
+    {
+      "text": "pre-training the model starts from a",
+      "start": 247.439,
+      "duration": 3.72
+    },
+    {
+      "text": "knowledgeable State instead of a random",
+      "start": 249.28,
+      "duration": 4.4
+    },
+    {
+      "text": "state if we just started from a random",
+      "start": 251.159,
+      "duration": 4.881
+    },
+    {
+      "text": "State then it would have been extremely",
+      "start": 253.68,
+      "duration": 3.64
+    },
+    {
+      "text": "difficult for the model to learn",
+      "start": 256.04,
+      "duration": 3.879
+    },
+    {
+      "text": "everything based on this limited data at",
+      "start": 257.32,
+      "duration": 4.199
+    },
+    {
+      "text": "least through pre-training the model is",
+      "start": 259.919,
+      "duration": 3.56
+    },
+    {
+      "text": "able to understand so many things such",
+      "start": 261.519,
+      "duration": 4.12
+    },
+    {
+      "text": "as the semantic meaning of words when",
+      "start": 263.479,
+      "duration": 3.881
+    },
+    {
+      "text": "it's given a text it knows what to",
+      "start": 265.639,
+      "duration": 3.721
+    },
+    {
+      "text": "respond it cannot follow instructions",
+      "start": 267.36,
+      "duration": 4.16
+    },
+    {
+      "text": "that's fine but at least it can know the",
+      "start": 269.36,
+      "duration": 4.04
+    },
+    {
+      "text": "semantic meaning between different words",
+      "start": 271.52,
+      "duration": 4.88
+    },
+    {
+      "text": "it knows uh it knows a lot about the",
+      "start": 273.4,
+      "duration": 6.32
+    },
+    {
+      "text": "language itself due to pre-training and",
+      "start": 276.4,
+      "duration": 5.16
+    },
+    {
+      "text": "that helps us to set a foundational",
+      "start": 279.72,
+      "duration": 4.16
+    },
+    {
+      "text": "knowledge base before we find tune on",
+      "start": 281.56,
+      "duration": 5.0
+    },
+    {
+      "text": "the specific data set so fine tuning as",
+      "start": 283.88,
+      "duration": 4.64
+    },
+    {
+      "text": "a process always comes after the",
+      "start": 286.56,
+      "duration": 4.76
+    },
+    {
+      "text": "pre-training stage so let's go ahead and",
+      "start": 288.52,
+      "duration": 5.28
+    },
+    {
+      "text": "begin the fine tuning process now before",
+      "start": 291.32,
+      "duration": 4.64
+    },
+    {
+      "text": "we do the fine tuning we need two things",
+      "start": 293.8,
+      "duration": 3.8
+    },
+    {
+      "text": "we we first of all need to understand",
+      "start": 295.96,
+      "duration": 4.079
+    },
+    {
+      "text": "the training Loop which is this Loop and",
+      "start": 297.6,
+      "duration": 3.879
+    },
+    {
+      "text": "the second we need to understand the",
+      "start": 300.039,
+      "duration": 3.961
+    },
+    {
+      "text": "loss function one thing I would like to",
+      "start": 301.479,
+      "duration": 4.121
+    },
+    {
+      "text": "mention here is that the training Loop",
+      "start": 304.0,
+      "duration": 3.44
+    },
+    {
+      "text": "and the loss function is exactly the",
+      "start": 305.6,
+      "duration": 4.36
+    },
+    {
+      "text": "same as the uh training Loop and the",
+      "start": 307.44,
+      "duration": 4.08
+    },
+    {
+      "text": "loss function which we had looked at",
+      "start": 309.96,
+      "duration": 4.36
+    },
+    {
+      "text": "when we pre-trained the model so just to",
+      "start": 311.52,
+      "duration": 4.72
+    },
+    {
+      "text": "revise here's the training Loop what we",
+      "start": 314.32,
+      "duration": 3.64
+    },
+    {
+      "text": "do is that we go through each batch in",
+      "start": 316.24,
+      "duration": 4.079
+    },
+    {
+      "text": "the data set we calculate the loss",
+      "start": 317.96,
+      "duration": 4.56
+    },
+    {
+      "text": "gradients we reset the loss gradients in",
+      "start": 320.319,
+      "duration": 4.761
+    },
+    {
+      "text": "a new Appo in a new EPO then we",
+      "start": 322.52,
+      "duration": 4.36
+    },
+    {
+      "text": "calculate the loss on a current batch",
+      "start": 325.08,
+      "duration": 3.959
+    },
+    {
+      "text": "and then do the backward pass in the",
+      "start": 326.88,
+      "duration": 3.92
+    },
+    {
+      "text": "backward pass we essentially calculate",
+      "start": 329.039,
+      "duration": 3.6
+    },
+    {
+      "text": "the gradient of the loss the partial",
+      "start": 330.8,
+      "duration": 3.36
+    },
+    {
+      "text": "derivative of the gradient of the loss",
+      "start": 332.639,
+      "duration": 3.801
+    },
+    {
+      "text": "with respect to all of the parameters",
+      "start": 334.16,
+      "duration": 4.68
+    },
+    {
+      "text": "and remember that here we have 355",
+      "start": 336.44,
+      "duration": 5.28
+    },
+    {
+      "text": "million parameters we will calculate the",
+      "start": 338.84,
+      "duration": 4.32
+    },
+    {
+      "text": "partial gradient of the loss with",
+      "start": 341.72,
+      "duration": 3.28
+    },
+    {
+      "text": "respect to all of these and in the",
+      "start": 343.16,
+      "duration": 4.72
+    },
+    {
+      "text": "update step we'll use an we'll use a",
+      "start": 345.0,
+      "duration": 5.319
+    },
+    {
+      "text": "gradient descent based Optimizer which",
+      "start": 347.88,
+      "duration": 4.159
+    },
+    {
+      "text": "looks something like this so this is the",
+      "start": 350.319,
+      "duration": 4.081
+    },
+    {
+      "text": "simplest form of gradient descent W old",
+      "start": 352.039,
+      "duration": 5.761
+    },
+    {
+      "text": "is W new is equal to W old minus Alpha",
+      "start": 354.4,
+      "duration": 5.0
+    },
+    {
+      "text": "times the partial derivative of loss",
+      "start": 357.8,
+      "duration": 4.16
+    },
+    {
+      "text": "with with respect to W and we'll do this",
+      "start": 359.4,
+      "duration": 4.44
+    },
+    {
+      "text": "many times and we'll hope that the",
+      "start": 361.96,
+      "duration": 3.679
+    },
+    {
+      "text": "parameters eventually get to a stage",
+      "start": 363.84,
+      "duration": 4.28
+    },
+    {
+      "text": "where the loss function is minimized so",
+      "start": 365.639,
+      "duration": 4.201
+    },
+    {
+      "text": "if the loss function landscape looks",
+      "start": 368.12,
+      "duration": 3.56
+    },
+    {
+      "text": "something like this initially we start",
+      "start": 369.84,
+      "duration": 4.12
+    },
+    {
+      "text": "somewhere here and then we later go down",
+      "start": 371.68,
+      "duration": 4.04
+    },
+    {
+      "text": "to the bottom of this Valley and hope",
+      "start": 373.96,
+      "duration": 3.44
+    },
+    {
+      "text": "that the loss function is minimized",
+      "start": 375.72,
+      "duration": 4.479
+    },
+    {
+      "text": "right now uh if this is the training",
+      "start": 377.4,
+      "duration": 4.239
+    },
+    {
+      "text": "Loop then we'll need to know what the",
+      "start": 380.199,
+      "duration": 3.56
+    },
+    {
+      "text": "loss function is and the loss function",
+      "start": 381.639,
+      "duration": 3.881
+    },
+    {
+      "text": "is essentially obtained from the input",
+      "start": 383.759,
+      "duration": 4.121
+    },
+    {
+      "text": "and Target pairs so remember when we",
+      "start": 385.52,
+      "duration": 4.76
+    },
+    {
+      "text": "created this data loader every data",
+      "start": 387.88,
+      "duration": 5.56
+    },
+    {
+      "text": "loader essentially has input and Target",
+      "start": 390.28,
+      "duration": 6.919
+    },
+    {
+      "text": "pairs so let me write this down over",
+      "start": 393.44,
+      "duration": 5.72
+    },
+    {
+      "text": "here so let's say we looked at we are",
+      "start": 397.199,
+      "duration": 5.0
+    },
+    {
+      "text": "looking at batch number one batch number",
+      "start": 399.16,
+      "duration": 5.08
+    },
+    {
+      "text": "one has eight samples sample one sample",
+      "start": 402.199,
+      "duration": 4.28
+    },
+    {
+      "text": "two so each batch has eight samples",
+      "start": 404.24,
+      "duration": 4.079
+    },
+    {
+      "text": "because we have set the bat size to be",
+      "start": 406.479,
+      "duration": 4.321
+    },
+    {
+      "text": "eight and in each sample we have the",
+      "start": 408.319,
+      "duration": 6.041
+    },
+    {
+      "text": "input and we have the",
+      "start": 410.8,
+      "duration": 6.239
+    },
+    {
+      "text": "Target and since it's the next token",
+      "start": 414.36,
+      "duration": 4.559
+    },
+    {
+      "text": "prediction task the target is just the",
+      "start": 417.039,
+      "duration": 3.6
+    },
+    {
+      "text": "input which is shifted to the right by",
+      "start": 418.919,
+      "duration": 4.321
+    },
+    {
+      "text": "one and we add the end of text token you",
+      "start": 420.639,
+      "duration": 4.441
+    },
+    {
+      "text": "can think of the target as the True",
+      "start": 423.24,
+      "duration": 3.32
+    },
+    {
+      "text": "Value which we",
+      "start": 425.08,
+      "duration": 5.08
+    },
+    {
+      "text": "have True Value and then to get the loss",
+      "start": 426.56,
+      "duration": 6.319
+    },
+    {
+      "text": "we'll need a predicted value",
+      "start": 430.16,
+      "duration": 5.0
+    },
+    {
+      "text": "right so I'm going to write here",
+      "start": 432.879,
+      "duration": 4.481
+    },
+    {
+      "text": "predicted",
+      "start": 435.16,
+      "duration": 4.439
+    },
+    {
+      "text": "value and the predicted value is",
+      "start": 437.36,
+      "duration": 4.64
+    },
+    {
+      "text": "obtained from the generate function so",
+      "start": 439.599,
+      "duration": 4.28
+    },
+    {
+      "text": "remember in the last lecture we",
+      "start": 442.0,
+      "duration": 3.56
+    },
+    {
+      "text": "discussed about the generate function",
+      "start": 443.879,
+      "duration": 3.801
+    },
+    {
+      "text": "where given an input we generate the",
+      "start": 445.56,
+      "duration": 4.84
+    },
+    {
+      "text": "next token IDs so essentially what",
+      "start": 447.68,
+      "duration": 6.68
+    },
+    {
+      "text": "happens is that when an input to text or",
+      "start": 450.4,
+      "duration": 6.079
+    },
+    {
+      "text": "yeah a sequence of input tokens passes",
+      "start": 454.36,
+      "duration": 4.64
+    },
+    {
+      "text": "through this GPT architecture which I",
+      "start": 456.479,
+      "duration": 4.201
+    },
+    {
+      "text": "have shown to you right now so let's say",
+      "start": 459.0,
+      "duration": 4.319
+    },
+    {
+      "text": "the input instruction is convert active",
+      "start": 460.68,
+      "duration": 5.44
+    },
+    {
+      "text": "to passive it will pass through this GPT",
+      "start": 463.319,
+      "duration": 5.081
+    },
+    {
+      "text": "architecture and then when it comes out",
+      "start": 466.12,
+      "duration": 3.919
+    },
+    {
+      "text": "of the GPT architecture we have",
+      "start": 468.4,
+      "duration": 4.28
+    },
+    {
+      "text": "something called as the logic sensor",
+      "start": 470.039,
+      "duration": 4.961
+    },
+    {
+      "text": "that's then converted into a tensor of",
+      "start": 472.68,
+      "duration": 4.799
+    },
+    {
+      "text": "probabilities and through this tensor of",
+      "start": 475.0,
+      "duration": 4.52
+    },
+    {
+      "text": "probabilities we get the predicted",
+      "start": 477.479,
+      "duration": 4.641
+    },
+    {
+      "text": "output of the llm that's not the True",
+      "start": 479.52,
+      "duration": 4.959
+    },
+    {
+      "text": "Value but that's the predicted value and",
+      "start": 482.12,
+      "duration": 4.199
+    },
+    {
+      "text": "then based on the true value and the",
+      "start": 484.479,
+      "duration": 4.4
+    },
+    {
+      "text": "predicted value we then compute the loss",
+      "start": 486.319,
+      "duration": 5.241
+    },
+    {
+      "text": "function So based on the true value and",
+      "start": 488.879,
+      "duration": 4.641
+    },
+    {
+      "text": "the predicted value both of these values",
+      "start": 491.56,
+      "duration": 4.12
+    },
+    {
+      "text": "will be needed to then calculate the",
+      "start": 493.52,
+      "duration": 5.04
+    },
+    {
+      "text": "loss function and this loss function is",
+      "start": 495.68,
+      "duration": 5.799
+    },
+    {
+      "text": "the categorical cross entropy loss or",
+      "start": 498.56,
+      "duration": 6.599
+    },
+    {
+      "text": "rather it is the cross entropy",
+      "start": 501.479,
+      "duration": 3.68
+    },
+    {
+      "text": "loss the simplest way to think about",
+      "start": 505.919,
+      "duration": 4.12
+    },
+    {
+      "text": "cross entropy loss is is that it's",
+      "start": 508.4,
+      "duration": 4.879
+    },
+    {
+      "text": "negative of the logarithm so essentially",
+      "start": 510.039,
+      "duration": 5.0
+    },
+    {
+      "text": "since probabilities are involved we want",
+      "start": 513.279,
+      "duration": 3.921
+    },
+    {
+      "text": "the probability to be as close to one as",
+      "start": 515.039,
+      "duration": 4.281
+    },
+    {
+      "text": "possible so that the loss function",
+      "start": 517.2,
+      "duration": 5.759
+    },
+    {
+      "text": "decreases and becomes as close to",
+      "start": 519.32,
+      "duration": 6.24
+    },
+    {
+      "text": "zero I'm not going into the details of",
+      "start": 522.959,
+      "duration": 4.0
+    },
+    {
+      "text": "this because we have already covered",
+      "start": 525.56,
+      "duration": 3.08
+    },
+    {
+      "text": "this in a lot of detail when we learned",
+      "start": 526.959,
+      "duration": 4.041
+    },
+    {
+      "text": "about llm pre-training but I'm just",
+      "start": 528.64,
+      "duration": 4.16
+    },
+    {
+      "text": "giving you a qualitative flavor for you",
+      "start": 531.0,
+      "duration": 3.88
+    },
+    {
+      "text": "to understand what is the loss which we",
+      "start": 532.8,
+      "duration": 4.28
+    },
+    {
+      "text": "are trying to minimize over here so this",
+      "start": 534.88,
+      "duration": 3.8
+    },
+    {
+      "text": "is the loss function which is the cross",
+      "start": 537.08,
+      "duration": 3.68
+    },
+    {
+      "text": "entropy loss once the loss function is",
+      "start": 538.68,
+      "duration": 3.839
+    },
+    {
+      "text": "defined then all we need to do is learn",
+      "start": 540.76,
+      "duration": 3.319
+    },
+    {
+      "text": "the training loop on the instruction",
+      "start": 542.519,
+      "duration": 4.081
+    },
+    {
+      "text": "data set so the data set is already",
+      "start": 544.079,
+      "duration": 6.121
+    },
+    {
+      "text": "divided into input and Target Pairs and",
+      "start": 546.6,
+      "duration": 5.799
+    },
+    {
+      "text": "uh we have spent the last three to four",
+      "start": 550.2,
+      "duration": 4.68
+    },
+    {
+      "text": "lectures dividing the data set into",
+      "start": 552.399,
+      "duration": 4.361
+    },
+    {
+      "text": "input Target Pairs and constructing",
+      "start": 554.88,
+      "duration": 4.199
+    },
+    {
+      "text": "these data loaders all of that hard work",
+      "start": 556.76,
+      "duration": 5.0
+    },
+    {
+      "text": "will come into use right now so now I'm",
+      "start": 559.079,
+      "duration": 4.32
+    },
+    {
+      "text": "going to take you to the code and we are",
+      "start": 561.76,
+      "duration": 4.24
+    },
+    {
+      "text": "going to finetune this model",
+      "start": 563.399,
+      "duration": 5.761
+    },
+    {
+      "text": "together great so we have already done",
+      "start": 566.0,
+      "duration": 5.0
+    },
+    {
+      "text": "the hard work when we implemented the",
+      "start": 569.16,
+      "duration": 3.6
+    },
+    {
+      "text": "data set processing including the",
+      "start": 571.0,
+      "duration": 4.32
+    },
+    {
+      "text": "batching and creating the data loaders",
+      "start": 572.76,
+      "duration": 4.6
+    },
+    {
+      "text": "now we can reuse the loss calculation",
+      "start": 575.32,
+      "duration": 3.44
+    },
+    {
+      "text": "and training functions which we have",
+      "start": 577.36,
+      "duration": 4.0
+    },
+    {
+      "text": "implemented in pre-training so as I told",
+      "start": 578.76,
+      "duration": 4.84
+    },
+    {
+      "text": "you here are some functions which I have",
+      "start": 581.36,
+      "duration": 4.2
+    },
+    {
+      "text": "collected here and we'll be reusing",
+      "start": 583.6,
+      "duration": 3.919
+    },
+    {
+      "text": "these functions the first function is",
+      "start": 585.56,
+      "duration": 3.959
+    },
+    {
+      "text": "the calculation of the loss on a batch",
+      "start": 587.519,
+      "duration": 4.281
+    },
+    {
+      "text": "of data so here you can see is the cross",
+      "start": 589.519,
+      "duration": 6.401
+    },
+    {
+      "text": "entropy loss which I have mentioned over",
+      "start": 591.8,
+      "duration": 7.279
+    },
+    {
+      "text": "here the cross entropy loss and then",
+      "start": 595.92,
+      "duration": 4.96
+    },
+    {
+      "text": "when we want to calculate the loss over",
+      "start": 599.079,
+      "duration": 3.88
+    },
+    {
+      "text": "the entire data loader we just take a",
+      "start": 600.88,
+      "duration": 5.04
+    },
+    {
+      "text": "summation of all of the U summation of",
+      "start": 602.959,
+      "duration": 4.88
+    },
+    {
+      "text": "losses calculate calculated in",
+      "start": 605.92,
+      "duration": 4.2
+    },
+    {
+      "text": "individual batches and then to normalize",
+      "start": 607.839,
+      "duration": 4.0
+    },
+    {
+      "text": "the total loss we just divide by the",
+      "start": 610.12,
+      "duration": 3.44
+    },
+    {
+      "text": "number of batches that's what's",
+      "start": 611.839,
+      "duration": 3.321
+    },
+    {
+      "text": "happening in the calculation of loss in",
+      "start": 613.56,
+      "duration": 3.8
+    },
+    {
+      "text": "a loader so the same function can be",
+      "start": 615.16,
+      "duration": 4.28
+    },
+    {
+      "text": "used and if you want to calculate it for",
+      "start": 617.36,
+      "duration": 3.68
+    },
+    {
+      "text": "the training data loader we pass the",
+      "start": 619.44,
+      "duration": 3.639
+    },
+    {
+      "text": "train loader if you want to calculate",
+      "start": 621.04,
+      "duration": 3.96
+    },
+    {
+      "text": "the loss for the testing or validation",
+      "start": 623.079,
+      "duration": 4.2
+    },
+    {
+      "text": "we pass the test loader or validation",
+      "start": 625.0,
+      "duration": 4.6
+    },
+    {
+      "text": "loader respectively then then the",
+      "start": 627.279,
+      "duration": 5.0
+    },
+    {
+      "text": "training Loop which I've described over",
+      "start": 629.6,
+      "duration": 6.239
+    },
+    {
+      "text": "here this training",
+      "start": 632.279,
+      "duration": 3.56
+    },
+    {
+      "text": "Loop or I should Mark this entire thing",
+      "start": 635.92,
+      "duration": 5.76
+    },
+    {
+      "text": "this entire training ROP training Loop",
+      "start": 639.04,
+      "duration": 4.56
+    },
+    {
+      "text": "we have we have written a code for this",
+      "start": 641.68,
+      "duration": 4.08
+    },
+    {
+      "text": "before when we looked at pre-training",
+      "start": 643.6,
+      "duration": 4.0
+    },
+    {
+      "text": "and this essentially the most important",
+      "start": 645.76,
+      "duration": 3.6
+    },
+    {
+      "text": "part of this code is the backward pass",
+      "start": 647.6,
+      "duration": 3.359
+    },
+    {
+      "text": "where the gradients of the loss are",
+      "start": 649.36,
+      "duration": 4.12
+    },
+    {
+      "text": "calculated and then we do this Optimizer",
+      "start": 650.959,
+      "duration": 4.88
+    },
+    {
+      "text": "step so here I implemented a simple",
+      "start": 653.48,
+      "duration": 4.28
+    },
+    {
+      "text": "vanilla gradient descent right the",
+      "start": 655.839,
+      "duration": 4.081
+    },
+    {
+      "text": "actual Optimizer which is used is Adam",
+      "start": 657.76,
+      "duration": 4.16
+    },
+    {
+      "text": "with weight DEC so you can either use",
+      "start": 659.92,
+      "duration": 3.919
+    },
+    {
+      "text": "Adam or you can use Adam with weight",
+      "start": 661.92,
+      "duration": 4.32
+    },
+    {
+      "text": "Decay which is Adam W that's the",
+      "start": 663.839,
+      "duration": 5.201
+    },
+    {
+      "text": "optimizer will will be using and then",
+      "start": 666.24,
+      "duration": 4.96
+    },
+    {
+      "text": "the remaining of the code is just about",
+      "start": 669.04,
+      "duration": 4.039
+    },
+    {
+      "text": "printing the loss which we obtain at",
+      "start": 671.2,
+      "duration": 4.8
+    },
+    {
+      "text": "different uh iterations and then",
+      "start": 673.079,
+      "duration": 5.721
+    },
+    {
+      "text": "visualizing the testing loss visualizing",
+      "start": 676.0,
+      "duration": 4.519
+    },
+    {
+      "text": "the validation loss and visualizing the",
+      "start": 678.8,
+      "duration": 3.96
+    },
+    {
+      "text": "training loss together so as you can see",
+      "start": 680.519,
+      "duration": 3.681
+    },
+    {
+      "text": "here we are going to print the training",
+      "start": 682.76,
+      "duration": 4.079
+    },
+    {
+      "text": "loss and the validation",
+      "start": 684.2,
+      "duration": 6.48
+    },
+    {
+      "text": "loss um yeah so initially before we even",
+      "start": 686.839,
+      "duration": 5.24
+    },
+    {
+      "text": "begin the training let us first",
+      "start": 690.68,
+      "duration": 2.599
+    },
+    {
+      "text": "calculate the training and the",
+      "start": 692.079,
+      "duration": 3.841
+    },
+    {
+      "text": "validation loss um initially the",
+      "start": 693.279,
+      "duration": 4.36
+    },
+    {
+      "text": "training has not yet happened on this",
+      "start": 695.92,
+      "duration": 5.24
+    },
+    {
+      "text": "data set on this data set I have not yet",
+      "start": 697.639,
+      "duration": 5.241
+    },
+    {
+      "text": "run the training loop I just want to see",
+      "start": 701.16,
+      "duration": 3.72
+    },
+    {
+      "text": "the loss at the initial moment so here",
+      "start": 702.88,
+      "duration": 5.32
+    },
+    {
+      "text": "if you see this is equivalent to being",
+      "start": 704.88,
+      "duration": 5.759
+    },
+    {
+      "text": "at this early point where the training",
+      "start": 708.2,
+      "duration": 4.04
+    },
+    {
+      "text": "has not yet started so the loss will",
+      "start": 710.639,
+      "duration": 3.681
+    },
+    {
+      "text": "naturally be very high I just want to",
+      "start": 712.24,
+      "duration": 4.36
+    },
+    {
+      "text": "see the training and the validation loss",
+      "start": 714.32,
+      "duration": 4.6
+    },
+    {
+      "text": "so the training loss is 3.82 and the",
+      "start": 716.6,
+      "duration": 5.12
+    },
+    {
+      "text": "valid ation loss is 3.76 so this is",
+      "start": 718.92,
+      "duration": 4.64
+    },
+    {
+      "text": "pretty high and we want to bring both of",
+      "start": 721.72,
+      "duration": 4.32
+    },
+    {
+      "text": "these losses together now the model is",
+      "start": 723.56,
+      "duration": 4.0
+    },
+    {
+      "text": "prepared and the data loaders are",
+      "start": 726.04,
+      "duration": 4.64
+    },
+    {
+      "text": "prepared we can now proceed to train the",
+      "start": 727.56,
+      "duration": 6.68
+    },
+    {
+      "text": "model so now the code which we are",
+      "start": 730.68,
+      "duration": 5.24
+    },
+    {
+      "text": "implementing below it sets up the",
+      "start": 734.24,
+      "duration": 4.12
+    },
+    {
+      "text": "training process including initializing",
+      "start": 735.92,
+      "duration": 4.599
+    },
+    {
+      "text": "the optimizer setting the number of EPO",
+      "start": 738.36,
+      "duration": 5.159
+    },
+    {
+      "text": "and defining the evaluation frequency so",
+      "start": 740.519,
+      "duration": 4.961
+    },
+    {
+      "text": "here you can see we Define the optimizer",
+      "start": 743.519,
+      "duration": 5.12
+    },
+    {
+      "text": "which is storage. op. adamw so let me",
+      "start": 745.48,
+      "duration": 5.039
+    },
+    {
+      "text": "just",
+      "start": 748.639,
+      "duration": 4.56
+    },
+    {
+      "text": "torch. optim do",
+      "start": 750.519,
+      "duration": 5.401
+    },
+    {
+      "text": "adamw so this is the Adam with weight DK",
+      "start": 753.199,
+      "duration": 4.76
+    },
+    {
+      "text": "Optimizer which we are going to use if",
+      "start": 755.92,
+      "duration": 4.0
+    },
+    {
+      "text": "you don't know how Adam works it's fine",
+      "start": 757.959,
+      "duration": 4.841
+    },
+    {
+      "text": "but it's the most widely used Optimizer",
+      "start": 759.92,
+      "duration": 4.12
+    },
+    {
+      "text": "I would say in machine learning",
+      "start": 762.8,
+      "duration": 3.64
+    },
+    {
+      "text": "algorithms these days it keeps a track",
+      "start": 764.04,
+      "duration": 5.0
+    },
+    {
+      "text": "of the gradients of the loss function it",
+      "start": 766.44,
+      "duration": 4.639
+    },
+    {
+      "text": "keeps a track of the gradient Square",
+      "start": 769.04,
+      "duration": 6.0
+    },
+    {
+      "text": "also um and uh it's just very useful to",
+      "start": 771.079,
+      "duration": 6.281
+    },
+    {
+      "text": "prevent local",
+      "start": 775.04,
+      "duration": 5.56
+    },
+    {
+      "text": "Minima and uh to accelerate the",
+      "start": 777.36,
+      "duration": 5.32
+    },
+    {
+      "text": "convergence that's why the Adam or the",
+      "start": 780.6,
+      "duration": 4.799
+    },
+    {
+      "text": "adamw optimizer is predominantly used we",
+      "start": 782.68,
+      "duration": 5.56
+    },
+    {
+      "text": "are using a learning rate of",
+      "start": 785.399,
+      "duration": 6.201
+    },
+    {
+      "text": "0.005 and the weight decay of 0.1 now",
+      "start": 788.24,
+      "duration": 4.839
+    },
+    {
+      "text": "please note that these are hyper",
+      "start": 791.6,
+      "duration": 3.0
+    },
+    {
+      "text": "parameters which means that you can",
+      "start": 793.079,
+      "duration": 3.401
+    },
+    {
+      "text": "change them and you might obtain better",
+      "start": 794.6,
+      "duration": 4.08
+    },
+    {
+      "text": "results these are just some parameters",
+      "start": 796.48,
+      "duration": 3.76
+    },
+    {
+      "text": "which we have used right now and they",
+      "start": 798.68,
+      "duration": 3.839
+    },
+    {
+      "text": "lead to reasonably good results I",
+      "start": 800.24,
+      "duration": 3.88
+    },
+    {
+      "text": "encourage all of you who are watching",
+      "start": 802.519,
+      "duration": 3.44
+    },
+    {
+      "text": "this video and who will later receive",
+      "start": 804.12,
+      "duration": 3.64
+    },
+    {
+      "text": "access to this code file to change these",
+      "start": 805.959,
+      "duration": 4.32
+    },
+    {
+      "text": "hyperparameters as much as possible so",
+      "start": 807.76,
+      "duration": 4.319
+    },
+    {
+      "text": "that you see the results for yourself",
+      "start": 810.279,
+      "duration": 3.721
+    },
+    {
+      "text": "and you see how the results are",
+      "start": 812.079,
+      "duration": 3.721
+    },
+    {
+      "text": "improving or not improving you'll learn",
+      "start": 814.0,
+      "duration": 3.519
+    },
+    {
+      "text": "a lot through this",
+      "start": 815.8,
+      "duration": 4.039
+    },
+    {
+      "text": "process so this is the train model",
+      "start": 817.519,
+      "duration": 4.401
+    },
+    {
+      "text": "simple we defined the train model simple",
+      "start": 819.839,
+      "duration": 4.56
+    },
+    {
+      "text": "code over here we need to pass in the",
+      "start": 821.92,
+      "duration": 5.08
+    },
+    {
+      "text": "model uh we need to pass in the model we",
+      "start": 824.399,
+      "duration": 4.361
+    },
+    {
+      "text": "need to pass in the train loader the",
+      "start": 827.0,
+      "duration": 3.8
+    },
+    {
+      "text": "validation loader the optimizer which is",
+      "start": 828.76,
+      "duration": 5.16
+    },
+    {
+      "text": "the admw the device which is CPU in my",
+      "start": 830.8,
+      "duration": 5.88
+    },
+    {
+      "text": "case I'll come to this device in a lot",
+      "start": 833.92,
+      "duration": 5.2
+    },
+    {
+      "text": "of detail very soon then we have to",
+      "start": 836.68,
+      "duration": 4.079
+    },
+    {
+      "text": "specify the number of epoch so I have",
+      "start": 839.12,
+      "duration": 4.04
+    },
+    {
+      "text": "defined the number of epoch equal to one",
+      "start": 840.759,
+      "duration": 4.601
+    },
+    {
+      "text": "we have to specify evaluation frequency",
+      "start": 843.16,
+      "duration": 3.72
+    },
+    {
+      "text": "so here you see when we start printing",
+      "start": 845.36,
+      "duration": 3.44
+    },
+    {
+      "text": "out after every five batches I'm",
+      "start": 846.88,
+      "duration": 4.12
+    },
+    {
+      "text": "printing out the results you can change",
+      "start": 848.8,
+      "duration": 4.76
+    },
+    {
+      "text": "this based on after how many iterations",
+      "start": 851.0,
+      "duration": 4.8
+    },
+    {
+      "text": "you want to print out the results all of",
+      "start": 853.56,
+      "duration": 3.839
+    },
+    {
+      "text": "this is mentioned in this part of the",
+      "start": 855.8,
+      "duration": 3.68
+    },
+    {
+      "text": "code whereare evaluation frequency",
+      "start": 857.399,
+      "duration": 3.56
+    },
+    {
+      "text": "another parameter is evaluation",
+      "start": 859.48,
+      "duration": 3.919
+    },
+    {
+      "text": "iterations which also shows essentially",
+      "start": 860.959,
+      "duration": 4.521
+    },
+    {
+      "text": "evaluation iterations is after how many",
+      "start": 863.399,
+      "duration": 3.961
+    },
+    {
+      "text": "iterations you're calculating the loss",
+      "start": 865.48,
+      "duration": 4.039
+    },
+    {
+      "text": "on the evaluation data set and",
+      "start": 867.36,
+      "duration": 4.32
+    },
+    {
+      "text": "evaluation frequency mentions after how",
+      "start": 869.519,
+      "duration": 4.161
+    },
+    {
+      "text": "much frequency you want to display that",
+      "start": 871.68,
+      "duration": 4.519
+    },
+    {
+      "text": "loss so here we are setting both to be",
+      "start": 873.68,
+      "duration": 4.279
+    },
+    {
+      "text": "equal to five which means that after",
+      "start": 876.199,
+      "duration": 3.681
+    },
+    {
+      "text": "five batches are processed the",
+      "start": 877.959,
+      "duration": 3.921
+    },
+    {
+      "text": "evaluation loss will be calculated and",
+      "start": 879.88,
+      "duration": 4.879
+    },
+    {
+      "text": "it will be printed also then we have to",
+      "start": 881.88,
+      "duration": 5.68
+    },
+    {
+      "text": "give a start uh start context so as you",
+      "start": 884.759,
+      "duration": 6.041
+    },
+    {
+      "text": "have as I've mentioned over here uh we",
+      "start": 887.56,
+      "duration": 5.0
+    },
+    {
+      "text": "have to give a starting context to",
+      "start": 890.8,
+      "duration": 3.719
+    },
+    {
+      "text": "evaluate the generated responses during",
+      "start": 892.56,
+      "duration": 3.92
+    },
+    {
+      "text": "training based on the first validation",
+      "start": 894.519,
+      "duration": 5.361
+    },
+    {
+      "text": "set so the first validation which we are",
+      "start": 896.48,
+      "duration": 5.599
+    },
+    {
+      "text": "giving is format input and that is",
+      "start": 899.88,
+      "duration": 3.8
+    },
+    {
+      "text": "validation data so that's the first",
+      "start": 902.079,
+      "duration": 3.12
+    },
+    {
+      "text": "validation data which we are going to",
+      "start": 903.68,
+      "duration": 3.8
+    },
+    {
+      "text": "give as the start context and that is",
+      "start": 905.199,
+      "duration": 5.521
+    },
+    {
+      "text": "because if you see the example which we",
+      "start": 907.48,
+      "duration": 5.24
+    },
+    {
+      "text": "have taken over here the example which",
+      "start": 910.72,
+      "duration": 4.88
+    },
+    {
+      "text": "we have checked is validation data zero",
+      "start": 912.72,
+      "duration": 5.28
+    },
+    {
+      "text": "and that is convert the active sentence",
+      "start": 915.6,
+      "duration": 4.2
+    },
+    {
+      "text": "to passive the chef Cooks the meal every",
+      "start": 918.0,
+      "duration": 4.04
+    },
+    {
+      "text": "day now for this same example we want to",
+      "start": 919.8,
+      "duration": 4.88
+    },
+    {
+      "text": "check what the fine tuned llm response",
+      "start": 922.04,
+      "duration": 4.359
+    },
+    {
+      "text": "so that's why we have used this as the",
+      "start": 924.68,
+      "duration": 3.279
+    },
+    {
+      "text": "start",
+      "start": 926.399,
+      "duration": 4.041
+    },
+    {
+      "text": "context so the number of tokens which",
+      "start": 927.959,
+      "duration": 4.44
+    },
+    {
+      "text": "will be printed or the output will be",
+      "start": 930.44,
+      "duration": 5.519
+    },
+    {
+      "text": "starting from this particular",
+      "start": 932.399,
+      "duration": 7.44
+    },
+    {
+      "text": "instruction all right",
+      "start": 935.959,
+      "duration": 3.88
+    },
+    {
+      "text": "so now one thing which I would like to",
+      "start": 940.92,
+      "duration": 5.8
+    },
+    {
+      "text": "mention over here is that the time it",
+      "start": 943.639,
+      "duration": 5.44
+    },
+    {
+      "text": "took for me to run this code and the",
+      "start": 946.72,
+      "duration": 4.44
+    },
+    {
+      "text": "configuration of the laptop which I'm",
+      "start": 949.079,
+      "duration": 5.12
+    },
+    {
+      "text": "using so first thing to not is that I'm",
+      "start": 951.16,
+      "duration": 5.44
+    },
+    {
+      "text": "using number of aox equal to 1 because",
+      "start": 954.199,
+      "duration": 4.481
+    },
+    {
+      "text": "if I use number of aox equal to 2 It",
+      "start": 956.6,
+      "duration": 4.2
+    },
+    {
+      "text": "crack is my laptop and it takes a huge",
+      "start": 958.68,
+      "duration": 4.44
+    },
+    {
+      "text": "amount of time for the training process",
+      "start": 960.8,
+      "duration": 4.399
+    },
+    {
+      "text": "that's number one number two I'm not",
+      "start": 963.12,
+      "duration": 4.36
+    },
+    {
+      "text": "using a GPU over here which I highly",
+      "start": 965.199,
+      "duration": 4.56
+    },
+    {
+      "text": "recommend you to do I'm using a simple",
+      "start": 967.48,
+      "duration": 4.88
+    },
+    {
+      "text": "CPU so my configuration here is MacBook",
+      "start": 969.759,
+      "duration": 4.601
+    },
+    {
+      "text": "Air",
+      "start": 972.36,
+      "duration": 6.8
+    },
+    {
+      "text": "2020 so if I type MacBook Air 2020",
+      "start": 974.36,
+      "duration": 7.64
+    },
+    {
+      "text": "configuration yeah this is the this is",
+      "start": 979.16,
+      "duration": 4.56
+    },
+    {
+      "text": "the configuration which I'm using right",
+      "start": 982.0,
+      "duration": 5.8
+    },
+    {
+      "text": "now I'm I just have 8 GB of RAM um I",
+      "start": 983.72,
+      "duration": 7.2
+    },
+    {
+      "text": "think I have 8 yeah I have 8 GB of RAM",
+      "start": 987.8,
+      "duration": 5.719
+    },
+    {
+      "text": "over here and I not using a GPU I'm",
+      "start": 990.92,
+      "duration": 4.399
+    },
+    {
+      "text": "running it on a CPU so this is a pretty",
+      "start": 993.519,
+      "duration": 4.56
+    },
+    {
+      "text": "basic configuration but I want to run it",
+      "start": 995.319,
+      "duration": 4.801
+    },
+    {
+      "text": "on a basic configuration to show you the",
+      "start": 998.079,
+      "duration": 5.56
+    },
+    {
+      "text": "results even without using fancy gpus so",
+      "start": 1000.12,
+      "duration": 6.04
+    },
+    {
+      "text": "if you have access to GPU I would highly",
+      "start": 1003.639,
+      "duration": 4.56
+    },
+    {
+      "text": "recommend you to connect to a Google",
+      "start": 1006.16,
+      "duration": 6.159
+    },
+    {
+      "text": "collab GPU instance or rent out an AWS",
+      "start": 1008.199,
+      "duration": 7.241
+    },
+    {
+      "text": "ec2 or a GPU instance from Amazon I'll",
+      "start": 1012.319,
+      "duration": 5.681
+    },
+    {
+      "text": "make a tutorial on it pretty soon but",
+      "start": 1015.44,
+      "duration": 4.319
+    },
+    {
+      "text": "here you see I'm using number of epochs",
+      "start": 1018.0,
+      "duration": 4.44
+    },
+    {
+      "text": "equal to one on my CPU MacBook Air and",
+      "start": 1019.759,
+      "duration": 4.761
+    },
+    {
+      "text": "when I run this you'll see that just for",
+      "start": 1022.44,
+      "duration": 4.32
+    },
+    {
+      "text": "one Epoch it took 2 hours for me to run",
+      "start": 1024.52,
+      "duration": 4.279
+    },
+    {
+      "text": "this code now if I would have changed",
+      "start": 1026.76,
+      "duration": 3.799
+    },
+    {
+      "text": "this to two it would have taken four to",
+      "start": 1028.799,
+      "duration": 3.361
+    },
+    {
+      "text": "five hours plus it was crashing my",
+      "start": 1030.559,
+      "duration": 3.961
+    },
+    {
+      "text": "system so I'm not on a very optimal",
+      "start": 1032.16,
+      "duration": 4.639
+    },
+    {
+      "text": "system here but if you have a laptop",
+      "start": 1034.52,
+      "duration": 4.24
+    },
+    {
+      "text": "with minimal configurations I've written",
+      "start": 1036.799,
+      "duration": 3.52
+    },
+    {
+      "text": "this code so that it will run on your",
+      "start": 1038.76,
+      "duration": 2.52
+    },
+    {
+      "text": "end as",
+      "start": 1040.319,
+      "duration": 3.88
+    },
+    {
+      "text": "well so now you can monitor the training",
+      "start": 1041.28,
+      "duration": 4.679
+    },
+    {
+      "text": "and validation losses you'll see that",
+      "start": 1044.199,
+      "duration": 4.24
+    },
+    {
+      "text": "the training loss goes on decreasing I'm",
+      "start": 1045.959,
+      "duration": 4.921
+    },
+    {
+      "text": "doing only one Epoch and there are 115",
+      "start": 1048.439,
+      "duration": 6.441
+    },
+    {
+      "text": "batches here so it runs for all of those",
+      "start": 1050.88,
+      "duration": 5.84
+    },
+    {
+      "text": "batches for one Epoch and then you can",
+      "start": 1054.88,
+      "duration": 3.799
+    },
+    {
+      "text": "see that the training loss has decreased",
+      "start": 1056.72,
+      "duration": 3.36
+    },
+    {
+      "text": "and the validation loss has also",
+      "start": 1058.679,
+      "duration": 3.961
+    },
+    {
+      "text": "decreased sufficiently now let us see",
+      "start": 1060.08,
+      "duration": 5.959
+    },
+    {
+      "text": "the response so I'm also printing out",
+      "start": 1062.64,
+      "duration": 6.56
+    },
+    {
+      "text": "the uh response based on the start",
+      "start": 1066.039,
+      "duration": 6.561
+    },
+    {
+      "text": "context so now the instruction was that",
+      "start": 1069.2,
+      "duration": 5.839
+    },
+    {
+      "text": "instruction was convert the active to",
+      "start": 1072.6,
+      "duration": 4.12
+    },
+    {
+      "text": "passive the chef Cooks the meal every",
+      "start": 1075.039,
+      "duration": 4.361
+    },
+    {
+      "text": "day and here's the response the meal is",
+      "start": 1076.72,
+      "duration": 4.52
+    },
+    {
+      "text": "prepared every day by the chef end of",
+      "start": 1079.4,
+      "duration": 5.159
+    },
+    {
+      "text": "text isn't that awesome this is almost",
+      "start": 1081.24,
+      "duration": 5.36
+    },
+    {
+      "text": "close to the correct passive tense the",
+      "start": 1084.559,
+      "duration": 4.441
+    },
+    {
+      "text": "correct passive answer is the meal is",
+      "start": 1086.6,
+      "duration": 4.48
+    },
+    {
+      "text": "prepared or the meal is cooked every day",
+      "start": 1089.0,
+      "duration": 3.76
+    },
+    {
+      "text": "by the chef and here instead it's the",
+      "start": 1091.08,
+      "duration": 4.12
+    },
+    {
+      "text": "meal is prepared every day by the chef",
+      "start": 1092.76,
+      "duration": 5.039
+    },
+    {
+      "text": "so it's almost exactly correct whereas",
+      "start": 1095.2,
+      "duration": 4.479
+    },
+    {
+      "text": "earlier if you if you saw the earlier",
+      "start": 1097.799,
+      "duration": 4.521
+    },
+    {
+      "text": "output without fine tuning the llm so",
+      "start": 1099.679,
+      "duration": 4.801
+    },
+    {
+      "text": "without fine tuning the llm it could not",
+      "start": 1102.32,
+      "duration": 3.88
+    },
+    {
+      "text": "convert the active into passive it just",
+      "start": 1104.48,
+      "duration": 3.4
+    },
+    {
+      "text": "recycled the same text which we had",
+      "start": 1106.2,
+      "duration": 3.2
+    },
+    {
+      "text": "given in the instruction",
+      "start": 1107.88,
+      "duration": 3.88
+    },
+    {
+      "text": "but right now when we finetuned the",
+      "start": 1109.4,
+      "duration": 4.519
+    },
+    {
+      "text": "large language model on this custom data",
+      "start": 1111.76,
+      "duration": 5.0
+    },
+    {
+      "text": "set so this was the data set with 1100",
+      "start": 1113.919,
+      "duration": 5.321
+    },
+    {
+      "text": "instruction input output pairs when we",
+      "start": 1116.76,
+      "duration": 4.24
+    },
+    {
+      "text": "fine tune the large language model on",
+      "start": 1119.24,
+      "duration": 3.799
+    },
+    {
+      "text": "this we can see that the response is",
+      "start": 1121.0,
+      "duration": 3.88
+    },
+    {
+      "text": "passive in the passive tense which is",
+      "start": 1123.039,
+      "duration": 4.161
+    },
+    {
+      "text": "awesome which is exactly what we wanted",
+      "start": 1124.88,
+      "duration": 4.039
+    },
+    {
+      "text": "and then the llm continues with the rest",
+      "start": 1127.2,
+      "duration": 5.04
+    },
+    {
+      "text": "of the generation but essentially here I",
+      "start": 1128.919,
+      "duration": 5.721
+    },
+    {
+      "text": "have demonstrated that using",
+      "start": 1132.24,
+      "duration": 5.559
+    },
+    {
+      "text": "finetuning and just by training on one",
+      "start": 1134.64,
+      "duration": 6.159
+    },
+    {
+      "text": "epoch just by training for one Epoch on",
+      "start": 1137.799,
+      "duration": 6.081
+    },
+    {
+      "text": "a machine which has no GPU you can still",
+      "start": 1140.799,
+      "duration": 5.321
+    },
+    {
+      "text": "obtain good results in in 2 hours you",
+      "start": 1143.88,
+      "duration": 4.84
+    },
+    {
+      "text": "are able to generate a active active",
+      "start": 1146.12,
+      "duration": 4.64
+    },
+    {
+      "text": "tense the chef Cooks the meal every day",
+      "start": 1148.72,
+      "duration": 3.839
+    },
+    {
+      "text": "to passive tense the meal is prepared",
+      "start": 1150.76,
+      "duration": 5.12
+    },
+    {
+      "text": "every day by the chef so I I've checked",
+      "start": 1152.559,
+      "duration": 5.48
+    },
+    {
+      "text": "this for two EPO on a system with a",
+      "start": 1155.88,
+      "duration": 3.88
+    },
+    {
+      "text": "better configuration and just with two",
+      "start": 1158.039,
+      "duration": 3.401
+    },
+    {
+      "text": "EPO you can get it to the correct",
+      "start": 1159.76,
+      "duration": 3.399
+    },
+    {
+      "text": "response that the meal is cooked by the",
+      "start": 1161.44,
+      "duration": 4.239
+    },
+    {
+      "text": "chef every day instead of prepared so",
+      "start": 1163.159,
+      "duration": 4.321
+    },
+    {
+      "text": "just by increasing the number of epo",
+      "start": 1165.679,
+      "duration": 3.561
+    },
+    {
+      "text": "from 1 to two you actually get to the",
+      "start": 1167.48,
+      "duration": 3.36
+    },
+    {
+      "text": "correct",
+      "start": 1169.24,
+      "duration": 3.919
+    },
+    {
+      "text": "answer so as we can see based on the",
+      "start": 1170.84,
+      "duration": 4.56
+    },
+    {
+      "text": "output about the model trains well as we",
+      "start": 1173.159,
+      "duration": 4.681
+    },
+    {
+      "text": "can see from as we can tell based on the",
+      "start": 1175.4,
+      "duration": 4.0
+    },
+    {
+      "text": "decreasing training loss and the",
+      "start": 1177.84,
+      "duration": 4.16
+    },
+    {
+      "text": "validation loss values and based on the",
+      "start": 1179.4,
+      "duration": 4.399
+    },
+    {
+      "text": "response text we can see that the model",
+      "start": 1182.0,
+      "duration": 3.64
+    },
+    {
+      "text": "almost correctly follows the instruction",
+      "start": 1183.799,
+      "duration": 3.961
+    },
+    {
+      "text": "to convert the input input sentence from",
+      "start": 1185.64,
+      "duration": 4.6
+    },
+    {
+      "text": "active to passive awesome we have an",
+      "start": 1187.76,
+      "duration": 4.32
+    },
+    {
+      "text": "evaluation section later in which we",
+      "start": 1190.24,
+      "duration": 3.88
+    },
+    {
+      "text": "will learn how to evaluate the responses",
+      "start": 1192.08,
+      "duration": 4.479
+    },
+    {
+      "text": "of our llm we cannot just qualitatively",
+      "start": 1194.12,
+      "duration": 4.12
+    },
+    {
+      "text": "say that this is good this looks good",
+      "start": 1196.559,
+      "duration": 3.921
+    },
+    {
+      "text": "Etc there is a whole separate field of",
+      "start": 1198.24,
+      "duration": 5.16
+    },
+    {
+      "text": "llm evaluation and that's the subject of",
+      "start": 1200.48,
+      "duration": 4.64
+    },
+    {
+      "text": "active research right now if you have",
+      "start": 1203.4,
+      "duration": 3.6
+    },
+    {
+      "text": "quantitative mathematical answers it's",
+      "start": 1205.12,
+      "duration": 4.72
+    },
+    {
+      "text": "very easy to say you scored this much",
+      "start": 1207.0,
+      "duration": 4.96
+    },
+    {
+      "text": "but what if the answer is qualitative",
+      "start": 1209.84,
+      "duration": 3.64
+    },
+    {
+      "text": "like the response which we just got",
+      "start": 1211.96,
+      "duration": 3.64
+    },
+    {
+      "text": "right now how do we evaluate llms in",
+      "start": 1213.48,
+      "duration": 4.12
+    },
+    {
+      "text": "that case we'll look at that in one of",
+      "start": 1215.6,
+      "duration": 4.36
+    },
+    {
+      "text": "the next lectures but for now let's just",
+      "start": 1217.6,
+      "duration": 4.72
+    },
+    {
+      "text": "go ahead and plot the losses so here you",
+      "start": 1219.96,
+      "duration": 4.719
+    },
+    {
+      "text": "can see I have plotted the training loss",
+      "start": 1222.32,
+      "duration": 4.04
+    },
+    {
+      "text": "and have plotted the validation loss for",
+      "start": 1224.679,
+      "duration": 4.081
+    },
+    {
+      "text": "one Epoch and you can see that the",
+      "start": 1226.36,
+      "duration": 4.16
+    },
+    {
+      "text": "model's performance on both the training",
+      "start": 1228.76,
+      "duration": 3.72
+    },
+    {
+      "text": "loss and the validation training and",
+      "start": 1230.52,
+      "duration": 3.8
+    },
+    {
+      "text": "validation set improve substantially",
+      "start": 1232.48,
+      "duration": 3.88
+    },
+    {
+      "text": "over the course of the training there is",
+      "start": 1234.32,
+      "duration": 3.96
+    },
+    {
+      "text": "a rapid decrease in losses during the",
+      "start": 1236.36,
+      "duration": 4.16
+    },
+    {
+      "text": "initial phase which indicates that the",
+      "start": 1238.28,
+      "duration": 4.04
+    },
+    {
+      "text": "model is quickly learning meaningful",
+      "start": 1240.52,
+      "duration": 4.32
+    },
+    {
+      "text": "patterns and representations from the",
+      "start": 1242.32,
+      "duration": 5.479
+    },
+    {
+      "text": "data then as training proceeds to to the",
+      "start": 1244.84,
+      "duration": 5.0
+    },
+    {
+      "text": "second Epoch the losses continue to",
+      "start": 1247.799,
+      "duration": 4.561
+    },
+    {
+      "text": "decrease but at a much slower rate",
+      "start": 1249.84,
+      "duration": 4.44
+    },
+    {
+      "text": "suggesting that the model is fine-tuning",
+      "start": 1252.36,
+      "duration": 3.52
+    },
+    {
+      "text": "its learned representations and then",
+      "start": 1254.28,
+      "duration": 4.0
+    },
+    {
+      "text": "it's converging to a stable Solution",
+      "start": 1255.88,
+      "duration": 4.56
+    },
+    {
+      "text": "that's how you should evaluate this plot",
+      "start": 1258.28,
+      "duration": 3.84
+    },
+    {
+      "text": "already we can see that the validation",
+      "start": 1260.44,
+      "duration": 3.119
+    },
+    {
+      "text": "loss is still a bit higher and the",
+      "start": 1262.12,
+      "duration": 3.16
+    },
+    {
+      "text": "training loss has the potential to go",
+      "start": 1263.559,
+      "duration": 4.12
+    },
+    {
+      "text": "down further but due to memory and",
+      "start": 1265.28,
+      "duration": 4.519
+    },
+    {
+      "text": "compute require compute limitations I",
+      "start": 1267.679,
+      "duration": 4.161
+    },
+    {
+      "text": "was not able to increase the number of",
+      "start": 1269.799,
+      "duration": 5.081
+    },
+    {
+      "text": "epo but I highly encourage you to do so",
+      "start": 1271.84,
+      "duration": 4.839
+    },
+    {
+      "text": "if you do have the compute power if you",
+      "start": 1274.88,
+      "duration": 3.679
+    },
+    {
+      "text": "do not and even if you have reached this",
+      "start": 1276.679,
+      "duration": 4.201
+    },
+    {
+      "text": "stage it's awesome because now you have",
+      "start": 1278.559,
+      "duration": 6.841
+    },
+    {
+      "text": "implemented finetuning on your own local",
+      "start": 1280.88,
+      "duration": 7.24
+    },
+    {
+      "text": "machine uh so while the loss plot",
+      "start": 1285.4,
+      "duration": 4.32
+    },
+    {
+      "text": "indicates that the model is training",
+      "start": 1288.12,
+      "duration": 3.88
+    },
+    {
+      "text": "effectively the most crucial aspect is",
+      "start": 1289.72,
+      "duration": 4.559
+    },
+    {
+      "text": "its performance in terms of respect in",
+      "start": 1292.0,
+      "duration": 5.039
+    },
+    {
+      "text": "in in terms of response quality and",
+      "start": 1294.279,
+      "duration": 4.64
+    },
+    {
+      "text": "correctness so although the loss",
+      "start": 1297.039,
+      "duration": 3.361
+    },
+    {
+      "text": "function looks good as I mentioned",
+      "start": 1298.919,
+      "duration": 3.681
+    },
+    {
+      "text": "earlier we need a way to evaluate the",
+      "start": 1300.4,
+      "duration": 4.72
+    },
+    {
+      "text": "responses of this model we need a way to",
+      "start": 1302.6,
+      "duration": 4.679
+    },
+    {
+      "text": "say whether the responses make sense how",
+      "start": 1305.12,
+      "duration": 4.84
+    },
+    {
+      "text": "well the responses look qualitatively do",
+      "start": 1307.279,
+      "duration": 4.121
+    },
+    {
+      "text": "they really answer the question which",
+      "start": 1309.96,
+      "duration": 3.76
+    },
+    {
+      "text": "has been posed and that's why there is a",
+      "start": 1311.4,
+      "duration": 4.2
+    },
+    {
+      "text": "separate lecture which we will devote to",
+      "start": 1313.72,
+      "duration": 3.959
+    },
+    {
+      "text": "evaluating the large language models in",
+      "start": 1315.6,
+      "duration": 3.92
+    },
+    {
+      "text": "this case",
+      "start": 1317.679,
+      "duration": 4.24
+    },
+    {
+      "text": "so today was a very important lecture",
+      "start": 1319.52,
+      "duration": 6.12
+    },
+    {
+      "text": "because we successfully fine tuned the",
+      "start": 1321.919,
+      "duration": 6.081
+    },
+    {
+      "text": "instruction large language model and we",
+      "start": 1325.64,
+      "duration": 4.279
+    },
+    {
+      "text": "demonstrated that without using this",
+      "start": 1328.0,
+      "duration": 4.12
+    },
+    {
+      "text": "fine tuning data set the model cannot",
+      "start": 1329.919,
+      "duration": 4.281
+    },
+    {
+      "text": "follow instructions but when you use the",
+      "start": 1332.12,
+      "duration": 4.0
+    },
+    {
+      "text": "fine tuning data set it really learns to",
+      "start": 1334.2,
+      "duration": 4.079
+    },
+    {
+      "text": "follow instructions very well and I will",
+      "start": 1336.12,
+      "duration": 3.72
+    },
+    {
+      "text": "demonstrate this further in the next",
+      "start": 1338.279,
+      "duration": 3.961
+    },
+    {
+      "text": "lectures as well but one of the outputs",
+      "start": 1339.84,
+      "duration": 4.8
+    },
+    {
+      "text": "so if the in if the input is something",
+      "start": 1342.24,
+      "duration": 4.6
+    },
+    {
+      "text": "like this rewrite the sentence using a",
+      "start": 1344.64,
+      "duration": 4.72
+    },
+    {
+      "text": "simile simile means using similar kind",
+      "start": 1346.84,
+      "duration": 5.439
+    },
+    {
+      "text": "of meaning so the car is very fast the",
+      "start": 1349.36,
+      "duration": 4.76
+    },
+    {
+      "text": "correct response is the car is as fast",
+      "start": 1352.279,
+      "duration": 3.801
+    },
+    {
+      "text": "as Lightning and the model our model",
+      "start": 1354.12,
+      "duration": 4.24
+    },
+    {
+      "text": "predicts the car is as fast as a bullet",
+      "start": 1356.08,
+      "duration": 7.079
+    },
+    {
+      "text": "awesome right it really learns how to uh",
+      "start": 1358.36,
+      "duration": 6.799
+    },
+    {
+      "text": "how to answer based on the instruction",
+      "start": 1363.159,
+      "duration": 4.041
+    },
+    {
+      "text": "which has been given sometimes it does",
+      "start": 1365.159,
+      "duration": 3.52
+    },
+    {
+      "text": "make mistakes because we are training",
+      "start": 1367.2,
+      "duration": 3.8
+    },
+    {
+      "text": "for only one Epoch but we can clearly",
+      "start": 1368.679,
+      "duration": 4.12
+    },
+    {
+      "text": "see that if you train it for more epox",
+      "start": 1371.0,
+      "duration": 3.679
+    },
+    {
+      "text": "it will get better and better and better",
+      "start": 1372.799,
+      "duration": 3.801
+    },
+    {
+      "text": "and it's learning the",
+      "start": 1374.679,
+      "duration": 4.201
+    },
+    {
+      "text": "instructions so thanks a lot everyone",
+      "start": 1376.6,
+      "duration": 3.88
+    },
+    {
+      "text": "this brings us to the end of today's",
+      "start": 1378.88,
+      "duration": 4.84
+    },
+    {
+      "text": "lecture where we learned about",
+      "start": 1380.48,
+      "duration": 6.92
+    },
+    {
+      "text": "llm um fine tuning which is probably the",
+      "start": 1383.72,
+      "duration": 6.319
+    },
+    {
+      "text": "most important step in instruction fine",
+      "start": 1387.4,
+      "duration": 5.12
+    },
+    {
+      "text": "tuning so now if you look at this",
+      "start": 1390.039,
+      "duration": 4.561
+    },
+    {
+      "text": "flowchart let me rub all of this and",
+      "start": 1392.52,
+      "duration": 3.68
+    },
+    {
+      "text": "show you till where we have reached in",
+      "start": 1394.6,
+      "duration": 3.88
+    },
+    {
+      "text": "this flowchart in this flowchart we have",
+      "start": 1396.2,
+      "duration": 4.719
+    },
+    {
+      "text": "reached this stage where we even",
+      "start": 1398.48,
+      "duration": 4.48
+    },
+    {
+      "text": "inspected the modeling loss so we have",
+      "start": 1400.919,
+      "duration": 3.601
+    },
+    {
+      "text": "finished stage one which is preparing",
+      "start": 1402.96,
+      "duration": 3.76
+    },
+    {
+      "text": "the data set we have finished stage two",
+      "start": 1404.52,
+      "duration": 4.32
+    },
+    {
+      "text": "fine tuning the llm in the the next",
+      "start": 1406.72,
+      "duration": 3.88
+    },
+    {
+      "text": "lecture we'll move to stage three which",
+      "start": 1408.84,
+      "duration": 4.48
+    },
+    {
+      "text": "is evaluating the llm so thanks a lot",
+      "start": 1410.6,
+      "duration": 4.319
+    },
+    {
+      "text": "everyone I hope you are liking these",
+      "start": 1413.32,
+      "duration": 3.359
+    },
+    {
+      "text": "lectures which are a mix of whiteboard",
+      "start": 1414.919,
+      "duration": 4.161
+    },
+    {
+      "text": "plus coding approach I look forward to",
+      "start": 1416.679,
+      "duration": 6.36
+    },
+    {
+      "text": "seeing you in the next lecture",
+      "start": 1419.08,
+      "duration": 3.959
+    }
+  ],
+  "full_text": "[Music] hello everyone and welcome to this lecture in the build large language models from scratch Series today we are actually going to f tune the model which we have been developing for the past four to five lectures we have been looking at an example where we do have a pre-trained llm but the llm is not really good enough to understand or follow instructions so we want to employ instruction finetuning and to do this we have been following these three stages the stage one is preparing the data set we have implemented this stage where we downloaded the data and formatted it using the alpaka prompt format then we divided the data set into multiple batches and then we created the training testing and the validation data loaders that was the stage one on preparing the data set in stage two which is fine-tuning the llm what we have done in the previous lecture is that we have the llm architecture which looks something like this and we have loaded this llm architecture with pre-trained weights from GPT model so we have used the pre pre-trained weights from gpt2 355 million parameter model and we have kept our architecture ready now with these pre-trained weights and now the stage is set for us to finetune the llm what this means is that we already already have pre-trained weights right but we have not yet trained this llm on data set on the instruction data set this is the instruction data set which we have been using in this Hands-On example and which we will finetune the lmon so this is a data set which consists of 1100 instruction input output Pairs and our hope is that when we train the weights of the llm again um using this instruction data it will get much much better at responding to instructions so let me show you in code where we ended the previous lecture in the previous lecture we just had the pre-trained llm without any fine tuning and we asked the llm the question that we use this particular um input and instruction so the instruction was convert the active sentence to passive and the sentence was the chef Cooks the meal every day the output which the llm gave was the Chef Cooks the meal every day and instruction convert the active sentence to passive basically it just regenerated the same thing what we had given as input it did not it was not able to convert the text into out into from active to passive at all so as you can see the response section was created but the llm simply repeats the original input sentence and part of the instruction and it fails to really convert the active sentence to the passive sentence or to passive voice as requested this is the stage which we are in right now and we want to really improve the llm performance when it receives an instruction so what we'll be doing is that if you look at this architecture there are number of areas where there are trainable parameters right token embedding has trainable weights positional embedding has trainable weights layer normalization has the scale and shift parameters which are trainable the multi-ad attention has the query key and value weight metries which are trainable again layer normalization has trainable scale and shift the feed forward neural network has trainable weights the final layer normalization and the final um output layer also has trainable weights we will train this architecture again on this particular data set which I just showed you this instruction data so that the weights are optimized and the llm can answer the instructions pretty well so then your question would be why did we pre-train the llm if we are training the llm again on this specific data set well the reason we pre-train the llm is because now the model essentially starts from a knowledgeable state so due to pre-training the model starts from a knowledgeable State instead of a random state if we just started from a random State then it would have been extremely difficult for the model to learn everything based on this limited data at least through pre-training the model is able to understand so many things such as the semantic meaning of words when it's given a text it knows what to respond it cannot follow instructions that's fine but at least it can know the semantic meaning between different words it knows uh it knows a lot about the language itself due to pre-training and that helps us to set a foundational knowledge base before we find tune on the specific data set so fine tuning as a process always comes after the pre-training stage so let's go ahead and begin the fine tuning process now before we do the fine tuning we need two things we we first of all need to understand the training Loop which is this Loop and the second we need to understand the loss function one thing I would like to mention here is that the training Loop and the loss function is exactly the same as the uh training Loop and the loss function which we had looked at when we pre-trained the model so just to revise here's the training Loop what we do is that we go through each batch in the data set we calculate the loss gradients we reset the loss gradients in a new Appo in a new EPO then we calculate the loss on a current batch and then do the backward pass in the backward pass we essentially calculate the gradient of the loss the partial derivative of the gradient of the loss with respect to all of the parameters and remember that here we have 355 million parameters we will calculate the partial gradient of the loss with respect to all of these and in the update step we'll use an we'll use a gradient descent based Optimizer which looks something like this so this is the simplest form of gradient descent W old is W new is equal to W old minus Alpha times the partial derivative of loss with with respect to W and we'll do this many times and we'll hope that the parameters eventually get to a stage where the loss function is minimized so if the loss function landscape looks something like this initially we start somewhere here and then we later go down to the bottom of this Valley and hope that the loss function is minimized right now uh if this is the training Loop then we'll need to know what the loss function is and the loss function is essentially obtained from the input and Target pairs so remember when we created this data loader every data loader essentially has input and Target pairs so let me write this down over here so let's say we looked at we are looking at batch number one batch number one has eight samples sample one sample two so each batch has eight samples because we have set the bat size to be eight and in each sample we have the input and we have the Target and since it's the next token prediction task the target is just the input which is shifted to the right by one and we add the end of text token you can think of the target as the True Value which we have True Value and then to get the loss we'll need a predicted value right so I'm going to write here predicted value and the predicted value is obtained from the generate function so remember in the last lecture we discussed about the generate function where given an input we generate the next token IDs so essentially what happens is that when an input to text or yeah a sequence of input tokens passes through this GPT architecture which I have shown to you right now so let's say the input instruction is convert active to passive it will pass through this GPT architecture and then when it comes out of the GPT architecture we have something called as the logic sensor that's then converted into a tensor of probabilities and through this tensor of probabilities we get the predicted output of the llm that's not the True Value but that's the predicted value and then based on the true value and the predicted value we then compute the loss function So based on the true value and the predicted value both of these values will be needed to then calculate the loss function and this loss function is the categorical cross entropy loss or rather it is the cross entropy loss the simplest way to think about cross entropy loss is is that it's negative of the logarithm so essentially since probabilities are involved we want the probability to be as close to one as possible so that the loss function decreases and becomes as close to zero I'm not going into the details of this because we have already covered this in a lot of detail when we learned about llm pre-training but I'm just giving you a qualitative flavor for you to understand what is the loss which we are trying to minimize over here so this is the loss function which is the cross entropy loss once the loss function is defined then all we need to do is learn the training loop on the instruction data set so the data set is already divided into input and Target Pairs and uh we have spent the last three to four lectures dividing the data set into input Target Pairs and constructing these data loaders all of that hard work will come into use right now so now I'm going to take you to the code and we are going to finetune this model together great so we have already done the hard work when we implemented the data set processing including the batching and creating the data loaders now we can reuse the loss calculation and training functions which we have implemented in pre-training so as I told you here are some functions which I have collected here and we'll be reusing these functions the first function is the calculation of the loss on a batch of data so here you can see is the cross entropy loss which I have mentioned over here the cross entropy loss and then when we want to calculate the loss over the entire data loader we just take a summation of all of the U summation of losses calculate calculated in individual batches and then to normalize the total loss we just divide by the number of batches that's what's happening in the calculation of loss in a loader so the same function can be used and if you want to calculate it for the training data loader we pass the train loader if you want to calculate the loss for the testing or validation we pass the test loader or validation loader respectively then then the training Loop which I've described over here this training Loop or I should Mark this entire thing this entire training ROP training Loop we have we have written a code for this before when we looked at pre-training and this essentially the most important part of this code is the backward pass where the gradients of the loss are calculated and then we do this Optimizer step so here I implemented a simple vanilla gradient descent right the actual Optimizer which is used is Adam with weight DEC so you can either use Adam or you can use Adam with weight Decay which is Adam W that's the optimizer will will be using and then the remaining of the code is just about printing the loss which we obtain at different uh iterations and then visualizing the testing loss visualizing the validation loss and visualizing the training loss together so as you can see here we are going to print the training loss and the validation loss um yeah so initially before we even begin the training let us first calculate the training and the validation loss um initially the training has not yet happened on this data set on this data set I have not yet run the training loop I just want to see the loss at the initial moment so here if you see this is equivalent to being at this early point where the training has not yet started so the loss will naturally be very high I just want to see the training and the validation loss so the training loss is 3.82 and the valid ation loss is 3.76 so this is pretty high and we want to bring both of these losses together now the model is prepared and the data loaders are prepared we can now proceed to train the model so now the code which we are implementing below it sets up the training process including initializing the optimizer setting the number of EPO and defining the evaluation frequency so here you can see we Define the optimizer which is storage. op. adamw so let me just torch. optim do adamw so this is the Adam with weight DK Optimizer which we are going to use if you don't know how Adam works it's fine but it's the most widely used Optimizer I would say in machine learning algorithms these days it keeps a track of the gradients of the loss function it keeps a track of the gradient Square also um and uh it's just very useful to prevent local Minima and uh to accelerate the convergence that's why the Adam or the adamw optimizer is predominantly used we are using a learning rate of 0.005 and the weight decay of 0.1 now please note that these are hyper parameters which means that you can change them and you might obtain better results these are just some parameters which we have used right now and they lead to reasonably good results I encourage all of you who are watching this video and who will later receive access to this code file to change these hyperparameters as much as possible so that you see the results for yourself and you see how the results are improving or not improving you'll learn a lot through this process so this is the train model simple we defined the train model simple code over here we need to pass in the model uh we need to pass in the model we need to pass in the train loader the validation loader the optimizer which is the admw the device which is CPU in my case I'll come to this device in a lot of detail very soon then we have to specify the number of epoch so I have defined the number of epoch equal to one we have to specify evaluation frequency so here you see when we start printing out after every five batches I'm printing out the results you can change this based on after how many iterations you want to print out the results all of this is mentioned in this part of the code whereare evaluation frequency another parameter is evaluation iterations which also shows essentially evaluation iterations is after how many iterations you're calculating the loss on the evaluation data set and evaluation frequency mentions after how much frequency you want to display that loss so here we are setting both to be equal to five which means that after five batches are processed the evaluation loss will be calculated and it will be printed also then we have to give a start uh start context so as you have as I've mentioned over here uh we have to give a starting context to evaluate the generated responses during training based on the first validation set so the first validation which we are giving is format input and that is validation data so that's the first validation data which we are going to give as the start context and that is because if you see the example which we have taken over here the example which we have checked is validation data zero and that is convert the active sentence to passive the chef Cooks the meal every day now for this same example we want to check what the fine tuned llm response so that's why we have used this as the start context so the number of tokens which will be printed or the output will be starting from this particular instruction all right so now one thing which I would like to mention over here is that the time it took for me to run this code and the configuration of the laptop which I'm using so first thing to not is that I'm using number of aox equal to 1 because if I use number of aox equal to 2 It crack is my laptop and it takes a huge amount of time for the training process that's number one number two I'm not using a GPU over here which I highly recommend you to do I'm using a simple CPU so my configuration here is MacBook Air 2020 so if I type MacBook Air 2020 configuration yeah this is the this is the configuration which I'm using right now I'm I just have 8 GB of RAM um I think I have 8 yeah I have 8 GB of RAM over here and I not using a GPU I'm running it on a CPU so this is a pretty basic configuration but I want to run it on a basic configuration to show you the results even without using fancy gpus so if you have access to GPU I would highly recommend you to connect to a Google collab GPU instance or rent out an AWS ec2 or a GPU instance from Amazon I'll make a tutorial on it pretty soon but here you see I'm using number of epochs equal to one on my CPU MacBook Air and when I run this you'll see that just for one Epoch it took 2 hours for me to run this code now if I would have changed this to two it would have taken four to five hours plus it was crashing my system so I'm not on a very optimal system here but if you have a laptop with minimal configurations I've written this code so that it will run on your end as well so now you can monitor the training and validation losses you'll see that the training loss goes on decreasing I'm doing only one Epoch and there are 115 batches here so it runs for all of those batches for one Epoch and then you can see that the training loss has decreased and the validation loss has also decreased sufficiently now let us see the response so I'm also printing out the uh response based on the start context so now the instruction was that instruction was convert the active to passive the chef Cooks the meal every day and here's the response the meal is prepared every day by the chef end of text isn't that awesome this is almost close to the correct passive tense the correct passive answer is the meal is prepared or the meal is cooked every day by the chef and here instead it's the meal is prepared every day by the chef so it's almost exactly correct whereas earlier if you if you saw the earlier output without fine tuning the llm so without fine tuning the llm it could not convert the active into passive it just recycled the same text which we had given in the instruction but right now when we finetuned the large language model on this custom data set so this was the data set with 1100 instruction input output pairs when we fine tune the large language model on this we can see that the response is passive in the passive tense which is awesome which is exactly what we wanted and then the llm continues with the rest of the generation but essentially here I have demonstrated that using finetuning and just by training on one epoch just by training for one Epoch on a machine which has no GPU you can still obtain good results in in 2 hours you are able to generate a active active tense the chef Cooks the meal every day to passive tense the meal is prepared every day by the chef so I I've checked this for two EPO on a system with a better configuration and just with two EPO you can get it to the correct response that the meal is cooked by the chef every day instead of prepared so just by increasing the number of epo from 1 to two you actually get to the correct answer so as we can see based on the output about the model trains well as we can see from as we can tell based on the decreasing training loss and the validation loss values and based on the response text we can see that the model almost correctly follows the instruction to convert the input input sentence from active to passive awesome we have an evaluation section later in which we will learn how to evaluate the responses of our llm we cannot just qualitatively say that this is good this looks good Etc there is a whole separate field of llm evaluation and that's the subject of active research right now if you have quantitative mathematical answers it's very easy to say you scored this much but what if the answer is qualitative like the response which we just got right now how do we evaluate llms in that case we'll look at that in one of the next lectures but for now let's just go ahead and plot the losses so here you can see I have plotted the training loss and have plotted the validation loss for one Epoch and you can see that the model's performance on both the training loss and the validation training and validation set improve substantially over the course of the training there is a rapid decrease in losses during the initial phase which indicates that the model is quickly learning meaningful patterns and representations from the data then as training proceeds to to the second Epoch the losses continue to decrease but at a much slower rate suggesting that the model is fine-tuning its learned representations and then it's converging to a stable Solution that's how you should evaluate this plot already we can see that the validation loss is still a bit higher and the training loss has the potential to go down further but due to memory and compute require compute limitations I was not able to increase the number of epo but I highly encourage you to do so if you do have the compute power if you do not and even if you have reached this stage it's awesome because now you have implemented finetuning on your own local machine uh so while the loss plot indicates that the model is training effectively the most crucial aspect is its performance in terms of respect in in in terms of response quality and correctness so although the loss function looks good as I mentioned earlier we need a way to evaluate the responses of this model we need a way to say whether the responses make sense how well the responses look qualitatively do they really answer the question which has been posed and that's why there is a separate lecture which we will devote to evaluating the large language models in this case so today was a very important lecture because we successfully fine tuned the instruction large language model and we demonstrated that without using this fine tuning data set the model cannot follow instructions but when you use the fine tuning data set it really learns to follow instructions very well and I will demonstrate this further in the next lectures as well but one of the outputs so if the in if the input is something like this rewrite the sentence using a simile simile means using similar kind of meaning so the car is very fast the correct response is the car is as fast as Lightning and the model our model predicts the car is as fast as a bullet awesome right it really learns how to uh how to answer based on the instruction which has been given sometimes it does make mistakes because we are training for only one Epoch but we can clearly see that if you train it for more epox it will get better and better and better and it's learning the instructions so thanks a lot everyone this brings us to the end of today's lecture where we learned about llm um fine tuning which is probably the most important step in instruction fine tuning so now if you look at this flowchart let me rub all of this and show you till where we have reached in this flowchart in this flowchart we have reached this stage where we even inspected the modeling loss so we have finished stage one which is preparing the data set we have finished stage two fine tuning the llm in the the next lecture we'll move to stage three which is evaluating the llm so thanks a lot everyone I hope you are liking these lectures which are a mix of whiteboard plus coding approach I look forward to seeing you in the next lecture"
+}

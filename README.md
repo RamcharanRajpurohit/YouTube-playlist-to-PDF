@@ -1,13 +1,13 @@
 # Playlist → Book Pipeline
 
-Convert any YouTube playlist (or single video) into a professionally formatted technical book manuscript, fully automated.
+Convert pre-fetched YouTube playlist transcripts into a professionally formatted technical book manuscript, fully automated.
 
 ## Features
 
-- **End-to-end pipeline**: playlist URL → transcripts → chapters → polished PDF
+- **End-to-end pipeline**: pre-fetched transcripts → chapters → polished PDF
 - **Works out of the box**: uses Gemini by default
 - **Large content handling**: automatic transcript chunking with token-aware splitting
-- **Caching & resumability**: transcripts and chapters are cached; a failed run can resume
+- **Caching & resumability**: chapters are cached; a failed run can resume
 - **Optional verification**: cross-check chapters against source transcripts using the Gemini LLM
 - **Book-quality output**: professional PDF with proper typography, code highlighting, and page layout
 
@@ -27,7 +27,7 @@ Then run:
 
 ```bash
 source .venv/bin/activate
-python main.py --url "https://youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu" --dry-run
+python main.py --dry-run
 ```
 
 ## Manual Setup (Alternative)
@@ -41,17 +41,14 @@ cp .env.example .env
 ## Usage
 
 ```bash
-# Dry run (fetch transcripts + preview TOC, no LLM calls)
-python main.py --url "<playlist_or_video_url>" --dry-run
+# Dry run (preview TOC only, no chapter writing)
+python main.py --dry-run
 
 # Full run (generates Markdown + PDF)
-python main.py --url "<playlist_or_video_url>"
+python main.py
 
 # With content verification
-python main.py --url "<url>" --verify
-
-# Custom title
-python main.py --url "<url>" --title "My Custom Book"
+python main.py --verify
 ```
 
 ## Output
@@ -61,7 +58,8 @@ python main.py --url "<url>" --title "My Custom Book"
 | `output/manuscript.md` | Full book in Markdown |
 | `output/manuscript.pdf` | Formatted PDF |
 | `output/chapters/` | Individual chapter files |
-| `output/transcripts/` | Cached raw transcripts |
+| `data/transcripts/` | Pre-fetched transcript data |
+| `data/playlist_metadata/` | Playlist metadata & TOC |
 
 ## LLM Providers
 
@@ -97,10 +95,13 @@ playlist_to_book/
 ├── main.py                        # CLI entry point & pipeline orchestrator
 ├── config/
 │   └── default.yaml               # All pipeline settings
+├── data/                          # Permanent playlist data (committed)
+│   ├── transcripts/               # Pre-fetched transcript JSON files
+│   └── playlist_metadata/         # Video metadata & TOC
 ├── src/
 │   ├── config.py                  # Configuration loader
 │   ├── transcript/
-│   │   └── fetcher.py             # Playlist extraction & transcript fetching
+│   │   └── fetcher.py             # Data loader (reads from data/)
 │   ├── processing/
 │   │   ├── cleaner.py             # Filler removal, normalization
 │   │   └── chunker.py             # Token-aware text splitting
@@ -124,13 +125,10 @@ playlist_to_book/
 
 ## Pipeline Steps
 
-1. **Extract videos** — resolve playlist URL → video metadata via `yt-dlp`
-2. **Fetch transcripts** — download/cache transcripts via `youtube-transcript-api`
-3. **Clean transcripts** — remove filler words, normalize text
-4. **Generate TOC** — LLM proposes chapter structure from video titles & summaries
-5. **Write chapters** — transcript chunks → LLM → merge into coherent chapters → refinement
-6. **Verify** *(optional)* — secondary LLM cross-checks for hallucinations
-7. **Export** — assemble Markdown manuscript and render PDF via WeasyPrint
+1. **Load metadata** — read video metadata from `data/playlist_metadata/`
+2. **Generate TOC** — LLM proposes chapter structure from video titles & summaries
+3. **Write chapters** — load transcripts from `data/transcripts/`, clean, chunk, LLM → coherent chapters
+4. **Export** — assemble Markdown manuscript and render PDF via WeasyPrint
 
 ## Requirements
 

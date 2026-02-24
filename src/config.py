@@ -28,14 +28,6 @@ class ChunkingConfig:
 
 
 @dataclass
-class TranscriptConfig:
-    languages: List[str] = field(default_factory=lambda: ["en"])
-    cache_dir: str = "output/transcripts"
-    cookies_file: str = ""
-    delay_seconds: float = 2.0
-
-
-@dataclass
 class ProcessingConfig:
     filler_words: List[str] = field(default_factory=list)
     # Number of chapters to generate in parallel (tune to your API tier's rate limits)
@@ -63,7 +55,6 @@ class Config:
     primary_provider: str = "gemini"
     llm_configs: Dict[str, LLMModelConfig] = field(default_factory=dict)
     chunking: ChunkingConfig = field(default_factory=ChunkingConfig)
-    transcript: TranscriptConfig = field(default_factory=TranscriptConfig)
     processing: ProcessingConfig = field(default_factory=ProcessingConfig)
     output: OutputConfig = field(default_factory=OutputConfig)
     verification: VerificationConfig = field(default_factory=VerificationConfig)
@@ -90,7 +81,6 @@ class Config:
             llm_configs[provider_name] = LLMModelConfig(**provider_raw)
 
         chunking_raw = raw.get("chunking", {})
-        transcript_raw = raw.get("transcript", {})
         processing_raw = raw.get("processing", {})
         output_raw = raw.get("output", {})
         verification_raw = raw.get("verification", {})
@@ -99,7 +89,6 @@ class Config:
             primary_provider=llm_section.get("primary_provider", "gemini"),
             llm_configs=llm_configs,
             chunking=ChunkingConfig(**chunking_raw) if chunking_raw else ChunkingConfig(),
-            transcript=TranscriptConfig(**transcript_raw) if transcript_raw else TranscriptConfig(),
             processing=ProcessingConfig(**processing_raw) if processing_raw else ProcessingConfig(),
             output=OutputConfig(**output_raw) if output_raw else OutputConfig(),
             verification=VerificationConfig(**verification_raw) if verification_raw else VerificationConfig(),

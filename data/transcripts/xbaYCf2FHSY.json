@@ -1,0 +1,5696 @@
+{
+  "video": {
+    "video_id": "xbaYCf2FHSY",
+    "title": "Lecture 5: How does GPT-3 really work?",
+    "duration": 2885.0,
+    "index": 4
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 8.48
+    },
+    {
+      "text": "hello everyone welcome to this lecture",
+      "start": 5.24,
+      "duration": 5.6
+    },
+    {
+      "text": "in the build large language models from",
+      "start": 8.48,
+      "duration": 5.84
+    },
+    {
+      "text": "scratch Series this is the lecture five",
+      "start": 10.84,
+      "duration": 6.72
+    },
+    {
+      "text": "and today we are going to look in detail",
+      "start": 14.32,
+      "duration": 6.64
+    },
+    {
+      "text": "at GPT or generative pre-trained",
+      "start": 17.56,
+      "duration": 5.879
+    },
+    {
+      "text": "Transformer we are going to see how the",
+      "start": 20.96,
+      "duration": 5.479
+    },
+    {
+      "text": "versions of GPT evolved how the",
+      "start": 23.439,
+      "duration": 6.16
+    },
+    {
+      "text": "different papers on GPT evolved what's",
+      "start": 26.439,
+      "duration": 6.601
+    },
+    {
+      "text": "the progression from Transformers to GPT",
+      "start": 29.599,
+      "duration": 7.721
+    },
+    {
+      "text": "to gpt2 to gpt3 and finally to GPT 4",
+      "start": 33.04,
+      "duration": 6.96
+    },
+    {
+      "text": "where we are at right now in the",
+      "start": 37.32,
+      "duration": 6.0
+    },
+    {
+      "text": "previous lectures we have looked at uh",
+      "start": 40.0,
+      "duration": 5.48
+    },
+    {
+      "text": "Transformers we looked at a simplified",
+      "start": 43.32,
+      "duration": 4.32
+    },
+    {
+      "text": "architecture for Transformer and we also",
+      "start": 45.48,
+      "duration": 5.079
+    },
+    {
+      "text": "saw the difference between Bert and GPT",
+      "start": 47.64,
+      "duration": 4.759
+    },
+    {
+      "text": "model we saw what's the meaning of an",
+      "start": 50.559,
+      "duration": 4.32
+    },
+    {
+      "text": "encoder what's the meaning of a decoder",
+      "start": 52.399,
+      "duration": 4.881
+    },
+    {
+      "text": "Etc if you have not seen the previous",
+      "start": 54.879,
+      "duration": 4.121
+    },
+    {
+      "text": "lecture I would highly encourage you to",
+      "start": 57.28,
+      "duration": 4.239
+    },
+    {
+      "text": "go through that if not it's totally fine",
+      "start": 59.0,
+      "duration": 4.519
+    },
+    {
+      "text": "the way I have designed this lecture is",
+      "start": 61.519,
+      "duration": 4.361
+    },
+    {
+      "text": "such that it is self-contained and you",
+      "start": 63.519,
+      "duration": 4.6
+    },
+    {
+      "text": "will understand all the concepts which I",
+      "start": 65.88,
+      "duration": 4.0
+    },
+    {
+      "text": "explaining in this",
+      "start": 68.119,
+      "duration": 4.32
+    },
+    {
+      "text": "lecture so one of the key Concepts which",
+      "start": 69.88,
+      "duration": 4.72
+    },
+    {
+      "text": "we are also going to look at today is",
+      "start": 72.439,
+      "duration": 6.521
+    },
+    {
+      "text": "zero shot versus few short learning but",
+      "start": 74.6,
+      "duration": 6.64
+    },
+    {
+      "text": "before coming to that let me first take",
+      "start": 78.96,
+      "duration": 4.479
+    },
+    {
+      "text": "you through the",
+      "start": 81.24,
+      "duration": 5.08
+    },
+    {
+      "text": "progression of research papers from",
+      "start": 83.439,
+      "duration": 6.841
+    },
+    {
+      "text": "Transformers to GPT to gpt2 and and then",
+      "start": 86.32,
+      "duration": 8.4
+    },
+    {
+      "text": "finally to gpt3 and then GPT 4 so let's",
+      "start": 90.28,
+      "duration": 7.36
+    },
+    {
+      "text": "deep dive a bit into history the first",
+      "start": 94.72,
+      "duration": 4.96
+    },
+    {
+      "text": "paper which was released which really",
+      "start": 97.64,
+      "duration": 5.479
+    },
+    {
+      "text": "started the work on GPT is",
+      "start": 99.68,
+      "duration": 6.399
+    },
+    {
+      "text": "transformers this paper was released in",
+      "start": 103.119,
+      "duration": 6.201
+    },
+    {
+      "text": "2017 and this paper was titled attention",
+      "start": 106.079,
+      "duration": 5.72
+    },
+    {
+      "text": "is all you need the major breakthrough",
+      "start": 109.32,
+      "duration": 4.839
+    },
+    {
+      "text": "of this paper is introducing the self",
+      "start": 111.799,
+      "duration": 4.721
+    },
+    {
+      "text": "attention mechanism where you capture",
+      "start": 114.159,
+      "duration": 4.361
+    },
+    {
+      "text": "the long range dependencies in a",
+      "start": 116.52,
+      "duration": 5.04
+    },
+    {
+      "text": "sentence allowing allowing you to do a",
+      "start": 118.52,
+      "duration": 5.36
+    },
+    {
+      "text": "much better job at predicting the next",
+      "start": 121.56,
+      "duration": 3.599
+    },
+    {
+      "text": "word in a",
+      "start": 123.88,
+      "duration": 3.839
+    },
+    {
+      "text": "sentence it represented a significance",
+      "start": 125.159,
+      "duration": 5.24
+    },
+    {
+      "text": "at significant advancement compared to",
+      "start": 127.719,
+      "duration": 4.961
+    },
+    {
+      "text": "recurrent neural networks and long",
+      "start": 130.399,
+      "duration": 5.161
+    },
+    {
+      "text": "short-term memory networks Transformers",
+      "start": 132.68,
+      "duration": 4.8
+    },
+    {
+      "text": "which were introduced in this paper",
+      "start": 135.56,
+      "duration": 4.399
+    },
+    {
+      "text": "really changed everything the original",
+      "start": 137.48,
+      "duration": 4.36
+    },
+    {
+      "text": "Transformer architecture looked",
+      "start": 139.959,
+      "duration": 4.601
+    },
+    {
+      "text": "something like this it had an encoder",
+      "start": 141.84,
+      "duration": 4.039
+    },
+    {
+      "text": "and it had a",
+      "start": 144.56,
+      "duration": 4.64
+    },
+    {
+      "text": "decoder but GPT architecture which is",
+      "start": 145.879,
+      "duration": 5.481
+    },
+    {
+      "text": "generative pre-rain Transformer which",
+      "start": 149.2,
+      "duration": 5.0
+    },
+    {
+      "text": "came after this paper did not have an",
+      "start": 151.36,
+      "duration": 5.44
+    },
+    {
+      "text": "encoder the GPT architecture which was",
+      "start": 154.2,
+      "duration": 5.16
+    },
+    {
+      "text": "developed only has a",
+      "start": 156.8,
+      "duration": 5.359
+    },
+    {
+      "text": "decoder so this was the paper which came",
+      "start": 159.36,
+      "duration": 6.519
+    },
+    {
+      "text": "out after the Transformers paper and it",
+      "start": 162.159,
+      "duration": 6.201
+    },
+    {
+      "text": "introduced the concept of generative",
+      "start": 165.879,
+      "duration": 4.601
+    },
+    {
+      "text": "pre-training we are going to look at",
+      "start": 168.36,
+      "duration": 5.08
+    },
+    {
+      "text": "this concept a bit more in detail today",
+      "start": 170.48,
+      "duration": 5.52
+    },
+    {
+      "text": "but the main idea of this concept is",
+      "start": 173.44,
+      "duration": 5.48
+    },
+    {
+      "text": "unsupervised learning basically what",
+      "start": 176.0,
+      "duration": 4.92
+    },
+    {
+      "text": "they basically says that natural",
+      "start": 178.92,
+      "duration": 3.44
+    },
+    {
+      "text": "language",
+      "start": 180.92,
+      "duration": 4.679
+    },
+    {
+      "text": "processing as such up till this point",
+      "start": 182.36,
+      "duration": 6.28
+    },
+    {
+      "text": "had been mostly supervised learning so",
+      "start": 185.599,
+      "duration": 6.401
+    },
+    {
+      "text": "they were saying that label data for",
+      "start": 188.64,
+      "duration": 6.239
+    },
+    {
+      "text": "learning is scarse which means it is not",
+      "start": 192.0,
+      "duration": 5.92
+    },
+    {
+      "text": "easily available making it challenging",
+      "start": 194.879,
+      "duration": 6.0
+    },
+    {
+      "text": "for train models to perform adequately",
+      "start": 197.92,
+      "duration": 5.48
+    },
+    {
+      "text": "we demonstrate that large or we",
+      "start": 200.879,
+      "duration": 4.561
+    },
+    {
+      "text": "demonstrate that large gains on these",
+      "start": 203.4,
+      "duration": 4.64
+    },
+    {
+      "text": "tasks can be realized by generative",
+      "start": 205.44,
+      "duration": 4.76
+    },
+    {
+      "text": "pre-training of a language model on a",
+      "start": 208.04,
+      "duration": 5.199
+    },
+    {
+      "text": "diverse Corpus of unlabeled text so two",
+      "start": 210.2,
+      "duration": 5.0
+    },
+    {
+      "text": "words are important here generative",
+      "start": 213.239,
+      "duration": 4.72
+    },
+    {
+      "text": "pre-training and unlabeled text we",
+      "start": 215.2,
+      "duration": 4.959
+    },
+    {
+      "text": "already saw pre-training in the previous",
+      "start": 217.959,
+      "duration": 4.761
+    },
+    {
+      "text": "lecture what is done here is that the",
+      "start": 220.159,
+      "duration": 7.041
+    },
+    {
+      "text": "text which is used is not labeled so",
+      "start": 222.72,
+      "duration": 6.48
+    },
+    {
+      "text": "let's say You have given a sentence",
+      "start": 227.2,
+      "duration": 4.879
+    },
+    {
+      "text": "right and you use that sentence itself",
+      "start": 229.2,
+      "duration": 5.879
+    },
+    {
+      "text": "as the training data and the next word",
+      "start": 232.079,
+      "duration": 4.921
+    },
+    {
+      "text": "prediction which is in that sentence",
+      "start": 235.079,
+      "duration": 4.88
+    },
+    {
+      "text": "itself as the testing data so everything",
+      "start": 237.0,
+      "duration": 5.2
+    },
+    {
+      "text": "is self-content and you don't need to",
+      "start": 239.959,
+      "duration": 4.881
+    },
+    {
+      "text": "provide labels we'll see this idea more",
+      "start": 242.2,
+      "duration": 5.08
+    },
+    {
+      "text": "in detail but this was the paper which",
+      "start": 244.84,
+      "duration": 4.759
+    },
+    {
+      "text": "was published in I think this paper was",
+      "start": 247.28,
+      "duration": 4.959
+    },
+    {
+      "text": "published in 2018 which was the first",
+      "start": 249.599,
+      "duration": 4.64
+    },
+    {
+      "text": "paper on generative pre-training they",
+      "start": 252.239,
+      "duration": 3.96
+    },
+    {
+      "text": "took this Transformer architecture they",
+      "start": 254.239,
+      "duration": 3.84
+    },
+    {
+      "text": "modified it a bit they removed the",
+      "start": 256.199,
+      "duration": 4.801
+    },
+    {
+      "text": "encoder block and they said that if we",
+      "start": 258.079,
+      "duration": 5.041
+    },
+    {
+      "text": "trained a language model on a huge",
+      "start": 261.0,
+      "duration": 4.24
+    },
+    {
+      "text": "amount of data set to just predict the",
+      "start": 263.12,
+      "duration": 4.4
+    },
+    {
+      "text": "next word in an unsupervised learning",
+      "start": 265.24,
+      "duration": 4.76
+    },
+    {
+      "text": "manner it could really imp improve",
+      "start": 267.52,
+      "duration": 5.0
+    },
+    {
+      "text": "language understanding and they called",
+      "start": 270.0,
+      "duration": 4.12
+    },
+    {
+      "text": "the training phase as generative",
+      "start": 272.52,
+      "duration": 3.8
+    },
+    {
+      "text": "pre-training why generative because we",
+      "start": 274.12,
+      "duration": 4.24
+    },
+    {
+      "text": "are generating the next",
+      "start": 276.32,
+      "duration": 5.12
+    },
+    {
+      "text": "World open AI also released a Blog about",
+      "start": 278.36,
+      "duration": 7.08
+    },
+    {
+      "text": "this on June 11 2018 improving language",
+      "start": 281.44,
+      "duration": 6.72
+    },
+    {
+      "text": "understanding with unsupervised learning",
+      "start": 285.44,
+      "duration": 6.759
+    },
+    {
+      "text": "so their main uh their main claim was",
+      "start": 288.16,
+      "duration": 6.2
+    },
+    {
+      "text": "that we have obtained state of the art",
+      "start": 292.199,
+      "duration": 3.881
+    },
+    {
+      "text": "results on language tasks with a",
+      "start": 294.36,
+      "duration": 4.6
+    },
+    {
+      "text": "scalable system our approach is a",
+      "start": 296.08,
+      "duration": 5.16
+    },
+    {
+      "text": "combination of two ideas Transformers",
+      "start": 298.96,
+      "duration": 4.32
+    },
+    {
+      "text": "and unsupervised pre-training just keep",
+      "start": 301.24,
+      "duration": 3.72
+    },
+    {
+      "text": "this in mind so they used the",
+      "start": 303.28,
+      "duration": 3.6
+    },
+    {
+      "text": "Transformer architecture which we saw in",
+      "start": 304.96,
+      "duration": 4.88
+    },
+    {
+      "text": "the 2017 paper and they also used",
+      "start": 306.88,
+      "duration": 4.92
+    },
+    {
+      "text": "unsupervised pre trining which means",
+      "start": 309.84,
+      "duration": 5.32
+    },
+    {
+      "text": "labels were not uh given to the training",
+      "start": 311.8,
+      "duration": 5.8
+    },
+    {
+      "text": "data the labels were taken from the",
+      "start": 315.16,
+      "duration": 4.36
+    },
+    {
+      "text": "sentences itself we do not need to",
+      "start": 317.6,
+      "duration": 5.159
+    },
+    {
+      "text": "pre-label the data so of course this was",
+      "start": 319.52,
+      "duration": 7.04
+    },
+    {
+      "text": "2018 and no one in fact no one paid that",
+      "start": 322.759,
+      "duration": 5.681
+    },
+    {
+      "text": "much attention as it is relevant in the",
+      "start": 326.56,
+      "duration": 4.359
+    },
+    {
+      "text": "commercial sphere today for researchers",
+      "start": 328.44,
+      "duration": 4.879
+    },
+    {
+      "text": "this was a big deal and this paper also",
+      "start": 330.919,
+      "duration": 4.641
+    },
+    {
+      "text": "has a huge number of citations today but",
+      "start": 333.319,
+      "duration": 4.88
+    },
+    {
+      "text": "in the commercial space students",
+      "start": 335.56,
+      "duration": 5.079
+    },
+    {
+      "text": "teachers professors who did not work in",
+      "start": 338.199,
+      "duration": 5.84
+    },
+    {
+      "text": "large language models had not heard uh",
+      "start": 340.639,
+      "duration": 5.4
+    },
+    {
+      "text": "about this because it was still at the",
+      "start": 344.039,
+      "duration": 4.28
+    },
+    {
+      "text": "research phase it it had not entered the",
+      "start": 346.039,
+      "duration": 3.641
+    },
+    {
+      "text": "commercial",
+      "start": 348.319,
+      "duration": 3.841
+    },
+    {
+      "text": "domain then what happened is that in",
+      "start": 349.68,
+      "duration": 5.239
+    },
+    {
+      "text": "2019 just the next year came one more",
+      "start": 352.16,
+      "duration": 5.159
+    },
+    {
+      "text": "paper which is called as language models",
+      "start": 354.919,
+      "duration": 5.601
+    },
+    {
+      "text": "are unsupervised multitask learner",
+      "start": 357.319,
+      "duration": 6.121
+    },
+    {
+      "text": "so what they basically did is they just",
+      "start": 360.52,
+      "duration": 5.16
+    },
+    {
+      "text": "took more amount of data than was used",
+      "start": 363.44,
+      "duration": 4.96
+    },
+    {
+      "text": "in the earlier paper and they also used",
+      "start": 365.68,
+      "duration": 5.44
+    },
+    {
+      "text": "a generative pre-train Network and you",
+      "start": 368.4,
+      "duration": 5.0
+    },
+    {
+      "text": "can see that they actually showed four",
+      "start": 371.12,
+      "duration": 4.32
+    },
+    {
+      "text": "types of generative pre-train networks",
+      "start": 373.4,
+      "duration": 4.4
+    },
+    {
+      "text": "they showed a smaller model a slightly",
+      "start": 375.44,
+      "duration": 4.56
+    },
+    {
+      "text": "larger model and the largest model which",
+      "start": 377.8,
+      "duration": 6.0
+    },
+    {
+      "text": "they used had 1542 which is 1,000 or 1",
+      "start": 380.0,
+      "duration": 6.08
+    },
+    {
+      "text": "billion parameters",
+      "start": 383.8,
+      "duration": 4.92
+    },
+    {
+      "text": "almost uh so here you can see I have",
+      "start": 386.08,
+      "duration": 4.76
+    },
+    {
+      "text": "just shown a pictorial representation",
+      "start": 388.72,
+      "duration": 5.56
+    },
+    {
+      "text": "here this was the gp2 gpt2 architecture",
+      "start": 390.84,
+      "duration": 6.479
+    },
+    {
+      "text": "which was introduced in this paper gpt2",
+      "start": 394.28,
+      "duration": 5.319
+    },
+    {
+      "text": "generative pre-train Transformer",
+      "start": 397.319,
+      "duration": 4.88
+    },
+    {
+      "text": "2 and here you can see that they",
+      "start": 399.599,
+      "duration": 5.561
+    },
+    {
+      "text": "released four things gpt2 small gpt2",
+      "start": 402.199,
+      "duration": 6.84
+    },
+    {
+      "text": "medium gpt2 large and gpt2 extra large",
+      "start": 405.16,
+      "duration": 6.039
+    },
+    {
+      "text": "this was the first time when a paper was",
+      "start": 409.039,
+      "duration": 3.641
+    },
+    {
+      "text": "published in which a large language",
+      "start": 411.199,
+      "duration": 5.081
+    },
+    {
+      "text": "model was so large in fact 1 billion",
+      "start": 412.68,
+      "duration": 5.959
+    },
+    {
+      "text": "parameters were used in gpt2 extra large",
+      "start": 416.28,
+      "duration": 5.44
+    },
+    {
+      "text": "and it led to very very good results at",
+      "start": 418.639,
+      "duration": 5.761
+    },
+    {
+      "text": "that time open AI was already working on",
+      "start": 421.72,
+      "duration": 4.759
+    },
+    {
+      "text": "more complex and more advanced GPT",
+      "start": 424.4,
+      "duration": 4.6
+    },
+    {
+      "text": "models but when this paper was released",
+      "start": 426.479,
+      "duration": 4.321
+    },
+    {
+      "text": "in fact even this has very good number",
+      "start": 429.0,
+      "duration": 3.36
+    },
+    {
+      "text": "of citations if",
+      "start": 430.8,
+      "duration": 4.28
+    },
+    {
+      "text": "you if you just go to Google Scholar and",
+      "start": 432.36,
+      "duration": 5.04
+    },
+    {
+      "text": "search this right now you'll see that",
+      "start": 435.08,
+      "duration": 5.48
+    },
+    {
+      "text": "this has uh around more than 10,000 plus",
+      "start": 437.4,
+      "duration": 6.56
+    },
+    {
+      "text": "citations so this was the gpt2 paper",
+      "start": 440.56,
+      "duration": 6.28
+    },
+    {
+      "text": "which had around uh the largest model in",
+      "start": 443.96,
+      "duration": 5.079
+    },
+    {
+      "text": "gpt2 really had around 1,000 million or",
+      "start": 446.84,
+      "duration": 3.799
+    },
+    {
+      "text": "1 billion",
+      "start": 449.039,
+      "duration": 5.241
+    },
+    {
+      "text": "parameters then in 2020 came the real",
+      "start": 450.639,
+      "duration": 6.4
+    },
+    {
+      "text": "boss which was",
+      "start": 454.28,
+      "duration": 7.68
+    },
+    {
+      "text": "gpt3 uh gpt3 had 175 billion parameters",
+      "start": 457.039,
+      "duration": 7.401
+    },
+    {
+      "text": "let me show you where they actually",
+      "start": 461.96,
+      "duration": 5.48
+    },
+    {
+      "text": "mention about yeah so they they also",
+      "start": 464.44,
+      "duration": 5.12
+    },
+    {
+      "text": "released a number of versions of gpt3",
+      "start": 467.44,
+      "duration": 5.319
+    },
+    {
+      "text": "small medium large extra large a version",
+      "start": 469.56,
+      "duration": 5.44
+    },
+    {
+      "text": "with 2.7 billion parameter a version",
+      "start": 472.759,
+      "duration": 4.88
+    },
+    {
+      "text": "with 6.7 billion parameter but there was",
+      "start": 475.0,
+      "duration": 4.52
+    },
+    {
+      "text": "one specific version which was released",
+      "start": 477.639,
+      "duration": 4.921
+    },
+    {
+      "text": "which had 175 billion parameters which",
+      "start": 479.52,
+      "duration": 5.92
+    },
+    {
+      "text": "was gpt3 and when people started",
+      "start": 482.56,
+      "duration": 4.96
+    },
+    {
+      "text": "exploring this model they could really",
+      "start": 485.44,
+      "duration": 4.12
+    },
+    {
+      "text": "see that it's amazing it could do so",
+      "start": 487.52,
+      "duration": 4.359
+    },
+    {
+      "text": "many things although it was just trained",
+      "start": 489.56,
+      "duration": 4.079
+    },
+    {
+      "text": "to predict the next word it can do",
+      "start": 491.879,
+      "duration": 3.921
+    },
+    {
+      "text": "number of other things like translation",
+      "start": 493.639,
+      "duration": 6.081
+    },
+    {
+      "text": "sentiment analysis answering questions",
+      "start": 495.8,
+      "duration": 6.92
+    },
+    {
+      "text": "uh answering multiple choice questions",
+      "start": 499.72,
+      "duration": 5.319
+    },
+    {
+      "text": "emotional recognition it can do so many",
+      "start": 502.72,
+      "duration": 5.72
+    },
+    {
+      "text": "things and this was a huge model 175",
+      "start": 505.039,
+      "duration": 5.521
+    },
+    {
+      "text": "billion parameters people had not seen",
+      "start": 508.44,
+      "duration": 4.92
+    },
+    {
+      "text": "language models of this size then two",
+      "start": 510.56,
+      "duration": 5.8
+    },
+    {
+      "text": "years after this came GPT 3.5 which",
+      "start": 513.36,
+      "duration": 5.72
+    },
+    {
+      "text": "became commercially viral everyone",
+      "start": 516.36,
+      "duration": 5.52
+    },
+    {
+      "text": "started using it and saw how good it was",
+      "start": 519.08,
+      "duration": 6.28
+    },
+    {
+      "text": "and right now I'm using chat GPT 4 so if",
+      "start": 521.88,
+      "duration": 8.04
+    },
+    {
+      "text": "you uh see here I'm using chat GPT 40 so",
+      "start": 525.36,
+      "duration": 7.32
+    },
+    {
+      "text": "GPT 4 is where we are right now but you",
+      "start": 529.92,
+      "duration": 5.28
+    },
+    {
+      "text": "just see this gradual transformation",
+      "start": 532.68,
+      "duration": 5.96
+    },
+    {
+      "text": "which has happened from 2017 to 2024 in",
+      "start": 535.2,
+      "duration": 5.759
+    },
+    {
+      "text": "a space of 7 years we have gone from",
+      "start": 538.64,
+      "duration": 4.84
+    },
+    {
+      "text": "this original Transformers paper we have",
+      "start": 540.959,
+      "duration": 6.681
+    },
+    {
+      "text": "gone then to the GPT paper in 2018 2019",
+      "start": 543.48,
+      "duration": 5.68
+    },
+    {
+      "text": "came",
+      "start": 547.64,
+      "duration": 6.879
+    },
+    {
+      "text": "gpt2 this 2019 came gpt2 then in 2020",
+      "start": 549.16,
+      "duration": 7.28
+    },
+    {
+      "text": "came gpt3 which really changed",
+      "start": 554.519,
+      "duration": 4.961
+    },
+    {
+      "text": "everything then came GPT 3.5 and then",
+      "start": 556.44,
+      "duration": 5.28
+    },
+    {
+      "text": "finally we are at GPT 4 this is the",
+      "start": 559.48,
+      "duration": 4.799
+    },
+    {
+      "text": "whole uh transformation from",
+      "start": 561.72,
+      "duration": 7.16
+    },
+    {
+      "text": "Transformers to GPT gpt2 gpt3 GPT 3.5",
+      "start": 564.279,
+      "duration": 7.601
+    },
+    {
+      "text": "and then G G pt4 many people don't know",
+      "start": 568.88,
+      "duration": 4.68
+    },
+    {
+      "text": "the difference between Transformers and",
+      "start": 571.88,
+      "duration": 4.24
+    },
+    {
+      "text": "GPT GPT essentially borrows from the",
+      "start": 573.56,
+      "duration": 4.88
+    },
+    {
+      "text": "Transformer architecture but it's a bit",
+      "start": 576.12,
+      "duration": 4.08
+    },
+    {
+      "text": "different in that it does not have",
+      "start": 578.44,
+      "duration": 3.44
+    },
+    {
+      "text": "really the encoder",
+      "start": 580.2,
+      "duration": 4.28
+    },
+    {
+      "text": "block so I just wanted to start off this",
+      "start": 581.88,
+      "duration": 4.72
+    },
+    {
+      "text": "lecture by giving you this historical",
+      "start": 584.48,
+      "duration": 3.96
+    },
+    {
+      "text": "perspective of how the generative",
+      "start": 586.6,
+      "duration": 4.88
+    },
+    {
+      "text": "pre-train Transformer has evolved the",
+      "start": 588.44,
+      "duration": 4.68
+    },
+    {
+      "text": "next thing which I want to cover today",
+      "start": 591.48,
+      "duration": 4.24
+    },
+    {
+      "text": "is the difference between zero shot and",
+      "start": 593.12,
+      "duration": 6.0
+    },
+    {
+      "text": "few shot learning zero shot is basically",
+      "start": 595.72,
+      "duration": 6.359
+    },
+    {
+      "text": "the ability to generalize to completely",
+      "start": 599.12,
+      "duration": 6.6
+    },
+    {
+      "text": "unseen tasks without any prior specific",
+      "start": 602.079,
+      "duration": 6.561
+    },
+    {
+      "text": "examples and few shot is basically",
+      "start": 605.72,
+      "duration": 4.799
+    },
+    {
+      "text": "learning from a minimum number of",
+      "start": 608.64,
+      "duration": 5.08
+    },
+    {
+      "text": "examples which the user provides as",
+      "start": 610.519,
+      "duration": 5.841
+    },
+    {
+      "text": "input good so let me actually directly",
+      "start": 613.72,
+      "duration": 5.92
+    },
+    {
+      "text": "go to the gpt3 paper G this was the gpt3",
+      "start": 616.36,
+      "duration": 4.68
+    },
+    {
+      "text": "paper and they have wonderful",
+      "start": 619.64,
+      "duration": 4.48
+    },
+    {
+      "text": "illustrations of zero shot and few short",
+      "start": 621.04,
+      "duration": 5.32
+    },
+    {
+      "text": "learning usually people think research",
+      "start": 624.12,
+      "duration": 4.24
+    },
+    {
+      "text": "papers are hard to read but they have",
+      "start": 626.36,
+      "duration": 3.599
+    },
+    {
+      "text": "some very nice examp examples which",
+      "start": 628.36,
+      "duration": 4.44
+    },
+    {
+      "text": "really clarify the concept so in zero",
+      "start": 629.959,
+      "duration": 5.601
+    },
+    {
+      "text": "short learning the model predicts the",
+      "start": 632.8,
+      "duration": 6.76
+    },
+    {
+      "text": "answer given only a description no other",
+      "start": 635.56,
+      "duration": 6.279
+    },
+    {
+      "text": "Assistance or no other support for",
+      "start": 639.56,
+      "duration": 4.8
+    },
+    {
+      "text": "example The Prompt can be that hey you",
+      "start": 641.839,
+      "duration": 4.841
+    },
+    {
+      "text": "have to translate English to French and",
+      "start": 644.36,
+      "duration": 4.159
+    },
+    {
+      "text": "take the word cheese and translate it",
+      "start": 646.68,
+      "duration": 4.64
+    },
+    {
+      "text": "into French if the model is able to do",
+      "start": 648.519,
+      "duration": 4.841
+    },
+    {
+      "text": "that that's an example of a zero shot",
+      "start": 651.32,
+      "duration": 4.28
+    },
+    {
+      "text": "learning because we have not provided",
+      "start": 653.36,
+      "duration": 5.32
+    },
+    {
+      "text": "any supporting examples to the model",
+      "start": 655.6,
+      "duration": 5.12
+    },
+    {
+      "text": "great then there is also one shot",
+      "start": 658.68,
+      "duration": 4.44
+    },
+    {
+      "text": "learning which means that the model Sees",
+      "start": 660.72,
+      "duration": 4.88
+    },
+    {
+      "text": "In addition to the task description the",
+      "start": 663.12,
+      "duration": 4.92
+    },
+    {
+      "text": "model also sees a single example of the",
+      "start": 665.6,
+      "duration": 5.56
+    },
+    {
+      "text": "task so for example look at this I tell",
+      "start": 668.04,
+      "duration": 6.0
+    },
+    {
+      "text": "the model that look C otter translates",
+      "start": 671.16,
+      "duration": 4.08
+    },
+    {
+      "text": "like this to",
+      "start": 674.04,
+      "duration": 4.72
+    },
+    {
+      "text": "French use this as a supporting guide or",
+      "start": 675.24,
+      "duration": 6.32
+    },
+    {
+      "text": "like a hint if you may and translate",
+      "start": 678.76,
+      "duration": 4.319
+    },
+    {
+      "text": "cheese into",
+      "start": 681.56,
+      "duration": 3.959
+    },
+    {
+      "text": "French so this is one shot learning",
+      "start": 683.079,
+      "duration": 4.521
+    },
+    {
+      "text": "where the model sees a single example of",
+      "start": 685.519,
+      "duration": 5.601
+    },
+    {
+      "text": "the task and then is few short learning",
+      "start": 687.6,
+      "duration": 6.239
+    },
+    {
+      "text": "where the model basically sees a few",
+      "start": 691.12,
+      "duration": 6.159
+    },
+    {
+      "text": "examples of this task so for example in",
+      "start": 693.839,
+      "duration": 6.321
+    },
+    {
+      "text": "few short learning uh we say that sea",
+      "start": 697.279,
+      "duration": 5.481
+    },
+    {
+      "text": "otter translates to this peppermint",
+      "start": 700.16,
+      "duration": 4.679
+    },
+    {
+      "text": "translates to this and giraffe",
+      "start": 702.76,
+      "duration": 4.759
+    },
+    {
+      "text": "translates to this use these as the",
+      "start": 704.839,
+      "duration": 5.041
+    },
+    {
+      "text": "supporting examples and then translate",
+      "start": 707.519,
+      "duration": 4.041
+    },
+    {
+      "text": "English to",
+      "start": 709.88,
+      "duration": 4.959
+    },
+    {
+      "text": "French and then translate GES so this is",
+      "start": 711.56,
+      "duration": 6.64
+    },
+    {
+      "text": "called as few short learning so I hope",
+      "start": 714.839,
+      "duration": 4.8
+    },
+    {
+      "text": "you understood the difference between",
+      "start": 718.2,
+      "duration": 4.079
+    },
+    {
+      "text": "zero shot one shot and few shot zero",
+      "start": 719.639,
+      "duration": 4.281
+    },
+    {
+      "text": "shot is basically you provide no",
+      "start": 722.279,
+      "duration": 4.041
+    },
+    {
+      "text": "supporting examples to the model you",
+      "start": 723.92,
+      "duration": 4.88
+    },
+    {
+      "text": "just tell it to do that particular task",
+      "start": 726.32,
+      "duration": 4.28
+    },
+    {
+      "text": "such as language translation and it does",
+      "start": 728.8,
+      "duration": 4.76
+    },
+    {
+      "text": "it for you in one shot the model sees a",
+      "start": 730.6,
+      "duration": 4.72
+    },
+    {
+      "text": "single example of the",
+      "start": 733.56,
+      "duration": 4.68
+    },
+    {
+      "text": "task and in few shot the model sees a",
+      "start": 735.32,
+      "duration": 5.639
+    },
+    {
+      "text": "few examples of this task these",
+      "start": 738.24,
+      "duration": 5.12
+    },
+    {
+      "text": "beautiful examples are provided right in",
+      "start": 740.959,
+      "duration": 4.841
+    },
+    {
+      "text": "the GPT paper itself so you no no need",
+      "start": 743.36,
+      "duration": 4.12
+    },
+    {
+      "text": "to look anywhere",
+      "start": 745.8,
+      "duration": 4.36
+    },
+    {
+      "text": "further so let's see what's the claim of",
+      "start": 747.48,
+      "duration": 3.919
+    },
+    {
+      "text": "these",
+      "start": 750.16,
+      "duration": 3.76
+    },
+    {
+      "text": "authors so what they were saying was",
+      "start": 751.399,
+      "duration": 5.761
+    },
+    {
+      "text": "that uh we train gpt3 and auto",
+      "start": 753.92,
+      "duration": 5.279
+    },
+    {
+      "text": "regressive language model we'll see in a",
+      "start": 757.16,
+      "duration": 5.56
+    },
+    {
+      "text": "moment what this means with 175 billion",
+      "start": 759.199,
+      "duration": 5.64
+    },
+    {
+      "text": "parameters 10 times more than any",
+      "start": 762.72,
+      "duration": 5.08
+    },
+    {
+      "text": "previous language model and test its",
+      "start": 764.839,
+      "duration": 5.961
+    },
+    {
+      "text": "performance in a few short",
+      "start": 767.8,
+      "duration": 5.96
+    },
+    {
+      "text": "setting so let's see what the results",
+      "start": 770.8,
+      "duration": 5.12
+    },
+    {
+      "text": "are",
+      "start": 773.76,
+      "duration": 4.96
+    },
+    {
+      "text": "gpt3 provides or achieves a strong",
+      "start": 775.92,
+      "duration": 5.64
+    },
+    {
+      "text": "performance perance on translation",
+      "start": 778.72,
+      "duration": 5.6
+    },
+    {
+      "text": "question answering as well as several",
+      "start": 781.56,
+      "duration": 5.04
+    },
+    {
+      "text": "tasks that require on the-fly reasoning",
+      "start": 784.32,
+      "duration": 4.759
+    },
+    {
+      "text": "or domain adaptation such as",
+      "start": 786.6,
+      "duration": 4.96
+    },
+    {
+      "text": "unscrambling words using a novel word in",
+      "start": 789.079,
+      "duration": 5.361
+    },
+    {
+      "text": "a sentence or performing three-digit",
+      "start": 791.56,
+      "duration": 5.839
+    },
+    {
+      "text": "arithmetic so this paper basically",
+      "start": 794.44,
+      "duration": 5.88
+    },
+    {
+      "text": "implied that GPT 3 was a few short",
+      "start": 797.399,
+      "duration": 5.281
+    },
+    {
+      "text": "learner which means that if it's given",
+      "start": 800.32,
+      "duration": 5.6
+    },
+    {
+      "text": "certain examples it can do that task",
+      "start": 802.68,
+      "duration": 6.04
+    },
+    {
+      "text": "very well although it is trained only",
+      "start": 805.92,
+      "duration": 3.8
+    },
+    {
+      "text": "for",
+      "start": 808.72,
+      "duration": 3.84
+    },
+    {
+      "text": "the next word prediction what this paper",
+      "start": 809.72,
+      "duration": 5.28
+    },
+    {
+      "text": "claimed was that gpt3 is a few short",
+      "start": 812.56,
+      "duration": 4.16
+    },
+    {
+      "text": "learner which means that if you wanted",
+      "start": 815.0,
+      "duration": 4.24
+    },
+    {
+      "text": "to do a language translation task you",
+      "start": 816.72,
+      "duration": 4.32
+    },
+    {
+      "text": "just need to give it a few examples",
+      "start": 819.24,
+      "duration": 3.68
+    },
+    {
+      "text": "let's say if you want gpt3 to do a",
+      "start": 821.04,
+      "duration": 4.08
+    },
+    {
+      "text": "language translation task you just give",
+      "start": 822.92,
+      "duration": 4.279
+    },
+    {
+      "text": "it few other examples of how that",
+      "start": 825.12,
+      "duration": 4.079
+    },
+    {
+      "text": "example is translated into another",
+      "start": 827.199,
+      "duration": 4.681
+    },
+    {
+      "text": "language and then gpt3 will do that task",
+      "start": 829.199,
+      "duration": 5.521
+    },
+    {
+      "text": "for you so they claimed that gpt3 is a",
+      "start": 831.88,
+      "duration": 4.12
+    },
+    {
+      "text": "few short",
+      "start": 834.72,
+      "duration": 4.039
+    },
+    {
+      "text": "learner you will encounter zero shot",
+      "start": 836.0,
+      "duration": 5.759
+    },
+    {
+      "text": "versus few shot at a number of different",
+      "start": 838.759,
+      "duration": 4.841
+    },
+    {
+      "text": "in a number of different books articles",
+      "start": 841.759,
+      "duration": 3.681
+    },
+    {
+      "text": "and blogs so I just wanted to make sure",
+      "start": 843.6,
+      "duration": 4.159
+    },
+    {
+      "text": "it's clear for you so then your question",
+      "start": 845.44,
+      "duration": 4.68
+    },
+    {
+      "text": "would be okay if gpt3 is a few short",
+      "start": 847.759,
+      "duration": 4.76
+    },
+    {
+      "text": "learner what about GPT 4 which I'm using",
+      "start": 850.12,
+      "duration": 4.959
+    },
+    {
+      "text": "right now is it a zero short learner or",
+      "start": 852.519,
+      "duration": 4.721
+    },
+    {
+      "text": "is it a few short learner because it",
+      "start": 855.079,
+      "duration": 3.68
+    },
+    {
+      "text": "seems that I don't need to give it",
+      "start": 857.24,
+      "duration": 3.959
+    },
+    {
+      "text": "examples right it it just does many",
+      "start": 858.759,
+      "duration": 5.601
+    },
+    {
+      "text": "things on its own so let me ask gp4",
+      "start": 861.199,
+      "duration": 6.0
+    },
+    {
+      "text": "itself are you a",
+      "start": 864.36,
+      "duration": 5.599
+    },
+    {
+      "text": "zero short",
+      "start": 867.199,
+      "duration": 5.841
+    },
+    {
+      "text": "learner or are you",
+      "start": 869.959,
+      "duration": 7.281
+    },
+    {
+      "text": "a few short",
+      "start": 873.04,
+      "duration": 4.2
+    },
+    {
+      "text": "learner let's see the answer so gp4 says",
+      "start": 877.8,
+      "duration": 6.44
+    },
+    {
+      "text": "that I a few short learner this means I",
+      "start": 881.72,
+      "duration": 4.679
+    },
+    {
+      "text": "can understand and perform tasks better",
+      "start": 884.24,
+      "duration": 5.159
+    },
+    {
+      "text": "with a few examples while I can handle",
+      "start": 886.399,
+      "duration": 6.24
+    },
+    {
+      "text": "many tasks with without prior examples",
+      "start": 889.399,
+      "duration": 5.56
+    },
+    {
+      "text": "which is zero short learning providing",
+      "start": 892.639,
+      "duration": 4.64
+    },
+    {
+      "text": "examples helps me generate more accurate",
+      "start": 894.959,
+      "duration": 4.961
+    },
+    {
+      "text": "responses so this is a very smart answer",
+      "start": 897.279,
+      "duration": 5.441
+    },
+    {
+      "text": "because gp4 is saying that it does",
+      "start": 899.92,
+      "duration": 4.96
+    },
+    {
+      "text": "amazingly well at few shot learning",
+      "start": 902.72,
+      "duration": 4.039
+    },
+    {
+      "text": "which means that if you provide it with",
+      "start": 904.88,
+      "duration": 4.399
+    },
+    {
+      "text": "some examples it does a better job but",
+      "start": 906.759,
+      "duration": 5.08
+    },
+    {
+      "text": "it can even do zero shot learning so",
+      "start": 909.279,
+      "duration": 4.36
+    },
+    {
+      "text": "this is very important for you all of",
+      "start": 911.839,
+      "duration": 3.721
+    },
+    {
+      "text": "you to know when you are interacting",
+      "start": 913.639,
+      "duration": 3.841
+    },
+    {
+      "text": "with GPT right if you provide some",
+      "start": 915.56,
+      "duration": 3.76
+    },
+    {
+      "text": "examples of the output which you are",
+      "start": 917.48,
+      "duration": 4.279
+    },
+    {
+      "text": "looking at or how you want the output to",
+      "start": 919.32,
+      "duration": 5.72
+    },
+    {
+      "text": "be gp4 will do an amazing job of course",
+      "start": 921.759,
+      "duration": 6.481
+    },
+    {
+      "text": "it has zero shot capabilities also uh",
+      "start": 925.04,
+      "duration": 5.44
+    },
+    {
+      "text": "but the two short capabilities are much",
+      "start": 928.24,
+      "duration": 4.399
+    },
+    {
+      "text": "more than zero short capabilities let me",
+      "start": 930.48,
+      "duration": 3.159
+    },
+    {
+      "text": "ask",
+      "start": 932.639,
+      "duration": 3.44
+    },
+    {
+      "text": "it do",
+      "start": 933.639,
+      "duration": 6.361
+    },
+    {
+      "text": "you also have zero",
+      "start": 936.079,
+      "duration": 6.68
+    },
+    {
+      "text": "short",
+      "start": 940.0,
+      "duration": 5.079
+    },
+    {
+      "text": "capabilities so when I ask this question",
+      "start": 942.759,
+      "duration": 5.361
+    },
+    {
+      "text": "to gp4 it says that yes I also have zero",
+      "start": 945.079,
+      "duration": 5.44
+    },
+    {
+      "text": "shot capabilities this means that I can",
+      "start": 948.12,
+      "duration": 4.44
+    },
+    {
+      "text": "perform tasks and answer questions",
+      "start": 950.519,
+      "duration": 4.841
+    },
+    {
+      "text": "without needing any prior examples or",
+      "start": 952.56,
+      "duration": 5.519
+    },
+    {
+      "text": "specific context so this is very",
+      "start": 955.36,
+      "duration": 5.68
+    },
+    {
+      "text": "important I would say GPT 4 is both a",
+      "start": 958.079,
+      "duration": 5.081
+    },
+    {
+      "text": "zero shot learner as well as a few shot",
+      "start": 961.04,
+      "duration": 4.599
+    },
+    {
+      "text": "learner but to get a more accurate",
+      "start": 963.16,
+      "duration": 5.919
+    },
+    {
+      "text": "responses as gp4 says itself you need to",
+      "start": 965.639,
+      "duration": 6.32
+    },
+    {
+      "text": "probably provide it few examples to get",
+      "start": 969.079,
+      "duration": 5.161
+    },
+    {
+      "text": "better responses so in that sense it is",
+      "start": 971.959,
+      "duration": 4.601
+    },
+    {
+      "text": "a better few short",
+      "start": 974.24,
+      "duration": 4.88
+    },
+    {
+      "text": "learner even when the authors release",
+      "start": 976.56,
+      "duration": 5.44
+    },
+    {
+      "text": "this paper they say confidently that",
+      "start": 979.12,
+      "duration": 5.199
+    },
+    {
+      "text": "gpt3 is a few short",
+      "start": 982.0,
+      "duration": 5.16
+    },
+    {
+      "text": "learner but it can also do zero short",
+      "start": 984.319,
+      "duration": 4.921
+    },
+    {
+      "text": "learning it just that its responses may",
+      "start": 987.16,
+      "duration": 4.359
+    },
+    {
+      "text": "not be as",
+      "start": 989.24,
+      "duration": 5.76
+    },
+    {
+      "text": "accurate awesome so this is really the",
+      "start": 991.519,
+      "duration": 5.841
+    },
+    {
+      "text": "difference between zero shot learning",
+      "start": 995.0,
+      "duration": 4.92
+    },
+    {
+      "text": "and fot learning and you need to keep",
+      "start": 997.36,
+      "duration": 5.12
+    },
+    {
+      "text": "this in mind because when you think",
+      "start": 999.92,
+      "duration": 4.24
+    },
+    {
+      "text": "about large language models this",
+      "start": 1002.48,
+      "duration": 3.4
+    },
+    {
+      "text": "distinction is generally very very",
+      "start": 1004.16,
+      "duration": 4.72
+    },
+    {
+      "text": "important I think when we go to GPT 5 or",
+      "start": 1005.88,
+      "duration": 5.56
+    },
+    {
+      "text": "GPT 6 even we might get really better at",
+      "start": 1008.88,
+      "duration": 4.92
+    },
+    {
+      "text": "zero shot learning we are already there",
+      "start": 1011.44,
+      "duration": 4.199
+    },
+    {
+      "text": "but it can be",
+      "start": 1013.8,
+      "duration": 4.32
+    },
+    {
+      "text": "better so here I've just shown a few",
+      "start": 1015.639,
+      "duration": 4.521
+    },
+    {
+      "text": "examples of zero short versus few short",
+      "start": 1018.12,
+      "duration": 4.639
+    },
+    {
+      "text": "learning so that this concept becomes",
+      "start": 1020.16,
+      "duration": 5.36
+    },
+    {
+      "text": "even more clear so let's say the input",
+      "start": 1022.759,
+      "duration": 5.601
+    },
+    {
+      "text": "is translate English to French for zero",
+      "start": 1025.52,
+      "duration": 6.319
+    },
+    {
+      "text": "short learning we will just give the",
+      "start": 1028.36,
+      "duration": 5.16
+    },
+    {
+      "text": "input which you want to translate like",
+      "start": 1031.839,
+      "duration": 4.48
+    },
+    {
+      "text": "breakfast and then it's translated here",
+      "start": 1033.52,
+      "duration": 4.76
+    },
+    {
+      "text": "for few short learning as I already",
+      "start": 1036.319,
+      "duration": 3.88
+    },
+    {
+      "text": "showed to you before we give it few",
+      "start": 1038.28,
+      "duration": 5.44
+    },
+    {
+      "text": "examples like uh let's say here we want",
+      "start": 1040.199,
+      "duration": 6.281
+    },
+    {
+      "text": "to unscramble the words or make the",
+      "start": 1043.72,
+      "duration": 4.4
+    },
+    {
+      "text": "words into correct spelling let's say",
+      "start": 1046.48,
+      "duration": 4.68
+    },
+    {
+      "text": "that's the task to do this task we can",
+      "start": 1048.12,
+      "duration": 5.24
+    },
+    {
+      "text": "we we can give some example so let's say",
+      "start": 1051.16,
+      "duration": 3.759
+    },
+    {
+      "text": "this is a wrong spelling and the correct",
+      "start": 1053.36,
+      "duration": 3.64
+    },
+    {
+      "text": "spelling is goat this is a wrong",
+      "start": 1054.919,
+      "duration": 3.841
+    },
+    {
+      "text": "spelling the current correct spelling",
+      "start": 1057.0,
+      "duration": 4.72
+    },
+    {
+      "text": "isue so we give GPT or the llm these two",
+      "start": 1058.76,
+      "duration": 5.36
+    },
+    {
+      "text": "examples and then we tell it that based",
+      "start": 1061.72,
+      "duration": 4.839
+    },
+    {
+      "text": "on these two examples now translate this",
+      "start": 1064.12,
+      "duration": 4.48
+    },
+    {
+      "text": "into a correct word and then it",
+      "start": 1066.559,
+      "duration": 4.641
+    },
+    {
+      "text": "translates it correctly as F so this is",
+      "start": 1068.6,
+      "duration": 5.12
+    },
+    {
+      "text": "an example of few short learning because",
+      "start": 1071.2,
+      "duration": 5.359
+    },
+    {
+      "text": "as you see we do provide two supporting",
+      "start": 1073.72,
+      "duration": 6.04
+    },
+    {
+      "text": "examples so that the llm",
+      "start": 1076.559,
+      "duration": 6.48
+    },
+    {
+      "text": "can actually make a better",
+      "start": 1079.76,
+      "duration": 5.56
+    },
+    {
+      "text": "translation okay so zero shot learning",
+      "start": 1083.039,
+      "duration": 6.601
+    },
+    {
+      "text": "is basically completing task without any",
+      "start": 1085.32,
+      "duration": 7.16
+    },
+    {
+      "text": "example and uh few short learning is",
+      "start": 1089.64,
+      "duration": 6.919
+    },
+    {
+      "text": "completing the task with a few",
+      "start": 1092.48,
+      "duration": 4.079
+    },
+    {
+      "text": "examples okay now let's go to the next",
+      "start": 1096.679,
+      "duration": 5.36
+    },
+    {
+      "text": "section which is utilizing large data",
+      "start": 1099.52,
+      "duration": 4.92
+    },
+    {
+      "text": "sets uh we also looked at this in the",
+      "start": 1102.039,
+      "duration": 3.921
+    },
+    {
+      "text": "previous lecture but I just want to",
+      "start": 1104.44,
+      "duration": 3.64
+    },
+    {
+      "text": "reiterate this based on this paper so",
+      "start": 1105.96,
+      "duration": 4.28
+    },
+    {
+      "text": "let's look at the data set which gpt3",
+      "start": 1108.08,
+      "duration": 4.68
+    },
+    {
+      "text": "have used we already saw that they the",
+      "start": 1110.24,
+      "duration": 5.12
+    },
+    {
+      "text": "model was 175 billion parameters right",
+      "start": 1112.76,
+      "duration": 5.6
+    },
+    {
+      "text": "like see this but let's see the data on",
+      "start": 1115.36,
+      "duration": 5.48
+    },
+    {
+      "text": "which the model is trained on let's look",
+      "start": 1118.36,
+      "duration": 5.439
+    },
+    {
+      "text": "at this data so the data set is the",
+      "start": 1120.84,
+      "duration": 6.44
+    },
+    {
+      "text": "common craw data let's go",
+      "start": 1123.799,
+      "duration": 7.0
+    },
+    {
+      "text": "to uh internet and search common craw so",
+      "start": 1127.28,
+      "duration": 4.92
+    },
+    {
+      "text": "you can see that this is the common",
+      "start": 1130.799,
+      "duration": 4.281
+    },
+    {
+      "text": "crawl data set and let me click on this",
+      "start": 1132.2,
+      "duration": 4.959
+    },
+    {
+      "text": "right now and it maintains basically a",
+      "start": 1135.08,
+      "duration": 4.44
+    },
+    {
+      "text": "free open repository of web scrw data",
+      "start": 1137.159,
+      "duration": 4.961
+    },
+    {
+      "text": "that can be used by anyone it has over",
+      "start": 1139.52,
+      "duration": 5.24
+    },
+    {
+      "text": "250 billion Pages spanning 17 years and",
+      "start": 1142.12,
+      "duration": 5.799
+    },
+    {
+      "text": "it is free and open Corpus since 2007",
+      "start": 1144.76,
+      "duration": 7.96
+    },
+    {
+      "text": "great so gpt3 uses 410 billion tokens",
+      "start": 1147.919,
+      "duration": 6.721
+    },
+    {
+      "text": "from the common craw data and this is",
+      "start": 1152.72,
+      "duration": 3.959
+    },
+    {
+      "text": "the majority of the data it consists of",
+      "start": 1154.64,
+      "duration": 5.48
+    },
+    {
+      "text": "60% of the entire data set what is one",
+      "start": 1156.679,
+      "duration": 7.0
+    },
+    {
+      "text": "token so one token can be basically you",
+      "start": 1160.12,
+      "duration": 6.36
+    },
+    {
+      "text": "can think of it as a Subs subset of the",
+      "start": 1163.679,
+      "duration": 5.36
+    },
+    {
+      "text": "data set so for the sake of of this",
+      "start": 1166.48,
+      "duration": 4.439
+    },
+    {
+      "text": "lecture just assume one token is equal",
+      "start": 1169.039,
+      "duration": 4.441
+    },
+    {
+      "text": "to one word there are more complex",
+      "start": 1170.919,
+      "duration": 5.081
+    },
+    {
+      "text": "procedures for converting sentences into",
+      "start": 1173.48,
+      "duration": 5.079
+    },
+    {
+      "text": "tokens that's called tokenization but",
+      "start": 1176.0,
+      "duration": 5.12
+    },
+    {
+      "text": "just assume for now just to develop your",
+      "start": 1178.559,
+      "duration": 4.521
+    },
+    {
+      "text": "intuition that one token is equal to one",
+      "start": 1181.12,
+      "duration": 4.36
+    },
+    {
+      "text": "word so that will give you an idea of",
+      "start": 1183.08,
+      "duration": 5.44
+    },
+    {
+      "text": "this quantity so there are 410 billion",
+      "start": 1185.48,
+      "duration": 5.52
+    },
+    {
+      "text": "Words which have been used as a data set",
+      "start": 1188.52,
+      "duration": 6.159
+    },
+    {
+      "text": "from common crawl then gpt3 also utilize",
+      "start": 1191.0,
+      "duration": 6.48
+    },
+    {
+      "text": "data from web text to let's go and",
+      "start": 1194.679,
+      "duration": 5.88
+    },
+    {
+      "text": "search a bit about web text 2 so this is",
+      "start": 1197.48,
+      "duration": 5.079
+    },
+    {
+      "text": "also an enhanced version of the original",
+      "start": 1200.559,
+      "duration": 4.36
+    },
+    {
+      "text": "web Text corpus so this covers all the",
+      "start": 1202.559,
+      "duration": 5.521
+    },
+    {
+      "text": "Reddit submissions from 2015 to",
+      "start": 1204.919,
+      "duration": 5.961
+    },
+    {
+      "text": "2020 and I think the minimum number of",
+      "start": 1208.08,
+      "duration": 4.4
+    },
+    {
+      "text": "apports here should be three or",
+      "start": 1210.88,
+      "duration": 4.12
+    },
+    {
+      "text": "something but basically open web text",
+      "start": 1212.48,
+      "duration": 5.16
+    },
+    {
+      "text": "Data consists of a huge amount of Reddit",
+      "start": 1215.0,
+      "duration": 6.2
+    },
+    {
+      "text": "posts and how huge so basically gpt3",
+      "start": 1217.64,
+      "duration": 6.0
+    },
+    {
+      "text": "uses 19 billion words from this web",
+      "start": 1221.2,
+      "duration": 5.599
+    },
+    {
+      "text": "text2 data set which constitutes 22% of",
+      "start": 1223.64,
+      "duration": 5.2
+    },
+    {
+      "text": "the data",
+      "start": 1226.799,
+      "duration": 5.24
+    },
+    {
+      "text": "the remaining I would say 18 to 19% of",
+      "start": 1228.84,
+      "duration": 5.56
+    },
+    {
+      "text": "the data comes from books and it comes",
+      "start": 1232.039,
+      "duration": 5.161
+    },
+    {
+      "text": "from Wikipedia so this is the whole data",
+      "start": 1234.4,
+      "duration": 5.56
+    },
+    {
+      "text": "set on which gpt3 is trained on the",
+      "start": 1237.2,
+      "duration": 4.76
+    },
+    {
+      "text": "total number of tokens on which it is",
+      "start": 1239.96,
+      "duration": 5.88
+    },
+    {
+      "text": "trained on is 310 300 billion tokens",
+      "start": 1241.96,
+      "duration": 5.68
+    },
+    {
+      "text": "although if you add up these tokens they",
+      "start": 1245.84,
+      "duration": 4.64
+    },
+    {
+      "text": "are more than 300 billion but maybe gpt3",
+      "start": 1247.64,
+      "duration": 5.88
+    },
+    {
+      "text": "took a different mix of uh the data set",
+      "start": 1250.48,
+      "duration": 5.92
+    },
+    {
+      "text": "but overall they took 300 billion words",
+      "start": 1253.52,
+      "duration": 6.039
+    },
+    {
+      "text": "as the training data uh to generate the",
+      "start": 1256.4,
+      "duration": 7.159
+    },
+    {
+      "text": "gpt3 model think of that for a while 300",
+      "start": 1259.559,
+      "duration": 5.721
+    },
+    {
+      "text": "billion",
+      "start": 1263.559,
+      "duration": 4.561
+    },
+    {
+      "text": "tokens that's huge number of tokens and",
+      "start": 1265.28,
+      "duration": 5.04
+    },
+    {
+      "text": "that's huge amount of data and it would",
+      "start": 1268.12,
+      "duration": 4.48
+    },
+    {
+      "text": "need a huge amount of compute power and",
+      "start": 1270.32,
+      "duration": 3.239
+    },
+    {
+      "text": "also",
+      "start": 1272.6,
+      "duration": 3.36
+    },
+    {
+      "text": "cost so that's an important point to",
+      "start": 1273.559,
+      "duration": 6.561
+    },
+    {
+      "text": "remember training the gpt3 is not easy",
+      "start": 1275.96,
+      "duration": 5.719
+    },
+    {
+      "text": "pre-training rather I should call it",
+      "start": 1280.12,
+      "duration": 3.88
+    },
+    {
+      "text": "pre-training is not easy you need a huge",
+      "start": 1281.679,
+      "duration": 4.36
+    },
+    {
+      "text": "amount of computer power and you need",
+      "start": 1284.0,
+      "duration": 4.64
+    },
+    {
+      "text": "huge amount of data",
+      "start": 1286.039,
+      "duration": 5.441
+    },
+    {
+      "text": "so as I mentioned to you before a token",
+      "start": 1288.64,
+      "duration": 6.32
+    },
+    {
+      "text": "is uh a unit of a text which the model",
+      "start": 1291.48,
+      "duration": 6.079
+    },
+    {
+      "text": "reads this is a good definition to think",
+      "start": 1294.96,
+      "duration": 5.599
+    },
+    {
+      "text": "of token is a unit of a text which the",
+      "start": 1297.559,
+      "duration": 5.281
+    },
+    {
+      "text": "model reads for now you can just think",
+      "start": 1300.559,
+      "duration": 4.36
+    },
+    {
+      "text": "of one token is equal to one word we'll",
+      "start": 1302.84,
+      "duration": 4.52
+    },
+    {
+      "text": "cover this in the tokenization part in",
+      "start": 1304.919,
+      "duration": 4.24
+    },
+    {
+      "text": "the subsequent",
+      "start": 1307.36,
+      "duration": 4.679
+    },
+    {
+      "text": "lectures we already looked at the gpt3",
+      "start": 1309.159,
+      "duration": 4.681
+    },
+    {
+      "text": "main paper which is titled language",
+      "start": 1312.039,
+      "duration": 3.801
+    },
+    {
+      "text": "models are few short Learners and this",
+      "start": 1313.84,
+      "duration": 5.56
+    },
+    {
+      "text": "paper came out in the year 2020",
+      "start": 1315.84,
+      "duration": 5.56
+    },
+    {
+      "text": "one more key thing to keep in mind is",
+      "start": 1319.4,
+      "duration": 4.159
+    },
+    {
+      "text": "that the total pre-training cost for",
+      "start": 1321.4,
+      "duration": 6.56
+    },
+    {
+      "text": "gpt3 is $4.6 million keep this in mind",
+      "start": 1323.559,
+      "duration": 6.641
+    },
+    {
+      "text": "this is extremely important you have a",
+      "start": 1327.96,
+      "duration": 4.04
+    },
+    {
+      "text": "huge amount of data set right and you",
+      "start": 1330.2,
+      "duration": 4.479
+    },
+    {
+      "text": "need compute power to run your model on",
+      "start": 1332.0,
+      "duration": 5.039
+    },
+    {
+      "text": "the data set you need access to gpus and",
+      "start": 1334.679,
+      "duration": 5.081
+    },
+    {
+      "text": "that's expensive but imagine this cost",
+      "start": 1337.039,
+      "duration": 5.161
+    },
+    {
+      "text": "the total pre-training cost for gpt3 is",
+      "start": 1339.76,
+      "duration": 4.68
+    },
+    {
+      "text": "4.6",
+      "start": 1342.2,
+      "duration": 4.68
+    },
+    {
+      "text": "million now you must be thinking what",
+      "start": 1344.44,
+      "duration": 4.56
+    },
+    {
+      "text": "exactly happens in this pre-training why",
+      "start": 1346.88,
+      "duration": 3.919
+    },
+    {
+      "text": "does it cost this much what exactly are",
+      "start": 1349.0,
+      "duration": 4.84
+    },
+    {
+      "text": "we training here so let me go that into",
+      "start": 1350.799,
+      "duration": 7.0
+    },
+    {
+      "text": "a bit more detail for that but before",
+      "start": 1353.84,
+      "duration": 6.64
+    },
+    {
+      "text": "that realize that the pre-trained models",
+      "start": 1357.799,
+      "duration": 4.521
+    },
+    {
+      "text": "are also called as the base models or",
+      "start": 1360.48,
+      "duration": 3.72
+    },
+    {
+      "text": "foundational models which can be used",
+      "start": 1362.32,
+      "duration": 4.4
+    },
+    {
+      "text": "later for fine tuning so when you look",
+      "start": 1364.2,
+      "duration": 6.24
+    },
+    {
+      "text": "at the generative uh pre-training paper",
+      "start": 1366.72,
+      "duration": 5.64
+    },
+    {
+      "text": "they also mention about fine tuning so",
+      "start": 1370.44,
+      "duration": 3.599
+    },
+    {
+      "text": "they say that we do pre-training first",
+      "start": 1372.36,
+      "duration": 4.24
+    },
+    {
+      "text": "and then F tuning this means that let's",
+      "start": 1374.039,
+      "duration": 4.64
+    },
+    {
+      "text": "say if you are a banking company or an",
+      "start": 1376.6,
+      "duration": 3.959
+    },
+    {
+      "text": "airline company or an educational",
+      "start": 1378.679,
+      "duration": 5.041
+    },
+    {
+      "text": "company which wants to use gpt3 but you",
+      "start": 1380.559,
+      "duration": 5.36
+    },
+    {
+      "text": "also want the output to be specific to",
+      "start": 1383.72,
+      "duration": 5.079
+    },
+    {
+      "text": "your data set then you need to fine-tune",
+      "start": 1385.919,
+      "duration": 5.401
+    },
+    {
+      "text": "the model further on label data which",
+      "start": 1388.799,
+      "duration": 5.041
+    },
+    {
+      "text": "belongs to your organization that",
+      "start": 1391.32,
+      "duration": 5.64
+    },
+    {
+      "text": "process is called fine tuning that needs",
+      "start": 1393.84,
+      "duration": 5.68
+    },
+    {
+      "text": "less amount of data than the amount of",
+      "start": 1396.96,
+      "duration": 4.92
+    },
+    {
+      "text": "data needed in pre-training but fine",
+      "start": 1399.52,
+      "duration": 4.639
+    },
+    {
+      "text": "tuning is very important as you go into",
+      "start": 1401.88,
+      "duration": 4.32
+    },
+    {
+      "text": "production level settings so if you are",
+      "start": 1404.159,
+      "duration": 3.801
+    },
+    {
+      "text": "an educational company who is building",
+      "start": 1406.2,
+      "duration": 4.28
+    },
+    {
+      "text": "multiple choice questions let's say you",
+      "start": 1407.96,
+      "duration": 5.44
+    },
+    {
+      "text": "can of course use gpt3 or gp4 but if you",
+      "start": 1410.48,
+      "duration": 5.76
+    },
+    {
+      "text": "want more robust more reliable outcomes",
+      "start": 1413.4,
+      "duration": 5.12
+    },
+    {
+      "text": "you need to fine tune it on a label data",
+      "start": 1416.24,
+      "duration": 3.64
+    },
+    {
+      "text": "set which maybe your company has",
+      "start": 1418.52,
+      "duration": 4.56
+    },
+    {
+      "text": "collected for the past 5 to 10",
+      "start": 1419.88,
+      "duration": 5.88
+    },
+    {
+      "text": "years okay now remember that many",
+      "start": 1423.08,
+      "duration": 4.92
+    },
+    {
+      "text": "pre-rain llms are available as",
+      "start": 1425.76,
+      "duration": 5.519
+    },
+    {
+      "text": "open-source models uh and can be used as",
+      "start": 1428.0,
+      "duration": 5.44
+    },
+    {
+      "text": "general purpose tools to write extract",
+      "start": 1431.279,
+      "duration": 4.28
+    },
+    {
+      "text": "and edit text which was not part of the",
+      "start": 1433.44,
+      "duration": 5.88
+    },
+    {
+      "text": "training data so even gpt3 and G gp4 you",
+      "start": 1435.559,
+      "duration": 7.441
+    },
+    {
+      "text": "can uh you can use it yourself as a",
+      "start": 1439.32,
+      "duration": 7.4
+    },
+    {
+      "text": "student gpt3 and GPT 4 can be used and",
+      "start": 1443.0,
+      "duration": 5.6
+    },
+    {
+      "text": "it's good you don't need fine tuning for",
+      "start": 1446.72,
+      "duration": 3.839
+    },
+    {
+      "text": "this purpose let's say if you want to",
+      "start": 1448.6,
+      "duration": 3.959
+    },
+    {
+      "text": "get some information or if you want your",
+      "start": 1450.559,
+      "duration": 5.12
+    },
+    {
+      "text": "PDF to be analyzed you can use gpt3 and",
+      "start": 1452.559,
+      "duration": 5.6
+    },
+    {
+      "text": "gp4 as well there is one distinction",
+      "start": 1455.679,
+      "duration": 4.041
+    },
+    {
+      "text": "which I want to point out and that's",
+      "start": 1458.159,
+      "duration": 3.64
+    },
+    {
+      "text": "between open source and closed Source",
+      "start": 1459.72,
+      "duration": 5.559
+    },
+    {
+      "text": "language models so let me show you that",
+      "start": 1461.799,
+      "duration": 8.081
+    },
+    {
+      "text": "so look at the year on the XX so",
+      "start": 1465.279,
+      "duration": 7.361
+    },
+    {
+      "text": "2022 uh on the this red curve is the",
+      "start": 1469.88,
+      "duration": 5.12
+    },
+    {
+      "text": "closed Source model so gp4 is a closed",
+      "start": 1472.64,
+      "duration": 3.96
+    },
+    {
+      "text": "Source model which means that the",
+      "start": 1475.0,
+      "duration": 3.24
+    },
+    {
+      "text": "parameters and the weights really are",
+      "start": 1476.6,
+      "duration": 3.92
+    },
+    {
+      "text": "not known too much you can just use the",
+      "start": 1478.24,
+      "duration": 5.28
+    },
+    {
+      "text": "end end output like this interface which",
+      "start": 1480.52,
+      "duration": 6.0
+    },
+    {
+      "text": "I have right now but there are many open",
+      "start": 1483.52,
+      "duration": 4.399
+    },
+    {
+      "text": "source models which were releasing",
+      "start": 1486.52,
+      "duration": 3.48
+    },
+    {
+      "text": "during that time it's just that their",
+      "start": 1487.919,
+      "duration": 4.0
+    },
+    {
+      "text": "performance was not as good as the",
+      "start": 1490.0,
+      "duration": 4.44
+    },
+    {
+      "text": "closed Source model such as GPT so on",
+      "start": 1491.919,
+      "duration": 5.201
+    },
+    {
+      "text": "the y- axis you have MML you can think",
+      "start": 1494.44,
+      "duration": 4.52
+    },
+    {
+      "text": "of it as a performance right right now",
+      "start": 1497.12,
+      "duration": 3.48
+    },
+    {
+      "text": "so you can see the green line which is",
+      "start": 1498.96,
+      "duration": 4.079
+    },
+    {
+      "text": "open source performance was much lesser",
+      "start": 1500.6,
+      "duration": 4.48
+    },
+    {
+      "text": "and now as we are actually entering",
+      "start": 1503.039,
+      "duration": 5.041
+    },
+    {
+      "text": "August the performance of the open",
+      "start": 1505.08,
+      "duration": 6.079
+    },
+    {
+      "text": "source models in August 24 is actually",
+      "start": 1508.08,
+      "duration": 5.44
+    },
+    {
+      "text": "comparable to closed Source models so",
+      "start": 1511.159,
+      "duration": 6.76
+    },
+    {
+      "text": "Lama 3.1 was released recently and uh",
+      "start": 1513.52,
+      "duration": 7.759
+    },
+    {
+      "text": "the Lama 3.1 llm is an open source model",
+      "start": 1517.919,
+      "duration": 6.961
+    },
+    {
+      "text": "but it's one of the most powerful open",
+      "start": 1521.279,
+      "duration": 6.241
+    },
+    {
+      "text": "source models which was released by meta",
+      "start": 1524.88,
+      "duration": 5.24
+    },
+    {
+      "text": "it has 400 5 billion parameters and its",
+      "start": 1527.52,
+      "duration": 4.759
+    },
+    {
+      "text": "performance is a bit better I think than",
+      "start": 1530.12,
+      "duration": 4.919
+    },
+    {
+      "text": "gp4 so the gap between open source and",
+      "start": 1532.279,
+      "duration": 5.681
+    },
+    {
+      "text": "close source llm is closing that being",
+      "start": 1535.039,
+      "duration": 5.281
+    },
+    {
+      "text": "said for students you can still continue",
+      "start": 1537.96,
+      "duration": 4.8
+    },
+    {
+      "text": "interacting with gp4 and gpt3 that",
+      "start": 1540.32,
+      "duration": 4.599
+    },
+    {
+      "text": "serves very well for you you don't need",
+      "start": 1542.76,
+      "duration": 4.44
+    },
+    {
+      "text": "to think about fine tuning an llm or",
+      "start": 1544.919,
+      "duration": 4.321
+    },
+    {
+      "text": "accessing its weights or",
+      "start": 1547.2,
+      "duration": 6.479
+    },
+    {
+      "text": "parameters great now uh I want to talk a",
+      "start": 1549.24,
+      "duration": 7.6
+    },
+    {
+      "text": "bit about",
+      "start": 1553.679,
+      "duration": 6.281
+    },
+    {
+      "text": "uh so the GPT for architecture so up",
+      "start": 1556.84,
+      "duration": 5.16
+    },
+    {
+      "text": "till now we have looked at the total",
+      "start": 1559.96,
+      "duration": 4.76
+    },
+    {
+      "text": "pre-training cost for gpt3 then we saw",
+      "start": 1562.0,
+      "duration": 5.36
+    },
+    {
+      "text": "pre-training versus fine tuning and then",
+      "start": 1564.72,
+      "duration": 5.04
+    },
+    {
+      "text": "we saw the open source versus closed",
+      "start": 1567.36,
+      "duration": 5.08
+    },
+    {
+      "text": "Source ecosystem now let's come to the",
+      "start": 1569.76,
+      "duration": 4.56
+    },
+    {
+      "text": "point number three which is GPT",
+      "start": 1572.44,
+      "duration": 3.92
+    },
+    {
+      "text": "architecture we have already seen this",
+      "start": 1574.32,
+      "duration": 3.839
+    },
+    {
+      "text": "in the previous lecture the GPT",
+      "start": 1576.36,
+      "duration": 3.64
+    },
+    {
+      "text": "architecture essentially consists of",
+      "start": 1578.159,
+      "duration": 4.601
+    },
+    {
+      "text": "only a decoder block so let me show you",
+      "start": 1580.0,
+      "duration": 5.84
+    },
+    {
+      "text": "this to uh refresh your understanding so",
+      "start": 1582.76,
+      "duration": 5.32
+    },
+    {
+      "text": "this is how the GPT architecture looks",
+      "start": 1585.84,
+      "duration": 4.28
+    },
+    {
+      "text": "like it only consists of the decoder",
+      "start": 1588.08,
+      "duration": 5.24
+    },
+    {
+      "text": "block as I've have shown here um whereas",
+      "start": 1590.12,
+      "duration": 5.039
+    },
+    {
+      "text": "the original Transformer consists of",
+      "start": 1593.32,
+      "duration": 4.44
+    },
+    {
+      "text": "encoder as well as",
+      "start": 1595.159,
+      "duration": 7.0
+    },
+    {
+      "text": "decoder so here the gpt3 is a scaled up",
+      "start": 1597.76,
+      "duration": 6.159
+    },
+    {
+      "text": "version of the original Transformer",
+      "start": 1602.159,
+      "duration": 4.721
+    },
+    {
+      "text": "model which was implemented on a larger",
+      "start": 1603.919,
+      "duration": 6.801
+    },
+    {
+      "text": "data set okay so gpt3 is also a scaled",
+      "start": 1606.88,
+      "duration": 5.56
+    },
+    {
+      "text": "up version of the model which was",
+      "start": 1610.72,
+      "duration": 4.36
+    },
+    {
+      "text": "implemented in the",
+      "start": 1612.44,
+      "duration": 5.52
+    },
+    {
+      "text": "2018 paper so after the Transformers",
+      "start": 1615.08,
+      "duration": 5.599
+    },
+    {
+      "text": "paper there was this paper as I showed",
+      "start": 1617.96,
+      "duration": 4.68
+    },
+    {
+      "text": "which introduced generative pre-training",
+      "start": 1620.679,
+      "duration": 5.24
+    },
+    {
+      "text": "gpt3 is a scaled up version of this",
+      "start": 1622.64,
+      "duration": 5.6
+    },
+    {
+      "text": "paper as I already mentioned it has",
+      "start": 1625.919,
+      "duration": 8.041
+    },
+    {
+      "text": "around uh uh 175 billion parameters so I",
+      "start": 1628.24,
+      "duration": 7.2
+    },
+    {
+      "text": "think we are aware of this so we can",
+      "start": 1633.96,
+      "duration": 3.88
+    },
+    {
+      "text": "move to the next point now comes the",
+      "start": 1635.44,
+      "duration": 5.16
+    },
+    {
+      "text": "very important task of uh Auto",
+      "start": 1637.84,
+      "duration": 5.64
+    },
+    {
+      "text": "regression why is GPT models called as",
+      "start": 1640.6,
+      "duration": 4.92
+    },
+    {
+      "text": "Auto regressive models and why do they",
+      "start": 1643.48,
+      "duration": 4.28
+    },
+    {
+      "text": "come under the category of unsupervised",
+      "start": 1645.52,
+      "duration": 4.68
+    },
+    {
+      "text": "learning so let's look at that a bit",
+      "start": 1647.76,
+      "duration": 4.799
+    },
+    {
+      "text": "further the main part which I want to",
+      "start": 1650.2,
+      "duration": 4.64
+    },
+    {
+      "text": "mention here is that GPT models are",
+      "start": 1652.559,
+      "duration": 4.561
+    },
+    {
+      "text": "simply trained on next word prediction",
+      "start": 1654.84,
+      "duration": 4.76
+    },
+    {
+      "text": "tasks which means that let's say you",
+      "start": 1657.12,
+      "duration": 4.679
+    },
+    {
+      "text": "have the lion RS in the and you want to",
+      "start": 1659.6,
+      "duration": 4.12
+    },
+    {
+      "text": "predict the next word then you predict",
+      "start": 1661.799,
+      "duration": 4.48
+    },
+    {
+      "text": "that it is going to be jungle this is",
+      "start": 1663.72,
+      "duration": 5.76
+    },
+    {
+      "text": "all what GPT models are trained for so",
+      "start": 1666.279,
+      "duration": 5.081
+    },
+    {
+      "text": "let me show you how the training process",
+      "start": 1669.48,
+      "duration": 3.28
+    },
+    {
+      "text": "actually looks",
+      "start": 1671.36,
+      "duration": 5.12
+    },
+    {
+      "text": "like okay so uh I think this plot sums",
+      "start": 1672.76,
+      "duration": 6.96
+    },
+    {
+      "text": "it up better so let let's say you give",
+      "start": 1676.48,
+      "duration": 5.199
+    },
+    {
+      "text": "multiple examples right so the first",
+      "start": 1679.72,
+      "duration": 4.12
+    },
+    {
+      "text": "input which you give to GPT is second",
+      "start": 1681.679,
+      "duration": 5.48
+    },
+    {
+      "text": "law of Robotics colon this is the input",
+      "start": 1683.84,
+      "duration": 5.079
+    },
+    {
+      "text": "based on this input it has to predict",
+      "start": 1687.159,
+      "duration": 3.841
+    },
+    {
+      "text": "the next word that's the output and then",
+      "start": 1688.919,
+      "duration": 5.24
+    },
+    {
+      "text": "it predicts a in the next round the",
+      "start": 1691.0,
+      "duration": 4.799
+    },
+    {
+      "text": "input will be second law of",
+      "start": 1694.159,
+      "duration": 4.801
+    },
+    {
+      "text": "Thermodynamics colon U so see the output",
+      "start": 1695.799,
+      "duration": 5.24
+    },
+    {
+      "text": "of the previous label is now the input",
+      "start": 1698.96,
+      "duration": 4.36
+    },
+    {
+      "text": "here and then again it has to predict",
+      "start": 1701.039,
+      "duration": 4.681
+    },
+    {
+      "text": "the next word so then it must be robot",
+      "start": 1703.32,
+      "duration": 4.28
+    },
+    {
+      "text": "and then the input is second law of",
+      "start": 1705.72,
+      "duration": 5.04
+    },
+    {
+      "text": "robotics colon a robot that's the input",
+      "start": 1707.6,
+      "duration": 4.799
+    },
+    {
+      "text": "and the output it has to predict the",
+      "start": 1710.76,
+      "duration": 3.919
+    },
+    {
+      "text": "next World and then it predicts must",
+      "start": 1712.399,
+      "duration": 4.201
+    },
+    {
+      "text": "then the next input will be second law",
+      "start": 1714.679,
+      "duration": 5.0
+    },
+    {
+      "text": "of Robotics colon robot must basically",
+      "start": 1716.6,
+      "duration": 5.4
+    },
+    {
+      "text": "you see what we are doing here at every",
+      "start": 1719.679,
+      "duration": 4.521
+    },
+    {
+      "text": "stage of this training process the",
+      "start": 1722.0,
+      "duration": 4.36
+    },
+    {
+      "text": "sentence is broken up into input and",
+      "start": 1724.2,
+      "duration": 4.88
+    },
+    {
+      "text": "output the input consists of let's say",
+      "start": 1726.36,
+      "duration": 4.679
+    },
+    {
+      "text": "three words or four words but the output",
+      "start": 1729.08,
+      "duration": 5.24
+    },
+    {
+      "text": "is always one word now you see we don't",
+      "start": 1731.039,
+      "duration": 5.321
+    },
+    {
+      "text": "give any labels here what happens is",
+      "start": 1734.32,
+      "duration": 4.32
+    },
+    {
+      "text": "that the sentence itself breaks it break",
+      "start": 1736.36,
+      "duration": 4.799
+    },
+    {
+      "text": "is broken into two parts the first half",
+      "start": 1738.64,
+      "duration": 4.72
+    },
+    {
+      "text": "and the second half the second half is",
+      "start": 1741.159,
+      "duration": 4.24
+    },
+    {
+      "text": "where we have to predict the next",
+      "start": 1743.36,
+      "duration": 4.159
+    },
+    {
+      "text": "world that's why it is called as",
+      "start": 1745.399,
+      "duration": 4.0
+    },
+    {
+      "text": "unsupervised learning because we do not",
+      "start": 1747.519,
+      "duration": 4.201
+    },
+    {
+      "text": "give labels the sentence itself consists",
+      "start": 1749.399,
+      "duration": 4.76
+    },
+    {
+      "text": "of the labels because the label is the",
+      "start": 1751.72,
+      "duration": 4.72
+    },
+    {
+      "text": "next",
+      "start": 1754.159,
+      "duration": 2.281
+    },
+    {
+      "text": "word uh okay so uh GPT is trained on",
+      "start": 1756.48,
+      "duration": 8.199
+    },
+    {
+      "text": "next World predictions one awesome thing",
+      "start": 1761.919,
+      "duration": 4.721
+    },
+    {
+      "text": "is that although it is only trained on",
+      "start": 1764.679,
+      "duration": 3.72
+    },
+    {
+      "text": "predicting the next World they can still",
+      "start": 1766.64,
+      "duration": 3.639
+    },
+    {
+      "text": "do a wide range of other tasks like",
+      "start": 1768.399,
+      "duration": 5.921
+    },
+    {
+      "text": "translation spelling correction Etc but",
+      "start": 1770.279,
+      "duration": 5.921
+    },
+    {
+      "text": "for the training itself GPT",
+      "start": 1774.32,
+      "duration": 3.76
+    },
+    {
+      "text": "architectures are only trained to",
+      "start": 1776.2,
+      "duration": 4.0
+    },
+    {
+      "text": "predict the next word in the sequence",
+      "start": 1778.08,
+      "duration": 4.64
+    },
+    {
+      "text": "and this takes a huge amount of compute",
+      "start": 1780.2,
+      "duration": 4.68
+    },
+    {
+      "text": "power the 4.6 million dollars which I",
+      "start": 1782.72,
+      "duration": 4.559
+    },
+    {
+      "text": "showed you is needed for this because",
+      "start": 1784.88,
+      "duration": 5.36
+    },
+    {
+      "text": "imagine you have those amounts of data",
+      "start": 1787.279,
+      "duration": 4.561
+    },
+    {
+      "text": "which I showed you before let me show",
+      "start": 1790.24,
+      "duration": 4.0
+    },
+    {
+      "text": "you them again so let's say if you have",
+      "start": 1791.84,
+      "duration": 4.839
+    },
+    {
+      "text": "these these many amounts of words 410",
+      "start": 1794.24,
+      "duration": 4.4
+    },
+    {
+      "text": "billion words so there might be around",
+      "start": 1796.679,
+      "duration": 4.681
+    },
+    {
+      "text": "40 billion sentences right and each of",
+      "start": 1798.64,
+      "duration": 4.399
+    },
+    {
+      "text": "the sentence will need to be broken up",
+      "start": 1801.36,
+      "duration": 6.24
+    },
+    {
+      "text": "let's say the sentence is uh of 10 words",
+      "start": 1803.039,
+      "duration": 6.76
+    },
+    {
+      "text": "okay each of the sentences will then",
+      "start": 1807.6,
+      "duration": 4.079
+    },
+    {
+      "text": "needed to be broken up and then into",
+      "start": 1809.799,
+      "duration": 3.72
+    },
+    {
+      "text": "input pair and the",
+      "start": 1811.679,
+      "duration": 4.0
+    },
+    {
+      "text": "output uh and then in the output you",
+      "start": 1813.519,
+      "duration": 4.321
+    },
+    {
+      "text": "have to predict the next word it takes a",
+      "start": 1815.679,
+      "duration": 3.681
+    },
+    {
+      "text": "huge amount of time right because you",
+      "start": 1817.84,
+      "duration": 3.52
+    },
+    {
+      "text": "will need to do this for the billions of",
+      "start": 1819.36,
+      "duration": 4.439
+    },
+    {
+      "text": "sentences in the data that's why it",
+      "start": 1821.36,
+      "duration": 4.48
+    },
+    {
+      "text": "takes a huge amount of compute power for",
+      "start": 1823.799,
+      "duration": 4.36
+    },
+    {
+      "text": "this training procedure",
+      "start": 1825.84,
+      "duration": 4.52
+    },
+    {
+      "text": "and uh how is it trained so basically",
+      "start": 1828.159,
+      "duration": 4.161
+    },
+    {
+      "text": "initially it will predict wrong outputs",
+      "start": 1830.36,
+      "duration": 4.76
+    },
+    {
+      "text": "but then we have the correct output U",
+      "start": 1832.32,
+      "duration": 4.52
+    },
+    {
+      "text": "which we know what should be the next",
+      "start": 1835.12,
+      "duration": 3.84
+    },
+    {
+      "text": "word from the sentence itself so then",
+      "start": 1836.84,
+      "duration": 4.12
+    },
+    {
+      "text": "the error will be computed based on the",
+      "start": 1838.96,
+      "duration": 4.079
+    },
+    {
+      "text": "predicted output and the difference",
+      "start": 1840.96,
+      "duration": 3.92
+    },
+    {
+      "text": "between the corrected output and then",
+      "start": 1843.039,
+      "duration": 3.601
+    },
+    {
+      "text": "similar to The Back propagation done in",
+      "start": 1844.88,
+      "duration": 4.24
+    },
+    {
+      "text": "neural networks the weights of the",
+      "start": 1846.64,
+      "duration": 4.919
+    },
+    {
+      "text": "Transformer or the GPT architecture will",
+      "start": 1849.12,
+      "duration": 6.6
+    },
+    {
+      "text": "adapt so that the next word is predicted",
+      "start": 1851.559,
+      "duration": 6.801
+    },
+    {
+      "text": "correctly so please keep in mind that",
+      "start": 1855.72,
+      "duration": 4.12
+    },
+    {
+      "text": "that is why it is an example of",
+      "start": 1858.36,
+      "duration": 3.159
+    },
+    {
+      "text": "self-supervised",
+      "start": 1859.84,
+      "duration": 4.12
+    },
+    {
+      "text": "learning uh because let's say you have a",
+      "start": 1861.519,
+      "duration": 4.841
+    },
+    {
+      "text": "sentence right what is done is that in",
+      "start": 1863.96,
+      "duration": 4.559
+    },
+    {
+      "text": "the sentence itself we are divided we",
+      "start": 1866.36,
+      "duration": 3.64
+    },
+    {
+      "text": "are dividing it into",
+      "start": 1868.519,
+      "duration": 3.841
+    },
+    {
+      "text": "training and we are dividing it into",
+      "start": 1870.0,
+      "duration": 5.039
+    },
+    {
+      "text": "testing so this is the true we know the",
+      "start": 1872.36,
+      "duration": 4.64
+    },
+    {
+      "text": "next word this is the next word and we",
+      "start": 1875.039,
+      "duration": 4.401
+    },
+    {
+      "text": "know its true value what we'll do is",
+      "start": 1877.0,
+      "duration": 5.48
+    },
+    {
+      "text": "that using this as the input we'll try",
+      "start": 1879.44,
+      "duration": 6.68
+    },
+    {
+      "text": "to predict we'll try to predict the next",
+      "start": 1882.48,
+      "duration": 6.12
+    },
+    {
+      "text": "word so then we'll have have something",
+      "start": 1886.12,
+      "duration": 5.64
+    },
+    {
+      "text": "which is called as the predicted",
+      "start": 1888.6,
+      "duration": 6.6
+    },
+    {
+      "text": "word and then we'll train the neural",
+      "start": 1891.76,
+      "duration": 5.6
+    },
+    {
+      "text": "network or train the GPT architecture to",
+      "start": 1895.2,
+      "duration": 3.8
+    },
+    {
+      "text": "minimize the difference between these",
+      "start": 1897.36,
+      "duration": 3.439
+    },
+    {
+      "text": "two and update the",
+      "start": 1899.0,
+      "duration": 5.2
+    },
+    {
+      "text": "weights so these four these 175 billion",
+      "start": 1900.799,
+      "duration": 5.201
+    },
+    {
+      "text": "parameters which you see over here are",
+      "start": 1904.2,
+      "duration": 4.12
+    },
+    {
+      "text": "just the weights of the neural network",
+      "start": 1906.0,
+      "duration": 3.799
+    },
+    {
+      "text": "which we are training to predict the",
+      "start": 1908.32,
+      "duration": 3.76
+    },
+    {
+      "text": "next word so that's why it's called as",
+      "start": 1909.799,
+      "duration": 4.12
+    },
+    {
+      "text": "unsupervised because the label for the",
+      "start": 1912.08,
+      "duration": 3.319
+    },
+    {
+      "text": "next word we we do not have to",
+      "start": 1913.919,
+      "duration": 4.24
+    },
+    {
+      "text": "externally label the data set it already",
+      "start": 1915.399,
+      "duration": 4.721
+    },
+    {
+      "text": "is labeled in a way because we know the",
+      "start": 1918.159,
+      "duration": 3.681
+    },
+    {
+      "text": "true value of the next",
+      "start": 1920.12,
+      "duration": 5.399
+    },
+    {
+      "text": "word so uh to put it in another words we",
+      "start": 1921.84,
+      "duration": 5.6
+    },
+    {
+      "text": "don't collect labels for the training",
+      "start": 1925.519,
+      "duration": 4.321
+    },
+    {
+      "text": "data but use the structure of the data",
+      "start": 1927.44,
+      "duration": 5.199
+    },
+    {
+      "text": "itself to make the labels so next word",
+      "start": 1929.84,
+      "duration": 5.04
+    },
+    {
+      "text": "in a sentence is used as the",
+      "start": 1932.639,
+      "duration": 4.64
+    },
+    {
+      "text": "label and that's why it is called as the",
+      "start": 1934.88,
+      "duration": 5.0
+    },
+    {
+      "text": "auto regressive model why is it called",
+      "start": 1937.279,
+      "duration": 4.28
+    },
+    {
+      "text": "Auto regressive there is one more reason",
+      "start": 1939.88,
+      "duration": 4.12
+    },
+    {
+      "text": "for this the prev previous output is",
+      "start": 1941.559,
+      "duration": 4.161
+    },
+    {
+      "text": "used as the input for the future",
+      "start": 1944.0,
+      "duration": 5.08
+    },
+    {
+      "text": "prediction so let's say let me go over",
+      "start": 1945.72,
+      "duration": 5.28
+    },
+    {
+      "text": "this part again the previous output is",
+      "start": 1949.08,
+      "duration": 4.439
+    },
+    {
+      "text": "used as the input so let's say the first",
+      "start": 1951.0,
+      "duration": 4.44
+    },
+    {
+      "text": "sentence is second law of Robotics the",
+      "start": 1953.519,
+      "duration": 4.321
+    },
+    {
+      "text": "output of this is U right this U becomes",
+      "start": 1955.44,
+      "duration": 5.079
+    },
+    {
+      "text": "an input to the next sentence so now the",
+      "start": 1957.84,
+      "duration": 5.36
+    },
+    {
+      "text": "input is second law of Robotics colon U",
+      "start": 1960.519,
+      "duration": 4.561
+    },
+    {
+      "text": "and then the next word prediction is",
+      "start": 1963.2,
+      "duration": 4.04
+    },
+    {
+      "text": "robot then this robot becomes an input",
+      "start": 1965.08,
+      "duration": 4.36
+    },
+    {
+      "text": "to the next sentence that's why the",
+      "start": 1967.24,
+      "duration": 4.08
+    },
+    {
+      "text": "model is also called Auto regressive",
+      "start": 1969.44,
+      "duration": 4.199
+    },
+    {
+      "text": "model so two things are very important",
+      "start": 1971.32,
+      "duration": 4.839
+    },
+    {
+      "text": "for you to remember here the first thing",
+      "start": 1973.639,
+      "duration": 5.561
+    },
+    {
+      "text": "is that GPT models are",
+      "start": 1976.159,
+      "duration": 5.041
+    },
+    {
+      "text": "the pre-training part rather I would I",
+      "start": 1979.2,
+      "duration": 5.24
+    },
+    {
+      "text": "should say the pre-training part of GPT",
+      "start": 1981.2,
+      "duration": 6.599
+    },
+    {
+      "text": "models is",
+      "start": 1984.44,
+      "duration": 3.359
+    },
+    {
+      "text": "unsupervised why is it unsupervised",
+      "start": 1989.12,
+      "duration": 4.08
+    },
+    {
+      "text": "because we use the structure of the data",
+      "start": 1991.399,
+      "duration": 3.961
+    },
+    {
+      "text": "itself to create the labels the next",
+      "start": 1993.2,
+      "duration": 3.76
+    },
+    {
+      "text": "word in the sentence is used as the",
+      "start": 1995.36,
+      "duration": 3.96
+    },
+    {
+      "text": "label and the second thing which is very",
+      "start": 1996.96,
+      "duration": 5.319
+    },
+    {
+      "text": "important is that these are",
+      "start": 1999.32,
+      "duration": 8.479
+    },
+    {
+      "text": "Auto these are Auto regressive models",
+      "start": 2002.279,
+      "duration": 5.52
+    },
+    {
+      "text": "which means that the previous outputs",
+      "start": 2007.919,
+      "duration": 4.561
+    },
+    {
+      "text": "are used as the inputs for future",
+      "start": 2010.24,
+      "duration": 4.76
+    },
+    {
+      "text": "predictions like I showed you over here",
+      "start": 2012.48,
+      "duration": 5.28
+    },
+    {
+      "text": "so it is very important to note these",
+      "start": 2015.0,
+      "duration": 5.639
+    },
+    {
+      "text": "key things when you pre-train the GPT so",
+      "start": 2017.76,
+      "duration": 4.72
+    },
+    {
+      "text": "in pre-training you predict the next",
+      "start": 2020.639,
+      "duration": 3.841
+    },
+    {
+      "text": "word you break you use the structure of",
+      "start": 2022.48,
+      "duration": 4.28
+    },
+    {
+      "text": "the sentence itself to have training",
+      "start": 2024.48,
+      "duration": 4.319
+    },
+    {
+      "text": "data and labels and then you do the",
+      "start": 2026.76,
+      "duration": 4.879
+    },
+    {
+      "text": "training you train the neural network uh",
+      "start": 2028.799,
+      "duration": 4.561
+    },
+    {
+      "text": "which is the GPT",
+      "start": 2031.639,
+      "duration": 4.28
+    },
+    {
+      "text": "architecture and then you optimize the",
+      "start": 2033.36,
+      "duration": 5.679
+    },
+    {
+      "text": "parameters the 175 billion parameters",
+      "start": 2035.919,
+      "duration": 4.961
+    },
+    {
+      "text": "now can you think why it takes so much",
+      "start": 2039.039,
+      "duration": 3.64
+    },
+    {
+      "text": "compute time for pre-training because",
+      "start": 2040.88,
+      "duration": 4.48
+    },
+    {
+      "text": "175 billion parameters have to be",
+      "start": 2042.679,
+      "duration": 5.12
+    },
+    {
+      "text": "optimized so that the next word in all",
+      "start": 2045.36,
+      "duration": 5.999
+    },
+    {
+      "text": "sentences is predicted",
+      "start": 2047.799,
+      "duration": 3.56
+    },
+    {
+      "text": "correctly okay now as I have mentioned",
+      "start": 2052.119,
+      "duration": 4.921
+    },
+    {
+      "text": "to you before uh compared to the",
+      "start": 2054.52,
+      "duration": 5.359
+    },
+    {
+      "text": "original Transformer architecture the",
+      "start": 2057.04,
+      "duration": 5.599
+    },
+    {
+      "text": "GPT architecture is actually simpler the",
+      "start": 2059.879,
+      "duration": 5.921
+    },
+    {
+      "text": "GPT architecture only has the decoder",
+      "start": 2062.639,
+      "duration": 5.121
+    },
+    {
+      "text": "block it does not have the encoder block",
+      "start": 2065.8,
+      "duration": 4.52
+    },
+    {
+      "text": "block so again let me show you this just",
+      "start": 2067.76,
+      "duration": 4.96
+    },
+    {
+      "text": "for reference the original Transformer",
+      "start": 2070.32,
+      "duration": 4.24
+    },
+    {
+      "text": "architecture looks like this if you see",
+      "start": 2072.72,
+      "duration": 4.199
+    },
+    {
+      "text": "it has the encoder block as well as the",
+      "start": 2074.56,
+      "duration": 3.88
+    },
+    {
+      "text": "decoder block",
+      "start": 2076.919,
+      "duration": 4.801
+    },
+    {
+      "text": "right but now if you see the GPT",
+      "start": 2078.44,
+      "duration": 5.959
+    },
+    {
+      "text": "architecture here the input text is only",
+      "start": 2081.72,
+      "duration": 6.0
+    },
+    {
+      "text": "passed to the decoder see it does not",
+      "start": 2084.399,
+      "duration": 5.68
+    },
+    {
+      "text": "have the encoder so in a sense the GPT",
+      "start": 2087.72,
+      "duration": 4.76
+    },
+    {
+      "text": "is a more simplified architecture that",
+      "start": 2090.079,
+      "duration": 6.0
+    },
+    {
+      "text": "way uh but also the number of building",
+      "start": 2092.48,
+      "duration": 6.52
+    },
+    {
+      "text": "blocks used are huge in in the GPT there",
+      "start": 2096.079,
+      "duration": 5.441
+    },
+    {
+      "text": "is no encoder but to give you an idea in",
+      "start": 2099.0,
+      "duration": 4.28
+    },
+    {
+      "text": "the original Transformer we had six",
+      "start": 2101.52,
+      "duration": 4.72
+    },
+    {
+      "text": "encoder decoder blocks in the gpt3",
+      "start": 2103.28,
+      "duration": 4.72
+    },
+    {
+      "text": "architecture on the other hand we have",
+      "start": 2106.24,
+      "duration": 6.32
+    },
+    {
+      "text": "96 Transformer layers and 175 parameters",
+      "start": 2108.0,
+      "duration": 7.8
+    },
+    {
+      "text": "keep this in mind we have",
+      "start": 2112.56,
+      "duration": 3.24
+    },
+    {
+      "text": "96 Transformer layers so if you see this",
+      "start": 2116.92,
+      "duration": 6.48
+    },
+    {
+      "text": "if you think of this as one Transformer",
+      "start": 2121.4,
+      "duration": 4.84
+    },
+    {
+      "text": "layer if you see this as one Transformer",
+      "start": 2123.4,
+      "duration": 5.439
+    },
+    {
+      "text": "layer this this there are 96 such",
+      "start": 2126.24,
+      "duration": 4.52
+    },
+    {
+      "text": "Transformer layers like this that's why",
+      "start": 2128.839,
+      "duration": 5.321
+    },
+    {
+      "text": "there are 175 billion",
+      "start": 2130.76,
+      "duration": 6.0
+    },
+    {
+      "text": "parameters now I want to also show you",
+      "start": 2134.16,
+      "duration": 5.64
+    },
+    {
+      "text": "the visual uh I want to show you more",
+      "start": 2136.76,
+      "duration": 4.96
+    },
+    {
+      "text": "visually how the next word prediction",
+      "start": 2139.8,
+      "duration": 4.52
+    },
+    {
+      "text": "happens we already saw Here how we have",
+      "start": 2141.72,
+      "duration": 4.32
+    },
+    {
+      "text": "input and the output but I've also",
+      "start": 2144.32,
+      "duration": 3.36
+    },
+    {
+      "text": "written it on a whiteboard so that you",
+      "start": 2146.04,
+      "duration": 4.36
+    },
+    {
+      "text": "have a much more clearer idea so let's",
+      "start": 2147.68,
+      "duration": 5.639
+    },
+    {
+      "text": "say so the way GPT works is that there",
+      "start": 2150.4,
+      "duration": 4.32
+    },
+    {
+      "text": "are different iterations there is",
+      "start": 2153.319,
+      "duration": 3.201
+    },
+    {
+      "text": "iteration number one there is iteration",
+      "start": 2154.72,
+      "duration": 3.599
+    },
+    {
+      "text": "number two and there is iteration number",
+      "start": 2156.52,
+      "duration": 4.28
+    },
+    {
+      "text": "three let's zoom into iteration number",
+      "start": 2158.319,
+      "duration": 5.0
+    },
+    {
+      "text": "one to see what's going on so in",
+      "start": 2160.8,
+      "duration": 4.72
+    },
+    {
+      "text": "iteration number one we first have only",
+      "start": 2163.319,
+      "duration": 5.401
+    },
+    {
+      "text": "one word as the input this it it's it",
+      "start": 2165.52,
+      "duration": 4.839
+    },
+    {
+      "text": "goes through pre-processing which is",
+      "start": 2168.72,
+      "duration": 4.359
+    },
+    {
+      "text": "converting it into token IDs then it",
+      "start": 2170.359,
+      "duration": 5.72
+    },
+    {
+      "text": "goes to the decoder block then it goes",
+      "start": 2173.079,
+      "duration": 4.721
+    },
+    {
+      "text": "to the output layer and we predict the",
+      "start": 2176.079,
+      "duration": 4.441
+    },
+    {
+      "text": "next word which is is so then now the",
+      "start": 2177.8,
+      "duration": 5.16
+    },
+    {
+      "text": "output is this is so it predicted the",
+      "start": 2180.52,
+      "duration": 5.92
+    },
+    {
+      "text": "next word and now this entire this is",
+      "start": 2182.96,
+      "duration": 6.28
+    },
+    {
+      "text": "now serves as an for the second",
+      "start": 2186.44,
+      "duration": 5.32
+    },
+    {
+      "text": "iteration so now we go into iteration",
+      "start": 2189.24,
+      "duration": 5.92
+    },
+    {
+      "text": "two where this is is an input so is was",
+      "start": 2191.76,
+      "duration": 5.359
+    },
+    {
+      "text": "an output of the first iteration but now",
+      "start": 2195.16,
+      "duration": 4.6
+    },
+    {
+      "text": "it is included in the input of the next",
+      "start": 2197.119,
+      "duration": 5.041
+    },
+    {
+      "text": "iteration and then the same steps happen",
+      "start": 2199.76,
+      "duration": 4.72
+    },
+    {
+      "text": "we do the token ID preprocessing then it",
+      "start": 2202.16,
+      "duration": 4.36
+    },
+    {
+      "text": "goes through the decoder block and then",
+      "start": 2204.48,
+      "duration": 4.96
+    },
+    {
+      "text": "we predict the next word this is",
+      "start": 2206.52,
+      "duration": 5.599
+    },
+    {
+      "text": "an that's the output from the iteration",
+      "start": 2209.44,
+      "duration": 4.52
+    },
+    {
+      "text": "two the next word which is predicted is",
+      "start": 2212.119,
+      "duration": 6.0
+    },
+    {
+      "text": "n and now this output from iteration two",
+      "start": 2213.96,
+      "duration": 7.56
+    },
+    {
+      "text": "is now uh going as the input to the",
+      "start": 2218.119,
+      "duration": 5.801
+    },
+    {
+      "text": "iteration number three so the input to",
+      "start": 2221.52,
+      "duration": 5.2
+    },
+    {
+      "text": "the iteration number three is this is",
+      "start": 2223.92,
+      "duration": 5.439
+    },
+    {
+      "text": "n you see why it is called an auto",
+      "start": 2226.72,
+      "duration": 4.84
+    },
+    {
+      "text": "regressive model the output from the",
+      "start": 2229.359,
+      "duration": 4.76
+    },
+    {
+      "text": "previous iteration which is n is forming",
+      "start": 2231.56,
+      "duration": 4.72
+    },
+    {
+      "text": "the input of the next iteration so the",
+      "start": 2234.119,
+      "duration": 5.321
+    },
+    {
+      "text": "next iteration is called is this is n",
+      "start": 2236.28,
+      "duration": 4.839
+    },
+    {
+      "text": "and then again it goes through the same",
+      "start": 2239.44,
+      "duration": 3.52
+    },
+    {
+      "text": "preprocessing steps and then there is an",
+      "start": 2241.119,
+      "duration": 3.921
+    },
+    {
+      "text": "output layer and then the final output",
+      "start": 2242.96,
+      "duration": 5.08
+    },
+    {
+      "text": "is this is an example so so the next",
+      "start": 2245.04,
+      "duration": 5.6
+    },
+    {
+      "text": "word which has been predicted is example",
+      "start": 2248.04,
+      "duration": 4.48
+    },
+    {
+      "text": "and then similarly these iterations will",
+      "start": 2250.64,
+      "duration": 4.199
+    },
+    {
+      "text": "actually keep on",
+      "start": 2252.52,
+      "duration": 4.52
+    },
+    {
+      "text": "continuing this is how the GPT",
+      "start": 2254.839,
+      "duration": 4.24
+    },
+    {
+      "text": "architecture Works in each iteration we",
+      "start": 2257.04,
+      "duration": 3.52
+    },
+    {
+      "text": "predict the next word and then the",
+      "start": 2259.079,
+      "duration": 3.721
+    },
+    {
+      "text": "prediction actually informs the input of",
+      "start": 2260.56,
+      "duration": 4.48
+    },
+    {
+      "text": "the next iteration so that's why it's",
+      "start": 2262.8,
+      "duration": 4.72
+    },
+    {
+      "text": "unsupervised and auto",
+      "start": 2265.04,
+      "duration": 5.319
+    },
+    {
+      "text": "regressive so this schematic of the GPT",
+      "start": 2267.52,
+      "duration": 5.4
+    },
+    {
+      "text": "architecture and as you can see that uh",
+      "start": 2270.359,
+      "duration": 4.361
+    },
+    {
+      "text": "it only has the decoder there is no",
+      "start": 2272.92,
+      "duration": 4.24
+    },
+    {
+      "text": "encoder if you look at iteration 1 2 and",
+      "start": 2274.72,
+      "duration": 5.0
+    },
+    {
+      "text": "three I did not mention an encoder block",
+      "start": 2277.16,
+      "duration": 5.159
+    },
+    {
+      "text": "here right because encoder block is not",
+      "start": 2279.72,
+      "duration": 5.04
+    },
+    {
+      "text": "present in the GPT architecture",
+      "start": 2282.319,
+      "duration": 7.161
+    },
+    {
+      "text": "schematic only the decoder block is",
+      "start": 2284.76,
+      "duration": 4.72
+    },
+    {
+      "text": "present okay now one last thing which I",
+      "start": 2290.04,
+      "duration": 5.24
+    },
+    {
+      "text": "want to cover in this lecture is",
+      "start": 2293.119,
+      "duration": 5.041
+    },
+    {
+      "text": "something called as emergent",
+      "start": 2295.28,
+      "duration": 5.76
+    },
+    {
+      "text": "Behavior so what is emergent Behavior",
+      "start": 2298.16,
+      "duration": 4.679
+    },
+    {
+      "text": "I've already touched upon this earlier",
+      "start": 2301.04,
+      "duration": 3.4
+    },
+    {
+      "text": "in this lecture and in the previous",
+      "start": 2302.839,
+      "duration": 5.161
+    },
+    {
+      "text": "lectures but remember that GPT is",
+      "start": 2304.44,
+      "duration": 5.84
+    },
+    {
+      "text": "trained only for the next word",
+      "start": 2308.0,
+      "duration": 4.88
+    },
+    {
+      "text": "prediction right GP is trained only for",
+      "start": 2310.28,
+      "duration": 4.799
+    },
+    {
+      "text": "the next word prediction but it's",
+      "start": 2312.88,
+      "duration": 4.8
+    },
+    {
+      "text": "actually quite awesome and amazing that",
+      "start": 2315.079,
+      "duration": 4.441
+    },
+    {
+      "text": "even though GPT is only trained to",
+      "start": 2317.68,
+      "duration": 4.639
+    },
+    {
+      "text": "predict the next World it can perform so",
+      "start": 2319.52,
+      "duration": 5.079
+    },
+    {
+      "text": "many other tasks such as language",
+      "start": 2322.319,
+      "duration": 5.04
+    },
+    {
+      "text": "translation so let me go to gp4 right",
+      "start": 2324.599,
+      "duration": 6.24
+    },
+    {
+      "text": "now and uh",
+      "start": 2327.359,
+      "duration": 3.48
+    },
+    {
+      "text": "convert",
+      "start": 2332.04,
+      "duration": 6.799
+    },
+    {
+      "text": "breakfast into French",
+      "start": 2334.72,
+      "duration": 7.879
+    },
+    {
+      "text": "so gp4 is not trained to do language",
+      "start": 2338.839,
+      "duration": 5.921
+    },
+    {
+      "text": "translation tasks it is trained to",
+      "start": 2342.599,
+      "duration": 4.72
+    },
+    {
+      "text": "predict the next world but while the",
+      "start": 2344.76,
+      "duration": 4.12
+    },
+    {
+      "text": "training or while the pre-training",
+      "start": 2347.319,
+      "duration": 3.681
+    },
+    {
+      "text": "happens it also develops other",
+      "start": 2348.88,
+      "duration": 4.12
+    },
+    {
+      "text": "advantages it develops other",
+      "start": 2351.0,
+      "duration": 4.04
+    },
+    {
+      "text": "capabilities and this is called as",
+      "start": 2353.0,
+      "duration": 4.599
+    },
+    {
+      "text": "emergent Behavior due to these other",
+      "start": 2355.04,
+      "duration": 4.68
+    },
+    {
+      "text": "capabilities although it was not trained",
+      "start": 2357.599,
+      "duration": 5.361
+    },
+    {
+      "text": "to do the translation tasks uh gp4 can",
+      "start": 2359.72,
+      "duration": 5.119
+    },
+    {
+      "text": "also do the translation tasks which I",
+      "start": 2362.96,
+      "duration": 4.76
+    },
+    {
+      "text": "have mentioned here see you can see one",
+      "start": 2364.839,
+      "duration": 4.52
+    },
+    {
+      "text": "more thing which I want to show you is",
+      "start": 2367.72,
+      "duration": 4.04
+    },
+    {
+      "text": "this",
+      "start": 2369.359,
+      "duration": 7.081
+    },
+    {
+      "text": "uh uh McQ generator so as such when GPT",
+      "start": 2371.76,
+      "duration": 6.839
+    },
+    {
+      "text": "was trained it was not trained to do McQ",
+      "start": 2376.44,
+      "duration": 4.679
+    },
+    {
+      "text": "generation right but look at this if I",
+      "start": 2378.599,
+      "duration": 5.441
+    },
+    {
+      "text": "want the GPT to provide me uh three to",
+      "start": 2381.119,
+      "duration": 4.681
+    },
+    {
+      "text": "four multiple choice",
+      "start": 2384.04,
+      "duration": 3.799
+    },
+    {
+      "text": "questions uh so I just clicked on",
+      "start": 2385.8,
+      "duration": 4.72
+    },
+    {
+      "text": "generate right",
+      "start": 2387.839,
+      "duration": 6.441
+    },
+    {
+      "text": "now and you'll see uh McQ questions have",
+      "start": 2390.52,
+      "duration": 6.319
+    },
+    {
+      "text": "been generated on gravity now",
+      "start": 2394.28,
+      "duration": 4.12
+    },
+    {
+      "text": "technically",
+      "start": 2396.839,
+      "duration": 4.321
+    },
+    {
+      "text": "uh GPT was not trained really to",
+      "start": 2398.4,
+      "duration": 5.88
+    },
+    {
+      "text": "generate these questions on gravity but",
+      "start": 2401.16,
+      "duration": 5.04
+    },
+    {
+      "text": "it developed these properties or it",
+      "start": 2404.28,
+      "duration": 3.36
+    },
+    {
+      "text": "developed these",
+      "start": 2406.2,
+      "duration": 4.44
+    },
+    {
+      "text": "capabilities uh on its own while the",
+      "start": 2407.64,
+      "duration": 4.64
+    },
+    {
+      "text": "pre-training was happening to predict",
+      "start": 2410.64,
+      "duration": 4.12
+    },
+    {
+      "text": "the next World and that's why this is",
+      "start": 2412.28,
+      "duration": 5.2
+    },
+    {
+      "text": "called as emergent Behavior actually so",
+      "start": 2414.76,
+      "duration": 4.4
+    },
+    {
+      "text": "many awesome things can be done because",
+      "start": 2417.48,
+      "duration": 4.359
+    },
+    {
+      "text": "of this emergent Behavior although GPT",
+      "start": 2419.16,
+      "duration": 4.8
+    },
+    {
+      "text": "is just train to predict the next word",
+      "start": 2421.839,
+      "duration": 4.641
+    },
+    {
+      "text": "it can do it can answer text questions",
+      "start": 2423.96,
+      "duration": 4.48
+    },
+    {
+      "text": "generate worksheet sheets summarize a",
+      "start": 2426.48,
+      "duration": 3.879
+    },
+    {
+      "text": "text create lesson plan create report",
+      "start": 2428.44,
+      "duration": 4.76
+    },
+    {
+      "text": "cards generate a PP grade essays there",
+      "start": 2430.359,
+      "duration": 4.921
+    },
+    {
+      "text": "are so many wonderful things which GPT",
+      "start": 2433.2,
+      "duration": 4.32
+    },
+    {
+      "text": "can do and in fact this was also",
+      "start": 2435.28,
+      "duration": 5.68
+    },
+    {
+      "text": "mentioned in one of the blogs of open AI",
+      "start": 2437.52,
+      "duration": 6.48
+    },
+    {
+      "text": "where they say that",
+      "start": 2440.96,
+      "duration": 6.24
+    },
+    {
+      "text": "uh uh we noticed so this this mentioned",
+      "start": 2444.0,
+      "duration": 5.76
+    },
+    {
+      "text": "in their blog we noticed that we can use",
+      "start": 2447.2,
+      "duration": 4.52
+    },
+    {
+      "text": "the underlying language model to begin",
+      "start": 2449.76,
+      "duration": 4.64
+    },
+    {
+      "text": "to perform tasks without ever training",
+      "start": 2451.72,
+      "duration": 5.24
+    },
+    {
+      "text": "on them this is amazing right for",
+      "start": 2454.4,
+      "duration": 4.52
+    },
+    {
+      "text": "example ex Le performance on tasks like",
+      "start": 2456.96,
+      "duration": 3.68
+    },
+    {
+      "text": "picking the right answer to a multiple",
+      "start": 2458.92,
+      "duration": 5.04
+    },
+    {
+      "text": "choice question uh steadily increases as",
+      "start": 2460.64,
+      "duration": 5.6
+    },
+    {
+      "text": "the steadily increases as the underlying",
+      "start": 2463.96,
+      "duration": 5.879
+    },
+    {
+      "text": "language model improves this is an clear",
+      "start": 2466.24,
+      "duration": 7.079
+    },
+    {
+      "text": "example of emergent",
+      "start": 2469.839,
+      "duration": 3.48
+    },
+    {
+      "text": "Behavior Uh so basically the formal",
+      "start": 2473.52,
+      "duration": 5.48
+    },
+    {
+      "text": "definition of emergent behavior is the",
+      "start": 2476.4,
+      "duration": 5.679
+    },
+    {
+      "text": "ability of a model to perform tasks that",
+      "start": 2479.0,
+      "duration": 5.839
+    },
+    {
+      "text": "the model wasn't explicitly trained to",
+      "start": 2482.079,
+      "duration": 5.641
+    },
+    {
+      "text": "perform just keep this in mind and that",
+      "start": 2484.839,
+      "duration": 5.121
+    },
+    {
+      "text": "was very surprising to researchers also",
+      "start": 2487.72,
+      "duration": 4.399
+    },
+    {
+      "text": "because it was only trained to do the",
+      "start": 2489.96,
+      "duration": 4.72
+    },
+    {
+      "text": "next door tasks then how can it develop",
+      "start": 2492.119,
+      "duration": 4.601
+    },
+    {
+      "text": "these many capabilities and I think this",
+      "start": 2494.68,
+      "duration": 4.0
+    },
+    {
+      "text": "Still Still Remains an open question",
+      "start": 2496.72,
+      "duration": 4.24
+    },
+    {
+      "text": "that how come emergent behavior is",
+      "start": 2498.68,
+      "duration": 4.919
+    },
+    {
+      "text": "developed by chat GPT so let me actually",
+      "start": 2500.96,
+      "duration": 4.44
+    },
+    {
+      "text": "go to Google Scholar and search about",
+      "start": 2503.599,
+      "duration": 5.321
+    },
+    {
+      "text": "emergent behavior I'm sure there",
+      "start": 2505.4,
+      "duration": 6.719
+    },
+    {
+      "text": "are many papers on this so here you can",
+      "start": 2508.92,
+      "duration": 5.159
+    },
+    {
+      "text": "see I searched emergent behavior and",
+      "start": 2512.119,
+      "duration": 3.96
+    },
+    {
+      "text": "there are all of these papers which came",
+      "start": 2514.079,
+      "duration": 3.881
+    },
+    {
+      "text": "up uh",
+      "start": 2516.079,
+      "duration": 3.801
+    },
+    {
+      "text": "this is an area of active research such",
+      "start": 2517.96,
+      "duration": 5.159
+    },
+    {
+      "text": "as exploring emergent behavior in llms",
+      "start": 2519.88,
+      "duration": 5.12
+    },
+    {
+      "text": "and I'm sure there's a lot of scope for",
+      "start": 2523.119,
+      "duration": 4.321
+    },
+    {
+      "text": "making more contributions here so if any",
+      "start": 2525.0,
+      "duration": 4.04
+    },
+    {
+      "text": "of you are considering looking for",
+      "start": 2527.44,
+      "duration": 4.2
+    },
+    {
+      "text": "research topics emergent Behavior might",
+      "start": 2529.04,
+      "duration": 5.24
+    },
+    {
+      "text": "be a great topic to start your research",
+      "start": 2531.64,
+      "duration": 5.199
+    },
+    {
+      "text": "on this actually brings us to the end of",
+      "start": 2534.28,
+      "duration": 4.24
+    },
+    {
+      "text": "this lecture we covered several things",
+      "start": 2536.839,
+      "duration": 4.401
+    },
+    {
+      "text": "in today's lecture so let me do a quick",
+      "start": 2538.52,
+      "duration": 5.079
+    },
+    {
+      "text": "recap of what all we have covered so",
+      "start": 2541.24,
+      "duration": 4.359
+    },
+    {
+      "text": "initially before looking at zero shot",
+      "start": 2543.599,
+      "duration": 3.841
+    },
+    {
+      "text": "and few shot learning we started with",
+      "start": 2545.599,
+      "duration": 4.841
+    },
+    {
+      "text": "the history we saw that the first paper",
+      "start": 2547.44,
+      "duration": 4.879
+    },
+    {
+      "text": "which was introduced in 2017 is",
+      "start": 2550.44,
+      "duration": 3.76
+    },
+    {
+      "text": "attention is all you need it",
+      "start": 2552.319,
+      "duration": 3.601
+    },
+    {
+      "text": "Incorporated the Transformer",
+      "start": 2554.2,
+      "duration": 3.919
+    },
+    {
+      "text": "architecture then came generative",
+      "start": 2555.92,
+      "duration": 5.199
+    },
+    {
+      "text": "pre-training GPT the architecture is a",
+      "start": 2558.119,
+      "duration": 5.041
+    },
+    {
+      "text": "bit different than Transformer it uses",
+      "start": 2561.119,
+      "duration": 6.24
+    },
+    {
+      "text": "only decoder no encoder and then after",
+      "start": 2563.16,
+      "duration": 6.24
+    },
+    {
+      "text": "uh generative pre-training was developed",
+      "start": 2567.359,
+      "duration": 4.521
+    },
+    {
+      "text": "as a method it shows two main things",
+      "start": 2569.4,
+      "duration": 4.959
+    },
+    {
+      "text": "first is that it's unsupervised second",
+      "start": 2571.88,
+      "duration": 5.12
+    },
+    {
+      "text": "it's Auto regressive and unlabel data",
+      "start": 2574.359,
+      "duration": 4.161
+    },
+    {
+      "text": "which which means it does not need label",
+      "start": 2577.0,
+      "duration": 3.079
+    },
+    {
+      "text": "data for",
+      "start": 2578.52,
+      "duration": 4.44
+    },
+    {
+      "text": "pre-training then came gpt2 one year",
+      "start": 2580.079,
+      "duration": 6.52
+    },
+    {
+      "text": "later in 2019 and uh in fact there were",
+      "start": 2582.96,
+      "duration": 5.879
+    },
+    {
+      "text": "four models of gpt2 which were released",
+      "start": 2586.599,
+      "duration": 5.281
+    },
+    {
+      "text": "by open AI the first one had 117 million",
+      "start": 2588.839,
+      "duration": 5.561
+    },
+    {
+      "text": "parameters the second had 345 the third",
+      "start": 2591.88,
+      "duration": 5.52
+    },
+    {
+      "text": "had 762 and the fourth one had about a",
+      "start": 2594.4,
+      "duration": 4.0
+    },
+    {
+      "text": "billion",
+      "start": 2597.4,
+      "duration": 3.6
+    },
+    {
+      "text": "parameters but then came the big beast",
+      "start": 2598.4,
+      "duration": 5.4
+    },
+    {
+      "text": "in 2020 that was really",
+      "start": 2601.0,
+      "duration": 5.64
+    },
+    {
+      "text": "gpt3 and uh this paper said that",
+      "start": 2603.8,
+      "duration": 5.2
+    },
+    {
+      "text": "language models are few short Learners",
+      "start": 2606.64,
+      "duration": 4.52
+    },
+    {
+      "text": "which means that if gpt3 is actually",
+      "start": 2609.0,
+      "duration": 4.88
+    },
+    {
+      "text": "provided some amount of supplementary",
+      "start": 2611.16,
+      "duration": 6.439
+    },
+    {
+      "text": "data it can do amazing few short tasks",
+      "start": 2613.88,
+      "duration": 6.04
+    },
+    {
+      "text": "and this model used 175 billion",
+      "start": 2617.599,
+      "duration": 4.24
+    },
+    {
+      "text": "parameters which was the largest anyone",
+      "start": 2619.92,
+      "duration": 4.72
+    },
+    {
+      "text": "had ever seen up till that",
+      "start": 2621.839,
+      "duration": 5.28
+    },
+    {
+      "text": "point after looking at this history we",
+      "start": 2624.64,
+      "duration": 4.16
+    },
+    {
+      "text": "looked at the difference between zero",
+      "start": 2627.119,
+      "duration": 4.601
+    },
+    {
+      "text": "shot and few shot learning in particular",
+      "start": 2628.8,
+      "duration": 5.44
+    },
+    {
+      "text": "we saw that in zero shot learning you",
+      "start": 2631.72,
+      "duration": 4.68
+    },
+    {
+      "text": "don't need to provide any example the",
+      "start": 2634.24,
+      "duration": 4.52
+    },
+    {
+      "text": "model can perform the task without",
+      "start": 2636.4,
+      "duration": 4.719
+    },
+    {
+      "text": "example and in few short learning you",
+      "start": 2638.76,
+      "duration": 5.64
+    },
+    {
+      "text": "can give a few supplementary examples so",
+      "start": 2641.119,
+      "duration": 5.401
+    },
+    {
+      "text": "when this gpt3 paper was released the",
+      "start": 2644.4,
+      "duration": 4.439
+    },
+    {
+      "text": "authors claimed that this this was a few",
+      "start": 2646.52,
+      "duration": 5.079
+    },
+    {
+      "text": "short model they did not say zero short",
+      "start": 2648.839,
+      "duration": 5.041
+    },
+    {
+      "text": "Learner in the title because although it",
+      "start": 2651.599,
+      "duration": 5.801
+    },
+    {
+      "text": "can do zero short learning uh it's just",
+      "start": 2653.88,
+      "duration": 5.92
+    },
+    {
+      "text": "much better at few short learning and we",
+      "start": 2657.4,
+      "duration": 4.24
+    },
+    {
+      "text": "actually explored this ourselves we",
+      "start": 2659.8,
+      "duration": 4.12
+    },
+    {
+      "text": "asked gp4 are you a zero short learner",
+      "start": 2661.64,
+      "duration": 5.12
+    },
+    {
+      "text": "or are you a few short learner and gp4",
+      "start": 2663.92,
+      "duration": 5.199
+    },
+    {
+      "text": "sent that I'm a few short learner it's",
+      "start": 2666.76,
+      "duration": 4.44
+    },
+    {
+      "text": "it also said that it can also do zero",
+      "start": 2669.119,
+      "duration": 4.841
+    },
+    {
+      "text": "short learning but it it's just more",
+      "start": 2671.2,
+      "duration": 5.96
+    },
+    {
+      "text": "accurate uh at few short",
+      "start": 2673.96,
+      "duration": 5.48
+    },
+    {
+      "text": "learning okay that's important to keep",
+      "start": 2677.16,
+      "duration": 5.399
+    },
+    {
+      "text": "in mind then we saw that gpt3 utilizes a",
+      "start": 2679.44,
+      "duration": 7.0
+    },
+    {
+      "text": "huge huge amount of data uh it it uses",
+      "start": 2682.559,
+      "duration": 6.681
+    },
+    {
+      "text": "around 300 billion tokens in total so",
+      "start": 2686.44,
+      "duration": 5.0
+    },
+    {
+      "text": "just writing it down 300 billion tokens",
+      "start": 2689.24,
+      "duration": 4.079
+    },
+    {
+      "text": "in total which is about 300 billion",
+      "start": 2691.44,
+      "duration": 5.04
+    },
+    {
+      "text": "words approximately a token is a unit of",
+      "start": 2693.319,
+      "duration": 6.441
+    },
+    {
+      "text": "text which the model reads it it's not",
+      "start": 2696.48,
+      "duration": 5.24
+    },
+    {
+      "text": "usually just one word but for now you",
+      "start": 2699.76,
+      "duration": 5.04
+    },
+    {
+      "text": "can think of one token as one word and",
+      "start": 2701.72,
+      "duration": 5.399
+    },
+    {
+      "text": "then we saw that training pre-training",
+      "start": 2704.8,
+      "duration": 6.4
+    },
+    {
+      "text": "gpt3 costs $4.6 million why does it cost",
+      "start": 2707.119,
+      "duration": 5.72
+    },
+    {
+      "text": "this much because we have to predict the",
+      "start": 2711.2,
+      "duration": 3.639
+    },
+    {
+      "text": "next word in a sentence using this",
+      "start": 2712.839,
+      "duration": 4.801
+    },
+    {
+      "text": "architecture so sentences are broken",
+      "start": 2714.839,
+      "duration": 5.561
+    },
+    {
+      "text": "down into training data and testing data",
+      "start": 2717.64,
+      "duration": 5.32
+    },
+    {
+      "text": "it's Auto regressive so one word of the",
+      "start": 2720.4,
+      "duration": 4.52
+    },
+    {
+      "text": "sentence is used for testing or the next",
+      "start": 2722.96,
+      "duration": 3.52
+    },
+    {
+      "text": "word and the remaining is used for",
+      "start": 2724.92,
+      "duration": 3.8
+    },
+    {
+      "text": "training and this has to be done for all",
+      "start": 2726.48,
+      "duration": 4.72
+    },
+    {
+      "text": "the sentences in the billion billions of",
+      "start": 2728.72,
+      "duration": 5.04
+    },
+    {
+      "text": "data files which we have that's why it",
+      "start": 2731.2,
+      "duration": 6.24
+    },
+    {
+      "text": "takes 4.6 million to train because there",
+      "start": 2733.76,
+      "duration": 6.24
+    },
+    {
+      "text": "are 175 billion parameters in",
+      "start": 2737.44,
+      "duration": 5.76
+    },
+    {
+      "text": "gpt3 remember to optimize the weights",
+      "start": 2740.0,
+      "duration": 5.24
+    },
+    {
+      "text": "for those many it would need a huge",
+      "start": 2743.2,
+      "duration": 4.52
+    },
+    {
+      "text": "amount of computer power access to gpus",
+      "start": 2745.24,
+      "duration": 5.52
+    },
+    {
+      "text": "Etc that's why training process is hard",
+      "start": 2747.72,
+      "duration": 5.879
+    },
+    {
+      "text": "so this schematic also shows the GPT",
+      "start": 2750.76,
+      "duration": 4.839
+    },
+    {
+      "text": "architecture remember it only has the",
+      "start": 2753.599,
+      "duration": 5.041
+    },
+    {
+      "text": "decoder it works in each it works in",
+      "start": 2755.599,
+      "duration": 5.161
+    },
+    {
+      "text": "iterations and the output of one",
+      "start": 2758.64,
+      "duration": 4.6
+    },
+    {
+      "text": "iteration is fed as an input to the next",
+      "start": 2760.76,
+      "duration": 5.079
+    },
+    {
+      "text": "iteration that makes it auto regressive",
+      "start": 2763.24,
+      "duration": 4.839
+    },
+    {
+      "text": "and in each iteration the sentence",
+      "start": 2765.839,
+      "duration": 4.561
+    },
+    {
+      "text": "itself is used to make the label which",
+      "start": 2768.079,
+      "duration": 4.361
+    },
+    {
+      "text": "is the next word prediction that's why",
+      "start": 2770.4,
+      "duration": 4.76
+    },
+    {
+      "text": "it's an unsupervised learning exercise",
+      "start": 2772.44,
+      "duration": 4.919
+    },
+    {
+      "text": "pre-training we also saw that after",
+      "start": 2775.16,
+      "duration": 3.8
+    },
+    {
+      "text": "pre-training there is usually one more",
+      "start": 2777.359,
+      "duration": 3.72
+    },
+    {
+      "text": "step which is fine-tuning which is",
+      "start": 2778.96,
+      "duration": 3.8
+    },
+    {
+      "text": "basically training on a much narrower",
+      "start": 2781.079,
+      "duration": 3.681
+    },
+    {
+      "text": "and specific data to improve the",
+      "start": 2782.76,
+      "duration": 4.4
+    },
+    {
+      "text": "performance usually needed in production",
+      "start": 2784.76,
+      "duration": 5.2
+    },
+    {
+      "text": "level tasks we also briefly looked at",
+      "start": 2787.16,
+      "duration": 4.72
+    },
+    {
+      "text": "the gap between the open source and the",
+      "start": 2789.96,
+      "duration": 4.56
+    },
+    {
+      "text": "closed Source llms really closing with",
+      "start": 2791.88,
+      "duration": 5.04
+    },
+    {
+      "text": "the introduction of Lama 3.1 which",
+      "start": 2794.52,
+      "duration": 4.559
+    },
+    {
+      "text": "absolutely amazing performance and it",
+      "start": 2796.92,
+      "duration": 7.28
+    },
+    {
+      "text": "somewhat beats gp4 it has 405 billion",
+      "start": 2799.079,
+      "duration": 7.52
+    },
+    {
+      "text": "parameters and towards the end the last",
+      "start": 2804.2,
+      "duration": 4.359
+    },
+    {
+      "text": "concept which we learned about today is",
+      "start": 2806.599,
+      "duration": 4.841
+    },
+    {
+      "text": "that of emergent Behavior so emergent",
+      "start": 2808.559,
+      "duration": 4.881
+    },
+    {
+      "text": "behavior is the ability of the model to",
+      "start": 2811.44,
+      "duration": 4.0
+    },
+    {
+      "text": "perform tasks that the model wasn't",
+      "start": 2813.44,
+      "duration": 4.08
+    },
+    {
+      "text": "explicitly trained to perform",
+      "start": 2815.44,
+      "duration": 4.76
+    },
+    {
+      "text": "so for example tasks such as",
+      "start": 2817.52,
+      "duration": 6.64
+    },
+    {
+      "text": "McQ uh worksheet generator McQ generator",
+      "start": 2820.2,
+      "duration": 5.919
+    },
+    {
+      "text": "lesson plan generator proof reading",
+      "start": 2824.16,
+      "duration": 4.959
+    },
+    {
+      "text": "essay grader translation it's just the",
+      "start": 2826.119,
+      "duration": 4.841
+    },
+    {
+      "text": "model was just trained to do the next",
+      "start": 2829.119,
+      "duration": 3.801
+    },
+    {
+      "text": "word prediction right then how come it",
+      "start": 2830.96,
+      "duration": 4.84
+    },
+    {
+      "text": "can do so many other awesome tasks",
+      "start": 2832.92,
+      "duration": 5.399
+    },
+    {
+      "text": "that's called emergent behavior and it's",
+      "start": 2835.8,
+      "duration": 4.799
+    },
+    {
+      "text": "it's actually a topic of active research",
+      "start": 2838.319,
+      "duration": 5.401
+    },
+    {
+      "text": "so if anyone is looking to do research",
+      "start": 2840.599,
+      "duration": 5.321
+    },
+    {
+      "text": "paper work on llms which I really",
+      "start": 2843.72,
+      "duration": 4.48
+    },
+    {
+      "text": "encourage all of you emergent Behavior",
+      "start": 2845.92,
+      "duration": 4.88
+    },
+    {
+      "text": "might be a great topic in the next",
+      "start": 2848.2,
+      "duration": 4.28
+    },
+    {
+      "text": "lecture we'll look at stages of building",
+      "start": 2850.8,
+      "duration": 4.2
+    },
+    {
+      "text": "an llm and then we'll start coding",
+      "start": 2852.48,
+      "duration": 5.119
+    },
+    {
+      "text": "directly from the data",
+      "start": 2855.0,
+      "duration": 4.52
+    },
+    {
+      "text": "pre-processing so thank you so much",
+      "start": 2857.599,
+      "duration": 3.801
+    },
+    {
+      "text": "everyone for sticking with me until this",
+      "start": 2859.52,
+      "duration": 3.68
+    },
+    {
+      "text": "point we have covered five lectures so",
+      "start": 2861.4,
+      "duration": 3.84
+    },
+    {
+      "text": "far and in all of them I have tried to",
+      "start": 2863.2,
+      "duration": 4.56
+    },
+    {
+      "text": "make them as detailed as possible and as",
+      "start": 2865.24,
+      "duration": 5.56
+    },
+    {
+      "text": "much as from Basics approach as possible",
+      "start": 2867.76,
+      "duration": 5.4
+    },
+    {
+      "text": "uh let me know in the YouTube comment",
+      "start": 2870.8,
+      "duration": 4.2
+    },
+    {
+      "text": "section if you have any doubts or any",
+      "start": 2873.16,
+      "duration": 3.52
+    },
+    {
+      "text": "questions thank you so much everyone and",
+      "start": 2875.0,
+      "duration": 3.24
+    },
+    {
+      "text": "I I look forward to seeing you in the",
+      "start": 2876.68,
+      "duration": 4.84
+    },
+    {
+      "text": "next video",
+      "start": 2878.24,
+      "duration": 3.28
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to this lecture in the build large language models from scratch Series this is the lecture five and today we are going to look in detail at GPT or generative pre-trained Transformer we are going to see how the versions of GPT evolved how the different papers on GPT evolved what's the progression from Transformers to GPT to gpt2 to gpt3 and finally to GPT 4 where we are at right now in the previous lectures we have looked at uh Transformers we looked at a simplified architecture for Transformer and we also saw the difference between Bert and GPT model we saw what's the meaning of an encoder what's the meaning of a decoder Etc if you have not seen the previous lecture I would highly encourage you to go through that if not it's totally fine the way I have designed this lecture is such that it is self-contained and you will understand all the concepts which I explaining in this lecture so one of the key Concepts which we are also going to look at today is zero shot versus few short learning but before coming to that let me first take you through the progression of research papers from Transformers to GPT to gpt2 and and then finally to gpt3 and then GPT 4 so let's deep dive a bit into history the first paper which was released which really started the work on GPT is transformers this paper was released in 2017 and this paper was titled attention is all you need the major breakthrough of this paper is introducing the self attention mechanism where you capture the long range dependencies in a sentence allowing allowing you to do a much better job at predicting the next word in a sentence it represented a significance at significant advancement compared to recurrent neural networks and long short-term memory networks Transformers which were introduced in this paper really changed everything the original Transformer architecture looked something like this it had an encoder and it had a decoder but GPT architecture which is generative pre-rain Transformer which came after this paper did not have an encoder the GPT architecture which was developed only has a decoder so this was the paper which came out after the Transformers paper and it introduced the concept of generative pre-training we are going to look at this concept a bit more in detail today but the main idea of this concept is unsupervised learning basically what they basically says that natural language processing as such up till this point had been mostly supervised learning so they were saying that label data for learning is scarse which means it is not easily available making it challenging for train models to perform adequately we demonstrate that large or we demonstrate that large gains on these tasks can be realized by generative pre-training of a language model on a diverse Corpus of unlabeled text so two words are important here generative pre-training and unlabeled text we already saw pre-training in the previous lecture what is done here is that the text which is used is not labeled so let's say You have given a sentence right and you use that sentence itself as the training data and the next word prediction which is in that sentence itself as the testing data so everything is self-content and you don't need to provide labels we'll see this idea more in detail but this was the paper which was published in I think this paper was published in 2018 which was the first paper on generative pre-training they took this Transformer architecture they modified it a bit they removed the encoder block and they said that if we trained a language model on a huge amount of data set to just predict the next word in an unsupervised learning manner it could really imp improve language understanding and they called the training phase as generative pre-training why generative because we are generating the next World open AI also released a Blog about this on June 11 2018 improving language understanding with unsupervised learning so their main uh their main claim was that we have obtained state of the art results on language tasks with a scalable system our approach is a combination of two ideas Transformers and unsupervised pre-training just keep this in mind so they used the Transformer architecture which we saw in the 2017 paper and they also used unsupervised pre trining which means labels were not uh given to the training data the labels were taken from the sentences itself we do not need to pre-label the data so of course this was 2018 and no one in fact no one paid that much attention as it is relevant in the commercial sphere today for researchers this was a big deal and this paper also has a huge number of citations today but in the commercial space students teachers professors who did not work in large language models had not heard uh about this because it was still at the research phase it it had not entered the commercial domain then what happened is that in 2019 just the next year came one more paper which is called as language models are unsupervised multitask learner so what they basically did is they just took more amount of data than was used in the earlier paper and they also used a generative pre-train Network and you can see that they actually showed four types of generative pre-train networks they showed a smaller model a slightly larger model and the largest model which they used had 1542 which is 1,000 or 1 billion parameters almost uh so here you can see I have just shown a pictorial representation here this was the gp2 gpt2 architecture which was introduced in this paper gpt2 generative pre-train Transformer 2 and here you can see that they released four things gpt2 small gpt2 medium gpt2 large and gpt2 extra large this was the first time when a paper was published in which a large language model was so large in fact 1 billion parameters were used in gpt2 extra large and it led to very very good results at that time open AI was already working on more complex and more advanced GPT models but when this paper was released in fact even this has very good number of citations if you if you just go to Google Scholar and search this right now you'll see that this has uh around more than 10,000 plus citations so this was the gpt2 paper which had around uh the largest model in gpt2 really had around 1,000 million or 1 billion parameters then in 2020 came the real boss which was gpt3 uh gpt3 had 175 billion parameters let me show you where they actually mention about yeah so they they also released a number of versions of gpt3 small medium large extra large a version with 2.7 billion parameter a version with 6.7 billion parameter but there was one specific version which was released which had 175 billion parameters which was gpt3 and when people started exploring this model they could really see that it's amazing it could do so many things although it was just trained to predict the next word it can do number of other things like translation sentiment analysis answering questions uh answering multiple choice questions emotional recognition it can do so many things and this was a huge model 175 billion parameters people had not seen language models of this size then two years after this came GPT 3.5 which became commercially viral everyone started using it and saw how good it was and right now I'm using chat GPT 4 so if you uh see here I'm using chat GPT 40 so GPT 4 is where we are right now but you just see this gradual transformation which has happened from 2017 to 2024 in a space of 7 years we have gone from this original Transformers paper we have gone then to the GPT paper in 2018 2019 came gpt2 this 2019 came gpt2 then in 2020 came gpt3 which really changed everything then came GPT 3.5 and then finally we are at GPT 4 this is the whole uh transformation from Transformers to GPT gpt2 gpt3 GPT 3.5 and then G G pt4 many people don't know the difference between Transformers and GPT GPT essentially borrows from the Transformer architecture but it's a bit different in that it does not have really the encoder block so I just wanted to start off this lecture by giving you this historical perspective of how the generative pre-train Transformer has evolved the next thing which I want to cover today is the difference between zero shot and few shot learning zero shot is basically the ability to generalize to completely unseen tasks without any prior specific examples and few shot is basically learning from a minimum number of examples which the user provides as input good so let me actually directly go to the gpt3 paper G this was the gpt3 paper and they have wonderful illustrations of zero shot and few short learning usually people think research papers are hard to read but they have some very nice examp examples which really clarify the concept so in zero short learning the model predicts the answer given only a description no other Assistance or no other support for example The Prompt can be that hey you have to translate English to French and take the word cheese and translate it into French if the model is able to do that that's an example of a zero shot learning because we have not provided any supporting examples to the model great then there is also one shot learning which means that the model Sees In addition to the task description the model also sees a single example of the task so for example look at this I tell the model that look C otter translates like this to French use this as a supporting guide or like a hint if you may and translate cheese into French so this is one shot learning where the model sees a single example of the task and then is few short learning where the model basically sees a few examples of this task so for example in few short learning uh we say that sea otter translates to this peppermint translates to this and giraffe translates to this use these as the supporting examples and then translate English to French and then translate GES so this is called as few short learning so I hope you understood the difference between zero shot one shot and few shot zero shot is basically you provide no supporting examples to the model you just tell it to do that particular task such as language translation and it does it for you in one shot the model sees a single example of the task and in few shot the model sees a few examples of this task these beautiful examples are provided right in the GPT paper itself so you no no need to look anywhere further so let's see what's the claim of these authors so what they were saying was that uh we train gpt3 and auto regressive language model we'll see in a moment what this means with 175 billion parameters 10 times more than any previous language model and test its performance in a few short setting so let's see what the results are gpt3 provides or achieves a strong performance perance on translation question answering as well as several tasks that require on the-fly reasoning or domain adaptation such as unscrambling words using a novel word in a sentence or performing three-digit arithmetic so this paper basically implied that GPT 3 was a few short learner which means that if it's given certain examples it can do that task very well although it is trained only for the next word prediction what this paper claimed was that gpt3 is a few short learner which means that if you wanted to do a language translation task you just need to give it a few examples let's say if you want gpt3 to do a language translation task you just give it few other examples of how that example is translated into another language and then gpt3 will do that task for you so they claimed that gpt3 is a few short learner you will encounter zero shot versus few shot at a number of different in a number of different books articles and blogs so I just wanted to make sure it's clear for you so then your question would be okay if gpt3 is a few short learner what about GPT 4 which I'm using right now is it a zero short learner or is it a few short learner because it seems that I don't need to give it examples right it it just does many things on its own so let me ask gp4 itself are you a zero short learner or are you a few short learner let's see the answer so gp4 says that I a few short learner this means I can understand and perform tasks better with a few examples while I can handle many tasks with without prior examples which is zero short learning providing examples helps me generate more accurate responses so this is a very smart answer because gp4 is saying that it does amazingly well at few shot learning which means that if you provide it with some examples it does a better job but it can even do zero shot learning so this is very important for you all of you to know when you are interacting with GPT right if you provide some examples of the output which you are looking at or how you want the output to be gp4 will do an amazing job of course it has zero shot capabilities also uh but the two short capabilities are much more than zero short capabilities let me ask it do you also have zero short capabilities so when I ask this question to gp4 it says that yes I also have zero shot capabilities this means that I can perform tasks and answer questions without needing any prior examples or specific context so this is very important I would say GPT 4 is both a zero shot learner as well as a few shot learner but to get a more accurate responses as gp4 says itself you need to probably provide it few examples to get better responses so in that sense it is a better few short learner even when the authors release this paper they say confidently that gpt3 is a few short learner but it can also do zero short learning it just that its responses may not be as accurate awesome so this is really the difference between zero shot learning and fot learning and you need to keep this in mind because when you think about large language models this distinction is generally very very important I think when we go to GPT 5 or GPT 6 even we might get really better at zero shot learning we are already there but it can be better so here I've just shown a few examples of zero short versus few short learning so that this concept becomes even more clear so let's say the input is translate English to French for zero short learning we will just give the input which you want to translate like breakfast and then it's translated here for few short learning as I already showed to you before we give it few examples like uh let's say here we want to unscramble the words or make the words into correct spelling let's say that's the task to do this task we can we we can give some example so let's say this is a wrong spelling and the correct spelling is goat this is a wrong spelling the current correct spelling isue so we give GPT or the llm these two examples and then we tell it that based on these two examples now translate this into a correct word and then it translates it correctly as F so this is an example of few short learning because as you see we do provide two supporting examples so that the llm can actually make a better translation okay so zero shot learning is basically completing task without any example and uh few short learning is completing the task with a few examples okay now let's go to the next section which is utilizing large data sets uh we also looked at this in the previous lecture but I just want to reiterate this based on this paper so let's look at the data set which gpt3 have used we already saw that they the model was 175 billion parameters right like see this but let's see the data on which the model is trained on let's look at this data so the data set is the common craw data let's go to uh internet and search common craw so you can see that this is the common crawl data set and let me click on this right now and it maintains basically a free open repository of web scrw data that can be used by anyone it has over 250 billion Pages spanning 17 years and it is free and open Corpus since 2007 great so gpt3 uses 410 billion tokens from the common craw data and this is the majority of the data it consists of 60% of the entire data set what is one token so one token can be basically you can think of it as a Subs subset of the data set so for the sake of of this lecture just assume one token is equal to one word there are more complex procedures for converting sentences into tokens that's called tokenization but just assume for now just to develop your intuition that one token is equal to one word so that will give you an idea of this quantity so there are 410 billion Words which have been used as a data set from common crawl then gpt3 also utilize data from web text to let's go and search a bit about web text 2 so this is also an enhanced version of the original web Text corpus so this covers all the Reddit submissions from 2015 to 2020 and I think the minimum number of apports here should be three or something but basically open web text Data consists of a huge amount of Reddit posts and how huge so basically gpt3 uses 19 billion words from this web text2 data set which constitutes 22% of the data the remaining I would say 18 to 19% of the data comes from books and it comes from Wikipedia so this is the whole data set on which gpt3 is trained on the total number of tokens on which it is trained on is 310 300 billion tokens although if you add up these tokens they are more than 300 billion but maybe gpt3 took a different mix of uh the data set but overall they took 300 billion words as the training data uh to generate the gpt3 model think of that for a while 300 billion tokens that's huge number of tokens and that's huge amount of data and it would need a huge amount of compute power and also cost so that's an important point to remember training the gpt3 is not easy pre-training rather I should call it pre-training is not easy you need a huge amount of computer power and you need huge amount of data so as I mentioned to you before a token is uh a unit of a text which the model reads this is a good definition to think of token is a unit of a text which the model reads for now you can just think of one token is equal to one word we'll cover this in the tokenization part in the subsequent lectures we already looked at the gpt3 main paper which is titled language models are few short Learners and this paper came out in the year 2020 one more key thing to keep in mind is that the total pre-training cost for gpt3 is $4.6 million keep this in mind this is extremely important you have a huge amount of data set right and you need compute power to run your model on the data set you need access to gpus and that's expensive but imagine this cost the total pre-training cost for gpt3 is 4.6 million now you must be thinking what exactly happens in this pre-training why does it cost this much what exactly are we training here so let me go that into a bit more detail for that but before that realize that the pre-trained models are also called as the base models or foundational models which can be used later for fine tuning so when you look at the generative uh pre-training paper they also mention about fine tuning so they say that we do pre-training first and then F tuning this means that let's say if you are a banking company or an airline company or an educational company which wants to use gpt3 but you also want the output to be specific to your data set then you need to fine-tune the model further on label data which belongs to your organization that process is called fine tuning that needs less amount of data than the amount of data needed in pre-training but fine tuning is very important as you go into production level settings so if you are an educational company who is building multiple choice questions let's say you can of course use gpt3 or gp4 but if you want more robust more reliable outcomes you need to fine tune it on a label data set which maybe your company has collected for the past 5 to 10 years okay now remember that many pre-rain llms are available as open-source models uh and can be used as general purpose tools to write extract and edit text which was not part of the training data so even gpt3 and G gp4 you can uh you can use it yourself as a student gpt3 and GPT 4 can be used and it's good you don't need fine tuning for this purpose let's say if you want to get some information or if you want your PDF to be analyzed you can use gpt3 and gp4 as well there is one distinction which I want to point out and that's between open source and closed Source language models so let me show you that so look at the year on the XX so 2022 uh on the this red curve is the closed Source model so gp4 is a closed Source model which means that the parameters and the weights really are not known too much you can just use the end end output like this interface which I have right now but there are many open source models which were releasing during that time it's just that their performance was not as good as the closed Source model such as GPT so on the y- axis you have MML you can think of it as a performance right right now so you can see the green line which is open source performance was much lesser and now as we are actually entering August the performance of the open source models in August 24 is actually comparable to closed Source models so Lama 3.1 was released recently and uh the Lama 3.1 llm is an open source model but it's one of the most powerful open source models which was released by meta it has 400 5 billion parameters and its performance is a bit better I think than gp4 so the gap between open source and close source llm is closing that being said for students you can still continue interacting with gp4 and gpt3 that serves very well for you you don't need to think about fine tuning an llm or accessing its weights or parameters great now uh I want to talk a bit about uh so the GPT for architecture so up till now we have looked at the total pre-training cost for gpt3 then we saw pre-training versus fine tuning and then we saw the open source versus closed Source ecosystem now let's come to the point number three which is GPT architecture we have already seen this in the previous lecture the GPT architecture essentially consists of only a decoder block so let me show you this to uh refresh your understanding so this is how the GPT architecture looks like it only consists of the decoder block as I've have shown here um whereas the original Transformer consists of encoder as well as decoder so here the gpt3 is a scaled up version of the original Transformer model which was implemented on a larger data set okay so gpt3 is also a scaled up version of the model which was implemented in the 2018 paper so after the Transformers paper there was this paper as I showed which introduced generative pre-training gpt3 is a scaled up version of this paper as I already mentioned it has around uh uh 175 billion parameters so I think we are aware of this so we can move to the next point now comes the very important task of uh Auto regression why is GPT models called as Auto regressive models and why do they come under the category of unsupervised learning so let's look at that a bit further the main part which I want to mention here is that GPT models are simply trained on next word prediction tasks which means that let's say you have the lion RS in the and you want to predict the next word then you predict that it is going to be jungle this is all what GPT models are trained for so let me show you how the training process actually looks like okay so uh I think this plot sums it up better so let let's say you give multiple examples right so the first input which you give to GPT is second law of Robotics colon this is the input based on this input it has to predict the next word that's the output and then it predicts a in the next round the input will be second law of Thermodynamics colon U so see the output of the previous label is now the input here and then again it has to predict the next word so then it must be robot and then the input is second law of robotics colon a robot that's the input and the output it has to predict the next World and then it predicts must then the next input will be second law of Robotics colon robot must basically you see what we are doing here at every stage of this training process the sentence is broken up into input and output the input consists of let's say three words or four words but the output is always one word now you see we don't give any labels here what happens is that the sentence itself breaks it break is broken into two parts the first half and the second half the second half is where we have to predict the next world that's why it is called as unsupervised learning because we do not give labels the sentence itself consists of the labels because the label is the next word uh okay so uh GPT is trained on next World predictions one awesome thing is that although it is only trained on predicting the next World they can still do a wide range of other tasks like translation spelling correction Etc but for the training itself GPT architectures are only trained to predict the next word in the sequence and this takes a huge amount of compute power the 4.6 million dollars which I showed you is needed for this because imagine you have those amounts of data which I showed you before let me show you them again so let's say if you have these these many amounts of words 410 billion words so there might be around 40 billion sentences right and each of the sentence will need to be broken up let's say the sentence is uh of 10 words okay each of the sentences will then needed to be broken up and then into input pair and the output uh and then in the output you have to predict the next word it takes a huge amount of time right because you will need to do this for the billions of sentences in the data that's why it takes a huge amount of compute power for this training procedure and uh how is it trained so basically initially it will predict wrong outputs but then we have the correct output U which we know what should be the next word from the sentence itself so then the error will be computed based on the predicted output and the difference between the corrected output and then similar to The Back propagation done in neural networks the weights of the Transformer or the GPT architecture will adapt so that the next word is predicted correctly so please keep in mind that that is why it is an example of self-supervised learning uh because let's say you have a sentence right what is done is that in the sentence itself we are divided we are dividing it into training and we are dividing it into testing so this is the true we know the next word this is the next word and we know its true value what we'll do is that using this as the input we'll try to predict we'll try to predict the next word so then we'll have have something which is called as the predicted word and then we'll train the neural network or train the GPT architecture to minimize the difference between these two and update the weights so these four these 175 billion parameters which you see over here are just the weights of the neural network which we are training to predict the next word so that's why it's called as unsupervised because the label for the next word we we do not have to externally label the data set it already is labeled in a way because we know the true value of the next word so uh to put it in another words we don't collect labels for the training data but use the structure of the data itself to make the labels so next word in a sentence is used as the label and that's why it is called as the auto regressive model why is it called Auto regressive there is one more reason for this the prev previous output is used as the input for the future prediction so let's say let me go over this part again the previous output is used as the input so let's say the first sentence is second law of Robotics the output of this is U right this U becomes an input to the next sentence so now the input is second law of Robotics colon U and then the next word prediction is robot then this robot becomes an input to the next sentence that's why the model is also called Auto regressive model so two things are very important for you to remember here the first thing is that GPT models are the pre-training part rather I would I should say the pre-training part of GPT models is unsupervised why is it unsupervised because we use the structure of the data itself to create the labels the next word in the sentence is used as the label and the second thing which is very important is that these are Auto these are Auto regressive models which means that the previous outputs are used as the inputs for future predictions like I showed you over here so it is very important to note these key things when you pre-train the GPT so in pre-training you predict the next word you break you use the structure of the sentence itself to have training data and labels and then you do the training you train the neural network uh which is the GPT architecture and then you optimize the parameters the 175 billion parameters now can you think why it takes so much compute time for pre-training because 175 billion parameters have to be optimized so that the next word in all sentences is predicted correctly okay now as I have mentioned to you before uh compared to the original Transformer architecture the GPT architecture is actually simpler the GPT architecture only has the decoder block it does not have the encoder block block so again let me show you this just for reference the original Transformer architecture looks like this if you see it has the encoder block as well as the decoder block right but now if you see the GPT architecture here the input text is only passed to the decoder see it does not have the encoder so in a sense the GPT is a more simplified architecture that way uh but also the number of building blocks used are huge in in the GPT there is no encoder but to give you an idea in the original Transformer we had six encoder decoder blocks in the gpt3 architecture on the other hand we have 96 Transformer layers and 175 parameters keep this in mind we have 96 Transformer layers so if you see this if you think of this as one Transformer layer if you see this as one Transformer layer this this there are 96 such Transformer layers like this that's why there are 175 billion parameters now I want to also show you the visual uh I want to show you more visually how the next word prediction happens we already saw Here how we have input and the output but I've also written it on a whiteboard so that you have a much more clearer idea so let's say so the way GPT works is that there are different iterations there is iteration number one there is iteration number two and there is iteration number three let's zoom into iteration number one to see what's going on so in iteration number one we first have only one word as the input this it it's it goes through pre-processing which is converting it into token IDs then it goes to the decoder block then it goes to the output layer and we predict the next word which is is so then now the output is this is so it predicted the next word and now this entire this is now serves as an for the second iteration so now we go into iteration two where this is is an input so is was an output of the first iteration but now it is included in the input of the next iteration and then the same steps happen we do the token ID preprocessing then it goes through the decoder block and then we predict the next word this is an that's the output from the iteration two the next word which is predicted is n and now this output from iteration two is now uh going as the input to the iteration number three so the input to the iteration number three is this is n you see why it is called an auto regressive model the output from the previous iteration which is n is forming the input of the next iteration so the next iteration is called is this is n and then again it goes through the same preprocessing steps and then there is an output layer and then the final output is this is an example so so the next word which has been predicted is example and then similarly these iterations will actually keep on continuing this is how the GPT architecture Works in each iteration we predict the next word and then the prediction actually informs the input of the next iteration so that's why it's unsupervised and auto regressive so this schematic of the GPT architecture and as you can see that uh it only has the decoder there is no encoder if you look at iteration 1 2 and three I did not mention an encoder block here right because encoder block is not present in the GPT architecture schematic only the decoder block is present okay now one last thing which I want to cover in this lecture is something called as emergent Behavior so what is emergent Behavior I've already touched upon this earlier in this lecture and in the previous lectures but remember that GPT is trained only for the next word prediction right GP is trained only for the next word prediction but it's actually quite awesome and amazing that even though GPT is only trained to predict the next World it can perform so many other tasks such as language translation so let me go to gp4 right now and uh convert breakfast into French so gp4 is not trained to do language translation tasks it is trained to predict the next world but while the training or while the pre-training happens it also develops other advantages it develops other capabilities and this is called as emergent Behavior due to these other capabilities although it was not trained to do the translation tasks uh gp4 can also do the translation tasks which I have mentioned here see you can see one more thing which I want to show you is this uh uh McQ generator so as such when GPT was trained it was not trained to do McQ generation right but look at this if I want the GPT to provide me uh three to four multiple choice questions uh so I just clicked on generate right now and you'll see uh McQ questions have been generated on gravity now technically uh GPT was not trained really to generate these questions on gravity but it developed these properties or it developed these capabilities uh on its own while the pre-training was happening to predict the next World and that's why this is called as emergent Behavior actually so many awesome things can be done because of this emergent Behavior although GPT is just train to predict the next word it can do it can answer text questions generate worksheet sheets summarize a text create lesson plan create report cards generate a PP grade essays there are so many wonderful things which GPT can do and in fact this was also mentioned in one of the blogs of open AI where they say that uh uh we noticed so this this mentioned in their blog we noticed that we can use the underlying language model to begin to perform tasks without ever training on them this is amazing right for example ex Le performance on tasks like picking the right answer to a multiple choice question uh steadily increases as the steadily increases as the underlying language model improves this is an clear example of emergent Behavior Uh so basically the formal definition of emergent behavior is the ability of a model to perform tasks that the model wasn't explicitly trained to perform just keep this in mind and that was very surprising to researchers also because it was only trained to do the next door tasks then how can it develop these many capabilities and I think this Still Still Remains an open question that how come emergent behavior is developed by chat GPT so let me actually go to Google Scholar and search about emergent behavior I'm sure there are many papers on this so here you can see I searched emergent behavior and there are all of these papers which came up uh this is an area of active research such as exploring emergent behavior in llms and I'm sure there's a lot of scope for making more contributions here so if any of you are considering looking for research topics emergent Behavior might be a great topic to start your research on this actually brings us to the end of this lecture we covered several things in today's lecture so let me do a quick recap of what all we have covered so initially before looking at zero shot and few shot learning we started with the history we saw that the first paper which was introduced in 2017 is attention is all you need it Incorporated the Transformer architecture then came generative pre-training GPT the architecture is a bit different than Transformer it uses only decoder no encoder and then after uh generative pre-training was developed as a method it shows two main things first is that it's unsupervised second it's Auto regressive and unlabel data which which means it does not need label data for pre-training then came gpt2 one year later in 2019 and uh in fact there were four models of gpt2 which were released by open AI the first one had 117 million parameters the second had 345 the third had 762 and the fourth one had about a billion parameters but then came the big beast in 2020 that was really gpt3 and uh this paper said that language models are few short Learners which means that if gpt3 is actually provided some amount of supplementary data it can do amazing few short tasks and this model used 175 billion parameters which was the largest anyone had ever seen up till that point after looking at this history we looked at the difference between zero shot and few shot learning in particular we saw that in zero shot learning you don't need to provide any example the model can perform the task without example and in few short learning you can give a few supplementary examples so when this gpt3 paper was released the authors claimed that this this was a few short model they did not say zero short Learner in the title because although it can do zero short learning uh it's just much better at few short learning and we actually explored this ourselves we asked gp4 are you a zero short learner or are you a few short learner and gp4 sent that I'm a few short learner it's it also said that it can also do zero short learning but it it's just more accurate uh at few short learning okay that's important to keep in mind then we saw that gpt3 utilizes a huge huge amount of data uh it it uses around 300 billion tokens in total so just writing it down 300 billion tokens in total which is about 300 billion words approximately a token is a unit of text which the model reads it it's not usually just one word but for now you can think of one token as one word and then we saw that training pre-training gpt3 costs $4.6 million why does it cost this much because we have to predict the next word in a sentence using this architecture so sentences are broken down into training data and testing data it's Auto regressive so one word of the sentence is used for testing or the next word and the remaining is used for training and this has to be done for all the sentences in the billion billions of data files which we have that's why it takes 4.6 million to train because there are 175 billion parameters in gpt3 remember to optimize the weights for those many it would need a huge amount of computer power access to gpus Etc that's why training process is hard so this schematic also shows the GPT architecture remember it only has the decoder it works in each it works in iterations and the output of one iteration is fed as an input to the next iteration that makes it auto regressive and in each iteration the sentence itself is used to make the label which is the next word prediction that's why it's an unsupervised learning exercise pre-training we also saw that after pre-training there is usually one more step which is fine-tuning which is basically training on a much narrower and specific data to improve the performance usually needed in production level tasks we also briefly looked at the gap between the open source and the closed Source llms really closing with the introduction of Lama 3.1 which absolutely amazing performance and it somewhat beats gp4 it has 405 billion parameters and towards the end the last concept which we learned about today is that of emergent Behavior so emergent behavior is the ability of the model to perform tasks that the model wasn't explicitly trained to perform so for example tasks such as McQ uh worksheet generator McQ generator lesson plan generator proof reading essay grader translation it's just the model was just trained to do the next word prediction right then how come it can do so many other awesome tasks that's called emergent behavior and it's it's actually a topic of active research so if anyone is looking to do research paper work on llms which I really encourage all of you emergent Behavior might be a great topic in the next lecture we'll look at stages of building an llm and then we'll start coding directly from the data pre-processing so thank you so much everyone for sticking with me until this point we have covered five lectures so far and in all of them I have tried to make them as detailed as possible and as much as from Basics approach as possible uh let me know in the YouTube comment section if you have any doubts or any questions thank you so much everyone and I I look forward to seeing you in the next video"
+}

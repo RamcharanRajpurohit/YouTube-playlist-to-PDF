@@ -1,0 +1,335 @@
+{
+  "book_title": "Building LLMs from Scratch",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Introduction to Large Language Models",
+      "video_indices": [
+        0,
+        1
+      ],
+      "description": "This chapter introduces the fundamentals of Large Language Models (LLMs). It covers the definition of LLMs, their significance, and how they differ from earlier NLP models. It also explores the applications of LLMs and clarifies the relationship between LLMs, GenAI, DL, ML, and AI."
+    },
+    {
+      "number": 2,
+      "title": "Pretraining and Finetuning LLMs",
+      "video_indices": [
+        2
+      ],
+      "description": "This chapter delves into the two primary methods of training LLMs: pretraining and finetuning. It explains the processes involved in each method and outlines the essential steps for building an LLM from scratch."
+    },
+    {
+      "number": 3,
+      "title": "Understanding Transformers",
+      "video_indices": [
+        3
+      ],
+      "description": "This chapter provides a detailed explanation of transformers, the core architecture behind many LLMs. It covers the basics of transformers, a simplified architecture, the concept of attention, and the differences between transformers and LLMs. BERT and GPT are also introduced."
+    },
+    {
+      "number": 4,
+      "title": "How GPT-3 Works",
+      "video_indices": [
+        4
+      ],
+      "description": "This chapter explores the inner workings of GPT-3, a prominent LLM. It covers the relationship between transformers, GPT, GPT-2, GPT-3, and GPT-4. It also discusses zero-shot vs. few-shot learning, datasets used for GPT pre-training, next word prediction, and emergent behavior."
+    },
+    {
+      "number": 5,
+      "title": "Stages of Building an LLM from Scratch",
+      "video_indices": [
+        5
+      ],
+      "description": "This chapter outlines the various stages involved in building an LLM from scratch, providing a high-level overview of the entire process."
+    },
+    {
+      "number": 6,
+      "title": "Tokenization: Building a Tokenizer from Scratch",
+      "video_indices": [
+        6
+      ],
+      "description": "This chapter focuses on tokenization, a crucial step in LLM development. It guides the reader through coding an LLM tokenizer from scratch in Python, covering the two steps of tokenization: tokenizing the text and converting tokens into token IDs. It also introduces a simple Tokenizer class and discusses special context tokens."
+    },
+    {
+      "number": 7,
+      "title": "Byte Pair Encoding for LLMs",
+      "video_indices": [
+        7
+      ],
+      "description": "This chapter explores Byte Pair Encoding (BPE), a sub-word tokenization technique used in LLMs. It explains why BPE is needed, compares it to word and character-level tokenizers, and provides a practical demonstration of implementing BPE in Python."
+    },
+    {
+      "number": 8,
+      "title": "Creating Input-Target Data Pairs with Python DataLoader",
+      "video_indices": [
+        8
+      ],
+      "description": "This chapter focuses on creating input-target data pairs using Python's DataLoader. It explains the concept of input-target pairs in LLMs, context size, batch size, and stride. It also guides the reader through coding input-output pairs and implementing DataLoader in Python."
+    },
+    {
+      "number": 9,
+      "title": "Token Embeddings",
+      "video_indices": [
+        9
+      ],
+      "description": "This chapter explains token embeddings, a crucial component of LLMs. It covers the definition of token embeddings, provides a hands-on demo, introduces the LLM Embedding Weight Matrix, and discusses the difference between an embedding layer and a neural network linear layer."
+    },
+    {
+      "number": 10,
+      "title": "Positional Embeddings",
+      "video_indices": [
+        10
+      ],
+      "description": "This chapter discusses the importance of positional embeddings in LLMs. It covers absolute vs. relative positional embeddings and provides a hands-on Python implementation, including creating input batches using DataLoader, generating token embeddings, generating positional embeddings, and adding token and positional embeddings."
+    },
+    {
+      "number": 11,
+      "title": "The Complete Data Preprocessing Pipeline",
+      "video_indices": [
+        11
+      ],
+      "description": "This chapter consolidates the data preprocessing steps into a complete pipeline. It covers word-based tokenizers, special context tokens, subword and character tokenizers, Byte Pair Encoding (BPE), DataLoaders and input-target pairs, token embeddings, positional embeddings, and creating final input embeddings."
+    },
+    {
+      "number": 12,
+      "title": "Introduction to the Attention Mechanism",
+      "video_indices": [
+        12
+      ],
+      "description": "This chapter introduces the attention mechanism, a key component of LLMs. It explains why attention is important, discusses different types of attention mechanisms, addresses the problems with modeling long sequences, and provides a historical overview of RNNs, LSTMs, attention, and transformers. Self-attention is also introduced."
+    },
+    {
+      "number": 13,
+      "title": "Simplified Attention Mechanism: Coding from Scratch",
+      "video_indices": [
+        13
+      ],
+      "description": "This chapter guides the reader through coding a simplified attention mechanism from scratch in Python, without trainable weights. It covers context vectors, attention scores, dot product, normalization, attention weights, and context vector calculation."
+    },
+    {
+      "number": 14,
+      "title": "Self-Attention Mechanism with Key, Query, and Value Matrices",
+      "video_indices": [
+        14
+      ],
+      "description": "This chapter focuses on coding the self-attention mechanism with key, query, and value matrices. It covers context vector recap, key, query, and value weight matrices, transforming input embeddings, calculating attention scores and weights, scaling, and context vectors. It also presents a basic and an advanced version of a Self Attention Python class."
+    },
+    {
+      "number": 15,
+      "title": "Causal Self-Attention Mechanism",
+      "video_indices": [
+        15
+      ],
+      "description": "This chapter delves into the causal self-attention mechanism. It covers self-attention recap, causal attention, coding the causal attention mask in Python, data leakage, negative infinity masking, dropout, and coding the Causal Attention Class in Python."
+    },
+    {
+      "number": 16,
+      "title": "Multi-Head Attention",
+      "video_indices": [
+        16,
+        17
+      ],
+      "description": "This chapter explains multi-head attention in detail. Part 1 covers the basics and Python code, including causal attention recap, multi-head attention introduction, and coding multi-head attention in Python. Part 2 explains the entire mathematics behind multi-head attention, including weight splits, input definition, output dimension, weight matrix initialization, key/query/value calculations, attention scores/weights, and multi-head context vectors."
+    },
+    {
+      "number": 17,
+      "title": "LLM Architecture Overview",
+      "video_indices": [
+        18
+      ],
+      "description": "This chapter provides a bird's-eye view of the LLM architecture. It covers the overall architecture, the GPT-2 model architecture, and the initial steps of coding the GPT-2 architecture, including dummy model class, input passing, vector embeddings, positional embeddings, transformer block, and output logits."
+    },
+    {
+      "number": 18,
+      "title": "Layer Normalization",
+      "video_indices": [
+        19
+      ],
+      "description": "This chapter discusses layer normalization in the LLM architecture. It explains why layer normalization is needed, what it is, and provides a Python implementation. It also covers Bessel's correction and compares layer normalization with batch normalization."
+    },
+    {
+      "number": 19,
+      "title": "GELU Activation Function and Feedforward Networks",
+      "video_indices": [
+        20
+      ],
+      "description": "This chapter focuses on the GELU activation function and feedforward neural networks. It covers the GELU activation mathematics, why GELU is used, coding the GELU activation class, the feedforward neural network architecture, and coding the feedforward neural network class."
+    },
+    {
+      "number": 20,
+      "title": "Shortcut Connections",
+      "video_indices": [
+        21
+      ],
+      "description": "This chapter explains shortcut connections in the LLM architecture. It introduces shortcut connections, addresses the vanishing gradient problem, explains the shortcut connections mechanism, provides a mathematical understanding, and guides the reader through coding shortcut connections in Python."
+    },
+    {
+      "number": 21,
+      "title": "Coding the Transformer Block",
+      "video_indices": [
+        22
+      ],
+      "description": "This chapter guides the reader through coding the entire LLM transformer block. It covers the components of the transformer block, shape preservation, coding LayerNorm and FeedForward Neural Network classes, and coding the transformer block class in Python."
+    },
+    {
+      "number": 22,
+      "title": "Coding the GPT-2 Model",
+      "video_indices": [
+        23
+      ],
+      "description": "This chapter focuses on coding the 124 million parameter GPT-2 model. It covers the GPT-2 architecture, token/positional/input embeddings, dropout layer, the transformer block steps, post-transformer layer normalization, the output layer, and coding the entire GPT-2 architecture in Python."
+    },
+    {
+      "number": 23,
+      "title": "Next Token Prediction",
+      "video_indices": [
+        24
+      ],
+      "description": "This chapter explains how to code GPT-2 to predict the next token. It covers the GPT model recap, converting output logits into next word prediction, coding the next token generator function, and analyzing the next token predictions."
+    },
+    {
+      "number": 24,
+      "title": "Measuring the LLM Loss Function",
+      "video_indices": [
+        25
+      ],
+      "description": "This chapter focuses on measuring the LLM loss function. It covers inputs and targets, LLM model outputs, coding the LLM model outputs, cross-entropy loss in LLMs, coding the LLM cross-entropy loss, and perplexity loss measure."
+    },
+    {
+      "number": 25,
+      "title": "Evaluating LLM Performance on a Real Dataset",
+      "video_indices": [
+        26
+      ],
+      "description": "This chapter provides a hands-on project to evaluate LLM performance on a real dataset (book data). It covers understanding the dataset, constructing LLM input-target pairs, getting the LLM loss and output, finding the loss between the target and LLM output, and finding the loss for multiple batches. It also includes coding examples for loading the dataset, implementing the dataloader class, creating training and validation dataloaders, implementing the LLM architecture, and implementing the LLM loss function."
+    },
+    {
+      "number": 26,
+      "title": "Coding the LLM Pre-training Loop",
+      "video_indices": [
+        27
+      ],
+      "description": "This chapter guides the reader through coding the entire LLM pre-training loop. It covers the LLM loss function recap, the LLM pretraining loop, measuring LLM parameters, coding the LLM pretraining loop, pretraining the LLM on a dataset, and analyzing pretraining results."
+    },
+    {
+      "number": 27,
+      "title": "Temperature Scaling",
+      "video_indices": [
+        28
+      ],
+      "description": "This chapter discusses temperature scaling in Large Language Models (LLMs). It covers traditional next token generation, probabilistic next token generation, multinomial probability distribution, predicting the next token from multinomial, temperature scaling, coding temperature scaling, and interpreting temperature scaling."
+    },
+    {
+      "number": 28,
+      "title": "Top-k Sampling",
+      "video_indices": [
+        29
+      ],
+      "description": "This chapter explains top-k sampling in Large Language Models. It covers temperature scaling recap, top-k sampling, coding top-k sampling in Python, merging temperature scaling with top-k sampling, and testing the combined approach."
+    },
+    {
+      "number": 29,
+      "title": "Saving and Loading LLM Model Weights",
+      "video_indices": [
+        30
+      ],
+      "description": "This chapter focuses on saving and loading LLM model weights using PyTorch. It covers saving and loading model parameters, and saving and loading the optimizer parameters and history."
+    },
+    {
+      "number": 30,
+      "title": "Loading Pre-trained Weights from OpenAI GPT-2",
+      "video_indices": [
+        31
+      ],
+      "description": "This chapter guides the reader through loading pre-trained weights from OpenAI GPT-2. It covers the need for retrained weights, Open AI GPT-2 weights, loading libraries, understanding the downloaded files and code, understanding the parameter dictionary, downloading weights into Python code, integrating the weights with the LLM architecture, and testing the pre-trained model."
+    },
+    {
+      "number": 31,
+      "title": "Introduction to LLM Finetuning",
+      "video_indices": [
+        32
+      ],
+      "description": "This chapter introduces the concept of LLM finetuning. It covers what finetuning is, provides a practical example, discusses instruction and classification finetuning, and presents a hands-on project for email classification finetuning."
+    },
+    {
+      "number": 32,
+      "title": "DataLoaders in LLM Classification Finetuning",
+      "video_indices": [
+        33
+      ],
+      "description": "This chapter focuses on DataLoaders in LLM classification finetuning. It covers datasets and DataLoaders introduction, equal text length for all data samples, end-of-text padding, and coding the Spam Dataset class and Data Loaders in Python."
+    },
+    {
+      "number": 33,
+      "title": "Model Architecture for LLM Classification Fine-tuning",
+      "video_indices": [
+        34
+      ],
+      "description": "This chapter guides the reader through coding the model architecture for LLM classification fine-tuning. It covers loading OpenAI GPT-2 pretrained weights, adding a classification head to the model architecture, selecting layers for finetuning, coding the finetuning architecture, and extracting the last token output."
+    },
+    {
+      "number": 34,
+      "title": "Coding a Fine-tuned LLM Spam Classification Model",
+      "video_indices": [
+        35
+      ],
+      "description": "This chapter focuses on coding a fine-tuned LLM spam classification model from scratch. It covers converting LLM outputs to predicted labels, measuring classification accuracy, implementing the cross-entropy loss function, implementing the finetuning training loop, analyzing training results, and testing the model on new data."
+    },
+    {
+      "number": 35,
+      "title": "Introduction to LLM Instruction Fine-tuning",
+      "video_indices": [
+        36
+      ],
+      "description": "This chapter introduces LLM instruction fine-tuning. It covers what instruction fine-tuning is, provides examples, outlines the steps, and guides the reader through preparing and loading the dataset, converting instructions into Alpaca prompt format, and splitting the dataset into train-test-validation sets."
+    },
+    {
+      "number": 36,
+      "title": "Data Batching in LLM Instruction Fine-tuning",
+      "video_indices": [
+        37
+      ],
+      "description": "This chapter focuses on data batching in LLM instruction fine-tuning. It covers batching the dataset, tokenizing formatted data, padding token IDs, creating target IDs for training, replacing padding tokens with \u201cignore index = -100\u201d, coding the Instruction Dataset class and custom collate padding function, and masking target token IDs."
+    },
+    {
+      "number": 37,
+      "title": "DataLoaders in Instruction Fine-tuning",
+      "video_indices": [
+        38
+      ],
+      "description": "This chapter focuses on DataLoaders in instruction fine-tuning. It covers coding the data loaders in Python and visualizing the training data loader output."
+    },
+    {
+      "number": 38,
+      "title": "Loading Pre-trained LLM Weights for Instruction Fine-tuning",
+      "video_indices": [
+        39
+      ],
+      "description": "This chapter guides the reader through loading pre-trained LLM weights for instruction fine-tuning. It covers why a pre-trained LLM is needed and coding the loading process."
+    },
+    {
+      "number": 39,
+      "title": "LLM Fine-tuning Training Loop",
+      "video_indices": [
+        40
+      ],
+      "description": "This chapter focuses on the LLM fine-tuning training loop. It covers understanding the finetuning training loop and loss function, and coding the training loop in Python."
+    },
+    {
+      "number": 40,
+      "title": "Evaluating Fine-tuned LLMs",
+      "video_indices": [
+        41
+      ],
+      "description": "This chapter discusses evaluating fine-tuned LLMs using Ollama. It covers the need for LLM evaluation, extracting and saving LLM responses, evaluation methods (MMLU, human preference comparison, LLM measures another LLM), collecting responses in JSON format, saving parameters, Ollama introduction and setup, querying Llama 3, using Llama 3 to evaluate the fine-tuned LLM, and steps to improve the model."
+    },
+    {
+      "number": 41,
+      "title": "Building LLMs from Scratch: Summary",
+      "video_indices": [
+        42
+      ],
+      "description": "This chapter provides a summary of the entire process of building LLMs from scratch, covering data preprocessing, the attention mechanism, LLM architecture, and LLM fine-tuning."
+    }
+  ]
+}

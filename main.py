@@ -2,12 +2,13 @@
 """
 Playlist-to-Book Pipeline
 =========================
-End-to-end CLI that converts a YouTube playlist (or single video) into a
+End-to-end CLI that converts pre-fetched YouTube playlist transcripts into a
 professionally formatted book manuscript (Markdown + PDF).
 
+Transcript data and playlist metadata are read from the ``data/`` directory.
+
 Usage:
-    python main.py --url <playlist_or_video_url> [--config config/default.yaml]
-                   [--verify] [--dry-run] [--title "Book Title"]
+    python main.py [--config config/default.yaml] [--verify] [--dry-run]
 """
 
 from __future__ import annotations
@@ -27,7 +28,12 @@ from src.config import Config
 from src.llm.factory import LLMFactory
 from src.processing.chunker import TextChunker
 from src.processing.cleaner import TranscriptCleaner
-from src.transcript.fetcher import PlaylistExtractor, TranscriptFetcher, VideoInfo
+from src.transcript.fetcher import (
+    VideoInfo,
+    load_all_transcripts,
+    load_playlist_metadata,
+    load_transcript,
+)
 
 logger = logging.getLogger("playlist_to_book")
 
@@ -43,7 +49,7 @@ def setup_logging(verbose: bool = False) -> None:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("openai").setLevel(logging.WARNING)
     logging.getLogger("huggingface_hub").setLevel(logging.ERROR)
-    
+
     # Suppress HF Symlinks warning widely
     import os
     os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
@@ -51,23 +57,13 @@ def setup_logging(verbose: bool = False) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Convert a YouTube playlist into a book manuscript.",
+        description="Convert pre-fetched YouTube playlist transcripts into a book manuscript.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-    parser.add_argument(
-        "--url",
-        default="",
-        help="YouTube playlist or video URL (prompted if not provided).",
     )
     parser.add_argument(
         "--config",
         default="config/default.yaml",
         help="Path to YAML config file (default: config/default.yaml).",
-    )
-    parser.add_argument(
-        "--title",
-        default="Building LLMs from Scratch",
-        help="Book title (default: 'Building LLMs from Scratch').",
     )
     parser.add_argument(
         "--verify",
@@ -77,7 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Only fetch transcripts and propose TOC — no chapter writing.",
+        help="Only load data and propose TOC — no chapter writing.",
     )
     parser.add_argument(
         "--verbose", "-v",
@@ -164,7 +160,7 @@ def step_generate_toc(
     book_title: str,
 ) -> List[ChapterOutline]:
     """Step 2: Generate table of contents from video metadata via LLM."""
-    logger.info("━━━ Step 2/5: Generating book structure ━━━")
+    logger.info("━━━ Step 2/4: Generating book structure ━━━")
     llm = LLMFactory.create(config.primary_provider, config)
     chunker = TextChunker(config)
     structurer = BookStructurer(llm, chunker, config)
@@ -175,52 +171,43 @@ def step_generate_toc(
     return outlines
 
 
-def step_write_chapters_lazy(
+def step_write_chapters(
     outlines: List[ChapterOutline],
     video_map: dict,
-    fetcher: TranscriptFetcher,
     cleaner: TranscriptCleaner,
     config: Config,
 ) -> List[Chapter]:
-    """Step 3: Lazily fetch, clean, and write chapters in parallel batches.
+    """Step 3: Load transcripts, clean, and write chapters in parallel batches."""
+    logger.info("━━━ Step 3/4: Writing chapters (parallel) ━━━")
 
-    Transcripts are fetched only for the current batch of chapters.
-    Multiple chapters are written in parallel using asyncio.gather(),
-    respecting the configured batch_size to stay within API rate limits.
-    """
-    logger.info("━━━ Step 3/5: Writing chapters (parallel lazy fetch) ━━━")
-    
     batch_size = getattr(config.processing, "parallel_chapters", 5)
     logger.info("  Batch size: %d chapters at a time", batch_size)
-    
+
     async def _write_one(
         outline: ChapterOutline,
         structurer: BookStructurer,
         loop: asyncio.AbstractEventLoop,
     ) -> Chapter | None:
-        """Fetch transcripts and write a single chapter (runs in thread pool)."""
+        """Load transcripts and write a single chapter (runs in thread pool)."""
         videos_needed = [video_map[i] for i in outline.video_indices if i in video_map]
         if not videos_needed:
             logger.warning("No videos found for chapter %d, skipping.", outline.number)
             return None
 
         logger.info(
-            "  [Ch %d] Fetching %d transcript(s): %s",
+            "  [Ch %d] Loading %d transcript(s)",
             outline.number,
             len(videos_needed),
-            [v.title for v in videos_needed],
         )
         transcripts = []
         for v in videos_needed:
             try:
-                transcripts.append(fetcher.fetch(v))
-                if getattr(config.transcript, "delay_seconds", 0) > 0:
-                    await asyncio.sleep(config.transcript.delay_seconds)
-            except Exception as exc:
-                logger.error("  [Ch %d] Could not fetch transcript for '%s': %s", outline.number, v.title, exc)
+                transcripts.append(load_transcript(v))
+            except FileNotFoundError as exc:
+                logger.error("  [Ch %d] Missing transcript for '%s': %s", outline.number, v.title, exc)
 
         if not transcripts:
-            logger.warning("No transcripts fetched for chapter %d, skipping.", outline.number)
+            logger.warning("No transcripts found for chapter %d, skipping.", outline.number)
             return None
 
         cleaned: dict = {t.video.index: cleaner.clean(t.full_text) for t in transcripts}
@@ -268,60 +255,10 @@ def step_write_chapters_lazy(
 
     return asyncio.run(_run_all())
 
-def save_playlist_metadata(
-    videos: List[VideoInfo],
-    outlines: List[ChapterOutline],
-    book_title: str,
-    config: Config,
-) -> None:
-    """Persist playlist metadata and TOC to output/playlist_metadata/ as JSON."""
-    import json
-    from dataclasses import asdict
-    from pathlib import Path
-
-    meta_dir = Path(config.output.chapters_dir).parent / "playlist_metadata"
-    meta_dir.mkdir(parents=True, exist_ok=True)
-
-    # --- videos_metadata.json ---
-    videos_data = [
-        {
-            "index": v.index,
-            "video_id": v.video_id,
-            "title": v.title,
-            "duration_seconds": v.duration,
-            "duration_minutes": round(v.duration / 60, 1),
-            "chapters": [
-                {"title": ch.title, "start_time": ch.start_time}
-                for ch in v.chapters
-            ],
-        }
-        for v in videos
-    ]
-    videos_path = meta_dir / "videos_metadata.json"
-    with open(videos_path, "w") as fh:
-        json.dump({"book_title": book_title, "total_videos": len(videos), "videos": videos_data}, fh, indent=2)
-    logger.info("Saved videos metadata → %s", videos_path)
-
-    # --- toc.json ---
-    if outlines:
-        toc_data = [
-            {
-                "number": o.number,
-                "title": o.title,
-                "video_indices": o.video_indices,
-                "description": o.description,
-            }
-            for o in outlines
-        ]
-        toc_path = meta_dir / "toc.json"
-        with open(toc_path, "w") as fh:
-            json.dump({"book_title": book_title, "chapters": toc_data}, fh, indent=2)
-        logger.info("Saved TOC → %s", toc_path)
-
 
 def step_export(chapters: List[Chapter], config: Config, book_title: str):
-    """Step 5: Export to Markdown and PDF."""
-    logger.info("━━━ Step 5/5: Exporting manuscript ━━━")
+    """Step 4: Export to Markdown and PDF."""
+    logger.info("━━━ Step 4/4: Exporting manuscript ━━━")
     md_exporter = MarkdownExporter(config)
     manuscript = md_exporter.export(chapters, book_title)
 
@@ -345,24 +282,6 @@ def main() -> None:
 
     config = Config.load(args.config)
 
-    # Interactive prompts for missing arguments
-    _DEFAULT_URL = "https://www.youtube.com/watch?v=Xpr8D6LeAtw&list=PLPTV0NXA_ZSgsLAr8YCgCwhPIJNNtexWu"
-    if not args.url:
-        print("══════════════════════════════════════════════════")
-        print("  Enter the YouTube playlist or video URL")
-        print("══════════════════════════════════════════════════")
-        print(f"  Default: {_DEFAULT_URL}")
-        args.url = input("  URL (press Enter for default): ").strip()
-        if not args.url:
-            args.url = _DEFAULT_URL
-            print(f"  ✔  Using default playlist.")
-        print()
-
-        custom_title = input("  Book title (press Enter for auto): ").strip()
-        if custom_title:
-            args.title = custom_title
-        print()
-
     # Interactive provider selection (before any pipeline work)
     prompt_provider_setup(config)
 
@@ -370,42 +289,31 @@ def main() -> None:
     if args.verify:
         config.verification.enabled = True
 
-    # Step 1: Extract videos (metadata + chapters)
-    logger.info("━━━ Step 1/5: Extracting video list ━━━")
-    extractor = PlaylistExtractor(config)
-    videos = extractor.extract(args.url)
-    logger.info("Found %d videos.", len(videos))
-    # for v in videos:
-    #     logger.info("  [%d] %s (%.0f min, %d chapters)",
-    #                 v.index, v.title, v.duration / 60, len(v.chapters))
+    # Step 1: Load video metadata from data/
+    logger.info("━━━ Step 1/4: Loading playlist metadata ━━━")
+    book_title, videos = load_playlist_metadata()
+    logger.info("Loaded %d videos. Book title: '%s'", len(videos), book_title)
 
     if not videos:
-        logger.error("No videos found. Exiting.")
+        logger.error("No videos found in metadata. Exiting.")
         sys.exit(1)
 
-    # Save video list + chapters to playlist_metadata/
-    save_playlist_metadata(videos, [], args.title, config)
-
-    # Build index → VideoInfo map for the lazy fetch loop
+    # Build index → VideoInfo map
     video_map = {v.index: v for v in videos}
 
     # Step 2: Generate TOC from metadata (no transcripts needed)
-    outlines = step_generate_toc(videos, config, args.title)
-
-    # Persist TOC alongside video metadata
-    save_playlist_metadata(videos, outlines, args.title, config)
+    outlines = step_generate_toc(videos, config, book_title)
 
     if args.dry_run:
         logger.info("━━━ Dry-run complete — exiting before chapter generation ━━━")
         return
 
-    # Step 3: Write chapters (lazy fetch — one chapter at a time)
-    fetcher = TranscriptFetcher(config)
+    # Step 3: Write chapters (load transcripts from data/, clean, write)
     cleaner = TranscriptCleaner(config)
-    chapters = step_write_chapters_lazy(outlines, video_map, fetcher, cleaner, config)
+    chapters = step_write_chapters(outlines, video_map, cleaner, config)
 
-    # Step 4: Export (Skipping Refinement to save tokens)
-    step_export(chapters, config, args.title)
+    # Step 4: Export
+    step_export(chapters, config, book_title)
 
 
 if __name__ == "__main__":

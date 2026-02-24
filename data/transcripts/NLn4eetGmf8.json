@@ -1,0 +1,5001 @@
+{
+  "video": {
+    "video_id": "NLn4eetGmf8",
+    "title": "Lecture 4: What are transformers?",
+    "duration": 2439.0,
+    "index": 3
+  },
+  "segments": [
+    {
+      "text": "[Music]",
+      "start": 0.0,
+      "duration": 3.51
+    },
+    {
+      "text": "hello everyone welcome to the lecture 4",
+      "start": 5.04,
+      "duration": 5.92
+    },
+    {
+      "text": "in this building large language models",
+      "start": 8.84,
+      "duration": 4.919
+    },
+    {
+      "text": "from scratch Series in the previous",
+      "start": 10.96,
+      "duration": 4.679
+    },
+    {
+      "text": "lecture we took a look at the",
+      "start": 13.759,
+      "duration": 5.241
+    },
+    {
+      "text": "differences between the two stages of",
+      "start": 15.639,
+      "duration": 6.441
+    },
+    {
+      "text": "building an llm and the two stages were",
+      "start": 19.0,
+      "duration": 5.519
+    },
+    {
+      "text": "pre-training and",
+      "start": 22.08,
+      "duration": 4.959
+    },
+    {
+      "text": "fine-tuning so pre-training involves",
+      "start": 24.519,
+      "duration": 5.721
+    },
+    {
+      "text": "training on a large diverse data set and",
+      "start": 27.039,
+      "duration": 6.281
+    },
+    {
+      "text": "fine tuning is basically refinement by",
+      "start": 30.24,
+      "duration": 5.72
+    },
+    {
+      "text": "training on a narrower data set specific",
+      "start": 33.32,
+      "duration": 5.52
+    },
+    {
+      "text": "to a particular task or a particular",
+      "start": 35.96,
+      "duration": 5.36
+    },
+    {
+      "text": "domain if you have not seen the previous",
+      "start": 38.84,
+      "duration": 4.48
+    },
+    {
+      "text": "lecture I highly encourage you to go",
+      "start": 41.32,
+      "duration": 4.48
+    },
+    {
+      "text": "through the previous lecture so that",
+      "start": 43.32,
+      "duration": 4.36
+    },
+    {
+      "text": "there will be a good flow between these",
+      "start": 45.8,
+      "duration": 4.239
+    },
+    {
+      "text": "different lectures if you are watching",
+      "start": 47.68,
+      "duration": 4.879
+    },
+    {
+      "text": "today's lecture for the first time no",
+      "start": 50.039,
+      "duration": 5.16
+    },
+    {
+      "text": "problem at all welcome to this series",
+      "start": 52.559,
+      "duration": 4.401
+    },
+    {
+      "text": "and I've have designed this lecture so",
+      "start": 55.199,
+      "duration": 4.441
+    },
+    {
+      "text": "that it's independently accessible and",
+      "start": 56.96,
+      "duration": 3.919
+    },
+    {
+      "text": "understandable",
+      "start": 59.64,
+      "duration": 3.52
+    },
+    {
+      "text": "so let's get started today I'm very",
+      "start": 60.879,
+      "duration": 4.761
+    },
+    {
+      "text": "excited because today's topic is",
+      "start": 63.16,
+      "duration": 3.599
+    },
+    {
+      "text": "regarding",
+      "start": 65.64,
+      "duration": 3.479
+    },
+    {
+      "text": "introduction or rather a basic",
+      "start": 66.759,
+      "duration": 5.081
+    },
+    {
+      "text": "introduction to Transformers in today's",
+      "start": 69.119,
+      "duration": 4.841
+    },
+    {
+      "text": "topic we are not going to go into the",
+      "start": 71.84,
+      "duration": 4.319
+    },
+    {
+      "text": "mathematical details or even the coding",
+      "start": 73.96,
+      "duration": 5.199
+    },
+    {
+      "text": "details of Transformers but we are just",
+      "start": 76.159,
+      "duration": 5.96
+    },
+    {
+      "text": "going to introduce the flavor of this",
+      "start": 79.159,
+      "duration": 6.201
+    },
+    {
+      "text": "concept what does it really mean what it",
+      "start": 82.119,
+      "duration": 5.561
+    },
+    {
+      "text": "did for large language models what is",
+      "start": 85.36,
+      "duration": 4.24
+    },
+    {
+      "text": "the history of Transformers in the",
+      "start": 87.68,
+      "duration": 3.84
+    },
+    {
+      "text": "context text of",
+      "start": 89.6,
+      "duration": 4.799
+    },
+    {
+      "text": "GPT uh is there any similarity or",
+      "start": 91.52,
+      "duration": 5.12
+    },
+    {
+      "text": "differences between llms and",
+      "start": 94.399,
+      "duration": 4.76
+    },
+    {
+      "text": "Transformers when people say llms and",
+      "start": 96.64,
+      "duration": 4.439
+    },
+    {
+      "text": "Transformers they usually use these",
+      "start": 99.159,
+      "duration": 3.201
+    },
+    {
+      "text": "terms",
+      "start": 101.079,
+      "duration": 3.36
+    },
+    {
+      "text": "interchangeably when should we use these",
+      "start": 102.36,
+      "duration": 4.28
+    },
+    {
+      "text": "terminologies interchangeably are there",
+      "start": 104.439,
+      "duration": 4.241
+    },
+    {
+      "text": "any similarities or differences between",
+      "start": 106.64,
+      "duration": 4.4
+    },
+    {
+      "text": "them we are going to learn about all of",
+      "start": 108.68,
+      "duration": 4.64
+    },
+    {
+      "text": "these aspects we are also going to look",
+      "start": 111.04,
+      "duration": 5.079
+    },
+    {
+      "text": "at the schematic of how Transformer",
+      "start": 113.32,
+      "duration": 5.56
+    },
+    {
+      "text": "generally work and in doing so we'll",
+      "start": 116.119,
+      "duration": 4.04
+    },
+    {
+      "text": "understand the basics of few",
+      "start": 118.88,
+      "duration": 3.96
+    },
+    {
+      "text": "terminologies like embedding",
+      "start": 120.159,
+      "duration": 5.88
+    },
+    {
+      "text": "tokenization Etc so let's get started",
+      "start": 122.84,
+      "duration": 4.559
+    },
+    {
+      "text": "with today's",
+      "start": 126.039,
+      "duration": 4.64
+    },
+    {
+      "text": "lecture so the secret Source behind",
+      "start": 127.399,
+      "duration": 5.84
+    },
+    {
+      "text": "large language models and the secret",
+      "start": 130.679,
+      "duration": 5.761
+    },
+    {
+      "text": "Source behind why llms are so popular is",
+      "start": 133.239,
+      "duration": 5.921
+    },
+    {
+      "text": "this world called as",
+      "start": 136.44,
+      "duration": 5.32
+    },
+    {
+      "text": "Transformers most of the modern large",
+      "start": 139.16,
+      "duration": 5.079
+    },
+    {
+      "text": "language models rely on this",
+      "start": 141.76,
+      "duration": 4.24
+    },
+    {
+      "text": "architecture which is called as",
+      "start": 144.239,
+      "duration": 3.041
+    },
+    {
+      "text": "Transformer",
+      "start": 146.0,
+      "duration": 3.879
+    },
+    {
+      "text": "architecture so what is a Transformer AR",
+      "start": 147.28,
+      "duration": 5.08
+    },
+    {
+      "text": "architecture essentially it's a deep",
+      "start": 149.879,
+      "duration": 4.521
+    },
+    {
+      "text": "neural network architecture which was",
+      "start": 152.36,
+      "duration": 4.68
+    },
+    {
+      "text": "introduced in a paper which was released",
+      "start": 154.4,
+      "duration": 4.68
+    },
+    {
+      "text": "in",
+      "start": 157.04,
+      "duration": 4.88
+    },
+    {
+      "text": "2017 this paper is called as attention",
+      "start": 159.08,
+      "duration": 5.56
+    },
+    {
+      "text": "is all you need and if you go and search",
+      "start": 161.92,
+      "duration": 4.88
+    },
+    {
+      "text": "about this paper on Google Scholar right",
+      "start": 164.64,
+      "duration": 5.2
+    },
+    {
+      "text": "now so let me do that just quickly so if",
+      "start": 166.8,
+      "duration": 4.92
+    },
+    {
+      "text": "I go here to Google Scholar and type",
+      "start": 169.84,
+      "duration": 4.28
+    },
+    {
+      "text": "attention is all you need let us check",
+      "start": 171.72,
+      "duration": 4.2
+    },
+    {
+      "text": "the number of citations which is which",
+      "start": 174.12,
+      "duration": 3.96
+    },
+    {
+      "text": "it has it has more than 100,000",
+      "start": 175.92,
+      "duration": 5.48
+    },
+    {
+      "text": "citations in just six to 7 years that's",
+      "start": 178.08,
+      "duration": 7.079
+    },
+    {
+      "text": "incredible right it's because this paper",
+      "start": 181.4,
+      "duration": 5.64
+    },
+    {
+      "text": "led to so many breakthroughs which",
+      "start": 185.159,
+      "duration": 4.401
+    },
+    {
+      "text": "happened later the GPT architecture",
+      "start": 187.04,
+      "duration": 4.72
+    },
+    {
+      "text": "which is the foundational stone or",
+      "start": 189.56,
+      "duration": 4.84
+    },
+    {
+      "text": "foundational building block of chat GPT",
+      "start": 191.76,
+      "duration": 5.92
+    },
+    {
+      "text": "originated from this paper the GPT",
+      "start": 194.4,
+      "duration": 5.399
+    },
+    {
+      "text": "architecture is not exactly the same as",
+      "start": 197.68,
+      "duration": 4.16
+    },
+    {
+      "text": "the Transformer architecture proposed in",
+      "start": 199.799,
+      "duration": 4.52
+    },
+    {
+      "text": "this paper but it is heavily based on",
+      "start": 201.84,
+      "duration": 5.2
+    },
+    {
+      "text": "that so it's very important for us to",
+      "start": 204.319,
+      "duration": 5.0
+    },
+    {
+      "text": "understand what this paper really did",
+      "start": 207.04,
+      "duration": 4.08
+    },
+    {
+      "text": "and what our",
+      "start": 209.319,
+      "duration": 3.761
+    },
+    {
+      "text": "Transformers so I've have opened this",
+      "start": 211.12,
+      "duration": 3.6
+    },
+    {
+      "text": "paper here so that you can see it's",
+      "start": 213.08,
+      "duration": 4.68
+    },
+    {
+      "text": "titled attention is all you need so you",
+      "start": 214.72,
+      "duration": 5.2
+    },
+    {
+      "text": "might be thinking what is attention and",
+      "start": 217.76,
+      "duration": 4.36
+    },
+    {
+      "text": "it is actually a technical term which is",
+      "start": 219.92,
+      "duration": 4.44
+    },
+    {
+      "text": "related to how attention is used in our",
+      "start": 222.12,
+      "duration": 5.0
+    },
+    {
+      "text": "daily life also we'll also be touching",
+      "start": 224.36,
+      "duration": 5.079
+    },
+    {
+      "text": "upon this briefly today and we'll be",
+      "start": 227.12,
+      "duration": 5.0
+    },
+    {
+      "text": "understanding uh intuition behind",
+      "start": 229.439,
+      "duration": 5.0
+    },
+    {
+      "text": "attention so if you look at this paper",
+      "start": 232.12,
+      "duration": 5.08
+    },
+    {
+      "text": "it's a 15 page paper and this is the",
+      "start": 234.439,
+      "duration": 4.401
+    },
+    {
+      "text": "Transformer architecture which I'm",
+      "start": 237.2,
+      "duration": 3.8
+    },
+    {
+      "text": "talking about essentially it's a neural",
+      "start": 238.84,
+      "duration": 4.56
+    },
+    {
+      "text": "network architecture and there are so",
+      "start": 241.0,
+      "duration": 4.4
+    },
+    {
+      "text": "many things to unpack and explain here",
+      "start": 243.4,
+      "duration": 3.6
+    },
+    {
+      "text": "which we won't be doing today we'll be",
+      "start": 245.4,
+      "duration": 3.919
+    },
+    {
+      "text": "doing at subsequent lectures because",
+      "start": 247.0,
+      "duration": 4.319
+    },
+    {
+      "text": "every aspect of this architecture will",
+      "start": 249.319,
+      "duration": 3.64
+    },
+    {
+      "text": "need a separate lecture it's that",
+      "start": 251.319,
+      "duration": 3.76
+    },
+    {
+      "text": "detailed today we are just going to look",
+      "start": 252.959,
+      "duration": 3.441
+    },
+    {
+      "text": "at an",
+      "start": 255.079,
+      "duration": 4.961
+    },
+    {
+      "text": "overview so it's a 15 page paper and to",
+      "start": 256.4,
+      "duration": 5.48
+    },
+    {
+      "text": "go through this paper and to really",
+      "start": 260.04,
+      "duration": 3.24
+    },
+    {
+      "text": "understand this paper it will at least",
+      "start": 261.88,
+      "duration": 4.36
+    },
+    {
+      "text": "need 10 to 15 lectures and this lecture",
+      "start": 263.28,
+      "duration": 5.0
+    },
+    {
+      "text": "can serve as an introduction so it's",
+      "start": 266.24,
+      "duration": 3.92
+    },
+    {
+      "text": "very important for you all to to",
+      "start": 268.28,
+      "duration": 4.12
+    },
+    {
+      "text": "understand this lecture clearly first",
+      "start": 270.16,
+      "duration": 4.16
+    },
+    {
+      "text": "thing which I want to explain is that",
+      "start": 272.4,
+      "duration": 3.68
+    },
+    {
+      "text": "when this paper was",
+      "start": 274.32,
+      "duration": 4.24
+    },
+    {
+      "text": "proposed it was actually proposed for",
+      "start": 276.08,
+      "duration": 5.44
+    },
+    {
+      "text": "translation tasks which means converting",
+      "start": 278.56,
+      "duration": 5.56
+    },
+    {
+      "text": "one language into another language text",
+      "start": 281.52,
+      "duration": 4.72
+    },
+    {
+      "text": "completion which is the predominant role",
+      "start": 284.12,
+      "duration": 5.639
+    },
+    {
+      "text": "of GPT was not even in consideration",
+      "start": 286.24,
+      "duration": 6.28
+    },
+    {
+      "text": "here they were mostly looking at English",
+      "start": 289.759,
+      "duration": 5.401
+    },
+    {
+      "text": "to French and English to German",
+      "start": 292.52,
+      "duration": 4.56
+    },
+    {
+      "text": "translations and they proposed a",
+      "start": 295.16,
+      "duration": 5.039
+    },
+    {
+      "text": "mechanism which did huge amount of",
+      "start": 297.08,
+      "duration": 5.16
+    },
+    {
+      "text": "advancements on these tasks the",
+      "start": 300.199,
+      "duration": 4.601
+    },
+    {
+      "text": "Transformer mechanism they proposed led",
+      "start": 302.24,
+      "duration": 5.08
+    },
+    {
+      "text": "to Big advancement in these tasks later",
+      "start": 304.8,
+      "duration": 4.04
+    },
+    {
+      "text": "it was discovered",
+      "start": 307.32,
+      "duration": 4.76
+    },
+    {
+      "text": "that using an architecture derived from",
+      "start": 308.84,
+      "duration": 5.32
+    },
+    {
+      "text": "this Transformer architecture we can do",
+      "start": 312.08,
+      "duration": 3.6
+    },
+    {
+      "text": "so many other",
+      "start": 314.16,
+      "duration": 4.4
+    },
+    {
+      "text": "things so that's the first thing to",
+      "start": 315.68,
+      "duration": 5.88
+    },
+    {
+      "text": "note uh and that is that the original",
+      "start": 318.56,
+      "duration": 5.52
+    },
+    {
+      "text": "Transformer which was developed it was",
+      "start": 321.56,
+      "duration": 5.12
+    },
+    {
+      "text": "developed for machine translation tasks",
+      "start": 324.08,
+      "duration": 4.72
+    },
+    {
+      "text": "especially it was developed to translate",
+      "start": 326.68,
+      "duration": 5.4
+    },
+    {
+      "text": "English text into German and",
+      "start": 328.8,
+      "duration": 7.88
+    },
+    {
+      "text": "French okay now we are going to look at",
+      "start": 332.08,
+      "duration": 7.839
+    },
+    {
+      "text": "uh a schematic of the Transformer",
+      "start": 336.68,
+      "duration": 6.519
+    },
+    {
+      "text": "architecture so this schematic is fairly",
+      "start": 339.919,
+      "duration": 6.0
+    },
+    {
+      "text": "detailed like you can see and we have",
+      "start": 343.199,
+      "duration": 6.44
+    },
+    {
+      "text": "actually uh done a ton down version of",
+      "start": 345.919,
+      "duration": 5.601
+    },
+    {
+      "text": "this schematic and I have borrowed this",
+      "start": 349.639,
+      "duration": 4.28
+    },
+    {
+      "text": "schematic from the book building llms",
+      "start": 351.52,
+      "duration": 4.959
+    },
+    {
+      "text": "from scratch by Sebastian one of the",
+      "start": 353.919,
+      "duration": 5.321
+    },
+    {
+      "text": "best books on large language models so",
+      "start": 356.479,
+      "duration": 3.921
+    },
+    {
+      "text": "let us",
+      "start": 359.24,
+      "duration": 3.0
+    },
+    {
+      "text": "look at this schematic first of all by",
+      "start": 360.4,
+      "duration": 3.96
+    },
+    {
+      "text": "zooming out so this is a simplified",
+      "start": 362.24,
+      "duration": 4.76
+    },
+    {
+      "text": "Transformer architecture first I want to",
+      "start": 364.36,
+      "duration": 4.44
+    },
+    {
+      "text": "show you that there are eight steps over",
+      "start": 367.0,
+      "duration": 3.68
+    },
+    {
+      "text": "here you can see this orange step number",
+      "start": 368.8,
+      "duration": 3.839
+    },
+    {
+      "text": "one step number two step number three",
+      "start": 370.68,
+      "duration": 5.799
+    },
+    {
+      "text": "step number four five 6 7 and eight so",
+      "start": 372.639,
+      "duration": 5.84
+    },
+    {
+      "text": "if you understand these eight steps as",
+      "start": 376.479,
+      "duration": 4.0
+    },
+    {
+      "text": "an intuition you would have understood",
+      "start": 378.479,
+      "duration": 3.681
+    },
+    {
+      "text": "the intuition of the Transformer",
+      "start": 380.479,
+      "duration": 4.0
+    },
+    {
+      "text": "architecture so let's start going",
+      "start": 382.16,
+      "duration": 4.72
+    },
+    {
+      "text": "through it from step by step and as we",
+      "start": 384.479,
+      "duration": 4.521
+    },
+    {
+      "text": "saw one of the main purposes of the",
+      "start": 386.88,
+      "duration": 4.24
+    },
+    {
+      "text": "original Transformer architecture was to",
+      "start": 389.0,
+      "duration": 5.0
+    },
+    {
+      "text": "convert English to German so this is the",
+      "start": 391.12,
+      "duration": 5.56
+    },
+    {
+      "text": "example which we have taken here let's",
+      "start": 394.0,
+      "duration": 6.479
+    },
+    {
+      "text": "say the in let's look at step number one",
+      "start": 396.68,
+      "duration": 5.76
+    },
+    {
+      "text": "so this is the input text which is to be",
+      "start": 400.479,
+      "duration": 4.521
+    },
+    {
+      "text": "translated and as we can all see this",
+      "start": 402.44,
+      "duration": 4.68
+    },
+    {
+      "text": "input text is right now in the English",
+      "start": 405.0,
+      "duration": 5.919
+    },
+    {
+      "text": "language right great and uh the",
+      "start": 407.12,
+      "duration": 5.919
+    },
+    {
+      "text": "Transformer is designed so that it will",
+      "start": 410.919,
+      "duration": 3.881
+    },
+    {
+      "text": "at the end of eight steps it will",
+      "start": 413.039,
+      "duration": 4.121
+    },
+    {
+      "text": "convert it into German but there are",
+      "start": 414.8,
+      "duration": 4.04
+    },
+    {
+      "text": "number of things which happen before",
+      "start": 417.16,
+      "duration": 4.0
+    },
+    {
+      "text": "that let's let's go to step number two",
+      "start": 418.84,
+      "duration": 4.799
+    },
+    {
+      "text": "in Step number two the input text is",
+      "start": 421.16,
+      "duration": 4.439
+    },
+    {
+      "text": "basically taken and",
+      "start": 423.639,
+      "duration": 4.4
+    },
+    {
+      "text": "pre-processed what pre-processing means",
+      "start": 425.599,
+      "duration": 4.761
+    },
+    {
+      "text": "is that there is a tech there is a",
+      "start": 428.039,
+      "duration": 4.681
+    },
+    {
+      "text": "process which is called as",
+      "start": 430.36,
+      "duration": 5.36
+    },
+    {
+      "text": "tokenization",
+      "start": 432.72,
+      "duration": 3.0
+    },
+    {
+      "text": "tokenization and what tokenization",
+      "start": 435.96,
+      "duration": 4.6
+    },
+    {
+      "text": "basically means is that we have used",
+      "start": 438.199,
+      "duration": 5.041
+    },
+    {
+      "text": "sentences right which might be let's say",
+      "start": 440.56,
+      "duration": 6.039
+    },
+    {
+      "text": "we have input data from billions of data",
+      "start": 443.24,
+      "duration": 5.56
+    },
+    {
+      "text": "sets as we saw in the previous lecture",
+      "start": 446.599,
+      "duration": 3.681
+    },
+    {
+      "text": "such transform perers are usually",
+      "start": 448.8,
+      "duration": 3.88
+    },
+    {
+      "text": "trained on huge amounts of data and",
+      "start": 450.28,
+      "duration": 4.12
+    },
+    {
+      "text": "let's say the input data is in the form",
+      "start": 452.68,
+      "duration": 3.4
+    },
+    {
+      "text": "of documents and documents have",
+      "start": 454.4,
+      "duration": 4.479
+    },
+    {
+      "text": "sentences right so the entire sentence",
+      "start": 456.08,
+      "duration": 5.32
+    },
+    {
+      "text": "cannot be fed into the model the",
+      "start": 458.879,
+      "duration": 4.44
+    },
+    {
+      "text": "sentence needs to be broken down into",
+      "start": 461.4,
+      "duration": 5.72
+    },
+    {
+      "text": "simpler words or tokens this process is",
+      "start": 463.319,
+      "duration": 5.56
+    },
+    {
+      "text": "called as the process of",
+      "start": 467.12,
+      "duration": 3.759
+    },
+    {
+      "text": "tokenization so I have a simple",
+      "start": 468.879,
+      "duration": 5.961
+    },
+    {
+      "text": "schematic here so for now for Simplicity",
+      "start": 470.879,
+      "duration": 6.16
+    },
+    {
+      "text": "you can imagine that one word is one",
+      "start": 474.84,
+      "duration": 5.319
+    },
+    {
+      "text": "token this is not usually the case one",
+      "start": 477.039,
+      "duration": 5.361
+    },
+    {
+      "text": "word is generally not equal to one token",
+      "start": 480.159,
+      "duration": 4.361
+    },
+    {
+      "text": "but for understanding this class you can",
+      "start": 482.4,
+      "duration": 4.6
+    },
+    {
+      "text": "think of tokenizing as breaking down the",
+      "start": 484.52,
+      "duration": 5.239
+    },
+    {
+      "text": "sentence into individual words so let's",
+      "start": 487.0,
+      "duration": 4.879
+    },
+    {
+      "text": "say this is the sentence fine tuning is",
+      "start": 489.759,
+      "duration": 3.28
+    },
+    {
+      "text": "Fun For",
+      "start": 491.879,
+      "duration": 4.6
+    },
+    {
+      "text": "All tokenizing basically means breaking",
+      "start": 493.039,
+      "duration": 6.16
+    },
+    {
+      "text": "this down into individual words like",
+      "start": 496.479,
+      "duration": 7.28
+    },
+    {
+      "text": "fine tu tu and ing is Fun For All and",
+      "start": 499.199,
+      "duration": 7.201
+    },
+    {
+      "text": "then assigning an ID a unique number to",
+      "start": 503.759,
+      "duration": 5.201
+    },
+    {
+      "text": "each of these words so basically we have",
+      "start": 506.4,
+      "duration": 4.6
+    },
+    {
+      "text": "taken the huge amount of data broken it",
+      "start": 508.96,
+      "duration": 4.28
+    },
+    {
+      "text": "down into tokens or individual words and",
+      "start": 511.0,
+      "duration": 6.159
+    },
+    {
+      "text": "assigned an ID or a number to this to to",
+      "start": 513.24,
+      "duration": 6.32
+    },
+    {
+      "text": "each token this is called as the process",
+      "start": 517.159,
+      "duration": 4.76
+    },
+    {
+      "text": "of tokenization and so let's say if you",
+      "start": 519.56,
+      "duration": 4.76
+    },
+    {
+      "text": "have English data from Reddit posts or",
+      "start": 521.919,
+      "duration": 4.321
+    },
+    {
+      "text": "from Wikipedia you break it down into",
+      "start": 524.32,
+      "duration": 5.76
+    },
+    {
+      "text": "words and you uh collect individual",
+      "start": 526.24,
+      "duration": 7.0
+    },
+    {
+      "text": "subwords from each sentence in the data",
+      "start": 530.08,
+      "duration": 5.96
+    },
+    {
+      "text": "set this is what usually happens in the",
+      "start": 533.24,
+      "duration": 5.599
+    },
+    {
+      "text": "pre-processing step then the next step",
+      "start": 536.04,
+      "duration": 4.359
+    },
+    {
+      "text": "after the pr three processing step",
+      "start": 538.839,
+      "duration": 4.44
+    },
+    {
+      "text": "number three is encoder this is one of",
+      "start": 540.399,
+      "duration": 5.041
+    },
+    {
+      "text": "the most important building blocks of",
+      "start": 543.279,
+      "duration": 4.641
+    },
+    {
+      "text": "the Transformer architecture and what",
+      "start": 545.44,
+      "duration": 5.56
+    },
+    {
+      "text": "this encoder does is that the input text",
+      "start": 547.92,
+      "duration": 4.68
+    },
+    {
+      "text": "which is pre-processed let's say the",
+      "start": 551.0,
+      "duration": 5.0
+    },
+    {
+      "text": "tokens are passed to the encoder and",
+      "start": 552.6,
+      "duration": 5.44
+    },
+    {
+      "text": "what actually happens in the encoder is",
+      "start": 556.0,
+      "duration": 5.24
+    },
+    {
+      "text": "something called as Vector",
+      "start": 558.04,
+      "duration": 3.2
+    },
+    {
+      "text": "embedding so what what the encoder",
+      "start": 567.839,
+      "duration": 5.68
+    },
+    {
+      "text": "actually does is it implements a process",
+      "start": 570.32,
+      "duration": 6.24
+    },
+    {
+      "text": "which is called as Vector embedding so",
+      "start": 573.519,
+      "duration": 4.801
+    },
+    {
+      "text": "up till now we have seen that every",
+      "start": 576.56,
+      "duration": 4.12
+    },
+    {
+      "text": "sentence is broken down into individual",
+      "start": 578.32,
+      "duration": 5.16
+    },
+    {
+      "text": "words and uh those",
+      "start": 580.68,
+      "duration": 5.64
+    },
+    {
+      "text": "words uh are converted into numerical",
+      "start": 583.48,
+      "duration": 6.359
+    },
+    {
+      "text": "IDs right but the main problem is that",
+      "start": 586.32,
+      "duration": 6.04
+    },
+    {
+      "text": "we need to encode the semantic meaning",
+      "start": 589.839,
+      "duration": 4.841
+    },
+    {
+      "text": "between the words also right so let's",
+      "start": 592.36,
+      "duration": 4.32
+    },
+    {
+      "text": "say for example if you take the word dog",
+      "start": 594.68,
+      "duration": 4.44
+    },
+    {
+      "text": "and puppy with this method which I've",
+      "start": 596.68,
+      "duration": 4.76
+    },
+    {
+      "text": "shown you right now with tokenization",
+      "start": 599.12,
+      "duration": 4.719
+    },
+    {
+      "text": "random IDs will be assigned to dog and",
+      "start": 601.44,
+      "duration": 4.639
+    },
+    {
+      "text": "puppy but we need to encode the",
+      "start": 603.839,
+      "duration": 5.24
+    },
+    {
+      "text": "information somewhere that dog and puppy",
+      "start": 606.079,
+      "duration": 5.961
+    },
+    {
+      "text": "are actually related to each other so",
+      "start": 609.079,
+      "duration": 6.041
+    },
+    {
+      "text": "can we somehow represent the input data",
+      "start": 612.04,
+      "duration": 5.44
+    },
+    {
+      "text": "can we somehow represent the tokens in a",
+      "start": 615.12,
+      "duration": 5.36
+    },
+    {
+      "text": "way which captures the semantic meaning",
+      "start": 617.48,
+      "duration": 5.96
+    },
+    {
+      "text": "between the words and that process is",
+      "start": 620.48,
+      "duration": 4.52
+    },
+    {
+      "text": "called as Vector",
+      "start": 623.44,
+      "duration": 3.959
+    },
+    {
+      "text": "embedding what is done usually in Vector",
+      "start": 625.0,
+      "duration": 4.519
+    },
+    {
+      "text": "embeddings is that words are taken and",
+      "start": 627.399,
+      "duration": 4.56
+    },
+    {
+      "text": "they are converted into vectorized",
+      "start": 629.519,
+      "duration": 5.121
+    },
+    {
+      "text": "representations so this figure actually",
+      "start": 631.959,
+      "duration": 5.161
+    },
+    {
+      "text": "illustrates it very simply let's say",
+      "start": 634.64,
+      "duration": 5.439
+    },
+    {
+      "text": "these are the words King Man Woman apple",
+      "start": 637.12,
+      "duration": 6.76
+    },
+    {
+      "text": "banana orange football Golf and Tennis",
+      "start": 640.079,
+      "duration": 6.121
+    },
+    {
+      "text": "what is done in Vector embedding is that",
+      "start": 643.88,
+      "duration": 4.6
+    },
+    {
+      "text": "a so this is a two-dimensional Vector",
+      "start": 646.2,
+      "duration": 3.879
+    },
+    {
+      "text": "embedding I'm showing in a",
+      "start": 648.48,
+      "duration": 3.72
+    },
+    {
+      "text": "two-dimensional Vector embedding each of",
+      "start": 650.079,
+      "duration": 4.961
+    },
+    {
+      "text": "these words are converted into vectors",
+      "start": 652.2,
+      "duration": 5.639
+    },
+    {
+      "text": "and the way these vectors are formed is",
+      "start": 655.04,
+      "duration": 5.72
+    },
+    {
+      "text": "that so King man and woman they they are",
+      "start": 657.839,
+      "duration": 4.601
+    },
+    {
+      "text": "terms which are related to each other",
+      "start": 660.76,
+      "duration": 3.8
+    },
+    {
+      "text": "right apple banana and orange are",
+      "start": 662.44,
+      "duration": 4.68
+    },
+    {
+      "text": "related all of them are fruits football",
+      "start": 664.56,
+      "duration": 4.56
+    },
+    {
+      "text": "gold F tennis are related all of them",
+      "start": 667.12,
+      "duration": 5.04
+    },
+    {
+      "text": "are sports so when you convert these",
+      "start": 669.12,
+      "duration": 5.08
+    },
+    {
+      "text": "words into individual vectors if you see",
+      "start": 672.16,
+      "duration": 4.359
+    },
+    {
+      "text": "on the right hand side look at King man",
+      "start": 674.2,
+      "duration": 5.319
+    },
+    {
+      "text": "and woman they are more closer together",
+      "start": 676.519,
+      "duration": 6.281
+    },
+    {
+      "text": "right as vectors if you look at the",
+      "start": 679.519,
+      "duration": 5.641
+    },
+    {
+      "text": "green circle here which is football Golf",
+      "start": 682.8,
+      "duration": 4.8
+    },
+    {
+      "text": "and Tennis they are more closer together",
+      "start": 685.16,
+      "duration": 4.32
+    },
+    {
+      "text": "if you look at the red circle here which",
+      "start": 687.6,
+      "duration": 3.76
+    },
+    {
+      "text": "is apple banana and orange all of them",
+      "start": 689.48,
+      "duration": 4.479
+    },
+    {
+      "text": "are fruits which are closer together so",
+      "start": 691.36,
+      "duration": 5.24
+    },
+    {
+      "text": "converting these words into such kind of",
+      "start": 693.959,
+      "duration": 3.841
+    },
+    {
+      "text": "vector",
+      "start": 696.6,
+      "duration": 4.56
+    },
+    {
+      "text": "format is called as Vector embedding and",
+      "start": 697.8,
+      "duration": 5.12
+    },
+    {
+      "text": "this is a difficult task we cannot",
+      "start": 701.16,
+      "duration": 4.64
+    },
+    {
+      "text": "randomly put vectors right because there",
+      "start": 702.92,
+      "duration": 5.28
+    },
+    {
+      "text": "have so apple and banana have to be",
+      "start": 705.8,
+      "duration": 4.52
+    },
+    {
+      "text": "closer to each other all fruits need to",
+      "start": 708.2,
+      "duration": 3.96
+    },
+    {
+      "text": "be closer to each other than let's say",
+      "start": 710.32,
+      "duration": 5.48
+    },
+    {
+      "text": "banana and King so there is usually a",
+      "start": 712.16,
+      "duration": 5.679
+    },
+    {
+      "text": "detailed procedure for this and neural",
+      "start": 715.8,
+      "duration": 3.839
+    },
+    {
+      "text": "networks are trained even for for this",
+      "start": 717.839,
+      "duration": 4.841
+    },
+    {
+      "text": "step that is called as Vector embedding",
+      "start": 719.639,
+      "duration": 5.721
+    },
+    {
+      "text": "step so that is the main purpose of the",
+      "start": 722.68,
+      "duration": 5.2
+    },
+    {
+      "text": "encoder the main purpose of the encoder",
+      "start": 725.36,
+      "duration": 5.159
+    },
+    {
+      "text": "is actually to take in the input text",
+      "start": 727.88,
+      "duration": 5.24
+    },
+    {
+      "text": "from the pre-processing maybe the tokens",
+      "start": 730.519,
+      "duration": 5.801
+    },
+    {
+      "text": "and to convert those tokens into Vector",
+      "start": 733.12,
+      "duration": 5.68
+    },
+    {
+      "text": "embeddings so if you see in Step number",
+      "start": 736.32,
+      "duration": 5.24
+    },
+    {
+      "text": "four we have generated Vector",
+      "start": 738.8,
+      "duration": 5.44
+    },
+    {
+      "text": "embeddings so in the in the left hand",
+      "start": 741.56,
+      "duration": 5.279
+    },
+    {
+      "text": "side of the Transformer architecture the",
+      "start": 744.24,
+      "duration": 4.959
+    },
+    {
+      "text": "final goal is to generate vector",
+      "start": 746.839,
+      "duration": 4.36
+    },
+    {
+      "text": "headings which means that let's say if",
+      "start": 749.199,
+      "duration": 4.241
+    },
+    {
+      "text": "we have millions of data in English",
+      "start": 751.199,
+      "duration": 4.121
+    },
+    {
+      "text": "language we convert them into tokens we",
+      "start": 753.44,
+      "duration": 4.199
+    },
+    {
+      "text": "convert them into vectors and that is",
+      "start": 755.32,
+      "duration": 4.72
+    },
+    {
+      "text": "done in a giant Dimension space not just",
+      "start": 757.639,
+      "duration": 4.801
+    },
+    {
+      "text": "in two Dimension space it is done in",
+      "start": 760.04,
+      "duration": 5.4
+    },
+    {
+      "text": "maybe 500,000 huge number of Dimension",
+      "start": 762.44,
+      "duration": 5.839
+    },
+    {
+      "text": "space which we cannot even imagine but",
+      "start": 765.44,
+      "duration": 5.399
+    },
+    {
+      "text": "the way it is done is such that semantic",
+      "start": 768.279,
+      "duration": 5.161
+    },
+    {
+      "text": "meaning is captured between the words",
+      "start": 770.839,
+      "duration": 4.401
+    },
+    {
+      "text": "that is how the embedding vectors should",
+      "start": 773.44,
+      "duration": 2.839
+    },
+    {
+      "text": "be",
+      "start": 775.24,
+      "duration": 5.0
+    },
+    {
+      "text": "returned here is another uh",
+      "start": 776.279,
+      "duration": 6.201
+    },
+    {
+      "text": "example which visually shows you how the",
+      "start": 780.24,
+      "duration": 4.2
+    },
+    {
+      "text": "embedding is done let's say if you have",
+      "start": 782.48,
+      "duration": 3.96
+    },
+    {
+      "text": "text right now from documents that text",
+      "start": 784.44,
+      "duration": 4.6
+    },
+    {
+      "text": "is converted into IDs and that those",
+      "start": 786.44,
+      "duration": 4.8
+    },
+    {
+      "text": "tokenized IDs are converted into vector",
+      "start": 789.04,
+      "duration": 3.84
+    },
+    {
+      "text": "format like this this is a",
+      "start": 791.24,
+      "duration": 3.039
+    },
+    {
+      "text": "three-dimensional vectorized",
+      "start": 792.88,
+      "duration": 4.199
+    },
+    {
+      "text": "representation so we can visualize this",
+      "start": 794.279,
+      "duration": 5.081
+    },
+    {
+      "text": "and another nice visualization is this",
+      "start": 797.079,
+      "duration": 5.401
+    },
+    {
+      "text": "where we take in the where we take in",
+      "start": 799.36,
+      "duration": 6.32
+    },
+    {
+      "text": "the uh data put it into the embedding",
+      "start": 802.48,
+      "duration": 6.159
+    },
+    {
+      "text": "model and then vectorized embeddings are",
+      "start": 805.68,
+      "duration": 5.76
+    },
+    {
+      "text": "the result of this so that's the first",
+      "start": 808.639,
+      "duration": 4.76
+    },
+    {
+      "text": "step of the Transformer architecture so",
+      "start": 811.44,
+      "duration": 4.399
+    },
+    {
+      "text": "you can view it as a left side and right",
+      "start": 813.399,
+      "duration": 4.761
+    },
+    {
+      "text": "side in the left side in these four",
+      "start": 815.839,
+      "duration": 5.56
+    },
+    {
+      "text": "steps we take the input sentences and",
+      "start": 818.16,
+      "duration": 5.479
+    },
+    {
+      "text": "the final goal is to convert them into",
+      "start": 821.399,
+      "duration": 4.761
+    },
+    {
+      "text": "these Vector embeddings so that semantic",
+      "start": 823.639,
+      "duration": 5.161
+    },
+    {
+      "text": "meaning is captured between the",
+      "start": 826.16,
+      "duration": 5.44
+    },
+    {
+      "text": "words okay now what do we do with these",
+      "start": 828.8,
+      "duration": 5.12
+    },
+    {
+      "text": "embeddings we feed these embeddings to",
+      "start": 831.6,
+      "duration": 4.96
+    },
+    {
+      "text": "the right hand side so look at this",
+      "start": 833.92,
+      "duration": 4.76
+    },
+    {
+      "text": "Arrow here this these embeddings are fed",
+      "start": 836.56,
+      "duration": 4.6
+    },
+    {
+      "text": "to what is called as the decoder so",
+      "start": 838.68,
+      "duration": 4.079
+    },
+    {
+      "text": "let's come to the right hand side of",
+      "start": 841.16,
+      "duration": 5.239
+    },
+    {
+      "text": "things so step number five right this is",
+      "start": 842.759,
+      "duration": 7.361
+    },
+    {
+      "text": "the uh German translation which our",
+      "start": 846.399,
+      "duration": 6.281
+    },
+    {
+      "text": "model will be doing and remember the",
+      "start": 850.12,
+      "duration": 6.0
+    },
+    {
+      "text": "model completes one word at a time right",
+      "start": 852.68,
+      "duration": 7.159
+    },
+    {
+      "text": "so uh this is an example is the input",
+      "start": 856.12,
+      "duration": 6.159
+    },
+    {
+      "text": "and uh up till now let's say the model",
+      "start": 859.839,
+      "duration": 6.12
+    },
+    {
+      "text": "has translated this to be Das s so this",
+      "start": 862.279,
+      "duration": 5.8
+    },
+    {
+      "text": "is not complete translation because the",
+      "start": 865.959,
+      "duration": 4.521
+    },
+    {
+      "text": "translation of exact example is not yet",
+      "start": 868.079,
+      "duration": 4.641
+    },
+    {
+      "text": "included right so this can be called as",
+      "start": 870.48,
+      "duration": 5.12
+    },
+    {
+      "text": "the partial output text remember this is",
+      "start": 872.72,
+      "duration": 5.28
+    },
+    {
+      "text": "available to the model because the model",
+      "start": 875.6,
+      "duration": 5.44
+    },
+    {
+      "text": "only generates one output word at a time",
+      "start": 878.0,
+      "duration": 5.12
+    },
+    {
+      "text": "so by the time we reach the fourth",
+      "start": 881.04,
+      "duration": 4.239
+    },
+    {
+      "text": "output word which is the translation of",
+      "start": 883.12,
+      "duration": 5.159
+    },
+    {
+      "text": "example we would have the translated",
+      "start": 885.279,
+      "duration": 6.201
+    },
+    {
+      "text": "words for this is and N so this is",
+      "start": 888.279,
+      "duration": 5.56
+    },
+    {
+      "text": "available to the model this is one of",
+      "start": 891.48,
+      "duration": 4.32
+    },
+    {
+      "text": "the key features of Transformer and even",
+      "start": 893.839,
+      "duration": 4.761
+    },
+    {
+      "text": "the GPT architecture one output word is",
+      "start": 895.8,
+      "duration": 4.36
+    },
+    {
+      "text": "produced at one",
+      "start": 898.6,
+      "duration": 4.64
+    },
+    {
+      "text": "time so the model has partial output",
+      "start": 900.16,
+      "duration": 6.4
+    },
+    {
+      "text": "text which is d s these words are",
+      "start": 903.24,
+      "duration": 7.08
+    },
+    {
+      "text": "available to the model and even this",
+      "start": 906.56,
+      "duration": 5.719
+    },
+    {
+      "text": "this kind of text which is available is",
+      "start": 910.32,
+      "duration": 4.68
+    },
+    {
+      "text": "converted into the tokenization the",
+      "start": 912.279,
+      "duration": 4.961
+    },
+    {
+      "text": "tokenized IDS which we saw this is the",
+      "start": 915.0,
+      "duration": 4.56
+    },
+    {
+      "text": "pre-processing step and then this is fed",
+      "start": 917.24,
+      "duration": 3.399
+    },
+    {
+      "text": "to the",
+      "start": 919.56,
+      "duration": 3.44
+    },
+    {
+      "text": "decoder the job of the decoder is",
+      "start": 920.639,
+      "duration": 4.88
+    },
+    {
+      "text": "basically to do the final translation",
+      "start": 923.0,
+      "duration": 5.319
+    },
+    {
+      "text": "now remember along with this partial",
+      "start": 925.519,
+      "duration": 5.521
+    },
+    {
+      "text": "input text the decoder also receives the",
+      "start": 928.319,
+      "duration": 5.32
+    },
+    {
+      "text": "vector embeddings so the decoder has",
+      "start": 931.04,
+      "duration": 4.479
+    },
+    {
+      "text": "received the vector embeddings from the",
+      "start": 933.639,
+      "duration": 4.361
+    },
+    {
+      "text": "left hand side of things and now the",
+      "start": 935.519,
+      "duration": 4.32
+    },
+    {
+      "text": "task of the decoder is",
+      "start": 938.0,
+      "duration": 4.079
+    },
+    {
+      "text": "basically it has received the vector",
+      "start": 939.839,
+      "duration": 5.56
+    },
+    {
+      "text": "embeddings it has received the partial",
+      "start": 942.079,
+      "duration": 6.24
+    },
+    {
+      "text": "text and it has to predict what the next",
+      "start": 945.399,
+      "duration": 5.841
+    },
+    {
+      "text": "word is going to be based on this",
+      "start": 948.319,
+      "duration": 5.52
+    },
+    {
+      "text": "information and then we go to the output",
+      "start": 951.24,
+      "duration": 5.68
+    },
+    {
+      "text": "layer slowly we go to the output layer",
+      "start": 953.839,
+      "duration": 5.24
+    },
+    {
+      "text": "and then uh finally you will see that",
+      "start": 956.92,
+      "duration": 6.359
+    },
+    {
+      "text": "that the uh final translation for",
+      "start": 959.079,
+      "duration": 6.361
+    },
+    {
+      "text": "example is completed over here and this",
+      "start": 963.279,
+      "duration": 4.761
+    },
+    {
+      "text": "is called as by spile I don't know how",
+      "start": 965.44,
+      "duration": 6.12
+    },
+    {
+      "text": "to pronounce it my German is uh not that",
+      "start": 968.04,
+      "duration": 5.12
+    },
+    {
+      "text": "good and I've not even learned German in",
+      "start": 971.56,
+      "duration": 4.079
+    },
+    {
+      "text": "the first place but here you can see",
+      "start": 973.16,
+      "duration": 5.32
+    },
+    {
+      "text": "this is the German translation for",
+      "start": 975.639,
+      "duration": 6.76
+    },
+    {
+      "text": "example which the decoder has produced",
+      "start": 978.48,
+      "duration": 7.44
+    },
+    {
+      "text": "so step number seven is for the decoder",
+      "start": 982.399,
+      "duration": 5.841
+    },
+    {
+      "text": "is to generate the translated text one",
+      "start": 985.92,
+      "duration": 3.719
+    },
+    {
+      "text": "word at a time",
+      "start": 988.24,
+      "duration": 3.68
+    },
+    {
+      "text": "and then step number eight is that we",
+      "start": 989.639,
+      "duration": 4.12
+    },
+    {
+      "text": "get the final",
+      "start": 991.92,
+      "duration": 4.359
+    },
+    {
+      "text": "output and this is how the decoder",
+      "start": 993.759,
+      "duration": 5.44
+    },
+    {
+      "text": "actually translates the input into the",
+      "start": 996.279,
+      "duration": 5.401
+    },
+    {
+      "text": "output one word at a time that is very",
+      "start": 999.199,
+      "duration": 4.721
+    },
+    {
+      "text": "important now you might be thinking how",
+      "start": 1001.68,
+      "duration": 4.639
+    },
+    {
+      "text": "does the decoder translate it into the",
+      "start": 1003.92,
+      "duration": 4.479
+    },
+    {
+      "text": "output remember it's like a neural",
+      "start": 1006.319,
+      "duration": 4.08
+    },
+    {
+      "text": "network and we are training the neural",
+      "start": 1008.399,
+      "duration": 3.44
+    },
+    {
+      "text": "network so initially it will make",
+      "start": 1010.399,
+      "duration": 3.401
+    },
+    {
+      "text": "mistakes of course but there will be a",
+      "start": 1011.839,
+      "duration": 3.721
+    },
+    {
+      "text": "loss function and then we will",
+      "start": 1013.8,
+      "duration": 3.68
+    },
+    {
+      "text": "eventually train the Transformer to be",
+      "start": 1015.56,
+      "duration": 4.04
+    },
+    {
+      "text": "better and better and better",
+      "start": 1017.48,
+      "duration": 4.52
+    },
+    {
+      "text": "so think of the this as a neural network",
+      "start": 1019.6,
+      "duration": 6.199
+    },
+    {
+      "text": "so let me show you the actual schematic",
+      "start": 1022.0,
+      "duration": 5.679
+    },
+    {
+      "text": "of the Transformer what we have seen",
+      "start": 1025.799,
+      "duration": 4.16
+    },
+    {
+      "text": "right now is a simplified architecture",
+      "start": 1027.679,
+      "duration": 4.12
+    },
+    {
+      "text": "but if you see the actual schematic of",
+      "start": 1029.959,
+      "duration": 3.161
+    },
+    {
+      "text": "the Transformer you'll see that there",
+      "start": 1031.799,
+      "duration": 4.04
+    },
+    {
+      "text": "are feed forward layers uh which means",
+      "start": 1033.12,
+      "duration": 4.52
+    },
+    {
+      "text": "there are weights and parameters which",
+      "start": 1035.839,
+      "duration": 4.48
+    },
+    {
+      "text": "need to be optimized so that the decoder",
+      "start": 1037.64,
+      "duration": 5.039
+    },
+    {
+      "text": "predicts the German World",
+      "start": 1040.319,
+      "duration": 4.72
+    },
+    {
+      "text": "correctly it's very similar to training",
+      "start": 1042.679,
+      "duration": 5.52
+    },
+    {
+      "text": "a neural network right so these are",
+      "start": 1045.039,
+      "duration": 6.921
+    },
+    {
+      "text": "actually the eight steps which are very",
+      "start": 1048.199,
+      "duration": 7.001
+    },
+    {
+      "text": "much important in the Transformer so let",
+      "start": 1051.96,
+      "duration": 5.16
+    },
+    {
+      "text": "me actually go through these eight steps",
+      "start": 1055.2,
+      "duration": 3.359
+    },
+    {
+      "text": "in the simplified Transformer",
+      "start": 1057.12,
+      "duration": 4.28
+    },
+    {
+      "text": "architecture again the first step is to",
+      "start": 1058.559,
+      "duration": 4.441
+    },
+    {
+      "text": "have the input text which is to be",
+      "start": 1061.4,
+      "duration": 4.68
+    },
+    {
+      "text": "translated this is an example the second",
+      "start": 1063.0,
+      "duration": 6.84
+    },
+    {
+      "text": "step is to pre-process all the sentences",
+      "start": 1066.08,
+      "duration": 6.16
+    },
+    {
+      "text": "by breaking them down into tokens and",
+      "start": 1069.84,
+      "duration": 5.76
+    },
+    {
+      "text": "then assigning a token ID to each token",
+      "start": 1072.24,
+      "duration": 5.48
+    },
+    {
+      "text": "the third step is basically to pass",
+      "start": 1075.6,
+      "duration": 4.439
+    },
+    {
+      "text": "these token IDs into the encoder and",
+      "start": 1077.72,
+      "duration": 5.16
+    },
+    {
+      "text": "then convert these token IDs into an",
+      "start": 1080.039,
+      "duration": 5.0
+    },
+    {
+      "text": "embedding or a vector embedding this",
+      "start": 1082.88,
+      "duration": 4.36
+    },
+    {
+      "text": "means that words are projected into high",
+      "start": 1085.039,
+      "duration": 4.681
+    },
+    {
+      "text": "dimensional Vector space and the way",
+      "start": 1087.24,
+      "duration": 5.0
+    },
+    {
+      "text": "these words are projected is such that",
+      "start": 1089.72,
+      "duration": 4.319
+    },
+    {
+      "text": "the semantic relationship or the",
+      "start": 1092.24,
+      "duration": 3.88
+    },
+    {
+      "text": "semantic meaning between the words is",
+      "start": 1094.039,
+      "duration": 5.841
+    },
+    {
+      "text": "captured very clearly now this this",
+      "start": 1096.12,
+      "duration": 6.2
+    },
+    {
+      "text": "Vector embedding is fed as an input to",
+      "start": 1099.88,
+      "duration": 4.48
+    },
+    {
+      "text": "the decoder but along with this the",
+      "start": 1102.32,
+      "duration": 5.0
+    },
+    {
+      "text": "decoder also receives the partial output",
+      "start": 1104.36,
+      "duration": 7.16
+    },
+    {
+      "text": "text remember the decoder is decoding uh",
+      "start": 1107.32,
+      "duration": 7.12
+    },
+    {
+      "text": "the English to German one word at a time",
+      "start": 1111.52,
+      "duration": 5.48
+    },
+    {
+      "text": "so for decoding this is an example it",
+      "start": 1114.44,
+      "duration": 4.92
+    },
+    {
+      "text": "already has the decoded answer for this",
+      "start": 1117.0,
+      "duration": 5.64
+    },
+    {
+      "text": "is an th is and now it wants to",
+      "start": 1119.36,
+      "duration": 5.88
+    },
+    {
+      "text": "translate English to German for example",
+      "start": 1122.64,
+      "duration": 4.64
+    },
+    {
+      "text": "so it receives this partial output text",
+      "start": 1125.24,
+      "duration": 3.919
+    },
+    {
+      "text": "it receives the vector embedding and",
+      "start": 1127.28,
+      "duration": 4.36
+    },
+    {
+      "text": "then it's trained to predict the next",
+      "start": 1129.159,
+      "duration": 5.081
+    },
+    {
+      "text": "output word which is B spite which is",
+      "start": 1131.64,
+      "duration": 6.399
+    },
+    {
+      "text": "the German for example and this is how",
+      "start": 1134.24,
+      "duration": 6.52
+    },
+    {
+      "text": "uh English is translated into German in",
+      "start": 1138.039,
+      "duration": 5.961
+    },
+    {
+      "text": "a Transformer so this is a very very",
+      "start": 1140.76,
+      "duration": 5.0
+    },
+    {
+      "text": "simplified explanation of how a",
+      "start": 1144.0,
+      "duration": 3.88
+    },
+    {
+      "text": "Transformer works we have not even",
+      "start": 1145.76,
+      "duration": 4.24
+    },
+    {
+      "text": "covered attention here you might be",
+      "start": 1147.88,
+      "duration": 3.76
+    },
+    {
+      "text": "thinking why is this paper titled",
+      "start": 1150.0,
+      "duration": 3.72
+    },
+    {
+      "text": "attention is all you need and there is a",
+      "start": 1151.64,
+      "duration": 4.64
+    },
+    {
+      "text": "very specific reason for it I just want",
+      "start": 1153.72,
+      "duration": 4.92
+    },
+    {
+      "text": "you to not get intimidated or afraid by",
+      "start": 1156.28,
+      "duration": 3.879
+    },
+    {
+      "text": "the Transformer and that's why I'm",
+      "start": 1158.64,
+      "duration": 3.44
+    },
+    {
+      "text": "showing you this simplified form right",
+      "start": 1160.159,
+      "duration": 5.0
+    },
+    {
+      "text": "now at the simplest form you can think",
+      "start": 1162.08,
+      "duration": 5.76
+    },
+    {
+      "text": "of a transformer as a neural network and",
+      "start": 1165.159,
+      "duration": 4.801
+    },
+    {
+      "text": "you're optimizing parameters in a neural",
+      "start": 1167.84,
+      "duration": 5.079
+    },
+    {
+      "text": "network it's as simple as that what many",
+      "start": 1169.96,
+      "duration": 4.8
+    },
+    {
+      "text": "students do is that they try to",
+      "start": 1172.919,
+      "duration": 4.441
+    },
+    {
+      "text": "understand this architecture directly",
+      "start": 1174.76,
+      "duration": 4.279
+    },
+    {
+      "text": "and then that leads to many issues",
+      "start": 1177.36,
+      "duration": 3.76
+    },
+    {
+      "text": "because it's actually fairly complicated",
+      "start": 1179.039,
+      "duration": 4.401
+    },
+    {
+      "text": "and then they develop a fear for this",
+      "start": 1181.12,
+      "duration": 4.919
+    },
+    {
+      "text": "subject I wanted to avoid that so I",
+      "start": 1183.44,
+      "duration": 5.479
+    },
+    {
+      "text": "started with this simplified Transformer",
+      "start": 1186.039,
+      "duration": 4.721
+    },
+    {
+      "text": "architecture okay I hope you have",
+      "start": 1188.919,
+      "duration": 3.961
+    },
+    {
+      "text": "understood until this point I encourage",
+      "start": 1190.76,
+      "duration": 3.919
+    },
+    {
+      "text": "you all to maybe pause here and think",
+      "start": 1192.88,
+      "duration": 3.72
+    },
+    {
+      "text": "about what you have",
+      "start": 1194.679,
+      "duration": 4.88
+    },
+    {
+      "text": "learned now let's go to the next next",
+      "start": 1196.6,
+      "duration": 5.92
+    },
+    {
+      "text": "part of the lecture uh the Transformer",
+      "start": 1199.559,
+      "duration": 5.641
+    },
+    {
+      "text": "architecture predominantly consists of",
+      "start": 1202.52,
+      "duration": 5.76
+    },
+    {
+      "text": "two main blocks the first is the encoder",
+      "start": 1205.2,
+      "duration": 5.52
+    },
+    {
+      "text": "block and the second is the decoder",
+      "start": 1208.28,
+      "duration": 4.639
+    },
+    {
+      "text": "block and we saw both of these here you",
+      "start": 1210.72,
+      "duration": 4.64
+    },
+    {
+      "text": "see the encoder was over here and the",
+      "start": 1212.919,
+      "duration": 5.801
+    },
+    {
+      "text": "decoder was over here okay the main",
+      "start": 1215.36,
+      "duration": 5.64
+    },
+    {
+      "text": "purpose of the encoder is to convert the",
+      "start": 1218.72,
+      "duration": 5.199
+    },
+    {
+      "text": "input text into embedding vectors great",
+      "start": 1221.0,
+      "duration": 4.919
+    },
+    {
+      "text": "and the main purpose of the decoder is",
+      "start": 1223.919,
+      "duration": 4.88
+    },
+    {
+      "text": "to generate the output text from the",
+      "start": 1225.919,
+      "duration": 5.201
+    },
+    {
+      "text": "embedding vectors and from the partial",
+      "start": 1228.799,
+      "duration": 5.961
+    },
+    {
+      "text": "output which it has received so encoder",
+      "start": 1231.12,
+      "duration": 5.919
+    },
+    {
+      "text": "and decoder are the two key blocks of a",
+      "start": 1234.76,
+      "duration": 4.76
+    },
+    {
+      "text": "transformer architecture remember the",
+      "start": 1237.039,
+      "duration": 4.601
+    },
+    {
+      "text": "GPT architecture is actually different",
+      "start": 1239.52,
+      "duration": 3.96
+    },
+    {
+      "text": "than the Transformer because that came",
+      "start": 1241.64,
+      "duration": 4.2
+    },
+    {
+      "text": "later and it does not have the decoder",
+      "start": 1243.48,
+      "duration": 3.64
+    },
+    {
+      "text": "it does sorry it does not have the",
+      "start": 1245.84,
+      "duration": 4.24
+    },
+    {
+      "text": "encoder it only has the decoder but",
+      "start": 1247.12,
+      "duration": 4.88
+    },
+    {
+      "text": "we'll come to that later right now",
+      "start": 1250.08,
+      "duration": 3.8
+    },
+    {
+      "text": "remember that Transformers have both",
+      "start": 1252.0,
+      "duration": 4.44
+    },
+    {
+      "text": "encoder and decoder",
+      "start": 1253.88,
+      "duration": 5.64
+    },
+    {
+      "text": "now one key part of of the Transformer",
+      "start": 1256.44,
+      "duration": 4.96
+    },
+    {
+      "text": "architecture is this thing this thing",
+      "start": 1259.52,
+      "duration": 5.12
+    },
+    {
+      "text": "called as self attention mechanism so",
+      "start": 1261.4,
+      "duration": 6.04
+    },
+    {
+      "text": "let's actually Google or let's actually",
+      "start": 1264.64,
+      "duration": 4.76
+    },
+    {
+      "text": "control F attention here and see how",
+      "start": 1267.44,
+      "duration": 5.119
+    },
+    {
+      "text": "many times it shows up 97 times and",
+      "start": 1269.4,
+      "duration": 4.68
+    },
+    {
+      "text": "let's see how they have defined",
+      "start": 1272.559,
+      "duration": 4.081
+    },
+    {
+      "text": "attention",
+      "start": 1274.08,
+      "duration": 5.92
+    },
+    {
+      "text": "actually uh okay attention mechanisms",
+      "start": 1276.64,
+      "duration": 5.6
+    },
+    {
+      "text": "have become an integral part of sequence",
+      "start": 1280.0,
+      "duration": 4.4
+    },
+    {
+      "text": "modeling allowing modeling of",
+      "start": 1282.24,
+      "duration": 4.28
+    },
+    {
+      "text": "dependencies without regard to their",
+      "start": 1284.4,
+      "duration": 4.56
+    },
+    {
+      "text": "distance in the input or output",
+      "start": 1286.52,
+      "duration": 6.759
+    },
+    {
+      "text": "sequences remember this so the attention",
+      "start": 1288.96,
+      "duration": 6.199
+    },
+    {
+      "text": "mechanism allows you to model the",
+      "start": 1293.279,
+      "duration": 4.081
+    },
+    {
+      "text": "dependencies between different words",
+      "start": 1295.159,
+      "duration": 4.681
+    },
+    {
+      "text": "without regards to how close apart or",
+      "start": 1297.36,
+      "duration": 5.439
+    },
+    {
+      "text": "how far apart the words are that is one",
+      "start": 1299.84,
+      "duration": 5.52
+    },
+    {
+      "text": "key thing to",
+      "start": 1302.799,
+      "duration": 2.561
+    },
+    {
+      "text": "remember uh and then self attention is",
+      "start": 1305.72,
+      "duration": 5.48
+    },
+    {
+      "text": "an attention mechanism relating",
+      "start": 1309.2,
+      "duration": 4.839
+    },
+    {
+      "text": "different positions of a single sequence",
+      "start": 1311.2,
+      "duration": 5.24
+    },
+    {
+      "text": "in order to compute a representation of",
+      "start": 1314.039,
+      "duration": 5.081
+    },
+    {
+      "text": "the sequence this is a bit difficult to",
+      "start": 1316.44,
+      "duration": 5.479
+    },
+    {
+      "text": "understand so let me actually explain to",
+      "start": 1319.12,
+      "duration": 4.88
+    },
+    {
+      "text": "you the way I understood it on the white",
+      "start": 1321.919,
+      "duration": 4.801
+    },
+    {
+      "text": "board what basically self attention",
+      "start": 1324.0,
+      "duration": 5.039
+    },
+    {
+      "text": "mechanism does is that or attention is",
+      "start": 1326.72,
+      "duration": 5.839
+    },
+    {
+      "text": "that it allows the model to weigh the",
+      "start": 1329.039,
+      "duration": 5.841
+    },
+    {
+      "text": "importance of different words and tokens",
+      "start": 1332.559,
+      "duration": 4.681
+    },
+    {
+      "text": "relative to each other so let's say you",
+      "start": 1334.88,
+      "duration": 5.279
+    },
+    {
+      "text": "have two sentences right and uh let's",
+      "start": 1337.24,
+      "duration": 5.52
+    },
+    {
+      "text": "say the first sentence is Harry Potter",
+      "start": 1340.159,
+      "duration": 4.52
+    },
+    {
+      "text": "is on station or platform number",
+      "start": 1342.76,
+      "duration": 3.76
+    },
+    {
+      "text": "something and then Harry Potter wants to",
+      "start": 1344.679,
+      "duration": 3.6
+    },
+    {
+      "text": "board the train and then third sentence",
+      "start": 1346.52,
+      "duration": 4.039
+    },
+    {
+      "text": "for fourth sentence when you are on the",
+      "start": 1348.279,
+      "duration": 4.921
+    },
+    {
+      "text": "fourth sentence to predict the next word",
+      "start": 1350.559,
+      "duration": 4.961
+    },
+    {
+      "text": "in the fourth sentence the context is",
+      "start": 1353.2,
+      "duration": 4.92
+    },
+    {
+      "text": "very important right so you need to know",
+      "start": 1355.52,
+      "duration": 4.8
+    },
+    {
+      "text": "what the text was in the sentence number",
+      "start": 1358.12,
+      "duration": 4.48
+    },
+    {
+      "text": "one sentence number two and sentence",
+      "start": 1360.32,
+      "duration": 4.839
+    },
+    {
+      "text": "number three as well only then you will",
+      "start": 1362.6,
+      "duration": 4.6
+    },
+    {
+      "text": "be able to really understand the fourth",
+      "start": 1365.159,
+      "duration": 3.801
+    },
+    {
+      "text": "sentence and predict the next word in",
+      "start": 1367.2,
+      "duration": 3.079
+    },
+    {
+      "text": "the fourth",
+      "start": 1368.96,
+      "duration": 4.04
+    },
+    {
+      "text": "sentence this is the meaning of long",
+      "start": 1370.279,
+      "duration": 5.88
+    },
+    {
+      "text": "range dependencies which means that if",
+      "start": 1373.0,
+      "duration": 4.799
+    },
+    {
+      "text": "I'm predicting the next word in the",
+      "start": 1376.159,
+      "duration": 4.201
+    },
+    {
+      "text": "fourth sentence I need to know the",
+      "start": 1377.799,
+      "duration": 4.76
+    },
+    {
+      "text": "importance of previous words I need to",
+      "start": 1380.36,
+      "duration": 4.919
+    },
+    {
+      "text": "know how much attention should I give to",
+      "start": 1382.559,
+      "duration": 4.761
+    },
+    {
+      "text": "the previous Words which word which has",
+      "start": 1385.279,
+      "duration": 3.681
+    },
+    {
+      "text": "come previously should receive more",
+      "start": 1387.32,
+      "duration": 4.04
+    },
+    {
+      "text": "attention maybe Harry should receive",
+      "start": 1388.96,
+      "duration": 4.28
+    },
+    {
+      "text": "more attention maybe platform or train",
+      "start": 1391.36,
+      "duration": 3.439
+    },
+    {
+      "text": "should receive more",
+      "start": 1393.24,
+      "duration": 4.12
+    },
+    {
+      "text": "attention the self attention mechanism",
+      "start": 1394.799,
+      "duration": 4.641
+    },
+    {
+      "text": "allows you to capture long range",
+      "start": 1397.36,
+      "duration": 4.439
+    },
+    {
+      "text": "dependencies so that the model can look",
+      "start": 1399.44,
+      "duration": 5.359
+    },
+    {
+      "text": "even far behind and even to sentences",
+      "start": 1401.799,
+      "duration": 5.041
+    },
+    {
+      "text": "closer to the current one to identify",
+      "start": 1404.799,
+      "duration": 5.12
+    },
+    {
+      "text": "the next one to identify the next word",
+      "start": 1406.84,
+      "duration": 5.36
+    },
+    {
+      "text": "so the self attention mechanism allows",
+      "start": 1409.919,
+      "duration": 4.201
+    },
+    {
+      "text": "the model to weigh the importance of",
+      "start": 1412.2,
+      "duration": 4.04
+    },
+    {
+      "text": "different words or tokens relative to",
+      "start": 1414.12,
+      "duration": 4.76
+    },
+    {
+      "text": "each other that is very important so",
+      "start": 1416.24,
+      "duration": 4.76
+    },
+    {
+      "text": "basically uh if you are to predict the",
+      "start": 1418.88,
+      "duration": 4.36
+    },
+    {
+      "text": "next word the self attention mechanism",
+      "start": 1421.0,
+      "duration": 4.679
+    },
+    {
+      "text": "maintains this attention score which",
+      "start": 1423.24,
+      "duration": 4.919
+    },
+    {
+      "text": "basically tells you which word should be",
+      "start": 1425.679,
+      "duration": 4.201
+    },
+    {
+      "text": "given more attention when you predict",
+      "start": 1428.159,
+      "duration": 4.361
+    },
+    {
+      "text": "the next word and this is a key part of",
+      "start": 1429.88,
+      "duration": 5.48
+    },
+    {
+      "text": "the intuition for all of you to think",
+      "start": 1432.52,
+      "duration": 6.159
+    },
+    {
+      "text": "about so let us actually",
+      "start": 1435.36,
+      "duration": 6.439
+    },
+    {
+      "text": "look at uh this architecture and look at",
+      "start": 1438.679,
+      "duration": 4.88
+    },
+    {
+      "text": "the part where attention comes in see",
+      "start": 1441.799,
+      "duration": 3.841
+    },
+    {
+      "text": "multi-head attention mask multi-head",
+      "start": 1443.559,
+      "duration": 4.161
+    },
+    {
+      "text": "attention there are these blocks which",
+      "start": 1445.64,
+      "duration": 4.72
+    },
+    {
+      "text": "are called as attention blocks so these",
+      "start": 1447.72,
+      "duration": 4.52
+    },
+    {
+      "text": "attention blocks make sure you capture",
+      "start": 1450.36,
+      "duration": 4.96
+    },
+    {
+      "text": "long range dependencies in the sentences",
+      "start": 1452.24,
+      "duration": 4.72
+    },
+    {
+      "text": "that's why this paper is actually called",
+      "start": 1455.32,
+      "duration": 3.479
+    },
+    {
+      "text": "attention is all you need because of the",
+      "start": 1456.96,
+      "duration": 4.599
+    },
+    {
+      "text": "self attention mechanism uh and the",
+      "start": 1458.799,
+      "duration": 5.401
+    },
+    {
+      "text": "intuition behind attention which these",
+      "start": 1461.559,
+      "duration": 5.081
+    },
+    {
+      "text": "folks introduced so as I mentioned they",
+      "start": 1464.2,
+      "duration": 4.8
+    },
+    {
+      "text": "they calculate an attention score which",
+      "start": 1466.64,
+      "duration": 4.639
+    },
+    {
+      "text": "basically it's a matrix and it tells you",
+      "start": 1469.0,
+      "duration": 3.799
+    },
+    {
+      "text": "which words should be given more",
+      "start": 1471.279,
+      "duration": 4.481
+    },
+    {
+      "text": "importance in relative or in relation to",
+      "start": 1472.799,
+      "duration": 4.281
+    },
+    {
+      "text": "other",
+      "start": 1475.76,
+      "duration": 4.44
+    },
+    {
+      "text": "words for now just understand this",
+      "start": 1477.08,
+      "duration": 5.599
+    },
+    {
+      "text": "intuition so that later when we come to",
+      "start": 1480.2,
+      "duration": 4.76
+    },
+    {
+      "text": "the mathematics and coding of it I just",
+      "start": 1482.679,
+      "duration": 3.921
+    },
+    {
+      "text": "want you to be comfortable with this",
+      "start": 1484.96,
+      "duration": 4.04
+    },
+    {
+      "text": "notion and I want you to appreciate how",
+      "start": 1486.6,
+      "duration": 6.64
+    },
+    {
+      "text": "beautiful this is because you as a human",
+      "start": 1489.0,
+      "duration": 6.24
+    },
+    {
+      "text": "we keep context into our mind pretty",
+      "start": 1493.24,
+      "duration": 3.76
+    },
+    {
+      "text": "naturally when we are reading a story we",
+      "start": 1495.24,
+      "duration": 3.159
+    },
+    {
+      "text": "remember what was written on the",
+      "start": 1497.0,
+      "duration": 4.559
+    },
+    {
+      "text": "previous page but for a model to do that",
+      "start": 1498.399,
+      "duration": 5.841
+    },
+    {
+      "text": "it's very difficult and self attention",
+      "start": 1501.559,
+      "duration": 4.441
+    },
+    {
+      "text": "mechanism actually allows the model to",
+      "start": 1504.24,
+      "duration": 4.08
+    },
+    {
+      "text": "do that it allows the model to capture",
+      "start": 1506.0,
+      "duration": 5.32
+    },
+    {
+      "text": "long range effect dependencies so that",
+      "start": 1508.32,
+      "duration": 5.479
+    },
+    {
+      "text": "it it makes the next word prediction",
+      "start": 1511.32,
+      "duration": 5.52
+    },
+    {
+      "text": "accurately in chat GPT when you write an",
+      "start": 1513.799,
+      "duration": 5.76
+    },
+    {
+      "text": "input GPT actually gives attention to",
+      "start": 1516.84,
+      "duration": 4.24
+    },
+    {
+      "text": "every sentence right and then it",
+      "start": 1519.559,
+      "duration": 3.801
+    },
+    {
+      "text": "predicts what the next word could be it",
+      "start": 1521.08,
+      "duration": 5.56
+    },
+    {
+      "text": "doesn't just look at the sentence before",
+      "start": 1523.36,
+      "duration": 4.96
+    },
+    {
+      "text": "the current one it looks at all sent",
+      "start": 1526.64,
+      "duration": 3.48
+    },
+    {
+      "text": "sentences because maybe previous words",
+      "start": 1528.32,
+      "duration": 2.839
+    },
+    {
+      "text": "are more",
+      "start": 1530.12,
+      "duration": 3.12
+    },
+    {
+      "text": "important this is possible through the",
+      "start": 1531.159,
+      "duration": 3.76
+    },
+    {
+      "text": "self attention",
+      "start": 1533.24,
+      "duration": 3.88
+    },
+    {
+      "text": "mechanism so that's the second key",
+      "start": 1534.919,
+      "duration": 3.961
+    },
+    {
+      "text": "concept which I wanted to",
+      "start": 1537.12,
+      "duration": 4.52
+    },
+    {
+      "text": "introduce and uh in the last part of the",
+      "start": 1538.88,
+      "duration": 4.36
+    },
+    {
+      "text": "lecture we are going to look at the",
+      "start": 1541.64,
+      "duration": 3.48
+    },
+    {
+      "text": "later variations of the Transformer",
+      "start": 1543.24,
+      "duration": 3.919
+    },
+    {
+      "text": "architecture so the Transformer",
+      "start": 1545.12,
+      "duration": 3.84
+    },
+    {
+      "text": "architecture or this paper rather came",
+      "start": 1547.159,
+      "duration": 5.361
+    },
+    {
+      "text": "out in 2017 right the GPT models came",
+      "start": 1548.96,
+      "duration": 5.959
+    },
+    {
+      "text": "out after that and there's another set",
+      "start": 1552.52,
+      "duration": 4.72
+    },
+    {
+      "text": "of models called as Bert which also came",
+      "start": 1554.919,
+      "duration": 5.24
+    },
+    {
+      "text": "out as l variations of the Transformer",
+      "start": 1557.24,
+      "duration": 5.2
+    },
+    {
+      "text": "architecture so there are two later",
+      "start": 1560.159,
+      "duration": 4.64
+    },
+    {
+      "text": "variations which I want to discuss the",
+      "start": 1562.44,
+      "duration": 5.56
+    },
+    {
+      "text": "first is called as B it's called as by",
+      "start": 1564.799,
+      "duration": 5.681
+    },
+    {
+      "text": "or its full form is B directional",
+      "start": 1568.0,
+      "duration": 5.12
+    },
+    {
+      "text": "encoder representations from",
+      "start": 1570.48,
+      "duration": 4.799
+    },
+    {
+      "text": "Transformers no need to understand the",
+      "start": 1573.12,
+      "duration": 4.4
+    },
+    {
+      "text": "meaning but that's just what b means",
+      "start": 1575.279,
+      "duration": 3.321
+    },
+    {
+      "text": "maybe you would have heard this",
+      "start": 1577.52,
+      "duration": 3.639
+    },
+    {
+      "text": "terminology but did not know the full",
+      "start": 1578.6,
+      "duration": 4.799
+    },
+    {
+      "text": "form the full form is B directional",
+      "start": 1581.159,
+      "duration": 4.4
+    },
+    {
+      "text": "encoder representations from",
+      "start": 1583.399,
+      "duration": 4.441
+    },
+    {
+      "text": "Transformers and the second is GPT",
+      "start": 1585.559,
+      "duration": 4.36
+    },
+    {
+      "text": "models of course all of us have heard of",
+      "start": 1587.84,
+      "duration": 5.4
+    },
+    {
+      "text": "chat GPT but the full form of GPT is",
+      "start": 1589.919,
+      "duration": 7.12
+    },
+    {
+      "text": "generative pre-trained",
+      "start": 1593.24,
+      "duration": 3.799
+    },
+    {
+      "text": "Transformers uh pre-trained because it's",
+      "start": 1597.159,
+      "duration": 4.441
+    },
+    {
+      "text": "a pre-trained or a foundational model",
+      "start": 1599.6,
+      "duration": 3.84
+    },
+    {
+      "text": "which we saw in the previous lecture so",
+      "start": 1601.6,
+      "duration": 4.28
+    },
+    {
+      "text": "now you should start understanding these",
+      "start": 1603.44,
+      "duration": 4.64
+    },
+    {
+      "text": "terminologies now you must be thinking",
+      "start": 1605.88,
+      "duration": 4.519
+    },
+    {
+      "text": "what's the difference between Bert and",
+      "start": 1608.08,
+      "duration": 4.719
+    },
+    {
+      "text": "GPT models there's a big difference",
+      "start": 1610.399,
+      "duration": 5.241
+    },
+    {
+      "text": "basically the way Bert operates is that",
+      "start": 1612.799,
+      "duration": 4.801
+    },
+    {
+      "text": "it predicts hidden words in a given",
+      "start": 1615.64,
+      "duration": 3.56
+    },
+    {
+      "text": "sentence so let's say you have a",
+      "start": 1617.6,
+      "duration": 3.64
+    },
+    {
+      "text": "sentence it will mask some words",
+      "start": 1619.2,
+      "duration": 4.16
+    },
+    {
+      "text": "randomly and it will try to predict",
+      "start": 1621.24,
+      "duration": 5.2
+    },
+    {
+      "text": "those mask or hidden words that's what B",
+      "start": 1623.36,
+      "duration": 5.679
+    },
+    {
+      "text": "does what does GPT do as we have all",
+      "start": 1626.44,
+      "duration": 5.32
+    },
+    {
+      "text": "seen it generates a new word so there is",
+      "start": 1629.039,
+      "duration": 4.76
+    },
+    {
+      "text": "a pretty big difference between how B",
+      "start": 1631.76,
+      "duration": 4.48
+    },
+    {
+      "text": "works and how GPT Works let's see a",
+      "start": 1633.799,
+      "duration": 4.321
+    },
+    {
+      "text": "schematic so this is how bir actually",
+      "start": 1636.24,
+      "duration": 4.28
+    },
+    {
+      "text": "works let's say we have a sentence this",
+      "start": 1638.12,
+      "duration": 6.52
+    },
+    {
+      "text": "is an Dash or question mark of how llm",
+      "start": 1640.52,
+      "duration": 7.159
+    },
+    {
+      "text": "Dash perform so let's say as input we",
+      "start": 1644.64,
+      "duration": 4.12
+    },
+    {
+      "text": "have this",
+      "start": 1647.679,
+      "duration": 2.521
+    },
+    {
+      "text": "a text which is",
+      "start": 1648.76,
+      "duration": 4.24
+    },
+    {
+      "text": "incomplete so Bert receives inputs where",
+      "start": 1650.2,
+      "duration": 5.04
+    },
+    {
+      "text": "words are randomly masked during",
+      "start": 1653.0,
+      "duration": 4.44
+    },
+    {
+      "text": "training and mask means that let's say",
+      "start": 1655.24,
+      "duration": 4.439
+    },
+    {
+      "text": "we do not know these words right and",
+      "start": 1657.44,
+      "duration": 4.119
+    },
+    {
+      "text": "then this is the input text we do the",
+      "start": 1659.679,
+      "duration": 3.681
+    },
+    {
+      "text": "same pre-processing steps as we saw",
+      "start": 1661.559,
+      "duration": 5.36
+    },
+    {
+      "text": "above converting them into uh token IDs",
+      "start": 1663.36,
+      "duration": 5.48
+    },
+    {
+      "text": "then we pass it to the encoder do the",
+      "start": 1666.919,
+      "duration": 3.841
+    },
+    {
+      "text": "embedding same thing like what we saw",
+      "start": 1668.84,
+      "duration": 4.92
+    },
+    {
+      "text": "before and then the main output is that",
+      "start": 1670.76,
+      "duration": 5.799
+    },
+    {
+      "text": "we fill the missing words so Bert model",
+      "start": 1673.76,
+      "duration": 4.759
+    },
+    {
+      "text": "realizes that the missing words are",
+      "start": 1676.559,
+      "duration": 4.96
+    },
+    {
+      "text": "example and can so then the final",
+      "start": 1678.519,
+      "duration": 5.4
+    },
+    {
+      "text": "sentence is this is an example of how",
+      "start": 1681.519,
+      "duration": 6.921
+    },
+    {
+      "text": "llm can perform this is how B Works how",
+      "start": 1683.919,
+      "duration": 6.281
+    },
+    {
+      "text": "GPT actually works is something",
+      "start": 1688.44,
+      "duration": 3.839
+    },
+    {
+      "text": "completely different so let's say the",
+      "start": 1690.2,
+      "duration": 4.359
+    },
+    {
+      "text": "input which GPT receives is this is an",
+      "start": 1692.279,
+      "duration": 4.721
+    },
+    {
+      "text": "example of how llm can",
+      "start": 1694.559,
+      "duration": 5.6
+    },
+    {
+      "text": "Dash so we just have to predict the next",
+      "start": 1697.0,
+      "duration": 5.0
+    },
+    {
+      "text": "World we receive incomplete text and we",
+      "start": 1700.159,
+      "duration": 4.801
+    },
+    {
+      "text": "have to predict the next word so then",
+      "start": 1702.0,
+      "duration": 5.12
+    },
+    {
+      "text": "the way GPT works is that it does the",
+      "start": 1704.96,
+      "duration": 4.28
+    },
+    {
+      "text": "pre-processing like we saw converts",
+      "start": 1707.12,
+      "duration": 4.72
+    },
+    {
+      "text": "words to token IDs then there is a",
+      "start": 1709.24,
+      "duration": 4.76
+    },
+    {
+      "text": "decoder model there is not an encoder",
+      "start": 1711.84,
+      "duration": 5.079
+    },
+    {
+      "text": "model so the decoder then predicts the",
+      "start": 1714.0,
+      "duration": 5.32
+    },
+    {
+      "text": "last word or the word which we do not",
+      "start": 1716.919,
+      "duration": 5.48
+    },
+    {
+      "text": "know perform so then the output is this",
+      "start": 1719.32,
+      "duration": 6.479
+    },
+    {
+      "text": "is an example of how llm can perform so",
+      "start": 1722.399,
+      "duration": 5.76
+    },
+    {
+      "text": "GPT models learn to generate one word at",
+      "start": 1725.799,
+      "duration": 5.641
+    },
+    {
+      "text": "a time now this leads to Big differences",
+      "start": 1728.159,
+      "duration": 5.721
+    },
+    {
+      "text": "because if you see the GPT model is left",
+      "start": 1731.44,
+      "duration": 4.959
+    },
+    {
+      "text": "to right right all the left information",
+      "start": 1733.88,
+      "duration": 4.36
+    },
+    {
+      "text": "is there we are only predicting the",
+      "start": 1736.399,
+      "duration": 4.361
+    },
+    {
+      "text": "rightmost information what is not known",
+      "start": 1738.24,
+      "duration": 4.76
+    },
+    {
+      "text": "whereas in bir random words can be",
+      "start": 1740.76,
+      "duration": 4.799
+    },
+    {
+      "text": "masked so the model has to pay attention",
+      "start": 1743.0,
+      "duration": 5.679
+    },
+    {
+      "text": "to different parts of the sentence and",
+      "start": 1745.559,
+      "duration": 4.96
+    },
+    {
+      "text": "that's why ber actually does very well",
+      "start": 1748.679,
+      "duration": 5.201
+    },
+    {
+      "text": "in sentiment analysis so here I",
+      "start": 1750.519,
+      "duration": 6.16
+    },
+    {
+      "text": "have I have a text which actually",
+      "start": 1753.88,
+      "duration": 6.12
+    },
+    {
+      "text": "Compares uh or answers why is Bert so",
+      "start": 1756.679,
+      "duration": 7.321
+    },
+    {
+      "text": "good when we do uh sentiment analysis so",
+      "start": 1760.0,
+      "duration": 6.6
+    },
+    {
+      "text": "the reason Bert is called B directional",
+      "start": 1764.0,
+      "duration": 4.519
+    },
+    {
+      "text": "so you'll see that the name is by",
+      "start": 1766.6,
+      "duration": 4.6
+    },
+    {
+      "text": "directional encoder representations",
+      "start": 1768.519,
+      "duration": 4.321
+    },
+    {
+      "text": "right because it looks at the sentence",
+      "start": 1771.2,
+      "duration": 4.28
+    },
+    {
+      "text": "from both directions whereas in GPT we",
+      "start": 1772.84,
+      "duration": 4.4
+    },
+    {
+      "text": "just look at the sentence from left to",
+      "start": 1775.48,
+      "duration": 4.319
+    },
+    {
+      "text": "right but ber looks at the sentence from",
+      "start": 1777.24,
+      "duration": 4.2
+    },
+    {
+      "text": "both directions because even the first",
+      "start": 1779.799,
+      "duration": 4.041
+    },
+    {
+      "text": "word might be missing so it has to look",
+      "start": 1781.44,
+      "duration": 4.8
+    },
+    {
+      "text": "from the left side as well as the right",
+      "start": 1783.84,
+      "duration": 4.88
+    },
+    {
+      "text": "side and by looking at the entire",
+      "start": 1786.24,
+      "duration": 4.72
+    },
+    {
+      "text": "sentence from both directions bir can",
+      "start": 1788.72,
+      "duration": 4.28
+    },
+    {
+      "text": "capture the nuances and relationships",
+      "start": 1790.96,
+      "duration": 4.839
+    },
+    {
+      "text": "between words that are important for for",
+      "start": 1793.0,
+      "duration": 5.48
+    },
+    {
+      "text": "understanding meaning and context",
+      "start": 1795.799,
+      "duration": 4.681
+    },
+    {
+      "text": "for instance Bert model can",
+      "start": 1798.48,
+      "duration": 4.0
+    },
+    {
+      "text": "differentiate between Bank as a",
+      "start": 1800.48,
+      "duration": 4.319
+    },
+    {
+      "text": "financial institution and bank as a",
+      "start": 1802.48,
+      "duration": 5.76
+    },
+    {
+      "text": "River Bank by looking at the surrounding",
+      "start": 1804.799,
+      "duration": 7.48
+    },
+    {
+      "text": "words so that is why ber can actually",
+      "start": 1808.24,
+      "duration": 6.08
+    },
+    {
+      "text": "understand the nuances and relationships",
+      "start": 1812.279,
+      "duration": 4.081
+    },
+    {
+      "text": "between different words in a sentence",
+      "start": 1814.32,
+      "duration": 4.04
+    },
+    {
+      "text": "since it looks at the sentence from both",
+      "start": 1816.36,
+      "duration": 4.4
+    },
+    {
+      "text": "sides that's why Bert is very commonly",
+      "start": 1818.36,
+      "duration": 5.52
+    },
+    {
+      "text": "used in sentiment analysis even GPT can",
+      "start": 1820.76,
+      "duration": 5.519
+    },
+    {
+      "text": "be used in sentiment analysis but the",
+      "start": 1823.88,
+      "duration": 5.919
+    },
+    {
+      "text": "speciality of birth is sentiment",
+      "start": 1826.279,
+      "duration": 5.801
+    },
+    {
+      "text": "analysis okay so that's the difference",
+      "start": 1829.799,
+      "duration": 4.88
+    },
+    {
+      "text": "between bir and GPT no one talks too",
+      "start": 1832.08,
+      "duration": 4.52
+    },
+    {
+      "text": "much about bir these days all the hype",
+      "start": 1834.679,
+      "duration": 4.321
+    },
+    {
+      "text": "is about GPT chat GPT because it",
+      "start": 1836.6,
+      "duration": 5.12
+    },
+    {
+      "text": "produces one word at a time it can",
+      "start": 1839.0,
+      "duration": 5.48
+    },
+    {
+      "text": "complete missing text also it can also",
+      "start": 1841.72,
+      "duration": 4.0
+    },
+    {
+      "text": "do sentiment",
+      "start": 1844.48,
+      "duration": 4.16
+    },
+    {
+      "text": "analysis uh but I just want to explain I",
+      "start": 1845.72,
+      "duration": 4.72
+    },
+    {
+      "text": "just wanted to explain these differences",
+      "start": 1848.64,
+      "duration": 4.32
+    },
+    {
+      "text": "to you so that you you are aware of what",
+      "start": 1850.44,
+      "duration": 5.04
+    },
+    {
+      "text": "BT means what GPT means one thing to not",
+      "start": 1852.96,
+      "duration": 4.559
+    },
+    {
+      "text": "is that both of these have the word",
+      "start": 1855.48,
+      "duration": 4.199
+    },
+    {
+      "text": "transform forers in them because they",
+      "start": 1857.519,
+      "duration": 4.0
+    },
+    {
+      "text": "have originated from the Transformer",
+      "start": 1859.679,
+      "duration": 4.84
+    },
+    {
+      "text": "architecture here uh which we just",
+      "start": 1861.519,
+      "duration": 5.801
+    },
+    {
+      "text": "consider but as you saw the GPT model",
+      "start": 1864.519,
+      "duration": 4.601
+    },
+    {
+      "text": "does not have an encoder they only have",
+      "start": 1867.32,
+      "duration": 4.359
+    },
+    {
+      "text": "a decoder that's one key thing which I",
+      "start": 1869.12,
+      "duration": 5.559
+    },
+    {
+      "text": "wanted to demonstrate here whereas The",
+      "start": 1871.679,
+      "duration": 5.6
+    },
+    {
+      "text": "Bert model only has the encoder so",
+      "start": 1874.679,
+      "duration": 4.521
+    },
+    {
+      "text": "remember these differences between Bert",
+      "start": 1877.279,
+      "duration": 6.041
+    },
+    {
+      "text": "and GPT great and now one thing which I",
+      "start": 1879.2,
+      "duration": 5.959
+    },
+    {
+      "text": "would like to cover before we end the",
+      "start": 1883.32,
+      "duration": 3.76
+    },
+    {
+      "text": "lecture is that what is the difference",
+      "start": 1885.159,
+      "duration": 5.36
+    },
+    {
+      "text": "between Transformer and llm so are they",
+      "start": 1887.08,
+      "duration": 5.88
+    },
+    {
+      "text": "the same thing when we say llms can we",
+      "start": 1890.519,
+      "duration": 4.441
+    },
+    {
+      "text": "also say",
+      "start": 1892.96,
+      "duration": 4.679
+    },
+    {
+      "text": "Transformers so the key thing to note is",
+      "start": 1894.96,
+      "duration": 6.319
+    },
+    {
+      "text": "that not all Transformers are llms",
+      "start": 1897.639,
+      "duration": 6.241
+    },
+    {
+      "text": "Transformers can also be used for other",
+      "start": 1901.279,
+      "duration": 5.561
+    },
+    {
+      "text": "tasks like computer vision so one thing",
+      "start": 1903.88,
+      "duration": 4.72
+    },
+    {
+      "text": "which I would like to show you here is",
+      "start": 1906.84,
+      "duration": 2.48
+    },
+    {
+      "text": "this",
+      "start": 1908.6,
+      "duration": 3.84
+    },
+    {
+      "text": "thing so Transformers are not only used",
+      "start": 1909.32,
+      "duration": 5.12
+    },
+    {
+      "text": "for language tasks they are also used",
+      "start": 1912.44,
+      "duration": 3.64
+    },
+    {
+      "text": "for vision tasks such as image",
+      "start": 1914.44,
+      "duration": 4.56
+    },
+    {
+      "text": "recognition image classification Etc",
+      "start": 1916.08,
+      "duration": 4.959
+    },
+    {
+      "text": "here is a website which I have pulled",
+      "start": 1919.0,
+      "duration": 3.48
+    },
+    {
+      "text": "out the these are called as Vision",
+      "start": 1921.039,
+      "duration": 4.281
+    },
+    {
+      "text": "Transformers vit and they can be used",
+      "start": 1922.48,
+      "duration": 4.919
+    },
+    {
+      "text": "for various application so here see the",
+      "start": 1925.32,
+      "duration": 3.719
+    },
+    {
+      "text": "vision Transformer is being used to",
+      "start": 1927.399,
+      "duration": 4.601
+    },
+    {
+      "text": "detect a PO hole on the road then there",
+      "start": 1929.039,
+      "duration": 5.681
+    },
+    {
+      "text": "are a number of other important",
+      "start": 1932.0,
+      "duration": 4.399
+    },
+    {
+      "text": "application such as it can be used to",
+      "start": 1934.72,
+      "duration": 3.839
+    },
+    {
+      "text": "classify between tumors as maligant and",
+      "start": 1936.399,
+      "duration": 4.841
+    },
+    {
+      "text": "venine just from the images and a number",
+      "start": 1938.559,
+      "duration": 4.48
+    },
+    {
+      "text": "of people have discuss the similarities",
+      "start": 1941.24,
+      "duration": 3.439
+    },
+    {
+      "text": "and differences between convolutional",
+      "start": 1943.039,
+      "duration": 5.401
+    },
+    {
+      "text": "neural network and viit so viit AES",
+      "start": 1944.679,
+      "duration": 6.161
+    },
+    {
+      "text": "remarkable results compared to CNN while",
+      "start": 1948.44,
+      "duration": 5.0
+    },
+    {
+      "text": "obtaining substantially fewer",
+      "start": 1950.84,
+      "duration": 5.079
+    },
+    {
+      "text": "computational resources for",
+      "start": 1953.44,
+      "duration": 5.839
+    },
+    {
+      "text": "pre-training in comparison to C CNN",
+      "start": 1955.919,
+      "duration": 5.081
+    },
+    {
+      "text": "Vision Transformers show a generally",
+      "start": 1959.279,
+      "duration": 5.161
+    },
+    {
+      "text": "weaker bias so basically you think of",
+      "start": 1961.0,
+      "duration": 5.48
+    },
+    {
+      "text": "only convolutional neural networks when",
+      "start": 1964.44,
+      "duration": 4.32
+    },
+    {
+      "text": "you think of image classification right",
+      "start": 1966.48,
+      "duration": 5.4
+    },
+    {
+      "text": "but Vision Transformers are a new method",
+      "start": 1968.76,
+      "duration": 4.799
+    },
+    {
+      "text": "which is also gaining a lot of",
+      "start": 1971.88,
+      "duration": 3.88
+    },
+    {
+      "text": "popularity and they can be used for",
+      "start": 1973.559,
+      "duration": 5.6
+    },
+    {
+      "text": "image classification tasks",
+      "start": 1975.76,
+      "duration": 5.399
+    },
+    {
+      "text": "so remember when you think of",
+      "start": 1979.159,
+      "duration": 4.441
+    },
+    {
+      "text": "Transformers don't think of Transformers",
+      "start": 1981.159,
+      "duration": 4.36
+    },
+    {
+      "text": "only in the context of large language",
+      "start": 1983.6,
+      "duration": 4.72
+    },
+    {
+      "text": "models or text generation Transformers",
+      "start": 1985.519,
+      "duration": 5.64
+    },
+    {
+      "text": "can also be used for computer vision so",
+      "start": 1988.32,
+      "duration": 6.04
+    },
+    {
+      "text": "remember not all Transformers are llms",
+      "start": 1991.159,
+      "duration": 5.841
+    },
+    {
+      "text": "so what about llms are all llms",
+      "start": 1994.36,
+      "duration": 5.24
+    },
+    {
+      "text": "Transformers so that is also not true",
+      "start": 1997.0,
+      "duration": 6.0
+    },
+    {
+      "text": "not all llms are also Transformers llms",
+      "start": 1999.6,
+      "duration": 5.24
+    },
+    {
+      "text": "can be based on recurrent or",
+      "start": 2003.0,
+      "duration": 4.44
+    },
+    {
+      "text": "convolutional architectures as well this",
+      "start": 2004.84,
+      "duration": 5.079
+    },
+    {
+      "text": "is what very important point to remember",
+      "start": 2007.44,
+      "duration": 5.239
+    },
+    {
+      "text": "I had made a presentation uh some time",
+      "start": 2009.919,
+      "duration": 5.441
+    },
+    {
+      "text": "back and this image has been taken from",
+      "start": 2012.679,
+      "duration": 6.0
+    },
+    {
+      "text": "stats Quest channel so before even",
+      "start": 2015.36,
+      "duration": 5.159
+    },
+    {
+      "text": "Transformers came into the picture here",
+      "start": 2018.679,
+      "duration": 4.081
+    },
+    {
+      "text": "you can see 1980 recurrent neural",
+      "start": 2020.519,
+      "duration": 5.361
+    },
+    {
+      "text": "networks were introduced in 1997 long",
+      "start": 2022.76,
+      "duration": 4.6
+    },
+    {
+      "text": "short-term memory networks were",
+      "start": 2025.88,
+      "duration": 3.679
+    },
+    {
+      "text": "introduced both of them could do",
+      "start": 2027.36,
+      "duration": 4.64
+    },
+    {
+      "text": "sequence modeling tasks and both of them",
+      "start": 2029.559,
+      "duration": 5.401
+    },
+    {
+      "text": "could do text completion tasks so they",
+      "start": 2032.0,
+      "duration": 6.08
+    },
+    {
+      "text": "also can be called as language models so",
+      "start": 2034.96,
+      "duration": 7.8
+    },
+    {
+      "text": "remember that all llms are not uh",
+      "start": 2038.08,
+      "duration": 7.719
+    },
+    {
+      "text": "Transformers right llms can also be",
+      "start": 2042.76,
+      "duration": 4.639
+    },
+    {
+      "text": "recurrent neural networks or long",
+      "start": 2045.799,
+      "duration": 4.001
+    },
+    {
+      "text": "shortterm memory networks to give you a",
+      "start": 2047.399,
+      "duration": 5.041
+    },
+    {
+      "text": "quick introduction what RNN actually do",
+      "start": 2049.8,
+      "duration": 4.879
+    },
+    {
+      "text": "is that RNN maintain this kind of a",
+      "start": 2052.44,
+      "duration": 5.56
+    },
+    {
+      "text": "feedback loop so that is why we can",
+      "start": 2054.679,
+      "duration": 5.361
+    },
+    {
+      "text": "incorporate memory into",
+      "start": 2058.0,
+      "duration": 4.919
+    },
+    {
+      "text": "account uh lstm on the other hand",
+      "start": 2060.04,
+      "duration": 6.079
+    },
+    {
+      "text": "incorporates two separate paths One path",
+      "start": 2062.919,
+      "duration": 5.2
+    },
+    {
+      "text": "about short-term memories and one path",
+      "start": 2066.119,
+      "duration": 4.201
+    },
+    {
+      "text": "about long-term memories that's why they",
+      "start": 2068.119,
+      "duration": 3.401
+    },
+    {
+      "text": "are called long",
+      "start": 2070.32,
+      "duration": 4.96
+    },
+    {
+      "text": "short-term um memory networks so One",
+      "start": 2071.52,
+      "duration": 5.76
+    },
+    {
+      "text": "path is for long-term memories and one",
+      "start": 2075.28,
+      "duration": 4.72
+    },
+    {
+      "text": "path is for short-term memories so",
+      "start": 2077.28,
+      "duration": 5.119
+    },
+    {
+      "text": "basically we have one green line let's",
+      "start": 2080.0,
+      "duration": 4.159
+    },
+    {
+      "text": "say which is shown here that represents",
+      "start": 2082.399,
+      "duration": 4.321
+    },
+    {
+      "text": "long-term memory one line which shows",
+      "start": 2084.159,
+      "duration": 5.081
+    },
+    {
+      "text": "the short-term memory and then basically",
+      "start": 2086.72,
+      "duration": 4.399
+    },
+    {
+      "text": "using both we can make predictions of",
+      "start": 2089.24,
+      "duration": 4.76
+    },
+    {
+      "text": "what comes next so even recurrent neural",
+      "start": 2091.119,
+      "duration": 5.681
+    },
+    {
+      "text": "networks and long short-term memory",
+      "start": 2094.0,
+      "duration": 5.52
+    },
+    {
+      "text": "Networks and even some convolutional",
+      "start": 2096.8,
+      "duration": 5.52
+    },
+    {
+      "text": "architectures can also be large language",
+      "start": 2099.52,
+      "duration": 5.559
+    },
+    {
+      "text": "models so as we end I just want you to",
+      "start": 2102.32,
+      "duration": 4.84
+    },
+    {
+      "text": "remember that not all Transformers are",
+      "start": 2105.079,
+      "duration": 4.161
+    },
+    {
+      "text": "llms this is very important to keep in",
+      "start": 2107.16,
+      "duration": 5.6
+    },
+    {
+      "text": "mind and not all llms are Transformers",
+      "start": 2109.24,
+      "duration": 6.48
+    },
+    {
+      "text": "also so don't use the terms Transformers",
+      "start": 2112.76,
+      "duration": 5.4
+    },
+    {
+      "text": "and llms interchangeably they are",
+      "start": 2115.72,
+      "duration": 4.6
+    },
+    {
+      "text": "actually very different things but not",
+      "start": 2118.16,
+      "duration": 4.48
+    },
+    {
+      "text": "many students or not many people really",
+      "start": 2120.32,
+      "duration": 3.799
+    },
+    {
+      "text": "understand the similarities or the",
+      "start": 2122.64,
+      "duration": 3.84
+    },
+    {
+      "text": "differences between them one purpose of",
+      "start": 2124.119,
+      "duration": 4.48
+    },
+    {
+      "text": "these set of lectures is for you to",
+      "start": 2126.48,
+      "duration": 3.879
+    },
+    {
+      "text": "understand everything from Basics the",
+      "start": 2128.599,
+      "duration": 3.921
+    },
+    {
+      "text": "way it is supposed to be that way you'll",
+      "start": 2130.359,
+      "duration": 4.081
+    },
+    {
+      "text": "also be much more confident when you",
+      "start": 2132.52,
+      "duration": 4.4
+    },
+    {
+      "text": "transition your career or you're sitting",
+      "start": 2134.44,
+      "duration": 4.2
+    },
+    {
+      "text": "for an llm interview and if you don't",
+      "start": 2136.92,
+      "duration": 3.24
+    },
+    {
+      "text": "know the difference between Transformers",
+      "start": 2138.64,
+      "duration": 4.52
+    },
+    {
+      "text": "or llms these lectures can clarify those",
+      "start": 2140.16,
+      "duration": 5.439
+    },
+    {
+      "text": "similarities and differences for you I'm",
+      "start": 2143.16,
+      "duration": 4.24
+    },
+    {
+      "text": "going to go into a lot of detail in",
+      "start": 2145.599,
+      "duration": 3.801
+    },
+    {
+      "text": "lectures like what we did right now and",
+      "start": 2147.4,
+      "duration": 4.12
+    },
+    {
+      "text": "not assume anything so I've written",
+      "start": 2149.4,
+      "duration": 3.679
+    },
+    {
+      "text": "number of things on the Whiteboard so",
+      "start": 2151.52,
+      "duration": 4.48
+    },
+    {
+      "text": "that you can understand let's do a quick",
+      "start": 2153.079,
+      "duration": 5.201
+    },
+    {
+      "text": "recap of what all we learned",
+      "start": 2156.0,
+      "duration": 4.96
+    },
+    {
+      "text": "first we saw that most modern llms rely",
+      "start": 2158.28,
+      "duration": 5.079
+    },
+    {
+      "text": "on the Transformer architecture which",
+      "start": 2160.96,
+      "duration": 5.56
+    },
+    {
+      "text": "was proposed in the 2017 paper it's",
+      "start": 2163.359,
+      "duration": 4.881
+    },
+    {
+      "text": "basically a deep neural network",
+      "start": 2166.52,
+      "duration": 3.88
+    },
+    {
+      "text": "architecture the paper which proposed",
+      "start": 2168.24,
+      "duration": 4.16
+    },
+    {
+      "text": "the Transformer architecture is called",
+      "start": 2170.4,
+      "duration": 4.56
+    },
+    {
+      "text": "as attention is all you need and the",
+      "start": 2172.4,
+      "duration": 4.679
+    },
+    {
+      "text": "original Transformer was developed for",
+      "start": 2174.96,
+      "duration": 4.48
+    },
+    {
+      "text": "machine translation for translating",
+      "start": 2177.079,
+      "duration": 4.561
+    },
+    {
+      "text": "English tasks or English texts into",
+      "start": 2179.44,
+      "duration": 5.08
+    },
+    {
+      "text": "German and French we saw a simplified",
+      "start": 2181.64,
+      "duration": 4.719
+    },
+    {
+      "text": "Transformer architecture which had eight",
+      "start": 2184.52,
+      "duration": 4.319
+    },
+    {
+      "text": "steps we take an input example",
+      "start": 2186.359,
+      "duration": 5.601
+    },
+    {
+      "text": "pre-process it by converting words or",
+      "start": 2188.839,
+      "duration": 5.76
+    },
+    {
+      "text": "sentences into words and token IDs then",
+      "start": 2191.96,
+      "duration": 4.48
+    },
+    {
+      "text": "we pass it into the encoder which",
+      "start": 2194.599,
+      "duration": 3.561
+    },
+    {
+      "text": "converts these tokens into Vector",
+      "start": 2196.44,
+      "duration": 4.84
+    },
+    {
+      "text": "embeddings the vector embeddings are fed",
+      "start": 2198.16,
+      "duration": 5.52
+    },
+    {
+      "text": "to the decoder along with the vector",
+      "start": 2201.28,
+      "duration": 4.2
+    },
+    {
+      "text": "embeddings the decoder also receives",
+      "start": 2203.68,
+      "duration": 5.24
+    },
+    {
+      "text": "partial output text and it generates the",
+      "start": 2205.48,
+      "duration": 7.0
+    },
+    {
+      "text": "translated sentence one word at a time",
+      "start": 2208.92,
+      "duration": 5.32
+    },
+    {
+      "text": "this is the simplified Transformer",
+      "start": 2212.48,
+      "duration": 3.72
+    },
+    {
+      "text": "architecture and we saw that the",
+      "start": 2214.24,
+      "duration": 3.879
+    },
+    {
+      "text": "Transformer architecture consists of an",
+      "start": 2216.2,
+      "duration": 4.159
+    },
+    {
+      "text": "encoder and a",
+      "start": 2218.119,
+      "duration": 5.041
+    },
+    {
+      "text": "decoder however later we saw that GPT",
+      "start": 2220.359,
+      "duration": 4.801
+    },
+    {
+      "text": "models do not have an encoder they only",
+      "start": 2223.16,
+      "duration": 3.12
+    },
+    {
+      "text": "have a",
+      "start": 2225.16,
+      "duration": 3.48
+    },
+    {
+      "text": "decoder in the middle we had a small",
+      "start": 2226.28,
+      "duration": 4.96
+    },
+    {
+      "text": "discussion on self attention mechanism",
+      "start": 2228.64,
+      "duration": 4.28
+    },
+    {
+      "text": "which is really the heart of why",
+      "start": 2231.24,
+      "duration": 3.839
+    },
+    {
+      "text": "Transformers works so well and why the",
+      "start": 2232.92,
+      "duration": 3.6
+    },
+    {
+      "text": "paper which I showed you earlier is",
+      "start": 2235.079,
+      "duration": 3.641
+    },
+    {
+      "text": "called attention is all you need self",
+      "start": 2236.52,
+      "duration": 4.48
+    },
+    {
+      "text": "attention allows the model to weigh the",
+      "start": 2238.72,
+      "duration": 4.28
+    },
+    {
+      "text": "importance of different words relative",
+      "start": 2241.0,
+      "duration": 4.52
+    },
+    {
+      "text": "to each other and it enables the model",
+      "start": 2243.0,
+      "duration": 4.88
+    },
+    {
+      "text": "to capture long range dependencies so",
+      "start": 2245.52,
+      "duration": 4.48
+    },
+    {
+      "text": "when we are predicting the next word",
+      "start": 2247.88,
+      "duration": 4.52
+    },
+    {
+      "text": "from a given sentence we can look at all",
+      "start": 2250.0,
+      "duration": 5.2
+    },
+    {
+      "text": "the context in the past and way the",
+      "start": 2252.4,
+      "duration": 4.919
+    },
+    {
+      "text": "importance of which word matters more",
+      "start": 2255.2,
+      "duration": 3.84
+    },
+    {
+      "text": "for predicting the next",
+      "start": 2257.319,
+      "duration": 4.0
+    },
+    {
+      "text": "word you can think of also self",
+      "start": 2259.04,
+      "duration": 3.96
+    },
+    {
+      "text": "attention as parallel attention to",
+      "start": 2261.319,
+      "duration": 3.681
+    },
+    {
+      "text": "different parts of a paragraph or",
+      "start": 2263.0,
+      "duration": 3.359
+    },
+    {
+      "text": "different",
+      "start": 2265.0,
+      "duration": 3.8
+    },
+    {
+      "text": "sentences we will look into this later",
+      "start": 2266.359,
+      "duration": 6.201
+    },
+    {
+      "text": "it's going to be one of the key aspects",
+      "start": 2268.8,
+      "duration": 6.2
+    },
+    {
+      "text": "uh it's going to be one of the key",
+      "start": 2272.56,
+      "duration": 5.72
+    },
+    {
+      "text": "aspects of our course as we move forward",
+      "start": 2275.0,
+      "duration": 5.2
+    },
+    {
+      "text": "then we saw the later variations of",
+      "start": 2278.28,
+      "duration": 4.44
+    },
+    {
+      "text": "transform Transformer architecture in",
+      "start": 2280.2,
+      "duration": 4.399
+    },
+    {
+      "text": "particular we looked at two variations",
+      "start": 2282.72,
+      "duration": 3.879
+    },
+    {
+      "text": "first is B which is B directional",
+      "start": 2284.599,
+      "duration": 5.121
+    },
+    {
+      "text": "encoder representations and then we saw",
+      "start": 2286.599,
+      "duration": 5.48
+    },
+    {
+      "text": "GPT so there is a difference between",
+      "start": 2289.72,
+      "duration": 5.44
+    },
+    {
+      "text": "these right Bert predicts hidden hidden",
+      "start": 2292.079,
+      "duration": 4.721
+    },
+    {
+      "text": "words in a sentence or it predicts",
+      "start": 2295.16,
+      "duration": 3.32
+    },
+    {
+      "text": "missing Words which are also called",
+      "start": 2296.8,
+      "duration": 4.519
+    },
+    {
+      "text": "masked words so basically what this does",
+      "start": 2298.48,
+      "duration": 4.68
+    },
+    {
+      "text": "is that word pays attention to a",
+      "start": 2301.319,
+      "duration": 3.641
+    },
+    {
+      "text": "sentence from left side as well as from",
+      "start": 2303.16,
+      "duration": 3.56
+    },
+    {
+      "text": "the right side because any word can be",
+      "start": 2304.96,
+      "duration": 3.96
+    },
+    {
+      "text": "masked that's why it's called B",
+      "start": 2306.72,
+      "duration": 4.52
+    },
+    {
+      "text": "directional encoder and it does not have",
+      "start": 2308.92,
+      "duration": 4.159
+    },
+    {
+      "text": "the decoder architecture it just has the",
+      "start": 2311.24,
+      "duration": 4.72
+    },
+    {
+      "text": "encoder architecture since ber looks at",
+      "start": 2313.079,
+      "duration": 5.04
+    },
+    {
+      "text": "a sentence from both the words both the",
+      "start": 2315.96,
+      "duration": 4.24
+    },
+    {
+      "text": "directions it can capture the meanings",
+      "start": 2318.119,
+      "duration": 3.72
+    },
+    {
+      "text": "of different words and how they relate",
+      "start": 2320.2,
+      "duration": 4.08
+    },
+    {
+      "text": "to each other very well and that's why",
+      "start": 2321.839,
+      "duration": 4.361
+    },
+    {
+      "text": "BT models are used for sentiment",
+      "start": 2324.28,
+      "duration": 3.24
+    },
+    {
+      "text": "analysis A",
+      "start": 2326.2,
+      "duration": 5.879
+    },
+    {
+      "text": "Lot GPT on the other hand just gets the",
+      "start": 2327.52,
+      "duration": 7.64
+    },
+    {
+      "text": "data and then it predicts the next word",
+      "start": 2332.079,
+      "duration": 5.401
+    },
+    {
+      "text": "so it's it's a left to right model",
+      "start": 2335.16,
+      "duration": 4.439
+    },
+    {
+      "text": "basically it has data from the left hand",
+      "start": 2337.48,
+      "duration": 3.56
+    },
+    {
+      "text": "side and then it has to predict what",
+      "start": 2339.599,
+      "duration": 3.121
+    },
+    {
+      "text": "comes on the right or what's the next",
+      "start": 2341.04,
+      "duration": 4.88
+    },
+    {
+      "text": "work so GPT receives incomplete text and",
+      "start": 2342.72,
+      "duration": 5.44
+    },
+    {
+      "text": "learns to generate one word at a",
+      "start": 2345.92,
+      "duration": 4.88
+    },
+    {
+      "text": "time um and main thing to remember is",
+      "start": 2348.16,
+      "duration": 4.84
+    },
+    {
+      "text": "that GPT does not have an encoder it",
+      "start": 2350.8,
+      "duration": 3.92
+    },
+    {
+      "text": "only has",
+      "start": 2353.0,
+      "duration": 4.079
+    },
+    {
+      "text": "decoder great and then in the last part",
+      "start": 2354.72,
+      "duration": 3.92
+    },
+    {
+      "text": "of the lecture we saw the difference",
+      "start": 2357.079,
+      "duration": 4.161
+    },
+    {
+      "text": "between Transformers versus llms so",
+      "start": 2358.64,
+      "duration": 5.12
+    },
+    {
+      "text": "remember not all Transformers are llms",
+      "start": 2361.24,
+      "duration": 4.32
+    },
+    {
+      "text": "Transformers can also be used for",
+      "start": 2363.76,
+      "duration": 3.92
+    },
+    {
+      "text": "computer vision tasks like image",
+      "start": 2365.56,
+      "duration": 4.92
+    },
+    {
+      "text": "classification image segmentation Etc",
+      "start": 2367.68,
+      "duration": 6.159
+    },
+    {
+      "text": "similarly not all llms are Transformers",
+      "start": 2370.48,
+      "duration": 5.08
+    },
+    {
+      "text": "before Transformers came recurrent",
+      "start": 2373.839,
+      "duration": 3.961
+    },
+    {
+      "text": "neural networks and long short-term",
+      "start": 2375.56,
+      "duration": 4.2
+    },
+    {
+      "text": "memory networks and even convolutional",
+      "start": 2377.8,
+      "duration": 4.36
+    },
+    {
+      "text": "architectures were used for text",
+      "start": 2379.76,
+      "duration": 5.359
+    },
+    {
+      "text": "completion so that's why llms can be",
+      "start": 2382.16,
+      "duration": 4.72
+    },
+    {
+      "text": "based on recurrent or convolutional",
+      "start": 2385.119,
+      "duration": 4.2
+    },
+    {
+      "text": "architectures as well so do not use",
+      "start": 2386.88,
+      "duration": 4.199
+    },
+    {
+      "text": "these terms Transformers and llms",
+      "start": 2389.319,
+      "duration": 4.561
+    },
+    {
+      "text": "interchangeably though many people do it",
+      "start": 2391.079,
+      "duration": 4.04
+    },
+    {
+      "text": "understand the similarities and",
+      "start": 2393.88,
+      "duration": 4.12
+    },
+    {
+      "text": "differences between the two that brings",
+      "start": 2395.119,
+      "duration": 5.281
+    },
+    {
+      "text": "us to the end of this lecture we covered",
+      "start": 2398.0,
+      "duration": 4.319
+    },
+    {
+      "text": "a lot of we covered Five Points in",
+      "start": 2400.4,
+      "duration": 4.28
+    },
+    {
+      "text": "today's lecture and I encourage you to",
+      "start": 2402.319,
+      "duration": 5.28
+    },
+    {
+      "text": "be proactive in the comment section ask",
+      "start": 2404.68,
+      "duration": 6.08
+    },
+    {
+      "text": "questions ask doubts uh also make notes",
+      "start": 2407.599,
+      "duration": 5.121
+    },
+    {
+      "text": "about these architectures as you are as",
+      "start": 2410.76,
+      "duration": 3.64
+    },
+    {
+      "text": "you are learning that's really one of",
+      "start": 2412.72,
+      "duration": 3.599
+    },
+    {
+      "text": "the best ways to learn about this",
+      "start": 2414.4,
+      "duration": 4.679
+    },
+    {
+      "text": "material and as always I try to show",
+      "start": 2416.319,
+      "duration": 4.881
+    },
+    {
+      "text": "everything on a whiteboard plus try to",
+      "start": 2419.079,
+      "duration": 4.161
+    },
+    {
+      "text": "explain as clearly as possible so that",
+      "start": 2421.2,
+      "duration": 4.639
+    },
+    {
+      "text": "nothing is left out and I show a lot of",
+      "start": 2423.24,
+      "duration": 4.879
+    },
+    {
+      "text": "examples also in this process",
+      "start": 2425.839,
+      "duration": 3.841
+    },
+    {
+      "text": "thanks a lot everyone I hope you are",
+      "start": 2428.119,
+      "duration": 3.641
+    },
+    {
+      "text": "enjoying in this series I look forward",
+      "start": 2429.68,
+      "duration": 6.24
+    },
+    {
+      "text": "to seeing you in the next lecture",
+      "start": 2431.76,
+      "duration": 4.16
+    }
+  ],
+  "full_text": "[Music] hello everyone welcome to the lecture 4 in this building large language models from scratch Series in the previous lecture we took a look at the differences between the two stages of building an llm and the two stages were pre-training and fine-tuning so pre-training involves training on a large diverse data set and fine tuning is basically refinement by training on a narrower data set specific to a particular task or a particular domain if you have not seen the previous lecture I highly encourage you to go through the previous lecture so that there will be a good flow between these different lectures if you are watching today's lecture for the first time no problem at all welcome to this series and I've have designed this lecture so that it's independently accessible and understandable so let's get started today I'm very excited because today's topic is regarding introduction or rather a basic introduction to Transformers in today's topic we are not going to go into the mathematical details or even the coding details of Transformers but we are just going to introduce the flavor of this concept what does it really mean what it did for large language models what is the history of Transformers in the context text of GPT uh is there any similarity or differences between llms and Transformers when people say llms and Transformers they usually use these terms interchangeably when should we use these terminologies interchangeably are there any similarities or differences between them we are going to learn about all of these aspects we are also going to look at the schematic of how Transformer generally work and in doing so we'll understand the basics of few terminologies like embedding tokenization Etc so let's get started with today's lecture so the secret Source behind large language models and the secret Source behind why llms are so popular is this world called as Transformers most of the modern large language models rely on this architecture which is called as Transformer architecture so what is a Transformer AR architecture essentially it's a deep neural network architecture which was introduced in a paper which was released in 2017 this paper is called as attention is all you need and if you go and search about this paper on Google Scholar right now so let me do that just quickly so if I go here to Google Scholar and type attention is all you need let us check the number of citations which is which it has it has more than 100,000 citations in just six to 7 years that's incredible right it's because this paper led to so many breakthroughs which happened later the GPT architecture which is the foundational stone or foundational building block of chat GPT originated from this paper the GPT architecture is not exactly the same as the Transformer architecture proposed in this paper but it is heavily based on that so it's very important for us to understand what this paper really did and what our Transformers so I've have opened this paper here so that you can see it's titled attention is all you need so you might be thinking what is attention and it is actually a technical term which is related to how attention is used in our daily life also we'll also be touching upon this briefly today and we'll be understanding uh intuition behind attention so if you look at this paper it's a 15 page paper and this is the Transformer architecture which I'm talking about essentially it's a neural network architecture and there are so many things to unpack and explain here which we won't be doing today we'll be doing at subsequent lectures because every aspect of this architecture will need a separate lecture it's that detailed today we are just going to look at an overview so it's a 15 page paper and to go through this paper and to really understand this paper it will at least need 10 to 15 lectures and this lecture can serve as an introduction so it's very important for you all to to understand this lecture clearly first thing which I want to explain is that when this paper was proposed it was actually proposed for translation tasks which means converting one language into another language text completion which is the predominant role of GPT was not even in consideration here they were mostly looking at English to French and English to German translations and they proposed a mechanism which did huge amount of advancements on these tasks the Transformer mechanism they proposed led to Big advancement in these tasks later it was discovered that using an architecture derived from this Transformer architecture we can do so many other things so that's the first thing to note uh and that is that the original Transformer which was developed it was developed for machine translation tasks especially it was developed to translate English text into German and French okay now we are going to look at uh a schematic of the Transformer architecture so this schematic is fairly detailed like you can see and we have actually uh done a ton down version of this schematic and I have borrowed this schematic from the book building llms from scratch by Sebastian one of the best books on large language models so let us look at this schematic first of all by zooming out so this is a simplified Transformer architecture first I want to show you that there are eight steps over here you can see this orange step number one step number two step number three step number four five 6 7 and eight so if you understand these eight steps as an intuition you would have understood the intuition of the Transformer architecture so let's start going through it from step by step and as we saw one of the main purposes of the original Transformer architecture was to convert English to German so this is the example which we have taken here let's say the in let's look at step number one so this is the input text which is to be translated and as we can all see this input text is right now in the English language right great and uh the Transformer is designed so that it will at the end of eight steps it will convert it into German but there are number of things which happen before that let's let's go to step number two in Step number two the input text is basically taken and pre-processed what pre-processing means is that there is a tech there is a process which is called as tokenization tokenization and what tokenization basically means is that we have used sentences right which might be let's say we have input data from billions of data sets as we saw in the previous lecture such transform perers are usually trained on huge amounts of data and let's say the input data is in the form of documents and documents have sentences right so the entire sentence cannot be fed into the model the sentence needs to be broken down into simpler words or tokens this process is called as the process of tokenization so I have a simple schematic here so for now for Simplicity you can imagine that one word is one token this is not usually the case one word is generally not equal to one token but for understanding this class you can think of tokenizing as breaking down the sentence into individual words so let's say this is the sentence fine tuning is Fun For All tokenizing basically means breaking this down into individual words like fine tu tu and ing is Fun For All and then assigning an ID a unique number to each of these words so basically we have taken the huge amount of data broken it down into tokens or individual words and assigned an ID or a number to this to to each token this is called as the process of tokenization and so let's say if you have English data from Reddit posts or from Wikipedia you break it down into words and you uh collect individual subwords from each sentence in the data set this is what usually happens in the pre-processing step then the next step after the pr three processing step number three is encoder this is one of the most important building blocks of the Transformer architecture and what this encoder does is that the input text which is pre-processed let's say the tokens are passed to the encoder and what actually happens in the encoder is something called as Vector embedding so what what the encoder actually does is it implements a process which is called as Vector embedding so up till now we have seen that every sentence is broken down into individual words and uh those words uh are converted into numerical IDs right but the main problem is that we need to encode the semantic meaning between the words also right so let's say for example if you take the word dog and puppy with this method which I've shown you right now with tokenization random IDs will be assigned to dog and puppy but we need to encode the information somewhere that dog and puppy are actually related to each other so can we somehow represent the input data can we somehow represent the tokens in a way which captures the semantic meaning between the words and that process is called as Vector embedding what is done usually in Vector embeddings is that words are taken and they are converted into vectorized representations so this figure actually illustrates it very simply let's say these are the words King Man Woman apple banana orange football Golf and Tennis what is done in Vector embedding is that a so this is a two-dimensional Vector embedding I'm showing in a two-dimensional Vector embedding each of these words are converted into vectors and the way these vectors are formed is that so King man and woman they they are terms which are related to each other right apple banana and orange are related all of them are fruits football gold F tennis are related all of them are sports so when you convert these words into individual vectors if you see on the right hand side look at King man and woman they are more closer together right as vectors if you look at the green circle here which is football Golf and Tennis they are more closer together if you look at the red circle here which is apple banana and orange all of them are fruits which are closer together so converting these words into such kind of vector format is called as Vector embedding and this is a difficult task we cannot randomly put vectors right because there have so apple and banana have to be closer to each other all fruits need to be closer to each other than let's say banana and King so there is usually a detailed procedure for this and neural networks are trained even for for this step that is called as Vector embedding step so that is the main purpose of the encoder the main purpose of the encoder is actually to take in the input text from the pre-processing maybe the tokens and to convert those tokens into Vector embeddings so if you see in Step number four we have generated Vector embeddings so in the in the left hand side of the Transformer architecture the final goal is to generate vector headings which means that let's say if we have millions of data in English language we convert them into tokens we convert them into vectors and that is done in a giant Dimension space not just in two Dimension space it is done in maybe 500,000 huge number of Dimension space which we cannot even imagine but the way it is done is such that semantic meaning is captured between the words that is how the embedding vectors should be returned here is another uh example which visually shows you how the embedding is done let's say if you have text right now from documents that text is converted into IDs and that those tokenized IDs are converted into vector format like this this is a three-dimensional vectorized representation so we can visualize this and another nice visualization is this where we take in the where we take in the uh data put it into the embedding model and then vectorized embeddings are the result of this so that's the first step of the Transformer architecture so you can view it as a left side and right side in the left side in these four steps we take the input sentences and the final goal is to convert them into these Vector embeddings so that semantic meaning is captured between the words okay now what do we do with these embeddings we feed these embeddings to the right hand side so look at this Arrow here this these embeddings are fed to what is called as the decoder so let's come to the right hand side of things so step number five right this is the uh German translation which our model will be doing and remember the model completes one word at a time right so uh this is an example is the input and uh up till now let's say the model has translated this to be Das s so this is not complete translation because the translation of exact example is not yet included right so this can be called as the partial output text remember this is available to the model because the model only generates one output word at a time so by the time we reach the fourth output word which is the translation of example we would have the translated words for this is and N so this is available to the model this is one of the key features of Transformer and even the GPT architecture one output word is produced at one time so the model has partial output text which is d s these words are available to the model and even this this kind of text which is available is converted into the tokenization the tokenized IDS which we saw this is the pre-processing step and then this is fed to the decoder the job of the decoder is basically to do the final translation now remember along with this partial input text the decoder also receives the vector embeddings so the decoder has received the vector embeddings from the left hand side of things and now the task of the decoder is basically it has received the vector embeddings it has received the partial text and it has to predict what the next word is going to be based on this information and then we go to the output layer slowly we go to the output layer and then uh finally you will see that that the uh final translation for example is completed over here and this is called as by spile I don't know how to pronounce it my German is uh not that good and I've not even learned German in the first place but here you can see this is the German translation for example which the decoder has produced so step number seven is for the decoder is to generate the translated text one word at a time and then step number eight is that we get the final output and this is how the decoder actually translates the input into the output one word at a time that is very important now you might be thinking how does the decoder translate it into the output remember it's like a neural network and we are training the neural network so initially it will make mistakes of course but there will be a loss function and then we will eventually train the Transformer to be better and better and better so think of the this as a neural network so let me show you the actual schematic of the Transformer what we have seen right now is a simplified architecture but if you see the actual schematic of the Transformer you'll see that there are feed forward layers uh which means there are weights and parameters which need to be optimized so that the decoder predicts the German World correctly it's very similar to training a neural network right so these are actually the eight steps which are very much important in the Transformer so let me actually go through these eight steps in the simplified Transformer architecture again the first step is to have the input text which is to be translated this is an example the second step is to pre-process all the sentences by breaking them down into tokens and then assigning a token ID to each token the third step is basically to pass these token IDs into the encoder and then convert these token IDs into an embedding or a vector embedding this means that words are projected into high dimensional Vector space and the way these words are projected is such that the semantic relationship or the semantic meaning between the words is captured very clearly now this this Vector embedding is fed as an input to the decoder but along with this the decoder also receives the partial output text remember the decoder is decoding uh the English to German one word at a time so for decoding this is an example it already has the decoded answer for this is an th is and now it wants to translate English to German for example so it receives this partial output text it receives the vector embedding and then it's trained to predict the next output word which is B spite which is the German for example and this is how uh English is translated into German in a Transformer so this is a very very simplified explanation of how a Transformer works we have not even covered attention here you might be thinking why is this paper titled attention is all you need and there is a very specific reason for it I just want you to not get intimidated or afraid by the Transformer and that's why I'm showing you this simplified form right now at the simplest form you can think of a transformer as a neural network and you're optimizing parameters in a neural network it's as simple as that what many students do is that they try to understand this architecture directly and then that leads to many issues because it's actually fairly complicated and then they develop a fear for this subject I wanted to avoid that so I started with this simplified Transformer architecture okay I hope you have understood until this point I encourage you all to maybe pause here and think about what you have learned now let's go to the next next part of the lecture uh the Transformer architecture predominantly consists of two main blocks the first is the encoder block and the second is the decoder block and we saw both of these here you see the encoder was over here and the decoder was over here okay the main purpose of the encoder is to convert the input text into embedding vectors great and the main purpose of the decoder is to generate the output text from the embedding vectors and from the partial output which it has received so encoder and decoder are the two key blocks of a transformer architecture remember the GPT architecture is actually different than the Transformer because that came later and it does not have the decoder it does sorry it does not have the encoder it only has the decoder but we'll come to that later right now remember that Transformers have both encoder and decoder now one key part of of the Transformer architecture is this thing this thing called as self attention mechanism so let's actually Google or let's actually control F attention here and see how many times it shows up 97 times and let's see how they have defined attention actually uh okay attention mechanisms have become an integral part of sequence modeling allowing modeling of dependencies without regard to their distance in the input or output sequences remember this so the attention mechanism allows you to model the dependencies between different words without regards to how close apart or how far apart the words are that is one key thing to remember uh and then self attention is an attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence this is a bit difficult to understand so let me actually explain to you the way I understood it on the white board what basically self attention mechanism does is that or attention is that it allows the model to weigh the importance of different words and tokens relative to each other so let's say you have two sentences right and uh let's say the first sentence is Harry Potter is on station or platform number something and then Harry Potter wants to board the train and then third sentence for fourth sentence when you are on the fourth sentence to predict the next word in the fourth sentence the context is very important right so you need to know what the text was in the sentence number one sentence number two and sentence number three as well only then you will be able to really understand the fourth sentence and predict the next word in the fourth sentence this is the meaning of long range dependencies which means that if I'm predicting the next word in the fourth sentence I need to know the importance of previous words I need to know how much attention should I give to the previous Words which word which has come previously should receive more attention maybe Harry should receive more attention maybe platform or train should receive more attention the self attention mechanism allows you to capture long range dependencies so that the model can look even far behind and even to sentences closer to the current one to identify the next one to identify the next word so the self attention mechanism allows the model to weigh the importance of different words or tokens relative to each other that is very important so basically uh if you are to predict the next word the self attention mechanism maintains this attention score which basically tells you which word should be given more attention when you predict the next word and this is a key part of the intuition for all of you to think about so let us actually look at uh this architecture and look at the part where attention comes in see multi-head attention mask multi-head attention there are these blocks which are called as attention blocks so these attention blocks make sure you capture long range dependencies in the sentences that's why this paper is actually called attention is all you need because of the self attention mechanism uh and the intuition behind attention which these folks introduced so as I mentioned they they calculate an attention score which basically it's a matrix and it tells you which words should be given more importance in relative or in relation to other words for now just understand this intuition so that later when we come to the mathematics and coding of it I just want you to be comfortable with this notion and I want you to appreciate how beautiful this is because you as a human we keep context into our mind pretty naturally when we are reading a story we remember what was written on the previous page but for a model to do that it's very difficult and self attention mechanism actually allows the model to do that it allows the model to capture long range effect dependencies so that it it makes the next word prediction accurately in chat GPT when you write an input GPT actually gives attention to every sentence right and then it predicts what the next word could be it doesn't just look at the sentence before the current one it looks at all sent sentences because maybe previous words are more important this is possible through the self attention mechanism so that's the second key concept which I wanted to introduce and uh in the last part of the lecture we are going to look at the later variations of the Transformer architecture so the Transformer architecture or this paper rather came out in 2017 right the GPT models came out after that and there's another set of models called as Bert which also came out as l variations of the Transformer architecture so there are two later variations which I want to discuss the first is called as B it's called as by or its full form is B directional encoder representations from Transformers no need to understand the meaning but that's just what b means maybe you would have heard this terminology but did not know the full form the full form is B directional encoder representations from Transformers and the second is GPT models of course all of us have heard of chat GPT but the full form of GPT is generative pre-trained Transformers uh pre-trained because it's a pre-trained or a foundational model which we saw in the previous lecture so now you should start understanding these terminologies now you must be thinking what's the difference between Bert and GPT models there's a big difference basically the way Bert operates is that it predicts hidden words in a given sentence so let's say you have a sentence it will mask some words randomly and it will try to predict those mask or hidden words that's what B does what does GPT do as we have all seen it generates a new word so there is a pretty big difference between how B works and how GPT Works let's see a schematic so this is how bir actually works let's say we have a sentence this is an Dash or question mark of how llm Dash perform so let's say as input we have this a text which is incomplete so Bert receives inputs where words are randomly masked during training and mask means that let's say we do not know these words right and then this is the input text we do the same pre-processing steps as we saw above converting them into uh token IDs then we pass it to the encoder do the embedding same thing like what we saw before and then the main output is that we fill the missing words so Bert model realizes that the missing words are example and can so then the final sentence is this is an example of how llm can perform this is how B Works how GPT actually works is something completely different so let's say the input which GPT receives is this is an example of how llm can Dash so we just have to predict the next World we receive incomplete text and we have to predict the next word so then the way GPT works is that it does the pre-processing like we saw converts words to token IDs then there is a decoder model there is not an encoder model so the decoder then predicts the last word or the word which we do not know perform so then the output is this is an example of how llm can perform so GPT models learn to generate one word at a time now this leads to Big differences because if you see the GPT model is left to right right all the left information is there we are only predicting the rightmost information what is not known whereas in bir random words can be masked so the model has to pay attention to different parts of the sentence and that's why ber actually does very well in sentiment analysis so here I have I have a text which actually Compares uh or answers why is Bert so good when we do uh sentiment analysis so the reason Bert is called B directional so you'll see that the name is by directional encoder representations right because it looks at the sentence from both directions whereas in GPT we just look at the sentence from left to right but ber looks at the sentence from both directions because even the first word might be missing so it has to look from the left side as well as the right side and by looking at the entire sentence from both directions bir can capture the nuances and relationships between words that are important for for understanding meaning and context for instance Bert model can differentiate between Bank as a financial institution and bank as a River Bank by looking at the surrounding words so that is why ber can actually understand the nuances and relationships between different words in a sentence since it looks at the sentence from both sides that's why Bert is very commonly used in sentiment analysis even GPT can be used in sentiment analysis but the speciality of birth is sentiment analysis okay so that's the difference between bir and GPT no one talks too much about bir these days all the hype is about GPT chat GPT because it produces one word at a time it can complete missing text also it can also do sentiment analysis uh but I just want to explain I just wanted to explain these differences to you so that you you are aware of what BT means what GPT means one thing to not is that both of these have the word transform forers in them because they have originated from the Transformer architecture here uh which we just consider but as you saw the GPT model does not have an encoder they only have a decoder that's one key thing which I wanted to demonstrate here whereas The Bert model only has the encoder so remember these differences between Bert and GPT great and now one thing which I would like to cover before we end the lecture is that what is the difference between Transformer and llm so are they the same thing when we say llms can we also say Transformers so the key thing to note is that not all Transformers are llms Transformers can also be used for other tasks like computer vision so one thing which I would like to show you here is this thing so Transformers are not only used for language tasks they are also used for vision tasks such as image recognition image classification Etc here is a website which I have pulled out the these are called as Vision Transformers vit and they can be used for various application so here see the vision Transformer is being used to detect a PO hole on the road then there are a number of other important application such as it can be used to classify between tumors as maligant and venine just from the images and a number of people have discuss the similarities and differences between convolutional neural network and viit so viit AES remarkable results compared to CNN while obtaining substantially fewer computational resources for pre-training in comparison to C CNN Vision Transformers show a generally weaker bias so basically you think of only convolutional neural networks when you think of image classification right but Vision Transformers are a new method which is also gaining a lot of popularity and they can be used for image classification tasks so remember when you think of Transformers don't think of Transformers only in the context of large language models or text generation Transformers can also be used for computer vision so remember not all Transformers are llms so what about llms are all llms Transformers so that is also not true not all llms are also Transformers llms can be based on recurrent or convolutional architectures as well this is what very important point to remember I had made a presentation uh some time back and this image has been taken from stats Quest channel so before even Transformers came into the picture here you can see 1980 recurrent neural networks were introduced in 1997 long short-term memory networks were introduced both of them could do sequence modeling tasks and both of them could do text completion tasks so they also can be called as language models so remember that all llms are not uh Transformers right llms can also be recurrent neural networks or long shortterm memory networks to give you a quick introduction what RNN actually do is that RNN maintain this kind of a feedback loop so that is why we can incorporate memory into account uh lstm on the other hand incorporates two separate paths One path about short-term memories and one path about long-term memories that's why they are called long short-term um memory networks so One path is for long-term memories and one path is for short-term memories so basically we have one green line let's say which is shown here that represents long-term memory one line which shows the short-term memory and then basically using both we can make predictions of what comes next so even recurrent neural networks and long short-term memory Networks and even some convolutional architectures can also be large language models so as we end I just want you to remember that not all Transformers are llms this is very important to keep in mind and not all llms are Transformers also so don't use the terms Transformers and llms interchangeably they are actually very different things but not many students or not many people really understand the similarities or the differences between them one purpose of these set of lectures is for you to understand everything from Basics the way it is supposed to be that way you'll also be much more confident when you transition your career or you're sitting for an llm interview and if you don't know the difference between Transformers or llms these lectures can clarify those similarities and differences for you I'm going to go into a lot of detail in lectures like what we did right now and not assume anything so I've written number of things on the Whiteboard so that you can understand let's do a quick recap of what all we learned first we saw that most modern llms rely on the Transformer architecture which was proposed in the 2017 paper it's basically a deep neural network architecture the paper which proposed the Transformer architecture is called as attention is all you need and the original Transformer was developed for machine translation for translating English tasks or English texts into German and French we saw a simplified Transformer architecture which had eight steps we take an input example pre-process it by converting words or sentences into words and token IDs then we pass it into the encoder which converts these tokens into Vector embeddings the vector embeddings are fed to the decoder along with the vector embeddings the decoder also receives partial output text and it generates the translated sentence one word at a time this is the simplified Transformer architecture and we saw that the Transformer architecture consists of an encoder and a decoder however later we saw that GPT models do not have an encoder they only have a decoder in the middle we had a small discussion on self attention mechanism which is really the heart of why Transformers works so well and why the paper which I showed you earlier is called attention is all you need self attention allows the model to weigh the importance of different words relative to each other and it enables the model to capture long range dependencies so when we are predicting the next word from a given sentence we can look at all the context in the past and way the importance of which word matters more for predicting the next word you can think of also self attention as parallel attention to different parts of a paragraph or different sentences we will look into this later it's going to be one of the key aspects uh it's going to be one of the key aspects of our course as we move forward then we saw the later variations of transform Transformer architecture in particular we looked at two variations first is B which is B directional encoder representations and then we saw GPT so there is a difference between these right Bert predicts hidden hidden words in a sentence or it predicts missing Words which are also called masked words so basically what this does is that word pays attention to a sentence from left side as well as from the right side because any word can be masked that's why it's called B directional encoder and it does not have the decoder architecture it just has the encoder architecture since ber looks at a sentence from both the words both the directions it can capture the meanings of different words and how they relate to each other very well and that's why BT models are used for sentiment analysis A Lot GPT on the other hand just gets the data and then it predicts the next word so it's it's a left to right model basically it has data from the left hand side and then it has to predict what comes on the right or what's the next work so GPT receives incomplete text and learns to generate one word at a time um and main thing to remember is that GPT does not have an encoder it only has decoder great and then in the last part of the lecture we saw the difference between Transformers versus llms so remember not all Transformers are llms Transformers can also be used for computer vision tasks like image classification image segmentation Etc similarly not all llms are Transformers before Transformers came recurrent neural networks and long short-term memory networks and even convolutional architectures were used for text completion so that's why llms can be based on recurrent or convolutional architectures as well so do not use these terms Transformers and llms interchangeably though many people do it understand the similarities and differences between the two that brings us to the end of this lecture we covered a lot of we covered Five Points in today's lecture and I encourage you to be proactive in the comment section ask questions ask doubts uh also make notes about these architectures as you are as you are learning that's really one of the best ways to learn about this material and as always I try to show everything on a whiteboard plus try to explain as clearly as possible so that nothing is left out and I show a lot of examples also in this process thanks a lot everyone I hope you are enjoying in this series I look forward to seeing you in the next lecture"
+}
